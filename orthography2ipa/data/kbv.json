@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-sena1264",
+ "inherits": "x-clade-sena1264",
  "phonemes": [
   "b",
   "d̪|d",

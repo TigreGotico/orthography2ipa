@@ -27,7 +27,7 @@
       ]
     }
   },
-  "parent": "es-MX",
+  "inherits": "es-MX",
   "ancestors": [
     {
       "code": "es-MX",

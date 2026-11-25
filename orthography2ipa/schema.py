@@ -439,7 +439,8 @@ class LanguageSpecModel(_Strict):
     grammatical_endings_base: Optional[str] = None
 
     # ─── ancestry ───────────────────────────────────────────────────
-    parent: Optional[str] = None
+    inherits: Optional[str] = None  # the spec whose rules this spec starts from
+    parent: Optional[str] = None  # deprecated spelling of inherits
     ancestors: Optional[List[AncestorModel]] = None
 
     # ─── metadata ───────────────────────────────────────────────────
@@ -538,6 +539,12 @@ class LanguageSpecModel(_Strict):
                 raise ValueError(
                     f"consonant_marks entries must be one combining mark, got {mark!r}")
         return v
+
+    @model_validator(mode="after")
+    def _one_inheritance_key(self) -> "LanguageSpecModel":
+        if self.parent is not None and self.inherits is not None:
+            raise ValueError(f"spec {self.code!r} sets both inherits and its deprecated spelling parent")
+        return self
 
 
 # ═══════════════════════════════════════════════════════════════════════════

@@ -94,7 +94,7 @@
     "url": null,
     "notes": "The Latin alphabet is official in the Gambia; the Ajami (Arabic-script) tradition is older and more widely used but is not covered by this spec."
   },
-  "parent": "x-clade-mand1469",
+  "inherits": "x-clade-mand1469",
   "ancestors": [
     {
       "code": "x-clade-mand1469",

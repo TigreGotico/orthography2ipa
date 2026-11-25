@@ -27,7 +27,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-afro1255",
+ "inherits": "x-clade-afro1255",
  "graphemes_base": "ayn-YE",
  "allophones_base": "ayn-YE"
 }

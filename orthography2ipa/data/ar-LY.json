@@ -199,7 +199,7 @@
       "notes": "Tripoli monophthongization (Pereira 2010:66-67; 2011 EALL): the Classical diphthong /aw/ is realised [oː] in the urban Tripoli koine (*lawn > loːn 'colour'; *zawj > zōz 'two', the sibilant-harmony reflex registered as the primary-source attestation guerrero2019-006, whose vowel reflex Pereira 2010:66-67 documents). Mainline reflex for the sedentary Tripoli koine; diphthong retention is a documented residual variant (Pereira 2010), not the default."
     }
   ],
-  "parent": "ar-x-maghrebi",
+  "inherits": "ar-x-maghrebi",
   "ancestors": [
     {
       "code": "ar-x-maghrebi",

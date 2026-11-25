@@ -580,7 +580,7 @@
       "notes": "Same rule as lsi-creaky-after-glottalised-sonorant; stated separately because phonation rides the nucleus vowel, not the last character of a diphthong or of a glide-plus-vowel rime."
     }
   ],
-  "parent": "x-clade-sino1245",
+  "inherits": "x-clade-sino1245",
   "ancestors": [
     {
       "code": "x-clade-sino1245",

@@ -4,7 +4,7 @@
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "stub",
-  "parent": "trk",
+  "inherits": "trk",
   "graphemes": {},
   "allophones": {},
   "notes": "Tuvan (тыва дыл) — Siberian Turkic language of the Tyva Republic, Russia. Written in a Cyrillic-based Tuvan alphabet (the Russian alphabet plus ң, ө, ү); a Latin alphabet was used 1930–1943. GRAPHEME INVENTORY NOT YET SPECIFIED: a reliable spec must model the Cyrillic palatalisation/iotation conventions, vowel harmony, phonemic vowel length (written by doubling) and the pharyngealised ('kargyraa') vowel series, which is not consistently marked in the orthography. INPUT CONTRACT: input is expected in the Cyrillic Tuvan orthography. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode tuvi1240), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",

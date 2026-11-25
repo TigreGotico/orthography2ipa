@@ -28,7 +28,7 @@ collections.Counter(o2i.get(c).quality.value for c in o2i.available_codes())
 
 ## `stub`
 
-A stub holds `code`, `name`, `script` and a `parent`, so that the clade chain resolves and `family` derives from it. A grouping that is not a clade states `family` instead. Its `graphemes` and `allophones` may be empty, and it needs no gold. The tier is for a language that the library does not encode yet, and for an extinct language with a metadata-only entry.
+A stub holds `code`, `name`, `script` and an `inherits`, so that the clade chain resolves and `family` derives from it. A grouping that is not a clade states `family` instead. Its `graphemes` and `allophones` may be empty, and it needs no gold. The tier is for a language that the library does not encode yet, and for an extinct language with a metadata-only entry.
 
 A stub carries no letter table of its own. A stub dialect may still state a small delta over a base that it inherits a table from (`graphemes_base` or `positional_graphemes_base`), and `test_stub_carries_no_table_of_its_own` enforces this. A table on a stub hides the `StubSpecWarning` and makes the engine print IPA that no source supports. A spec whose table a listed source supports is a candidate for promotion, not a stub.
 

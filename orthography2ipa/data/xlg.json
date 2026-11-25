@@ -2,7 +2,7 @@
   "code": "xlg",
   "name": "Lusitanian",
   "script": "Latin",
-  "parent": "ine",
+  "inherits": "ine",
   "graphemes": {
     "p": [
       "p"

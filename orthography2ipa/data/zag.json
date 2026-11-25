@@ -144,7 +144,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-saha1256",
+ "inherits": "x-clade-saha1256",
  "phonemes": [
   "b",
   "d",

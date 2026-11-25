@@ -305,7 +305,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-yeni1252",
+ "inherits": "x-clade-yeni1252",
  "phonemes": [
   "b",
   "d",

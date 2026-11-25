@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-nort1547",
+ "inherits": "x-clade-nort1547",
  "phonemes": [
   "j",
   "k",

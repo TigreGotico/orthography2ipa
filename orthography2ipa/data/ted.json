@@ -159,7 +159,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-krua1234",
+ "inherits": "x-clade-krua1234",
  "phonemes": [
   "b",
   "c",

@@ -111,7 +111,7 @@
       "z"
     ]
   },
-  "parent": "sem",
+  "inherits": "sem",
   "ancestors": [
     {
       "code": "sem",

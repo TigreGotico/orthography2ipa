@@ -319,7 +319,7 @@
       "ũ"
     ]
   },
-  "parent": "pt-BR",
+  "inherits": "pt-BR",
   "notes": "Fluminense: Rio de Janeiro state outside the capital. Coda /S/ stays alveolar [s z]: in the North-Northwest of the state 'há predomínio das realizações alveolares, ao contrário do que acontece na capital do Estado' (Hora 1999: 34-35, reporting Brandão). Coda /R/ is glottal [h], 80 % of state tokens in ALiB (Silva 2023: 68). These two features separate it from the Carioca of the capital (pt-BR-x-rj), whose coda /S/ is palatal.",
   "quality": "research",
   "script_type": "alphabet",

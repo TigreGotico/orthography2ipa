@@ -131,7 +131,7 @@
       "notes": "PhD dissertation; phonology chapter (syllabic word-initial nasals, phoneme inventory)."
     }
   ],
-  "parent": "x-clade-aust1307",
+  "inherits": "x-clade-aust1307",
   "ancestors": [
     {
       "code": "x-clade-aust1307",

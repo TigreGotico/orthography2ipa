@@ -509,7 +509,7 @@
   },
   "glottolog_code": "kore1280",
   "iso639_3": "kor",
-  "parent": "pko",
+  "inherits": "pko",
   "ancestors": [
     {
       "code": "pko",

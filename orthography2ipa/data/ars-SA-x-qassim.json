@@ -18,7 +18,7 @@
   },
   "allophones_base": "ars-SA",
   "allophones": {},
-  "parent": "ars-SA",
+  "inherits": "ars-SA",
   "ancestors": [
     {
       "code": "ars-SA",

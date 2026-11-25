@@ -91,7 +91,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-barb1265",
+ "inherits": "x-clade-barb1265",
  "phonemes": [
   "b",
   "c",

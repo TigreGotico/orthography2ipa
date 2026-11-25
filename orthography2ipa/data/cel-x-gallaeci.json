@@ -2,7 +2,7 @@
   "code": "cel-x-gallaeci",
   "name": "Gallaecian Celtic",
   "script": "Latin",
-  "parent": "cel",
+  "inherits": "cel",
   "notes": "STRUCTURAL ANCESTRY / SUBSTRATE STUB (not a modelled G2P target). Gallaecian is the Celtic language of north-west Iberia (the Castro culture area), known from toponyms and personal names. It exists so that the Galician, Asturian and Leonese ancestry chains that reference it have a node to resolve to. It carries no grapheme table. A table needs a cited epigraphic or onomastic study that states the letter values it reads.",
   "graphemes": {},
   "allophones": {},

@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-chuk1271",
+ "inherits": "x-clade-chuk1271",
  "phonemes": [
   "k",
   "l̪|l",

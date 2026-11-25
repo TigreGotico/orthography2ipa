@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-chon1288",
+ "inherits": "x-clade-chon1288",
  "phonemes": [
   "b",
   "d",

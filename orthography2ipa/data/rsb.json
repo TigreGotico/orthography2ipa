@@ -27,5 +27,5 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "rom"
+ "inherits": "rom"
 }

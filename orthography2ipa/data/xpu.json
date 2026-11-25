@@ -7,7 +7,7 @@
   "orthography_kind": "transliteration",
   "graphemes": {},
   "allophones": {},
-  "parent": "phn",
+  "inherits": "phn",
   "ancestors": [
     {
       "code": "phn",

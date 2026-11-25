@@ -218,7 +218,7 @@
       "o"
     ]
   },
-  "parent": "pal",
+  "inherits": "pal",
   "ancestors": [
     {
       "code": "pal",

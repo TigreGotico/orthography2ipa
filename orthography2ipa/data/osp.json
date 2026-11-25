@@ -102,7 +102,7 @@
       "dz"
     ]
   },
-  "parent": "la-x-hispania",
+  "inherits": "la-x-hispania",
   "ancestors": [
     {
       "code": "la-x-hispania",

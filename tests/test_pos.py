@@ -65,7 +65,7 @@ def make_ancestry_positional_spec():
         family="TestFamily", script="Latin",
         graphemes={"a": ["a"], "b": ["b"], "d": ["d"]},
         allophones={"a": ["a"], "b": ["b"], "d": ["d", "ð"]},
-        parent="yy-parent",
+        inherits="yy-parent",
         ancestors=(
             Ancestor("yy-parent", AncestorRole.PARENT, 0.80, "Primary descent"),
             Ancestor("zz-sub", AncestorRole.SUBSTRATE, 0.10, "Substrate lang"),
@@ -333,7 +333,7 @@ class TestLanguageSpecAncestry(unittest.TestCase):
         spec = LanguageSpec(
             code="xx-d", name="Test Dialect", family="TestFamily",
             script="Latin", graphemes={"a": ["a"]}, allophones={"a": ["a"]},
-            parent="xx",
+            inherits="xx",
         )
         ancestors = spec.get_ancestors()
         self.assertEqual(len(ancestors), 1)

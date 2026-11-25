@@ -396,7 +396,7 @@
       "ɣ"
     ]
   },
-  "parent": "osx",
+  "inherits": "osx",
   "ancestors": [
     {
       "code": "osx",

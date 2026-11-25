@@ -5,7 +5,7 @@
   "script_type": "alphabet",
   "quality": "stub",
   "graphemes": {},
-  "parent": "x-clade-kore1284",
+  "inherits": "x-clade-kore1284",
   "ancestors": [
     {
       "code": "x-clade-kore1284",

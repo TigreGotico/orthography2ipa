@@ -81,7 +81,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-jiva1245",
+ "inherits": "x-clade-jiva1245",
  "phonemes": [
   "j",
   "k",

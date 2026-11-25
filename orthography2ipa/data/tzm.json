@@ -108,7 +108,7 @@
       "ʷ"
     ]
   },
-  "parent": "ber-x-kabyle-atlas",
+  "inherits": "ber-x-kabyle-atlas",
   "ancestors": [
     {
       "code": "ber-x-kabyle-atlas",

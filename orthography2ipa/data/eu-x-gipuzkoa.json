@@ -10,7 +10,7 @@
       ""
     ]
   },
-  "parent": "eu",
+  "inherits": "eu",
   "glottolog_code": "guip1235",
   "ancestors": [
     {

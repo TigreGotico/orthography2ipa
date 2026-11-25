@@ -442,7 +442,7 @@
       "notes": "Orientation only; every rule in this spec is stated from Svantesson (2003)."
     }
   ],
-  "parent": "xgn",
+  "inherits": "xgn",
   "ancestors": [
     {
       "code": "xgn",

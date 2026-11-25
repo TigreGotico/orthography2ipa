@@ -41,7 +41,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-kres1240",
+ "inherits": "x-clade-kres1240",
  "phonemes": [
   "b",
   "d",

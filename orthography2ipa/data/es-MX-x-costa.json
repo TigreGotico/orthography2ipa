@@ -99,7 +99,7 @@
       ]
     }
   },
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Coastal Mexican (Veracruz, Tabasco, Gulf/Pacific lowlands). Caribbean-influenced: coda /s/ aspiration, /x/ → [h], final /n/ velarisation, some liquid neutralisation. SESEO: ⟨c⟩ before ⟨e i⟩ is [s], the same phoneme as ⟨z⟩. Lipski (2011, p. 4): «The opposition /s/-/θ/ is not found in the Canary Islands (where seseo is the norm), nor in any part of Latin America.»",
   "quality": "research",
   "script_type": "alphabet",

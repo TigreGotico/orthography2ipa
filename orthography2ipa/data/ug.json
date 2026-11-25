@@ -58,7 +58,7 @@
   "iso639_3": "uig",
   "glottolog_code": "uigh1240",
   "wikidata_qid": "Q13263",
-  "parent": "trk",
+  "inherits": "trk",
   "ancestors": [
     {
       "code": "trk",

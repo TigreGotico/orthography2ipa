@@ -22,7 +22,7 @@
       "k"
     ]
   },
-  "parent": "acm-IQ",
+  "inherits": "acm-IQ",
   "ancestors": [
     {
       "code": "acm-IQ",

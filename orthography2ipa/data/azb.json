@@ -6,7 +6,7 @@
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "parent": "trk",
+  "inherits": "trk",
   "ancestors": [
     {
       "code": "trk",

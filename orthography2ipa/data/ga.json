@@ -330,7 +330,7 @@
       "ə"
     ]
   },
-  "parent": "cel-x-goidelic",
+  "inherits": "cel-x-goidelic",
   "ancestors": [
     {
       "code": "cel-x-goidelic",

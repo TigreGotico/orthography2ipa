@@ -150,7 +150,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-nubi1251",
+ "inherits": "x-clade-nubi1251",
  "phonemes": [
   "b",
   "bː",

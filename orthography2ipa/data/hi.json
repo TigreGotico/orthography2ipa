@@ -408,7 +408,7 @@
       "ɔː"
     ]
   },
-  "parent": "sa",
+  "inherits": "sa",
   "notes": "Standard Hindi (Khaṛī Bolī). 4-way laryngeal contrast: voiceless, aspirated, voiced, breathy-voiced. Nukta letters for Perso-Arabic loans may not be distinguished by all speakers. SCHWA DELETION: inherent schwa deleted word-finally and in medial CVC patterns (Pandey 2014). ड/ढ FLAPPING: retroflex stops [ɖ/ɖʱ] become flaps [ɽ/ɽʱ] intervocalically. 4-WAY LARYNGEAL: voiceless unaspirated, voiceless aspirated, voiced, breathy-voiced stops. DENTALS vs RETROFLEXES: dental series (त/थ/द/ध) vs. retroflex (ट/ठ/ड/ढ) fully contrastive. Sources: Ohala (1983), Pandey (2014), Masica (1991), Shapiro (2003). This spec reads ⟨ऩ⟩, ⟨ऱ⟩ and ⟨ऴ⟩ as their base letters ⟨न⟩ [n], ⟨र⟩ [ɾ] and ⟨ल⟩ [l], because the inventory has no separate phoneme for them. This spec has no ⟨ळ⟩, so ⟨ऴ⟩ takes the value of ⟨ल⟩.",
   "quality": "research",
   "script_type": "abugida",

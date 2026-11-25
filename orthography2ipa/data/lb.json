@@ -231,7 +231,7 @@
       "notes": "Moselle Franconian variety of West Germanic"
     }
   ],
-  "parent": "x-clade-west2793",
+  "inherits": "x-clade-west2793",
   "notes": "Luxembourgish (Lëtzebuergesch), the Moselle Franconian national language of Luxembourg, described here from Gilles & Trouvain's Illustration of the IPA. Doubled consonant letters mark the shortness of the preceding vowel and are a single consonant (Mamm [mɑm], Kapp [kɑp], Hiwwel [ˈhivəl]), so geminates collapse; ⟨ss⟩ is the exception the collapse must not reach, because it spells /s/ where single ⟨s⟩ spells /z/ (Keess [keːs] beside Sak [zaːk]). Voiced obstruents cannot stand syllable-finally and devoice (Auslautverhärtung, §2). [ɡ] occurs only word-initially; elsewhere the successors of historical [ɡ] are the fricatives [ʁ] between vowels and [χ] word-finally (Vugel [ˈfuʁel], Dag [daːχ]). [χ] and [ɕ] are allophones of one phoneme selected by the preceding vowel — [χ] after back vowels, [ɕ] elsewhere. ⟨ë⟩ is schwa and ⟨ä⟩ is short [æ], not the German [ɛː]. The Eifel Rule deletes syllable-final -n, but §5 places it in EXTERNAL SANDHI only: it is conditioned by the first sound of the following word, so it cannot fire on an isolated word form and this spec does not model it. ⟨r⟩ is left as [ʀ] in every position: word-final r-vocalisation to [ɐ] is described as a younger-speaker variant beside elder speakers' [ʀ ʁ], which makes it variable rather than categorical.",
   "sources": [
     {

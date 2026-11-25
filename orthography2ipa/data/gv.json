@@ -379,7 +379,7 @@
       "notes": "Goidelic slender/broad marking, onset case: a written i/e between an onset consonant and a following vowel marks the consonant as palatalised ('slender') and does not itself surface -- Manx giare [ɡʲɛːr], giat [ɡʲat] (Broderick 1984-86; Thomson 1992, ch.3). mutates_neighbor palatalises the PRECEDING slot atomically as the vowel deletes."
     }
   ],
-  "parent": "cel-x-goidelic",
+  "inherits": "cel-x-goidelic",
   "ancestors": [
     {
       "code": "cel-x-goidelic",

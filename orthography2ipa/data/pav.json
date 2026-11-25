@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-chap1271",
+ "inherits": "x-clade-chap1271",
  "phonemes": [
   "h",
   "hʷ",

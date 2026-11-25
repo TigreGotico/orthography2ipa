@@ -3,7 +3,7 @@
   "glottolog_code": "extr1243",
   "name": "Extremaduran",
   "script": "Latin",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "graphemes_base": "es-ES",
   "allophones_base": "es-ES",
   "positional_graphemes_base": "es-ES",

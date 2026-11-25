@@ -280,7 +280,7 @@
     "start_year": 1753,
     "end_year": null
   },
-  "parent": "x-clade-balt1263",
+  "inherits": "x-clade-balt1263",
   "ancestors": [
     {
       "code": "x-clade-balt1263",

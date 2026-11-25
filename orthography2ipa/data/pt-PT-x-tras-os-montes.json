@@ -43,7 +43,7 @@
       ]
     }
   },
-  "parent": "pt-PT",
+  "inherits": "pt-PT",
   "allophone_rules": [
     {
       "id": "PT_NORTH_BETACISM",

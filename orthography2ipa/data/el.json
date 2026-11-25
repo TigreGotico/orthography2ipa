@@ -380,7 +380,7 @@
       "u"
     ]
   },
-  "parent": "grc",
+  "inherits": "grc",
   "ancestors": [
     {
       "code": "grc",

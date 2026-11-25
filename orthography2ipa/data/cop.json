@@ -265,7 +265,7 @@
     "end_year": 1400
   },
   "glottolog_code": "copt1239",
-  "parent": "egy",
+  "inherits": "egy",
   "ancestors": [
     {
       "code": "egy",

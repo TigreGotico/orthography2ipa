@@ -76,7 +76,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-east2386",
+ "inherits": "x-clade-east2386",
  "phonemes": [
   "b",
   "bː",

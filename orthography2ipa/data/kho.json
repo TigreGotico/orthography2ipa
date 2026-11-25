@@ -53,7 +53,7 @@
   "iso639_3": "kho",
   "glottolog_code": "khot1251",
   "wikidata_qid": "Q130224860",
-  "parent": "ira",
+  "inherits": "ira",
   "ancestors": [
     {
       "code": "ira",

@@ -20,7 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/East_Germanic_languages"
   ],
-  "parent": "gem",
+  "inherits": "gem",
   "glottolog_code": "east2805",
   "urls": [
     "https://glottolog.org/resource/languoid/id/east2805"

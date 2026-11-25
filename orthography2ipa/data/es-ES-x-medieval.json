@@ -3,7 +3,7 @@
   "glottolog_code": "olds1249",
   "name": "Castilian",
   "script": "Latin",
-  "parent": "x-clade-iberrom",
+  "inherits": "x-clade-iberrom",
   "graphemes": {
     "a": [
       "a"

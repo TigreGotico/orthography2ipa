@@ -305,7 +305,7 @@
       "œ̃"
     ]
   },
-  "parent": "xbr",
+  "inherits": "xbr",
   "ancestors": [
     {
       "code": "xbr",

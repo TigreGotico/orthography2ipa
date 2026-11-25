@@ -149,7 +149,7 @@
     "https://en.wikipedia.org/wiki/Sakizaya_language",
     "https://szy.wikipedia.org/wiki/Sakizaya_a_kamu"
   ],
-  "parent": "x-clade-aust1307",
+  "inherits": "x-clade-aust1307",
   "ancestors": [
     {
       "code": "x-clade-aust1307",

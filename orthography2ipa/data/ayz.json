@@ -96,7 +96,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-mayb1237",
+ "inherits": "x-clade-mayb1237",
  "phonemes": [
   "f",
   "j",

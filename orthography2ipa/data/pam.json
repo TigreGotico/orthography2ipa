@@ -4,7 +4,7 @@
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "graphemes": {
     "a": [
       "a",

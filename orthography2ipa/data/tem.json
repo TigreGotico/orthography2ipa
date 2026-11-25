@@ -85,7 +85,7 @@
   "iso639_3": "tem",
   "glottolog_code": "timn1235",
   "wikidata_qid": "Q36613",
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

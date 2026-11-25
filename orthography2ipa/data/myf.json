@@ -182,7 +182,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-maoo1243",
+ "inherits": "x-clade-maoo1243",
  "phonemes": [
   "b",
   "d",

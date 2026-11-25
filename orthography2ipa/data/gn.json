@@ -1,7 +1,7 @@
 {
  "code": "gn",
  "name": "Guaraní",
- "parent": "x-clade-tupi1275",
+ "inherits": "x-clade-tupi1275",
  "script": "Latin",
  "graphemes": {
   "a": [

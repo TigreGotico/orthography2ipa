@@ -21,7 +21,7 @@
       "ŋ"
     ]
   },
-  "parent": "fa-AF",
+  "inherits": "fa-AF",
   "ancestors": [
     {
       "code": "fa-AF",

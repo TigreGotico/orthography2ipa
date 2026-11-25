@@ -42,7 +42,7 @@
       "ʎ"
     ]
   },
-  "parent": "eu",
+  "inherits": "eu",
   "glottolog_code": "bisc1236",
   "ancestors": [
     {

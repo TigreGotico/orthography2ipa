@@ -53,7 +53,7 @@
     "start_year": 1500,
     "end_year": null
   },
-  "parent": "x-clade-indo1321",
+  "inherits": "x-clade-indo1321",
   "ancestors": [
     {
       "code": "x-clade-indo1321",

@@ -99,7 +99,7 @@
       "ts"
     ]
   },
-  "parent": "la-x-italia",
+  "inherits": "la-x-italia",
   "ancestors": [
     {
       "code": "la-x-italia",

@@ -3,7 +3,7 @@
   "name": "Galician",
   "script": "Latin",
   "script_type": "alphabet",
-  "parent": "roa-x-galaico-pt",
+  "inherits": "roa-x-galaico-pt",
   "graphemes": {
     "a": [
       "a"

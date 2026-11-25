@@ -23,7 +23,7 @@
       ""
     ]
   },
-  "parent": "eu",
+  "inherits": "eu",
   "glottolog_code": "ronc1236",
   "ancestors": [
     {

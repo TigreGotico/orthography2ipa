@@ -165,7 +165,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-saha1239",
+ "inherits": "x-clade-saha1239",
  "phonemes": [
   "h",
   "j",

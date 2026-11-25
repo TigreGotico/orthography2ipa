@@ -238,7 +238,7 @@
       "ja"
     ]
   },
-  "parent": "trk",
+  "inherits": "trk",
   "ancestors": [
     {
       "code": "trk",

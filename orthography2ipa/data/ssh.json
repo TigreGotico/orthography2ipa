@@ -43,7 +43,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "acx-OM",
+ "inherits": "acx-OM",
  "graphemes_base": "acx-OM",
  "allophones_base": "acx-OM",
  "wikipedia": [

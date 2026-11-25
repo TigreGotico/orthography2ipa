@@ -233,7 +233,7 @@
     "https://crh.wikipedia.org/wiki/Q%C4%B1r%C4%B1mtatar_tili",
     "https://en.wikipedia.org/wiki/Crimean_Tatar_alphabet"
   ],
-  "parent": "x-clade-turk1311",
+  "inherits": "x-clade-turk1311",
   "ancestors": [
     {
       "code": "x-clade-turk1311",

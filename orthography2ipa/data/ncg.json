@@ -131,7 +131,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-tsim1258",
+ "inherits": "x-clade-tsim1258",
  "phonemes": [
   "b",
   "d̪",

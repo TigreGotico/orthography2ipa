@@ -5,7 +5,7 @@
   "script_type": "abugida",
   "orthography_kind": "native",
   "quality": "skeleton",
-  "parent": "mni",
+  "inherits": "mni",
   "ancestors": [
     {
       "code": "mni",

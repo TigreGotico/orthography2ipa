@@ -5,7 +5,7 @@
   "script_type": "abugida",
   "quality": "stub",
   "graphemes": {},
-  "parent": "x-clade-taik1256",
+  "inherits": "x-clade-taik1256",
   "ancestors": [
     {
       "code": "x-clade-taik1256",

@@ -693,7 +693,7 @@
       "notes": "Old Tibetan is a distinct historical stage with its own phonemic system, correlated with the letters of the Tibetan alphabet rather than with modern Lhasa pronunciation. Cited for the audit record below, which identifies part of the wikipron gold as Old Tibetan readings; this spec describes Lhasa and takes nothing else from it."
     }
   ],
-  "parent": "sit",
+  "inherits": "sit",
   "ancestors": [
     {
       "code": "sit",

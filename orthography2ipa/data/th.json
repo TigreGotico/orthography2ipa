@@ -828,7 +828,7 @@
       "notes": "Source for the three opening diphthongs /iːa uːa ɯːa/ and their spellings, for the short ⟨เ–าะ⟩ /ɔ/, for the live/dead syllable terminology the tone table turns on, and for the coda inventory /p t k m n ŋ j w/."
     }
   ],
-  "parent": "tai",
+  "inherits": "tai",
   "ancestors": [
     {
       "code": "tai",

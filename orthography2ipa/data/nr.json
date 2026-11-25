@@ -4,7 +4,7 @@
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
-  "parent": "bnt",
+  "inherits": "bnt",
   "graphemes": {},
   "allophones": {},
   "notes": "Southern Ndebele (isiNdebele seSewula) — Nguni (Bantu) language and official language of South Africa. Written in the Latin script with the Nguni conjunctive orthography. GRAPHEME INVENTORY NOT YET SPECIFIED: an accurate spec must model the click consonants (⟨c⟩ dental, ⟨q⟩ postalveolar, ⟨x⟩ lateral, with their aspirated, voiced/breathy and nasal series), the depressor/breathy-voice contrasts, prenasalised stops and long multi-letter digraphs — dedicated research. Tone is not written. INPUT CONTRACT: input is expected in the standard Latin-script isiNdebele orthography.",

@@ -157,7 +157,7 @@
     "source": "glottolog",
     "notes": "Kupe-Mwanenguba Division, South West Region, Cameroon — Glottolog's representative point for Akoose."
   },
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "x-clade-narr1281",

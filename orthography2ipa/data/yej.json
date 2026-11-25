@@ -8,7 +8,7 @@
   "glottolog_code": "yeva1238",
   "graphemes": {},
   "allophones": {},
-  "parent": "el",
+  "inherits": "el",
   "ancestors": [
     {
       "code": "el",

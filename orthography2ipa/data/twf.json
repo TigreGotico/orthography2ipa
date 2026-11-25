@@ -360,7 +360,7 @@
       "ũ̀"
     ]
   },
-  "parent": "x-clade-kiow1265",
+  "inherits": "x-clade-kiow1265",
   "ancestors": [
     {
       "code": "x-clade-kiow1265",

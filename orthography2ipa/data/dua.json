@@ -260,7 +260,7 @@
     "source": "glottolog",
     "notes": "Douala, Littoral Region, Cameroon — Glottolog's representative point for Duala."
   },
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "x-clade-narr1281",

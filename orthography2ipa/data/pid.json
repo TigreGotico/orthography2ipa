@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-sali1297",
+ "inherits": "x-clade-sali1297",
  "phonemes": [
   "b",
   "d",

@@ -865,7 +865,7 @@
       "aw"
     ]
   },
-  "parent": "xpa",
+  "inherits": "xpa",
   "ancestors": [
     {
       "code": "xpa",

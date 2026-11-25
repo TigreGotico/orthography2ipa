@@ -154,7 +154,7 @@ not rescore, then regenerate `docs/evaluation/generated/scoreboard.md`.
 [`git merge-tree`](https://git-scm.com/docs/git-merge-tree) and
 fails on an old value, unless the branch edits that language's spec. An edit
 to a parent or clade spec owns the rows of every language that inherits from
-it, through `parent` or a `*_base` table.
+it, through `inherits` or a `*_base` table.
 
 A harness or engine change can move rows it does not own. The guard reads
 those rows off the merge result. A `Board-Rows:` line in the pull request

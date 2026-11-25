@@ -106,7 +106,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-guai1249",
+ "inherits": "x-clade-guai1249",
  "phonemes": [
   "d̠ʒ",
   "h",

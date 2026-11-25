@@ -2,7 +2,7 @@
   "code": "la-x-hispania",
   "name": "Hispanic Vulgar Latin",
   "script": "Latin",
-  "parent": "x-clade-roma1334",
+  "inherits": "x-clade-roma1334",
   "graphemes_base": "la-x-late",
   "graphemes": {
     "f": [

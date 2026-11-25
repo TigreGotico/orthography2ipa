@@ -29,7 +29,7 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Uruguayan Spanish. Rioplatense base: žeísmo/šeísmo for ⟨ll⟩/⟨y⟩ (devoicing trend toward [ʃ] in younger speakers). Less extreme than Buenos Aires in some features. Border dialects show Portuguese influence (DPU — Dialectos Portugueses del Uruguay). ⟨LL⟩ AND ⟨Y⟩: both are [ʃ] before a vowel (calle [ˈkaʃe], yo [ˈʃo]). Lipski (2018, p. 502): «In most of Argentina and Uruguay, /j/ has traditionally been realized as a voiced fricative, [ʒ], but devoicing to [ʃ] has extended from Buenos Aires and Montevideo to much of the remaining territory.» The devoiced [ʃ] is the value that sentence gives for the present-day spread; [ʒ] is the older value. SESEO: ⟨c⟩ before ⟨e i⟩ is [s], the same phoneme as ⟨z⟩. Lipski (2011, p. 4): «The opposition /s/-/θ/ is not found in the Canary Islands (where seseo is the norm), nor in any part of Latin America.»",
   "quality": "skeleton",
   "script_type": "alphabet",

@@ -1,7 +1,7 @@
 {
   "code": "ine",
   "name": "Proto-Indo-European (reconstructed)",
-  "parent": "x-clade-indo1319",
+  "inherits": "x-clade-indo1319",
   "script": "IPA-reconstruction",
   "phonemes": [
     "b",

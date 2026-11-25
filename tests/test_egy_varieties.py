@@ -15,7 +15,7 @@ SAIDI, BEDAWI, CAIRENE = "aec-EG", "avl-EG", "arz-EG"
 @pytest.mark.parametrize("code", [SAIDI, BEDAWI])
 def test_the_spec_loads_and_hangs_off_cairene(code):
     s = get(code)
-    assert s.parent == CAIRENE
+    assert s.inherits == CAIRENE
     assert s.iso639_3 and s.glottolog_code
     assert s.sources, f"{code} has no sources"
 

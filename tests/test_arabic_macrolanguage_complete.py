@@ -82,7 +82,7 @@ def test_each_states_why_its_parent_is_weak():
     with open(os.path.join(DATA, "ar-TD-x-babalia.json"), encoding="utf-8") as fh:
         _bbz = json.load(fh)
     assert "CREOLE" in _bbz["notes"]
-    assert _bbz["parent"] != _bbz["graphemes_base"], (
+    assert _bbz["inherits"] != _bbz["graphemes_base"], (
         "bbz's note disclaims the descent its parent would assert; the classification "
         "must stay off the graphemes base")
     with open(os.path.join(DATA, "sqr.json"), encoding="utf-8") as fh:

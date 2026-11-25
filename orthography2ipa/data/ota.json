@@ -172,7 +172,7 @@
    ""
   ]
  },
- "parent": "tr",
+ "inherits": "tr",
  "ancestors": [
   {
    "code": "tr",

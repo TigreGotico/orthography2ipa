@@ -2847,7 +2847,7 @@
     "start_year": 1651,
     "end_year": null
   },
-  "parent": "kha-x-proto-mon-khmer",
+  "inherits": "kha-x-proto-mon-khmer",
   "ancestors": [
     {
       "code": "kha-x-proto-mon-khmer",

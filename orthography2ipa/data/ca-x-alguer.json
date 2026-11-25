@@ -2,7 +2,7 @@
   "code": "ca-x-alguer",
   "name": "Alguerese (l'alguerès, Catalan of Alghero, Sardinia)",
   "script": "Latin",
-  "parent": "ca",
+  "inherits": "ca",
   "graphemes_base": "ca",
   "allophones_base": "ca",
   "positional_graphemes_base": "ca",

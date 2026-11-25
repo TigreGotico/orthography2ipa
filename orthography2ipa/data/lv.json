@@ -121,7 +121,7 @@
       "notes": "Descended from Proto-Indo-European via Proto-Baltic"
     }
   ],
-  "parent": "x-clade-east2280",
+  "inherits": "x-clade-east2280",
   "notes": "Latvian (Lettish), Baltic language spoken in Latvia. Palatalised consonants marked with cedilla. Long vowels marked with macron. Three tone system (level, falling, broken).",
   "sources": [
     {

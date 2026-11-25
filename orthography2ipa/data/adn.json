@@ -70,7 +70,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-timo1261",
+ "inherits": "x-clade-timo1261",
  "phonemes": [
   "b",
   "c",

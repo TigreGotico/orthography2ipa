@@ -2,7 +2,7 @@
   "code": "la-x-gallia",
   "name": "Gallo-Romance Vulgar Latin",
   "script": "Latin",
-  "parent": "x-clade-roma1334",
+  "inherits": "x-clade-roma1334",
   "graphemes_base": "la-x-late",
   "graphemes": {
     "u": [

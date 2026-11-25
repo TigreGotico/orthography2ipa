@@ -47,7 +47,7 @@
     "я": ["ja", "ɑ"]
   },
   "allophones": {},
-  "parent": "chm",
+  "inherits": "chm",
   "ancestors": [
     {
       "code": "chm",

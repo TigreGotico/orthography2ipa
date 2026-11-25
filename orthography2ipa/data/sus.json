@@ -91,7 +91,7 @@
   ],
   "iso639_3": "sus",
   "glottolog_code": "susu1250",
-  "parent": "x-clade-mand1469",
+  "inherits": "x-clade-mand1469",
   "ancestors": [
     {
       "code": "x-clade-mand1469",

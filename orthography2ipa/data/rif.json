@@ -61,7 +61,7 @@
     "i": ["i", "ɪ"],
     "u": ["u", "ʊ"]
   },
-  "parent": "ber",
+  "inherits": "ber",
   "ancestors": [
     {
       "code": "ber",

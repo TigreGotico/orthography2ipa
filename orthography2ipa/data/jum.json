@@ -45,7 +45,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-nilo1247",
+ "inherits": "x-clade-nilo1247",
  "phonemes": [
   "b",
   "c",

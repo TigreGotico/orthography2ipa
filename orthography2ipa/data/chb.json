@@ -28,7 +28,7 @@
     "h": ["h"],
     "j": ["j"]
   },
-  "parent": "x-clade-chib1249",
+  "inherits": "x-clade-chib1249",
   "ancestors": [
     {
       "code": "x-clade-chib1249",

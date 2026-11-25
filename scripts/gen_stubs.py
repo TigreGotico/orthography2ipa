@@ -149,7 +149,7 @@ def main():
             # the language row and use its real family.
             lang = by_glottocode.get(g["Language_ID"])
             if g["Language_ID"] in spec_by_glottocode:
-                stub["parent"] = spec_by_glottocode[g["Language_ID"]]
+                stub["inherits"] = spec_by_glottocode[g["Language_ID"]]
                 new_specs[iso] = stub
                 if g["Glottocode"] not in existing_glottocodes:
                     snapshot_add[g["Glottocode"]] = {"name": g["Name"], "level": "dialect"}
@@ -163,7 +163,7 @@ def main():
             stub["family"] = "Isolate"
         else:
             clade = f"x-clade-{fid}"
-            stub["parent"] = clade
+            stub["inherits"] = clade
             if clade not in specs and clade not in new_clades:
                 fam = families[fid]
                 new_clades[clade] = {

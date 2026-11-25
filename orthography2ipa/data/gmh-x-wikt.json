@@ -12,7 +12,7 @@
     "ô": null,
     "û": null
   },
-  "parent": "gmh",
+  "inherits": "gmh",
   "ancestors": [
     {
       "code": "gmh",

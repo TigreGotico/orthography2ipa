@@ -111,7 +111,7 @@
       "ja"
     ]
   },
-  "parent": "x-clade-yuka1259",
+  "inherits": "x-clade-yuka1259",
   "ancestors": [
     {
       "code": "x-clade-yuka1259",

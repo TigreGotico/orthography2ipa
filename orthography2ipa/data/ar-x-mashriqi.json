@@ -196,7 +196,7 @@
       "v"
     ]
   },
-  "parent": "arb",
+  "inherits": "arb",
   "ancestors": [
     {
       "code": "arb",

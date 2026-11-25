@@ -78,7 +78,7 @@
       "ʔ"
     ]
   },
-  "parent": "nah",
+  "inherits": "nah",
   "ancestors": [
     {
       "code": "nah",

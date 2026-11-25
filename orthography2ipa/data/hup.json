@@ -149,7 +149,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-atha1245",
+ "inherits": "x-clade-atha1245",
  "phonemes": [
   "c",
   "cʰ",

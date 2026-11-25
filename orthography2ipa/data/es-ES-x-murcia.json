@@ -72,7 +72,7 @@
       ]
     }
   },
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Murcian Spanish (Panocho/Murciano). Transitional between Castilian and Andalusian: shares coda aspiration, -d deletion, yeísmo, and liquid neutralisation with Andalusian. Some traces of Aragonese/Catalan substrate from medieval settlement (vowel harmony traces). Mixed distinción/seseo zones.",
   "quality": "research",
   "script_type": "alphabet",

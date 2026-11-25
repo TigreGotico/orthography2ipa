@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-sino1245",
+ "inherits": "x-clade-sino1245",
  "phonemes": [
   "bv",
   "cç",

@@ -29,7 +29,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Aramaic"
     }
   ],
-  "parent": "sem-x-central",
+  "inherits": "sem-x-central",
   "ancestors": [
     {
       "code": "sem-x-central",

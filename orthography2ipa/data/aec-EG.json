@@ -3,7 +3,7 @@
   "name": "Saʿīdi Arabic (Upper Egyptian)",
   "script": "Arabic",
   "script_type": "abjad",
-  "parent": "arz-EG",
+  "inherits": "arz-EG",
   "graphemes_base": "arz-EG",
   "allophones_base": "arz-EG",
   "graphemes": {

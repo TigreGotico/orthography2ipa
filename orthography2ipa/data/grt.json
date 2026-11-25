@@ -169,7 +169,7 @@
       "u"
     ]
   },
-  "parent": "brx-x-proto-boro-garo",
+  "inherits": "brx-x-proto-boro-garo",
   "ancestors": [
     {
       "code": "brx-x-proto-boro-garo",

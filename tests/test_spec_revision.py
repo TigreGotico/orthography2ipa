@@ -485,10 +485,10 @@ def test_a_clade_whose_parent_has_no_file_follows_its_parent_role_ancestor(
         "qqa": {"code": "qqa", "name": "Data ancestor", "script": "Latin",
                 "graphemes": {"a": ["a"]}, "stress": {"default_position": -1}},
         "qqb": {"code": "qqb", "name": "Clade", "script": "Latin", "clade": True,
-                "parent": "qqz",
+                "inherits": "qqz",
                 "ancestors": [{"code": "qqa", "role": "parent", "weight": 1.0}],
                 "graphemes": {}},
-        "qqc": {"code": "qqc", "name": "Child", "script": "Latin", "parent": "qqb",
+        "qqc": {"code": "qqc", "name": "Child", "script": "Latin", "inherits": "qqb",
                 "graphemes": {"a": ["a"]}},
     }
 
@@ -502,7 +502,7 @@ def test_a_clade_whose_parent_has_no_file_follows_its_parent_role_ancestor(
 
     register()
     assert "qqz" not in json_loader._index
-    assert json_loader.load_json_spec("qqb").parent == "qqa"
+    assert json_loader.load_json_spec("qqb").inherits == "qqa"
     assert json_loader.load_json_spec("qqc").stress.default_position == -1
     before = spec_revision("qqc")
 

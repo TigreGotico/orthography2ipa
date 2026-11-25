@@ -184,7 +184,7 @@
     "url": null,
     "notes": "Superseded as Taiwan's official school-system standard by the near-identical Tâi-lô (2006), which this spec does not separately model; the two are inter-convertible letter-for-letter for the segments covered here."
   },
-  "parent": "nan",
+  "inherits": "nan",
   "ancestors": [
     {
       "code": "nan",

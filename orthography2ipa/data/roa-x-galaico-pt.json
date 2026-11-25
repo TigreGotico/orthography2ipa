@@ -468,7 +468,7 @@
       "ui"
     ]
   },
-  "parent": "x-clade-iberrom",
+  "inherits": "x-clade-iberrom",
   "ancestors": [
     {
       "code": "la-x-hispania",

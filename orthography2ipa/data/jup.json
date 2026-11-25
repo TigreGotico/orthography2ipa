@@ -178,7 +178,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-nada1235",
+ "inherits": "x-clade-nada1235",
  "phonemes": [
   "b",
   "b̰",

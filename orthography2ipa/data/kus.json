@@ -206,7 +206,7 @@
   "iso639_3": null,
   "glottolog_code": null,
   "wikidata_qid": null,
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

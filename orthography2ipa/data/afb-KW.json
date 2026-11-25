@@ -9,7 +9,7 @@
       "ŋ"
     ]
   },
-  "parent": "afb",
+  "inherits": "afb",
   "ancestors": [
     {
       "code": "afb",

@@ -109,7 +109,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-maya1287",
+ "inherits": "x-clade-maya1287",
  "phonemes": [
   "c", "cʼ", "j", "k", "kʼ", "l", "m", "n", "p", "q", "qʼ", "s", "t", "ts", "tsʼ", "tʼ",
   "t̠ʃ", "t̠ʃʼ", "w", "ɓ", "ʂ", "ʃ", "ʈʂ", "ʈʂʼ", "ʔ", "χ",

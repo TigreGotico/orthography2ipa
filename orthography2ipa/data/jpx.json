@@ -1,7 +1,7 @@
 {
   "code": "jpx",
   "name": "Proto-Japonic (family node)",
-  "parent": "x-clade-japo1237",
+  "inherits": "x-clade-japo1237",
   "script": "IPA-reconstruction",
   "graphemes": {},
   "allophones": {},

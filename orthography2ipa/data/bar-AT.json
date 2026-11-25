@@ -17,7 +17,7 @@
       "ɐ"
     ]
   },
-  "parent": "de-AT",
+  "inherits": "de-AT",
   "notes": "Bavarian (Bairisch) — covers Bavaria and most of Austria. Fortis/lenis consonant distinction (not voiced/voiceless). pf- cluster fully preserved. r-vocalisation [ɐ] before consonants common. Source: König & van der Auwera (1994).",
   "quality": "skeleton",
   "script_type": "alphabet",

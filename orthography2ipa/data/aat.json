@@ -33,7 +33,7 @@
       "notes": "Centuries of bilingualism with Greek in Attica/Boeotia/Peloponnese produced lexical and phonological influence on Arvanitika (Wikipedia: Arvanitika, on the sociolinguistic contact situation). NOTE: the previously-cited example pair (haristis/dhrom) was mis-sourced on re-verification: the Arvanitika Wikipedia article attributes those specific loans to Italian Arbëresh speakers descended from Arvanite settlers, not to Arvanitika itself, so they have been removed rather than kept unsupported."
     }
   ],
-  "parent": "x-clade-alba1267",
+  "inherits": "x-clade-alba1267",
   "notes": "STUB: no reliable, sourced grapheme-to-IPA table found this session. Arvanitika has no standardized orthography: it has historically been written in the Greek alphabet (often with added letters b, d, e, j or diacritics — e.g. Γ̇/γ̇ for /ɟ/, Λ̇/λ̇ for /ʎ/, Σ̈/σ̈ for /ʃ/, per Wikipedia) and, less often and inconsistently, in a Latin alphabet; Sasse (1991) documents eleven dialect groups with no convergence toward a common written standard, and Arvanites are generally not literate in the Latin-based standard Albanian orthography either. Per AGENTS.md, an inventory must not be fabricated and a non-Latin-script language must not be given an invented Latin placeholder; graphemes is left empty pending a sourced per-dialect table (e.g. from Sasse 1991 or a Greek-script primer). script is set to Greek as the historically primary system; this is a design decision, not an assertion that Arvanitika has a single fixed alphabet.",
   "sources": [
     {

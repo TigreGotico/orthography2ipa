@@ -2,7 +2,7 @@
   "code": "ca-x-medieval",
   "name": "Old Catalan",
   "script": "Latin",
-  "parent": "x-clade-roma1334",
+  "inherits": "x-clade-roma1334",
   "ancestors": [
     {
       "code": "la-x-late",

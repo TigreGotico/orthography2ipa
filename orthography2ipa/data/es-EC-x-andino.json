@@ -75,7 +75,7 @@
       ]
     }
   },
-  "parent": "es-EC",
+  "inherits": "es-EC",
   "ancestors": [
     {
       "code": "es-EC",

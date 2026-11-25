@@ -35,7 +35,7 @@
       ]
     }
   },
-  "parent": "es-AR",
+  "inherits": "es-AR",
   "ancestors": [
     {
       "code": "es-AR",

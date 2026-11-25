@@ -231,7 +231,7 @@
     "˥˩": "yin qu / departing, 51",
     "˩˩˧": "yang ping / low-register level, 113"
   },
-  "parent": "wuu",
+  "inherits": "wuu",
   "ancestors": [
     {
       "code": "wuu",

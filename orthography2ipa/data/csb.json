@@ -151,7 +151,7 @@
       "notes": "German (Low German) adstrate: centuries under Prussia/Pomerania; very heavy lexical influence."
     }
   ],
-  "parent": "x-clade-west2792",
+  "inherits": "x-clade-west2792",
   "notes": "Kashubian (Kaszëbsczi jãzëk), West Slavic language/dialect spoken in Pomerania, Poland. Official regional language since 2005. Nasal vowel ą /ɔ̃/, schwa ë /ə/. Digraphs sz, cz, rz, dż precede single letters. Significant German loanword influence. Open questions from Hopkins (2001: xi): his table of the official orthography gives ⟨é⟩ = /e/ rather than /ɛ/, and his note 4 makes the grave accent a labial glide onset, so ⟨ù⟩ would be /wu/ rather than the /u/ mapped here.",
   "sources": [
     {

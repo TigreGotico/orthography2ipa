@@ -184,7 +184,7 @@
     "ʃ",
     "ʌ"
   ],
-  "parent": "x-clade-aust1307",
+  "inherits": "x-clade-aust1307",
   "ancestors": [
     {
       "code": "x-clade-aust1307",

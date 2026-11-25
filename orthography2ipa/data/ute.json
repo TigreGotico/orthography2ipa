@@ -96,7 +96,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-utoa1244",
+ "inherits": "x-clade-utoa1244",
  "phonemes": [
   "j",
   "k",

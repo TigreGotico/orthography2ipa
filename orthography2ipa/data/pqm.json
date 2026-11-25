@@ -60,7 +60,7 @@
       "ʔ"
     ]
   },
-  "parent": "x-clade-algi1248",
+  "inherits": "x-clade-algi1248",
   "ancestors": [
     {
       "code": "x-clade-algi1248",

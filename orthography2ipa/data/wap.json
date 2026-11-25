@@ -70,7 +70,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-araw1281",
+ "inherits": "x-clade-araw1281",
  "phonemes": [
   "bˀ",
   "d",

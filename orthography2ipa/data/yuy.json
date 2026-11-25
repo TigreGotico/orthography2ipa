@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-mong1349",
+ "inherits": "x-clade-mong1349",
  "phonemes": [
   "h",
   "j",

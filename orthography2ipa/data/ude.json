@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-tung1282",
+ "inherits": "x-clade-tung1282",
  "phonemes": [
   "b",
   "dz",

@@ -46,7 +46,7 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Bolivian Spanish (highland). Andean type: conservative coda /s/, velar [x], possible /ʎ/ in rural areas, assibilated /rr/. Quechua/Aymara substrate: vowel raising in bilinguals. Lowland (Santa Cruz) tends toward more aspiration.",
   "quality": "skeleton",
   "script_type": "alphabet",

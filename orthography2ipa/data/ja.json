@@ -1092,7 +1092,7 @@
   },
   "glottolog_code": "nucl1643",
   "iso639_3": "jpn",
-  "parent": "jpx",
+  "inherits": "jpx",
   "ancestors": [
     {
       "code": "jpx",

@@ -396,7 +396,7 @@
   },
   "glottolog_code": "telu1262",
   "iso639_3": "tel",
-  "parent": "ta-x-proto-dravidia",
+  "inherits": "ta-x-proto-dravidia",
   "wikidata_qid": "Q8097",
   "phoible_id": "telu1262",
   "wals_code": "tel",

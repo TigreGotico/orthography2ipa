@@ -87,7 +87,7 @@
     "https://en.wikipedia.org/wiki/Inuktitut",
     "https://en.wikipedia.org/wiki/Inuktitut_syllabics"
   ],
-  "parent": "iu",
+  "inherits": "iu",
   "ancestors": [
     {
       "code": "iu",

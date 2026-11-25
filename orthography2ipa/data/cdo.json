@@ -84,7 +84,7 @@
     "ɛ",
     "ʔ"
   ],
-  "parent": "x-clade-sini1245",
+  "inherits": "x-clade-sini1245",
   "ancestors": [
     {
       "code": "x-clade-sini1245",

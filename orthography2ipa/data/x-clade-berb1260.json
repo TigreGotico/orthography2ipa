@@ -20,7 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Berber_languages"
   ],
-  "parent": "afa",
+  "inherits": "afa",
   "glottolog_code": "berb1260",
   "urls": [
     "https://glottolog.org/resource/languoid/id/berb1260"

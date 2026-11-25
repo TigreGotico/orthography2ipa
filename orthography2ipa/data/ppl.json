@@ -173,7 +173,7 @@
     "start_year": 1500,
     "end_year": null
   },
-  "parent": "x-clade-utoa1244",
+  "inherits": "x-clade-utoa1244",
   "ancestors": [
     {
       "code": "x-clade-utoa1244",

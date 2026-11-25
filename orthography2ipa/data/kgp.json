@@ -34,7 +34,7 @@
     "u": ["u"],
     "y": ["ɤ"]
   },
-  "parent": "x-clade-nucl1710",
+  "inherits": "x-clade-nucl1710",
   "ancestors": [
     {
       "code": "x-clade-nucl1710",

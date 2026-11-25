@@ -33,7 +33,7 @@
       "x"
     ]
   },
-  "parent": "en-GB",
+  "inherits": "en-GB",
   "ancestors": [
     {
       "code": "en-GB",

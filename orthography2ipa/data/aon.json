@@ -46,7 +46,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-nucl1708",
+ "inherits": "x-clade-nucl1708",
  "phonemes": [
   "b",
   "dz",

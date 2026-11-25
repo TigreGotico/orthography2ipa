@@ -1668,7 +1668,7 @@ These names keep their meaning, because outside code depends on them:
 | `registry.get`, `resolve`, `available_codes` | compile-time Python |
 | `phoneme_inventory(spec, lexicon=None)` | `inventory.py`, package root; phonematcher's coverage benchmark (`benchmarks/tasks/coverage.py`) reads it |
 | `packaged_lexicon(lang, patches=)`, `packaged_lexicon_sources(patches=)` | lexicon data for H4 |
-| `spec_revision(lang)` | unchanged: the spec JSON, its parent chain and the engine fingerprint (8.1) |
+| `spec_revision(lang)` | unchanged: the spec JSON, its inherits chain and the engine fingerprint (8.1) |
 | `lexicon_revision(lang, patches=)` | unchanged |
 | `transcription_revision(lang, patches=False)` | added: `spec_revision` plus the packaged lexicon (8.1) |
 | `exceptions.EngineSourceUnavailable` | unchanged |

@@ -273,7 +273,7 @@
     "source": "glottolog",
     "notes": "Glottolog's representative point."
   },
-  "parent": "x-clade-indo1319",
+  "inherits": "x-clade-indo1319",
   "script_type": "abugida",
   "orthography_standard": {
     "name": "Bengali script (informal, no official standard)",

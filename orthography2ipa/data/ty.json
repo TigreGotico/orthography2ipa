@@ -148,7 +148,7 @@
       "notes": "Orthography / phonology reference."
     }
   ],
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",

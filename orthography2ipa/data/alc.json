@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-kawe1237",
+ "inherits": "x-clade-kawe1237",
  "phonemes": [
   "f",
   "j",

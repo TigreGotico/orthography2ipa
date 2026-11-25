@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-chim1311",
+ "inherits": "x-clade-chim1311",
  "phonemes": [
   "b",
   "d",

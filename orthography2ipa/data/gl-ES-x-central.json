@@ -14,7 +14,7 @@
     ]
   },
   "positional_graphemes_base": "gl-ES",
-  "parent": "gl-ES",
+  "inherits": "gl-ES",
   "ancestors": [
     {
       "code": "gl-ES",

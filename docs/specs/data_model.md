@@ -72,7 +72,7 @@ A `LanguageSpec` holds all the data for one language, dialect, historical stage 
 | :--- | :--- | :--- |
 | Identity | `code`, `name`, `script`, `script_type`, `orthography_kind` | The [BCP 47](https://www.rfc-editor.org/rfc/rfc5646) code, the display name, the script and its type, and what kind of writing the graphemes are |
 | Cross-references | `iso639_3`, `glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code` | Identifiers in [ISO 639-3](https://iso639-3.sil.org/), [Glottolog](https://glottolog.org), [Wikidata](https://www.wikidata.org/), [PHOIBLE](https://phoible.org) and [WALS](https://wals.info/) |
-| Classification | `family`, `family_path`, `clade`, `parent`, `ancestors` | The derived family path, the clade flag and the typed ancestry |
+| Classification | `family`, `family_path`, `clade`, `inherits`, `ancestors` | The derived family path, the clade flag and the typed ancestry |
 | Sound and spelling | `graphemes`, `allophones`, `phonemes`, `positional_graphemes`, `grapheme_weights` | The two maps, the declared inventory, the context-sensitive overrides and the candidate weights |
 | Whole words and endings | `word_exceptions`, `grammatical_endings` | Overrides for an irregular set of words, and suffix readings at the word end |
 | Script behaviour | `inherent_vowel`, `inherent_vowel_final`, `virama_final_vowel`, `consonant_marks`, `dependent_vowels`, `preposed_vowels`, `coda_no_inherent_vowel`, `codas`, `consonant_nuclei`, `vowel_graphemes`, `fold_diacritics`, `optional_marks`, `word_internal_apostrophe`, `apostrophe_elision`, `doubled_letters_geminate`, `collapse_geminates`, `trailing_vowel_axis_digraphs`, `prevocalic_glide_backoff`, `constrain_onsets` | How the tokenizer and the syllabifier read the script |
@@ -163,7 +163,7 @@ The field is `OWN_ONLY`, like `script_type` and `optional_marks`. A dialect that
 
 ### Derived classification: `family`, `family_path`, `clade`
 
-No spec author writes `family`. The loader derives `family_path`, a tuple of clade names with the broadest first, from the `parent` chain. The field `family` is that path as one string, and the field `clade` is `True` on a clade node:
+No spec author writes `family`. The loader derives `family_path`, a tuple of clade names with the broadest first, from the `inherits` chain. The field `family` is that path as one string, and the field `clade` is `True` on a clade node:
 
 ```python
 import orthography2ipa
@@ -185,9 +185,9 @@ orthography2ipa.get("gl-ES").orthography_standard.authority
 orthography2ipa.get("ca").location.latitude   # 41.453
 ```
 
-### The `parent` and `ancestors` fields
+### The `inherits` and `ancestors` fields
 
-A spec can state its parent in two ways. `parent` is a string shorthand, and `ancestors` is the full typed tuple of `Ancestor` objects. If `ancestors` is empty and `parent` is set, `__post_init__` makes a `PARENT` ancestor with weight 1.0. If `parent` is empty and `ancestors` holds a `PARENT` entry, `__post_init__` sets `parent` from it.
+`inherits` is the code of the spec whose rules this spec starts from. `ancestors` is the full typed tuple of `Ancestor` objects. If `ancestors` is empty and `inherits` is set, `__post_init__` makes a `PARENT` ancestor with weight 1.0. If `inherits` is empty and `ancestors` holds a `PARENT` entry, `__post_init__` sets `inherits` from it. `LanguageSpec.parent` is a deprecated alias of `inherits`, and a spec file that names the key `parent` loads as `inherits` with a deprecation warning.
 
 ### Accessor methods and properties
 
@@ -216,7 +216,7 @@ A dialect often shares most of its data with a base variety. The JSON of the dia
 | `BASE_MERGE` | The own values overlay the values of the base key by key | `graphemes`, `allophones`, `positional_graphemes`, `word_exceptions`, `grammatical_endings` |
 | `OVERLAY_BY_ID` | The rules of the base come first, in order. An own rule with the same `id` replaces one, and an own rule with a new `id` goes at the end | `sandhi_rules`, `allophone_rules` |
 | `BASE_SCALAR` | The value follows the `graphemes_base` edge unless the spec states it | `constrain_onsets`, `word_internal_apostrophe`, `apostrophe_elision` |
-| `BASE_BLOCK` | A spec that states the block keeps it whole. A spec that does not takes the block of its `graphemes_base`, else of a `parent` that is the same language (same or no `iso639_3`). `false` takes no block | `stress` |
+| `BASE_BLOCK` | A spec that states the block keeps it whole. A spec that does not takes the block of its `graphemes_base`, else of the `inherits` spec when that is the same language (same or no `iso639_3`). `false` takes no block | `stress` |
 | `NOT_INHERITED` | Each file states its own value on purpose | `grapheme_weights`, `allophone_passes` |
 | `OWN_ONLY` | The field never takes part in inheritance | Identity, classification, bibliography and script fields, such as `code`, `name`, `sources`, `timespan`, `vowel_graphemes` |
 

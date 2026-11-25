@@ -96,7 +96,7 @@
       "t"
     ]
   },
-  "parent": "x-clade-bryt1239",
+  "inherits": "x-clade-bryt1239",
   "ancestors": [
     {
       "code": "x-clade-bryt1239",

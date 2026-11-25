@@ -315,7 +315,7 @@
       "ũ"
     ]
   },
-  "parent": "pt-BR",
+  "inherits": "pt-BR",
   "notes": "Curitibano (Curitiba, Paraná). Final unstressed /e/ is mostly kept as [e]: Limeira (2013, VARSUL), reported by Franceschini & Loregian-Penkal (2023: 2), finds '62% para /o/ e 70% para /e/' of post-tonic mid vowels not raised; the spec keeps final [e] and raises final /o/ as the base does (Curitiba raises /o/ in 81 %, ibid.). /t d/ before [i] stay stops as the first candidate: ALiB rates Curitiba palatalisation 'moderada' (Battisti & Dornelles Filho 2015: 226), not categorical. Coda /R/ is the tap; Silva (2023: 67) places Paraná in the retroflex zone, so the coda rhotic of the capital is not settled by the opened sources.",
   "quality": "research",
   "script_type": "alphabet",

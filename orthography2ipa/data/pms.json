@@ -103,7 +103,7 @@
       "ø"
     ]
   },
-  "parent": "la-x-gallo-italic",
+  "inherits": "la-x-gallo-italic",
   "ancestors": [
     {
       "code": "la-x-gallo-italic",

@@ -95,7 +95,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-ijoi1239",
+ "inherits": "x-clade-ijoi1239",
  "phonemes": [
   "b",
   "d",

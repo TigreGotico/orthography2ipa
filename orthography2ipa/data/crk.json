@@ -57,7 +57,7 @@
       "j"
     ]
   },
-  "parent": "cr",
+  "inherits": "cr",
   "ancestors": [
     {
       "code": "cr",

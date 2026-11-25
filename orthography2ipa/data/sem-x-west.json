@@ -5,7 +5,7 @@
   "script_type": "reconstruction",
   "graphemes_base": "sem",
   "allophones_base": "sem",
-  "parent": "sem",
+  "inherits": "sem",
   "ancestors": [
     {
       "code": "sem",

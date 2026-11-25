@@ -20,7 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Slavic_languages"
   ],
-  "parent": "x-clade-balt1263",
+  "inherits": "x-clade-balt1263",
   "glottolog_code": "slav1255",
   "urls": [
     "https://glottolog.org/resource/languoid/id/slav1255"

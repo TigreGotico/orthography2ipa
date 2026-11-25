@@ -5,7 +5,7 @@
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",
-  "parent": "es-ES-x-medieval",
+  "inherits": "es-ES-x-medieval",
   "graphemes": {
     "a": [
       "a"

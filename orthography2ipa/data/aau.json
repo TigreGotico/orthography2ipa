@@ -58,7 +58,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-sepi1257",
+ "inherits": "x-clade-sepi1257",
  "phonemes": [
   "h",
   "j",

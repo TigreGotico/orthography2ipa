@@ -369,7 +369,7 @@
       "notes": "Word-final obstruent devoicing: /dʒ/ (⟨dj⟩) → [tʃ], so ⟨rodje⟩ [ʀɔtʃ] and ⟨rotche⟩ are homophones."
     }
   ],
-  "parent": "la-x-gallia",
+  "inherits": "la-x-gallia",
   "ancestors": [
     {
       "code": "la-x-gallia",

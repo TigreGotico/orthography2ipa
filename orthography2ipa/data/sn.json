@@ -328,7 +328,7 @@
     "start_year": 1931,
     "end_year": null
   },
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "x-clade-narr1281",

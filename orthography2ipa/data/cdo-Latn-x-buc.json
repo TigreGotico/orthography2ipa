@@ -232,7 +232,7 @@
   "˨˦˨": "xiàqù (下去), 242",
   "˥": "xiàrù (下入, checked syllable only, same breve mark as shàngpíng), 5"
  },
- "parent": "cdo",
+ "inherits": "cdo",
  "ancestors": [
   {
    "code": "cdo",

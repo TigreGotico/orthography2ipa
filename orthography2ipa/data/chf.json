@@ -106,7 +106,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-maya1287",
+ "inherits": "x-clade-maya1287",
  "phonemes": [
   "b",
   "d",

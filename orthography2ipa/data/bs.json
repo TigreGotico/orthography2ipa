@@ -352,7 +352,7 @@
     "url": null,
     "notes": "Gaj's Latin alphabet; Cyrillic is also constitutionally co-official but rarely used."
   },
-  "parent": "x-clade-slav1255",
+  "inherits": "x-clade-slav1255",
   "ancestors": [
     {
       "code": "x-clade-slav1255",

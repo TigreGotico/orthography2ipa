@@ -352,7 +352,7 @@
       "r"
     ]
   },
-  "parent": "hi",
+  "inherits": "hi",
   "ancestors": [
     {
       "code": "hi",

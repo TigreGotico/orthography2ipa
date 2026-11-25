@@ -301,7 +301,7 @@
     "https://en.wikipedia.org/wiki/Tyap",
     "https://kcg.wikipedia.org/wiki/Tyap_%28a%CC%B1lyem%29"
   ],
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

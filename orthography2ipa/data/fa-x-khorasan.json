@@ -18,7 +18,7 @@
       "ɣ"
     ]
   },
-  "parent": "fa-x-tehran",
+  "inherits": "fa-x-tehran",
   "ancestors": [
     {
       "code": "fa-x-early",

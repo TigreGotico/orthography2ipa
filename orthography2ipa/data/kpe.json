@@ -282,7 +282,7 @@
     "source": "glottolog",
     "notes": "Central Liberia (Bong/Nimba region) — Glottolog's representative point for Kpelle."
   },
-  "parent": "x-clade-mand1469",
+  "inherits": "x-clade-mand1469",
   "ancestors": [
     {
       "code": "x-clade-mand1469",

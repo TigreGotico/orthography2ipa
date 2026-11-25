@@ -434,7 +434,7 @@
   },
   "glottolog_code": "nucl1305",
   "iso639_3": "kan",
-  "parent": "ta-x-proto-dravidia",
+  "inherits": "ta-x-proto-dravidia",
   "wikidata_qid": "Q33673",
   "phoible_id": "nucl1305",
   "wals_code": "knd",

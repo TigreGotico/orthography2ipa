@@ -37,7 +37,7 @@
       "notes": "The Zeelandic spelling norm. Defines its signs by comparison with Standard Dutch and gives no IPA; deliberately pan-dialectal, so its graphemes do not map to single IPA values."
     }
   ],
-  "parent": "x-clade-germ1287",
+  "inherits": "x-clade-germ1287",
   "ancestors": [
     {
       "code": "x-clade-germ1287",

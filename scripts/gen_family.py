@@ -144,7 +144,7 @@ def build(specs, G, CLASS):
             f = family_from_code(gc, G, CLASS)
             if f:
                 return f
-        p = specs[code].get("parent")
+        p = specs[code].get("inherits")
         return resolve(p, seen | {code}) if p and p in specs else None
 
     for code in specs:

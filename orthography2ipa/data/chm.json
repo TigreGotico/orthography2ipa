@@ -5,7 +5,7 @@
   "script_type": "alphabet",
   "quality": "stub",
   "clade": true,
-  "parent": "urj",
+  "inherits": "urj",
   "ancestors": [
     {
       "code": "urj",

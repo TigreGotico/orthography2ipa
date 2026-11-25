@@ -1,7 +1,7 @@
 {
   "code": "xgn",
   "name": "Proto-Mongolic (family node)",
-  "parent": "x-clade-mong1349",
+  "inherits": "x-clade-mong1349",
   "script": "IPA-reconstruction",
   "graphemes": {},
   "allophones": {},

@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-cari1283",
+ "inherits": "x-clade-cari1283",
  "phonemes": [
   "b",
   "d",

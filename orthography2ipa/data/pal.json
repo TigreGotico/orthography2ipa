@@ -219,7 +219,7 @@
       "oː"
     ]
   },
-  "parent": "peo",
+  "inherits": "peo",
   "ancestors": [
     {
       "code": "peo",

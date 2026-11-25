@@ -38,7 +38,7 @@
     "https://en.wikipedia.org/wiki/Palatine_German_dialects",
     "https://pfl.wikipedia.org/wiki/Pf%C3%A4lzisch"
   ],
-  "parent": "x-clade-germ1287",
+  "inherits": "x-clade-germ1287",
   "ancestors": [
     {
       "code": "x-clade-germ1287",

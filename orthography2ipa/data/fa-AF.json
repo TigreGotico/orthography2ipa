@@ -70,7 +70,7 @@
       "oː"
     ]
   },
-  "parent": "fa",
+  "inherits": "fa",
   "ancestors": [
     {
       "code": "fa-x-early",

@@ -4,7 +4,7 @@
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "research",
-  "parent": "chm",
+  "inherits": "chm",
   "ancestors": [
     {
       "code": "chm",

@@ -126,7 +126,7 @@
       "notes": "Eastern Romance language descended from Vulgar Latin; closely related to Romanian"
     }
   ],
-  "parent": "x-clade-east2714",
+  "inherits": "x-clade-east2714",
   "notes": "Aromanian (Armâneashce/Vlach), Eastern Romance language spoken by the Aromanians in the Balkans (Greece, Albania, North Macedonia, Bulgaria, Serbia). Closely related to Romanian. Central vowel â/î = /ɨ/. Reduced /ə/ vowel ă. No official standardized orthography in most countries.",
   "sources": [
     {

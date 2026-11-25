@@ -28,7 +28,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Middle_Chinese"
     }
   ],
-  "parent": "och",
+  "inherits": "och",
   "ancestors": [
     {
       "code": "och",

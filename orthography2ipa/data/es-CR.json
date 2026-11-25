@@ -38,7 +38,7 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Costa Rican Spanish. Distinctive assibilated /rr/ → [ɹ̝] or [ɹ] (the 'erre tica') — strongest diagnostic feature. Central Valley: coda /s/ conserved. Rural: more aspiration. Assibilation also in clusters (tres → [tɹ̝es]). WORD-FINAL /n/ IS VELAR [ŋ]: pan [ˈpaŋ], un otro [uŋ ˈotɾo]. Lipski (2011, p. 7): «Velarization of phrase-final /n/ is the rule in Galicia and parts of Asturias, Extremadura, Andalusia, the Canary Islands, all Caribbean and Central American dialects, along the Pacific coast of Colombia, Peru, and Ecuador, and sporadically in the Andean highlands. Word-final prevocalic nasals are typically also velarized in these dialects, although with generally lower rates than for phrase-final /n/ (Lipski 1986): un otro [uŋ.ˈo.tɾo]».",
   "quality": "skeleton",
   "script_type": "alphabet",

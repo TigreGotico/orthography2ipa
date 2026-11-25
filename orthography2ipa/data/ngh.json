@@ -273,7 +273,7 @@
       "f"
     ]
   },
-  "parent": "x-clade-tuuu1241",
+  "inherits": "x-clade-tuuu1241",
   "ancestors": [
     {
       "code": "x-clade-tuuu1241",

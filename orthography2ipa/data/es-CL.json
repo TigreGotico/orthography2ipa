@@ -79,7 +79,7 @@
       ]
     }
   },
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Chilean Spanish. Moderate coda aspiration. /x/ → [x] with [ç] allophone before front vowels (gente [ˈçente]) — distinctive Chilean feature. Deaffrication [tʃ] → [ʃ] in casual speech (stigmatised). -d deletion common. Distinctive intonation.",
   "quality": "research",
   "script_type": "alphabet",

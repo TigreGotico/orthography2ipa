@@ -28,7 +28,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Ge%CA%BDez"
     }
   ],
-  "parent": "sem-x-ethiopic",
+  "inherits": "sem-x-ethiopic",
   "ancestors": [
     {
       "code": "sem-x-ethiopic",

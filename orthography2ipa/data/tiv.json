@@ -103,7 +103,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-atla1278",
+ "inherits": "x-clade-atla1278",
  "phonemes": [
   "b", "d", "dz", "d̠ʒ", "f", "h", "j", "k", "kp", "l", "m", "mb", "n", "nd", "ndz",
   "n̠d̠ʒ", "p", "s", "t", "ts", "t̠ʃ", "v", "w", "ŋ", "ŋmɡb", "ŋɡ", "ɡ", "ɡb", "ɣ", "ɲ", "ʃ",

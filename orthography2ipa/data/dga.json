@@ -316,7 +316,7 @@
     ]
   },
   "allophones": {},
-  "parent": "nic",
+  "inherits": "nic",
   "ancestors": [
     {
       "code": "nic",

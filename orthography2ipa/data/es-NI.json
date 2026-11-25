@@ -84,7 +84,7 @@
       ]
     }
   },
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Nicaraguan/lowland Central American Spanish. Coda aspiration, /x/ → [h], -d deletion. Voseo universal (shared with most Central American varieties). Transitional between highland conservative and Caribbean patterns. SESEO: ⟨c⟩ before ⟨e i⟩ is [s], the same phoneme as ⟨z⟩. Lipski (2011, p. 4): «The opposition /s/-/θ/ is not found in the Canary Islands (where seseo is the norm), nor in any part of Latin America.» WORD-FINAL /n/ IS VELAR [ŋ] before a pause, a vowel, a glide or a velar, and takes the place of a following consonant by the es-ES rules ES_EXT_FINAL_N_LABIAL and ES_EXT_FINAL_N_CORONAL (un peso [um ˈpeso], en la [en la]). Lipski (2011, p. 7): «Velarization of phrase-final /n/ is the rule in Galicia and parts of Asturias, Extremadura, Andalusia, the Canary Islands, all Caribbean and Central American dialects, along the Pacific coast of Colombia, Peru, and Ecuador, and sporadically in the Andean highlands. Word-final prevocalic nasals are typically also velarized in these dialects»; the same overview (p. 3, list (2)) groups Nicaragua with El Salvador and Honduras in Central America.",
   "quality": "research",
   "script_type": "alphabet",

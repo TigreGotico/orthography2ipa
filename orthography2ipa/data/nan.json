@@ -6,7 +6,7 @@
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "parent": "och",
+  "inherits": "och",
   "ancestors": [
     {
       "code": "och",

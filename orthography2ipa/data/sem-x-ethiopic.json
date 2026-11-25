@@ -28,7 +28,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/South_Semitic_languages"
     }
   ],
-  "parent": "sem-x-west",
+  "inherits": "sem-x-west",
   "ancestors": [
     {
       "code": "sem-x-west",

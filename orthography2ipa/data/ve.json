@@ -394,7 +394,7 @@
     "https://en.wikipedia.org/wiki/Venda_language",
     "https://ve.wikipedia.org/wiki/TshiVen%E1%B8%93a"
   ],
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

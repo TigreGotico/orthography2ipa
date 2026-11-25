@@ -279,7 +279,7 @@
       "u"
     ]
   },
-  "parent": "x-clade-roma1334",
+  "inherits": "x-clade-roma1334",
   "ancestors": [
     {
       "code": "la",

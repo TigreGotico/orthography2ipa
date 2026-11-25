@@ -76,7 +76,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-west2434",
+ "inherits": "x-clade-west2434",
  "phonemes": [
   "j",
   "k",

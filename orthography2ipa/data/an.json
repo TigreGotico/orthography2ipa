@@ -5,7 +5,7 @@
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",
-  "parent": "x-clade-iberrom",
+  "inherits": "x-clade-iberrom",
   "graphemes": {
     "a": [
       "a"

@@ -21,7 +21,7 @@ The top level of `orthography2ipa` exports each of these functions.
 | `resolves_exactly(code)` | `True` when the code names a spec without the nearest-language guess, and `False` otherwise. |
 | `available_codes(include_clades=False)` | A sorted list of the registered language codes. The clade nodes are in it only with `include_clades=True`. |
 | `available_families()` | A dict from each family path to the list of its language codes. |
-| `ancestry_chain(code)` | The list of `parent` codes above the spec, nearest first, with the clade nodes that the chain passes through. |
+| `ancestry_chain(code)` | The list of `inherits` codes above the spec, nearest first, with the clade nodes that the chain passes through. |
 | `get_syllabifier(code)` | Deprecated. `None` for every code, because discovery finds no syllabifier. A caller passes one in `Pipeline(syllabifier=...)`. |
 | `get_rescorers(code)` | Deprecated. The list of `LatticeRescorer` objects that the installed rescorer plugins contribute for the code. `G2P` does not run them. A caller passes rescorers in `Pipeline(rescore=...)`. |
 | `get_stress_plugin(code)` | Deprecated. The `StressPlugin` registered for the code, or `None`. |

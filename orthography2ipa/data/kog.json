@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-chib1249",
+ "inherits": "x-clade-chib1249",
  "phonemes": [
   "b",
   "bː",

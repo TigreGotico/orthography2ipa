@@ -6,7 +6,7 @@
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "parent": "sit",
+  "inherits": "sit",
   "ancestors": [
     {
       "code": "sit",

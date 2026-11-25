@@ -130,7 +130,7 @@
       "notes": "English adstrate: colonial and modern loanwords."
     }
   ],
-  "parent": "ar",
+  "inherits": "ar",
   "notes": "Maltese, the only Semitic language written in the Latin script and official EU language. Evolved from Siculo-Arabic. Digraph għ represents pharyngeal fricative, h is silent. Ċ and ġ are retroflex-palatal affricates. Extensive lexical borrowing from Sicilian/Italian and English.",
   "sources": [
     {

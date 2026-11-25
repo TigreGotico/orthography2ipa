@@ -11,7 +11,7 @@
     ]
   },
   "positional_graphemes_base": "an",
-  "parent": "an",
+  "inherits": "an",
   "ancestors": [
     {
       "code": "an",

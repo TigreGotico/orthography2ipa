@@ -177,7 +177,7 @@
       "ja"
     ]
   },
-  "parent": "x-clade-nivk1234",
+  "inherits": "x-clade-nivk1234",
   "ancestors": [
     {
       "code": "x-clade-nivk1234",

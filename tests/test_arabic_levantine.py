@@ -105,7 +105,7 @@ class TestSyrianDamascene:
         assert _ipa(self.CODE, "بَاب") == "ˈbaːb"
 
     def test_parent(self):
-        assert self.spec.parent == "apc"
+        assert self.spec.inherits == "apc"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -189,7 +189,7 @@ class TestLebaneseBeiruti:
         assert _ipa(self.CODE, "الْيَوم") == "alˈjoːm"
 
     def test_parent(self):
-        assert self.spec.parent == "apc"
+        assert self.spec.inherits == "apc"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -224,7 +224,7 @@ class TestJordanianAmmani:
         assert _ipa(self.CODE, "بَيْت") == "ˈbeːt"
 
     def test_parent(self):
-        assert self.spec.parent == "apc"
+        assert self.spec.inherits == "apc"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -262,4 +262,4 @@ class TestPalestinian:
         assert _ipa(self.CODE, "صَوْت") == "ˈsˤoːt"
 
     def test_parent(self):
-        assert self.spec.parent == "apc"
+        assert self.spec.inherits == "apc"

@@ -186,7 +186,7 @@
    "k"
   ]
  },
- "parent": "sit",
+ "inherits": "sit",
  "ancestors": [
   {
    "code": "sit",

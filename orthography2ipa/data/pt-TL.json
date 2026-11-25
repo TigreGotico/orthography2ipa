@@ -5,7 +5,7 @@
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",
-  "parent": "pt-PT",
+  "inherits": "pt-PT",
   "graphemes_base": "pt-PT",
   "allophones_base": "pt-PT",
   "positional_graphemes_base": "pt-PT",

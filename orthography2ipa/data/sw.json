@@ -334,7 +334,7 @@
     "stress_mark": "ˈ",
     "notes": "Swahili (Standard, as spoken in Tanzania/Kenya) has regular penultimate stress in native vocabulary. Loanwords may carry final stress but those are a minority. Source: Nurse & Hinnebusch (1993), Swahili and Sabaki; Wikipedia: https://en.wikipedia.org/wiki/Swahili_phonology"
   },
-  "parent": "bnt",
+  "inherits": "bnt",
   "ancestors": [
     {
       "code": "bnt",

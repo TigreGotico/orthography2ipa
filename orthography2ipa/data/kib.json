@@ -113,7 +113,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-heib1242",
+ "inherits": "x-clade-heib1242",
  "phonemes": [
   "b",
   "c",

@@ -53,7 +53,7 @@
       "ʒ"
     ]
   },
-  "parent": "apc",
+  "inherits": "apc",
   "ancestors": [
     {
       "code": "apc",

@@ -1,7 +1,7 @@
 {
   "code": "phn",
   "name": "Phoenician/Punic",
-  "parent": "x-clade-semi1276",
+  "inherits": "x-clade-semi1276",
   "script": "Latin",
   "graphemes": {
     "ʾ": [

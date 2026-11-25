@@ -229,7 +229,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Pannonian_Rusyn_Wikipedia"
   ],
-  "parent": "x-clade-slav1255",
+  "inherits": "x-clade-slav1255",
   "ancestors": [
     {
       "code": "x-clade-slav1255",

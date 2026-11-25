@@ -6,7 +6,7 @@
   "graphemes": {},
   "allophones_base": "hi",
   "allophones": {},
-  "parent": "sa",
+  "inherits": "sa",
   "ancestors": [
     {
       "code": "sa",

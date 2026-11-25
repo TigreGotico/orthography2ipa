@@ -656,7 +656,7 @@
     "ʏː",
     "ʑ"
   ],
-  "parent": "x-clade-sino1245",
+  "inherits": "x-clade-sino1245",
   "ancestors": [
     {
       "code": "x-clade-sino1245",

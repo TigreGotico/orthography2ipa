@@ -27,7 +27,7 @@
     "https://en.wikipedia.org/wiki/Mon_language",
     "https://mnw.wikipedia.org/wiki/%E1%80%99%E1%80%94%E1%80%BA"
   ],
-  "parent": "x-clade-aust1305",
+  "inherits": "x-clade-aust1305",
   "ancestors": [
     {
       "code": "x-clade-aust1305",

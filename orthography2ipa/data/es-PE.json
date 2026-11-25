@@ -46,7 +46,7 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Andean Peruvian Spanish (highland). Very conservative: full coda /s/, velar [x]. Possible /ʎ/ retention in rural lleísta areas. Quechua substrate: vowel raising (/e,o/ → [i,u] in bilingual speakers), some assibilated /rr/. SESEO: ⟨c⟩ before ⟨e i⟩ is [s], the same phoneme as ⟨z⟩. Lipski (2011, p. 4): «The opposition /s/-/θ/ is not found in the Canary Islands (where seseo is the norm), nor in any part of Latin America.»",
   "quality": "skeleton",
   "script_type": "alphabet",

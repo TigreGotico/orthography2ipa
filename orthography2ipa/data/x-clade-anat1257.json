@@ -20,7 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Anatolian_languages"
   ],
-  "parent": "ine",
+  "inherits": "ine",
   "glottolog_code": "anat1257",
   "urls": [
     "https://glottolog.org/resource/languoid/id/anat1257"

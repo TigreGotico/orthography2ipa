@@ -3,7 +3,7 @@
   "glottolog_code": "cant1245",
   "name": "Cantabrian",
   "script": "Latin",
-  "parent": "ast",
+  "inherits": "ast",
   "graphemes_base": "es-ES",
   "allophones_base": "es-ES",
   "positional_graphemes_base": "es-ES",

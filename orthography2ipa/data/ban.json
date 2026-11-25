@@ -205,7 +205,7 @@
     "https://en.wikipedia.org/wiki/Balinese_language",
     "https://ban.wikipedia.org/wiki/Basa_Bali"
   ],
-  "parent": "x-clade-aust1307",
+  "inherits": "x-clade-aust1307",
   "ancestors": [
     {
       "code": "x-clade-aust1307",

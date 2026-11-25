@@ -7,7 +7,7 @@
  "clade": false,
  "graphemes": {},
  "allophones": {},
- "parent": "arb",
+ "inherits": "arb",
  "ancestors": [
   {
    "code": "arb",

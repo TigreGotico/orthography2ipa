@@ -308,7 +308,7 @@
       "dːz"
     ]
   },
-  "parent": "x-clade-italorom",
+  "inherits": "x-clade-italorom",
   "ancestors": [
     {
       "code": "la-x-italia",

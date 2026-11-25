@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-mata1289",
+ "inherits": "x-clade-mata1289",
  "phonemes": [
   "j",
   "k",

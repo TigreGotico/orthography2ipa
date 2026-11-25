@@ -3,7 +3,7 @@
   "name": "Proto-Germanic (reconstructed)",
   "script": "IPA-reconstruction",
   "script_type": "reconstruction",
-  "parent": "x-clade-germ1287",
+  "inherits": "x-clade-germ1287",
   "graphemes": {
     "p": [
       "p"

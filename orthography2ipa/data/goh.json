@@ -238,7 +238,7 @@
       "iɑ"
     ]
   },
-  "parent": "gem-x-north-west",
+  "inherits": "gem-x-north-west",
   "ancestors": [
     {
       "code": "gem-x-north-west",

@@ -4,7 +4,7 @@
   "script": "Latin",
   "graphemes_base": "sc",
   "allophones_base": "sc",
-  "parent": "sc",
+  "inherits": "sc",
   "ancestors": [
     {
       "code": "sc",

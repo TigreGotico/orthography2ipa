@@ -887,7 +887,7 @@
       "notes": "Rhyme-by-rhyme orthography-to-IPA tables; the source actually read when building this grapheme table."
     }
   ],
-  "parent": "sit",
+  "inherits": "sit",
   "ancestors": [
     {
       "code": "sit",

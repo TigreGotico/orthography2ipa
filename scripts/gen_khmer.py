@@ -539,7 +539,7 @@ spec["sources"] = [
         "notes": "Phoneme inventory, coda restrictions and stress.",
     },
 ]
-spec["parent"] = "kha-x-proto-mon-khmer"
+spec["inherits"] = "kha-x-proto-mon-khmer"
 spec["ancestors"] = [
     {"code": "kha-x-proto-mon-khmer", "role": "parent", "weight": 0.8,
      "notes": "Khmeric branch of Austroasiatic (Mon-Khmer)."},

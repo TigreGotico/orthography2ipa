@@ -5,7 +5,7 @@
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",
-  "parent": "x-clade-astu1244",
+  "inherits": "x-clade-astu1244",
   "graphemes": {
     "a": [
       "a"

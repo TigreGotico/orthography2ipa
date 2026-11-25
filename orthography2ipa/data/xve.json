@@ -28,7 +28,7 @@
     "φ": ["pʰ"],
     "χ": ["kʰ"]
   },
-  "parent": "ine",
+  "inherits": "ine",
   "ancestors": [
     {
       "code": "ine",

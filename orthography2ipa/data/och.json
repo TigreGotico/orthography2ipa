@@ -28,7 +28,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Old_Chinese"
     }
   ],
-  "parent": "x-clade-sini1245",
+  "inherits": "x-clade-sini1245",
   "ancestors": [
     {
       "code": "sit",

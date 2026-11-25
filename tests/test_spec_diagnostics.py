@@ -153,7 +153,7 @@ def test_twin_none_when_table_too_small():
 
 def test_chain_flags_a_base_from_a_different_root_family(monkeypatch):
     raw = {
-        "aa": {"code": "aa", "parent": "bb"},
+        "aa": {"code": "aa", "inherits": "bb"},
         "bb": {"code": "bb", "family": "Sino-Tibetan"},
     }
     monkeypatch.setattr(sd, "_family_cached", lambda code: None)
@@ -161,14 +161,14 @@ def test_chain_flags_a_base_from_a_different_root_family(monkeypatch):
                          ("Indo-European",) if code == "aa" else ("Sino-Tibetan",))
     links = sd._chain("aa", raw)
     assert len(links) == 1
-    assert links[0]["field"] == "parent"
+    assert links[0]["field"] == "inherits"
     assert links[0]["target"] == "bb"
     assert links[0]["cross_family"] is True
 
 
 def test_chain_does_not_flag_a_base_within_the_same_root_family(monkeypatch):
     raw = {
-        "aa": {"code": "aa", "parent": "bb"},
+        "aa": {"code": "aa", "inherits": "bb"},
         "bb": {"code": "bb", "family": "Indo-European > Germanic"},
     }
     monkeypatch.setattr(sd, "_family_cached", lambda code: None)

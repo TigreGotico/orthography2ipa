@@ -224,7 +224,7 @@
     "https://en.wikipedia.org/wiki/Madurese_language",
     "https://mad.wikipedia.org/wiki/Bh%C3%A2sa_Madhur%C3%A2"
   ],
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",

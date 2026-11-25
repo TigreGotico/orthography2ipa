@@ -61,7 +61,7 @@
       ]
     }
   },
-  "parent": "es-CO",
+  "inherits": "es-CO",
   "ancestors": [
     {
       "code": "es-CO",

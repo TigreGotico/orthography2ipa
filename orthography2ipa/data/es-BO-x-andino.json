@@ -27,7 +27,7 @@
       ]
     }
   },
-  "parent": "es-BO",
+  "inherits": "es-BO",
   "ancestors": [
     {
       "code": "es-BO",

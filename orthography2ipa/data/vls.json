@@ -6,7 +6,7 @@
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "parent": "nl-NL",
+  "inherits": "nl-NL",
   "ancestors": [
     {
       "code": "nl-NL",

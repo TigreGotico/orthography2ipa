@@ -3,7 +3,7 @@
   "name": "Groningen Standard Dutch (Netherlands)",
   "script": "Latin",
   "script_type": "alphabet",
-  "parent": "nl-NL",
+  "inherits": "nl-NL",
   "ancestors": [
     {
       "code": "nl-NL",

@@ -312,7 +312,7 @@
     "start_year": 1700,
     "end_year": null
   },
-  "parent": "x-clade-germ1287",
+  "inherits": "x-clade-germ1287",
   "ancestors": [
     {
       "code": "x-clade-germ1287",

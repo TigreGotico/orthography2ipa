@@ -166,7 +166,7 @@
       "dːz"
     ]
   },
-  "parent": "it-IT",
+  "inherits": "it-IT",
   "ancestors": [
     {
       "code": "it-IT",

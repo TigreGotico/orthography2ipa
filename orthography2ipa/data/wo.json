@@ -262,7 +262,7 @@
     "start_year": 1971,
     "end_year": null
   },
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

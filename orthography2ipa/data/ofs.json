@@ -5,7 +5,7 @@
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",
-  "parent": "gem-x-ingvaeon",
+  "inherits": "gem-x-ingvaeon",
   "graphemes": {
     "a": [
       "a"

@@ -53,7 +53,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-gong1255",
+ "inherits": "x-clade-gong1255",
  "phonemes": [
   "b",
   "bː",

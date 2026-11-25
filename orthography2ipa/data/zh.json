@@ -1314,7 +1314,7 @@
   },
   "glottolog_code": "mand1415",
   "iso639_3": "zho",
-  "parent": "ltc",
+  "inherits": "ltc",
   "ancestors": [
     {
       "code": "ltc",

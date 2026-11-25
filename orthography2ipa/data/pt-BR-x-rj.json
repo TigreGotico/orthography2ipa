@@ -321,7 +321,7 @@
       "ũ"
     ]
   },
-  "parent": "pt-BR",
+  "inherits": "pt-BR",
   "notes": "Carioca (Rio de Janeiro city). Coda /S/ is palatal [ʃ ʒ], about 86 % in Brito (2016: 148) (mesmo [ˈmeʒmu], paz [ˈpaʃ]). Strong onset /r/ is a posterior fricative [χ~x]; coda /R/ is velar [x] inside the word and aspirated [h] word-finally (Callou, Moraes & Leite 1998: 62-63). /t d/ affricate before [i] (categorical in Rio in ALiB, Battisti & Dornelles Filho 2015: 226). Callou (2010) is listed but was not consulted for the rule notes.",
   "quality": "research",
   "script_type": "alphabet",

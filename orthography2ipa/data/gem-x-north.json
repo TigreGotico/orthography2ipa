@@ -212,7 +212,7 @@
       "øː"
     ]
   },
-  "parent": "x-clade-nort3160",
+  "inherits": "x-clade-nort3160",
   "ancestors": [
     {
       "code": "gem-x-north-west",

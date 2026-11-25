@@ -231,7 +231,7 @@
     "ʔ",
     "χ"
   ],
-  "parent": "x-clade-kart1248",
+  "inherits": "x-clade-kart1248",
   "ancestors": [
     {
       "code": "x-clade-kart1248",

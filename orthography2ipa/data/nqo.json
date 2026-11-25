@@ -187,7 +187,7 @@
     "start_year": 1949,
     "end_year": null
   },
-  "parent": "x-clade-mand1469",
+  "inherits": "x-clade-mand1469",
   "ancestors": [
     {
       "code": "x-clade-mand1469",

@@ -163,7 +163,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-atla1278",
+ "inherits": "x-clade-atla1278",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/L%C3%A1%C3%A1_L%C3%A1%C3%A1_Bwamu_language"

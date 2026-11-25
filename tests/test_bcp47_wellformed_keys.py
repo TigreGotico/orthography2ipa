@@ -87,7 +87,7 @@ CHAINED = {
 }
 
 _DATA = Path(orthography2ipa.__file__).parent / "data"
-_CODE_FIELDS = ("parent", "graphemes_base", "allophones_base",
+_CODE_FIELDS = ("inherits", "graphemes_base", "allophones_base",
                 "positional_graphemes_base")
 
 

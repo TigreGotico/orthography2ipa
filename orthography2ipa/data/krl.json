@@ -85,7 +85,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Karelian_language"
   ],
-  "parent": "x-clade-finn1317",
+  "inherits": "x-clade-finn1317",
   "ancestors": [
     {
       "code": "x-clade-finn1317",

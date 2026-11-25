@@ -3,7 +3,7 @@
  "name": "Babalia Creole Arabic",
  "script": "Arabic",
  "script_type": "abjad",
- "parent": "x-clade-afro1255",
+ "inherits": "x-clade-afro1255",
  "graphemes_base": "shu-TD",
  "graphemes": {},
  "allophones_base": "shu-TD",

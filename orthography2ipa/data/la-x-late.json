@@ -2,7 +2,7 @@
   "code": "la-x-late",
   "name": "Late Latin",
   "script": "Latin",
-  "parent": "la",
+  "inherits": "la",
   "graphemes_base": "la",
   "graphemes": {
     "ae": [

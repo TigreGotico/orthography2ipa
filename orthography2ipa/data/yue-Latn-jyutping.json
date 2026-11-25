@@ -301,7 +301,7 @@
     "url": "https://lshk.org/jyutping-scheme/",
     "notes": "Updated 2018 to add the -a and -oet finals; this spec follows the current (post-2018) scheme."
   },
-  "parent": "yue",
+  "inherits": "yue",
   "ancestors": [
     {
       "code": "yue",

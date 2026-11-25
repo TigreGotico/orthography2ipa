@@ -58,7 +58,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-aust1305",
+ "inherits": "x-clade-aust1305",
  "phonemes": [
   "b",
   "c",

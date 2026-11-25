@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-jara1244",
+ "inherits": "x-clade-jara1244",
  "phonemes": [
   "b",
   "cç",

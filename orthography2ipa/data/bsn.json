@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-tuca1253",
+ "inherits": "x-clade-tuca1253",
  "phonemes": [
   "b",
   "c",

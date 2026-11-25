@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-tebe1251",
+ "inherits": "x-clade-tebe1251",
  "phonemes": [
   "h",
   "j",

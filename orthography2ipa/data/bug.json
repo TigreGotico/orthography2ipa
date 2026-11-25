@@ -4,7 +4,7 @@
   "script": "Lontara",
   "script_type": "abugida",
   "quality": "skeleton",
-  "parent": "poz",
+  "inherits": "poz",
   "inherent_vowel": "a",
   "graphemes": {
     "ᨀ": ["k"],

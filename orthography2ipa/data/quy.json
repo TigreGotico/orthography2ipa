@@ -1,7 +1,7 @@
 {
   "code": "quy",
   "name": "Ayacucho Quechua",
-  "parent": "qu",
+  "inherits": "qu",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",

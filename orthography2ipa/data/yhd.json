@@ -6,7 +6,7 @@
  "quality": "stub",
  "graphemes": {},
  "allophones": {},
- "parent": "acm-IQ",
+ "inherits": "acm-IQ",
  "ancestors": [
   {
    "code": "jrb",

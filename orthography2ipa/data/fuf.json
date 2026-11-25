@@ -42,7 +42,7 @@
   ],
   "iso639_3": "fuf",
   "glottolog_code": "pula1262",
-  "parent": "ff",
+  "inherits": "ff",
   "ancestors": [
     {
       "code": "ff",

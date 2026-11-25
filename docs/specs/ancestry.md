@@ -41,7 +41,7 @@ ancestry_chain("pt-PT")
 #  'x-clade-ital1284', 'ine', 'x-clade-indo1319']
 ```
 
-The loader derives `family` from this chain. It walks `parent` upwards and collects the names of the clades it passes, broadest first:
+The loader derives `family` from this chain. It walks `inherits` upwards and collects the names of the clades it passes, broadest first:
 
 ```python
 import orthography2ipa
@@ -56,7 +56,7 @@ A spec can carry an explicit `family` string, which wins over the derived one. I
 
 ### Clades never change inheritance
 
-A clade node on the chain is transparent: transcription and ancestry weights are the same as without it. `parent` is the fallback edge for inherited `sandhi_rules` and `allophone_rules` when a spec declares no `graphemes_base`. A node with no content on that edge would strip the inherited rules. So the loader walks through clade nodes when it looks for the nearest data-bearing ancestor, and the distance metrics skip them in the same way when they weight ancestry.
+A clade node on the chain is transparent: transcription and ancestry weights are the same as without it. `inherits` is the fallback edge for inherited `sandhi_rules` and `allophone_rules` when a spec declares no `graphemes_base`. A node with no content on that edge would strip the inherited rules. So the loader walks through clade nodes when it looks for the nearest data-bearing ancestor, and the distance metrics skip them in the same way when they weight ancestry.
 
 ## The ancestry model
 
@@ -71,7 +71,7 @@ class Ancestor:
     notes: str = ""      # the reasoning and its source
 ```
 
-A spec that sets only `parent` gets one `PARENT` ancestor with weight 1.0. A JSON ancestor entry with no `weight` loads as 0.0, not as the Python default of 0.5 ([data_model.md](data_model.md#ancestor)).
+A spec that sets only `inherits` gets one `PARENT` ancestor with weight 1.0. A JSON ancestor entry with no `weight` loads as 0.0, not as the Python default of 0.5 ([data_model.md](data_model.md#ancestor)).
 
 ### `AncestorRole` values
 
@@ -116,7 +116,7 @@ spec.contact_codes                           # ('xaq', 'got', 'xaa')
 
 ## The pre-Roman layer of Iberia
 
-The ancestry chains of the Iberian Romance languages use these pre-Roman and contact languages as substrates and superstrates. The parent column is the `parent` field of each spec.
+The ancestry chains of the Iberian Romance languages use these pre-Roman and contact languages as substrates and superstrates. The parent column is the `inherits` field of each spec.
 
 | Code | Name in the spec | Parent | Note |
 |---|---|---|---|
@@ -167,7 +167,7 @@ Ancestor(
 )
 ```
 
-Point `parent` at the right clade node or data ancestor. [../contributing/spec_authoring.md](../contributing/spec_authoring.md) gives the full procedure.
+Point `inherits` at the right clade node or data ancestor. [../contributing/spec_authoring.md](../contributing/spec_authoring.md) gives the full procedure.
 
 ## Alignment with Glottolog
 

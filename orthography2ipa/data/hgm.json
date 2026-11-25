@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-khoe1240",
+ "inherits": "x-clade-khoe1240",
  "phonemes": [
   "b",
   "d",

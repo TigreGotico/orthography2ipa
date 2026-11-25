@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-pama1250",
+ "inherits": "x-clade-pama1250",
  "phonemes": [
   "j",
   "k͈",

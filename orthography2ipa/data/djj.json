@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-mani1293",
+ "inherits": "x-clade-mani1293",
  "phonemes": [
   "j",
   "k",

@@ -46,6 +46,7 @@ from orthography2ipa.types import (
     ValidCeiling,
 )
 from orthography2ipa.positional import normalize_ending_value
+from orthography2ipa.version import VERSION_MAJOR
 from orthography2ipa.weights import split_weighted_graphemes
 
 # Fields resolved via the ``{field}_base`` JSON key + ``{**base, **own}``
@@ -63,9 +64,9 @@ _BASE_MERGE_FIELDS: tuple = tuple(
 # dedicated ``{field}_base`` JSON key of their own — the schema doesn't
 # declare one per rule-bearing field — so they inherit through the same
 # structural base edge as ``graphemes`` (the primary data-inheritance
-# pointer), falling back to the ancestry ``parent`` when no explicit
+# pointer), falling back to ``inherits`` when no explicit
 # ``graphemes_base`` is set (e.g. Arabic dialects that only set
-# ``graphemes_base`` and leave ``parent`` empty).
+# ``graphemes_base`` and leave ``inherits`` empty).
 _OVERLAY_BY_ID_FIELDS: tuple = tuple(
     f for f, mode in FIELD_INHERITANCE.items() if mode is InheritanceMode.OVERLAY_BY_ID
 )
@@ -88,7 +89,7 @@ def _nearest_data_ancestor(code: Optional[str]) -> Optional[str]:
         spec = _specs[code]
         if not spec.clade:
             return code
-        code = spec.parent
+        code = spec.inherits
     return None
 
 
@@ -220,8 +221,19 @@ def load_json_spec(code: str) -> LanguageSpec:
     )
     raw["graphemes"] = own_graphemes_plain
 
+    if "parent" in raw:
+        if "inherits" in raw:
+            raise ValueError(f"spec '{code}' sets both 'parent' and 'inherits'; keep 'inherits'")
+        warnings.warn(
+            f"the 'parent' key of spec '{code}' is deprecated and will be removed in "
+            f"{VERSION_MAJOR + 1}.0.0; rename it to 'inherits'.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        raw["inherits"] = raw.pop("parent")
+
     # ensure all related languages also loaded
-    parent_lang = raw.get("parent")
+    parent_lang = raw.get("inherits")
     # base_field_langs[field] = the code declared in the JSON's
     # "{field}_base" key, driven by FIELD_INHERITANCE's BASE_MERGE fields
     # rather than a hand-listed set of 3 — a new BASE_MERGE field picked up
@@ -508,12 +520,12 @@ def load_json_spec(code: str) -> LanguageSpec:
 
     # Parse stress rules (InheritanceMode.BASE_BLOCK). A spec's own ``stress``
     # block wins whole. A spec that declares none takes the resolved block of
-    # its ``graphemes_base``, else of the nearest data ancestor on ``parent``
+    # its ``graphemes_base``, else of the nearest data ancestor on ``inherits``
     # when that ancestor is the same language: the child's ``iso639_3`` is
     # unset or equal to the ancestor's. Stress placement and the accent marks
     # that override it belong to one language and its orthography, so a
     # variety with no code of its own (``el-CY`` under ``el``) shares them,
-    # while a language with its own code that keeps ``parent`` for its
+    # while a language with its own code that keeps ``inherits`` for its
     # genealogy (a creole such as Angolar ``aoa`` under ``pt-PT``, A Fala
     # ``fax`` under ``gl-ES``) declares its own block or has none. A spec that
     # states ``"stress": false`` takes no block at all.
@@ -592,7 +604,7 @@ def load_json_spec(code: str) -> LanguageSpec:
             stress = _specs[stress_base].stress
 
     # Derive the classification path from the ancestry chain. The chain is
-    # walked through ``parent``; a spec that declares its genetic parent only
+    # walked through ``inherits``; a spec that declares its genetic parent only
     # in ``ancestors`` (PARENT role) is classified through that instead, so a
     # spec never has to be re-parented just to be classifiable.
     classification_parent = parent_lang
@@ -624,7 +636,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         orthography_kind=OrthographyKind(raw.get("orthography_kind") or "native"),
         allophones=allophones,
         positional_graphemes=positional_graphemes or {},  # will auto cast to enum
-        parent=parent_lang,
+        inherits=parent_lang,
         ancestors=ancestors,
         notes=raw.get("notes", ""),
         quality=raw.get("quality", QualityTier.RESEARCH),

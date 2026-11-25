@@ -1,7 +1,7 @@
 {
   "code": "sem",
   "name": "Proto-Semitic",
-  "parent": "x-clade-semi1276",
+  "inherits": "x-clade-semi1276",
   "script": "IPA-reconstruction",
   "script_type": "reconstruction",
   "graphemes": {

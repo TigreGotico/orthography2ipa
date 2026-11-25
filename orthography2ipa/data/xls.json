@@ -6,7 +6,7 @@
   "orthography_kind": "native",
   "quality": "stub",
   "graphemes": {},
-  "parent": "ine",
+  "inherits": "ine",
   "ancestors": [
     {
       "code": "ine",

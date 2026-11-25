@@ -348,7 +348,7 @@
       "w"
     ]
   },
-  "parent": "x-clade-taik1256",
+  "inherits": "x-clade-taik1256",
   "ancestors": [
     {
       "code": "x-clade-taik1256",

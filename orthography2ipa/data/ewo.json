@@ -141,7 +141,7 @@
     "source": "glottolog",
     "notes": "Yaoundé region, Centre Region, Cameroon — Glottolog's representative point for Ewondo."
   },
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "x-clade-narr1281",

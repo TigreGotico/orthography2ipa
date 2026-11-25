@@ -1,7 +1,7 @@
 {
   "code": "quc",
   "name": "K'iche'",
-  "parent": "x-clade-maya1287",
+  "inherits": "x-clade-maya1287",
   "script": "Latin",
   "quality": "skeleton",
   "graphemes": {

@@ -198,7 +198,7 @@
       "ʒ"
     ]
   },
-  "parent": "ira",
+  "inherits": "ira",
   "ancestors": [
     {
       "code": "ira",

@@ -26,7 +26,7 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Guatemalan/highland Central American Spanish. Conservative: coda /s/ largely retained, velar [x]. Mayan substrate influence in bilingual areas (glottalisation, vowel length). WORD-FINAL /n/ IS VELAR [ŋ]: pan [ˈpaŋ], un otro [uŋ ˈotɾo]. Lipski (2011, p. 7): «Velarization of phrase-final /n/ is the rule in Galicia and parts of Asturias, Extremadura, Andalusia, the Canary Islands, all Caribbean and Central American dialects, along the Pacific coast of Colombia, Peru, and Ecuador, and sporadically in the Andean highlands. Word-final prevocalic nasals are typically also velarized in these dialects, although with generally lower rates than for phrase-final /n/ (Lipski 1986): un otro [uŋ.ˈo.tɾo]». SESEO: ⟨c⟩ before ⟨e i⟩ is [s], the same phoneme as ⟨z⟩. Lipski (2011, p. 4): «The opposition /s/-/θ/ is not found in the Canary Islands (where seseo is the norm), nor in any part of Latin America.»",
   "quality": "skeleton",
   "script_type": "alphabet",

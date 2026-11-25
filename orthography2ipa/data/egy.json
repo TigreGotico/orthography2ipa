@@ -150,7 +150,7 @@
       "wikipedia_url": null
     }
   ],
-  "parent": "x-clade-egyp1245",
+  "inherits": "x-clade-egyp1245",
   "ancestors": [
     {
       "code": "afa",

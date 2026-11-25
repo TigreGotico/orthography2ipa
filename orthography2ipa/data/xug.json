@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-japo1237",
+ "inherits": "x-clade-japo1237",
  "phonemes": [
   "b",
   "cʰ",

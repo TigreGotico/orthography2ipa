@@ -29,7 +29,7 @@
     "w": ["w"],
     "y": ["j"]
   },
-  "parent": "x-clade-nort2923",
+  "inherits": "x-clade-nort2923",
   "ancestors": [
     {
       "code": "x-clade-nort2923",

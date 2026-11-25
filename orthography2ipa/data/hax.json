@@ -83,7 +83,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-haid1248",
+ "inherits": "x-clade-haid1248",
  "phonemes": [
   "c",
   "cʰ",

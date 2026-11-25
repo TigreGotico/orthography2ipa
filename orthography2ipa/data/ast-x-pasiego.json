@@ -2,7 +2,7 @@
   "code": "ast-x-pasiego",
   "name": "Pasiegu (Pasiego, Montes de Pas)",
   "script": "Latin",
-  "parent": "ast-x-cantabri",
+  "inherits": "ast-x-cantabri",
   "graphemes_base": "ast-x-cantabri",
   "allophones_base": "ast-x-cantabri",
   "positional_graphemes_base": "ast-x-cantabri",

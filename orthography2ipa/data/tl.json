@@ -212,7 +212,7 @@
       "notes": null
     }
   ],
-  "parent": "poz",
+  "inherits": "poz",
   "ancestors": [
     {
       "code": "poz",

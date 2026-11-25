@@ -131,7 +131,7 @@
       "notes": "Gallo-Romance language evolved from Vulgar Latin; historically spoken in Picardy and parts of Belgium"
     }
   ],
-  "parent": "x-clade-gallorom",
+  "inherits": "x-clade-gallorom",
   "notes": "Picard (Picard/Chti), Gallo-Romance language spoken in Picardy (France) and Hainaut (Belgium). Distinctive ch = /tʃ/ where French has /ʃ/. Closely related to Walloon. Multiple dialectal forms; no single orthographic standard.",
   "sources": [
     {

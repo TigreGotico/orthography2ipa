@@ -20,7 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Malayo-Polynesian_languages"
   ],
-  "parent": "x-clade-aust1307",
+  "inherits": "x-clade-aust1307",
   "glottolog_code": "mala1545",
   "urls": [
     "https://glottolog.org/resource/languoid/id/mala1545"

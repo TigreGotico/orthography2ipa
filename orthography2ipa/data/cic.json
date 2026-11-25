@@ -72,7 +72,7 @@
       "ʔ"
     ]
   },
-  "parent": "x-clade-musk1252",
+  "inherits": "x-clade-musk1252",
   "ancestors": [
     {
       "code": "x-clade-musk1252",

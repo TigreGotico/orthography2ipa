@@ -20,7 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Armenian_language"
   ],
-  "parent": "ine",
+  "inherits": "ine",
   "glottolog_code": "arme1241",
   "urls": [
     "https://glottolog.org/resource/languoid/id/arme1241"

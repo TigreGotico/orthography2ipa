@@ -91,7 +91,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-araw1281",
+ "inherits": "x-clade-araw1281",
  "phonemes": [
   "b", "tʃ", "d", "f", "ɡ", "h", "k", "l", "m", "n", "ɲ", "r", "s", "t", "w", "j", "ʔ",
   "a", "aː", "e", "eː", "i", "iː", "o", "oː", "u", "uː", "ɨ", "ɨː"

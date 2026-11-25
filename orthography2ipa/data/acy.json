@@ -252,7 +252,7 @@
       "ɛː"
     ]
   },
-  "parent": "arb",
+  "inherits": "arb",
   "ancestors": [
     {
       "code": "arb",

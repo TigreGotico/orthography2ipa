@@ -6,7 +6,7 @@
  "quality": "stub",
  "graphemes": {},
  "allophones": {},
- "parent": "ary-MA",
+ "inherits": "ary-MA",
  "ancestors": [
   {
    "code": "jrb",

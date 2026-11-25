@@ -126,7 +126,7 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 | --- | --- | --- |
 | `MissingPlugin` | class | A spec named a plugin and it is not installed. |
 | `UnknownVariantWarning` | class | A private-use (`-x-`) subtag names no registered spec. |
-| `ancestry_chain` | function | Return the `parent` chain above *code*, nearest ancestor first. |
+| `ancestry_chain` | function | Return the `inherits` chain above *code*, nearest ancestor first. |
 | `available_codes` | function | Return all registered language codes. |
 | `available_families` | function | Return `{family: [codes]}` for every loaded language. |
 | `get` | function | Return the `LanguageSpec` for *code*, loading lazily. |

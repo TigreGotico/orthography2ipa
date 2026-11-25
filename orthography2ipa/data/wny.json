@@ -36,7 +36,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-garr1260",
+ "inherits": "x-clade-garr1260",
  "phonemes": [
   "j",
   "k",
