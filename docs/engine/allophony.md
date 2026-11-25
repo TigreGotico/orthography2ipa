@@ -16,15 +16,18 @@ The flat `spec.allophones` table is a different thing. It lists the variants of 
 
 ## Where it runs in the pipeline
 
-```
-normalize → tokenize → select (positional + weights)
-                          │
-                          ▼
-                 rescore  ├─ user rescorer(s)
-                          └─ allophony  ← allophone_rules compile to here
-                          │
-                          ▼
-                 beam path selection → stress marks → sandhi → dialect
+The diagram shows where the engine applies `allophone_rules`, from the text preparation to the dialect step. The rules run inside the slot stage of one word. Sandhi and the dialect step act later, on the whole utterance.
+
+```mermaid
+flowchart TD
+    P["G2P._prepared: Pipeline.expand, Pipeline.mark"] --> A["Interpreter.tokenize"]
+    A --> B["_branches: positional overrides, weights"]
+    B --> C["hooks.rescore: caller and plugin rescorers"]
+    C --> D["_rescore_pass: allophone_rules, allophone_passes times"]
+    D --> E["_word_paths: beam path selection"]
+    E --> F["_finalize: stress mark"]
+    F --> G["_sandhi, then hooks.sandhi"]
+    G --> H["dialect.run_program"]
 ```
 
 The allophony stage runs after phoneme selection, so it sees the chosen phoneme and its resolved neighbours. It runs after any user rescorer and before beam path selection. So it runs before stress-mark insertion and before cross-word sandhi, which act on the whole utterance. In the structured lattice, it turns the phoneme lattice into the allophone lattice.
