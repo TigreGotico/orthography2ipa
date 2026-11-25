@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.130.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.130.0a1) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.129.0a6...7.130.0a1)
+
+**Merged pull requests:**
+
+- feat: export the names the phonemizers import from module paths [\#2622](https://github.com/TigreGotico/orthography2ipa/pull/2622) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- refactor\(distance\): read genealogy, place and time metrics from linguatag [\#2619](https://github.com/TigreGotico/orthography2ipa/pull/2619) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.129.0a6](https://github.com/TigreGotico/orthography2ipa/tree/7.129.0a6) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.129.0a5...7.129.0a6)
