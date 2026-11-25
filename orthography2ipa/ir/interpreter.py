@@ -63,7 +63,7 @@ class Token:
     vowel: Optional[bool] = None
 
 
-@dataclass
+@dataclass(frozen=True)
 class WordResult:
     word: str
     ipa: str
@@ -185,6 +185,7 @@ class Interpreter:
         self.word = ir["word"]
         self._exceptions = dict(self.word["exceptions"])
         self._tokens: Dict[str, Tuple[Token, ...]] = {}
+        self._words: Dict[Tuple[str, int], "WordResult"] = {}
         self._segments: Dict[Tuple[str, int], Tuple[Sequence[str], Tuple[str, ...]]] = {}
         self.stress = ir.get("stress")
         self.syll = ir.get("syllable") or {}
@@ -215,6 +216,7 @@ class Interpreter:
         it.__dict__.update(self.__dict__)
         it.hooks = hooks
         it._syll_cache = {}
+        it._words = {}
         return it
 
     # ─── characters ──────────────────────────────────────────────────
@@ -2229,7 +2231,18 @@ class Interpreter:
 
     def transcribe_word(self, word: str, width: int, lexicon=None, forced: Optional[str] = None) -> WordResult:
         """*word* to IPA. A *forced* reading takes the place of a lexicon hit
-        and is not stressed."""
+        and is not stressed. Without a lexicon or a forced reading the
+        result depends on *word* and *width* alone, so it is cached."""
+        if lexicon is None and forced is None:
+            hit = self._words.get((word, width))
+            if hit is None:
+                if len(self._words) >= 65536:
+                    self._words.clear()
+                hit = self._words[(word, width)] = self._transcribe_word(word, width, None, None)
+            return hit
+        return self._transcribe_word(word, width, lexicon, forced)
+
+    def _transcribe_word(self, word: str, width: int, lexicon, forced: Optional[str]) -> WordResult:
         override = forced if forced is not None else self._override_for(word, lexicon)
         paths = []
         if override is not None:
