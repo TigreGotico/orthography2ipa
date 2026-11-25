@@ -1,5 +1,9 @@
 # Changelog
 
+## [7.130.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.130.1a2) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.130.1a1...7.130.1a2)
+
 ## [7.130.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.130.1a1) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.130.0a1...7.130.1a1)
@@ -369,10 +373,6 @@
 ## [7.124.41a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.41a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.40a2...7.124.41a1)
-
-**Merged pull requests:**
-
-- fix\(uk\): one palatalization mark on a consonant before ь [\#2467](https://github.com/TigreGotico/orthography2ipa/pull/2467) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.124.40a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.40a2) (2026-11-22)
 
