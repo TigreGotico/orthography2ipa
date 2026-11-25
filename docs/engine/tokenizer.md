@@ -12,7 +12,7 @@ see: `docs/engine/lattice.md`, `docs/engine/positional_graphemes.md`
 
 ## Core concepts
 
-The diagram shows the steps of `tokenize`. The scan tries the five kinds of token in this order at each position, and the first match wins.
+The diagram shows the steps of `tokenize`. The scan tries the five kinds of token in this order at each position. A punctuation or digit match yields to a grapheme that claims the span, and a character with no trie entry can still become a grapheme through its canonical decomposition.
 
 ```mermaid
 flowchart TD
@@ -21,11 +21,16 @@ flowchart TD
     B --> D["_PUNCT_RE: PUNCTUATION"]
     B --> E["_DIGIT_RE: DIGIT"]
     B --> F["_GraphemeTrie.longest_match: GRAPHEME"]
-    B --> G["single character: UNKNOWN"]
+    D -->|a grapheme claims the span| F
+    E -->|a grapheme claims the span| F
+    F -->|no trie entry| I["NFD decomposition: every piece a grapheme"]
+    I -->|decomposes to a grapheme| J["GRAPHEME"]
+    I -->|a piece is unmapped| G["single character: UNKNOWN"]
     C --> H["list of Token"]
     D --> H
     E --> H
     F --> H
+    J --> H
     G --> H
 ```
 
