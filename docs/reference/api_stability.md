@@ -113,7 +113,7 @@ The code resolves as `G2P` resolves it, so an alias and its canonical code give 
 
 ## Deprecated names
 
-These names served plugin discovery by entry point, or a lexicon for the whole process. A caller passes each step and each lexicon to one engine in a `Pipeline` field, so they go in the next major release. The three language-model functions of `feats` moved to `lm`, and their old names go in the same release. Until then they keep working, and the commitment covers them. Each one raises a `DeprecationWarning` that names the release that removes it and the name to use. A function warns when a caller calls it, and a constant warns when a caller reads it. A class warns when a caller reads it from `orthography2ipa`, and when a subclass of it is defined.
+These names served plugin discovery by entry point, or a lexicon for the whole process. A caller passes each step and each lexicon to one engine in a `Pipeline` field, so they go in the next major release. The three language-model functions of `feats` moved to `lm`, and their old names go in the same release. `feature_vector` and `feature_names` are the exception: they stay, and only the layout of their result changes in that release. Until then they keep working, and the commitment covers them. Each one raises a `DeprecationWarning` that names the release that removes it and the name to use. A function warns when a caller calls it, and a constant warns when a caller reads it. A class warns when a caller reads it from `orthography2ipa`, and when a subclass of it is defined.
 
 | Name | Module | Use in its place | Used by |
 | :--- | :--- | :--- | :--- |
