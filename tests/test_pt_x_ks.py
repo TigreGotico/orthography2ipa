@@ -9,7 +9,7 @@ KS = {
     "léxico": "ˈlɛksiku", "convexo": "kõˈvɛksu", "fénix": "ˈfɛniks",
 }
 S = {"sintaxe": "sĩˈtasɨ", "máximo": "ˈmasimu", "próximo": "ˈpɾɔsimu"}
-SH = ["intoxicar", "luxação", "taxa", "taxar", "peixe", "xérox"]
+SH = ["intoxicar", "luxação", "taxa", "taxar", "peixe", "xérox", "fixe", "fixolas"]
 
 
 @pytest.mark.parametrize("word,ipa", sorted({**KS, **S}.items()))
@@ -30,3 +30,7 @@ def test_x_stays_sh(word):
 
 def test_x_stays_z_in_ex_before_a_vowel():
     assert transcribe("exame", "pt-PT") == "eˈzɐmɨ"
+
+
+def test_nexo_stem_stays_out_of_inexoravel():
+    assert "ks" not in transcribe("inexorável", "pt-PT").replace("ˈ", "")

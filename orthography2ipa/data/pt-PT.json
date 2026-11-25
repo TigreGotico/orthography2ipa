@@ -2534,15 +2534,19 @@
         "táxi",
         "sexo",
         "sexu",
-        "fix",
+        "fixar",
+        "fixad",
+        "fixaç",
+        "prefix",
+        "sufix",
+        "crucifix",
         "axil",
         "complex",
         "apoplex",
         "tóxic",
         "oxigén",
         "anex",
-        "nexo",
-        "reflex",
+                "reflex",
         "flux",
         "paradox",
         "ortodox",
@@ -2559,6 +2563,27 @@
       "notes": "The ⟨x⟩ of these learned words is [ks]. No rule of the spelling gives the value: the AO1990 lists ⟨x⟩ against ⟨ch s ss c ç z⟩ by spelling only (Base III), and tóxico [ks] stands beside intoxicar [ʃ]. Infopédia (Porto Editora, Wayback snapshots in the papers library): táxi ˈtaksi, sexo ˈsɛksu, sexual sɛˈkswaɫ, fixo ˈfiksu, prefixo prəˈfiksu, sufixo suˈfiksu, crucifixo krusiˈfiksu, axila ɐˈksilɐ, complexo kõˈplɛksu, apoplexia ɐpɔplɛˈksiɐ, tóxico ˈtɔksiku, oxigénio ɔksiˈʒɛnju, anexo ɐˈnɛksu, nexo ˈnɛksu, reflexo ʀəˈflɛksu, fluxo ˈfluksu, paradoxo pɐrɐˈdɔksu, ortodoxo ɔrtɔˈdɔksu, boxe ˈbɔks(ə), látex ˈlatɛks, tórax ˈtɔraks, fénix ˈfɛniks, maxilar maksiˈlar, axioma ɐˈksjomɐ, léxico ˈlɛksiku, flexão flɛˈksɐ̃w̃, flexível flɛˈksivɛɫ, convexo kõˈvɛksu. The same source gives [s] in sintaxe, máximo, próximo, auxílio and [ʃ] in intoxicar, luxação, taxa, taxar, so those stay off the list."
     },
     {
+      "id": "PT_X_KS_WORDS",
+      "phonemes": [
+        "ʃ",
+        "s",
+        "z"
+      ],
+      "surface": "ks",
+      "grapheme": [
+        "x"
+      ],
+      "word": [
+        "nexo",
+        "nexos",
+        "fixo",
+        "fixa",
+        "fixos",
+        "fixas"
+      ],
+      "notes": "Word forms of PT_X_KS whose stem would also match other words: nexo is inside inexorável [z], and fixo is inside fixe and fixolas [ʃ]. Infopédia: nexo ˈnɛksu, fixo ˈfiksu."
+    },
+    {
       "id": "PT_X_S",
       "phonemes": [
         "ʃ",
@@ -2571,13 +2596,11 @@
       "word_contains_grapheme": [
         "sintax",
         "máxim",
-        "maxim",
-        "próxim",
-        "proxim",
-        "auxíli",
+                "próxim",
+                "auxíli",
         "auxili"
       ],
-      "notes": "The ⟨x⟩ of these words is [s]. Infopédia (Porto Editora, Wayback snapshots in the papers library): sintaxe sĩˈtas(ə), máximo ˈmasimu, próximo ˈprɔsimu, auxílio awˈsilju. The unaccented stems cover the derived forms (maximizar, aproximar, auxiliar)."
+      "notes": "The ⟨x⟩ of these words is [s]. Infopédia (Porto Editora, Wayback snapshots in the papers library): sintaxe sĩˈtas(ə), máximo ˈmasimu, próximo ˈprɔsimu, auxílio awˈsilju. The unaccented stem auxili covers auxiliar."
     }
   ],
   "sandhi_rules": [
