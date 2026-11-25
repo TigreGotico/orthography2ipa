@@ -9,8 +9,8 @@ from functools import lru_cache
 from importlib.metadata import entry_points
 from typing import Dict, List, Optional
 
-from linguatag import closest_lang, likely_script, standardize_lang, with_default_region
-from linguatag.bcp47 import LanguageTag, LanguageTagError, parse
+from linguatag import (LanguageTag, LanguageTagError, closest_lang, likely_script, parse_tag,
+                       standardize_lang, with_default_region)
 
 import orthography2ipa.json_loader as json_loader
 from orthography2ipa.json_loader import available_json_codes, load_json_spec
@@ -356,7 +356,7 @@ def _region_subtag(code: str) -> Optional[str]:
     """The region subtag of the spec key *code* in upper case, or None.
 
     Some legacy keys are not well-formed tags (``ar-Latn-buckwalter``), which
-    ``linguatag.bcp47.parse`` rejects, so keys are read here and a caller's
+    ``linguatag.parse_tag`` rejects, so keys are read here and a caller's
     tag is read with ``parse``.
     """
     for subtag in code.split("-")[1:]:
@@ -442,8 +442,8 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     requested_head, *requested_private = _PRIVATE_USE.split(requested, maxsplit=1)
     code_head, *private = _PRIVATE_USE.split(code, maxsplit=1)
     try:
-        wanted = parse(requested_head)
-        tag = parse(code_head)
+        wanted = parse_tag(requested_head)
+        tag = parse_tag(code_head)
     except LanguageTagError:
         wanted = tag = LanguageTag()
     # A script subtag that linguatag gives as the likely script of the rest of
