@@ -2,9 +2,8 @@
 
 The readable form holds Python strings. The canonical form (section 2.1 and
 8.1 of docs/ir/o2i-ir-v1.md) holds every data string once, as a codepoint
-array in ``strings``, sorted by codepoint order, and refers to it by index.
-Both directions walk the same layout, so ``decode(encode(ir))`` gives the
-runtime part back with the same JSON form: a tuple may come back as a list.
+array in ``strings``, and refers to it by index. ``decode(encode(ir))`` gives
+the runtime part back; a tuple may come back as a list.
 """
 import hashlib
 import json

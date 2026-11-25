@@ -1,22 +1,12 @@
 """Compiled IR per language, kept in memory and on disk.
 
-:func:`interpreter` is what the public transcription path runs. The first
-call for a language and a set of options compiles the spec, which takes from
-a fraction of a second to about a minute (the French varieties are the
-slowest), and stores the canonical IR document. Later calls in the process
-reuse the interpreter; later processes read the document back.
-
-A document is looked up in this order:
-
-1. the package directory ``orthography2ipa/ir/precompiled``, filled at
-   release time by ``scripts/build_ir_cache.py``;
-2. the user cache directory, ``$O2I_IR_CACHE`` or
-   ``$XDG_CACHE_HOME/orthography2ipa/ir`` (``~/.cache`` by default).
-
-The file name holds a key over the spec chain of the language, the engine
-source with the IR package and the options, so a changed spec, engine or
-compiler never reads a stale document. Set
-``O2I_IR_CACHE=off`` to keep the documents in memory only.
+:func:`interpreter` compiles the spec on the first call for a language and a
+set of options, and reuses the interpreter in the process. A document is read
+from ``orthography2ipa/ir/precompiled`` (filled by ``scripts/build_ir_cache.py``)
+or from the user cache, ``$O2I_IR_CACHE`` or ``$XDG_CACHE_HOME/orthography2ipa/ir``,
+in that order. The file name holds a key over the spec chain, the engine
+source and the options, so a changed input never reads a stale document.
+``O2I_IR_CACHE=off`` keeps the documents in memory only.
 """
 from __future__ import annotations
 
