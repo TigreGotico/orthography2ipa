@@ -49,7 +49,7 @@ The canonical document has these top-level fields. `layout.LAYOUT` (`orthography
 |---|---|
 | `ir_version` | The format major version. An interpreter refuses a value it does not support (8.3). |
 | `lang` | The resolved code. Aliases resolve before compilation. |
-| `source` | Provenance: package version, compiler commit, the data ref (8.2), `SPEC_FORMAT_VERSION`, Unicode version. No interpreter reads it, and it is outside the revision hash. |
+| `source` | Provenance: package version, compiler commit, the data ref (8.2), `SPEC_FORMAT_VERSION`, and the Unicode version of the table the compiler reads, `orthography2ipa/ir/unidata.json`. The compiler admits only the codepoints that version assigns, so every host Python compiles the same document. No interpreter reads it, and it is outside the revision hash. |
 | `strings` | Every string the runtime fields use, as codepoint arrays sorted by codepoint order. Index 0 is the empty string. |
 | `chars` | `ranges`: a sorted list of `[lo, hi, bits]`, the char bits (2.4) of every codepoint from lo to hi. A codepoint outside every range has no bits. |
 | `entries` | Grapheme entries: key, candidates, integer costs, entry bits, positional rules (3.3, 3.4). |
