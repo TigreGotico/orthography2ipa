@@ -47,6 +47,10 @@ on:
       - ".github/workflows/docs-prose.yml"
   workflow_dispatch: {}
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   docs-prose:
     runs-on: ubuntu-latest
