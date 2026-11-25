@@ -146,7 +146,7 @@ The codepoints `712 112 603 100 638 592` spell `ˈpɛdɾɐ`.
 
 ## Check an export from Python
 
-`export_to_loom` writes the GGUF and returns the metadata that it wrote. With `expect_revisions`, it refuses to write a file when the revision of a language differs from the one you expect. `expect_revisions` takes IR revisions, the values of `o2i.spec_revisions`. It does not take the package value `orthography2ipa.spec_revision(code)`, which covers the rules engine ([revisions.md](revisions.md)):
+`export_to_loom` writes the GGUF and returns the metadata that it wrote. With `expect_revisions`, it refuses to write a file when the revision of a language differs from the one you expect. `expect_revisions` takes the values of `o2i.spec_revisions`, which equal `orthography2ipa.spec_revision(code)` ([revisions.md](revisions.md)):
 
 ```python
 >>> import tempfile

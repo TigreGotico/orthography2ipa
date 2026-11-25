@@ -14,11 +14,11 @@ This page is the format reference of the IR. [ir.md](../engine/ir.md) explains t
 
 The IR is a JSON document that holds everything one language needs to turn text into IPA. The Python compiler makes it from a resolved `LanguageSpec`. The compiler reads the spec, its inheritance chain and the engine's phonetic knowledge, and writes plain tables, attribute bits, predicate expressions and ordered rule lists. Nothing in the IR is implied.
 
-The interpreter is a small fixed program. It reads one IR document and one input text, and writes one IPA string. It knows a fixed set of general primitives (section 2.3). It never knows a language, a script, a phoneme class, a feature or a Unicode property. Every phonetic question that the legacy engine asks at runtime becomes, in the IR, a table lookup or an attribute bit that the compiler filled in.
+The interpreter is a small fixed program. It reads one IR document and one input text, and writes one IPA string. It knows a fixed set of general primitives (section 2.3). It never knows a language, a script, a phoneme class, a feature or a Unicode property. Every phonetic question that a rules engine asks at runtime becomes, in the IR, a table lookup or an attribute bit that the compiler filled in.
 
 The interpreter never loads a spec, resolves a language code, follows inheritance, reads a Unicode database, computes a logarithm or an exponential, or runs a host-language regular expression. Those steps are compile-time Python: spec loading (`json_loader.py`), the registry (`registry.py`), schema validation (`schema.py`), the inventory (`inventory.py`), the onset grammar and the distinctive features, which come from phonematcher (issue #2490).
 
-The reference semantics are the semantics in this document, not the legacy engine's bytes. Where the legacy engine needs phonetics or a Unicode database at runtime, the IR changes the rule so that the interpreter stays small, and section 9 lists each change with the measurement that rules on it. Every interpreter matches the Python reference interpreter byte for byte. The Python reference interpreter matches the legacy engine except for the ruled changes of section 9.
+The reference semantics are the semantics in this document. The rules engine is the Python engine that read the spec at runtime before the IR; this document names its behaviour where the IR keeps it, and section 9 lists where the IR differs. Where the rules engine needs phonetics or a Unicode database at runtime, the IR changes the rule so that the interpreter stays small, and section 9 lists each change with the measurement that rules on it. Every interpreter matches the Python reference interpreter byte for byte. The Python reference interpreter matches the recorded output of the rules engine except for the ruled changes of section 9; `scripts/ir_parity.py` and `tests/frozen_rules.py` check it.
 
 Three interpreters implement IR v1. The Python reference interpreter is normative: `transcribe()` becomes `compile(spec)` (cached per process and per revision) followed by `interpret(ir, text)`. The Lua interpreter runs inside loom on LuaJIT 2.1 (section 10 gives its size). A C++ interpreter may follow.
 
@@ -259,7 +259,7 @@ The interpreter implements these primitives and no others. A new spec field comp
 
 ### 2.4 Attribute bits
 
-Each char and each entry carries an integer of attribute bits. The bit names and their meanings are a fixed contract of IR v1: an interpreter reads a bit by its name, and `bits` gives the bit number of each name in this IR. The compiler writes the names in the order below. A new bit name is a change of the format, with a new semantics version of the stages that read it (8.1). The compiler fills each bit from the legacy function named.
+Each char and each entry carries an integer of attribute bits. The bit names and their meanings are a fixed contract of IR v1: an interpreter reads a bit by its name, and `bits` gives the bit number of each name in this IR. The compiler writes the names in the order below. A new bit name is a change of the format, with a new semantics version of the stages that read it (8.1). The compiler fills each bit from the rules-engine function named.
 
 The compiler always writes every name of both tables below. An interpreter refuses an IR whose `bits.char` or `bits.entry` lacks a name that the interpreter reads, with an error that names the missing bits.
 
@@ -382,13 +382,13 @@ An unknown node is an error. `count` is the general neighbourhood quantifier. It
 
 A candidate cost is an integer in micro-nats: `cost = round(-ln(max(w / total, 1e-6)) * 1_000_000)`, from the spec weights by the arithmetic of `weights.py`. Unweighted lists get rank costs `r * 1_000_000`, which match `float(rank)`. The allophone step adds `500_000` per rank, which is exact. The largest weighted cost is 13,815,511. A word of 10,000 slots sums below `1.4e11`, so double addition in LuaJIT is exact.
 
-Rounding moves each weighted term by up to 0.5 micro-nat, and the errors add along a path. Two paths whose float sums differ by less than about 0.5 micro-nat per weighted slot can therefore change order or become equal. Integer equality then sends the pair to the next sort key. This is ruled change 9.7. The n-best order is total: `(integer cost, IPA codepoint order, creation index)`. The first two keys match the legacy final sort. The third makes equal paths with equal IPA deterministic.
+Rounding moves each weighted term by up to 0.5 micro-nat, and the errors add along a path. Two paths whose float sums differ by less than about 0.5 micro-nat per weighted slot can therefore change order or become equal. Integer equality then sends the pair to the next sort key. This is ruled change 9.7. The n-best order is total: `(integer cost, IPA codepoint order, creation index)`. The first two keys match the rules-engine final sort. The third makes equal paths with equal IPA deterministic.
 
 ## 3. The interpreter
 
 ### 3.1 Stage order and host hooks
 
-The order is the legacy order of `G2P.transcribe_detailed`, `_transcribe_word`, `_positional_beam` and `_finalize_word_ipa`.
+The order is the order of the rules engine, which `Interpreter.transcribe_runs`, `transcribe_word`, `_word_paths` and `_finalize` keep.
 
 ```
 interpret(ir, text, hooks):
@@ -431,7 +431,7 @@ The steps S9e and S9f do not run for a forced word, for a cliticless word, or wh
 
 ### 3.2 Preparation (S1)
 
-The legacy order is `prepare`: NFC, then `fold_diacritics`, then Arabic presentation forms, then gemination. When the spec sets `fold_diacritics`, `char_maps.fold` lists the marks to drop (semantics version `fold`). The fold step decomposes each char by `nfd`, drops every char in `char_maps.fold`, and composes the rest by NFC. Lowercasing happens per character inside the tokenizer and the trie (`_lower`). The interpreter keeps this order:
+The rules-engine order is `prepare`: NFC, then `fold_diacritics`, then Arabic presentation forms, then gemination. When the spec sets `fold_diacritics`, `char_maps.fold` lists the marks to drop (semantics version `fold`). The fold step decomposes each char by `nfd`, drops every char in `char_maps.fold`, and composes the rest by NFC. Lowercasing happens per character inside the tokenizer and the trie (`_lower`). The interpreter keeps this order:
 
 ```
 prepare(text):
@@ -466,15 +466,15 @@ Casefolding stays in the tokenizer: the trie and every key test read `casefold(c
 ੱ+([ਕ-ਹ]਼?)             ->  \1੍\1         # addak (nukta carried)
 ```
 
-Arabic presentation forms are the codepoint map `char_maps.presentation`: each codepoint of U+FB50 to U+FDFF and U+FE70 to U+FEFF maps to its NFKC form when that form differs. Until the spec has a gemination field, the compiler emits the map and the rules under the legacy conditions: the map for an Arabic-script spec or a spec with a shadda key, the shadda rules for a spec with a shadda key, and the addak rule for a Gurmukhi spec. The top-level `rewrites` holds the rules in order as `{"pattern", "template"}`. The interpreter applies the map, then each rule with `sub` of primitive 2. The rewrite step has the semantics version `rewrite`.
+Arabic presentation forms are the codepoint map `char_maps.presentation`: each codepoint of U+FB50 to U+FDFF and U+FE70 to U+FEFF maps to its NFKC form when that form differs. Until the spec has a gemination field, the compiler emits the map and the rules under the rules-engine conditions: the map for an Arabic-script spec or a spec with a shadda key, the shadda rules for a spec with a shadda key, and the addak rule for a Gurmukhi spec. The top-level `rewrites` holds the rules in order as `{"pattern", "template"}`. The interpreter applies the map, then each rule with `sub` of primitive 2. The rewrite step has the semantics version `rewrite`.
 
-**Positions.** A token's `position` and `length` index the prepared text, as in the legacy engine. Word grouping and the override lookup read the prepared text. An offset map into the caller's text is not in v1 (9.8).
+**Positions.** A token's `position` and `length` index the prepared text, as in the rules engine. Word grouping and the override lookup read the prepared text. An offset map into the caller's text is not in v1 (9.8).
 
 ### 3.3 Tokenisation, candidates and the beam (S4, S6, S8)
 
 #### 3.3.1 Token classes
 
-The legacy tokenizer tries, at each position: a whitespace run (`_WS_RE`), a punctuation run that no key claims (`_PUNCT_RE`), a digit run that no key claims (`_DIGIT_RE`), a grapheme key, the decomposition fallback, and else an UNKNOWN character. The IR keeps this order. The three classes are char bits, filled by the compiler from the legacy regexes over every character the spec knows plus ASCII, Latin-1, General Punctuation and the spec's script blocks. A character outside `chars` is UNKNOWN (ruled change 9.2).
+The rules-engine tokenizer tries, at each position: a whitespace run (`_WS_RE`), a punctuation run that no key claims (`_PUNCT_RE`), a digit run that no key claims (`_DIGIT_RE`), a grapheme key, the decomposition fallback, and else an UNKNOWN character. The IR keeps this order. The three classes are char bits, filled by the compiler from the rules-engine regexes over every character the spec knows plus ASCII, Latin-1, General Punctuation and the spec's script blocks. A character outside `chars` is UNKNOWN (ruled change 9.2).
 
 #### 3.3.2 Grapheme keys
 
@@ -482,7 +482,7 @@ The legacy tokenizer tries, at each position: a whitespace run (`_WS_RE`), a pun
 key = trie_longest_match(cps, pos)         # over casefold(c)
 ```
 
-Then, in the legacy order, each branch whose IR data is present:
+Then, in the rules-engine order, each branch whose IR data is present:
 
 1. **Preposed vowel** (primitive `preposed`). The Tai vowels ⟨เ แ โ ใ ไ⟩ and ⟨ເ ແ ໂ ໃ ໄ⟩ are written before the consonant and read after it: Thai ⟨เก⟩ is /keː/. When the matched key has entry bit `preposed`, let `ckey` be the longest match after it. When there is none, the branch does not apply.
    - When `ckey` has bit `silent_head` and its head is the onset, `ckey` becomes its first char. The head is the onset when the vowel key has bit `preposed_open`, `ckey` lacks bit `head_not_coda`, and the keys after `ckey` up to the end of the text are all silent: each lacks bit `audible`, and the first one also lacks bit `spells_nothing`. A position where no key matches ends the walk, and the head is the onset when that char lacks bit `alpha`. So Thai ⟨โหม⟩ is /hoːm/ and ⟨โหมด⟩ is /moːt̚/.
@@ -508,7 +508,7 @@ Then, in the legacy order, each branch whose IR data is present:
 
 #### 3.3.3 Slot context and per-word tokenization
 
-The legacy engine tokenizes the sentence to group words, then tokenizes each word's surface again (`g2p.py`, `grapheme_tokens`). Branches 1, 3 and 4 read the next character, which differs at a word edge between the two passes. The IR keeps two passes: S2 groups words, S4 tokenizes the word surface alone.
+The rules engine tokenizes the sentence to group words, then tokenizes each word's surface again (`g2p.py`, `grapheme_tokens`). Branches 1, 3 and 4 read the next character, which differs at a word edge between the two passes. The IR keeps two passes: S2 groups words, S4 tokenizes the word surface alone.
 
 The slot context of a word depends on `word.context_beam`:
 
@@ -556,9 +556,9 @@ beam(slots, width):
 
 ### 3.4 Positional readings (S6)
 
-The legacy engine computes, for each slot, a list of `GraphemePosition` values in a fixed emission order (`grapheme_positions`), then takes the first emitted position that the grapheme's positional entry declares (`positional_candidates`). So the priority is the emission order, not the spec's key order.
+The rules engine computes, for each slot, a list of `GraphemePosition` values in a fixed emission order (`grapheme_positions`), then takes the first emitted position that the grapheme's positional entry declares (`positional_candidates`). So the priority is the emission order, not the spec's key order.
 
-The compiler lowers this into, per entry, an ordered list `[(predicate, candidates)]`. It walks the emission order of `grapheme_positions` and, for each position the entry declares, writes the predicate that makes the legacy function emit it. The interpreter takes the first rule whose predicate holds:
+The compiler lowers this into, per entry, an ordered list `[(predicate, candidates)]`. It walks the emission order of `grapheme_positions` and, for each position the entry declares, writes the predicate that makes the rules-engine function emit it. The interpreter takes the first rule whose predicate holds:
 
 ```
 positional(slot i):
@@ -590,13 +590,13 @@ Lowering of the 40 emitted positions, in emission order:
 
 `syll open/closed` is `_is_open_syllable`, with the semantics version `aperture`. A spec that uses an aperture position gets `syllable.silent_tail`: every lowercased grapheme key of at most `_MAX_SILENT_TAIL = 3` chars that `_silent_word_finally` calls silent. The interpreter then divides the word into written syllables even when the spec has no stress rules. It first folds a final syllable into the one before it when, after the trailing chars without bit `alpha` or `combining` come off and the silent tail is stripped, it holds no char with bit `orth_vowel` (`merge_nucleusless_final_syllable`). A slot index past the merged list maps to its last syllable. For each slot, the open status of its syllable is: strip the trailing chars without bit `alpha` or `combining`; strip the silent tail when a char came off or the syllable is the last; no status when nothing with bit `orth_vowel` is left; else open when the last char has bit `orth_vowel`. The silent tail is stripped longest first, and repeatedly, by lowercased suffix.
 
-The five positions the legacy function never emits (`intervocalic_cross_word`, `onset`, `coda`, `consonantal`, `vocalic`) are inert: the compiler writes no rule for them, and lists them in `debug.inert_positions`. This is ruled change 9.4.
+The five positions the rules-engine function never emits (`intervocalic_cross_word`, `onset`, `coda`, `consonantal`, `vocalic`) are inert: the compiler writes no rule for them, and lists them in `debug.inert_positions`. This is ruled change 9.4.
 
 The stress context of S5 comes before this stage. The interpreter runs the decision list of 3.8 on the written syllables: one syllable gives index 0, a cliticless word gives the no-stress sentinel, and `secondary_stress_positions` gives the secondary set. When `stress.alternating` is 1 (spec `secondary_stress = "alternating"`, semantics version `secondary`), the set holds `stressed % 2, stressed % 2 + 2, …` below `stressed - 1`, and it is empty for a word of fewer than 3 syllables or with no stress.
 
 ### 3.5 Overrides and grammatical endings (S3, S8b)
 
-The legacy precedence (`_whole_word_override`) is per key, not per source:
+The rules-engine precedence (`_whole_word_override`) is per key, not per source:
 
 ```
 override(word):
@@ -675,7 +675,7 @@ rescore(slot i):
 neighbor_mutation(i):
   for step in (+1, -1):
     j = i + step; skip unless slot j exists and has candidates
-    m = the context with slot j's syllable index replaced by slot i's    # the legacy approximation
+    m = the context with slot j's syllable index replaced by slot i's    # the rules-engine approximation
     for rule in order: if rule.mutate_at == step and top(j) in rule.phonemes and eval(rule.when, m, j): return rule.mutate
   return none
 
@@ -744,7 +744,7 @@ The atom list differs per caller:
 
 ### 3.7 Syllabification (S5, S9f)
 
-The legacy engine has three splitters. The IR keeps all three as one splitter primitive with three configurations, and replaces the runtime onset grammar with compiled tables.
+The rules engine has three splitters. The IR keeps all three as one splitter primitive with three configurations, and replaces the runtime onset grammar with compiled tables.
 
 #### 3.7.1 The written splitter
 
@@ -771,14 +771,14 @@ When the spec declares `stress.vowel_letters`, the compiler writes the lowercase
 
 `_rebalance_onsets` keeps, for each syllable after the first, the longest suffix of its consonant run that the judge licenses, and moves the rest into the previous coda. The algorithm stays. The judge becomes a table (ruled change 9.1).
 
-The compiler evaluates the legacy judge on unit sequences of 2 to 5 units. A key of the table is a sequence that primitive 11 segments back to itself, because the interpreter looks a run up by its own segmentation. The compiler evaluates every such sequence of 2 units. It evaluates a longer sequence only when it extends a licit sequence one unit shorter by one unit at the end, when it is a 3-unit sequence that extends a licit 2-unit sequence by one unit at the start, or when it is a declared cluster of that length.
+The compiler evaluates the rules-engine judge on unit sequences of 2 to 5 units. A key of the table is a sequence that primitive 11 segments back to itself, because the interpreter looks a run up by its own segmentation. The compiler evaluates every such sequence of 2 units. It evaluates a longer sequence only when it extends a licit sequence one unit shorter by one unit at the end, when it is a 3-unit sequence that extends a licit 2-unit sequence by one unit at the start, or when it is a declared cluster of that length.
 
-This search finds every licit sequence of up to 5 units, because of the shape of the legacy judges. With no declared clusters, the judge licenses no run of more than 3 units, and a 3-unit run is licit only as a licit two-member core plus a palatal glide (so its 2-unit prefix is licit) or as an /s/ appendix on a licit two-member core (so its 2-unit suffix is licit). With declared clusters, a run of 3 or more units is licit only when its last unit is a glide and the run without it is licit, or when it is a declared cluster. The legacy judge also licenses a run of 6 or more units that stacks glides on a licit run. The table stops at 5 units, so such a run is not licit in the IR (ruled change 9.1). A change to a judge that breaks these shapes must change this rule. The units are:
+This search finds every licit sequence of up to 5 units, because of the shape of the rules-engine judges. With no declared clusters, the judge licenses no run of more than 3 units, and a 3-unit run is licit only as a licit two-member core plus a palatal glide (so its 2-unit prefix is licit) or as an /s/ appendix on a licit two-member core (so its 2-unit suffix is licit). With declared clusters, a run of 3 or more units is licit only when its last unit is a glide and the run without it is licit, or when it is a declared cluster. The rules-engine judge also licenses a run of 6 or more units that stacks glides on a licit run. The table stops at 5 units, so such a run is not licit in the IR (ruled change 9.1). A change to a judge that breaks these shapes must change this rule. The units are:
 
-- **Written table.** The compiler writes it when `constrain_onsets` holds, as the object `syllable.onsets` with the semantics version `written_onsets`: `units`, the lowercased grapheme keys, longest first; `velar`, the units whose first IPA segment opens with ŋ; `max`, the declared `max_onset` or -1; and `table`. The interpreter splits a run into units as `_OnsetJudge.graphemes_of` does: at each position the first unit equal to the lowercased slice, else one char, and then the chars with bit `combining` that follow. It splits each candidate suffix again before the lookup, as the legacy judge does, and looks up the lowercased units. The judge is `_OnsetJudge._licit` with `_declared`, `_two_member`, `_appendix_on` and the velar-nasal, glottal, geminate and three-member rules.
+- **Written table.** The compiler writes it when `constrain_onsets` holds, as the object `syllable.onsets` with the semantics version `written_onsets`: `units`, the lowercased grapheme keys, longest first; `velar`, the units whose first IPA segment opens with ŋ; `max`, the declared `max_onset` or -1; and `table`. The interpreter splits a run into units as `_OnsetJudge.graphemes_of` does: at each position the first unit equal to the lowercased slice, else one char, and then the chars with bit `combining` that follow. It splits each candidate suffix again before the lookup, as the rules-engine judge does, and looks up the lowercased units. The judge is `_OnsetJudge._licit` with `_declared`, `_two_member`, `_appendix_on` and the velar-nasal, glottal, geminate and three-member rules.
 - **IPA table.** Units are the segments that primitive 11 can produce on joined candidates: the compiler segments every concatenation of two adjacent readings it can see, adds the atoms and `_AFFRICATES`, and uses that set. A run whose unit is outside the set is not licit unless it is a single unit, as for the written table. The judge is `_IpaOnsetJudge._licit`, with the extra rise onto a glide.
 
-When the spec declares `onset_clusters`, the compiler uses that list as the judge, as the legacy code does. The table is a trie of licit unit sequences. The runtime test follows `_OnsetJudge._licit` in this order: the empty run is licit; a run that holds a char without bit `letter` or `mark` is not licit; a run of more units than `max_onset` is not licit; a run whose first unit opens with `ŋ` is not licit; a run of one unit is licit; a longer run is licit only when the table holds it. When `onset_clusters` makes `_declared` recurse on a glide-final run, the compiler builds the table up to the longest run the spec can produce, not only up to 3 units.
+When the spec declares `onset_clusters`, the compiler uses that list as the judge, as the rules-engine code does. The table is a trie of licit unit sequences. The runtime test follows `_OnsetJudge._licit` in this order: the empty run is licit; a run that holds a char without bit `letter` or `mark` is not licit; a run of more units than `max_onset` is not licit; a run whose first unit opens with `ŋ` is not licit; a run of one unit is licit; a longer run is licit only when the table holds it. When `onset_clusters` makes `_declared` recurse on a glide-final run, the compiler builds the table up to the longest run the spec can produce, not only up to 3 units.
 
 At runtime the splitter segments the consonant run into units by trie match, and a run is licit when its unit sequence is in the table. A run of two or more units that is not in the table is not licit. The interpreter has no sonority, place or voicing test.
 
@@ -792,7 +792,7 @@ At runtime the splitter segments the consonant run into units by trie match, and
 
 `hiatus_positions` has two steps. First it collects candidate cut points: `_closed_hiatus_candidates` tests letter pairs against `closed_hiatus.pairs`, then the rest of the word against `onsets` and `codas`, and `_final_diphthong_candidates` tests the word end against `final_diphthongs`. Second, it filters them by stress: it splits the word with the written splitter, using the candidates as hiatus cuts, runs the decision of 3.8.1 on that split, and keeps only the candidate that opens the stressed syllable.
 
-So tokenization depends on the stress decision. The tokenizer calls the filter through `_hiatus_prefix` when it meets a multi-letter vowel key. In the stage order this is a nested call: S4 calls the S5 splitter and decision on the word for this one filter, before S5 runs for the word. The interpreter caches the result per word, as `hiatus_by_word` does in the legacy code. The tables are strings over the lowercased word, and the vowel tests read char bit `orth_vowel`.
+So tokenization depends on the stress decision. The tokenizer calls the filter through `_hiatus_prefix` when it meets a multi-letter vowel key. In the stage order this is a nested call: S4 calls the S5 splitter and decision on the word for this one filter, before S5 runs for the word. The interpreter caches the result per word, as `hiatus_by_word` does in the rules-engine code. The tables are strings over the lowercased word, and the vowel tests read char bit `orth_vowel`.
 
 #### 3.7.5 Host syllabifier
 
@@ -823,7 +823,7 @@ decide(word, sylls):
   return index
 ```
 
-`stress.source == "plugin"` is deprecated, no spec sets it, and IR v1 does not carry it. `plain_lower` is a separate char map, `char_maps.plain_lower`, equal to Python `str.lower()` on the known chars. The Turkish pairs are not in it, as the legacy decision lowercases with `str.lower()`. `rime` is `_rime`, which strips the onset by char bit `orth_vowel`.
+`stress.source == "plugin"` is deprecated, no spec sets it, and IR v1 does not carry it. `plain_lower` is a separate char map, `char_maps.plain_lower`, equal to Python `str.lower()` on the known chars. The Turkish pairs are not in it, as the rules-engine decision lowercases with `str.lower()`. `rime` is `_rime`, which strips the onset by char bit `orth_vowel`.
 
 The weight branch replaces the decision when `quantity_sensitive` holds. The compiler writes the object `stress.weight` with `max_onset` and `superheavy_final` (from `superheavy_final_attracts`), with the semantics version `weight`. The interpreter splits the finished IPA with `syllabify_ipa` (3.7.3), weighs a syllable from its first vowel segment on, and decides an end-anchored index, as `detect_stress_by_weight` does:
 
@@ -837,7 +837,7 @@ index(sylls): n <= 1: -1
   default < 0: default if n >= -default else -n;  default >= 0: -n
 ```
 
-A segment holds a diphthong when, over its chars without bit `combining`, a char with bit `ipa_vowel` or `vowel_phone` (`is_vowel_phone`) is followed by another such char, or by a char with bit `offglide` that no such char follows. The mark goes on with the same division as `ipa_syllables` and no written syllables (3.8.3). The written-syllable decision still sets the stressed syllable of the slot context (3.3.3) and the hiatus test (3.7.4), as in the legacy engine.
+A segment holds a diphthong when, over its chars without bit `combining`, a char with bit `ipa_vowel` or `vowel_phone` (`is_vowel_phone`) is followed by another such char, or by a char with bit `offglide` that no such char follows. The mark goes on with the same division as `ipa_syllables` and no written syllables (3.8.3). The written-syllable decision still sets the stressed syllable of the slot context (3.3.3) and the hiatus test (3.7.4), as in the rules engine.
 
 For an abugida, the decision at step S9f counts the syllables of the transcription, because the spelling writes no letter for the inherent vowel. The compiler writes `stress.ipa_count` = 1 for a spec whose `script_type` is `abugida`, with the semantics version `ipa_count`. When it is set, S9f takes the syllables from `syllabify_for_mark(ipa)` (3.7.3) in place of the written syllables, for the decision, the secondary set and mark placement, and no inserted nucleus folds (`_fold_inserted_nuclei` gives none). The written syllables of S5 still feed the positional and allophone contexts. Khmer stresses the last syllable: ⟨កករ⟩ is [kɑˈkrɔː], not *[ˈkɑkrɔː]. `accent2_mark` compiles to `stress.accent2` (`mark`, and `finals` from `accent2_final_letters`), with the semantics version `accent2`. When the word has two or more written syllables, the decision gives the penult (index n-2), and the word's last char lowercased with `plain_lower` is in `finals`, the mark placement writes `accent2.mark` in place of `stress.mark`. Placement then returns the IPA unchanged when it already holds either mark.
 
@@ -1177,13 +1177,13 @@ for c in x:
   if c in off_set and state == on: state = off
 ```
 
-The off test reads the input codepoint, not the mapped one, as the legacy code does.
+The off test reads the input codepoint, not the mapped one, as the rules-engine code does.
 
 **Primitive 16, aligned word rewrite.** `apply_transform`: split x and S as Python `str.split()` does, on runs of whitespace with empty pieces dropped. The whitespace set is every codepoint for which `str.isspace()` is true: U+0009 to U+000D, U+001C to U+001F, U+0020, U+0085, U+00A0, U+1680, U+2000 to U+200A, U+2028, U+2029, U+202F, U+205F and U+3000. When the counts are equal, for each word index w the step computes each matching rule's result from the ORIGINAL IPA word w, not from the result of an earlier rule: a rule matches when its key equals the lowercased spelling word, and its result is the original word with every occurrence of `find` replaced by `replace`. The result of the last matching rule in rule order becomes word w. Then the words join with U+0020. When the counts differ, the step does nothing. The rule keys are any strings, so the primitive serves any language.
 
 The data of these primitives is plain IR. The sets `VOWEL_SET` and `PALATAL_SET` become char sets, the chain-shift mappings become codepoint maps, and the Cintra zone tables of `DIALECT_PROFILES` become step lists. Nothing in the primitives names Portuguese.
 
-#### 3.10.4 Lowering of the legacy contexts
+#### 3.10.4 Lowering of the rules-engine contexts
 
 | `IPARule.context` | Predicate (primitive 14) |
 |---|---|
@@ -1198,7 +1198,7 @@ The data of these primitives is plain IR. The sets `VOWEL_SET` and `PALATAL_SET`
 | `unstressed_pretonic` | `and(unstressed, later_has({ˈ}))` |
 | `stressed_and_from_historical_ou` | `and(spell(spell_search(ou)), stressed)` |
 | `ortho_has_ou`, `ortho_source_is_ch`, `ortho_source_is_z` | `spell(spell_search(ou))`, `spell(spell_search(ch))`, `spell(spell_search(z))` |
-| `ortho_source_is_ss_or_s` | `spell(spell_search(s))`: the legacy `"ss" in S or "s" in S` equals `"s" in S` |
+| `ortho_source_is_ss_or_s` | `spell(spell_search(s))`: the rules-engine `"ss" in S or "s" in S` equals `"s" in S` |
 | `ortho_source_is_c_or_ç` | `spell(or(spell_search(ç), spell_search(c[ei])))` |
 | `ortho_source_is_intervocalic_s` | `spell(spell_search([aeiouáéíóúâêôãõ]s[aeiouáéíóúâêôãõ]))` |
 | `no_ortho_available` | `spell(spell_empty)` |
@@ -1238,7 +1238,7 @@ The counts come from `DIALECT_PROFILES` at `690611bb2`. Every context that a rul
 
 ### 3.11 Words, punctuation and compounds (S2, S10)
 
-Word grouping follows `G2P._group_words`. Whitespace ends a word. Punctuation ends a word, except an apostrophe between letters when `word_internal_apostrophe` holds, and a leading apostrophe that opens a word exception. A hyphen sets `hyphen_joined` on the next word. A punctuation run with a pause char marks the previous word pausal. The last word is pausal. Digit and UNKNOWN tokens stay inside the word surface, and the word path drops them (9.3).
+Word grouping follows `Interpreter._group_words`. Whitespace ends a word. Punctuation ends a word, except an apostrophe between letters when `word_internal_apostrophe` holds, and a leading apostrophe that opens a word exception. A hyphen sets `hyphen_joined` on the next word. A punctuation run with a pause char marks the previous word pausal. The last word is pausal. Digit and UNKNOWN tokens stay inside the word surface, and the word path drops them (9.3).
 
 Compound stress (S10, `compound_stress == "last"`): in each hyphen-joined run, every primary mark but the last becomes the secondary mark.
 
@@ -1248,7 +1248,7 @@ Geminate collapse (`_collapse_geminates`) merges equal adjacent codepoints excep
 
 ### 3.13 Literal constants
 
-The interpreter holds no phonetic literal. Each IPA string that a legacy stage writes as a constant is a field of the IR:
+The interpreter holds no phonetic literal. Each IPA string that a rules-engine stage writes as a constant is a field of the IR:
 
 | Field | Value for pt-PT | Use |
 |---|---|---|
@@ -1256,7 +1256,7 @@ The interpreter holds no phonetic literal. Each IPA string that a legacy stage w
 | `word.clitic_marks` | `ˈ`, `ˌ` | The marks that a clitic host's IPA must not open with before the clitic joins it (3.5). |
 | `stress.mark_onsets.velar` | `ŋ` | A run whose first unit opens with this string is not a licit onset (3.7.2). |
 | `beam.tilde` | U+0303 | The nasal mark that the beam tests on a nasal carrier (3.3.6). |
-| `atoms.mark`, `atoms.affricates` | the legacy `_MARK_ATOMS`, `_AFFRICATES` | The atoms of primitive 11 (3.6.3). |
+| `atoms.mark`, `atoms.affricates` | the rules-engine `_MARK_ATOMS`, `_AFFRICATES` | The atoms of primitive 11 (3.6.3). |
 
 The length mark `ː` and the apostrophe fold U+2019 to `'` stay literals of the interpreter, as 3.6 and 3.2 state.
 
@@ -1270,7 +1270,7 @@ The interpreter needs no Unicode database. Text crosses the loom bridge as codep
 | Casefold (tokenizer) | `char_maps.casefold` | `_lower`, with the Turkish pairs for Turkic specs |
 | Plain lowercase | `char_maps.plain_lower` | `str.lower()`. Stress endings, hiatus, `word_in`, `word_has` and every other "lowercased" test of this spec read this map; only the tokenizer, the trie, the elided-clitic key, the override key and the cliticless key read `casefold`. |
 | Decomposition fallback | `entries` | `unicodedata.normalize("NFD")` |
-| Space, punctuation, digit, letter, mark, virama, edge punctuation | char bits | the legacy regexes and `unicodedata.category`, `combining` |
+| Space, punctuation, digit, letter, mark, virama, edge punctuation | char bits | the rules-engine regexes and `unicodedata.category`, `combining` |
 | Orthographic and IPA vowels | char bits | `vowels.py`, including the name tokens `VOWEL`, `VOCALIC` |
 | Subjoined letters, medial signs | entry bits | `phonetok.py` name tests |
 | Features (front, palatal, sonority) | bits and onset tables | phonematcher |
@@ -1282,7 +1282,7 @@ The interpreter needs no Unicode database. Text crosses the loom bridge as codep
 3. the fixed ranges U+0020–U+007E, U+00A0–U+00BF, U+2000–U+206F (General Punctuation), U+0250–U+02FF (IPA Extensions and Spacing Modifier Letters), U+0300–U+036F (Combining Diacritical Marks) and U+1D00–U+1DBF (Phonetic Extensions);
 4. every codepoint in a codepoint map or a rewrite pattern of the IR.
 
-The Script property, not the block, decides item 2. So U+FB01 ⟨ﬁ⟩ is known for a Latin spec. A known char with no entry keeps its legacy bits (`letter`, `orth_vowel`, `mark`) and is dropped from the IPA as before. Section 9.2 gives the rule for unknown chars.
+The Script property, not the block, decides item 2. So U+FB01 ⟨ﬁ⟩ is known for a Latin spec. A known char with no entry keeps its rules-engine bits (`letter`, `orth_vowel`, `mark`) and is dropped from the IPA as before. Section 9.2 gives the rule for unknown chars.
 
 ## 5. The pattern subset
 
@@ -1418,7 +1418,7 @@ P17, P18 and P67 put a combining mark inside a class. The IR keeps Python's per-
 
 ## 6. Representing the engine and the spec fields
 
-Each row says how IR v1 carries a behaviour or field. "IR" means a table or rule run by a primitive. "Compile" means the compiler resolves it and only the result reaches the IR. "Host" means a hook at a named point. "Inert" means the IR carries nothing because the legacy engine does nothing with it. "Change" means a ruled change in section 9.
+Each row says how IR v1 carries a behaviour or field. "IR" means a table or rule run by a primitive. "Compile" means the compiler resolves it and only the result reaches the IR. "Host" means a hook at a named point. "Inert" means the IR carries nothing because the rules engine does nothing with it. "Change" means a ruled change in section 9.
 
 | # | Behaviour or field | Source | IR v1 |
 |---|---|---|---|
@@ -1592,13 +1592,13 @@ The normal form makes many equivalent predicates hash equal, but not all. A comp
 
 **Lexicon and provenance.** The IR revision covers the IR only: the spec data, the compile options and the interpreter primitives. It does not cover a lexicon.
 
-The package functions describe the rules engine that `transcribe` runs, and they are not the IR revision. `orthography2ipa.spec_revision(lang)` hashes the spec JSON, its parent chain and the engine fingerprint. `lexicon_revision(lang, patches=)` covers the packaged lexicon. `transcription_revision(lang, patches=False)` covers the default path, which reads both:
+`orthography2ipa.spec_revision(lang)` is the IR revision of the IR that `G2P(lang)` runs. `lexicon_revision(lang, patches=)` covers the packaged lexicon. `transcription_revision(lang, patches=False)` covers the default path, which reads both:
 
 ```
 transcription_revision(lang, patches=False) = "sha256:" + sha256(spec_revision(lang) + "\n" + lexicon_revision(lang, patches=patches))
 ```
 
-When no installed package supplies the lexicon files, the lexicon term is the string `none`.
+When no installed package supplies the lexicon files, the lexicon term is the string `none`. phoonnx records `transcription_revision` for a voice trained on the default path, and `spec_revision` for a voice trained with an empty lexicon. The Python package exposes all three: `spec_revision`, `lexicon_revision` and `transcription_revision` of `orthography2ipa.revision`. `spec_revision` reads the IR from the precompiled documents of the package or from the user cache, and compiles only when neither holds it.
 
 The loom exporter writes the IR revision as `O2I_REVISION[lang]`, in `o2i.spec_revisions` and as the `revision` of `o2i.phonemizer_identity`. Its `expect_revisions` argument takes IR revisions. The Lua interpreter returns the IR revision from an `info` call and never computes it. loom carries no lexicon, so the IR revision alone covers its output.
 
@@ -1610,7 +1610,7 @@ It guarantees: when only spec data changed between the data ref and the compiler
 
 Missing fields: a field that old data lacks takes the current default.
 
-**Acceptance test: Kabyle 7.30.0.** Two Kabyle voices (`phoonnx_kab-DZ_miro_o2i`, `phoonnx_kab-DZ_dii_o2i`) were trained on orthography2ipa 7.30.0. A sample file holds 3,000 `[text, ipa]` rows from that release. The drift to later output comes from a data change (⟨ɣ⟩ from `ɣ` to `ʁ`, and the ⟨k⟩ and ⟨c⟩ readings). The legacy engine reproduces all 3,000 rows from the 7.30.0 data. The test compiles `kab` at data ref `7.30.0` and runs the 3,000 texts. Each row must give the file's IPA. A mismatch must trace to a ruled change of section 9 or a named engine change, listed in the test's expected-differences file. Any other mismatch is a compiler defect.
+**Acceptance test: Kabyle 7.30.0.** Two Kabyle voices (`phoonnx_kab-DZ_miro_o2i`, `phoonnx_kab-DZ_dii_o2i`) were trained on orthography2ipa 7.30.0. A sample file holds 3,000 `[text, ipa]` rows from that release. The drift to later output comes from a data change (⟨ɣ⟩ from `ɣ` to `ʁ`, and the ⟨k⟩ and ⟨c⟩ readings). The release reproduces all 3,000 rows from the 7.30.0 data. The test compiles `kab` at data ref `7.30.0` and runs the 3,000 texts. Each row must give the file's IPA. A mismatch must trace to a ruled change of section 9 or a named engine change, listed in the test's expected-differences file. Any other mismatch is a compiler defect.
 
 ### 8.3 Compatibility
 
@@ -1626,7 +1626,7 @@ A vector file is JSON Lines. The first line holds the IR. Each later line is one
 {"kind": "case", "input": [], "expect_error": "unsupported primitive version"}
 ```
 
-The example is pt-PT ⟨os jogos⟩ → `u ˈʒɔɡuʃ`, the output of the engine at `690611bb2`. Every interpreter must give `expect` byte for byte. **Dialect corpus.** For each of the 15 profiles, the vector file holds every row of `tests/data/ep_dialect_sentences.csv` as `csv.DictReader` reads it: 235 rows, 228 distinct texts in the `text` column. The expected output is the legacy `G2P("pt-PT", dialect_profile=profile).transcribe(text)`. That gives 3,525 cases. The reference interpreter must match the legacy output byte for byte on all of them before the legacy `transforms.py` path is retired. Targeted cases add every context of 3.10.4, a sentence whose IPA and spelling word counts differ, an empty spelling, a lexical rule hit through a capitalised spelling word (the key test lowercases the spelling word), two lexical rules that match the same word (the last one wins), and a chain-shift mapping whose output is not a vowel (the off test reads the input codepoint).
+The example is pt-PT ⟨os jogos⟩ → `u ˈʒɔɡuʃ`, the output of the engine at `690611bb2`. Every interpreter must give `expect` byte for byte. **Dialect corpus.** For each of the 15 profiles, the vector file holds every row of `tests/data/ep_dialect_sentences.csv` as `csv.DictReader` reads it: 235 rows, 228 distinct texts in the `text` column. The expected output is the rules-engine `G2P("pt-PT", dialect_profile=profile).transcribe(text)`. That gives 3,525 cases. The reference interpreter must match the rules-engine output byte for byte on all of them before the rules-engine `transforms.py` path is retired. Targeted cases add every context of 3.10.4, a sentence whose IPA and spelling word counts differ, an empty spelling, a lexical rule hit through a capitalised spelling word (the key test lowercases the spelling word), two lexical rules that match the same word (the last one wins), and a chain-shift mapping whose output is not a vowel (the off test reads the input codepoint).
 
 The package generates vectors from the Python reference interpreter into `tests/conformance/ir-v1/`: for each spec a fixed sample of its gold or test data, plus targeted cases for every pattern, beam tie, normalisation rule, predicate node, tokenizer branch, ruled change and unknown version.
 
@@ -1636,8 +1636,11 @@ These names keep their meaning, because outside code depends on them:
 
 | Name | Notes |
 |---|---|
-| `transcribe(text, lang, ...)` | the rules engine |
-| `G2P(lang, pipeline=Pipeline(lexicon=...))`, `transcribe`, `transcribe_detailed` | the rules engine plus host hooks |
+| `transcribe(text, lang, ...)` | compile (cached) plus interpret |
+| `G2P(lang, pipeline=Pipeline(lexicon=...))`, `transcribe`, `transcribe_detailed` | one IR plus host hooks |
+| `G2P.transcribe_word`, `G2P.word_candidates` | S1 on the word, then S3 to S9; a hyphen-joined compound also runs S2 and the compound marks of S10 |
+| `G2P.ipa_lattice`, `word_confidence`, `confidence_breakdown`, `features`, `sentence_lattice`, `WordTranscription.confidence` | the S6 slots after S7, in the word's stress and syllable context whatever `word.context_beam` holds, before the nasal-carrier constraint of S8; a cost reads back as its micro-nats divided by 1,000,000 (2.6) |
+| `G2P.candidates` | the S8 beam over the S6 slots in run context, without S7 |
 | `Pipeline` with `lexicon`, `syllabifier`, `expand`, `mark`, `rescore`, `sandhi` | the hooks of 3.1 |
 | `registry.get`, `resolve`, `available_codes` | compile-time Python |
 | `phoneme_inventory(spec, lexicon=None)` | `inventory.py`, package root; phonematcher's coverage benchmark (`benchmarks/tasks/coverage.py`) reads it |
@@ -1648,9 +1651,9 @@ These names keep their meaning, because outside code depends on them:
 | `exceptions.EngineSourceUnavailable` | unchanged |
 | `allophony.segment_ipa` | IPA utility; stays in Python, and interpreter primitive 11 implements the same rule |
 
-Spec loading, the registry and the inventory stay compile-time Python.
+Every method of `G2P` runs the IR; `G2P` has no other runtime. A spec that the compiler refuses raises `IRUnsupportedFeature`, and no shipped spec is refused. Spec loading, the registry and the inventory stay compile-time Python. The lattice and candidate views are Python host reads of the interpreter's slots; the IR holds nothing for them, and the Lua interpreter does not offer them.
 
-## 9. Semantic changes from the legacy engine
+## 9. Semantic changes from the rules engine
 
 Each change removes a runtime phonetic or Unicode test. Each one is measured before the switch on four corpora: the benchmark board (WikiPron gold, metric PER and changed-word count per language), the 336,234 recorded words (changed-output count per language), the pt-PT parity file of 4,569 lines, and the Kabyle 7.30.0 sample. A change that moves a language's PER up by more than the board's noise floor goes to a ruling before the switch, with the changed words listed.
 
@@ -1660,14 +1663,14 @@ Each change removes a runtime phonetic or Unicode test. Each one is measured bef
 - New: the compiler runs the same judges on the unit sequences of 2 to 5 units that 3.7.2 searches, and writes the licit ones as a table (3.7.2). At runtime a run is licit only if its unit sequence is in the table.
 - Why: the judges are a feature grammar. The table removes sonority and feature tests from every interpreter.
 - Effect: none for runs built from the spec's own units. A run with a unit the spec does not produce (foreign input, an unseen IPA segment from a host hook) becomes unlicit instead of judged. Measure: changed-word count per language on the board and the recorded words. Expected: zero outside foreign-input words.
-- Effect of the 5-unit cap: a run of 6 or more units that the legacy judge licenses by stacking glides on a declared onset is not licit. No gold word of the 346 languages with a gold set needs such a run: 0 of 242,822 words.
+- Effect of the 5-unit cap: a run of 6 or more units that the rules-engine judge licenses by stacking glides on a declared onset is not licit. No gold word of the 346 languages with a gold set needs such a run: 0 of 242,822 words.
 
 ### 9.2 Unknown characters: boundaries, not letters
 
 - Old: a character with no entry is dropped from the IPA, but the written syllabifier still tests it with `is_orthographic_vowel` and `isalpha`. A vowel from another script adds a syllable. pt-PT ⟨casa⟩ gives `ˈkazɐ`, and ⟨casa⟩ plus Cyrillic ⟨а⟩ gives `ˈkɐzɐ`.
-- New: a character outside the known ranges (section 4) is unknown. In S4 it is an UNKNOWN token, as in the legacy tokenizer: it stops the longest match, so the letters on its two sides never join into one key, and it gives no slot. In S5 and every later stage that reads the written word, it is removed, so it adds no syllable and no positional context. It appears in the dropped-character report, which feeds `on_unmapped`. The written syllables map to tokens through the offsets of the removal.
+- New: a character outside the known ranges (section 4) is unknown. In S4 it is an UNKNOWN token, as in the rules-engine tokenizer: it stops the longest match, so the letters on its two sides never join into one key, and it gives no slot. In S5 and every later stage that reads the written word, it is removed, so it adds no syllable and no positional context. It appears in the dropped-character report, which feeds `on_unmapped`. The written syllables map to tokens through the offsets of the removal.
 - Why: one rule, no Unicode vowel or letter test at runtime.
-- Effect: mixed-script words get the syllables and stress of their known letters. Letters on the two sides of an unknown char stay apart, as in the legacy engine: de-DE ⟨s😀chön⟩ keeps `ˈzçœn`, cy ⟨l😀lan⟩ keeps `llan`, and pl ⟨s⟩ + Cyrillic ⟨а⟩ + ⟨zum⟩ keeps its two letters. Measure: changed-word count per language on the board and recorded words, with three counts kept apart: syllable-count changes, stress moves and key changes. Expected: syllable and stress changes only in words with unknown chars, and zero key changes.
+- Effect: mixed-script words get the syllables and stress of their known letters. Letters on the two sides of an unknown char stay apart, as in the rules engine: de-DE ⟨s😀chön⟩ keeps `ˈzçœn`, cy ⟨l😀lan⟩ keeps `llan`, and pl ⟨s⟩ + Cyrillic ⟨а⟩ + ⟨zum⟩ keeps its two letters. Measure: changed-word count per language on the board and recorded words, with three counts kept apart: syllable-count changes, stress moves and key changes. Expected: syllable and stress changes only in words with unknown chars, and zero key changes.
 
 ### 9.3 Digits
 
@@ -1693,7 +1696,7 @@ Each change removes a runtime phonetic or Unicode test. Each one is measured bef
 ### 9.6 IPA segmentation as a primitive
 
 - Old: `segment_ipa` uses `unicodedata.combining` and categories Lm, Sk at runtime.
-- New: primitive 11 with the compiled `modifier` char bit and compiled atom lists (3.6.3). The rule is the legacy rule.
+- New: primitive 11 with the compiled `modifier` char bit and compiled atom lists (3.6.3). The rule is the rules-engine rule.
 - Why: removes the Unicode category test. The output stays the same for every char in the `modifier` table.
 - Effect: none for spec data. The compiler scans every reading and rule output, so every modifier the spec can emit has the bit, including U+207F ⟨ⁿ⟩, which lies outside the known ranges of section 4. Only a modifier that the spec never emits and that comes from a host hook lacks the bit. Measure: segmentation parity over every reading of every spec and the board's IPA output; the round-2 audit found 0 changed words in 5 specs that use ⟨ⁿ⟩.
 
@@ -1706,13 +1709,13 @@ Each change removes a runtime phonetic or Unicode test. Each one is measured bef
 
 ### 9.8 Token positions and override keys in the caller's text
 
-- Status: deferred. IR v1 keeps the legacy behaviour: `Token.position` indexes the prepared text, and the override lookup sees the prepared spelling.
+- Status: deferred. IR v1 keeps the rules-engine behaviour: `Token.position` indexes the prepared text, and the override lookup sees the prepared spelling.
 - Planned change: offsets into the caller's text, so that a lexicon entry spelled with an addak or a shadda matches.
-- Why deferred: the change alters output, and the IR v1 gate is byte parity with the legacy engine. It lands as a separate ruled change with its own measure: changed-word count for `pa`, `ar` and the Arabic-script specs, and the arbtok and tugaphone suites.
+- Why deferred: the change alters output, and the IR v1 gate is byte parity with the rules engine. It lands as a separate ruled change with its own measure: changed-word count for `pa`, `ar` and the Arabic-script specs, and the arbtok and tugaphone suites.
 
 ## 10. Lua interpreter size
 
-The PoC driver `loom_driver.lua` has 3,416 lines, 3,130 of them code, for pt-PT only. The estimate takes each section's real size, removes what becomes a compiled table, and adds what the PoC refuses or v1 adds. The PoC refuses these 12 features, and the estimate includes all of them: secondary stress, `accent2_mark`, `vowel_letters`, `coda_liquid_capture`, `unstressed_prefixes`, prevocalic glide back-off, `trailing_vowel_axis_digraphs`, the aperture positions, silent stress marks, the emphatic class, the plain tokenizer beam and `_cut_written_syllables` with a dropped vowel letter. It also includes the features refused at spec load: grapheme weights, `constrain_onsets`, abugidas, tone, gemination rewrites, `mutates_neighbor`, grammatical endings and lookaround. The legacy runtime modules hold 5,076 Python code lines, and `stress.py` alone holds 869 code lines outside the onset judges.
+The PoC driver `loom_driver.lua` has 3,416 lines, 3,130 of them code, for pt-PT only. The estimate takes each section's real size, removes what becomes a compiled table, and adds what the PoC refuses or v1 adds. The PoC refuses these 12 features, and the estimate includes all of them: secondary stress, `accent2_mark`, `vowel_letters`, `coda_liquid_capture`, `unstressed_prefixes`, prevocalic glide back-off, `trailing_vowel_axis_digraphs`, the aperture positions, silent stress marks, the emphatic class, the plain tokenizer beam and `_cut_written_syllables` with a dropped vowel letter. It also includes the features refused at spec load: grapheme weights, `constrain_onsets`, abugidas, tone, gemination rewrites, `mutates_neighbor`, grammatical endings and lookaround. The rules-engine runtime modules hold 5,076 Python code lines, and `stress.py` alone holds 869 code lines outside the onset judges.
 
 | Stage | PoC lines (section span) | Moves to tables | Added for v1 | Estimate |
 |---|---|---|---|---|
@@ -1740,15 +1743,15 @@ The Lua interpreter is about 3,300 lines for the core stages and about 150 lines
 
 **11.2 Mark placement.** `apply_stress_mark` and the cut and fold helpers stay in the interpreter. End-relative placement is measured on the board as a later ruled change.
 
-**11.3 Mixed-script input.** Unknown characters follow 9.2. The legacy behaviour, which needs a vowel test over all of Unicode, is not kept.
+**11.3 Mixed-script input.** Unknown characters follow 9.2. The rules-engine behaviour, which needs a vowel test over all of Unicode, is not kept.
 
 **11.4 Combining marks inside sandhi classes.** P17, P18 and P67 keep Python semantics. The three patterns are reported to their specs as defects.
 
-**11.5 Dialect profiles.** Dialect profiles export. They compile to the dialect program of 3.10.2, built on primitives 13 to 16. The dialect corpus of 8.4 checks byte parity with the legacy transforms.
+**11.5 Dialect profiles.** Dialect profiles export. They compile to the dialect program of 3.10.2, built on primitives 13 to 16. The dialect corpus of 8.4 checks byte parity with the rules-engine transforms.
 
 **11.6 Two tokenization passes.** Both passes stay (3.3.3).
 
-**11.7 Gemination and casefold fields.** The gemination rewrite field and a casefold override field enter the spec schema in one design PR that quotes the schema clause it extends. Until then, the compiler derives them from `script`, as the legacy code does.
+**11.7 Gemination and casefold fields.** The gemination rewrite field and a casefold override field enter the spec schema in one design PR that quotes the schema clause it extends. Until then, the compiler derives them from `script`, as the rules-engine code does.
 
 **11.8 Size.** The Lua interpreter is about 3,300 lines plus about 150 lines of dialect primitives. The two output-changing cuts of section 10 are measured later as ruled changes.
 

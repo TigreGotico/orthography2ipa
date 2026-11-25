@@ -26,5 +26,40 @@ jobs:
       changelog_max_issues: 100
       # Each PyPI release holds 19 MB against the project limit, so a merge bumps,
       # tags and logs, and publish_alpha_daily.yml dispatches this workflow to publish.
-      publish_pypi: ${{ github.event_name == 'workflow_dispatch' }}
+      publish_pypi: false
       notify_matrix: true
+
+  publish_pypi:
+    # The shared workflow builds the wheel with no step before it. This job
+    # builds it here, after the compiled IR of the slow specs is in
+    # orthography2ipa/ir/precompiled/ (scripts/build_ir_cache.py).
+    needs: publish_alpha
+    if: ${{ github.event_name == 'workflow_dispatch' && needs.publish_alpha.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      # The shared workflow creates its release with
+      # tag: ${{ needs.bump_version.outputs.version }} and exposes the same
+      # value as its output version, so this ref is the tag it created.
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.publish_alpha.outputs.version }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+      - name: Install uv
+        run: pip install uv
+      - name: Compile the IR of the slow specs
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python --prerelease=allow -e .
+          .venv/bin/python -I scripts/build_ir_cache.py --jobs 4 --min-seconds 1
+      - name: Build Distribution Packages
+        run: |
+          uv build
+          ls -l dist/
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_TOKEN }}

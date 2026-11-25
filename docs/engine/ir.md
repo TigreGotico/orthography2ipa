@@ -145,11 +145,11 @@ Each version of the IR and each primitive has a version number. An interpreter r
 | `orthography2ipa/ir/interpreter.py`, `pattern.py`, `dialect.py` | The reference interpreter and its regex subset and dialect primitives |
 | `orthography2ipa/ir/interpreter.lua` | The Lua interpreter |
 | `orthography2ipa/export_to_loom.py` | Writes the Lua interpreter and the IRs into one GGUF |
-| `orthography2ipa/g2p.py` | `G2P`: the rules path that `transcribe` runs, and the host steps |
+| `orthography2ipa/g2p.py` | `G2P`: the host steps around the interpreter |
 
 ## The IR and `transcribe`
 
-`transcribe` and `G2P` run the rules path of `g2p.py`, not the IR. The interpreter runs when a caller runs it, as in the steps above, and inside a loom export. The text preparation steps and a lexicon are host steps, and the interpreter runs without them ([plugins.md](plugins.md)).
+Every method of `G2P`, and so `transcribe`, runs the IR on the Python interpreter. A loom export runs the same IR on the Lua interpreter. The text preparation steps and a lexicon are host steps around the interpreter ([plugins.md](plugins.md)).
 
 ---
 [← Architecture](architecture.md) · [Home](../index.md) · [Host-side plugins →](plugins.md)

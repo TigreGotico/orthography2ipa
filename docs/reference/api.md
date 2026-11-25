@@ -155,7 +155,7 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 | Name | Kind | Summary |
 | --- | --- | --- |
 | `lexicon_revision` | function | sha256 over the packaged lexicon files that `packaged_lexicon(code, patches)` reads. |
-| `spec_revision` | function | sha256 over the canonical spec JSON, its parent chain and engine rule version. |
+| `spec_revision` | function | sha256 over the IR that `G2P(code)` runs. |
 | `transcription_revision` | function | sha256 over the revisions of the default path: the spec and the packaged lexicon. |
 
 ## `orthography2ipa.sandhi`

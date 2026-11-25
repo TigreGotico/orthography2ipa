@@ -52,7 +52,7 @@ def test_plugin_and_bundled_paths_agree(lang, word, plugin_engine):
 
 @pytest.mark.parametrize("lang", ["pt-PT", "pt-BR"])
 def test_bundled_syllabifier_keeps_ai_in_one_syllable(lang):
-    assert G2P(lang)._syllables_cached("cãibra") == ["cãi", "bra"]
+    assert G2P(lang)._interpreter.syllables("cãibra") == ["cãi", "bra"]
 
 
 @pytest.mark.parametrize("lang", ["pt-PT", "pt-BR"])

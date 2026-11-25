@@ -68,7 +68,7 @@ def test_closed_hiatus_with_the_plugin(lang, word, plugin_engine):
 def test_bundled_syllabifier_splits_the_hiatus(lang, word):
     # The ⟨i u⟩ after the vowel opens a syllable of its own: ra-i-nha, ra-ul.
     g2p = G2P(lang)
-    sylls = g2p._syllables_cached(word.lower())
+    sylls = g2p._interpreter.syllables(word.lower())
     vowel = next(k for k in range(1, len(word))
                  if word[k] in "iu" and word[k - 1].lower() in "aeiou")
     starts, at = set(), 0

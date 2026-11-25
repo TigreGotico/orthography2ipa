@@ -105,10 +105,7 @@ def test_empty_string_is_neither():
 
 def _engine_with_spec(spec) -> G2P:
     """Build a G2P whose spec (and tokenizer) is the synthetic *spec*."""
-    engine = G2P(spec.code)
-    engine.spec = spec
-    engine._tokenizer = PhonetokTokenizer(spec)
-    return engine
+    return G2P(spec.code, spec=spec)
 
 
 def _romance_c_spec(positional):

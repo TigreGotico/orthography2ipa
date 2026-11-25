@@ -25,7 +25,6 @@ that title exist; none was verified here).
 import pytest
 
 from orthography2ipa.g2p import G2P
-from orthography2ipa.phonetok import IPAPath
 
 
 def _t(word):
@@ -322,16 +321,5 @@ def test_rewrite_keeps_a_declared_value_whose_vowels_do_not_pair_up():
     letter of the tail. Here [və] has one vowel for the two letters of
     ⟨ого⟩, so the [ə] stays even though the path reads the first ⟨о⟩ as a
     stressed [o]."""
-    path = IPAPath(segments=("o", "ɡ", "ə"), score=0.0,
-                   graphemes=("о", "г", "о"))
-    assert G2P("ru")._ending_vowels_follow_stress(path, 3, "və") == "və"
-
-
-def test_allophone_surface_maps_back_only_to_a_single_table_reading():
-    """[ɛ] is the RU_HARD_BACK surface of [e] alone, so it maps back to
-    [e]. [ɨ] is the surface of both [ɪ] and [i], so with both as readings
-    no single vowel is the source and nothing is chosen."""
-    g = G2P("ru")
-    assert g._underlying_vowel("ɛ", frozenset({"e", "ɪ"})) == "e"
-    assert g._underlying_vowel("ɨ", frozenset({"i", "ɪ"})) is None
-    assert g._underlying_vowel("ɨ", frozenset({"e", "ɪ"})) == "ɪ"
+    path = (("o", "ɡ", "ə"), 0, ("о", "г", "о"))
+    assert G2P("ru")._interpreter._ending_vowels_follow_stress(path, 3, "və") == "və"

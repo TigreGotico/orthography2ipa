@@ -1,6 +1,6 @@
 # orthography2ipa: agent guide
 
-`orthography2ipa` is a Python package of cited, per-language JSON specs and one language-agnostic engine. The engine turns the specs into IPA transcriptions, ranked pronunciation lattices and distances between languages, with no trained weights and no word lists.
+`orthography2ipa` is a Python package of cited, per-language JSON specs and one language-agnostic engine. The engine turns the specs into IPA transcriptions, ranked pronunciation lattices and distances between languages, with no trained weights and no word lists. The engine compiles each spec to an IR document and runs it on a small interpreter ([o2i-ir-v1.md](docs/ir/o2i-ir-v1.md)); `G2P` has no other runtime.
 
 The documentation starts at [docs/index.md](docs/index.md).
 
@@ -51,7 +51,7 @@ Use uv, never pip. `which_tests.py` lists the test files that name a spec. With 
 15. Never edit `orthography2ipa/version.py` or `CHANGELOG.md`. The release workflow writes them.
 16. The IR interpreters hold no language knowledge: no branch on a language, script or family, no Unicode name lookup, no codepoint range test. Only the compiler may hold language tables. Never grow `IR_OPAQUE_WORDS` to pass the check ([behaviour_is_data.md](docs/contributing/behaviour_is_data.md#run-the-guards)).
 17. A change to an IR version or a primitive semantics version in `layout.py` changes `docs/ir/o2i-ir-v1.md` in the same pull request ([behaviour_is_data.md](docs/contributing/behaviour_is_data.md#change-a-version-change-the-spec)).
-18. The Python and Lua interpreters give the same output, and the IR matches the rules path apart from the ruled changes of section 9 of the IR spec.
+18. The Python and Lua interpreters give the same output, and the Python interpreter matches the golden output of `tests/data/ir_golden_ci.json`.
 
 ## Before you push
 

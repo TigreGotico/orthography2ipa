@@ -215,7 +215,7 @@ A spec can declare `stress.secondary_stress`. A syllable that heads a secondary 
 
 ## The engine and the standalone beam
 
-The standalone tokenizer beam (`PhonetokTokenizer.ipa_beam` and `ipa_best`) reads the same positional entries as the engine. Both call `orthography2ipa.positional.resolve_branches`, so the two paths cannot drift apart.
+The standalone tokenizer beam (`PhonetokTokenizer.ipa_beam` and `ipa_best`) reads the same positional entries as the engine. The beam calls `orthography2ipa.positional.resolve_branches`, and the compiler lowers the same entries into the IR that the engine runs.
 
 ```python
 from orthography2ipa import get

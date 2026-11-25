@@ -2,7 +2,7 @@
 
 <!-- agent-hint
 covers: which revision names the phonemizer of a trained voice, what moves each revision, and how to compare them
-source: orthography2ipa/revision.py:spec_revision, orthography2ipa/revision.py:lexicon_revision, orthography2ipa/revision.py:ENGINE_MODULES, orthography2ipa/ir/layout.py:spec_revision, orthography2ipa/ir/layout.py:SEMANTICS
+source: orthography2ipa/revision.py:spec_revision, orthography2ipa/revision.py:lexicon_revision, orthography2ipa/ir/cache.py:revision, orthography2ipa/ir/layout.py:spec_revision, orthography2ipa/ir/layout.py:SEMANTICS
 generated: no
 verify: .venv/bin/python -m doctest docs/guide/revisions.md
 see: docs/guide/loom_export.md, docs/reference/api_stability.md, docs/guide/lexicon.md, docs/ir/o2i-ir-v1.md
@@ -10,15 +10,16 @@ see: docs/guide/loom_export.md, docs/reference/api_stability.md, docs/guide/lexi
 
 A voice learns the phonemes of one phonemizer. This page says which value names that phonemizer, what changes the value, and how to check it later.
 
-## Three revisions
+## Two revisions
 
 Each revision is a `"sha256:"` string. Each one covers a different part of the phonemizer:
 
 | Revision | Function | Covers |
 | :--- | :--- | :--- |
-| Package spec revision | `orthography2ipa.spec_revision(code)` | The spec of `code`, every spec on its inheritance chains, the source of the rules-path modules and the Unicode version of the running Python |
-| IR revision | `orthography2ipa.ir.layout.spec_revision(ir)` | The compiled IR document and the version of each primitive it uses. The loom exporter records this value |
+| Spec revision | `orthography2ipa.spec_revision(code)` | The IR that `G2P(code)` runs: the spec data with its inheritance chains, the compile options, and the version of each primitive the IR uses. The loom exporter records this value |
 | Lexicon revision | `orthography2ipa.lexicon_revision(code, patches=False)` | The files of the packaged lexicon |
+
+`transcription_revision(code)` hashes the two together.
 
 ## Step 1: read the package revisions
 
@@ -47,21 +48,22 @@ no installed package supplies a lexicon file for 'pt-PT'; installed: ...
 
 A voice trained on the default path records both values. A voice trained with `Pipeline(lexicon={})` reads no lexicon, and the spec revision alone covers it.
 
-## Step 2: read the IR revision
+## Step 2: hash a compiled IR
 
-The IR revision is the value that a loom export records. Compile the IR and hash it:
+`spec_revision(code)` reads the IR from the precompiled documents of the package or from the user cache. `orthography2ipa.ir.layout.spec_revision(ir)` hashes an IR document that you compile yourself. For the default compile options both give the same value:
 
 ```python
 >>> from orthography2ipa.ir.compiler import build_ir
 >>> from orthography2ipa.ir.layout import spec_revision as ir_revision
->>> ir_revision(build_ir("pt-PT")).startswith("sha256:")
+>>> from orthography2ipa import spec_revision
+>>> ir_revision(build_ir("pt-PT")) == spec_revision("pt-PT")
 True
 
 ```
 
 The hash input is the canonical IR and a manifest. The manifest lists each primitive, predicate node and syllable relation that the IR uses, with its semantics version from `layout.SEMANTICS`. So a fix to one primitive moves the revision of each language whose IR uses it, and leaves the other languages as they were.
 
-## What moves the IR revision
+## What moves the spec revision
 
 Every input that can change the output is in the hash. A compile option changes the IR, so it changes the revision:
 
@@ -89,23 +91,22 @@ False
 
 ```
 
-The table lists what moves each revision:
+The table lists what moves the spec revision:
 
-| Change | Package spec revision | IR revision |
-| :--- | :--- | :--- |
-| An edit to the spec, or to a spec on its chains, that changes its parsed JSON | moves | moves when the compiled IR changes |
-| A whitespace-only edit to a spec | stays | stays |
-| A compile option: `apply_stress`, `apply_allophony`, `apply_sandhi`, `expand_allophones`, `dialect_profile` | stays | moves |
-| A higher semantics version of a primitive that the IR uses | stays | moves |
-| A compiler change that writes an equivalent IR in another form | stays | can move |
-| A change to a rules-path module in `ENGINE_MODULES` | moves | stays, unless the IR changes |
-| A change to `orthography2ipa/ir/interpreter.py` with no semantics version bump | stays | stays |
-| Another Unicode version in Python | moves | moves when the compiled character tables change |
-| A lexicon | stays | stays |
+| Change | Spec revision |
+| :--- | :--- |
+| An edit to the spec, or to a spec on its chains | moves when the compiled IR changes |
+| A whitespace-only edit to a spec | stays |
+| A compile option: `apply_stress`, `apply_allophony`, `apply_sandhi`, `expand_allophones`, `dialect_profile` | moves |
+| A higher semantics version of a primitive that the IR uses | moves |
+| A compiler change that writes an equivalent IR in another form | can move |
+| A change to `orthography2ipa/ir/interpreter.py` with no semantics version bump | stays |
+| Another Unicode version in Python | moves when the compiled character tables change |
+| A lexicon | stays |
 
-The IR revision is conservative. It can move when the output does not change. It does not stay equal when the output can change, provided each primitive fix bumps its semantics version ([behaviour_is_data.md](../contributing/behaviour_is_data.md#change-a-version-change-the-spec)).
+The spec revision is conservative. It can move when the output does not change. It does not stay equal when the output can change, provided each primitive fix bumps its semantics version ([behaviour_is_data.md](../contributing/behaviour_is_data.md#change-a-version-change-the-spec)).
 
-`ENGINE_MODULES` lists the modules of the rules path. It does not list the modules of `orthography2ipa/ir/`.
+The cache key of a stored IR document hashes the source of the modules in `ENGINE_MODULES`. A change to that source makes the package compile the spec again. The revision moves only when the new IR differs.
 
 ## Step 3: compare later
 

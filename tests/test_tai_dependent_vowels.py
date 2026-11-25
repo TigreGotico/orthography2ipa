@@ -99,7 +99,7 @@ def test_thai_lao_declare_preposed_vowels():
 def test_preposed_vowel_token_is_silent_and_stays_in_text_order():
     # Token LIST order must stay text order (vowel token first, at its true
     # position) — only the IPA content moves. This is what keeps surface
-    # reconstruction (g2p._group_words) and every other position-dependent
+    # reconstruction (Interpreter._group_words) and every other position-dependent
     # consumer working unmodified.
     tokens = PhonetokTokenizer(get("th")).tokenize("เก")
     g_tokens = [t for t in tokens if t.grapheme]
@@ -128,7 +128,7 @@ def test_word_rebuild_preserves_preposed_vowel_order():
     # is written before the consonant it modifies.
     g2p = G2P("th")
     word = "เก"
-    rebuilt = [w.surface for w in g2p._split_words(word)]
+    rebuilt = [w.surface for w in g2p.sentence_lattice(word).words]
     assert rebuilt == [word], "preposed vowel order lost when rebuilding the word"
 
 

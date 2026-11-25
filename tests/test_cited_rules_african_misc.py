@@ -1675,7 +1675,7 @@ def test_nqo_tone_marks_become_tone_letters_not_segments():
 def test_nqo_nasalisation_mark_becomes_a_tilde():
     """"U+07F2 (nasalisation) maps to a combining tilde."  ߞߊߣߊ߲ ends in a
     nasalised vowel, not in a consonant.  The rule's own IPA is the combining
-    mark U+0303, but the engine's NFC output contract (G2P._transcribe_word)
+    mark U+0303, but the engine's NFC output contract (Interpreter.transcribe_word)
     composes it onto the preceding "a" into precomposed "ã"."""
     assert G2P("nqo").transcribe_word("ߞߊߣߊ߲") == "kanã"
 

@@ -2746,7 +2746,7 @@ class LanguageSpec:
     the spec lists for its letter in an unstressed position gives way to
     the vowel the positional tables chose for the word's stress, so Russian
     ⟨-ого⟩ [əvə] reads [ˈovə] in большо́го (see
-    :meth:`~orthography2ipa.g2p.G2P._ending_vowels_follow_stress`).
+    :meth:`~orthography2ipa.ir.interpreter.Interpreter._ending_vowels_follow_stress`).
 
     Precedence: :attr:`word_exceptions` **>** ``grammatical_endings``
     **>** :attr:`graphemes` / :attr:`positional_graphemes`."""

@@ -209,6 +209,6 @@ class TestForcingSurvivesPunctuation:
             self.FORCED + "، بيت").startswith("ˈmiːtinɡ ")
 
     def test_the_forced_word_is_still_marked_pausal(self):
-        words = G2P(self.LECT)._split_words(self.FORCED + ", بيت")
-        assert words[0].forced_ipa == "ˈmiːtinɡ"
+        words = G2P(self.LECT).sentence_lattice(self.FORCED + ", بيت").words
+        assert words[0].ipa == "ˈmiːtinɡ"
         assert words[0].pausal is True

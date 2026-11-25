@@ -1563,7 +1563,7 @@ def _nfc_lower(word: str) -> str:
 
 def _o2i_lexicon_key(word: str, lect: str) -> str:
     """The key o2i itself uses for a sidecar-lexicon lookup:
-    ``NFC(lower_str(word, code))`` — see ``G2P._override_for``. Used for
+    ``NFC(lower_str(word, code))`` — see ``Interpreter._override_for``. Used for
     BOTH o2i-lexicon-driven columns (``o2i_lex``, and ``tugaphone``,
     whose packaged lexicon reaches the same lookup through
     ``Pipeline.lexicon``), so the filter matches what those

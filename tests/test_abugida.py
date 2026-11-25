@@ -55,7 +55,7 @@ def test_mark_supplying_no_vowel_leaves_the_inherent_vowel_standing():
     # Malayalam anusvara's IPA opens with a combining tilde — a diacritic that
     # modifies a vowel without supplying one, so ള keeps its inherent vowel for
     # the tilde to attach to. The engine's output contract is NFC (see
-    # G2P._transcribe_word), so the tilde composes onto that vowel.
+    # Interpreter.transcribe_word), so the tilde composes onto that vowel.
     assert G2P("ml").transcribe("മലയാളം") == "malajaːɭãm"
 
 
@@ -135,5 +135,5 @@ def test_word_rebuild_preserves_viramas():
     # inherent vowels the tokenizer had just suppressed.
     g2p = G2P("ta")
     word = "வணக்கம்"
-    rebuilt = [w.surface for w in g2p._split_words(word)]
+    rebuilt = [w.surface for w in g2p.sentence_lattice(word).words]
     assert rebuilt == [word], "virama lost when rebuilding the word"

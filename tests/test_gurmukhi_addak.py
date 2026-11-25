@@ -72,9 +72,9 @@ def test_addak_after_a_vowel_sign(pa):
 
 def test_a_doubled_addak_doubles_the_letter_once(pa):
     """A repeated addak is one gemination, and preparing twice changes nothing."""
-    g2p = G2P("pa")
-    once = g2p._tokenizer.prepare("ਕੱੱਕ")
-    assert g2p._tokenizer.prepare(once) == once
+    it = G2P("pa")._interpreter
+    once = it.prepare("ਕੱੱਕ")
+    assert it.prepare(once) == once
     assert pa.transcribe("ਕੱੱਕ") == pa.transcribe("ਕੱਕ") == "kəkk"
 
 

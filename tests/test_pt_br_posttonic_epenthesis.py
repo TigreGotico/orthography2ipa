@@ -14,6 +14,7 @@ import dataclasses
 import pytest
 
 from orthography2ipa import G2P, transcribe
+from orthography2ipa.ir.interpreter import Interpreter
 from orthography2ipa.json_loader import load_json_spec
 
 
@@ -124,5 +125,6 @@ def test_a_vocalised_glide_is_not_an_inserted_nucleus(word):
     # Ukrainian ⟨в⟩ gives the non-syllabic [u̯]. It adds no syllable, so the
     # stress mark stays where the syllable count puts it.
     counted = G2P("uk")
-    counted._fold_inserted_nuclei = lambda *args: None
+    counted.__dict__["_interpreter"] = Interpreter(counted._interpreter.ir)
+    counted._interpreter._fold_inserted_nuclei = lambda *args: None
     assert G2P("uk").transcribe(word) == counted.transcribe(word)

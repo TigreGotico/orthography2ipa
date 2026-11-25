@@ -296,9 +296,10 @@ def test_tokens_locate_themselves_in_the_syllabified_word():
     syllable — which read as STRESSED and gave German *jährige* a final ɛ."""
     from orthography2ipa import G2P
     g = G2P("de-DE")
-    toks = g._tokenizer.grapheme_tokens("102-jährige")
-    sylls = g._syllables_cached("102-jährige")
-    mapped = g._map_tokens_to_syllables(toks, sylls)
+    it = g._interpreter
+    toks = it.grapheme_tokens("102-jährige")
+    sylls = it.syllables("102-jährige")
+    mapped = it._map_tokens_to_syllables(toks, sylls)
     assert mapped[-1] == len(sylls) - 1        # final ⟨e⟩ is in the last one
     assert g.transcribe_word("102-jährige").endswith("ɡə")
     assert g.transcribe_word("102-jährige")[1:] == g.transcribe_word("jährige")[1:]
