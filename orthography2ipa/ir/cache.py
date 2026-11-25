@@ -1,22 +1,12 @@
 """Compiled IR per language, kept in memory and on disk.
 
-:func:`interpreter` is what the public transcription path runs. The first
-call for a language and a set of options compiles the spec, which takes from
-a fraction of a second to about a minute (the French varieties are the
-slowest), and stores the canonical IR document. Later calls in the process
-reuse the interpreter; later processes read the document back.
-
-A document is looked up in this order:
-
-1. the package directory ``orthography2ipa/ir/precompiled``, filled at
-   release time by ``scripts/build_ir_cache.py``;
-2. the user cache directory, ``$O2I_IR_CACHE`` or
-   ``$XDG_CACHE_HOME/orthography2ipa/ir`` (``~/.cache`` by default).
-
-The file name holds a key over the spec chain of the language, the engine
-source with the IR package and the options, so a changed spec, engine or
-compiler never reads a stale document. Set
-``O2I_IR_CACHE=off`` to keep the documents in memory only.
+:func:`interpreter` compiles the spec on the first call for a language and a
+set of options, and reuses the interpreter in the process. A document is read
+from ``orthography2ipa/ir/precompiled`` (filled by ``scripts/build_ir_cache.py``)
+or from the user cache, ``$O2I_IR_CACHE`` or ``$XDG_CACHE_HOME/orthography2ipa/ir``,
+in that order. The file name holds a key over the spec chain, the engine
+source and the options, so a changed input never reads a stale document.
+``O2I_IR_CACHE=off`` keeps the documents in memory only.
 """
 from __future__ import annotations
 
@@ -25,6 +15,7 @@ import json
 import lzma
 import os
 import tempfile
+from contextlib import suppress
 from pathlib import Path
 from typing import Dict, Optional, Tuple
 
@@ -123,16 +114,14 @@ def document(code: str, **options) -> dict:
         return compile_spec(code, **options)
     user = _user_dir()
     for directory in (PRECOMPILED, user):
-        if directory is not None and (directory / name).is_file():
+        if directory is not None:
             doc = _read(directory / name)
             if doc is not None:
                 return doc
     doc = compile_spec(code, **options)
     if user is not None:
-        try:
+        with suppress(OSError):
             write(user, name, doc)
-        except OSError:
-            pass
     return doc
 
 
@@ -156,12 +145,8 @@ def document_revision(doc: dict) -> str:
     return "sha256:" + hashlib.sha256(payload).hexdigest()
 
 
-_revisions: Dict[str, str] = {}
-
-
+@lru_cache(maxsize=None)
 def revision(code: str) -> str:
     """The ``spec_revision`` of the IR that ``G2P(code)`` runs."""
-    if code not in _revisions:
-        cache_key(code, DEFAULT_OPTIONS)  # raises EngineSourceUnavailable without the engine source
-        _revisions[code] = document_revision(document(code, **DEFAULT_OPTIONS))
-    return _revisions[code]
+    cache_key(code, DEFAULT_OPTIONS)  # raises EngineSourceUnavailable without the engine source
+    return document_revision(document(code, **DEFAULT_OPTIONS))

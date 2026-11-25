@@ -1,10 +1,8 @@
 """The Unicode table the IR compiler reads in place of the host :mod:`unicodedata`.
 
 The table pins one Unicode version, so every Python compiles the same IR bytes.
-It holds the general category of every codepoint, which also tells which
-codepoints the pinned version assigns. The compiler admits only those, and
-Unicode's stability policy keeps the name, combining class and decomposition
-of an assigned codepoint fixed in every later version.
+It holds the general category of every codepoint, and so tells which codepoints
+the pinned version assigns; the compiler admits only those.
 Regenerate it with scripts/build_unidata.py.
 """
 import json

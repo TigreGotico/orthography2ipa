@@ -70,7 +70,7 @@ def fresh():
     revision._canonical_spec.cache_clear()
     revision.engine_fingerprint.cache_clear()
     ir_cache._engine_bytes.cache_clear()
-    ir_cache._revisions.clear()
+    ir_cache.revision.cache_clear()
     ir_cache._interpreters.clear()
     ir_compiler._base_ir.cache_clear()
     registry._cache.clear()
