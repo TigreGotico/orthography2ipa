@@ -3,8 +3,6 @@ declarative ``sandhi_rules`` of the spec, then the sentence rescorers, then
 the sandhi plugin."""
 import warnings
 
-import pytest
-
 from orthography2ipa import G2P
 from orthography2ipa import registry
 from orthography2ipa.plugins import SandhiPlugin
@@ -12,23 +10,20 @@ from orthography2ipa.sentence import SentenceRescorer
 
 
 class SpyRescorer(SentenceRescorer):
-    def __init__(self, events=None):
+    def __init__(self):
         self.seen = []
-        self.events = events
 
     def rescore(self, word, context):
         self.seen.append(context.this_word_ipa)
-        if self.events is not None:
-            self.events.append("rescorer")
-        return context.this_word_ipa
+        return context.this_word_ipa + "!"
 
 
 class SpySandhi(SandhiPlugin):
-    def __init__(self, events):
-        self.events = events
+    def __init__(self):
+        self.received = []
 
     def apply(self, words, surfaces, pausal, lang):
-        self.events.append("sandhi")
+        self.received.append(list(words))
         return list(words)
 
 
@@ -52,9 +47,11 @@ def test_the_sandhi_rules_are_what_changes_the_form():
     assert _first_word_seen(apply_sandhi=False) == _engine().transcribe("tant") == "ˈtan"
 
 
-def test_sentence_rescorers_run_before_the_sandhi_plugin(monkeypatch):
-    events = []
-    monkeypatch.setitem(registry._declared, "sandhi", {"spy": SpySandhi(events)})
-    engine = _engine(sentence_rescorer=SpyRescorer(events), plugins={"sandhi": ["spy"]})
-    engine.transcribe("tant que")
-    assert events == ["rescorer", "rescorer", "sandhi"]
+def test_the_sandhi_plugin_receives_the_words_the_rescorers_wrote(monkeypatch):
+    plugin = SpySandhi()
+    monkeypatch.setitem(registry._declared, "sandhi", {"spy": plugin})
+    engine = _engine(sentence_rescorer=SpyRescorer(), plugins={"sandhi": ["spy"]})
+    ipa = engine.transcribe("tant que")
+    expected = [w + "!" for w in _engine().transcribe("tant que").split()]
+    assert plugin.received == [expected]
+    assert ipa.split() == expected
