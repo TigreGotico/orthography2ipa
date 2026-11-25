@@ -15,3 +15,5 @@ jobs:
       install_extras: '.[test]'
       min_coverage: 78
       system_deps: 'luajit'
+      pytest_args: '-n auto'
+      timeout_minutes: 90
