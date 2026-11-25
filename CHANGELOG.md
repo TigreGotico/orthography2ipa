@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.129.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.129.0a1) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.128.0a1...7.129.0a1)
+
+**Merged pull requests:**
+
+- feat\(ir\): carry a plugin's sandhi rules in the IR [\#2600](https://github.com/TigreGotico/orthography2ipa/pull/2600) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.128.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.128.0a1) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.127.1a2...7.128.0a1)
@@ -381,10 +389,6 @@
 ## [7.124.35a3](https://github.com/TigreGotico/orthography2ipa/tree/7.124.35a3) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.35a2...7.124.35a3)
-
-**Merged pull requests:**
-
-- docs: agent hints on the Portuguese pages [\#2444](https://github.com/TigreGotico/orthography2ipa/pull/2444) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.124.35a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.35a2) (2026-11-22)
 
