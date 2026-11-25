@@ -108,7 +108,35 @@ The docstrings in `orthography2ipa/types.py` carry the citations for each positi
 | 10 | `before_vowel` or `before_consonant` |
 | 11 | `nucleus`, then `default` |
 
+The diagram shows the eleven ranks as a chain. The engine tries them from the top, so an earlier rank wins over a later one.
+
+```mermaid
+flowchart TD
+    R1["1: before_final_vowel"] --> R2["2: before_e, vowel class, before_palatal"]
+    R2 --> R3["3: word_initial, word_final"]
+    R3 --> R4["4: intervocalic"]
+    R4 --> R5["5: aperture, open_syllable, closed_syllable"]
+    R5 --> R6["6: nucleus stress, pretonic, posttonic"]
+    R6 --> R7["7: before_mute_e"]
+    R7 --> R8["8: word_final before a silenced plural"]
+    R8 --> R9["9: after_e, class, after_palatal, after_vowel"]
+    R9 --> R10["10: before_vowel, before_consonant"]
+    R10 --> R11["11: nucleus, default"]
+```
+
 `orthography2ipa.positional.positional_candidates` walks this list and returns the candidates of the first position the spec declares. If the grapheme has a positional entry, the winning candidates rank first and the flat candidates follow them. The beam keeps the full search space this way. If no position matches, the flat table and its weights apply.
+
+The next diagram shows how `resolve_branches` uses the list to pick the candidates of one grapheme.
+
+```mermaid
+flowchart TD
+    A["grapheme_positions: ordered list"] --> B["positional_candidates"]
+    B --> C{"a declared position matches"}
+    C -->|yes| D["positional candidates first, then flat candidates; rank costs"]
+    C -->|no| E["flat table; candidate weights apply"]
+    D --> F["build_branches"]
+    E --> F
+```
 
 A spec can therefore declare a class rule and a narrower letter rule together. With `before_front_vowel` and `before_e` on one grapheme, ⟨e⟩ takes the `before_e` entry and every other front vowel takes the class entry. A vowel letter that a spec reads as the glide /j/ is both a front vowel and a palatal. The vowel class comes first, so `before_front_vowel` outranks `before_palatal` for that neighbour.
 

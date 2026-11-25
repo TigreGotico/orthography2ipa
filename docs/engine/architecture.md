@@ -34,6 +34,24 @@ The compiler in `orthography2ipa/ir/compiler.py` lowers the stages below into th
 | 12 | Dialect transform | An optional `dialect_profile` rewrites the final IPA. |
 | 13 | NFC | The engine normalises the output to Unicode [Normalization Form C](https://unicode.org/reports/tr15/). |
 
+The diagram shows the order in which one call runs the stages, with the function or module that holds each. A word with an override skips the tokenizer and the beam.
+
+```mermaid
+flowchart TD
+    A["markup.parse_markup"] --> B["G2P._prepared: Pipeline.expand, Pipeline.mark"]
+    B --> C{"Interpreter._override_for: word_exceptions, lexicon"}
+    C -->|miss| D["Interpreter.tokenize"]
+    D --> E["Interpreter._branches: positional overrides, weights"]
+    E --> F["rescore: hooks.rescore, then _rescore_pass"]
+    F --> G["_word_paths and _apply_ending: beam"]
+    C -->|hit| H
+    G --> H["_finalize: tone, stress mark"]
+    H --> I["_mark_compounds"]
+    I --> J["_sandhi, then hooks.sandhi"]
+    J --> K["dialect.run_program"]
+    K --> L["Interpreter.nfc"]
+```
+
 ### Tokenizer and lattice
 
 `phonetok.py` is the tokenizer, and it works from a `LanguageSpec` alone. `_GraphemeTrie` matches the longest grapheme key at each position. [tokenizer.md](tokenizer.md) describes the token kinds and the context view.

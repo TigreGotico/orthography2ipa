@@ -80,6 +80,23 @@ A lattice is a list of slots, one per grapheme, in surface order. Each slot is a
 | `candidates` | A tuple of `Candidate(ipa, cost)`, best (lowest cost) first |
 | `top` | The first candidate, which is the canonical choice |
 
+The diagram shows how the standalone tokenizer builds the lattice and then chooses a path from it. The rescore step runs only when the caller passes a rescorer.
+
+```mermaid
+flowchart TD
+    A["PhonetokTokenizer.tokenize"] --> B["TokenSequence: GraphemeContext per grapheme"]
+    B --> C["grapheme_positions"]
+    C --> D["positional_candidates"]
+    D --> E["build_branches: candidate_base_costs"]
+    E --> F["apply_rescorers"]
+    F --> G["ipa_lattice: SegmentSlot list"]
+    F --> H["ipa_beam: _expand_beam per slot"]
+    H --> I["IPAPath list, best first"]
+    I --> J["ipa_best: first path"]
+```
+
+Steps C to E are `resolve_branches`, which `_grapheme_slots` calls for each grapheme.
+
 Two methods return a lattice. `PhonetokTokenizer.ipa_lattice(text, *, beam_width=8, expand_allophones=False, rescorer=None)` works from the spec alone. `G2P.ipa_lattice(word, *, beam_width=8)` adds the engine's context, as [Positional overrides apply here too](#positional-overrides-apply-here-too) explains. In both, `beam_width` is the number of candidates kept per slot, and `-1` keeps all of them. The truncation never removes the top candidate. A grapheme that resolves to no candidates, such as a silent marker letter, gets no slot.
 
 The costs of the slots are independent and additive. The lattice and the beam are therefore two views of the same search:
