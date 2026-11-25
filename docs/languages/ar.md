@@ -68,7 +68,7 @@ The transform touches only the codepoints of those two blocks. A global NFKC wou
 
 ### Gemination: shadda
 
-A consonant with shadda (U+0651) is a geminate, and this holds for every consonant, the glides ي and و included (Ryding 2005, ch. 2, pp. 15-16, and Watson 2002). The function `_expand_arabic_gemination` doubles the base consonant and drops the shadda, so the grapheme table sees two ordinary consonant slots. It accepts both orders of the mark cluster: consonant, shadda, harakat, and consonant, harakat, shadda. The two orders render alike, and NFC does not reorder them.
+A consonant with shadda (U+0651) is a geminate, and this holds for every consonant, the glides ي and و included (Ryding 2005, ch. 2, pp. 15-16, and Watson 2002). The function `expand_arabic_gemination` doubles the base consonant and drops the shadda, so the grapheme table sees two ordinary consonant slots. It accepts both orders of the mark cluster: consonant, shadda, harakat, and consonant, harakat, shadda. The two orders render alike, and NFC does not reorder them.
 
 ```python
 >>> orthography2ipa.transcribe("عَمَّ", "ar")
