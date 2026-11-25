@@ -13,10 +13,11 @@ Demonstrates:
 
 import phonematcher
 
+import linguatag
+
 import orthography2ipa
 from orthography2ipa.distance import (
     allophone_overlap,
-    ancestry_similarity,
     full_distance,
     grapheme_divergence,
     inventory_distance,
@@ -129,7 +130,7 @@ for pair, (a, b) in [
     ("es ↔ fr", (es, fr)),
     ("la ↔ it", (la, it)),
 ]:
-    print(f"  {pair}: {ancestry_similarity(a, b):.3f}")
+    print(f"  {pair}: {linguatag.ancestry_similarity(a.code, b.code):.3f}")
 
 
 # ── 7. Full distance ─────────────────────────────────────────────────────
