@@ -28,6 +28,8 @@ import tempfile
 from pathlib import Path
 from typing import Dict, Optional, Tuple
 
+from phonematcher.version import VERSION_STR as PHONEMATCHER_VERSION
+
 from orthography2ipa.exceptions import EngineSourceUnavailable
 from orthography2ipa.ir.compiler import compile_spec
 from orthography2ipa.ir.interpreter import Interpreter
@@ -52,7 +54,8 @@ def _engine_bytes() -> str:
     """sha256 over the raw engine source. Unlike the token fingerprint of
     :func:`~orthography2ipa.revision.engine_fingerprint` it costs no
     tokenizing, and a comment edit only makes the cache miss once."""
-    digest = hashlib.sha256(f"unidata:{unidata.VERSION}\n".encode())
+    # The compiler reads phonematcher, so its version is part of the engine.
+    digest = hashlib.sha256(f"unidata:{unidata.VERSION}\nphonematcher:{PHONEMATCHER_VERSION}\n".encode())
     for name in sorted(source_revision.ENGINE_MODULES):
         digest.update(name.encode() + b"\n" + source_revision._module_source(name))
     return digest.hexdigest()
