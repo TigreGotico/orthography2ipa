@@ -54,7 +54,7 @@ p = dict(zip(feature_names(), feature_vector("p")))
 # {'consonantal': 1.0, 'voice': 0.0, 'labial': 1.0, 'coronal': 0.0, 'strident': 0.5}
 ```
 
-`feature_vector` and `feature_names` return the 23-feature layout of the vendored table, and they raise a `DeprecationWarning`. At the next major release they return the 36-feature layout of phonematcher, which `phonematcher.vectorize_phones` already returns.
+`feature_vector` and `feature_names` return the 23-feature layout of the vendored table, and they raise a `DeprecationWarning`. At the next major release they return the feature layout of phonematcher, which `phonematcher.vectorize_phones` and `phonematcher.FEATURES` give already.
 
 ## `segment_distance`
 

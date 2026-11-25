@@ -39,9 +39,9 @@ def test_each_call_warns_with_the_release_and_the_replacement(name, call):
             call()
         assert [str(w.message) for w in caught] == [
             f"orthography2ipa.distance.{name} returns the 23-feature layout "
-            f"of a vendored table. From {RELEASE} it returns the 36-feature "
-            "layout of phonematcher. phonematcher.vectorize_phones gives "
-            "that layout now."]
+            f"of a vendored table. From {RELEASE} it returns the feature "
+            "layout of phonematcher. phonematcher.vectorize_phones and "
+            "phonematcher.FEATURES give that layout now."]
         assert caught[0].filename == __file__
 
 

@@ -149,14 +149,14 @@ def _pm_vec_to_floats(vec: List) -> FeatureVector:
 def feature_vector(segment: str) -> FeatureVector:
     """Deprecated layout: return the 23-feature vector of an IPA *segment*.
 
-    From ``VERSION_MAJOR + 1`` this returns the 36-feature layout of
-    phonematcher. ``phonematcher.vectorize_phones`` gives that layout now.
+    From the next major release this returns the feature layout of
+    phonematcher, which ``phonematcher.vectorize_phones`` gives now.
     """
     warnings.warn(
         "orthography2ipa.distance.feature_vector returns the 23-feature layout "
         f"of a vendored table. From {VERSION_MAJOR + 1}.0.0 it returns the "
-        "36-feature layout of phonematcher. phonematcher.vectorize_phones "
-        "gives that layout now.",
+        "feature layout of phonematcher. phonematcher.vectorize_phones and "
+        "phonematcher.FEATURES give that layout now.",
         DeprecationWarning,
         stacklevel=2,
     )
@@ -191,14 +191,14 @@ def _feature_vector(segment: str) -> FeatureVector:
 def feature_names() -> Tuple[str, ...]:
     """Deprecated layout: return the 23 feature names, one per phone feature.
 
-    From ``VERSION_MAJOR + 1`` this returns the 36 feature names of
-    phonematcher.
+    From the next major release this returns the feature names of
+    phonematcher, which ``phonematcher.FEATURES`` gives now.
     """
     warnings.warn(
         "orthography2ipa.distance.feature_names returns the 23-feature layout "
         f"of a vendored table. From {VERSION_MAJOR + 1}.0.0 it returns the "
-        "36-feature layout of phonematcher. phonematcher.vectorize_phones "
-        "gives that layout now.",
+        "feature layout of phonematcher. phonematcher.vectorize_phones and "
+        "phonematcher.FEATURES give that layout now.",
         DeprecationWarning,
         stacklevel=2,
     )
