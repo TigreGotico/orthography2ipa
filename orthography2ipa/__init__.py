@@ -56,6 +56,7 @@ from orthography2ipa.features import GraphemeFeatures, WordFeatures
 from orthography2ipa.lexicon import _warn_deprecated
 from orthography2ipa.lexicon import (
     available_lexicon_codes,
+    parse_lexicon_text,
     clear_lexicons,
     get_lexicon,
     load_lexicon,
@@ -132,9 +133,13 @@ from orthography2ipa.underspecification import (
 from orthography2ipa.stress import (
     apply_stress_mark,
     detect_stress,
+    detect_stress_by_weight,
+    is_cliticless,
     syllabify,
     syllabify_ipa,
 )
+from orthography2ipa.vowels import is_ipa_vowel
+from orthography2ipa.markup import MarkupError, parse_markup
 from orthography2ipa.pipeline import Pipeline
 from orthography2ipa.revision import lexicon_revision, spec_revision, transcription_revision
 from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
@@ -229,6 +234,12 @@ __all__ = [
     "script_distance_by_name",
     "PhonetokTokenizer",
     "expand_arabic_gemination",
+    "detect_stress_by_weight",
+    "is_cliticless",
+    "is_ipa_vowel",
+    "MarkupError",
+    "parse_markup",
+    "parse_lexicon_text",
     "Token",
     "TokenKind",
     "IPAPath",
