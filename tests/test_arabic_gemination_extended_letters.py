@@ -8,7 +8,7 @@ the specs it serves.
 """
 import pytest
 
-from orthography2ipa.phonetok import _expand_arabic_gemination
+from orthography2ipa.phonetok import expand_arabic_gemination
 
 SHADDA = "ّ"
 FATHA = "َ"
@@ -24,7 +24,7 @@ FATHA = "َ"
 ])
 def test_shadda_geminates_letters_outside_the_basic_block(letter, name):
     word = "ب" + FATHA + letter + SHADDA + FATHA + "ة"
-    out = _expand_arabic_gemination(word)
+    out = expand_arabic_gemination(word)
     assert out == word.replace(letter + SHADDA, letter + letter), name
     assert SHADDA not in out, name
 
@@ -33,7 +33,7 @@ def test_shadda_geminates_letters_outside_the_basic_block(letter, name):
 def test_shadda_still_geminates_letters_inside_the_basic_block(letter):
     """The widened class must not lose what the old range already covered."""
     word = "ب" + FATHA + letter + SHADDA + FATHA + "ة"
-    out = _expand_arabic_gemination(word)
+    out = expand_arabic_gemination(word)
     assert out == word.replace(letter + SHADDA, letter + letter)
     assert SHADDA not in out
 
@@ -41,6 +41,6 @@ def test_shadda_still_geminates_letters_inside_the_basic_block(letter):
 @pytest.mark.parametrize("letter", ["پ", "چ", "ت"])
 def test_both_mark_orderings_and_a_bare_shadda(letter):
     doubled = letter + letter
-    assert _expand_arabic_gemination(letter + SHADDA + FATHA) == doubled + FATHA
-    assert _expand_arabic_gemination(letter + FATHA + SHADDA) == doubled + FATHA
-    assert _expand_arabic_gemination(letter + SHADDA) == doubled
+    assert expand_arabic_gemination(letter + SHADDA + FATHA) == doubled + FATHA
+    assert expand_arabic_gemination(letter + FATHA + SHADDA) == doubled + FATHA
+    assert expand_arabic_gemination(letter + SHADDA) == doubled

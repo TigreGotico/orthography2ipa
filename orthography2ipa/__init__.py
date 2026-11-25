@@ -77,6 +77,7 @@ from orthography2ipa.phonetok import (
     Token,
     TokenKind,
     TokenSequence,
+    expand_arabic_gemination,
 )
 from orthography2ipa.rescorer import LatticeRescorer, RescoreContext
 from orthography2ipa.sentence import (
@@ -227,6 +228,7 @@ __all__ = [
     "script_distance",
     "script_distance_by_name",
     "PhonetokTokenizer",
+    "expand_arabic_gemination",
     "Token",
     "TokenKind",
     "IPAPath",
