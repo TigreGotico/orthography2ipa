@@ -575,9 +575,16 @@ def _onset_table(judge, units: Sequence[str], declared: Sequence[str]) -> List[L
                     out.add(c)
         return out
 
-    if atoms is not None:
-        judge.graphemes_of = graphemes_of
+    if atoms is None:
+        return _licit_onsets(judge, units, declared, atoms, keys)
+    judge.graphemes_of = graphemes_of
+    try:
+        return _licit_onsets(judge, units, declared, atoms, keys)
+    finally:
+        judge.graphemes_of = split
 
+
+def _licit_onsets(judge, units, declared, atoms, keys) -> List[List[str]]:
     licit = keys(itertools.product(units, repeat=2))
     layer = set(licit)
     unit_set = set(units)
@@ -605,8 +612,6 @@ def _onset_table(judge, units: Sequence[str], declared: Sequence[str]) -> List[L
                 candidates.add(parts)
         layer = keys(candidates)
         licit |= layer
-    if atoms is not None:
-        judge.graphemes_of = split
     return sorted(list(t) for t in licit)
 
 
