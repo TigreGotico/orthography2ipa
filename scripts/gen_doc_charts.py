@@ -37,6 +37,8 @@ import sys
 from collections import Counter
 from typing import Dict, List, Optional, Sequence, Tuple
 
+from compare_systems import _GOLD_TIERS
+
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CHART_DIR = os.path.join("docs", "evaluation", "charts")
 
@@ -108,7 +110,7 @@ def per_distribution(rows: list, c: Dict[str, str]) -> str:
     panels = {t: sorted(r["per"] for r in rows if r["quality_tier"] == t) for t in TIERS}
     shares = {}
     for t, vals in panels.items():
-        counts = Counter(min(int(v / step), bins - 1) for v in vals)
+        counts = Counter(min(int(round(v / step, 9)), bins - 1) for v in vals)
         shares[t] = [100 * counts[i] / len(vals) for i in range(bins)]
     ymax = 10 * (int((max(max(s) for s in shares.values()) + 12) // 10) + 1)
 
@@ -156,10 +158,12 @@ def per_distribution(rows: list, c: Dict[str, str]) -> str:
 
 def fair_pairs(comparison: list) -> List[Tuple[float, float]]:
     """(o2i PER, rules-only espeak-ng PER) of each row both engines scored on
-    gold that neither engine wrote. No lexicon-backed or stock espeak column."""
+    gold-tier references that neither engine wrote, the rows a "beats espeak"
+    claim may use. No lexicon-backed or stock espeak column."""
     return [(r["o2i_per"], r["espeak_rules_per"]) for r in comparison
             if r["o2i_per"] is not None and r["espeak_rules_per"] is not None
-            and not r["o2i_same_source"] and not r["espeak_rules_same_source"]]
+            and not r["o2i_same_source"] and not r["espeak_rules_same_source"]
+            and r["provenance_tier"] in _GOLD_TIERS]
 
 
 def o2i_vs_espeak(comparison: list, c: Dict[str, str]) -> str:
@@ -177,9 +181,9 @@ def o2i_vs_espeak(comparison: list, c: Dict[str, str]) -> str:
         return y0 + size - size * v / top
 
     body = [text(20, 26, f"o2i lower on {lower} of {len(pairs)} rows", c, 16, weight="bold"),
-            text(20, 46, f"PER on the {len(pairs)} board rows where both engines have a "
-                         "lexicon-free score", c, 12, muted=True),
-            text(20, 62, "on an independent source; one dot per row.", c, 12, muted=True)]
+            text(20, 46, f"PER on the {len(pairs)} board rows with gold-tier references, "
+                         "where both engines", c, 12, muted=True),
+            text(20, 62, "have a lexicon-free score; one dot per row.", c, 12, muted=True)]
     ticks = [i / 10 for i in range(0, int(round(top * 10)) + 1, 2)]
     for v in ticks:
         body.append(line(px(0), py(v), px(top), py(v), c["grid"]))
@@ -199,7 +203,7 @@ def o2i_vs_espeak(comparison: list, c: Dict[str, str]) -> str:
                      c, 12, "middle"))
     body.append(text(16, y0 + size / 2, "espeak-ng PER, rules only (0 = perfect)", c, 12,
                      "middle", rotate=True))
-    desc = (f"Scatter of {len(pairs)} rows. o2i has the lower PER on {lower} of them.")
+    desc = (f"Scatter of {len(pairs)} gold-tier rows. o2i has the lower PER on {lower} of them.")
     return svg(width, height, f"o2i lower on {lower} of {len(pairs)} rows", desc, body)
 
 
@@ -244,8 +248,9 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                       help="exit 1 when a file differs from what the data says")
     args = ap.parse_args(argv)
 
+    wanted = outputs()
     stale = []
-    for rel, svg_text in outputs().items():
+    for rel, svg_text in wanted.items():
         path = os.path.join(REPO_ROOT, rel)
         current = None
         if os.path.exists(path):
@@ -258,6 +263,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             os.makedirs(os.path.dirname(path), exist_ok=True)
             with open(path, "w", encoding="utf-8", newline="") as fh:
                 fh.write(svg_text)
+    chart_dir = os.path.join(REPO_ROOT, CHART_DIR)
+    known = {os.path.basename(rel) for rel in wanted}
+    extra = sorted(f for f in os.listdir(chart_dir) if f.endswith(".svg") and f not in known) \
+        if os.path.isdir(chart_dir) else []
+    stale += [os.path.join(CHART_DIR, f) for f in extra if args.check]
     if not stale:
         print("charts up to date")
         return 0

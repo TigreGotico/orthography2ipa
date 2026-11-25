@@ -132,14 +132,14 @@ The chart below shows how the PER of the board rows spreads inside each quality 
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="charts/per-distribution.dark.svg">
-  <img alt="Most research-tier rows fall between 0.05 and 0.3 PER, with a median of 0.144, and the production tier has a lower median of 0.069." src="charts/per-distribution.light.svg">
+  <img alt="Histograms of row PER per quality tier; research-tier rows spread widest, and the production tier sits at lower PER." src="charts/per-distribution.light.svg">
 </picture>
 
-The next chart sets the lexicon-free o2i PER against the rules-only espeak-ng PER. It keeps only rows that both engines scored on gold that neither engine wrote, and it leaves out every lexicon-backed column. The [comparison page](generated/comparison.md) has the table.
+The next chart sets the lexicon-free o2i PER against the rules-only espeak-ng PER. It keeps only rows with gold-tier references that neither engine wrote, as the "beats espeak" rule of the comparison page requires, and it leaves out every lexicon-backed column. The [comparison page](generated/comparison.md) has the table.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="charts/o2i-vs-espeak.dark.svg">
-  <img alt="o2i has the lower PER than rules-only espeak-ng on 45 of the 52 rows that both engines scored on independent gold." src="charts/o2i-vs-espeak.light.svg">
+  <img alt="Scatter of o2i against rules-only espeak-ng PER on gold-tier rows; most dots lie above the equal line, where o2i is lower." src="charts/o2i-vs-espeak.light.svg">
 </picture>
 
 `--limit N` exists for fast ad-hoc runs. It applies the same cap to every language, never a different cap per language. One loader stays bounded in a full run: [`hitz_basque_ipa`](datasets.md#hitz-basque-wikipedia-ipa-corpus-hitz_basque_ipa) stops after `_HITZ_BASQUE_MAX_PARAGRAPHS` paragraphs. That is a paging bound that applies to every language alike, not a sampling limit.

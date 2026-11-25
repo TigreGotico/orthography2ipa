@@ -54,7 +54,7 @@ The chart below counts the board rows of each dataset. A row is one language sco
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="charts/coverage.dark.svg">
-  <img alt="WikiPron supplies 279 of the 743 board rows, and 10 of the 30 datasets supply a single row each." src="charts/coverage.light.svg">
+  <img alt="Horizontal bars of board rows per dataset; WikiPron supplies the most rows and many datasets supply one row each." src="charts/coverage.light.svg">
 </picture>
 
 The Wiktionary terms are on [Wiktionary:Copyrights](https://en.wiktionary.org/wiki/Wiktionary:Copyrights). The WikiPron code is Apache-2.0, and the scraped data keeps the Wiktionary terms.
