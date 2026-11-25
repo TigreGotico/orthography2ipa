@@ -54,7 +54,7 @@ The canonical document has these top-level fields. `layout.LAYOUT` (`orthography
 | `chars` | `ranges`: a sorted list of `[lo, hi, bits]`, the char bits (2.4) of every codepoint from lo to hi. A codepoint outside every range has no bits. |
 | `entries` | Grapheme entries: key, candidates, integer costs, entry bits, positional rules (3.3, 3.4). |
 | `fallback` | The precomposed characters that are entries only through the decomposition fallback (3.3.2). |
-| `word` | Word exceptions, apostrophe handling, geminate collapse, the context-beam flag, clitic and silent stress marks, the word-final virama vowel (3.3.3, 3.5, 3.9, 3.11). |
+| `word` | Word exceptions, the optional fragment word table, apostrophe handling, geminate collapse, the context-beam flag, clitic and silent stress marks, the word-final virama vowel (3.3.3, 3.5, 3.9, 3.11). |
 | `beam` | The tilde char of the nasal splice (3.3.6). |
 | `allophone_map` | The `allophones` expansion of candidates (3.3.5). Absent when the expansion is off. |
 | `syllable` | Splitter data (3.7). Present when the spec has stress rules or an aperture position. |
@@ -88,6 +88,7 @@ entries[].positional: list of pair of pred and list of s
 fallback: sset
 word: object
 word.exceptions: list of list of s
+word.words: list of list of s
 word.internal_apostrophe: i
 word.apostrophe_elision: i
 word.collapse_geminates: i
@@ -606,6 +607,7 @@ override(word):
   for k in keys:
     if k in word.exceptions: return it
     if host lexicon has NFC(k): return it                   # H4
+    if NFC(k) in word.words: return it
   for (apostrophe, host) in elided_hosts(word):
     if override_whole(host) hits: return join(clitic_ipa(word, apostrophe), that)
   return none
@@ -622,7 +624,11 @@ elided_hosts(word):                                          # _elided_hosts
 
 The cliticless test (S5) uses the key `nfc(casefold(word))`: the word is cliticless when that key, or its edge-stripped form when that differs and is not empty, is in `stress.cliticless`. When neither holds, the word is cliticless when some host of `elided_hosts(word)` is, by the same key test without a further elided split. A word is never cliticless when the IR has no stress rules or an empty `stress.cliticless`.
 
-So a host lexicon hit on the raw key beats an exception on the stripped key. The interpreter calls H4 inside the loop. Without a host, H4 never hits. Edge punctuation is the char bit `edge_punct` (`_EDGE_PUNCT_RE`).
+So a host lexicon hit on the raw key beats an exception on the stripped key. The interpreter calls H4 inside the loop. Without a host, H4 never hits.
+
+`word.words` is the optional word table of plugin fragments, a list of `[key, ipa]` pairs sorted by key, with the semantics version `words`. A key is lowercase NFC. For each key `k` the order is `word.exceptions`, then the host lexicon, then `word.words`, looked up with `NFC(k)` as the lexicon is. The compiler writes the table only when it is not empty, so an IR with no fragment has no `words` field and the same revision as before. The test for a leading apostrophe that opens a listed word counts a key of `word.words` as listed.
+
+A fragment is a JSON object `{"ir_version": 1, "words": {key: ipa}}`. `compile_spec(code, fragments=[...])` merges the `words` of all fragments, and a later fragment wins on a duplicate key. The compiler raises `ValueError` that names the offender for a part other than `words`, an `ir_version` that differs from the document's, a key that is not lowercase NFC, and a key or value that is not a string. The revision covers the merged table, so it covers the fragment bytes. `Pipeline(fragments=...)` passes fragments to the compiler, and `export_to_loom --fragment PATH` does the same for an export and records the sha256 of each fragment in the GGUF field `o2i.fragments`. The table is additive: a new optional table keeps `ir_version` (8.1). Edge punctuation is the char bit `edge_punct` (`_EDGE_PUNCT_RE`).
 
 The elided-clitic path transcribes the clitic with a width-1 beam and joins it to the host's override. The join segments the clitic's IPA with primitive 11 and reads the `ipa_vowel` bit of each segment.
 
@@ -1567,6 +1573,7 @@ An optional field that changes output has its own version too. The manifest list
 | `word.clitic_marks` | `clitic_marks` |
 | `word.silent_stress_marks` | `silent_stress_marks` |
 | `word.exceptions` | `overrides` |
+| `word.words` | `words` |
 | `allophone_map` | `allophone_map` |
 | `syllable.closed_hiatus`, `syllable.final_diphthongs` | `hiatus` |
 | `syllable.semivowels` | `semivowels` |

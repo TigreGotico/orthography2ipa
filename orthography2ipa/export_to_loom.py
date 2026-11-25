@@ -11,7 +11,11 @@ loom passes only numbers between host and driver: ``infer`` takes the text
 as an array of codepoints and a 0-based ``lang`` index into
 ``loom.text.languages``, and returns the IPA as an array of codepoints.
 
-    python -m orthography2ipa.export_to_loom --langs pt-PT,kab --out X.gguf [--rev REF]
+    python -m orthography2ipa.export_to_loom --langs pt-PT,kab --out X.gguf [--rev REF] [--fragment PATH ...]
+
+A fragment is a JSON file of plugin data (docs/ir/o2i-ir-v1.md, 3.5). The export
+merges every ``--fragment`` into the IR of each language and records the sha256
+of each fragment in ``o2i.fragments``.
 
 Python callers use :func:`export_to_loom`, which returns the metadata it writes.
 """
@@ -19,10 +23,10 @@ import argparse
 import json
 from importlib import resources
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Sequence
 
 from orthography2ipa.ir import layout
-from orthography2ipa.ir.compiler import build_ir
+from orthography2ipa.ir.compiler import build_ir, fragment_digest
 from orthography2ipa.version import VERSION_STR
 
 ARCHITECTURE = "o2i"
@@ -39,9 +43,11 @@ _INERT_TOPOLOGY = {
 }
 
 
-def compile_irs(codes: List[str], rev: Optional[str] = None) -> Dict[str, dict]:
-    """The canonical IR document of each code, compiled at spec data ``rev``."""
-    return {code: layout.encode(build_ir(code, rev)) for code in codes}
+def compile_irs(codes: List[str], rev: Optional[str] = None,
+                fragments: Sequence[dict] = ()) -> Dict[str, dict]:
+    """The canonical IR document of each code, compiled at spec data ``rev``
+    with the plugin *fragments* merged in."""
+    return {code: layout.encode(build_ir(code, rev, fragments=fragments)) for code in codes}
 
 
 def revisions(irs: Dict[str, dict]) -> Dict[str, str]:
@@ -87,7 +93,8 @@ def phonemizer_identity(code: str, revision: str) -> Dict[str, Optional[str]]:
 
 
 def export_to_loom(langs: List[str], out_path: Path, *, data_ref: Optional[str] = None,
-                   expect_revisions: Optional[Dict[str, str]] = None) -> dict:
+                   expect_revisions: Optional[Dict[str, str]] = None,
+                   fragments: Sequence[dict] = ()) -> dict:
     """Write the GGUF of *langs* to *out_path* and return the metadata it holds.
 
     Without a git checkout of orthography2ipa, the export compiles the
@@ -95,7 +102,8 @@ def export_to_loom(langs: List[str], out_path: Path, *, data_ref: Optional[str] 
     language to its IR revision (``layout.spec_revision``, the value of
     ``o2i.spec_revisions``), not to ``orthography2ipa.spec_revision``. A
     language whose IR revision differs stops the export before any file is
-    written.
+    written. *fragments* are plugin fragments merged into every language; the
+    metadata lists their sha256 digests.
 
     Raises:
         RuntimeError: *data_ref* is set and orthography2ipa is not a git checkout.
@@ -114,7 +122,7 @@ def export_to_loom(langs: List[str], out_path: Path, *, data_ref: Optional[str] 
     unknown = sorted(set(expect_revisions) - set(langs))
     if unknown:
         raise ValueError(f"expect_revisions names languages that are not exported: {', '.join(unknown)}")
-    irs = compile_irs(langs, data_ref)
+    irs = compile_irs(langs, data_ref, fragments)
     revs = revisions(irs)
     for code, expected in expect_revisions.items():
         if revs[code] != expected:
@@ -124,6 +132,7 @@ def export_to_loom(langs: List[str], out_path: Path, *, data_ref: Optional[str] 
         "o2i_version": VERSION_STR,
         "spec_revisions": {c: revs[c] for c in langs},
         "phonemizer_identity": {c: phonemizer_identity(c, revs[c]) for c in langs},
+        "fragments": [fragment_digest(f) for f in fragments],
     }
     writer = GGUFWriter(str(out_path), ARCHITECTURE)
     writer.add_string("loom.task", "text2phonemes")
@@ -134,6 +143,8 @@ def export_to_loom(langs: List[str], out_path: Path, *, data_ref: Optional[str] 
     writer.add_array("loom.text.languages", langs)
     writer.add_string("o2i.version", VERSION_STR)
     writer.add_array("o2i.spec_revisions", [revs[c] for c in langs])
+    if fragments:
+        writer.add_array("o2i.fragments", meta["fragments"])
     writer.add_string("o2i.phonemizer_identity", json.dumps(meta["phonemizer_identity"], sort_keys=True))
     writer.add_string("model.driver_script", driver_script(langs, irs, revs))
     writer.add_string("model.graph_topology", json.dumps(_INERT_TOPOLOGY))
@@ -150,9 +161,12 @@ def main(argv: Optional[List[str]] = None) -> None:
     ap.add_argument("--langs", required=True, help="comma-separated language codes")
     ap.add_argument("--out", required=True, type=Path)
     ap.add_argument("--rev", help="git tag or commit of the spec data to compile")
+    ap.add_argument("--fragment", type=Path, action="append", default=[],
+                    help="a plugin fragment JSON file; repeat for several")
     args = ap.parse_args(argv)
     codes = [c.strip() for c in args.langs.split(",") if c.strip()]
-    export_to_loom(codes, args.out, data_ref=args.rev)
+    fragments = [json.loads(path.read_text(encoding="utf-8")) for path in args.fragment]
+    export_to_loom(codes, args.out, data_ref=args.rev, fragments=fragments)
     print(args.out)
 
 

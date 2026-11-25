@@ -474,6 +474,8 @@ class G2P:
                        expand_allophones=self.expand_allophones)
         if not self.expose_ambiguous_endings:
             options["expose_ambiguous_endings"] = False
+        if self.pipeline.fragments:
+            options["fragments"] = self.pipeline.fragments
         if self._caller_spec or self.spec.plugins:
             # The host runs the declared plugins, so the IR is compiled
             # without them. A caller spec is compiled for this engine alone.

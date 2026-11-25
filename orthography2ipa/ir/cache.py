@@ -31,7 +31,7 @@ from typing import Dict, Optional, Tuple
 from phonematcher.version import VERSION_STR as PHONEMATCHER_VERSION
 
 from orthography2ipa.exceptions import EngineSourceUnavailable
-from orthography2ipa.ir.compiler import compile_spec
+from orthography2ipa.ir.compiler import compile_spec, fragment_digest
 from orthography2ipa.ir.interpreter import Interpreter
 from functools import lru_cache
 
@@ -61,14 +61,25 @@ def _engine_bytes() -> str:
     return digest.hexdigest()
 
 
+def _key_options(options: Dict[str, object]) -> Dict[str, object]:
+    """*options* with the fragments replaced by their digests. No fragment
+    leaves the options as they were, so a key without fragments does not move."""
+    options = dict(options)
+    fragments = options.pop("fragments", ())
+    if fragments:
+        options["fragments"] = tuple(fragment_digest(f) for f in fragments)
+    return options
+
+
 def cache_key(code: str, options: Dict[str, object]) -> str:
     """The file key of the IR of *code* compiled with *options*: the spec
     chain that :func:`~orthography2ipa.revision.spec_revision` hashes, the
-    engine source with the IR package, and the options."""
+    engine source with the IR package, and the options. Fragments count by
+    their digests."""
     digest = hashlib.sha256(f"spec-format:{source_revision.SPEC_FORMAT_VERSION}\n".encode())
     for dep in source_revision._spec_dependencies(resolve(code)):
         digest.update(f"spec:{dep}\n".encode() + source_revision._canonical_spec(dep) + b"\n")
-    digest.update(_engine_bytes().encode() + json.dumps(sorted(options.items())).encode())
+    digest.update(_engine_bytes().encode() + json.dumps(sorted(_key_options(options).items())).encode())
     return digest.hexdigest()[:24]
 
 
@@ -131,7 +142,7 @@ def interpreter(code: str, **options) -> Interpreter:
     Raises :class:`~orthography2ipa.ir.compiler.IRUnsupportedFeature` when
     the compiler does not lower the spec.
     """
-    key = (code, tuple(sorted(options.items())))
+    key = (code, tuple(sorted(_key_options(options).items())))
     if key not in _interpreters:
         _interpreters[key] = Interpreter(document(code, **options))
     return _interpreters[key]
