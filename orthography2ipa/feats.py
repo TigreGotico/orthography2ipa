@@ -539,7 +539,7 @@ def vectorize_phones(phones: str) -> List[Union[bool, None]]:
         raise ValueError(f"Unrecognized phone '{e.args[0]}'")
 
 
-def is_vowel_phone(phone: str) -> bool:
+def _is_vowel_phone(phone: str) -> bool:
     """
     Return True if the phone is a vowel, else False.
 
@@ -575,8 +575,8 @@ def phonetic_distance(phone_a: str, phone_b: str) -> float:
     if phone_a == ' ' or phone_b == ' ':
         return 0.0 if phone_a == phone_b else 1.0
 
-    vowel = is_vowel_phone(phone_a)
-    if vowel != is_vowel_phone(phone_b):
+    vowel = _is_vowel_phone(phone_a)
+    if vowel != _is_vowel_phone(phone_b):
         return 1.0
 
     if vowel:

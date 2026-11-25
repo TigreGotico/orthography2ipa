@@ -54,7 +54,7 @@ from orthography2ipa.vowels import (
     sonority_class)
 from orthography2ipa.weights import candidate_base_costs
 
-from orthography2ipa.feats import is_vowel_phone
+from phonematcher import is_vowel_phone
 from orthography2ipa.ir import layout, unidata
 from orthography2ipa.tone import TONE_MARKS
 

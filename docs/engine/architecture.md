@@ -133,7 +133,7 @@ The spec names a plugin in its `plugins` field by entry-point name, such as `{"s
 | `features.py` | Feature export for ML and CRF G2P ([feature export](lattice.md#feature-export-for-a-learned-model)) | `WordFeatures`, `GraphemeFeatures` |
 | `inventory.py`, `underspecification.py` | Emission and phoneme inventories, TTS tokens, and the places where the spelling leaves a reading open | `phoneme_inventory`, `emission_inventory`, `is_underdetermined` |
 | `distance.py` | The relational distance metrics ([distance.md](../guide/distance.md)) | See below |
-| `feats.py` | The distinctive-feature matrix: the 21 SPE and IPA features of [PyPhone](https://github.com/lingz/pyphone) (MIT), plus a click feature and a nasal-vowel feature | `vectorize_phones`, `is_vowel_phone`, `phonetic_distance` |
+| `feats.py` | The distinctive-feature matrix: the 21 SPE and IPA features of [PyPhone](https://github.com/lingz/pyphone) (MIT), plus a click feature and a nasal-vowel feature | `vectorize_phones`, `phonetic_distance` |
 | `script_distance.py` | Typological distance between writing systems | `ScriptFeatures`, `SCRIPT_REGISTRY`, `script_distance`, `script_distance_by_name` |
 | `lattice_per.py` | Phone error rate against a lattice ([lattice_per.md](lattice_per.md)) | `lattice_per`, `LatticePER` |
 | `transforms.py` | IPA dialect transforms for Portuguese and Ibero-Romance | `DialectTransform`, `IPARule`, `IPAChainShift`, `IPALexicalRule`, `apply_transform`, `debias_lisbon`, `available_profiles`, `load_clup_profile`, `DIALECT_PROFILES` |
