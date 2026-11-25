@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.126.4a1](https://github.com/TigreGotico/orthography2ipa/tree/7.126.4a1) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.126.3a1...7.126.4a1)
+
+**Merged pull requests:**
+
+- fix\(ir\): key the IR cache on the phonematcher version [\#2576](https://github.com/TigreGotico/orthography2ipa/pull/2576) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.126.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.126.3a1) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.126.2a2...7.126.3a1)
