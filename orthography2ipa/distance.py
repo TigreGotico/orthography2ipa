@@ -52,11 +52,13 @@ from __future__ import annotations
 import math
 
 import functools
+import warnings
 from dataclasses import dataclass, replace
 from typing import Dict, List, Optional, Set, Tuple
 
 from orthography2ipa.feats import NUM_FEATURES, phonetic_distance, vectorize_phones
 from orthography2ipa.types import Ancestor, LanguageSpec, WeightedDistance
+from orthography2ipa.version import VERSION_MAJOR
 
 __all__ = [
     "Feature",
@@ -145,7 +147,24 @@ def _pm_vec_to_floats(vec: List) -> FeatureVector:
 # ═══════════════════════════════════════════════════════════════════════════
 
 def feature_vector(segment: str) -> FeatureVector:
-    """Return the 21-element distinctive feature vector for an IPA *segment*.
+    """Deprecated layout: return the 23-feature vector of an IPA *segment*.
+
+    From ``VERSION_MAJOR + 1`` this returns the 36-feature layout of
+    phonematcher. ``phonematcher.vectorize_phones`` gives that layout now.
+    """
+    warnings.warn(
+        "orthography2ipa.distance.feature_vector returns the 23-feature layout "
+        f"of a vendored table. From {VERSION_MAJOR + 1}.0.0 it returns the "
+        "36-feature layout of phonematcher. phonematcher.vectorize_phones "
+        "gives that layout now.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+    return _feature_vector(segment)
+
+
+def _feature_vector(segment: str) -> FeatureVector:
+    """Return the 23-feature vector of the vendored table for *segment*.
 
     handles composite phones (diacritics,  modifiers like ˤ ˞ ː) natively.
     Returns the neutral vector (all 0.5)
@@ -170,7 +189,19 @@ def feature_vector(segment: str) -> FeatureVector:
 
 
 def feature_names() -> Tuple[str, ...]:
-    """Return the tuple of feature names, one per phone feature."""
+    """Deprecated layout: return the 23 feature names, one per phone feature.
+
+    From ``VERSION_MAJOR + 1`` this returns the 36 feature names of
+    phonematcher.
+    """
+    warnings.warn(
+        "orthography2ipa.distance.feature_names returns the 23-feature layout "
+        f"of a vendored table. From {VERSION_MAJOR + 1}.0.0 it returns the "
+        "36-feature layout of phonematcher. phonematcher.vectorize_phones "
+        "gives that layout now.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     return _FEATURE_NAMES
 
 
@@ -207,7 +238,7 @@ def segment_distance(seg_a: str, seg_b: str, strict: bool = False) -> float:
         return 1.0
     if strict:
         for seg in (seg_a, seg_b):
-            vec = feature_vector(seg)
+            vec = _feature_vector(seg)
             if all(v == 0.5 for v in vec):
                 raise ValueError(f"Unknown IPA segment: {seg!r}")
     try:
@@ -218,8 +249,8 @@ def segment_distance(seg_a: str, seg_b: str, strict: bool = False) -> float:
     except (ValueError, KeyError):
         # Fallback: normalised Hamming distance over the raw feature vectors
         # (mean absolute difference per feature, each in [0, 1]).
-        vec_a = feature_vector(seg_a)
-        vec_b = feature_vector(seg_b)
+        vec_a = _feature_vector(seg_a)
+        vec_b = _feature_vector(seg_b)
         diff = sum(abs(a - b) for a, b in zip(vec_a, vec_b))
         return diff / NUM_FEATURES
 

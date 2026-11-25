@@ -41,7 +41,7 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 | `SpellingDivergence` | class | How differently two orthographies WRITE the same sounds. |
 | `allophone_overlap` | function | Jaccard similarity (0-1) of the allophone surface-form inventories. |
 | `ancestry_similarity` | function | Compute ancestry-weighted similarity between two languages. |
-| `feature_vector` | function | Return the 21-element distinctive feature vector for an IPA *segment*. |
+| `feature_vector` | function | Deprecated layout: return the 23-feature vector of an IPA *segment*. |
 | `full_distance` | function | Combined phonological + ancestry distance. |
 | `geographic_distance` | function | Great-circle distance between two languages' representative points. |
 | `grapheme_divergence` | function | Measure how differently two languages map shared graphemes to IPA. |
