@@ -1025,6 +1025,7 @@ def _build(spec: LanguageSpec, data_ref, apply_stress, apply_allophony, apply_sa
     if spec.virama_final_vowel is not None:
         ir["word"]["virama_final"] = spec.virama_final_vowel
         all_chars.update(spec.virama_final_vowel)
+    all_chars.update(_whitespace())
     presentation, rewrites = _prepare_rewrites(spec, table)
     ir["rewrites"] = rewrites
     for _, out in presentation:
@@ -1197,6 +1198,12 @@ def _prepare_rewrites(spec: LanguageSpec, table) -> Tuple[List[Tuple[int, str]],
         rules.append((_GURMUKHI_ADDAK.pattern, "\\1" + _GURMUKHI_VIRAMA + "\\1"))
     rewrites = [{"pattern": compile_pattern(p), "template": compile_template(t)} for p, t in rules]
     return presentation, rewrites
+
+
+@lru_cache(maxsize=None)
+def _whitespace() -> FrozenSet[str]:
+    """Every character the word split treats as a space."""
+    return frozenset(c for c in map(chr, range(0x110000)) if _WS_RE.match(c))
 
 
 @lru_cache(maxsize=None)
