@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.127.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.127.0a2) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.127.0a1...7.127.0a2)
+
+**Merged pull requests:**
+
+- perf\(ir\): cache each word's result in the interpreter [\#2587](https://github.com/TigreGotico/orthography2ipa/pull/2587) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.127.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.127.0a1) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.126.5a1...7.127.0a1)
@@ -385,10 +393,6 @@
 ## [7.124.32a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.32a1) (2026-11-21)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.31a1...7.124.32a1)
-
-**Merged pull requests:**
-
-- fix: pt-BR-x-floripa voices a word-final \[ʃ\] before a vowel [\#2436](https://github.com/TigreGotico/orthography2ipa/pull/2436) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.124.31a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.31a1) (2026-11-21)
 
