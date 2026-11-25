@@ -20,7 +20,7 @@ This design has a consequence that you must know first. For an ambiguous spellin
 
 ## Install
 
-The [README](../../README.md#install) gives the install command. The runtime dependencies are [`numpy`](https://numpy.org), [`langcodes`](https://github.com/georgkrause/langcodes) and [`linguatag`](https://github.com/TigreGotico/linguatag), as `pyproject.toml` lists them. The distinctive-feature matrix that the distance metrics use is part of the package (`orthography2ipa/feats.py`). Each optional extra in this table adds one feature, and none of them changes a transcription on install:
+The [README](../../README.md#install) gives the install command. The runtime dependencies are [`numpy`](https://numpy.org), [`langcodes`](https://github.com/georgkrause/langcodes), [`linguatag`](https://github.com/TigreGotico/linguatag) and [`phonematcher`](https://github.com/TigreGotico/phonematcher), as `pyproject.toml` lists them. `phonematcher` tells the compiler which phones are vowels, so a spec that is not precompiled needs it on the machine that compiles it. The distinctive-feature matrix that the distance metrics use is part of the package (`orthography2ipa/feats.py`). Each optional extra in this table adds one feature, and none of them changes a transcription on install:
 
 | Extra | Adds | Use it for |
 | :--- | :--- | :--- |

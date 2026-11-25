@@ -69,7 +69,7 @@ from __future__ import annotations
 from typing import Optional
 import unicodedata
 
-from orthography2ipa.feats import is_vowel_phone
+from phonematcher import is_vowel_phone
 
 __all__ = [
     "IPA_VOWEL_SYMBOLS",
