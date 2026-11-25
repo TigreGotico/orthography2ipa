@@ -2518,6 +2518,66 @@
         "ch"
       ],
       "notes": "The third lattice candidate of a stressed ⟨e⟩ before ⟨lh nh j ch⟩ is [ɛ], the value of the exceptions on p. 431 of Cunha & Cintra. The rule does not change the transcription. See PT_STRESSED_E_PREPALATAL_CLOSE."
+    },
+    {
+      "id": "PT_X_KS",
+      "phonemes": [
+        "ʃ",
+        "s",
+        "z"
+      ],
+      "surface": "ks",
+      "grapheme": [
+        "x"
+      ],
+      "word_contains_grapheme": [
+        "táxi",
+        "sexo",
+        "sexu",
+        "fix",
+        "axil",
+        "complex",
+        "apoplex",
+        "tóxic",
+        "oxigén",
+        "anex",
+        "nexo",
+        "reflex",
+        "flux",
+        "paradox",
+        "ortodox",
+        "boxe",
+        "látex",
+        "tórax",
+        "fénix",
+        "maxil",
+        "axiom",
+        "léxic",
+        "flex",
+        "convex"
+      ],
+      "notes": "The ⟨x⟩ of these learned words is [ks]. No rule of the spelling gives the value: the AO1990 lists ⟨x⟩ against ⟨ch s ss c ç z⟩ by spelling only (Base III), and tóxico [ks] stands beside intoxicar [ʃ]. Infopédia (Porto Editora, Wayback snapshots in the papers library): táxi ˈtaksi, sexo ˈsɛksu, sexual sɛˈkswaɫ, fixo ˈfiksu, prefixo prəˈfiksu, sufixo suˈfiksu, crucifixo krusiˈfiksu, axila ɐˈksilɐ, complexo kõˈplɛksu, apoplexia ɐpɔplɛˈksiɐ, tóxico ˈtɔksiku, oxigénio ɔksiˈʒɛnju, anexo ɐˈnɛksu, nexo ˈnɛksu, reflexo ʀəˈflɛksu, fluxo ˈfluksu, paradoxo pɐrɐˈdɔksu, ortodoxo ɔrtɔˈdɔksu, boxe ˈbɔks(ə), látex ˈlatɛks, tórax ˈtɔraks, fénix ˈfɛniks, maxilar maksiˈlar, axioma ɐˈksjomɐ, léxico ˈlɛksiku, flexão flɛˈksɐ̃w̃, flexível flɛˈksivɛɫ, convexo kõˈvɛksu. The same source gives [s] in sintaxe, máximo, próximo, auxílio and [ʃ] in intoxicar, luxação, taxa, taxar, so those stay off the list."
+    },
+    {
+      "id": "PT_X_S",
+      "phonemes": [
+        "ʃ",
+        "z"
+      ],
+      "surface": "s",
+      "grapheme": [
+        "x"
+      ],
+      "word_contains_grapheme": [
+        "sintax",
+        "máxim",
+        "maxim",
+        "próxim",
+        "proxim",
+        "auxíli",
+        "auxili"
+      ],
+      "notes": "The ⟨x⟩ of these words is [s]. Infopédia (Porto Editora, Wayback snapshots in the papers library): sintaxe sĩˈtas(ə), máximo ˈmasimu, próximo ˈprɔsimu, auxílio awˈsilju. The unaccented stems cover the derived forms (maximizar, aproximar, auxiliar)."
     }
   ],
   "sandhi_rules": [
