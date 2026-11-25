@@ -8,8 +8,11 @@ import orthography2ipa as o
 GLIDE = {"aguentar": "ɡw", "aguenta": "ɡw", "sagui": "ɡw", "linguiça": "ɡw", "pinguim": "ɡw",
          "linguista": "ɡw", "antiguidade": "ɡw", "arguir": "ɡw",
          "frequenta": "kw", "frequente": "kw", "tranquilo": "kw", "cinquenta": "kw",
-         "equestre": "kw", "equino": "kw", "ubiquidade": "kw"}
-SILENT = {"argueiro": "ɡ", "equipa": "k", "requinte": "k", "guerra": "ɡ", "quero": "k", "seguir": "ɡ"}
+         "equestre": "kw", "equino": "kw", "ubiquidade": "kw", "sequestro": "kw",
+         "bilíngue": "ɡw", "bilingue": "ɡw", "sequência": "kw", "delinquente": "kw",
+         "eloquente": "kw", "ensanguentado": "ɡw", "quinquénio": "kw"}
+SILENT = {"argueiro": "ɡ", "equipa": "k", "requinte": "k", "guerra": "ɡ", "quero": "k", "seguir": "ɡ",
+          "equinocial": "k", "equinócio": "k", "esquina": "k"}
 
 
 @pytest.mark.parametrize("lang", ["pt-PT", "pt-BR"])
