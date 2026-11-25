@@ -70,7 +70,7 @@ Downstream code also imports these public names straight from their submodules. 
 | `parse_lexicon_text` | `lexicon` | euskaphone, tugaphone |
 | `parse_markup`, `MarkupError` | `markup` | tugaphone |
 
-One downstream import reaches a private name: `phonetok._expand_arabic_gemination` in arbtok. A private name has no guarantee, and it can change in any release.
+`expand_arabic_gemination` is public. Its private name `phonetok._expand_arabic_gemination`, which arbtok imports, is an alias of it until the next stable release.
 
 `assert_syllabifier_conforms` and `assert_rescorer_conforms` in `orthography2ipa.conformance` are deprecated. No downstream repository calls them. They go in the next major release, and until then each call raises a `DeprecationWarning` that names that release. A caller tests a step in its own suite: it compares `G2P(lang)` with `G2P(lang, pipeline=Pipeline(...))`, and for a rescorer it checks the output against `phoneme_inventory(spec)`.
 
