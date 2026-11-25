@@ -1,13 +1,8 @@
 """The o2i IR reference interpreter (docs/ir/o2i-ir-v1.md, section 3).
 
-It reads one IR document and one text and writes one IPA string. It knows
-the primitives of section 2.3 and nothing about any language, script or
-phoneme class: every fact it tests is a table, an attribute bit or a
-predicate that the compiler wrote. It imports no engine module.
-
-A host may run its own steps around the interpreter through :class:`Hooks`.
-A hook is a host callback, never part of the IR: an IR document holds the
-same program with hooks or without them.
+It reads one IR document and one text and writes one IPA string. Every fact
+it tests is a table, an attribute bit or a predicate that the compiler wrote;
+it imports no engine module. A host may run its own steps through :class:`Hooks`.
 """
 from __future__ import annotations
 
@@ -94,24 +89,18 @@ Slot = List[Tuple[str, int]]
 
 @dataclass(frozen=True)
 class Hooks:
-    """The host callbacks the interpreter runs. Every field is optional.
-
-    ``text(run)`` rewrites one plain run of the input before the interpreter
-    prepares it. ``rescore(word, tokens, slots, syllables, stressed)`` gets
-    the grapheme tokens of a word and its beam slots, and returns the new
-    slots; it runs before the allophony pass. ``syllables`` holds the
-    syllable index of each token, or ``None`` when the word takes no
-    syllable context, and ``stressed`` the index of the stressed syllable.
-    A returned slot with no candidates deletes its grapheme.
-    ``syllables(word)`` returns the written syllables of *word*, or ``None``
-    to let the IR split it. ``sandhi(words, surfaces, pausal)`` gets the IPA
-    of each word after the IR sandhi and returns one IPA string per word;
-    the dialect program and NFC run after it.
-    """
+    """The host callbacks the interpreter runs. Every field is optional, and a
+    hook is never part of the IR."""
+    # text(run): rewrites one plain run of the input before it is prepared.
     text: Optional[Callable[[str], str]] = None
+    # rescore(word, tokens, slots, syllables, stressed): returns new beam slots, before the
+    # allophony pass. syllables is the syllable index of each token (None without syllable
+    # context); stressed is the stressed syllable. A slot with no candidates deletes its grapheme.
     rescore: Optional[Callable[[str, Sequence["Token"], List[Slot], Optional[List[Optional[int]]],
                                 Optional[int]], List[Slot]]] = None
+    # syllables(word): the written syllables of *word*, or None to let the IR split it.
     syllables: Optional[Callable[[str], Optional[List[str]]]] = None
+    # sandhi(words, surfaces, pausal): one IPA string per word; the dialect program and NFC run after.
     sandhi: Optional[Callable[[List[str], List[str], List[bool]], List[str]]] = None
 
 
@@ -447,8 +436,8 @@ class Interpreter:
         return pos
 
     def _unfuse_nucleus(self, text: str, pos: int, gkey: str, tokens: List[Token]) -> str:
-        """``_unfuse_consonant_nucleus``: a cluster key that ends in a
-        consonant nucleus backs off to its head when the letter is the nucleus."""
+        """A cluster key that ends in a consonant nucleus backs off to its head
+        when the letter is the nucleus."""
         cands = self.entries[self._key_index[gkey]]["cands"]
         if not cands or self._is_nucleus(cands[0]):
             return gkey
@@ -490,8 +479,8 @@ class Interpreter:
         return post
 
     def _head_is_the_onset(self, gkey: str, c: int, text: str, after: int) -> bool:
-        """``_marker_head_is_the_onset``: the silent head of the host is the
-        onset when the vowel ends open and nothing audible follows the tail."""
+        """The silent head of the host is the onset when the vowel ends open and
+        nothing audible follows the tail."""
         if not self._e(self._key_index[gkey], "preposed_open") or self._e(c, "head_not_coda"):
             return False
         pos = after + len(self.entries[c]["key"])
@@ -2054,7 +2043,7 @@ class Interpreter:
     # ─── S9a: computed tone ──────────────────────────────────────────
     def _computed_tones(self, graphemes: Sequence[str], segments: Sequence[str]) -> str:
         """3.9: append each syllable's tone, from its initial's class, its
-        rime's shape and its tone mark (``assign_computed_tones``)."""
+        rime's shape and its tone mark."""
         sylls = self._tone_syllables(segments)
         if not sylls:
             return "".join(segments)
@@ -2065,7 +2054,7 @@ class Interpreter:
         return "".join(out)
 
     def _tone_syllables(self, segments: Sequence[str]) -> List[List[int]]:
-        """Slot indices grouped by maximal onset over slots (``_syllable_slots``)."""
+        """Slot indices grouped by maximal onset."""
         nuclei = [i for i, seg in enumerate(segments) if any(self._c(ch, "ipa_vowel") for ch in seg)]
         if not nuclei:
             return []
