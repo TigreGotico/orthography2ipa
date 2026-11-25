@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "orthography2ipa"
 dynamic = ["version"]
-dependencies = ["numpy", "langcodes", "linguatag>=0.4.0a1", "phonematcher>=3.1.4a3"]
+dependencies = ["numpy", "langcodes", "linguatag>=0.4.2a4", "phonematcher>=3.1.4a3"]
 description = "Linguistically motivated grapheme-to-IPA and allophone mappings for thousands of languages, dialects and historical stages"
 readme = "README.md"
 license = {text = "Apache-2.0"}

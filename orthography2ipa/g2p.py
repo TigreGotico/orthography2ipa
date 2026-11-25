@@ -563,9 +563,7 @@ class G2P:
 
     @staticmethod
     def _ir_surface(it, word: str) -> str:
-        """*word* as the word views index it: S1, then NFC. The IR's
-        table NFC leaves a Hangul syllable with a final as LV plus T jamo,
-        which the slots of a word view must not split."""
+        """*word* as the word views index it: S1, then NFC."""
         return unicodedata.normalize("NFC", it.prepare(word))
 
     def _ir_key(self, it, word: str, lexicon) -> str:

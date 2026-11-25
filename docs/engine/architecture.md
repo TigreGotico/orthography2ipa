@@ -148,7 +148,7 @@ The spec names a plugin in its `plugins` field by entry-point name, such as `{"s
 
 ### The distance metrics
 
-`distance.py` answers one question per function. It never folds the axes into one similarity number by default. The phonological metrics build on the feature matrix in `feats.py`, and `len(orthography2ipa.distance.feature_names())` gives its width.
+`distance.py` answers one question per function. It never folds the axes into one similarity number by default. The phonological metrics build on the feature matrix in `feats.py`, and `orthography2ipa.feats.NUM_FEATURES` gives its width.
 
 | Axis | Functions |
 | :--- | :--- |

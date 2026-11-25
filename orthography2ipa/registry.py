@@ -4,11 +4,13 @@ from __future__ import annotations
 import logging
 import re
 import warnings
+from dataclasses import replace
 from functools import lru_cache
 from importlib.metadata import entry_points
 from typing import Dict, List, Optional
 
-from linguatag import closest_lang, likely_script, with_default_region
+from linguatag import closest_lang, likely_script, standardize_lang, with_default_region
+from linguatag.bcp47 import LanguageTag, LanguageTagError, parse
 
 import orthography2ipa.json_loader as json_loader
 from orthography2ipa.json_loader import available_json_codes, load_json_spec
@@ -351,10 +353,11 @@ _MOTHERLAND_FALLBACK = frozenset({"fr"})
 
 
 def _region_subtag(code: str) -> Optional[str]:
-    """The region subtag of *code* in upper case, or None (RFC 5646 §2.2.4).
+    """The region subtag of the spec key *code* in upper case, or None.
 
-    A region is two letters or three digits after the language and script.
-    A singleton starts the extensions, so nothing after it is a region.
+    Some legacy keys are not well-formed tags (``ar-Latn-buckwalter``), which
+    ``linguatag.bcp47.parse`` rejects, so keys are read here and a caller's
+    tag is read with ``parse``.
     """
     for subtag in code.split("-")[1:]:
         if len(subtag) == 1:
@@ -434,43 +437,44 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
             return _ALIASES[code]
     if code in available:
         return code
+    # Legacy keys carry private-use subtags of more than 8 characters, which
+    # ``parse`` rejects, so the private use is split off before the rest is read.
+    requested_head, *requested_private = _PRIVATE_USE.split(requested, maxsplit=1)
+    code_head, *private = _PRIVATE_USE.split(code, maxsplit=1)
+    try:
+        wanted = parse(requested_head)
+        tag = parse(code_head)
+    except LanguageTagError:
+        wanted = tag = LanguageTag()
     # A script subtag that linguatag gives as the likely script of the rest of
     # the tag adds nothing to it, so ``apc-Arab-SY`` names ``apc-SY``. Left in,
     # it ties ``apc-SY`` with bare ``apc``, which maximizes to ``apc-Arab-SY``.
     # The language must be the one the tag gives: ``kas-Arab`` standardizes to
     # ``ks-Arab``, and the own-language search below keeps it on ``kas``.
-    primary, *rest = code.split("-")
-    primary = primary.lower()
-    if (rest and len(rest[0]) == 4 and rest[0].isalpha()
-            and primary == requested.split("-")[0].lower()):
-        unscripted = "-".join([primary, *rest[1:]])
-        if unscripted in available and likely_script(unscripted) == rest[0]:
+    if tag.script and tag.language == wanted.language:
+        unscripted = "-x-".join([str(replace(tag, script=None)), *private])
+        if unscripted in available and likely_script(unscripted) == tag.script:
             return unscripted
-    if _HAS_LANGCODES and _PRIVATE_USE.search(code):
+    if private:
         # A script subtag that is the language's IANA Suppress-Script adds
         # no information (RFC 5646 §3.1.9), so ``pt-Latn-BR-x-sp`` names
-        # ``pt-BR-x-sp``. Only the part before the private use goes to
-        # langcodes, unnormalized, so no macrolanguage folding happens.
-        head, private = _PRIVATE_USE.split(code, maxsplit=1)
-        try:
-            bare = _langcodes.Language.get(
-                head, normalize=False).simplify_script().to_tag()
-        except Exception:
-            bare = None
-        if (bare and bare.lower() != head.lower() and (
-                known := _casefold_lookup(f"{bare}-x-{private}".lower()))
+        # ``pt-BR-x-sp``.
+        bare = standardize_lang(code_head)
+        if (bare.lower() != code_head.lower() and (
+                known := _casefold_lookup(f"{bare}-x-{private[0]}".lower()))
                 is not None):
             return known
     # A bare tag names its motherland variety, not the most-populous region
     # langcodes would pick: ``pt`` is ``pt-PT``, not ``pt-BR``.
-    if "-" not in code and (default := with_default_region(code)) in available:
+    if str(tag) == tag.language and not private and (
+            default := with_default_region(code)) in available:
         return default
     if code in _REGION_DEFAULTS:
         return _REGION_DEFAULTS[code]
-    language = code.split("-")[0].lower()
-    if language in _MOTHERLAND_FALLBACK and not _PRIVATE_USE.search(code):
-        if (region := _region_subtag(code)) and f"{language}-{region}" in available:
-            return f"{language}-{region}"
+    language = tag.language
+    if language in _MOTHERLAND_FALLBACK and not private:
+        if tag.region and f"{language}-{tag.region}" in available:
+            return f"{language}-{tag.region}"
         if (default := with_default_region(language)) in available:
             return default
     if not allow_nearest:
@@ -480,17 +484,15 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     candidates = sorted({*available, *_RENAMED})
     # The bs spec reads Cyrillic too, so a Bosnian Cyrillic tag of any region
     # or private use is Bosnian. Left to the distance it finds no near spec.
-    if primary == "bs" and rest and rest[0].lower() == "cyrl":
+    if language == "bs" and tag.script == "Cyrl":
         return "bs"
     # Likely subtags make bare ``ar`` Egyptian, so the distance puts a region
     # no Arabic spec names beside whichever dialect spec sorts first
     # (``ar-ZZ`` → ``arz-EG``, ``ar-FR`` → ``afb-AE``). No source states a
     # difference from Modern Standard Arabic for such a region.
-    script = rest[0] if rest and len(rest[0]) == 4 and rest[0].isalpha() else None
-    if (primary == "ar" and (script is None or script.lower() == "arab")
-            and (region := _region_subtag(code))
-            and region not in {_region_subtag(c) for c in candidates
-                               if c.split("-")[0] == "ar"}):
+    if (language == "ar" and tag.script in (None, "Arab") and tag.region
+            and tag.region not in {_region_subtag(c) for c in candidates
+                                   if c.split("-")[0] == "ar"}):
         return "ar"
     # The primary language subtag names the language. When that language has
     # a spec, the match stays inside it: ``sr-Latn-RS`` is Serbian, and
@@ -506,18 +508,19 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     # ``hr-Cyrl`` finds none, since CLDR 49 puts Croatian and Serbian 80
     # apart.
     match = None
-    for tag in (requested, code):
-        language = tag.split("-")[0].lower()
+    for text, parsed, extra in ((requested, wanted, requested_private),
+                                (code, tag, private)):
+        language = parsed.language
         own = [c for c in candidates
-               if len(language) > 1 and c.split("-")[0].lower() == language]
+               if language and c.split("-")[0].lower() == language]
         if own:
             # CLDR lists no likely script for a language it does not name
             # (``fat``), so ``Latn`` has nothing to be measured against and
             # would put every own-language spec out of reach. Another script
             # stays, so it does not fall to a spec of a different script.
-            if not likely_script(language):
-                tag = re.sub(r"^([^-]+)-latn(?=-|$)", r"\1", tag, flags=re.I)
-            match = closest_lang(tag, own, lects="standard")
+            if parsed.script == "Latn" and not likely_script(language):
+                text = "-x-".join([str(replace(parsed, script=None)), *extra])
+            match = closest_lang(text, own, lects="standard")
             break
     match = match or closest_lang(code, candidates, lects="standard")
     if match:
