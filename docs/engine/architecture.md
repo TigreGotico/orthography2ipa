@@ -24,15 +24,33 @@ The compiler in `orthography2ipa/ir/compiler.py` lowers the stages below into th
 | 2 | Prepare the text | `Pipeline.expand` runs on each plain run, and then `Pipeline.mark` runs once on the sentence. With neither field set, the normalize plugin that the spec or the deprecated `plugins=` argument names runs, and then the deprecated `normalizer` callable. With none of them, the text passes through unchanged, because the library does not normalise text. |
 | 3 | Word override | Each word looks up the spec's `word_exceptions`, and then the lexicon of the engine. A hit replaces the rules for that word. |
 | 4 | Tokenize | The interpreter cuts the word into grapheme tokens by maximal munch over a trie of the grapheme keys, as `PhonetokTokenizer` does. |
-| 5 | Select | Each grapheme slot gets its candidates and their costs from the positional overrides and the weights. A grammatical ending can rewrite the end of the word. |
+| 5 | Select | Each grapheme slot gets its candidates and their costs from the positional overrides and the weights. |
 | 6 | Rescore | The rescorers re-cost each slot in the context of its neighbours. The rescorers of `Pipeline.rescore` run first, then the rescorers of declared plugins, then the allophone rules of the spec. |
-| 7 | Beam select | Greedy search keeps one path, and beam search keeps `beam_width` paths. The best path wins. |
+| 7 | Beam select | Greedy search keeps one path, and beam search keeps `beam_width` paths. The best path wins. A grammatical ending can then rewrite the end of that path. |
 | 8 | Finalize the word | Computed tone, geminate collapse, the word-final virama vowel, tone-mark docking, iambic lengthening and the stress mark apply in that order. |
 | 9 | Compound stress | A spec with `compound_stress == "last"` marks hyphen-joined compounds. |
-| 10 | Sentence rescorers | A `SentenceRescorer` that the caller passes in the deprecated `sentence_rescorer=` argument sees the whole utterance and can rewrite across words. |
-| 11 | Sandhi | The declarative `sandhi_rules` of the spec run, and then `Pipeline.sandhi`. With no `Pipeline.sandhi`, a declared sandhi plugin runs in its place. |
+| 10 | Sandhi | The declarative `sandhi_rules` of the spec run. |
+| 11 | Sentence rescorers and sandhi plugin | A `SentenceRescorer` that the caller passes in the deprecated `sentence_rescorer=` argument sees the whole utterance and can rewrite across words. Then `Pipeline.sandhi` runs. With no `Pipeline.sandhi`, a declared sandhi plugin runs in its place. |
 | 12 | Dialect transform | An optional `dialect_profile` rewrites the final IPA. |
 | 13 | NFC | The engine normalises the output to Unicode [Normalization Form C](https://unicode.org/reports/tr15/). |
+
+The diagram shows the main stages in the order in which one call runs them, with the function or module that holds each. A word with an override skips the tokenizer and the beam.
+
+```mermaid
+flowchart TD
+    A["markup.parse_markup"] --> B["G2P._prepared: Pipeline.expand, Pipeline.mark"]
+    B --> C{"Interpreter._override_for: word_exceptions, lexicon"}
+    C -->|miss| D["Interpreter.tokenize"]
+    D --> E["Interpreter._branches: positional overrides, weights"]
+    E --> F["rescore: hooks.rescore, then _rescore_pass"]
+    F --> G["_word_paths and _apply_ending: beam"]
+    C -->|hit| H
+    G --> H["_finalize: tone, stress mark"]
+    H --> I["_mark_compounds"]
+    I --> J["_sandhi, then hooks.sandhi"]
+    J --> K["dialect.run_program"]
+    K --> L["Interpreter.nfc"]
+```
 
 ### Tokenizer and lattice
 

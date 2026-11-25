@@ -23,7 +23,7 @@ import pytest
 from orthography2ipa.g2p import G2P
 from orthography2ipa.phonetok import (
     _decompose_arabic_presentation_forms,
-    _expand_arabic_gemination,
+    expand_arabic_gemination,
 )
 
 # Combining marks, named to keep the geminate unit test unambiguous.
@@ -90,9 +90,9 @@ def test_gemination_expander_doubles_consonant():
     # (meem + meem + fatha).
     expected = _MEEM + _MEEM + _FATHA
     # canonical order: consonant + shadda + harakat
-    assert _expand_arabic_gemination(_MEEM + _SHADDA + _FATHA) == expected
+    assert expand_arabic_gemination(_MEEM + _SHADDA + _FATHA) == expected
     # equally-valid rendered order: consonant + harakat + shadda
-    assert _expand_arabic_gemination(_MEEM + _FATHA + _SHADDA) == expected
+    assert expand_arabic_gemination(_MEEM + _FATHA + _SHADDA) == expected
 
 
 # ─── 3. ar.json spec-data fixes ────────────────────────────────────────────

@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="766" height="632" viewBox="0 0 766 632" role="img" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"><title>Board rows per gold dataset</title><desc>wikipron 279, spain_romance_tts 96, vox_communis 69, portuguese_tts 46, primary_sources 37, and more</desc>
+<text x="20" y="26" font-size="16" text-anchor="start" font-weight="bold" fill="#f0efec">Board rows per gold dataset (743 rows, 30 datasets)</text>
+<text x="20" y="46" font-size="12" text-anchor="start" font-weight="normal" fill="#c3c2b7">One row is one language scored on one dataset.</text>
+<line x1="190" y1="58" x2="190" y2="602" stroke="#262c33" stroke-width="1"/>
+<text x="190" y="616" font-size="11" text-anchor="middle" font-weight="normal" fill="#c3c2b7">0</text>
+<line x1="283.19" y1="58" x2="283.19" y2="602" stroke="#262c33" stroke-width="1"/>
+<text x="283.19" y="616" font-size="11" text-anchor="middle" font-weight="normal" fill="#c3c2b7">50</text>
+<line x1="376.38" y1="58" x2="376.38" y2="602" stroke="#262c33" stroke-width="1"/>
+<text x="376.38" y="616" font-size="11" text-anchor="middle" font-weight="normal" fill="#c3c2b7">100</text>
+<line x1="469.57" y1="58" x2="469.57" y2="602" stroke="#262c33" stroke-width="1"/>
+<text x="469.57" y="616" font-size="11" text-anchor="middle" font-weight="normal" fill="#c3c2b7">150</text>
+<line x1="562.76" y1="58" x2="562.76" y2="602" stroke="#262c33" stroke-width="1"/>
+<text x="562.76" y="616" font-size="11" text-anchor="middle" font-weight="normal" fill="#c3c2b7">200</text>
+<line x1="655.95" y1="58" x2="655.95" y2="602" stroke="#262c33" stroke-width="1"/>
+<text x="655.95" y="616" font-size="11" text-anchor="middle" font-weight="normal" fill="#c3c2b7">250</text>
+<text x="182" y="74" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">wikipron</text>
+<path d="M190 62H706Q710 62 710 66V74Q710 78 706 78H190Z" fill="#3987e5"/>
+<text x="716" y="74" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">279</text>
+<text x="182" y="92" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">spain_romance_tts</text>
+<path d="M190 80H364.92Q368.92 80 368.92 84V92Q368.92 96 364.92 96H190Z" fill="#3987e5"/>
+<text x="374.92" y="92" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">96</text>
+<text x="182" y="110" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">vox_communis</text>
+<path d="M190 98H314.6Q318.6 98 318.6 102V110Q318.6 114 314.6 114H190Z" fill="#3987e5"/>
+<text x="324.6" y="110" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">69</text>
+<text x="182" y="128" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">portuguese_tts</text>
+<path d="M190 116H271.73Q275.73 116 275.73 120V128Q275.73 132 271.73 132H190Z" fill="#3987e5"/>
+<text x="281.73" y="128" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">46</text>
+<text x="182" y="146" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">primary_sources</text>
+<path d="M190 134H254.96Q258.96 134 258.96 138V146Q258.96 150 254.96 150H190Z" fill="#3987e5"/>
+<text x="264.96" y="146" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">37</text>
+<text x="182" y="164" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">arabic_tts</text>
+<path d="M190 152H249.37Q253.37 152 253.37 156V164Q253.37 168 249.37 168H190Z" fill="#3987e5"/>
+<text x="259.37" y="164" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">34</text>
+<text x="182" y="182" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">gold20_arabic</text>
+<path d="M190 170H247.51Q251.51 170 251.51 174V182Q251.51 186 247.51 186H190Z" fill="#3987e5"/>
+<text x="257.51" y="182" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">33</text>
+<text x="182" y="200" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">northeuralex</text>
+<path d="M190 188H247.51Q251.51 188 251.51 192V200Q251.51 204 247.51 204H190Z" fill="#3987e5"/>
+<text x="257.51" y="200" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">33</text>
+<text x="182" y="218" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">ipa_childes</text>
+<path d="M190 206H236.32Q240.32 206 240.32 210V218Q240.32 222 236.32 222H190Z" fill="#3987e5"/>
+<text x="246.32" y="218" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">27</text>
+<text x="182" y="236" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">ipadict</text>
+<path d="M190 224H230.73Q234.73 224 234.73 228V236Q234.73 240 230.73 240H190Z" fill="#3987e5"/>
+<text x="240.73" y="236" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">24</text>
+<text x="182" y="254" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">clup_dialect</text>
+<path d="M190 242H208.37Q212.37 242 212.37 246V254Q212.37 258 208.37 258H190Z" fill="#3987e5"/>
+<text x="218.37" y="254" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">12</text>
+<text x="182" y="272" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">kaikki</text>
+<path d="M190 260H200.91Q204.91 260 204.91 264V272Q204.91 276 200.91 276H190Z" fill="#3987e5"/>
+<text x="210.91" y="272" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">8</text>
+<text x="182" y="290" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">ep_dialects</text>
+<path d="M190 278H199.05Q203.05 278 203.05 282V290Q203.05 294 199.05 294H190Z" fill="#3987e5"/>
+<text x="209.05" y="290" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">7</text>
+<text x="182" y="308" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">portal_lupo</text>
+<path d="M190 296H197.18Q201.18 296 201.18 300V308Q201.18 312 197.18 312H190Z" fill="#3987e5"/>
+<text x="207.18" y="308" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">6</text>
+<text x="182" y="326" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">wold</text>
+<path d="M190 314H197.18Q201.18 314 201.18 318V326Q201.18 330 197.18 330H190Z" fill="#3987e5"/>
+<text x="207.18" y="326" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">6</text>
+<text x="182" y="344" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">4catac</text>
+<path d="M190 332H193.46Q197.46 332 197.46 336V344Q197.46 348 193.46 348H190Z" fill="#3987e5"/>
+<text x="203.46" y="344" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">4</text>
+<text x="182" y="362" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">portuguese_unified</text>
+<path d="M190 350H193.46Q197.46 350 197.46 354V362Q197.46 366 193.46 366H190Z" fill="#3987e5"/>
+<text x="203.46" y="362" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">4</text>
+<text x="182" y="380" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">mirandese_dict</text>
+<path d="M190 368H191.59Q195.59 368 195.59 372V380Q195.59 384 191.59 384H190Z" fill="#3987e5"/>
+<text x="201.59" y="380" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">3</text>
+<text x="182" y="398" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">mirandese_g2p</text>
+<path d="M190 386H191.59Q195.59 386 195.59 390V398Q195.59 402 191.59 402H190Z" fill="#3987e5"/>
+<text x="201.59" y="398" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">3</text>
+<text x="182" y="416" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">portuguese_unified_corrected</text>
+<path d="M190 404H189.73Q193.73 404 193.73 408V416Q193.73 420 189.73 420H190Z" fill="#3987e5"/>
+<text x="199.73" y="416" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">2</text>
+<text x="182" y="434" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">alphacep_ru_book</text>
+<path d="M190 422H187.86Q191.86 422 191.86 426V434Q191.86 438 187.86 438H190Z" fill="#3987e5"/>
+<text x="197.86" y="434" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">1</text>
+<text x="182" y="452" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">barranquenho_dict</text>
+<path d="M190 440H187.86Q191.86 440 191.86 444V452Q191.86 456 187.86 456H190Z" fill="#3987e5"/>
+<text x="197.86" y="452" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">1</text>
+<text x="182" y="470" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">cmudict</text>
+<path d="M190 458H187.86Q191.86 458 191.86 462V470Q191.86 474 187.86 474H190Z" fill="#3987e5"/>
+<text x="197.86" y="470" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">1</text>
+<text x="182" y="488" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">coruss_ru</text>
+<path d="M190 476H187.86Q191.86 476 191.86 480V488Q191.86 492 187.86 492H190Z" fill="#3987e5"/>
+<text x="197.86" y="488" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">1</text>
+<text x="182" y="506" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">hitz_basque_ipa</text>
+<path d="M190 494H187.86Q191.86 494 191.86 498V506Q191.86 510 187.86 510H190Z" fill="#3987e5"/>
+<text x="197.86" y="506" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">1</text>
+<text x="182" y="524" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">ipa_babylm</text>
+<path d="M190 512H187.86Q191.86 512 191.86 516V524Q191.86 528 187.86 528H190Z" fill="#3987e5"/>
+<text x="197.86" y="524" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">1</text>
+<text x="182" y="542" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">ipadict_corrected</text>
+<path d="M190 530H187.86Q191.86 530 191.86 534V542Q191.86 546 187.86 546H190Z" fill="#3987e5"/>
+<text x="197.86" y="542" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">1</text>
+<text x="182" y="560" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">vox_communis_corrected</text>
+<path d="M190 548H187.86Q191.86 548 191.86 552V560Q191.86 564 187.86 564H190Z" fill="#3987e5"/>
+<text x="197.86" y="560" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">1</text>
+<text x="182" y="578" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">wikipron_ar_diacritized</text>
+<path d="M190 566H187.86Q191.86 566 191.86 570V578Q191.86 582 187.86 582H190Z" fill="#3987e5"/>
+<text x="197.86" y="578" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">1</text>
+<text x="182" y="596" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">wikipron_nor</text>
+<path d="M190 584H187.86Q191.86 584 191.86 588V596Q191.86 600 187.86 600H190Z" fill="#3987e5"/>
+<text x="197.86" y="596" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">1</text>
+<line x1="190" y1="58" x2="190" y2="602" stroke="#4a5159" stroke-width="1"/>
+</svg>

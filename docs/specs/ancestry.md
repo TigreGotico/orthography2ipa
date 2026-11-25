@@ -41,6 +41,50 @@ ancestry_chain("pt-PT")
 #  'x-clade-ital1284', 'ine', 'x-clade-indo1319']
 ```
 
+The diagram shows that chain as parent edges. A rounded box is a clade node, and a plain box is a language or proto-language.
+
+```mermaid
+flowchart TD
+    p0["pt-PT"] --> p1["pt-PT-x-medieval"]
+    p1 --> p2["roa-x-galaico-pt"]
+    p2 --> p3(["x-clade-iberrom"])
+    p3 --> p4["la-x-hispania"]
+    p4 --> p5(["x-clade-roma1334"])
+    p5 --> p6["la-x-late"]
+    p6 --> p7["la"]
+    p7 --> p8["la-x-archaic"]
+    p8 --> p9["ine-x-italic"]
+    p9 --> p10(["x-clade-ital1284"])
+    p10 --> p11["ine"]
+    p11 --> p12(["x-clade-indo1319"])
+```
+
+Basque and Arabic give two shorter chains. The first is `ancestry_chain("eu")` and the second is `ancestry_chain("ar")`:
+
+```mermaid
+flowchart TD
+    eu["eu"] --> e1["xaq"]
+    e1 --> e2(["x-clade-vascon"])
+    ar["ar"] --> a1["xpa"]
+    a1 --> a2["sem-x-central"]
+    a2 --> a3(["x-clade-cent2236"])
+    a3 --> a4["sem-x-west"]
+    a4 --> a5["sem"]
+    a5 --> a6(["x-clade-semi1276"])
+    a6 --> a7(["x-clade-afro1255"])
+```
+
+The Basque and Arabic chains come from these calls:
+
+```python
+from orthography2ipa.registry import ancestry_chain
+
+ancestry_chain("eu")   # ['xaq', 'x-clade-vascon']
+ancestry_chain("ar")
+# ['xpa', 'sem-x-central', 'x-clade-cent2236', 'sem-x-west', 'sem',
+#  'x-clade-semi1276', 'x-clade-afro1255']
+```
+
 The loader derives `family` from this chain. It walks `parent` upwards and collects the names of the clades it passes, broadest first:
 
 ```python

@@ -110,6 +110,18 @@ The docstrings in `orthography2ipa/types.py` carry the citations for each positi
 
 `orthography2ipa.positional.positional_candidates` walks this list and returns the candidates of the first position the spec declares. If the grapheme has a positional entry, the winning candidates rank first and the flat candidates follow them. The beam keeps the full search space this way. If no position matches, the flat table and its weights apply.
 
+The diagram below shows how `resolve_branches` uses the list to pick the candidates of one grapheme.
+
+```mermaid
+flowchart TD
+    A["grapheme_positions: ordered list"] --> B["positional_candidates"]
+    B --> C{"a declared position matches"}
+    C -->|yes| D["positional candidates first, then flat candidates; rank costs"]
+    C -->|no| E["flat table; candidate weights apply"]
+    D --> F["build_branches"]
+    E --> F
+```
+
 A spec can therefore declare a class rule and a narrower letter rule together. With `before_front_vowel` and `before_e` on one grapheme, ⟨e⟩ takes the `before_e` entry and every other front vowel takes the class entry. A vowel letter that a spec reads as the glide /j/ is both a front vowel and a palatal. The vowel class comes first, so `before_front_vowel` outranks `before_palatal` for that neighbour.
 
 A plural ⟨-s⟩ makes the slot before it count as word-final at step 8, below the stress positions. So a stress rule wins over a `word_final` reduction for a stressed clitic such as Barranquenho ⟨les⟩.

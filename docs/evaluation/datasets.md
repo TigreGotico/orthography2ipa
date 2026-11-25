@@ -50,6 +50,13 @@ The tier column is the value of `provenance_for()`. "Per language" means that `P
 | `alphacep_ru_book` | Russian | machine-generated | [alphacep/biggest-ru-book-cleanup](https://huggingface.co/datasets/alphacep/biggest-ru-book-cleanup) | Not stated upstream | Agreement with a morphophonemic annotation. |
 | `coruss_ru` | Russian | expert-human | [CoRuSS](https://russpeech.spbu.ru/), the phonetics lab of Saint Petersburg State University | Not stated upstream | Distance to spontaneous speech. |
 
+The chart below counts the board rows of each dataset. A row is one language scored on one dataset.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="charts/coverage.dark.svg">
+  <img alt="Horizontal bars of board rows per dataset; WikiPron supplies the most rows and many datasets supply one row each." src="charts/coverage.light.svg">
+</picture>
+
 The Wiktionary terms are on [Wiktionary:Copyrights](https://en.wiktionary.org/wiki/Wiktionary:Copyrights). The WikiPron code is Apache-2.0, and the scraped data keeps the Wiktionary terms.
 
 [TTS silver sets](silver_sets.md) describes the three TTS sentence sets in this table: `arabic_tts`, `portuguese_tts` and `spain_romance_tts`. It also describes two more that the harness does not score, and the protocol they share. A language model wrote all five, so they are silver labels, not gold. [gold_defects.md](gold_defects.md) records individual rows of these datasets that carry a measured defect.
