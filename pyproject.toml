@@ -74,7 +74,7 @@ include = ["orthography2ipa*"]
 
 [tool.setuptools.package-data]
 "orthography2ipa" = ["data/*.json", "data/SCHEMA.md"]
-"orthography2ipa.ir" = ["*.lua", "precompiled/*.json.xz"]
+"orthography2ipa.ir" = ["*.lua", "unidata.json", "precompiled/*.json.xz"]
 
 # pytest reads this table whether it runs from the repository root or from
 # tests/, so every run turns an unknown variant subtag warning into an error.
