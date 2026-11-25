@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.126.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.126.0a1) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.125.2a1...7.126.0a1)
+
+**Merged pull requests:**
+
+- feat\(ir\): run every G2P method on the IR and delete the rules engine [\#2550](https://github.com/TigreGotico/orthography2ipa/pull/2550) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.125.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.125.2a1) (2026-11-24)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.125.1a2...7.125.2a1)
