@@ -47,6 +47,7 @@ from dataclasses import dataclass
 from enum import Enum, auto
 from typing import Callable, Dict, FrozenSet, List, Optional, Sequence, Tuple
 
+from orthography2ipa.ir import unidata
 from orthography2ipa.types import GraphemePosition, LanguageSpec
 from orthography2ipa.vowels import (
     SYLLABIC_MARKS,
@@ -210,7 +211,7 @@ def _arabic_script_letters() -> str:
               (0x0870, 0x089F),   # Arabic Extended-B
               (0x08A0, 0x08FF))   # Arabic Extended-A
     return "".join(chr(cp) for lo, hi in blocks for cp in range(lo, hi + 1)
-                   if unicodedata.category(chr(cp)) == "Lo")
+                   if unidata.category(chr(cp)) == "Lo")
 
 
 #: Arabic-script letters that a shadda geminates. Category-selected, so the

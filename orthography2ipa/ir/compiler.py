@@ -55,12 +55,12 @@ from orthography2ipa.vowels import (
 from orthography2ipa.weights import candidate_base_costs
 
 from orthography2ipa.feats import is_vowel_phone
-from orthography2ipa.ir import layout
+from orthography2ipa.ir import layout, unidata
 from orthography2ipa.tone import TONE_MARKS
 
 __all__ = ["compile_spec", "build_ir", "IRUnsupportedFeature", "CHAR_BITS", "ENTRY_BITS"]
 
-UNIDATA = unicodedata.unidata_version
+UNIDATA = unidata.VERSION
 
 
 class IRUnsupportedFeature(NotImplementedError):
@@ -177,14 +177,14 @@ def _git_head() -> str:
 
 # ─── characters ──────────────────────────────────────────────────────────
 def _char_bits(c: str, spec: LanguageSpec, elision: bool) -> int:
-    cat = unicodedata.category(c)
+    cat = unidata.category(c)
     tests = {
         "known": True,
         "space": _WS_RE.match(c) is not None,
         "whitespace": c.isspace(),
         "punct": _PUNCT_CHAR.match(c) is not None,
         "digit": _DIGIT_CHAR.match(c) is not None,
-        "alpha": c.isalpha(),
+        "alpha": cat[0] == "L",
         "letter_or_mark": cat[0] in "LM",
         "combining": unicodedata.combining(c) != 0,
         "mn_mc": cat in ("Mn", "Mc"),
@@ -221,7 +221,7 @@ def _char_bits(c: str, spec: LanguageSpec, elision: bool) -> int:
 @lru_cache(maxsize=None)
 def _script_chars(script: str) -> FrozenSet[str]:
     return frozenset(chr(cp) for cp in range(0x110000)
-                     if unicodedata.category(chr(cp))[0] in "LMNP"
+                     if unidata.category(chr(cp))[0] in "LMNP"
                      and unicodedata.name(chr(cp), "").startswith(script + " "))
 
 
@@ -231,8 +231,7 @@ def _known_chars(spec: LanguageSpec, extra: Iterable[str]) -> Set[str]:
         chars.update(text)
     for c in list(chars):
         chars.update(unicodedata.normalize("NFD", c))
-        chars.update(c.upper())
-        chars.update(c.lower())
+        chars.update(x for x in c.upper() + c.lower() if unidata.assigned(x))
     script = _SCRIPT_NAMES.get(spec.script or "", (spec.script or "").upper())
     if script:
         chars |= _script_chars(script)
@@ -295,7 +294,7 @@ def _entry_bits(key: str, readings: Tuple[str, ...], spec: LanguageSpec,
         bits.add("carries_nucleus")
     if list(readings) == [""] and (
             _is_a_mark(key) if len(key) == 1 else
-            (unicodedata.category(key[0]).startswith("L") or _is_a_mark(key[0]))
+            (unidata.category(key[0]).startswith("L") or _is_a_mark(key[0]))
             and all(_is_a_mark(c) for c in key[1:])):
         bits.add("spells_nothing")
     if len(key) > 1 and key not in _MUTE_E_CONSONANT_DIGRAPHS:
@@ -952,7 +951,7 @@ def _build(spec: LanguageSpec, data_ref, apply_stress, apply_allophony, apply_sa
             for a, b in itertools.product(readings, repeat=2):
                 pieces.update(segment_ipa(a + b, _MARK_ATOMS))
             units = sorted(u for u in pieces if u and all(
-                ch.isalpha() or unicodedata.combining(ch) for ch in u)
+                unidata.category(ch)[0] == "L" or unicodedata.combining(ch) for ch in u)
                 and not any(is_ipa_vowel(ch) for ch in u))
             stress["mark_onsets"] = {
                 "max": -1 if mo is None else mo,
@@ -1090,7 +1089,7 @@ def _inherent_entry_bits(key: str, readings: Tuple[str, ...], spec: LanguageSpec
     """The entry facts the inherent-vowel branch reads (phonetok.py:2044-2100)."""
     bits = 0
     first = readings[0] if readings else ""
-    is_mark = (unicodedata.category(key[-1]) in ("Mn", "Mc") and not _is_subjoined_letter_cluster(key)
+    is_mark = (unidata.category(key[-1]) in ("Mn", "Mc") and not _is_subjoined_letter_cluster(key)
                and not (len(key) > 1 and set(key[1:]) <= set(spec.consonant_marks)))
     if first and not is_mark and not _is_nucleus(first):
         bits |= 1 << EB["takes_inherent"]
@@ -1143,11 +1142,11 @@ def _preposed_entry_bits(key: str, table: Dict[str, Tuple[str, ...]], spec: Lang
     initial = _onset_reading(key, readings, spec)
     effective = initial or readings
     is_sign = not initial and (
-        (unicodedata.category(key[-1]) in ("Mn", "Mc") and not (first and not _is_nucleus(first)))
+        (unidata.category(key[-1]) in ("Mn", "Mc") and not (first and not _is_nucleus(first)))
         or key in spec.dependent_vowels or key.lower() in preposed)
     if effective and not is_sign and not _is_nucleus(effective[0]):
         bits |= 1 << EB["preposed_host"]
-    if (readings and (unicodedata.category(key[0]) in ("Mn", "Mc") or key in spec.dependent_vowels)
+    if (readings and (unidata.category(key[0]) in ("Mn", "Mc") or key in spec.dependent_vowels)
             and _is_nucleus(first)):
         bits |= 1 << EB["circumfix_tail"]
     return bits
@@ -1172,7 +1171,7 @@ def _abugida_char_bits(c: str, table: Dict[str, Tuple[str, ...]], vowel_signs: S
     if readings is not None and list(readings) == [""] and _is_a_mark(c):
         bits |= 1 << CB["mark_spells_nothing"]
     first = readings[0] if readings else ""
-    if ((unicodedata.category(c) in ("Mn", "Mc") or c in vowel_signs) and first
+    if ((unidata.category(c) in ("Mn", "Mc") or c in vowel_signs) and first
             and not unicodedata.combining(first[0]) and _is_nucleus(first)):
         bits |= 1 << CB["supplies_vowel"]
     return bits
@@ -1189,7 +1188,7 @@ def _prepare_rewrites(spec: LanguageSpec, table) -> Tuple[List[Tuple[int, str]],
         for lo, hi in ((0xFB50, 0xFDFF), (0xFE70, 0xFEFF)):
             for cp in range(lo, hi + 1):
                 out = unicodedata.normalize("NFKC", chr(cp))
-                if out != chr(cp):
+                if out != chr(cp) and unidata.assigned(chr(cp)):
                     presentation.append((cp, out))
         if declares_shadda:
             rules += [(_AR_GEM_SHADDA_FIRST.pattern, r"\1\1\2"), (_AR_GEM_HARAKAT_FIRST.pattern, r"\1\1\2"),
@@ -1210,14 +1209,14 @@ def _whitespace() -> FrozenSet[str]:
 def _compositions() -> Tuple[Tuple[str, str, str], ...]:
     """Every primary composite of Unicode as (first, second, composite)."""
     out = []
-    for cp in range(0x110000):
+    for cp in itertools.chain(range(0xAC00), range(0xAC00 + 11172, 0x110000)):
         c = chr(cp)
         raw = unicodedata.decomposition(c)
-        if raw and not raw.startswith("<"):
+        if raw and not raw.startswith("<") and unidata.assigned(c):
             parts = [chr(int(x, 16)) for x in raw.split()]
             if len(parts) == 2 and unicodedata.normalize("NFC", c) == c:
                 out.append((parts[0], parts[1], c))
-    # Hangul syllables compose by arithmetic, not by the decomposition table.
+    # Hangul syllables compose by arithmetic; Python 3.14 also lists them in the decomposition table.
     for s in range(11172):
         lv, t = divmod(s, 28)
         if t:

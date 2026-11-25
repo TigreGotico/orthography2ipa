@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "orthography2ipa"
 dynamic = ["version"]
-dependencies = ["numpy", "langcodes", "linguatag>=0.4.2a4"]
+dependencies = ["numpy", "langcodes", "linguatag>=0.4.2a4", "phonematcher>=3.1.4a3"]
 description = "Linguistically motivated grapheme-to-IPA and allophone mappings for thousands of languages, dialects and historical stages"
 readme = "README.md"
 license = {text = "Apache-2.0"}
@@ -74,7 +74,7 @@ include = ["orthography2ipa*"]
 
 [tool.setuptools.package-data]
 "orthography2ipa" = ["data/*.json", "data/SCHEMA.md"]
-"orthography2ipa.ir" = ["*.lua", "precompiled/*.json.xz"]
+"orthography2ipa.ir" = ["*.lua", "unidata.json", "precompiled/*.json.xz"]
 
 # pytest reads this table whether it runs from the repository root or from
 # tests/, so every run turns an unknown variant subtag warning into an error.

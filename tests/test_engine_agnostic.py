@@ -49,6 +49,9 @@ def test_vocab_comes_from_the_spec_data(vocab):
     ('if self.ir.get("script") == "Arabic":\n    return 1', "script or family name literal 'Arabic'"),
     ('return lang == "Creole"', "script or family name literal 'Creole'"),
     ('import unicodedata\nreturn unicodedata.name(ch)', "Unicode name lookup unicodedata.name"),
+    ('import phonematcher\nreturn 1', "imports phonematcher at runtime"),
+    ('from phonematcher import is_vowel_phone\nreturn 1', "imports phonematcher at runtime"),
+    ('from phonematcher.features import vectorize_phones\nreturn 1', "imports phonematcher.features at runtime"),
     ('return "\\N{ARABIC LETTER ALEF}" == ch', "Unicode character name escape"),
     ('return 0x0600 <= cp <= 0x06FF', "codepoint range comparison"),
     ('return "\\u0590" < ch', "codepoint range comparison"),
@@ -89,6 +92,7 @@ end
 @pytest.mark.parametrize("snippet, message", [
     ('if lang == "pt-PT" then return 1 end', "language code literal 'pt-PT'"),
     ("local t = {['kab'] = true}", "language code literal 'kab'"),
+    ('local pm = require("phonematcher")', "requires phonematcher at runtime"),
     ('if script == "Cyrillic" then return 1 end', "script or family name literal 'Cyrillic'"),
     ("if cp >= 0x0600 and cp <= 0x06FF then return 1 end", "codepoint range comparison"),
     ('if ch > "\\u{0590}" then return 1 end', "codepoint range comparison"),
