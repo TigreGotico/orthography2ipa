@@ -2,8 +2,9 @@
 
 The interpreters run one compiled IR document and nothing else. Behaviour
 lives in the data, so an interpreter never tests a language code, a script
-or a family name, never asks Unicode for a character name, and never
-compares a codepoint against a range to guess a script. This check parses
+or a family name, never asks Unicode for a character name, never imports
+phonematcher, and never compares a codepoint against a range to guess a
+script. This check parses
 the runtime files (``ast`` for Python, a token scan for Lua) and lists every
 violation with its file and line.
 
@@ -40,6 +41,10 @@ RUNTIME = [IR / "interpreter.py", IR / "pattern.py", IR / "dialect.py", IR / "la
 CODEC_BOUNDARIES = {0x80, 0x800, 0x10000, 0x110000, 0xD800, 0xDBFF, 0xDC00, 0xDFFF}
 
 UNICODE_NAME_CALLS = {"name", "lookup"}
+
+# The interpreters read the compiled IR only. The vowel and place tables are
+# compile-time knowledge, so phonematcher is never a runtime import.
+FORBIDDEN_IMPORTS = {"unicodedata", "phonematcher"}
 
 # IR words that are also ISO 639-3 codes and that layout.py does not name,
 # because they are values of opaque fields. Each one is defined in
@@ -130,10 +135,11 @@ def check_python(path: Path, vocab: Vocab) -> List[Violation]:
             if message:
                 found.append(Violation(str(path), node.lineno, message))
         elif isinstance(node, (ast.Import, ast.ImportFrom)):
-            names = [alias.name for alias in node.names]
-            module = getattr(node, "module", None) or ""
-            if "unicodedata" in names or module == "unicodedata":
-                found.append(Violation(str(path), node.lineno, "imports unicodedata at runtime"))
+            modules = [getattr(node, "module", None) or ""] if isinstance(node, ast.ImportFrom) \
+                else [alias.name for alias in node.names]
+            for module in modules:
+                if module.split(".")[0] in FORBIDDEN_IMPORTS:
+                    found.append(Violation(str(path), node.lineno, f"imports {module} at runtime"))
         elif isinstance(node, ast.Attribute) and node.attr in UNICODE_NAME_CALLS \
                 and isinstance(node.value, ast.Name) and node.value.id == "unicodedata":
             found.append(Violation(str(path), node.lineno, f"Unicode name lookup unicodedata.{node.attr}"))
@@ -203,6 +209,8 @@ def check_lua(path: Path, vocab: Vocab) -> List[Violation]:
     tokens = list(lua_tokens(path.read_text(encoding="utf-8")))
     for k, (kind, text, line) in enumerate(tokens):
         if kind == "str":
+            if text.split(".")[0] == "phonematcher":
+                found.append(Violation(str(path), line, f"requires {text} at runtime"))
             message = judge_literal(text, vocab)
             if message:
                 found.append(Violation(str(path), line, message))
