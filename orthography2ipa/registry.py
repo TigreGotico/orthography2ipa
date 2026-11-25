@@ -357,7 +357,7 @@ def _region_subtag(code: str) -> Optional[str]:
 
     Some legacy keys are not well-formed tags (``ar-Latn-buckwalter``), which
     ``linguatag.parse_tag`` rejects, so keys are read here and a caller's
-    tag is read with ``parse``.
+    tag is read with ``parse_tag``.
     """
     for subtag in code.split("-")[1:]:
         if len(subtag) == 1:
