@@ -33,7 +33,7 @@ M.SEMANTICS = {
   codepoint_map = 1, pattern = 1, trie = 1, bits = 1, predicate = 1, candidates = 1,
   beam = 1, splitter = 1, decision = 1, sequencer = 1, segment = 1, word_has = 1,
   spell_gate = 1, positional_rewrite = 1, gated_map = 1, aligned_rewrite = 1,
-  allophony = 1, mark_placement = 1, sandhi = 1, rewrite = 1, endings = 1, inherent = 1,
+  allophony = 1, mark_placement = 1, sandhi = 1, sandhi_spelling = 1, sandhi_pause = 1, rewrite = 1, endings = 1, inherent = 1,
   written_onsets = 1, vowel_letters = 1, secondary = 1, aperture = 1, prefixes = 1, coda_liquid = 1, mutate = 1, accent2 = 1,
   fold = 1, tone_dock = 1, iambic = 1, prevocalic_backoff = 1,
   ipa_count = 1, consonant_nuclei = 1, computed_tone = 1,
@@ -328,7 +328,8 @@ local LAYOUT = Ob{
               weight = Ob{max_onset = I_, superheavy_final = I_}},
   atoms = Ob{mark = Lt(S_), affricates = Lt(S_)},
   allophony = Ob{passes = I_, atoms = Lt(S_), geminate = I_, rules = Lt(RULE)},
-  sandhi = Lt(Ob{left = PAT, right = PAT, obligatory = I_, left_out = TPL, right_out = TPL}),
+  sandhi = Lt(Ob{left = PAT, right = PAT, obligatory = I_, left_out = TPL, right_out = TPL,
+                 left_spelling = PAT, right_spelling = PAT, pause = I_}),
   dialect = Lt(STEP),
   char_maps = Ob{casefold = Lt(Pr(I_, S_)), plain_lower = Lt(Pr(I_, S_)), nfd = Lt(Pr(I_, S_)),
                  ccc = Lt(Lt(I_)), compose = Lt(Lt(I_)), presentation = Lt(Pr(I_, S_)), fold = SSET},
@@ -3325,17 +3326,24 @@ function P:_mark_compounds(words, ipa_words)
   return out
 end
 
-function P:_sandhi(words, pausal)
-  if #words <= 1 then return copy(words) end
+function P:_sandhi(words, surfaces, pausal)
   local result = copy(words)
-  for i = 1, #result - 1 do
-    if not pausal[i] then
+  for i = 1, #result do
+    if pausal[i] then
+      local left = to_cps(result[i])
+      for _, rule in ipairs(self.ir.sandhi) do
+        if T(rule.pause) and self:_side_holds(rule, "left", left, surfaces[i]) then
+          result[i] = self:_sub(rule.left, rule.left_out, left)
+          break
+        end
+      end
+    else
       local left, right = to_cps(result[i]), to_cps(result[i + 1])
       local left_done, right_done = false, false
       for _, rule in ipairs(self.ir.sandhi) do
         if left_done and right_done then break end
-        if psearch(rule.left, left, 0, group_count(rule.left)) ~= nil
-            and psearch(rule.right, right, 0, group_count(rule.right)) ~= nil then
+        if not T(rule.pause) and self:_side_holds(rule, "left", left, surfaces[i])
+            and self:_side_holds(rule, "right", right, surfaces[i + 1]) then
           if rule.left_out ~= nil and not left_done then
             result[i] = self:_sub(rule.left, rule.left_out, left)
             left_done = true
@@ -3349,6 +3357,15 @@ function P:_sandhi(words, pausal)
     end
   end
   return result
+end
+
+-- The side pattern finds a match in the IPA and, when the rule has one, the
+-- spelling pattern finds a match in the surface of the word.
+function P:_side_holds(rule, side, ipa, surface)
+  local node = rule[side]
+  if psearch(node, ipa, 0, group_count(node)) == nil then return false end
+  local spelling = rule[side .. "_spelling"]
+  return spelling == nil or psearch(spelling, to_cps(surface), 0, group_count(spelling)) ~= nil
 end
 
 function P:_sub(node, template, s)
@@ -3377,9 +3394,9 @@ function P:transcribe(text, width)
     ipa_words = self:_mark_compounds(words, ipa_words)
   end
   if T(self.ir.sandhi) then
-    local pausal = {}
-    for k, w in ipairs(words) do pausal[k] = w.pausal end
-    ipa_words = self:_sandhi(ipa_words, pausal)
+    local surfaces, pausal = {}, {}
+    for k, w in ipairs(words) do surfaces[k], pausal[k] = w.surface, w.pausal end
+    ipa_words = self:_sandhi(ipa_words, surfaces, pausal)
   end
   local kept = {}
   for _, w in ipairs(ipa_words) do if w ~= "" then kept[#kept + 1] = w end end

@@ -1,0 +1,96 @@
+{
+ "ir_version": 1,
+ "sandhi": [
+  {
+   "left": "^([ˈˌ]*m[ai])n$",
+   "right": "^[ˈˌ]*r",
+   "left_out": "\\1r"
+  },
+  {
+   "left": "^([ˈˌ]*m[ai])n$",
+   "right": "^[ˈˌ]*j",
+   "left_out": "\\1j"
+  },
+  {
+   "left": "^([ˈˌ]*m[ai])n$",
+   "right": "^[ˈˌ]*l",
+   "left_out": "\\1l"
+  },
+  {
+   "left": "^([ˈˌ]*m[ai])n$",
+   "right": "^[ˈˌ]*b",
+   "left_out": "\\1m"
+  },
+  {
+   "pause": true,
+   "left": "^(.*)$",
+   "left_spelling": "^(?:أَنَا|أَنْتَ|أَنْتُمَا|أَنْتُمْ|أَنْتُنَّ|أَنْتِ|اللَّاتِي|الَّتِي|الَّذِي|الَّذِينَ|بَعْدُ|تِلْكَ|حَيْثُ|ذَلِكَ|قَبْلُ|مُنْذُ|نَحْنُ|هَذَا|هَذِهِ|هُمَا|هُمْ|هُنَّ|هُوَ|هِيَ)$",
+   "left_out": "\\1"
+  },
+  {
+   "pause": true,
+   "left": "at[uia]n$",
+   "left_spelling": "^(?=.*[ًٌٍ])(?=.*ة)",
+   "left_out": "a"
+  },
+  {
+   "pause": true,
+   "left": "an$",
+   "left_spelling": "ً",
+   "left_out": "aː"
+  },
+  {
+   "pause": true,
+   "left": "un$",
+   "left_spelling": "ٌ",
+   "left_out": ""
+  },
+  {
+   "pause": true,
+   "left": "in$",
+   "left_spelling": "ٍ",
+   "left_out": ""
+  },
+  {
+   "pause": true,
+   "left": "ta$",
+   "left_spelling": "^(?=.*َ[ًٌٍَُِّْٰ]*$)(?=.*ة[ًٌٍَُِّْٰ]+$)",
+   "left_out": ""
+  },
+  {
+   "pause": true,
+   "left": "a$",
+   "left_spelling": "^(?=.*َ[ًٌٍَُِّْٰ]*$)",
+   "left_out": ""
+  },
+  {
+   "pause": true,
+   "left": "tu$",
+   "left_spelling": "^(?!.*َ[ًٌٍَُِّْٰ]*$)(?=.*ُ[ًٌٍَُِّْٰ]*$)(?=.*ة[ًٌٍَُِّْٰ]+$)",
+   "left_out": ""
+  },
+  {
+   "pause": true,
+   "left": "u$",
+   "left_spelling": "^(?!.*َ[ًٌٍَُِّْٰ]*$)(?=.*ُ[ًٌٍَُِّْٰ]*$)",
+   "left_out": ""
+  },
+  {
+   "pause": true,
+   "left": "ti$",
+   "left_spelling": "^(?!.*َ[ًٌٍَُِّْٰ]*$)(?!.*ُ[ًٌٍَُِّْٰ]*$)(?=.*ِ[ًٌٍَُِّْٰ]*$)(?=.*ة[ًٌٍَُِّْٰ]+$)",
+   "left_out": ""
+  },
+  {
+   "pause": true,
+   "left": "i$",
+   "left_spelling": "^(?!.*َ[ًٌٍَُِّْٰ]*$)(?!.*ُ[ًٌٍَُِّْٰ]*$)(?=.*ِ[ًٌٍَُِّْٰ]*$)",
+   "left_out": ""
+  }
+ ],
+ "unsupported": [
+  "nun_and_pause_across_empty_words",
+  "article_elision_across_empty_words",
+  "wasl_onset_restoration"
+ ]
+}

@@ -2273,21 +2273,25 @@ class Interpreter:
             start = end
         return out
 
-    def _sandhi(self, words: List[str], pausal: List[bool]) -> List[str]:
-        if len(words) <= 1:
-            return list(words)
+    def _sandhi(self, words: List[str], surfaces: List[str], pausal: List[bool]) -> List[str]:
         result = list(words)
-        for i in range(len(result) - 1):
+        for i in range(len(result)):
             if pausal[i]:
+                left = [ord(c) for c in result[i]]
+                for rule in self.ir["sandhi"]:
+                    if "pause" in rule and self._side_holds(rule, "left", left, surfaces[i]):
+                        result[i] = self._sub(rule["left"], rule["left_out"], left)
+                        break
                 continue
             left, right = [ord(c) for c in result[i]], [ord(c) for c in result[i + 1]]
             left_done = right_done = False
             for rule in self.ir["sandhi"]:
                 if left_done and right_done:
                     break
-                if pattern.search(rule["left"], left, 0, pattern.group_count(rule["left"])) is None:
+                if "pause" in rule:
                     continue
-                if pattern.search(rule["right"], right, 0, pattern.group_count(rule["right"])) is None:
+                if not (self._side_holds(rule, "left", left, surfaces[i])
+                        and self._side_holds(rule, "right", right, surfaces[i + 1])):
                     continue
                 if "left_out" in rule and not left_done:
                     result[i] = self._sub(rule["left"], rule["left_out"], left)
@@ -2296,6 +2300,16 @@ class Interpreter:
                     result[i + 1] = self._sub(rule["right"], rule["right_out"], right)
                     right_done = True
         return result
+
+    @staticmethod
+    def _side_holds(rule: dict, side: str, ipa: List[int], surface: str) -> bool:
+        """The *side* pattern finds a match in the IPA and, when the rule has one, the
+        spelling pattern finds a match in the surface of the word."""
+        if pattern.search(rule[side], ipa, 0, pattern.group_count(rule[side])) is None:
+            return False
+        spelling = rule.get(side + "_spelling")
+        return spelling is None or pattern.search(
+            spelling, [ord(c) for c in surface], 0, pattern.group_count(spelling)) is not None
 
     @staticmethod
     def _sub(node: list, template: list, s: List[int]) -> str:
@@ -2339,7 +2353,7 @@ class Interpreter:
         if self.stress is not None and self.stress["compound_last"]:
             ipa_words = self._mark_compounds(words, ipa_words)
         if self.ir.get("sandhi"):
-            ipa_words = self._sandhi(ipa_words, [w.pausal for w in words])
+            ipa_words = self._sandhi(ipa_words, [w.surface for w in words], [w.pausal for w in words])
         if self.hooks.sandhi is not None:
             rewritten = self.hooks.sandhi(list(ipa_words), [w.surface for w in words],
                                           [w.pausal for w in words])

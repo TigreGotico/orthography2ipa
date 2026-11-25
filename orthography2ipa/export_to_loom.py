@@ -15,7 +15,8 @@ as an array of codepoints and a 0-based ``lang`` index into
 
 A fragment is a JSON file of plugin data (docs/ir/o2i-ir-v1.md, 3.5). The export
 merges every ``--fragment`` into the IR of each language and records the sha256
-of each fragment in ``o2i.fragments``.
+of each fragment in ``o2i.fragments``. The names that the fragments list as ``unsupported``
+go to ``o2i.unsupported``: the rules the plugin still runs as a host hook.
 
 Python callers use :func:`export_to_loom`, which returns the metadata it writes.
 """
@@ -26,7 +27,7 @@ from pathlib import Path
 from typing import Dict, List, Optional, Sequence
 
 from orthography2ipa.ir import layout
-from orthography2ipa.ir.compiler import build_ir, fragment_digest
+from orthography2ipa.ir.compiler import build_ir, fragment_digest, fragment_unsupported
 from orthography2ipa.version import VERSION_STR
 
 ARCHITECTURE = "o2i"
@@ -103,7 +104,7 @@ def export_to_loom(langs: List[str], out_path: Path, *, data_ref: Optional[str] 
     ``o2i.spec_revisions``), not to ``orthography2ipa.spec_revision``. A
     language whose IR revision differs stops the export before any file is
     written. *fragments* are plugin fragments merged into every language; the
-    metadata lists their sha256 digests.
+    metadata lists their sha256 digests and the rules they name as unsupported.
 
     Raises:
         RuntimeError: *data_ref* is set and orthography2ipa is not a git checkout.
@@ -133,6 +134,7 @@ def export_to_loom(langs: List[str], out_path: Path, *, data_ref: Optional[str] 
         "spec_revisions": {c: revs[c] for c in langs},
         "phonemizer_identity": {c: phonemizer_identity(c, revs[c]) for c in langs},
         "fragments": [fragment_digest(f) for f in fragments],
+        "unsupported": fragment_unsupported(fragments),
     }
     writer = GGUFWriter(str(out_path), ARCHITECTURE)
     writer.add_string("loom.task", "text2phonemes")
@@ -145,6 +147,8 @@ def export_to_loom(langs: List[str], out_path: Path, *, data_ref: Optional[str] 
     writer.add_array("o2i.spec_revisions", [revs[c] for c in langs])
     if fragments:
         writer.add_array("o2i.fragments", meta["fragments"])
+    if meta["unsupported"]:
+        writer.add_array("o2i.unsupported", meta["unsupported"])
     writer.add_string("o2i.phonemizer_identity", json.dumps(meta["phonemizer_identity"], sort_keys=True))
     writer.add_string("model.driver_script", driver_script(langs, irs, revs))
     writer.add_string("model.graph_topology", json.dumps(_INERT_TOPOLOGY))
