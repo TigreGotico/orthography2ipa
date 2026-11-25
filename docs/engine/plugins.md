@@ -74,6 +74,19 @@ True
 
 ```
 
+### What a hook may change
+
+Each hook gets values and returns values. It never gets the interpreter, the IR document or a cache, so it cannot change them.
+
+| Hook | It may change | It must keep | What the interpreter does with a bad result |
+| :--- | :--- | :--- | :--- |
+| `text` | the characters of the run | one string for one run | no check |
+| `rescore` | the candidates and costs of each slot, or empty a slot to delete its grapheme | one slot per token, in token order | no check |
+| `syllables` | where the word splits | syllables that spell the word | an empty result falls back to the IR division |
+| `sandhi` | the IPA of each word | one string per word, in word order | a wrong word count raises `ValueError` |
+
+The interpreter may call a hook more than once for the same text, and it caches some results. The `rescore` hook also runs on the parts of a word with a clitic. The `syllables` hook runs once per distinct word, and the interpreter keeps the list it returns. A hook must therefore return the same result for the same input, keep no state between calls, and never change a list after it returns it.
+
 ## Forced words, caller specs and the board option
 
 A `<phoneme ph="...">` word goes to the interpreter as a word with its reading already set, as a lexicon hit does. The interpreter does not stress it. The text hook and `Pipeline.expand` never see it.

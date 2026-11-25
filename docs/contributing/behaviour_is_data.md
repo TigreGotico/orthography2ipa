@@ -85,7 +85,7 @@ error: an IR version or semantics version changed, and docs/ir/o2i-ir-v1.md did 
 
 ## Run the guards
 
-The `IR Guards` workflow runs three checks on each pull request that touches `orthography2ipa/`, `docs/ir/` or the check scripts. Run them before you push.
+The `IR Guards` workflow runs four checks on each pull request that touches `orthography2ipa/`, `docs/ir/` or the check scripts. Run them before you push.
 
 ### No language knowledge in an interpreter
 
@@ -105,6 +105,17 @@ bad.py:2: language code literal 'pt-PT'
 ```
 
 Some IR words are also ISO 639-3 codes, such as `and`, `set` and `end`. The check allows those words. Do not add a word to `IR_OPAQUE_WORDS` to pass the check: it holds only IR words that the spec defines.
+
+### Every spec field is read or refused
+
+`check_spec_fields.py` sets each field of `LanguageSpec`, and of each rule and stress object in it, to a different value on a few small specs. Then it compiles the spec. The field passes when the IR changes, or when the compiler raises `IRUnsupportedFeature` with the field name. A field with no behaviour, such as a citation or a display name, goes in the `INERT` table with a one-line reason. Any other field fails the check, because the compiler would drop its behaviour with no error. When a field is read only inside a feature, or takes a closed set of values, add an entry to `HINTS`. A hint gives the probe a valid value and does not exempt the field. The check sees a field that the compiler drops fully, not one that it drops in only one of its read sites. A run takes about one minute:
+
+```text
+$ .venv/bin/python -I -W ignore scripts/check_spec_fields.py
+...
+139 fields in 7 classes: 106 lowered, 2 refused, 0 inert, 31 declared
+0 failure(s)
+```
 
 ### The version rule
 
