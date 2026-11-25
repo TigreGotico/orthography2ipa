@@ -128,6 +128,20 @@ The committed scoreboard ([`docs/evaluation/generated/scoreboard.md`](generated/
 python3 -c "import json; r = json.load(open('benchmarks/results.json')); print(len(r), 'rows,', len({x['dataset'] for x in r}), 'datasets')"
 ```
 
+The chart below shows how the PER of the board rows spreads inside each quality tier. The scoreboard table has the exact values.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="charts/per-distribution.dark.svg">
+  <img alt="Most research-tier rows fall between 0.05 and 0.3 PER, with a median of 0.144, and the production tier has a lower median of 0.069." src="charts/per-distribution.light.svg">
+</picture>
+
+The next chart sets the lexicon-free o2i PER against the rules-only espeak-ng PER. It keeps only rows that both engines scored on gold that neither engine wrote, and it leaves out every lexicon-backed column. The [comparison page](generated/comparison.md) has the table.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="charts/o2i-vs-espeak.dark.svg">
+  <img alt="o2i has the lower PER than rules-only espeak-ng on 45 of the 52 rows that both engines scored on independent gold." src="charts/o2i-vs-espeak.light.svg">
+</picture>
+
 `--limit N` exists for fast ad-hoc runs. It applies the same cap to every language, never a different cap per language. One loader stays bounded in a full run: [`hitz_basque_ipa`](datasets.md#hitz-basque-wikipedia-ipa-corpus-hitz_basque_ipa) stops after `_HITZ_BASQUE_MAX_PARAGRAPHS` paragraphs. That is a paging bound that applies to every language alike, not a sampling limit.
 
 A `--scoreboard` run with `--lang` or `--dataset` rescores only those rows. It merges them into the committed board and keeps every other row as it was. [contributing/board.md](../contributing/board.md) gives the procedure for a change that writes board files, including such a scoped run.
