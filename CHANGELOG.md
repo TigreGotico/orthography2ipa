@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.126.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.126.5a1) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.126.4a2...7.126.5a1)
+
+**Merged pull requests:**
+
+- fix: read a caller's language tag with linguatag in the registry resolver [\#2570](https://github.com/TigreGotico/orthography2ipa/pull/2570) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.126.4a2](https://github.com/TigreGotico/orthography2ipa/tree/7.126.4a2) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.126.4a1...7.126.4a2)
@@ -365,10 +373,6 @@
 ## [7.124.34a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.34a1) (2026-11-21)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.33a1...7.124.34a1)
-
-**Merged pull requests:**
-
-- fix: write every spec's IPA fields in IPA symbols only [\#2433](https://github.com/TigreGotico/orthography2ipa/pull/2433) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.124.33a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.33a1) (2026-11-21)
 
