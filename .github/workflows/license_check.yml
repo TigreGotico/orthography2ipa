@@ -3,7 +3,14 @@ name: License Check
 on:
   pull_request:
     branches: [dev]
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   license_check:
