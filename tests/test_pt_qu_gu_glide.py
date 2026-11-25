@@ -10,7 +10,9 @@ GLIDE = {"aguentar": "ɡw", "aguenta": "ɡw", "sagui": "ɡw", "linguiça": "ɡw"
          "frequenta": "kw", "frequente": "kw", "tranquilo": "kw", "cinquenta": "kw",
          "equestre": "kw", "equino": "kw", "ubiquidade": "kw", "sequestro": "kw",
          "bilíngue": "ɡw", "bilingue": "ɡw", "sequência": "kw", "delinquente": "kw",
-         "eloquente": "kw", "ensanguentado": "ɡw", "quinquénio": "kw"}
+         "eloquente": "kw", "ensanguentado": "ɡw", "quinquénio": "kw",
+         "consequente": "kw", "ambiguidade": "ɡw", "aquífero": "kw", "antiquíssimo": "kw",
+         "anhanguera": "ɡw"}
 SILENT = {"argueiro": "ɡ", "equipa": "k", "requinte": "k", "guerra": "ɡ", "quero": "k", "seguir": "ɡ",
           "equinocial": "k", "equinócio": "k", "esquina": "k"}
 

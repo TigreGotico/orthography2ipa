@@ -130,10 +130,10 @@
   "allophones_base": "roa-x-galaico-pt",
   "allophone_rules": [
     {"id": "PT_GU_GLIDE", "phonemes": ["ɡ"], "surface": "ɡw", "grapheme": ["gu"],
-     "word_contains_grapheme": ["aguent", "anguiform", "argui", "arguem", "argues", "arguent", "lingueta", "linguist", "linguíst", "antiguidad", "linguiç", "pinguim", "sagui", "bilingu", "bilíngu", "ensanguent"],
+     "word_contains_grapheme": ["aguent", "anguiform", "argui", "arguem", "argues", "arguent", "lingueta", "linguist", "linguíst", "antiguidad", "linguiç", "pinguim", "sagui", "bilingu", "bilíngu", "ensanguent", "ambiguidad", "anhanguer"],
      "notes": "AO1990 Base XIV 1.º: the u of ⟨gu qu⟩ before ⟨e i⟩ is pronounced in the words that Base XIV lists and in others of the same class, written with the trema before 1990 (agüentar, sagüi). Priberam: |güen| aguentar, |àgüí| sagui. The stems match every inflected form. argueiro and equipa keep a silent u."},
     {"id": "PT_QU_GLIDE", "phonemes": ["k"], "surface": "kw", "grapheme": ["qu"],
-     "word_contains_grapheme": ["cinquent", "equestr", "frequent", "frequênc", "tranquil", "ubiquidad", "sequênc", "delinquent", "eloquent", "quinquén", "quinquên"],
+     "word_contains_grapheme": ["cinquent", "equestr", "frequent", "frequênc", "tranquil", "ubiquidad", "sequênc", "delinquent", "eloquent", "quinquén", "quinquên", "consequent", "consequênc", "aquífer", "antiquíssim"],
      "notes": "AO1990 Base XIV 1.º: the u of ⟨gu qu⟩ before ⟨e i⟩ is pronounced in the words that Base XIV lists and in others of the same class, written with the trema before 1990 (agüentar, sagüi). Priberam: |güen| aguentar, |àgüí| sagui. The stems match every inflected form. argueiro and equipa keep a silent u."},
     {"id": "PT_QU_GLIDE_EQUINO", "phonemes": ["k"], "surface": "kw", "grapheme": ["qu"],
      "word": ["equino", "equina", "equinos", "equinas"],
