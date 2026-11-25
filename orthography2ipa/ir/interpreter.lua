@@ -782,12 +782,10 @@ function P:_slot_bits(ctx, j)
   return has and bits - vb or bits
 end
 
-function P:_slot_vowel(ctx, j) return hasbit(self:_slot_bits(ctx, j), self._ebit.vowel) end
 function P:_comb(ch) return self:_c(ch, "combining") end
 function P:_vowel_char(ch)
   return not self:_comb(ch) and (self:_c(ch, "orth_vowel") or self:_c(ch, "ipa_vowel"))
 end
-function P:_casefold_char(ch) return self._casefold[ch] or ch end
 
 local function map_chars(map, text)
   local out = {}
@@ -901,7 +899,8 @@ function P:_longest_match(text, start)
   local node = self._trie
   local best
   for i = start, min(start + self._max_key, slen(text)) - 1 do
-    local ch = self:_casefold_char(at(text, i))
+    local ch = at(text, i)
+    ch = self._casefold[ch] or ch
     node = (#ch == 3) and node[ch] or nil
     if node == nil then break end
     if node[1] ~= nil then best = node[1] end
@@ -1104,7 +1103,8 @@ function P:_match_transparent(text, start)
   local node = self._trie
   local best, best_end, i = nil, start, start
   while i < slen(text) do
-    local ch = self:_casefold_char(at(text, i))
+    local ch = at(text, i)
+    ch = self._casefold[ch] or ch
     if #ch == 3 and node[ch] then
       node = node[ch]
       i = i + 1
@@ -1164,13 +1164,14 @@ function P:_backoff(text, pos, gkey, tokens)
     if next_ch ~= "" and self:_c(next_ch, "elision_apostrophe") and after + 1 < n
         and self:_c(at(text, after + 1), "alpha") then
       after = after + 1
-      local low = self:_casefold_char(at(text, after))
+      local low = at(text, after)
+      low = self._casefold[low] or low
       local cands = self._trie_keys[low] and self.entries[self._key_index[low] + 1].cands
       local silent = cands and #cands == 1 and cands[1] == ""
       if silent and after + 1 < n and self:_c(at(text, after + 1), "alpha") then after = after + 1 end
       next_ch = at(text, after)
     end
-    local nlow = next_ch ~= "" and self:_casefold_char(next_ch) or ""
+    local nlow = next_ch ~= "" and (self._casefold[next_ch] or next_ch) or ""
     if not (next_ch ~= "" and self:_c(next_ch, "orth_vowel")) then
       local bit = next_ch ~= "" and "glide_vowel_cons" or "glide_vowel_final"
       if not self:_e(e, bit) then gkey = sl(gkey, 0, -1) end
@@ -1501,10 +1502,10 @@ function P:_syll(rel, ctx, i)
 end
 
 function P:_syllable_position(ctx, j)
-  if self:_slot_vowel(ctx, j) then return "nucleus" end
+  if hasbit(self:_slot_bits(ctx, j), self._ebit.vowel) then return "nucleus" end
   local k = j + 1
   while k < #ctx.entries and self:_e(ctx.entries[k + 1], "spells_nothing") do k = k + 1 end
-  if k < #ctx.entries and self:_slot_vowel(ctx, k) then return "onset" end
+  if k < #ctx.entries and hasbit(self:_slot_bits(ctx, k), self._ebit.vowel) then return "onset" end
   return "coda"
 end
 
@@ -1670,8 +1671,8 @@ end
 function P:_heterosyllabic(ctx, i, step)
   local before, after = i - step, i + 2 * step
   local n = #ctx.entries
-  return 0 <= before and before < n and self:_slot_vowel(ctx, before)
-    and 0 <= after and after < n and self:_slot_vowel(ctx, after)
+  return 0 <= before and before < n and hasbit(self:_slot_bits(ctx, before), self._ebit.vowel)
+    and 0 <= after and after < n and hasbit(self:_slot_bits(ctx, after), self._ebit.vowel)
 end
 
 function P:_realize(ipa, ctx, i)
@@ -2613,13 +2614,12 @@ function P:_prefix_mark(syll, mark)
   return sl(syll, 0, i) .. mark .. sl(syll, i)
 end
 
-function P:_basic(ch) return self:_c(ch, "basic_vowel") end
 
 function P:_merge_sites(syllables)
   local out = {}
   for i = 1, #syllables - 1 do
     local a, b = syllables[i], syllables[i + 1]
-    if a ~= "" and b ~= "" and self:_basic(at(a, -1)) and self:_basic(at(b, 0)) then out[#out + 1] = i end
+    if a ~= "" and b ~= "" and self:_c(at(a, -1), "basic_vowel") and self:_c(at(b, 0), "basic_vowel") then out[#out + 1] = i end
   end
   return out
 end
@@ -2633,9 +2633,9 @@ function P:_vowel_contacts(syllables)
   local contacts = {}
   for i = 1, #syllables - 1 do
     local before, after = syllables[i], syllables[i + 1]
-    if before ~= "" and self:_basic(at(before, -1)) then
+    if before ~= "" and self:_c(at(before, -1), "basic_vowel") then
       local j, n = 0, slen(after)
-      while j < n and not self:_basic(at(after, j)) do j = j + 1 end
+      while j < n and not self:_c(at(after, j), "basic_vowel") do j = j + 1 end
       if j ~= n then
         local ok = true
         if j > 0 then
