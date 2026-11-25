@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.126.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.126.1a1) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.126.0a2...7.126.1a1)
+
+**Merged pull requests:**
+
+- fix\(ir\): split words at every whitespace character, not only a space [\#2556](https://github.com/TigreGotico/orthography2ipa/pull/2556) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.126.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.126.0a2) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.126.0a1...7.126.0a2)
@@ -338,10 +346,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.30a2...7.124.30a3)
 
-**Merged pull requests:**
-
-- Update astral-sh/setup-uv action to v10.4.0 [\#2417](https://github.com/TigreGotico/orthography2ipa/pull/2417) ([renovate[bot]](https://github.com/apps/renovate))
-
 ## [7.124.30a2](https://github.com/TigreGotico/orthography2ipa/tree/7.124.30a2) (2026-11-21)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.30a1...7.124.30a2)
@@ -349,10 +353,6 @@
 ## [7.124.30a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.30a1) (2026-11-21)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.124.29a1...7.124.30a1)
-
-**Merged pull requests:**
-
-- fix\(pt-BR\): read a stressed unmarked ⟨e⟩ as open in -ela, -eca, -ese and sete, pele, segue [\#2418](https://github.com/TigreGotico/orthography2ipa/pull/2418) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.124.29a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.29a1) (2026-11-21)
 
