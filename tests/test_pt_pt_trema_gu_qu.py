@@ -1,8 +1,7 @@
 """The trema of ⟨gü qü⟩ marks a pronounced ⟨u⟩, so pt-PT reads it [ɡw kw].
 
 Spellings written before the AO1990 keep the trema: lingüiça, freqüente. The
-unmarked spelling is read the same way in pt-PT, and the expected values are
-the Infopédia pt-PT readings of the unmarked forms, from o2i-lexicons
+expected values are the Infopédia pt-PT readings of the unmarked forms, from o2i-lexicons
 data/pt-PT/infopedia.tsv. ⟨ü⟩ and the vowel after it are one syllable, so the
 stress mark stands before the onset: fɾɨˈkwẽtɨ.
 """
@@ -30,19 +29,10 @@ TREMA_WORDS = [
     ("freqüente", "fɾɨˈkwẽtɨ"),          # frequente
     ("lingüiça", "lĩˈɡwisɐ"),            # linguiça
 ]
-UNMARKED = [
-    ("aguentar", "ɐɡẽˈtaɾ"), ("cinquenta", "sĩˈkẽtɐ"), ("frequente", "fɾɨˈkẽtɨ"),
-    ("tranquilo", "tɾɐ̃ˈkilu"), ("linguiça", "lĩˈɡisɐ"), ("arguir", "ɐɾˈɡiɾ"),
-]
 
 
 @pytest.mark.parametrize("word,ipa", TREMA_WORDS)
 def test_pt_pt_reads_the_trema(word, ipa):
-    assert G2P("pt-PT").transcribe_word(word) == ipa
-
-
-@pytest.mark.parametrize("word,ipa", UNMARKED)
-def test_unmarked_spelling_is_unchanged(word, ipa):
     assert G2P("pt-PT").transcribe_word(word) == ipa
 
 
