@@ -8,7 +8,7 @@ import orthography2ipa as o
 GLIDE = {"aguentar": "ɡw", "aguenta": "ɡw", "sagui": "ɡw", "linguiça": "ɡw", "pinguim": "ɡw",
          "linguista": "ɡw", "antiguidade": "ɡw", "arguir": "ɡw",
          "frequenta": "kw", "frequente": "kw", "tranquilo": "kw", "cinquenta": "kw",
-         "equestre": "kw", "equino": "kw", "ubiquidade": "kw", "sequestro": "kw",
+         "equestre": "kw", "equino": "kw", "ubiquidade": "kw", "sequestro": "kw",  # Priberam also accepts |qué|; kw is the one pinned
          "bilíngue": "ɡw", "bilingue": "ɡw", "sequência": "kw", "delinquente": "kw",
          "eloquente": "kw", "ensanguentado": "ɡw", "quinquénio": "kw",
          "consequente": "kw", "ambiguidade": "ɡw", "aquífero": "kw", "antiquíssimo": "kw",
