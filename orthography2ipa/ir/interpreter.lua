@@ -38,7 +38,7 @@ M.SEMANTICS = {
   fold = 1, tone_dock = 1, iambic = 1, prevocalic_backoff = 1,
   ipa_count = 1, consonant_nuclei = 1, computed_tone = 1,
   internal_apostrophe = 1, apostrophe_elision = 1, collapse_geminates = 1, context_beam = 1,
-  clitic_marks = 1, silent_stress_marks = 1, overrides = 1, allophone_map = 1, hiatus = 1,
+  clitic_marks = 1, silent_stress_marks = 1, overrides = 1, words = 1, allophone_map = 1, hiatus = 1,
   semivowels = 1, cliticless = 1, compound_last = 1, tonic_after_diphthong = 1,
   ipa_diphthongs = 1, mark_onsets = 1, allophony_geminate = 1,
   weight = 1, virama_final = 1, vowel_signs = 1, preposed = 1,
@@ -309,7 +309,7 @@ local LAYOUT = Ob{
   entries = Lt(Ob{key = S_, cands = Lt(S_), costs = Lt(I_), bits = I_, trie = I_, onset = Lt(S_),
                   positional = Lt(Pr(PRED, Lt(S_)))}),
   fallback = SSET,
-  word = Ob{exceptions = Lt(Lt(S_)), internal_apostrophe = I_, apostrophe_elision = I_,
+  word = Ob{exceptions = Lt(Lt(S_)), words = Lt(Lt(S_)), internal_apostrophe = I_, apostrophe_elision = I_,
             collapse_geminates = I_, context_beam = I_, tone_dock = Lt(S_), clitic_marks = SSET, silent_stress_marks = SSET,
             virama_final = S_},
   beam = Ob{tilde = S_},
@@ -696,6 +696,8 @@ function M.new(doc)
   self.word = ir.word
   self._exceptions = {}
   for _, p in ipairs(self.word.exceptions) do self._exceptions[p[1]] = p[2] end
+  self._fragment_words = {}
+  for _, p in ipairs(self.word.words or {}) do self._fragment_words[p[1]] = p[2] end
   self.stress = ir.stress
   self.syll = ir.syllable or {}
   self._allo = ir.allophony
@@ -1270,7 +1272,7 @@ function P:_opens_listed_word(text, token)
   local stop = self:_run(text, e, "word_letter")
   if stop == e then return false end
   local key = self:casefold(APOS .. sl(text, e, stop))
-  return self._exceptions[key] ~= nil
+  return self._exceptions[key] ~= nil or self._fragment_words[self:nfc(key)] ~= nil
 end
 
 -- ─── S3: overrides ─────────────────────────────────────────────────────────
@@ -1300,6 +1302,7 @@ function P:_whole_word_override(word)
   end
   for _, k in ipairs(keys) do
     local hit = self._exceptions[k]
+    if hit == nil then hit = self._fragment_words[self:nfc(k)] end
     if hit ~= nil then return hit end
   end
   return nil

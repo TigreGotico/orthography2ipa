@@ -63,6 +63,8 @@ The key `o2i.phonemizer_identity` holds a JSON object with one identity per lang
 
 Record `o2i.spec_revisions` with the voice. [revisions.md](revisions.md) says what moves a revision, and how to compare two of them.
 
+A plugin that ships a word table gives it to the export with `--fragment PATH`. Repeat the flag for more than one file. A fragment is a JSON file `{"ir_version": 1, "words": {"word": "ipa"}}`. The export merges the word tables into every language, and a later file wins on a duplicate word. The key `o2i.fragments` lists the sha256 of each fragment, and the revision of each language covers the words.
+
 ## Step 3: pin the spec data of the training run
 
 A voice learns the phonemes of the spec data it was trained with. A later change to a spec changes the phonemes, and the voice then hears input it never saw. `--rev` compiles the spec data of a git tag or commit with the current compiler, so the file keeps the rules of the training run.

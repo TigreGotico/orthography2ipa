@@ -184,6 +184,7 @@ class Interpreter:
         self._bits = [e["bits"] for e in self.entries]
         self.word = ir["word"]
         self._exceptions = dict(self.word["exceptions"])
+        self._fragment_words = dict(self.word.get("words", ()))
         self._tokens: Dict[str, Tuple[Token, ...]] = {}
         self._words: Dict[Tuple[str, int], "WordResult"] = {}
         self._segments: Dict[Tuple[str, int], Tuple[Sequence[str], Tuple[str, ...]]] = {}
@@ -655,7 +656,8 @@ class Interpreter:
         if stop == end:
             return False
         key = self.casefold("'" + text[end:stop])
-        return key in self._exceptions or (lexicon is not None and self.nfc(key) in lexicon)
+        return (key in self._exceptions or (lexicon is not None and self.nfc(key) in lexicon)
+                or self.nfc(key) in self._fragment_words)
 
     # ─── S3: overrides ───────────────────────────────────────────────
     def _strip_edges(self, key: str) -> str:
@@ -685,6 +687,9 @@ class Interpreter:
                 hit = lexicon.get(self.nfc(k))
                 if hit is not None:
                     return hit
+            hit = self._fragment_words.get(self.nfc(k))
+            if hit is not None:
+                return hit
         return None
 
     def _elided_hosts(self, word: str) -> List[Tuple[int, str]]:

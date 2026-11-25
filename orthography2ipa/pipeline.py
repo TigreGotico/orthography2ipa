@@ -62,6 +62,15 @@ class Pipeline:
             ``transcribe`` and ``transcribe_detailed``, after the spec's
             ``sandhi_rules``, and it returns one IPA string per word.
             ``apply_sandhi=False`` turns off the spec's rules, not this field.
+        fragments: plugin fragments for this engine: JSON objects with the
+            ``ir_version`` of the IR and a ``words`` table, ``{word: ipa}``,
+            with lowercase NFC keys. The compiler merges them into the IR of
+            the engine, and a later fragment wins on a duplicate key. The
+            precedence is ``spec.word_exceptions``, then ``lexicon``, then
+            the fragment words, then the rules. Any other part, another
+            ``ir_version`` or a bad key raises :class:`ValueError` when the
+            engine builds its IR. A loom export carries the fragments; a
+            ``lexicon`` it cannot.
 
     A pipeline makes no promise to be hashable: a dict lexicon is not, and a
     callable compares by identity. Key a cache on what builds the pipeline.
@@ -73,6 +82,7 @@ class Pipeline:
     mark: Optional[Callable[[str], str]] = None
     rescore: Tuple[LatticeRescorer, ...] = ()
     sandhi: Optional[SandhiPlugin] = None
+    fragments: Tuple[dict, ...] = ()
 
 
 def _letters(text: str) -> str:

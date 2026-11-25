@@ -12,6 +12,7 @@ reference interpreter also accepts.
 """
 from __future__ import annotations
 
+import hashlib
 import io
 import itertools
 import json
@@ -769,7 +770,7 @@ def build_ir(code: str, data_ref: Optional[str] = None, *, dialect_profile: Opti
              dialect_spirants: bool = False, apply_stress: bool = True,
              apply_allophony: bool = True, apply_sandhi: bool = True,
              expand_allophones: bool = False, expose_ambiguous_endings: bool = True,
-             spec: Optional[LanguageSpec] = None) -> dict:
+             spec: Optional[LanguageSpec] = None, fragments: Sequence[dict] = ()) -> dict:
     """The IR of *code* with plain strings (the readable form).
 
     The IR without a dialect program is compiled once per process; a
@@ -777,6 +778,8 @@ def build_ir(code: str, data_ref: Optional[str] = None, *, dialect_profile: Opti
     place of the registry spec of *code*, and its IR is not kept.
     ``expose_ambiguous_endings=False`` drops the lower-ranked readings of a
     list-valued ``grammatical_endings`` entry, so they never reach the beam.
+    *fragments* are plugin fragments (docs/ir/o2i-ir-v1.md, 3.5) merged into
+    the document. With none, the IR is as it was.
     """
     if spec is None:
         base, spec, elision = _base_ir(code, data_ref, apply_stress, apply_allophony, apply_sandhi,
@@ -798,7 +801,40 @@ def build_ir(code: str, data_ref: Optional[str] = None, *, dialect_profile: Opti
         endings = dict(ir["endings"])
         endings["table"] = [{**e, "alts": [], "costs": e["costs"][:1]} for e in endings["table"]]
         ir["endings"] = endings
+    words = merge_fragments(fragments, ir["ir_version"])
+    if words:
+        ir["word"] = {**ir["word"], "words": sorted(words.items())}
     return ir
+
+
+def fragment_digest(fragment: dict) -> str:
+    """sha256 of the canonical JSON of *fragment*."""
+    return hashlib.sha256(json.dumps(fragment, sort_keys=True, separators=(",", ":"),
+                                     ensure_ascii=False).encode()).hexdigest()
+
+
+def merge_fragments(fragments: Sequence[dict], ir_version: int) -> Dict[str, str]:
+    """The ``words`` of *fragments* as one table. A later fragment wins on a duplicate key.
+
+    Raises:
+        ValueError: a fragment has a key other than ``ir_version`` and ``words``, an
+            ``ir_version`` other than *ir_version*, a ``words`` key that is not lowercase
+            NFC, or a ``words`` entry that is not a pair of strings.
+    """
+    merged: Dict[str, str] = {}
+    for fragment in fragments:
+        unknown = sorted(set(fragment) - {"ir_version", "words"})
+        if unknown:
+            raise ValueError(f"fragment part {unknown[0]!r} is not supported; only 'words' is")
+        if fragment.get("ir_version") != ir_version:
+            raise ValueError(f"fragment ir_version {fragment.get('ir_version')!r} is not {ir_version}")
+        for key, ipa in fragment.get("words", {}).items():
+            if not isinstance(key, str) or not isinstance(ipa, str):
+                raise ValueError(f"fragment word {key!r}: the key and the value must be strings")
+            if key != unicodedata.normalize("NFC", key).lower():
+                raise ValueError(f"fragment word {key!r}: a key must be lowercase NFC")
+            merged[key] = ipa
+    return merged
 
 
 @lru_cache(maxsize=32)
