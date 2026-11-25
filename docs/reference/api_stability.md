@@ -136,6 +136,7 @@ These names served plugin discovery by entry point, or a lexicon for the whole p
 | `G2P(sentence_rescorer=...)` | `g2p` | `Pipeline(sandhi=...)` | None |
 | `G2P(plugins=...)` | `g2p` | The `Pipeline` field of each stage | arbtok (tests) |
 | `feature_vector`, `feature_names` (the 23-feature layout) | `distance` | `phonematcher.vectorize_phones` and `phonematcher.FEATURES` | None |
+| `is_vowel_phone` | `feats` | `phonematcher.is_vowel_phone` | None |
 | `phoneme_embeddings`, `build_ngram_lm`, `perplexity` | `feats` | The same name in `orthography2ipa.lm` | None |
 
 `feature_vector` and `feature_names` stay, and the layout of their result changes in the next major release. Until then they return the 23-feature layout of the vendored `feats` table. Each call raises a `DeprecationWarning` that names the release and names `phonematcher.vectorize_phones` and `phonematcher.FEATURES`, which give the feature layout of [phonematcher](https://github.com/TigreGotico/phonematcher). At the next major release, `segment_distance` and the distance functions built on it read the distance of phonematcher, and their values change. The distance functions raise no warning before then, and their values stay as they are.
