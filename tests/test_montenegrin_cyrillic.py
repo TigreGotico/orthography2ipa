@@ -11,7 +11,7 @@ import warnings
 
 import langcodes
 import pytest
-from linguatag.matching import DEFAULT_MAX_LANGUAGE_DISTANCE, lang_distance
+from linguatag import DEFAULT_MAX_LANGUAGE_DISTANCE, lang_distance
 
 from orthography2ipa import G2P, UnknownVariantWarning, get, resolve
 
