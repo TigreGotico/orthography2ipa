@@ -593,7 +593,7 @@ PT_NOT_IPA_AUTHORITY = (
 #: transcribes instead. ``scripts/build_gold_corrections.py`` checks every entry
 #: against the upstream file and stops on one that matches no row.
 PT_UNIFIED_DECISIONS: Tuple[Tuple[str, str, str, str, Optional[str], str, str], ...] = (
-    ("borguinhão", "pt-BR", "wiktionary", "boɹgoˈɲejs", None, "wrong_headword", "borguinhões: the reading ends in -ejs, the word in -ão"),
+    ("borguinhão", "pt-BR", "wiktionary", "boɹgoˈɲejs", None, "wrong_headword", "borgonhês: the reading has the stressed -ês [ejs] and -go- of that word, not the -guinhão of this one"),
     ("vida", "pt-BR", "wiktionary", "ˈvita", None, "wrong_segment", "the reading has [t] for the ⟨d⟩ of the spelling"),
     ("Blátidas", "pt-PT", "infopedia", "blaˈtidɐʃ", "ˈblatidɐʃ", "accent_contradiction", "á"),
     ("abígeo", "pt-PT", "infopedia", "ɐbiˈʒju", "ɐˈbiʒju", "accent_contradiction", "í"),
