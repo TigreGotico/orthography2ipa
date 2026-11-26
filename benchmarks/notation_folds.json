@@ -1,0 +1,30 @@
+[
+  {
+    "lang": "pt-BR",
+    "dataset": "portuguese_unified",
+    "words": 23125,
+    "per": 0.1421,
+    "folded_per": 0.0679,
+    "segment_per": 0.1249,
+    "folded_segment_per": 0.0685,
+    "folds": [
+      "michaelis_ã",
+      "michaelis_no_palatal",
+      "michaelis_final_r"
+    ]
+  },
+  {
+    "lang": "pt-BR",
+    "dataset": "portuguese_unified_corrected",
+    "words": 23124,
+    "per": 0.1414,
+    "folded_per": 0.0672,
+    "segment_per": 0.1243,
+    "folded_segment_per": 0.0679,
+    "folds": [
+      "michaelis_ã",
+      "michaelis_no_palatal",
+      "michaelis_final_r"
+    ]
+  }
+]
