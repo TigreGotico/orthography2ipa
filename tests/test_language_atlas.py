@@ -328,12 +328,12 @@ def test_cut_is_living_research_and_production(raw, expected):
 
 
 def test_az_pages_with_one_name_are_ordered_by_code(atlas, monkeypatch):
-    # ks and kas are both named Kashmiri. Their order must not depend on
+    # ks and ks-Arab are both named Kashmiri. Their order must not depend on
     # the order the page set yields them in.
-    assert atlas.raw["ks"]["name"] == atlas.raw["kas"]["name"]
-    monkeypatch.setattr(atlas, "pages", ["ks", "kas"])
+    assert atlas.raw["ks"]["name"] == atlas.raw["ks-Arab"]["name"]
+    monkeypatch.setattr(atlas, "pages", ["ks-Arab", "ks"])
     table = atlas_gen.index_az(atlas).split("## Pages", 1)[1].split("\n\n[A]", 1)[0]
-    assert re.findall(r"^\| \[[^\]]+\]\(([^)]+)\)", table, re.M) == ["kas.md", "ks.md"]
+    assert re.findall(r"^\| \[[^\]]+\]\(([^)]+)\)", table, re.M) == ["ks.md", "ks-Arab.md"]
 
 
 def test_rule_change_caps_a_long_letter_list():

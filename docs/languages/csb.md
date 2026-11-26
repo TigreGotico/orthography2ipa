@@ -164,4 +164,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Kashmiri](ks.md) · [Home](../index.md) · [Kazakh →](kk.md)
+[← Kashmiri](ks-Arab.md) · [Home](../index.md) · [Kazakh →](kk.md)
