@@ -423,8 +423,8 @@ interpret(ir, text, hooks):
         e iambic length                                                3.8
         f stress: weight branch or decision list, then mark placement  3.8
   S10 compound stress                                                  3.11
-  H6  host: sentence rescorers 
   S11 sandhi rules                                                     3.10
+  H6  host: sentence rescorers
   H7  host: Pipeline.sandhi or declared sandhi plugins
   S12 join non-empty words with U+0020                                 3.12
   S13 dialect program on the joined string (compile option)          3.10.2
@@ -1668,7 +1668,7 @@ These names keep their meaning, because outside code depends on them:
 | `registry.get`, `resolve`, `available_codes` | compile-time Python |
 | `phoneme_inventory(spec, lexicon=None)` | `inventory.py`, package root; phonematcher's coverage benchmark (`benchmarks/tasks/coverage.py`) reads it |
 | `packaged_lexicon(lang, patches=)`, `packaged_lexicon_sources(patches=)` | lexicon data for H4 |
-| `spec_revision(lang)` | unchanged: the spec JSON, its parent chain and the engine fingerprint (8.1) |
+| `spec_revision(lang)` | unchanged: the spec JSON, its inherits chain and the engine fingerprint (8.1) |
 | `lexicon_revision(lang, patches=)` | unchanged |
 | `transcription_revision(lang, patches=False)` | added: `spec_revision` plus the packaged lexicon (8.1) |
 | `exceptions.EngineSourceUnavailable` | unchanged |
