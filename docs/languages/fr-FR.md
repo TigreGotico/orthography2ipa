@@ -273,9 +273,9 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `fr` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 85500 | 0.0514 | yes |
-| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `fr-FR` | generated | machine-generated | MIT, each file its own | 245718 | 0.0587 | yes |
-| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `fr-FR` | generated | espeak-derived | CC BY 4.0 | 9446 | 0.0790 | no |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `fr` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 85500 | 0.0513 | yes |
+| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `fr-FR` | generated | machine-generated | MIT, each file its own | 245718 | 0.0585 | yes |
+| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `fr-FR` | generated | espeak-derived | CC BY 4.0 | 9446 | 0.0789 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
@@ -413,7 +413,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 
 The spec declares no stress rule.
 
-Whole-word exceptions (144): ⟨affenpinscher⟩ [afənpinʃəʁ], ⟨afrikander⟩ [afʁikɑ̃dɛʁ], ⟨afrikaner⟩ [afʁikanɛʁ], ⟨amer⟩ [amɛʁ], ⟨amers⟩ [amɛʁ], ⟨angledozer⟩ [ɑ̃ɡlədozœʁ], ⟨aster⟩ [astɛʁ], ⟨atlas⟩ [atlas], ⟨autobus⟩ [otobys], ⟨blazer⟩ [blazœʁ], ⟨bloomer⟩ [blumœʁ], ⟨boomer⟩ [bumœʁ], ⟨bus⟩ [bys], ⟨bécher⟩ [beʃɛʁ], ⟨cactus⟩ [kaktys], ⟨campus⟩ [kɑ̃pys], ⟨cancer⟩ [kɑ̃sɛʁ], ⟨cancers⟩ [kɑ̃sɛʁ], ⟨casher⟩ [kaʃɛʁ], ⟨cathéter⟩ [katetɛʁ], ⟨ce⟩ [sə], ⟨ces⟩ [se], ⟨cet⟩ [sɛt], ⟨charter⟩ [ʃaʁtɛʁ], ⟨cher⟩ [ʃɛʁ], ⟨chers⟩ [ʃɛʁ], ⟨container⟩ [kɔ̃tɛnɛʁ], ⟨containers⟩ [kɔ̃tɛnɛʁ], ⟨cover⟩ [kɔvœʁ], ⟨cracker⟩ [kʁakœʁ], and 114 more in the spec file.
+Whole-word exceptions (159): ⟨affenpinscher⟩ [afənpinʃəʁ], ⟨afrikander⟩ [afʁikɑ̃dɛʁ], ⟨afrikaner⟩ [afʁikanɛʁ], ⟨amer⟩ [amɛʁ], ⟨amers⟩ [amɛʁ], ⟨angledozer⟩ [ɑ̃ɡlədozœʁ], ⟨aster⟩ [astɛʁ], ⟨atlas⟩ [atlas], ⟨autobus⟩ [otobys], ⟨bang⟩ [bɑ̃ɡ], ⟨bangs⟩ [bɑ̃ɡ], ⟨blazer⟩ [blazœʁ], ⟨bloomer⟩ [blumœʁ], ⟨boomer⟩ [bumœʁ], ⟨boomerang⟩ [buməʁɑ̃ɡ], ⟨bus⟩ [bys], ⟨bécher⟩ [beʃɛʁ], ⟨cactus⟩ [kaktys], ⟨campus⟩ [kɑ̃pys], ⟨cancer⟩ [kɑ̃sɛʁ], ⟨cancers⟩ [kɑ̃sɛʁ], ⟨casher⟩ [kaʃɛʁ], ⟨cathéter⟩ [katetɛʁ], ⟨ce⟩ [sə], ⟨ces⟩ [se], ⟨cet⟩ [sɛt], ⟨charter⟩ [ʃaʁtɛʁ], ⟨cher⟩ [ʃɛʁ], ⟨chers⟩ [ʃɛʁ], ⟨chleuh⟩ [ʃlø], and 129 more in the spec file.
 
 Grammatical endings: ⟨-ent⟩ ∅ ∅, ⟨-er⟩ [e], ⟨-ez⟩ [e], ⟨-stion⟩ [stjɔ̃], ⟨-tial⟩ [sjal], ⟨-tiel⟩ [sjɛl], ⟨-tience⟩ [sjɑ̃s], ⟨-tion⟩ [sjɔ̃].
 <!-- atlas:spelling end -->
@@ -421,7 +421,7 @@ Grammatical endings: ⟨-ent⟩ ∅ ∅, ⟨-er⟩ [e], ⟨-ez⟩ [e], ⟨-stion
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 54 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 57 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -479,15 +479,19 @@ The spec applies 54 allophone rules after the letters are read. The change colum
 | `FR_G_HARD_BEFORE_TREMA_U` | /ʒ/ → [ɡ], spelled ⟨g⟩, before ⟨ü⟩ | ⟨ambigüe⟩ [ɑ̃biɡy] | [Martinon 1913](#src-martinon1913) |
 | `FR_C_MUTE_FINAL_AFTER_NASAL` | /k/ → ∅, word-finally, spelled ⟨c⟩, after ⟨n⟩ ⟨ain⟩ ⟨ein⟩ ⟨oin⟩ | ⟨blanc⟩ [blɑ̃] | [Martinon 1913](#src-martinon1913) |
 | `FR_X_S_AFTER_OI` | /ks/ → [s], before a vowel, spelled ⟨x⟩, after ⟨oi⟩ | ⟨x⟩ [ks] | [Martinon 1913](#src-martinon1913) |
+| `FR_NUMERAL_FINAL_X_SOUNDS` | ∅ → [s], spelled ⟨x⟩, in 2 listed words | ⟨six⟩ [sis] | [Martinon 1913](#src-martinon1913) |
+| `FR_HUIT_FINAL_T_SOUNDS` | ∅ → [t], spelled ⟨t⟩, in 1 listed words | ⟨huit⟩ [ɥit] | [Martinon 1913](#src-martinon1913) |
+| `FR_X_K_BEFORE_SIBILANT` | /ks/ → [k], before [s], spelled ⟨x⟩ | ⟨not⟩ [ks] | [Martinon 1913](#src-martinon1913) |
 
-The spec applies 10 rules across a word boundary. The contexts are regular expressions on the IPA of the two words.
+The spec applies 11 rules across a word boundary. The contexts are regular expressions on the IPA of the two words.
 
 | Rule | End of word | Start of next word | Change | Example | Cited |
 |:--|:--|:--|:--|:--|:--|
-| `FR_NEUF_V_BEFORE_ANS_HEURES` | `^nœf$` | `^(?:ɑ̃\|œʁ)$` | left [nœv‿] | - | [Martinon 1913](#src-martinon1913) |
-| `FR_DIX_Z_BEFORE_HUIT_NEUF` | `^dis$` | `^(?:ɥit\|nœf)$` | left [diz] | - | [Martinon 1913](#src-martinon1913) |
-| `FR_NUMERAL_MUTE_BEFORE_CONSONANT` | `^(ɥi\|si\|di)[ts]$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|sɛt)$\|ʒɥ)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | [Martinon 1913](#src-martinon1913) |
-| `FR_NUMERAL_Z_BEFORE_VOWEL` | `^(si\|di)s$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_NEUF_V_BEFORE_HEURES` | `^nœf$` | `^œʁ$` | left [nœv‿] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_DIX_Z_BEFORE_HUIT_NEUF` | `^((?:d\|d͡z)[iɪ])s$` | `^(?:ɥit\|nœf)$` | left [z] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_NUMERAL_MUTE_BEFORE_CONSONANT` | `^((?:s\|d\|d͡z)[iɪ])s$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|sɛt\|də\|dy\|de\|puʁ\|paʁ\|syʁ)$\|ʒɥ)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | [Martinon 1913](#src-martinon1913) |
+| `FR_HUIT_MUTE_BEFORE_CONSONANT` | `^(ɥ[iɪ])t$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|sɛt\|də\|dy\|de\|puʁ\|paʁ\|syʁ)$\|ʒɥ)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | [Martinon 1913](#src-martinon1913) |
+| `FR_NUMERAL_Z_BEFORE_VOWEL` | `^((?:s\|d\|d͡z)[iɪ])s$` | `^(?!(?:avʁil\|au\|ut\|u\|ɔktɔbʁ\|e\|a)$)[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_Z` | `z$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | - |
 | `FR_LIAISON_T` | `t$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [t‿] | - | - |
 | `FR_LIAISON_N` | `n$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [n‿] | - | - |
