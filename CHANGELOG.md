@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.131.8a1](https://github.com/TigreGotico/orthography2ipa/tree/7.131.8a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.131.7a2...7.131.8a1)
+
+**Merged pull requests:**
+
+- chore\(deps\): linguatag\>=0.9.8a1 [\#2700](https://github.com/TigreGotico/orthography2ipa/pull/2700) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(gold\): borguinhão's dropped reading is borgonhês, not the plural [\#2698](https://github.com/TigreGotico/orthography2ipa/pull/2698) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.131.7a2](https://github.com/TigreGotico/orthography2ipa/tree/7.131.7a2) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.131.7a1...7.131.7a2)
