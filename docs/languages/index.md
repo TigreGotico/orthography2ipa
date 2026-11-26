@@ -19,6 +19,7 @@ where it does not.
 | [by-region.md](by-region.md) | Every spec by Glottolog macroarea and country |
 | [by-script.md](by-script.md) | Every spec by the script it reads |
 | [a-z.md](a-z.md) | Every spec by name, with the atlas pages first |
+| [leaders.md](leaders.md) | The best gold board row of each leader language |
 
 An atlas page has a fixed shape. A generated summary and a table of names,
 codes and links come first. An overview follows. Where nobody has written
