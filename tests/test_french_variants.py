@@ -69,8 +69,8 @@ def test_quebec_affricates_a_coronal_stop_before_a_high_front_vocoid(
 
 
 @pytest.mark.parametrize("text, expected", [
-    ("trois", "tʁwa"),             # /w/ and /ʁ/ do not trigger it
-    ("toit", "twa"),
+    ("trois", "tʁwɒ"),             # /w/ and /ʁ/ do not trigger it (final /a/
+    ("toit", "twɒ"),               # is [ɒ], Dumas 1974: 27)
     ("tête", "tai̯t"),             # /t/ before a mid vowel (long [ɛː] -> [ai̯])
     ("dos", "do"),
     ("patte", "pat"),
@@ -182,9 +182,15 @@ def test_an_extension_or_variant_keeps_the_region(tag, code):
 
 
 #: The whole-word entries a variant states over those of fr-FR: vingt with
-#: its final [t] (PFC consonant page II d) 4); Avanzi 2016, 2024) and the
-#: [ø] of the Midi clitics (PFC e-caduc page, 'Timbre').
+#: its final [t] (PFC consonant page II d) 4); Avanzi 2016, 2024), the
+#: Laurentian long vowel of the fr-FR ⟨-er⟩ exceptions (Dumas 1974: 18-21)
+#: and the [ø] of the Midi clitics (PFC e-caduc page, 'Timbre').
 OWN_EXCEPTIONS = {
+    "fr-CA": {"mer": "mai̯ʁ", "mers": "mai̯ʁ", "fer": "fai̯ʁ", "fers": "fai̯ʁ",
+              "cher": "ʃai̯ʁ", "chers": "ʃai̯ʁ", "hiver": "ivai̯ʁ",
+              "hivers": "ivai̯ʁ", "enfer": "ɑ̃fai̯ʁ", "enfers": "ɑ̃fai̯ʁ",
+              "amer": "amai̯ʁ", "amers": "amai̯ʁ", "hier": "jai̯ʁ",
+              "ver": "vai̯ʁ", "outremer": "utʁəmai̯ʁ"},
     "fr-BE": {"vingt": "vɛ̃t"}, "fr-CH": {"vingt": "vɛ̃t"},
     "fr-FR-x-midi": {"le": "lø", "de": "dø", "que": "kø", "ce": "sø",
                      "ne": "nø", "se": "sø", "je": "ʒø", "me": "mø",

@@ -230,3 +230,31 @@ def test_the_circumflex_e_is_long_only_in_a_closed_final_syllable(
 def test_the_vowel_of_a_unit_before_a_final_mute_e_is_long(text, be, ch):
     assert _say(text, "fr-BE") == be
     assert _say(text, "fr-CH") == ch
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("mer", "mai̯ʁ"),               # Dumas 1974: 18-21: every vowel before a
+    ("fer", "fai̯ʁ"),               # word-final /r/; fr-FR lists these words
+    ("hiver", "ivai̯ʁ"),            # as whole-word exceptions
+    ("hier", "jai̯ʁ"),
+    ("ouvre", "uːvʁ"),             # rule (6), ex. (7): ouvre [uːvr]
+    ("livre", "liːvʁ"),
+    ("lèvre", "lai̯vʁ"),
+    ("chèvre", "ʃai̯vʁ"),
+    ("moi", "mwɒ"),                # p. 27: [ɒ] at the end of a word
+    ("trois", "tʁwɒ"),
+    ("froid", "fʁwɒ"),
+    ("noir", "nwɑu̯ʁ"),
+    ("boîte", "bwat"),             # closed syllable: front [a]
+    ("leur", "lœʁ"),               # proclitics carry no accent and are not
+    ("par", "paʁ"),                # diphthongised (pp. 28-29; ex. (17):
+    ("pour", "puʁ"),               # leur oncle)
+    ("sur", "syʁ"),
+])
+def test_quebec_review_cases(text, expected):
+    assert _say(text, "fr-CA") == expected
+
+
+def test_quebec_proclitics_stay_short_inside_a_phrase():
+    assert _say("par la porte", "fr-CA").split()[0] == "paʁ"
+    assert _say("leur maison", "fr-CA").split()[0] == "lœʁ"

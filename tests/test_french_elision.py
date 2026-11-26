@@ -108,7 +108,9 @@ def test_the_reported_sentence_keeps_every_clitic(tag):
     if tag == "fr-CA":
         # dy -> d͡zy: /d/ before /y/ is affricated (Dow 2019: 1); the front
         # nasal is [ẽ], the long vowels of lumières, autre and chose are
-        # diphthongs (Dumas 1974: 18-26)
+        # diphthongs (Dumas 1974: 18-26): each content word carries the
+        # primary or secondary accent under which Dumas (p. 28) makes the
+        # diphthong obligatory
         assert spoken == "dakɔʁ ʒe etẽ le lymjai̯ʁ d͡zy salɔ̃ ɔu̯tʁ ʃɔu̯z"
     else:
         assert spoken == "dakɔʁ ʒe etɛ̃ le lymjɛʁ dy salɔ̃ otʁ ʃoz"
