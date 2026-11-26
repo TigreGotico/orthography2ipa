@@ -376,8 +376,10 @@ def test_numeral_sandhi_counter_cases(text, expected):
     ("quatre-vingt-dix-huit", "katʁ vɛ̃ diz ɥit"),
     ("le huit mai", "lə ɥit me"), ("le six mai", "lə sis me"),
     ("le dix janvier", "lə dis ʒɑ̃vje"),
-    ("neuf ans", "nœv‿ ɑ̃"), ("neuf heures", "nœv‿ œʁ"),
-    ("dix-neuf ans", "diz nœv‿ ɑ̃"),
+    ("neuf heures", "nœv‿ œʁ"), ("dix-neuf heures", "diz nœv‿ œʁ"),
+    # neuf ans is [nœv‿ɑ̃] in Martinon; the IPA of ans is that of en, so the
+    # rule leaves it (see test_neuf_links_with_v_before_heures_only).
+    ("neuf ans", "nœf ɑ̃"),
 ])
 def test_numeral_compounds_months_and_neuf(text, expected):
     assert _t(text) == expected
@@ -388,4 +390,47 @@ def test_numeral_compounds_months_and_neuf(text, expected):
     ("huit jours", "ɥi ʒuʁ"),
 ])
 def test_numeral_counter_cases(text, expected):
+    assert _t(text) == expected
+
+
+# The numeral sandhi reads only the three numerals: [dit] and [sit] are
+# other words (vous dites, le site, il cite).
+@pytest.mark.parametrize("text, expected", [
+    ("vous dites que", "vu dit kə"), ("le site de la ville", "lə sit də la vil"),
+    ("il cite Platon", "il sit platɔ̃"),
+])
+def test_numeral_sandhi_leaves_dit_and_sit_alone(text, expected):
+    assert _t(text) == expected
+
+
+# Martinon (1913: 345): before a month that begins with a vowel, dix and six
+# are [dis] [sis] (six avril, si-savril); "si zet huit" is an abuse of
+# liaison. Before a plural they multiply, [z] stays (six hommes).
+@pytest.mark.parametrize("text, expected", [
+    ("le six avril", "lə sis avʁil"), ("le dix octobre", "lə dis ɔktɔbʁ"),
+    ("six et huit", "sis e ɥit"), ("six ou sept", "sis u sɛt"),
+    ("six enfants", "siz‿ ɑ̃fɑ̃"), ("dix ans", "diz‿ ɑ̃"),
+])
+def test_six_and_dix_link_only_before_what_they_multiply(text, expected):
+    assert _t(text) == expected
+
+
+# Martinon (1913: 328, 345): the consonant falls only before the plural the
+# numeral multiplies, never before a preposition or article.
+@pytest.mark.parametrize("text, expected", [
+    ("six de mes amis", "sis də me ami"), ("huit de plus", "ɥit də ply"),
+    ("ils sont dix pour", "il sɔ̃ dis puʁ"), ("dix sur vingt", "dis syʁ vɛ̃"),
+    ("huit mes", "ɥit me"),
+])
+def test_numeral_keeps_its_consonant_before_a_function_word(text, expected):
+    assert _t(text) == expected
+
+
+# Martinon (1913: 234-235): neu(f) heures [v]. The rule reads IPA, and ans
+# has the IPA of en and an, so neuf ans is left as [nœf ɑ̃].
+@pytest.mark.parametrize("text, expected", [
+    ("neuf heures", "nœv‿ œʁ"), ("il y en a neuf en tout", "il i ɑ̃ a nœf ɑ̃ tu"),
+    ("dix-neuf en tout", "diz nœf ɑ̃ tu"),
+])
+def test_neuf_links_with_v_before_heures_only(text, expected):
     assert _t(text) == expected

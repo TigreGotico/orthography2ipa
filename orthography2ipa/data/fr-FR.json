@@ -474,13 +474,13 @@
   ],
   "sandhi_rules": [
     {
-      "id": "FR_NEUF_V_BEFORE_ANS_HEURES",
-      "name": "neuf before ans and heures",
+      "id": "FR_NEUF_V_BEFORE_HEURES",
+      "name": "neuf before heures",
       "left_context": "^nœf$",
-      "right_context": "^(?:ɑ̃|œʁ)$",
+      "right_context": "^œʁ$",
       "transform": "nœv‿",
       "obligatory": true,
-      "notes": "neuf links with [v] before ans and heures only: neuf ans [nœv‿ɑ̃], neuf heures [nœv‿œʁ], dix-neuf ans. Martinon (1913: 234-235): the old liaison [v] of neuf survives only in neu(f) ans and neu(f) heures; elsewhere before a vowel the [f] is kept (neuf euros)."
+      "notes": "neuf links with [v] before heures: neuf heures [nœv‿œʁ], dix-neuf heures. Martinon (1913: 234-235): the old liaison [v] of neuf survives only in neu(f) ans and neu(f) heures; elsewhere before a vowel the [f] is kept (neuf euros). neuf ans is not stated: the rule reads IPA, and ans has the IPA [ɑ̃] of en and an (neuf en tout), so neuf ans stays [nœf ɑ̃] until a sandhi rule can read the spelling of the next word."
     },
     {
       "id": "FR_DIX_Z_BEFORE_HUIT_NEUF",
@@ -493,21 +493,30 @@
     },
     {
       "id": "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
-      "name": "numeral final consonant before a consonant",
-      "left_context": "^(ɥi|si|di)[ts]$",
-      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|sɛt)$|ʒɥ)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "name": "final consonant of six and dix before a consonant",
+      "left_context": "^(si|di)s$",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|sɛt|də|dy|de|puʁ|paʁ|syʁ)$|ʒɥ)[pbtdkɡfvszʃʒmnɲlʁ]",
       "transform": "\\1",
       "obligatory": true,
-      "notes": "huit, six and dix lose their final consonant before a word that begins with a consonant: huit jours [ɥi ʒuʁ], six sous [si su], dix francs [di fʁɑ̃]. Martinon (1913: 328, 345) states this for a following plural. The rule cannot see the number of the next word, so it names the two cases he keeps apart: before the name of a month the consonant stays (le huit mai [ɥit me], le six janvier; Martinon 1913: 328, 345, 'dix et six se prononcent dis et sis devant avril, août, octobre, comme devant mai, juin ou septembre'), and dix-sept keeps its hard [s] (dis sɛt, Martinon 1913: 346). Juin and juillet are matched by their onset [ʒɥ]. The left context names the three whole-word readings of the word_exceptions entries."
+      "notes": "six and dix lose their final [s] before a word that begins with a consonant: six sous [si su], dix francs [di fʁɑ̃]. The left context is the whole word, [sis] or [dis], so other words in [s] are untouched. Martinon (1913: 328, 345) drops the consonant only before the plural that the numeral multiplies (hui(t) sous, di(x) francs, si(x) cents). The rule cannot see the number of the next word, so it names the cases he keeps apart: before the name of a month the consonant stays (le huit mai [ɥit me], le six janvier; Martinon 1913: 345, 'dix et six se prononcent dis et sis devant avril, août, octobre, comme devant mai, juin ou septembre'); dix-sept keeps its hard [s] (dis sɛt, Martinon 1913: 346); and a preposition or article is not a multiplied plural, so de, du, des, pour, par and sur leave the consonant (six de mes amis, ils sont dix pour). [me] is both mai and mes, and both keep the consonant. Juin and juillet are matched by their onset [ʒɥ]."
+    },
+    {
+      "id": "FR_HUIT_MUTE_BEFORE_CONSONANT",
+      "name": "final consonant of huit before a consonant",
+      "left_context": "^ɥit$",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|sɛt|də|dy|de|puʁ|paʁ|syʁ)$|ʒɥ)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "transform": "ɥi",
+      "obligatory": true,
+      "notes": "huit loses its final [t] before a word that begins with a consonant: huit jours [ɥi ʒuʁ], huit cents. The left context is the whole word [ɥit], so dites [dit], site and cite [sit] are untouched. Martinon (1913: 328, 345) drops the consonant only before the plural that the numeral multiplies (hui(t) sous, di(x) francs, si(x) cents). The rule cannot see the number of the next word, so it names the cases he keeps apart: before the name of a month the consonant stays (le huit mai [ɥit me], le six janvier; Martinon 1913: 345, 'dix et six se prononcent dis et sis devant avril, août, octobre, comme devant mai, juin ou septembre'); dix-sept keeps its hard [s] (dis sɛt, Martinon 1913: 346); and a preposition or article is not a multiplied plural, so de, du, des, pour, par and sur leave the consonant (six de mes amis, ils sont dix pour). [me] is both mai and mes, and both keep the consonant. Juin and juillet are matched by their onset [ʒɥ]."
     },
     {
       "id": "FR_NUMERAL_Z_BEFORE_VOWEL",
       "name": "z-liaison of six and dix",
       "left_context": "^(si|di)s$",
-      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "right_context": "^(?!(?:avʁil|au|ut|u|ɔktɔbʁ|e|a)$)[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
       "transform": "\\1z‿",
       "obligatory": true,
-      "notes": "six and dix take the liaison [z] before a vowel: six hommes [siz‿ɔm], dix ans [diz‿ɑ̃]. Martinon (1913: 345), who adds that before the name of a month (six avril) [s] is the careful reading and [z] frequent."
+      "notes": "six and dix take the liaison [z] before a vowel-initial word they multiply: six hommes [siz‿ɔm], six enfants, dix ans [diz‿ɑ̃]. Martinon (1913: 345): six hommes (si-zom) against six avril (si-savril), because the name of the month is not multiplied, so dix and six are [dis] [sis] before avril, août and octobre; si zavril and si zet huit are abuses of liaison. The rule therefore leaves the vowel-initial months and the words et, ou and à alone (le six avril [sis avʁil], six et huit [sis e ɥit]). août is matched both as [u] and as [ut] and as [au], the reading the spec now gives it."
     },
     {
       "id": "FR_LIAISON_Z",
