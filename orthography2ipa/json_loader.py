@@ -330,6 +330,8 @@ def load_json_spec(code: str) -> LanguageSpec:
                 right_context=sr["right_context"],
                 transform=sr.get("transform"),
                 right_transform=sr.get("right_transform"),
+                left_spelling=sr.get("left_spelling"),
+                right_spelling=sr.get("right_spelling"),
                 obligatory=sr.get("obligatory", True),
                 notes=sr.get("notes", ""),
             )

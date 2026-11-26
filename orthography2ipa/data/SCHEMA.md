@@ -291,8 +291,33 @@ To keep a context from the base file, write it again in the child file.
 | `right_context`| string | yes      | Regex on next-word-initial IPA       |
 | `transform`    | string | no       | Replacement for the `left_context` match in the left word. Absent or `null` leaves the left word unchanged. `""` deletes the match |
 | `right_transform` | string | no    | Replacement for the `right_context` match in the right word. Absent or `null` (default) leaves the right word unchanged. Use it when the next word changes, as in Catalan spirantization of a word-initial /b d ɡ/ after a continuant |
+| `left_spelling` | string | no     | Regex that must also find a match in the spelling of the left word. Absent or `null` (default) sets no spelling condition |
+| `right_spelling` | string | no    | Regex that must also find a match in the spelling of the right word. Absent or `null` (default) sets no spelling condition |
 | `obligatory`   | bool   | no       | Whether rule is obligatory (default: true) |
 | `notes`        | string | no       | Optional notes                       |
+
+The IPA contexts cannot tell apart two words that sound the same: French
+⟨cent⟩ and ⟨sans⟩ are both [sɑ̃], and only ⟨cent ans⟩ links with [t]. A rule
+then adds `left_spelling` or `right_spelling`, and it fires only when its IPA
+contexts and its spelling conditions all hold. The spelling of a word is its
+written form, casefolded and without the punctuation around it, so a pattern
+names lowercase letters. A word written after a hyphen reads from the start of
+its hyphenated compound, joined with `-`. In ⟨quatre-vingt-deux⟩ the word
+⟨vingt⟩ reads `quatre-vingt` and ⟨deux⟩ reads `quatre-vingt-deux`, so
+`"left_spelling": "^vingt$"` holds for ⟨vingt-deux⟩ and not for
+⟨quatre-vingt-deux⟩, and `"right_spelling": "-est$"` holds for the ⟨est⟩ of
+⟨nord-est⟩ and not for the verb in ⟨le nord est⟩.
+
+```json
+{
+  "id": "FR_NEUF_V_BEFORE_ANS",
+  "name": "neuf ans",
+  "left_context": "^nœf$",
+  "right_context": "^ɑ̃$",
+  "right_spelling": "^ans$",
+  "transform": "nœv‿"
+}
+```
 
 Sandhi rules inherit by id, like allophone rules. A child spec switches off
 an inherited sandhi rule by redeclaring its `id` with the context `(?!)`, a

@@ -323,6 +323,8 @@ The side that a rule rewrites is its target, which is not the same as its direct
 
 The two sides resolve apart from each other, and the first matching rule wins on each side. So one boundary can voice the coda of the left word and lenite the onset of the right word: *els dos* gives `əlz ˈðos`. The contexts always match against the original words, so the side that fires first cannot hide the trigger of the other.
 
+`left_spelling` and `right_spelling` are regexes on the spelling of each word. A rule needs them when two words sound the same and take different sandhi. French ⟨cent⟩ and ⟨sang⟩ are both [sɑ̃], and only *cent ans* links with [t]. A word after a hyphen reads from the start of its compound, so the ⟨vingt⟩ of *quatre-vingt-deux* reads `quatre-vingt` and the ⟨vingt⟩ of *vingt-deux* reads `vingt`.
+
 ## `StressRules`: syllable nuclei
 
 [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#stress-schema) defines `diphthongs` and `ipa_diphthongs`. Both decide how many syllables a word has, and the count matters for more than the stress mark. In a language with vowel reduction that depends on stress, a wrong count reduces the wrong vowel and the whole word is wrong.

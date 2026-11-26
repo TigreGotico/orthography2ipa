@@ -1342,6 +1342,20 @@ class SandhiRule:
         A single boundary may need both halves (``els dos`` → [əlz ðos]:
         the left ⟨s⟩ voices *and* the right ⟨d⟩ lenites), so the two sides are
         resolved independently — see :meth:`~orthography2ipa.sandhi.SandhiEngine.apply`.
+    left_spelling : Optional[str]
+        Regex that must also find a match in the SPELLING of the left word.
+        ``None`` (the default) sets no spelling condition. It is the spelling
+        mirror of :attr:`left_context`: what a rule needs when two words with
+        the same IPA take different sandhi, because only the written form
+        tells them apart (French ⟨cent⟩ and ⟨sans⟩ are both [sɑ̃], and only
+        ⟨cent ans⟩ links with [t]). The spelling is the casefolded text of the
+        word without the punctuation around it. A word written after a hyphen
+        reads from the start of its hyphenated compound, joined with ``-``:
+        in ⟨quatre-vingt-deux⟩ the word ⟨vingt⟩ reads ``quatre-vingt`` and
+        ⟨deux⟩ reads ``quatre-vingt-deux``, so ``^vingt$`` holds for
+        ⟨vingt-deux⟩ and not for ⟨quatre-vingt-deux⟩.
+    right_spelling : Optional[str]
+        The same condition on the spelling of the right word.
     obligatory : bool
         Whether this rule applies unconditionally.
     notes : str
@@ -1353,6 +1367,8 @@ class SandhiRule:
     right_context: str
     transform: Optional[str] = None
     right_transform: Optional[str] = None
+    left_spelling: Optional[str] = None
+    right_spelling: Optional[str] = None
     obligatory: bool = True
     notes: str = ""
 

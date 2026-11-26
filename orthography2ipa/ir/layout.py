@@ -72,7 +72,7 @@ SEMANTICS = {
     "codepoint_map": 1, "pattern": 1, "trie": 1, "bits": 1, "predicate": 1, "candidates": 1,
     "beam": 1, "splitter": 1, "decision": 1, "sequencer": 1, "segment": 1, "word_has": 1,
     "spell_gate": 1, "positional_rewrite": 1, "gated_map": 1, "aligned_rewrite": 1,
-    "allophony": 1, "mark_placement": 1, "sandhi": 1, "sandhi_spelling": 1, "sandhi_pause": 1, "rewrite": 1, "endings": 1, "inherent": 1, "written_onsets": 1, "vowel_letters": 1, "secondary": 1, "aperture": 1, "prefixes": 1, "coda_liquid": 1, "mutate": 1, "accent2": 1, "fold": 1, "tone_dock": 1, "iambic": 1, "prevocalic_backoff": 1,
+    "allophony": 1, "mark_placement": 1, "sandhi": 1, "sandhi_spelling": 2, "sandhi_pause": 1, "rewrite": 1, "endings": 1, "inherent": 1, "written_onsets": 1, "vowel_letters": 1, "secondary": 1, "aperture": 1, "prefixes": 1, "coda_liquid": 1, "mutate": 1, "accent2": 1, "fold": 1, "tone_dock": 1, "iambic": 1, "prevocalic_backoff": 1,
     "weight": 1, "virama_final": 1, "vowel_signs": 1, "preposed": 1, "ipa_count": 1, "consonant_nuclei": 1, "computed_tone": 1,
     "internal_apostrophe": 1, "apostrophe_elision": 1, "collapse_geminates": 1, "context_beam": 1,
     "clitic_marks": 1, "silent_stress_marks": 1, "overrides": 1, "words": 1, "allophone_map": 1, "hiatus": 2,

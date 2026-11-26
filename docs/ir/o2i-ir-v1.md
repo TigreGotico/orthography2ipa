@@ -1126,29 +1126,32 @@ dock(ipa):
 `SandhiEngine.apply`, kept:
 
 ```
-sandhi(words, surfaces, pausal):
+sandhi(words, spellings, pausal):
   for i in 0 .. len(words)-1:
     if pausal[i]:                                            # a word at a pause
       for rule in sandhi where rule.pause:
-        if search(rule.left, words[i]) and spelling(rule.left_spelling, surfaces[i]):
+        if search(rule.left, words[i]) and spelling(rule.left_spelling, spellings[i]):
           words[i] = sub(rule.left, words[i], rule.left_out); break
       continue
     L, R = words[i], words[i+1]
     left_done = right_done = false
     for rule in sandhi where not rule.pause:
       if left_done and right_done: break
-      mL = search(rule.left, L) and spelling(rule.left_spelling, surfaces[i])
-      mR = search(rule.right, R) and spelling(rule.right_spelling, surfaces[i+1])
+      mL = search(rule.left, L) and spelling(rule.left_spelling, spellings[i])
+      mR = search(rule.right, R) and spelling(rule.right_spelling, spellings[i+1])
       if not (mL and mR): continue
       if rule.left_out and not left_done:  words[i]   = sub(rule.left, L, rule.left_out);   left_done = true
       if rule.right_out and not right_done: words[i+1] = sub(rule.right, R, rule.right_out); right_done = true
 
-spelling(p, surface) = p is absent or search(p, surface)
+spelling(p, s) = p is absent or search(p, s)
+
+spellings[k] = spellings[k-1] + "-" + surface[k]   if k > 0 and word k is hyphen_joined
+             = surface[k]                         otherwise
 ```
 
 Each search reads the two words as they stood before this pair was rewritten. The last word of a text is always at a pause, so `words[i+1]` exists whenever `pausal[i]` is false. The compiler writes `obligatory`, and the v1 interpreter does not read it: `G2P` never passes `obligatory_only`, so every rule applies. `sub` is Python `re.sub` with count 0: it replaces every non-overlapping match from left to right. `left_out` and `right_out` are templates `[["lit", s], ["group", n], ...]`. An unmatched group is empty. 43 rules (46 fields) use a group in a template.
 
-`left_spelling` and `right_spelling` are optional patterns that must also find a match in the surface of the word: the written text of the word as the word splitter returns it, casefolded, with a shadda written out as a doubled letter, with its other marks, and without the punctuation around it. So `^C` never matches, and a pattern names lowercase letters. They have the semantics version `sandhi_spelling`. A rule with `pause` set to 1 is a pause rule. It has no `right`, `right_out` or `right_spelling`, only the first matching pause rule of a word applies, and it changes the word at a pause only; the pair rules never see that word as the left of a pair. It has the semantics version `sandhi_pause`. Both fields are additive, and an IR with neither has the manifest and the revision it had.
+`left_spelling` and `right_spelling` are optional patterns that must also find a match in the spelling of the word. The surface of a word is its written text as the word splitter returns it, casefolded, with a shadda written out as a doubled letter, with its other marks, and without the punctuation around it. So `^C` never matches, and a pattern names lowercase letters. The spelling of a word is its surface, and for a word that the splitter marks `hyphen_joined` (3.11), the spelling of the word before it, U+002D `-` and its surface. So the spelling reads from the start of the hyphenated compound: in ⟨quatre-vingt-deux⟩ the words read `quatre`, `quatre-vingt` and `quatre-vingt-deux`. The host hook H7 still receives the plain surfaces. They have the semantics version `sandhi_spelling`, 2 since the spelling of a hyphen-joined word holds its compound; at version 1 it was the surface alone. A spec `SandhiRule` sets them with its `left_spelling` and `right_spelling` fields, and a plugin fragment with the keys of the same names (3.5).. A rule with `pause` set to 1 is a pause rule. It has no `right`, `right_out` or `right_spelling`, only the first matching pause rule of a word applies, and it changes the word at a pause only; the pair rules never see that word as the left of a pair. It has the semantics version `sandhi_pause`. Both fields are additive, and an IR with neither has the manifest and the revision it had.
 
 The spec's own rules come first in the list. A plugin fragment adds rules after them (3.5). A word whose IPA is empty is a word: a rule reads it as the empty string, and a pair rule does not look past it.
 

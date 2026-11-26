@@ -1065,6 +1065,10 @@ def _build(spec: LanguageSpec, data_ref, apply_stress, apply_allophony, apply_sa
                 item["left_out"] = compile_template(rule.transform)
             if rule.right_transform is not None:
                 item["right_out"] = compile_template(rule.right_transform)
+            if rule.left_spelling is not None:
+                item["left_spelling"] = compile_pattern(rule.left_spelling)
+            if rule.right_spelling is not None:
+                item["right_spelling"] = compile_pattern(rule.right_spelling)
             sandhi.append(item)
             for part in (*item.get("left_out", ()), *item.get("right_out", ())):
                 if part[0] == "lit":

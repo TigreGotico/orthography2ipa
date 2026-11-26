@@ -2294,9 +2294,19 @@ class Interpreter:
         return result
 
     @staticmethod
+    def _spellings(words: List[_Word]) -> List[str]:
+        """The spelling that the sandhi rules read for each word: its surface, and for a
+        word joined to the one before by a hyphen, the spelling of that word, ``-`` and
+        its surface (docs/ir/o2i-ir-v1.md, 3.10.1)."""
+        out: List[str] = []
+        for k, w in enumerate(words):
+            out.append(out[-1] + "-" + w.surface if k and w.hyphen_joined else w.surface)
+        return out
+
+    @staticmethod
     def _side_holds(rule: dict, side: str, ipa: List[int], surface: str) -> bool:
         """The *side* pattern finds a match in the IPA and, when the rule has one, the
-        spelling pattern finds a match in the surface of the word."""
+        spelling pattern finds a match in the spelling of the word."""
         if pattern.search(rule[side], ipa, 0, pattern.group_count(rule[side])) is None:
             return False
         spelling = rule.get(side + "_spelling")
@@ -2359,7 +2369,7 @@ class Interpreter:
         if self.stress is not None and self.stress["compound_last"]:
             ipa_words = self._mark_compounds(words, ipa_words)
         if self.ir.get("sandhi"):
-            ipa_words = self._sandhi(ipa_words, [w.surface for w in words], [w.pausal for w in words])
+            ipa_words = self._sandhi(ipa_words, self._spellings(words), [w.pausal for w in words])
         if self.hooks.sandhi is not None:
             rewritten = self.hooks.sandhi(list(ipa_words), [w.surface for w in words],
                                           [w.pausal for w in words])

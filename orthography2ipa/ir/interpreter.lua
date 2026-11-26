@@ -33,7 +33,7 @@ M.SEMANTICS = {
   codepoint_map = 1, pattern = 1, trie = 1, bits = 1, predicate = 1, candidates = 1,
   beam = 1, splitter = 1, decision = 1, sequencer = 1, segment = 1, word_has = 1,
   spell_gate = 1, positional_rewrite = 1, gated_map = 1, aligned_rewrite = 1,
-  allophony = 1, mark_placement = 1, sandhi = 1, sandhi_spelling = 1, sandhi_pause = 1, rewrite = 1, endings = 1, inherent = 1,
+  allophony = 1, mark_placement = 1, sandhi = 1, sandhi_spelling = 2, sandhi_pause = 1, rewrite = 1, endings = 1, inherent = 1,
   written_onsets = 1, vowel_letters = 1, secondary = 1, aperture = 1, prefixes = 1, coda_liquid = 1, mutate = 1, accent2 = 1,
   fold = 1, tone_dock = 1, iambic = 1, prevocalic_backoff = 1,
   ipa_count = 1, consonant_nuclei = 1, computed_tone = 1,
@@ -204,7 +204,7 @@ local function chars(s)
   for i = 0, #s / 3 - 1 do out[i + 1] = ssub(s, 3 * i + 1, 3 * i + 3) end
   return out
 end
-local SPACE, APOS, RSQUO, LENGTH = C(32), C(39), C(0x2019), C(0x2D0)
+local SPACE, APOS, RSQUO, LENGTH, HYPHEN = C(32), C(39), C(0x2019), C(0x2D0), C(0x2D)
 M.C, M.from_cps, M.to_cps = C, from_cps, to_cps
 
 -- ═══ JSON ══════════════════════════════════════════════════════════════════
@@ -3366,7 +3366,7 @@ function P:_sandhi(words, surfaces, pausal)
 end
 
 -- The side pattern finds a match in the IPA and, when the rule has one, the
--- spelling pattern finds a match in the surface of the word.
+-- spelling pattern finds a match in the spelling of the word.
 function P:_side_holds(rule, side, ipa, surface)
   local node = rule[side]
   if psearch(node, ipa, 0, group_count(node)) == nil then return false end
@@ -3400,9 +3400,18 @@ function P:transcribe(text, width)
     ipa_words = self:_mark_compounds(words, ipa_words)
   end
   if T(self.ir.sandhi) then
-    local surfaces, pausal = {}, {}
-    for k, w in ipairs(words) do surfaces[k], pausal[k] = w.surface, w.pausal end
-    ipa_words = self:_sandhi(ipa_words, surfaces, pausal)
+    local spellings, pausal = {}, {}
+    for k, w in ipairs(words) do
+      -- A word joined to the one before by a hyphen reads from the start of its
+      -- compound (docs/ir/o2i-ir-v1.md, 3.10.1).
+      if k > 1 and w.hyphen_joined then
+        spellings[k] = spellings[k - 1] .. HYPHEN .. w.surface
+      else
+        spellings[k] = w.surface
+      end
+      pausal[k] = w.pausal
+    end
+    ipa_words = self:_sandhi(ipa_words, spellings, pausal)
   end
   local kept = {}
   for _, w in ipairs(ipa_words) do if w ~= "" then kept[#kept + 1] = w end end
