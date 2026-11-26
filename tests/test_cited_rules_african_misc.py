@@ -1356,7 +1356,7 @@ def test_ht_on_is_a_nasal_vowel_and_ou_is_u():
 @pytest.mark.xfail(
     strict=True,
     reason="IPN 1979: an ⟨n⟩+vowel sequence blocks the nasal reading — engine "
-           "still nasalises and produces [kãaval] for kanaval",
+           "still nasalises and produces [kãaval] for kanaval", raises=AssertionError,
 )
 def test_ht_n_plus_vowel_blocks_the_nasal_reading():
     """"⟨an en on⟩ are the nasal vowels /ã ɛ̃ ɔ̃/ (a following hyphen or an
@@ -1473,7 +1473,7 @@ def test_srn_aw_is_a_diphthong():
 @pytest.mark.xfail(
     strict=True,
     reason="1980 Acehnese standard: word-final ⟨k⟩ is a glottal stop — engine "
-           "emits a plain [k] in bak",
+           "emits a plain [k] in bak", raises=AssertionError,
 )
 def test_ace_word_final_k_is_a_glottal_stop():
     """"Word-final ⟨k⟩ is realised as a glottal stop" (Acehnese 1980 Latin

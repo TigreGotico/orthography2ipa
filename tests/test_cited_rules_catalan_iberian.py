@@ -144,7 +144,7 @@ def test_ca_nasal_palatal_assimilation_across_a_word_boundary():
     strict=True,
     reason="stress notes cite següent [səˈɣwen]; the engine reads ⟨gü⟩ before "
            "a front vowel as the soft /ʒ/ and produces [səˈʒwɛn] — the "
-           "diaeresis does not protect the velar",
+           "diaeresis does not protect the velar", raises=AssertionError,
 )
 def test_ca_gu_with_diaeresis_is_a_velar_plus_glide():
     """Catalan stress notes (IEC grammar ch. 3; Wheeler 2005 §3.1): "The
@@ -161,7 +161,7 @@ def test_ca_gu_with_diaeresis_is_a_velar_plus_glide():
     strict=True,
     reason="stress notes cite avui [əˈβuj] as oxytone; ⟨ui⟩ is absent from "
            "final_stress_endings, so the engine stresses the first syllable "
-           "and leaves the ⟨a⟩ unreduced: [ˈaβuj]",
+           "and leaves the ⟨a⟩ unreduced: [ˈaβuj]", raises=AssertionError,
 )
 def test_ca_word_ending_in_a_falling_diphthong_is_oxytone():
     """Catalan stress notes (Wheeler 2005 §2.5, §3.1; IEC grammar ch. 3): "A
@@ -265,7 +265,7 @@ def test_eu_intervocalic_voiced_stops_are_approximants():
 @pytest.mark.xfail(
     strict=True,
     reason="Hualde et al. (2010: 120) is cited for nasal place assimilation; "
-           "the engine leaves the alveolar — hanka [hanka]",
+           "the engine leaves the alveolar — hanka [hanka]", raises=AssertionError,
 )
 def test_eu_nasal_place_assimilation():
     """Standard Basque notes: "nasals assimilate in place to a following
@@ -458,7 +458,7 @@ def test_ext_yeismo():
 @pytest.mark.xfail(
     strict=True,
     reason="notes cite 'jota' [ˈhota]; the engine keeps the Castilian velar "
-           "fricative: [xota]",
+           "fricative: [xota]", raises=AssertionError,
 )
 def test_ext_velar_fricative_weakens_to_h():
     """Extremaduran notes: "(7) /x/ → [h]: the velar fricative weakens to [h] in
@@ -469,7 +469,7 @@ def test_ext_velar_fricative_weakens_to_h():
 @pytest.mark.xfail(
     strict=True,
     reason="notes cite hijo [ˈhiho] (F- aspiration + /x/ → [h]); the engine "
-           "gives [ixo] — the ⟨h⟩ is silent and the ⟨j⟩ stays velar",
+           "gives [ixo] — the ⟨h⟩ is silent and the ⟨j⟩ stays velar", raises=AssertionError,
 )
 def test_ext_f_aspiration_gives_an_audible_h():
     """Extremaduran notes: "(3) F- ASPIRATION (rural/archaic): Latin F- → [h] in
@@ -560,7 +560,7 @@ def test_sc_five_vowel_system_has_no_open_mid_vowels():
     strict=True,
     reason="notes claim retroflex [ɖː] from Latin -LL-; the sc spec maps ⟨ll⟩ "
            "to a plain geminate lateral — bellu [belːu]. Sicilian, which makes "
-           "the same claim, does produce [ɖː]",
+           "the same claim, does produce [ɖː]", raises=AssertionError,
 )
 def test_sc_retroflex_from_latin_geminate_l():
     """Sardinian notes (Lausberg 1971; Blasco Ferrer 1984): "(4) Retroflex
@@ -589,7 +589,7 @@ def test_scn_five_vowel_system_is_the_open_mid_one():
 @pytest.mark.xfail(
     strict=True,
     reason="Ledgeway (2009) is cited for unstressed vowels → [ə]; the engine "
-           "keeps full vowels — paese [paese], bello [belːo]",
+           "keeps full vowels — paese [paese], bello [belːo]", raises=AssertionError,
 )
 def test_nap_unstressed_vowels_reduce_to_schwa():
     """Neapolitan notes (Ledgeway 2009; De Blasi & Imperatore 2000): "(2)
@@ -630,7 +630,7 @@ def test_lld_pl_cl_fl_clusters_are_preserved():
 @pytest.mark.xfail(
     strict=True,
     reason="notes claim CA- → [tʃ]; the engine reads ⟨ci⟩ as a velar plus "
-           "vowel and gives ciasa [kiasa]",
+           "vowel and gives ciasa [kiasa]", raises=AssertionError,
 )
 def test_lld_ca_palatalisation():
     """Ladin notes (Craffonara 1977): "(1) CA- → [tʃ] palatalisation."""
@@ -640,7 +640,7 @@ def test_lld_ca_palatalisation():
 @pytest.mark.xfail(
     strict=True,
     reason="notes claim CA- palatalisation; the engine reads Romansh ⟨ch⟩ as "
-           "the plain velar — chasa [kasa]",
+           "the plain velar — chasa [kasa]", raises=AssertionError,
 )
 def test_rm_ca_palatalisation():
     """Romansh notes (Liver 1999): "(1) CA- palatalisation" — the reflex of

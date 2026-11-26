@@ -15,7 +15,7 @@ def test_bare_affricate_is_one_segment_with_its_atom():
     assert segment_ipa("t͡s", ["t͡s"]) == ["t͡s"]
 
 
-@pytest.mark.xfail(strict=True, reason=TIE_BAR_ISSUE)
+@pytest.mark.xfail(strict=True, reason=TIE_BAR_ISSUE, raises=AssertionError)
 @pytest.mark.parametrize("ipa, segments", [
     ("t͡s", ["t͡s"]),
     ("t͡sʲ", ["t͡sʲ"]),
@@ -26,6 +26,6 @@ def test_tie_bar_keeps_the_second_letter_and_its_marks(ipa, segments):
     assert segment_ipa(ipa) == segments
 
 
-@pytest.mark.xfail(strict=True, reason=TIE_BAR_ISSUE)
+@pytest.mark.xfail(strict=True, reason=TIE_BAR_ISSUE, raises=AssertionError)
 def test_no_inventory_token_ends_in_a_tie_bar():
     assert [t for t in phoneme_inventory(get("av")) if t.endswith("͡")] == []

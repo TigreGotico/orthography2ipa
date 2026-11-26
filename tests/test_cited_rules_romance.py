@@ -543,7 +543,7 @@ def test_fr_ill_irregular_word_exceptions():
     strict=True,
     reason="FR_LIAISON_Z cites 'les amis → lez‿ami'; engine produces 'lə ami' — "
     "the spec silences word-final ⟨s⟩ pre-lexically, so no /z/ ever reaches the "
-    "sandhi rule's left_context 'z$' and the rule is structurally inert",
+    "sandhi rule's left_context 'z$' and the rule is structurally inert", raises=AssertionError,
 )
 def test_fr_liaison_z():
     """FR_LIAISON_Z: /s/ resurfaces as [z] before a vowel-initial word.
@@ -559,7 +559,7 @@ def test_fr_liaison_z():
     strict=True,
     reason="FR_LIAISON_N cites 'un ami → ɛ̃n‿ami'; engine produces 'œ̃ ami' — the "
     "nasal grapheme absorbs the ⟨n⟩, so no /n/ reaches the sandhi rule's "
-    "left_context 'n$' and the rule is structurally inert",
+    "left_context 'n$' and the rule is structurally inert", raises=AssertionError,
 )
 def test_fr_liaison_n():
     """FR_LIAISON_N: /n/ resurfaces before a vowel-initial word.

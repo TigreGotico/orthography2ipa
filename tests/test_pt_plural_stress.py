@@ -133,6 +133,6 @@ def test_where_the_transcription_lost_a_syllable(
 
 
 @pytest.mark.xfail(strict=True, reason="⟨y⟩ reads as a nucleus, not as the "
-                   "glide of jérsei [ˈʒɛrsɐj]")
+                   "glide of jérsei [ˈʒɛrsɐj]", raises=AssertionError)
 def test_jersey_reads_as_jersei(pipeline):
     assert reading("jersey", "pt-PT", pipeline) == "ˈʒɛɾsej"
