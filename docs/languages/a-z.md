@@ -936,8 +936,8 @@ Stubs (216): Da'a Kaili `kzf`, Daai Chin `dao`, Daakaka `bpa`, Daantanai' `lni`,
 | [Estonian](et.md) (page) | `et` | research | Uralic > Finnic |
 | [Eton (Cameroon)](https://tigregotico.github.io/orthography2ipa/#eto) | `eto` | skeleton | Atlantic-Congo |
 | [Eton (Vanuatu)](https://tigregotico.github.io/orthography2ipa/#etn) | `etn` | skeleton | Austronesian |
-| [Etruscan](https://tigregotico.github.io/orthography2ipa/#etr) | `etr` | skeleton | Tyrsenian |
 | [Etruscan](ett.md) (page) | `ett` | research | Tyrsenian |
+| [Etruscan](https://tigregotico.github.io/orthography2ipa/#ett-Latn) | `ett-Latn` | skeleton | Tyrsenian |
 | [European Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-PT) | `pt-PT` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Evenki](evn.md) (page) | `evn` | research | Tungusic |
 | [Ewe](ee.md) (page) | `ee` | research | Atlantic-Congo |

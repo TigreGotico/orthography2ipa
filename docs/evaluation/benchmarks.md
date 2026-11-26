@@ -117,9 +117,9 @@ The segment PER applies no notation fold, and it reads the raw transcriptions of
 | :--- | :--- | :--- |
 | `michaelis_ã` | [ɐ̃] → [ã] | No ⟨ã⟩ word writes [ɐ̃]. |
 | `michaelis_no_palatal` | [t͡ʃ d͡ʒ] → [t d] before [i ĩ ɪ j] | Almost no ⟨ti di⟩ word writes a palatal. |
-| `michaelis_final_r` | The final rhotic of the gold does not count when the hypothesis has none. | Almost every -ar, -er, -ir word writes the final r. |
+| `michaelis_final_r` | In a verb, the final rhotic of the gold does not count when the hypothesis has none. | Almost every -ar, -er, -ir word writes the final r. |
 
-The board columns stay unfolded.
+`michaelis_final_r` is not a notation fold. It accepts an optional deletion that Callou, Moraes & Leite (1998: 66) give as much more frequent in verbs than in other words, so it applies only to a reading from a row with the POS `VERB`. The board columns stay unfolded. `scripts/source_notation_per.py --write` writes `benchmarks/notation_folds.json`, and the scoreboard shows those rows in a section of their own, which never gates.
 
 
 Gold rows are grouped by word. A hypothesis is scored against every gold variant of its word, and the lowest PER counts. A sentence-level gold entry, such as a `4catac` row, is transcribed with `G2P.transcribe`, so the word-final rules of each word still apply. A single-word entry goes through `G2P.transcribe_word`.

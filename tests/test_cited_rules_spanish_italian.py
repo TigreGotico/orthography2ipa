@@ -1263,8 +1263,8 @@ def test_etr_four_vowel_system_has_no_o():
     ⟨o⟩ maps to nothing, so no [o] can enter a transcription; ⟨u⟩ is the back
     vowel that carries the load (ruma).
     """
-    assert _t("etr", "o") == ""
-    assert _bare("etr", "ruma") == "ruma"
+    assert _t("ett-Latn", "o") == ""
+    assert _bare("ett-Latn", "ruma") == "ruma"
 
 
 @pytest.mark.xfail(
@@ -1284,8 +1284,8 @@ def test_etr_theta_is_an_aspirated_stop():
     θefarie (the Etruscan name on the Praeneste fibula tradition) isolates it on
     the onset; the sister aspirate ⟨ph⟩ does surface as [pʰ] in phersu.
     """
-    assert _bare("etr", "θefarie").startswith("tʰ")
-    assert _bare("etr", "phersu").startswith("pʰ")
+    assert _bare("ett-Latn", "θefarie").startswith("tʰ")
+    assert _bare("ett-Latn", "phersu").startswith("pʰ")
 
 
 def test_xum_has_the_distinctive_sibilant():

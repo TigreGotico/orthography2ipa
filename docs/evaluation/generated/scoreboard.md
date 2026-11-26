@@ -583,10 +583,10 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-BR | ipadict_corrected | 95933 | 0.2313‡ | 0.9973 | - | 0.2276 | 0.2213 | 0.0500 | 0.0516 | [0.2303, 0.2323] | 0.0477 | production | machine-generated |
 | pt-BR | portuguese_tts | 20 | 0.0552‡ | - | - | - | - | - | - | [0.0382, 0.0735] | 0.1500 | production | llm-corrected |
 | pt-BR | portuguese_unified | 23123 | 0.1421 | 0.9909 | - | 0.1372 | 0.1314 | 0.3816 | 0.4063 | [0.1400, 0.1440] | 0.3701 | production | lexicon-derived |
-| pt-BR | portuguese_unified_corrected | 23122 | 0.1414‡ | 0.9911 | - | 0.1370 | 0.1313 | 0.3820 | 0.4066 | [0.1395, 0.1434] | 0.3722 | production | lexicon-derived |
+| pt-BR | portuguese_unified_corrected | 23107 | 0.1412‡ | 0.9911 | - | 0.1367 | 0.1310 | 0.3822 | 0.4069 | [0.1392, 0.1434] | 0.3724 | production | lexicon-derived |
 | pt-BR | primary_sources | 21 | 0.0690 | - | - | 0.0690 | 0.0690 | 0.7619 | 0.7619 | [0.0119, 0.1310] | 0.7619 | production | expert-human |
 | pt-BR | vox_communis | 33958 | 0.3951‡ | - | - | 0.3028 | 0.2775 | 0.0850 | 0.1151 | [0.3932, 0.3969] | 0.0363 | production | epitran-derived |
-| pt-BR | wikipron | 57897 | 0.0247 | - | - | 0.0199 | 0.0143 | 0.8851 | 0.9168 | [0.0241, 0.0254] | 0.8708 | production | crowd-scraped |
+| pt-BR | wikipron | 57897 | 0.0248 | - | - | 0.0200 | 0.0143 | 0.8852 | 0.9169 | [0.0241, 0.0254] | 0.8708 | production | crowd-scraped |
 | pt-BR-x-bahia | portuguese_tts | 20 | 0.1611‡ | - | - | - | - | - | - | [0.1411, 0.1813] | 0.0000 | research | llm-corrected |
 | pt-BR-x-caipira | portuguese_tts | 20 | 0.0506‡ | - | - | - | - | - | - | [0.0363, 0.0676] | 0.1500 | research | llm-corrected |
 | pt-BR-x-caipira | portuguese_unified | 31 | 0.3331 | 1.0000 | - | 0.3216 | 0.3057 | 0.0000 | 0.0000 | [0.2779, 0.3917] | 0.0000 | research | crowd-scraped |
@@ -785,6 +785,13 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | zom | wikipron | 134 | 0.4399 | - | - | 0.4399 | 0.4399 | 0.0000 | 0.0000 | [0.4190, 0.4602] | 0.0000 | research | crowd-scraped |
 | zu | wikipron | 1754 | 0.2311 | - | - | 0.2269 | 0.2267 | 0.0593 | 0.0593 | [0.2252, 0.2365] | 0.0576 | research | crowd-scraped |
 | zza | wikipron | 196 | 0.2464 | - | - | 0.2387 | 0.2387 | 0.2551 | 0.2551 | [0.2159, 0.2745] | 0.2449 | research | crowd-scraped |
+
+## Per-source notation folds (reported, not gated)
+
+Each fold applies only to a gold reading from a source whose own rows show no contrast for it (`scripts/source_notation_per.py`). The Michaelis folds rest on counts of its rows, not on its transcription key, so the folded numbers never gate. The section is a list, not a table, because the board checks read every table row of this page as a board row.
+
+- pt-BR portuguese_unified (23125 words): PER 0.1421, folded 0.0679. Segment PER 0.1249, folded 0.0685. Folds: `michaelis_ã`, `michaelis_no_palatal`, `michaelis_final_r`.
+- pt-BR portuguese_unified_corrected (23109 words): PER 0.1412, folded 0.0669. Segment PER 0.1237, folded 0.0673. Folds: `michaelis_ã`, `michaelis_no_palatal`, `michaelis_final_r`.
 
 ---
 [← Gold defects](../gold_defects.md) · [Home](../../index.md) · [Comparison to other G2P systems →](comparison.md)
