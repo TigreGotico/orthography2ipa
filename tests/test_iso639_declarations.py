@@ -28,10 +28,7 @@ ISO639_5 = _codes("iso639_5_codes.txt")
 
 # Declarations that hold a retired code. Each one waits on a key rename, which
 # moves the spec and its declaration together. This set may only shrink.
-KNOWN_INVALID = {
-    "ajt": "ajt",
-    "yol": "yol",
-}
+KNOWN_INVALID: dict = {}
 
 
 def _declarations():

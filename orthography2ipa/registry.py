@@ -329,6 +329,10 @@ _RENAMED: Dict[str, str] = {
     # SIL retired ``bbz`` as non-existent and names no replacement, so Babalia
     # Creole Arabic takes a private-use key. ``bbz`` is no other language's code.
     "bbz":                  "ar-TD-x-babalia",
+    # IANA deprecates ``ajt`` (preferred ``aeb``) and ``yol`` (preferred
+    # ``enm``), so each variety takes a private-use key under its preferred code.
+    "ajt":                  "aeb-x-judeo",
+    "yol":                  "enm-x-yola",
 }
 _ALIASES.update(_RENAMED)
 

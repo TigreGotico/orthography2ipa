@@ -244,7 +244,7 @@ class TestBackfilledRecordsRoundTrip:
     carry the conclusion documented in each spec's own prose."""
 
     @pytest.mark.parametrize("code,dataset,conclusion", [
-        ("yol", "wikipron", AuditConclusion.MISLABELED_GOLD),
+        ("enm-x-yola", "wikipron", AuditConclusion.MISLABELED_GOLD),
         ("pt-TL", "portal_lupo", AuditConclusion.MISLABELED_GOLD),
         ("arq-DZ", "primary_sources", AuditConclusion.SAMPLE_TOO_SMALL),
         ("se", "wikipron", AuditConclusion.CHANGE_REFUSED_UNCITED),

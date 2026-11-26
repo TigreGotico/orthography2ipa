@@ -425,7 +425,7 @@ Stubs (4): Geʽez (Classical Ethiopic) `gez`, Proto-Ethiopian-Semitic (family no
 | [Andalusi Arabic](https://tigregotico.github.io/orthography2ipa/#xaa) | `xaa` | research | Arabic |
 | [Proto-Arabic (Old Arabic)](https://tigregotico.github.io/orthography2ipa/#xpa) | `xpa` | research | IPA-reconstruction |
 
-Stubs (14): Dawāsir Arabic (Dammam, Eastern Province) `afb-SA-x-dawasir`, Judeo-Tunisian Arabic `ajt`, Judeo-Moroccan Arabic `aju`, Çukurova Arabic (Cilician) `apc-TR-x-cukurova`, Janūbi Arabic (southern Saudi) `ar-SA-x-janubi`, Kinderib Arabic (Anatolian qəltu) `ar-TR-x-kinderib`, Aramaic `arc`, Eastern Fayyum Arabic `arz-EG-x-fayyum`, Central Highland Yemeni Arabic `ayn-YE-x-highland`, Manākhi Arabic `ayn-YE-x-manakha`, Ancient Hebrew (Biblical Hebrew) `hbo`, Judeo-Arabic `jrb`, Siculo Arabic `sqr`, Judeo-Iraqi Arabic `yhd`.
+Stubs (14): Judeo-Tunisian Arabic `aeb-x-judeo`, Dawāsir Arabic (Dammam, Eastern Province) `afb-SA-x-dawasir`, Judeo-Moroccan Arabic `aju`, Çukurova Arabic (Cilician) `apc-TR-x-cukurova`, Janūbi Arabic (southern Saudi) `ar-SA-x-janubi`, Kinderib Arabic (Anatolian qəltu) `ar-TR-x-kinderib`, Aramaic `arc`, Eastern Fayyum Arabic `arz-EG-x-fayyum`, Central Highland Yemeni Arabic `ayn-YE-x-highland`, Manākhi Arabic `ayn-YE-x-manakha`, Ancient Hebrew (Biblical Hebrew) `hbo`, Judeo-Arabic `jrb`, Siculo Arabic `sqr`, Judeo-Iraqi Arabic `yhd`.
 
 ### Afro-Asiatic > Semitic > Sudanic Creole Arabic
 
@@ -1404,6 +1404,7 @@ Stubs (3): Colognian (Kölsch) `ksh`, Palatine German `pfl`, Zeelandic `zea`.
 | [American English (General American)](en-US.md) (page) | `en-US` | research | Latin |
 | [South African English](https://tigregotico.github.io/orthography2ipa/#en-ZA) | `en-ZA` | skeleton | Latin |
 | [Middle English](https://tigregotico.github.io/orthography2ipa/#enm) | `enm` | research | Latin |
+| [Yola](https://tigregotico.github.io/orthography2ipa/#enm-x-yola) | `enm-x-yola` | research | Latin |
 | [Fernando Po Creole English](fpe.md) (page) | `fpe` | research | Latin |
 | [North Frisian](frr.md) (page) | `frr` | research | Latin |
 | [West Frisian](fy.md) (page) | `fy` | research | Latin |
@@ -1423,7 +1424,6 @@ Stubs (3): Colognian (Kölsch) `ksh`, Palatine German `pfl`, Zeelandic `zea`.
 | [Old Saxon](https://tigregotico.github.io/orthography2ipa/#osx) | `osx` | research | Latin |
 | [Saterland Frisian](stq.md) (page) | `stq` | research | Latin |
 | [Yiddish](yi.md) (page) | `yi` | research | Hebrew |
-| [Yola](https://tigregotico.github.io/orthography2ipa/#yol) | `yol` | research | Latin |
 
 Stubs (4): Suebi (Germanic) `gem-x-suebi`, Scots `sco`, Shaetlan `scz`, West Flemish `vls`.
 

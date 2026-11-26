@@ -393,7 +393,7 @@ Stubs (2): Jejueo `jje`, Middle Korean (10th-16th cent.) `okm`.
 | [Hebrew](he.md) (page) | `he` | research | Afro-Asiatic > Semitic > Central Semitic |
 | [Yiddish](yi.md) (page) | `yi` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 
-Stubs (6): Judeo-Tunisian Arabic `ajt`, Judeo-Moroccan Arabic `aju`, Ancient Hebrew (Biblical Hebrew) `hbo`, Judeo-Arabic `jrb`, Yevanic `yej`, Judeo-Iraqi Arabic `yhd`.
+Stubs (6): Judeo-Tunisian Arabic `aeb-x-judeo`, Judeo-Moroccan Arabic `aju`, Ancient Hebrew (Biblical Hebrew) `hbo`, Judeo-Arabic `jrb`, Yevanic `yej`, Judeo-Iraqi Arabic `yhd`.
 
 ## IPA-reconstruction
 
@@ -656,6 +656,7 @@ Stubs (1): Western Kayah `kyu`.
 | [American English (General American)](en-US.md) (page) | `en-US` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [South African English](https://tigregotico.github.io/orthography2ipa/#en-ZA) | `en-ZA` | skeleton | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Middle English](https://tigregotico.github.io/orthography2ipa/#enm) | `enm` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
+| [Yola](https://tigregotico.github.io/orthography2ipa/#enm-x-yola) | `enm-x-yola` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Engenni](https://tigregotico.github.io/orthography2ipa/#enn) | `enn` | skeleton | Atlantic-Congo |
 | [Esperanto](eo.md) (page) | `eo` | production | Constructed |
 | [Latin American Spanish](https://tigregotico.github.io/orthography2ipa/#es-419) | `es-419` | skeleton | Indo-European > Italic > Romance > Ibero-Romance |
@@ -1320,7 +1321,6 @@ Stubs (1): Western Kayah `kyu`.
 | [Lolopo](ycl.md) (page) | `ycl` | research | Sino-Tibetan |
 | [Iyasa](https://tigregotico.github.io/orthography2ipa/#yko) | `yko` | skeleton | Atlantic-Congo |
 | [Yoruba](yo.md) (page) | `yo` | research | Atlantic-Congo |
-| [Yola](https://tigregotico.github.io/orthography2ipa/#yol) | `yol` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Nheengatu](yrl.md) (page) | `yrl` | research | Tupian |
 | [Cantonese, Jyutping](yue-Latn-jyutping.md) (page) | `yue-Latn-jyutping` | research | Sino-Tibetan |
 | [Bena (Nigeria)](https://tigregotico.github.io/orthography2ipa/#yun) | `yun` | skeleton | Atlantic-Congo |

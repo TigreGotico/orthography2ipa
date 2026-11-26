@@ -29,6 +29,8 @@ Usage:  python scripts/gen_family.py [--check]
 """
 from __future__ import annotations
 
+from linguatag import catalog_ids
+
 import argparse
 import json
 import re
@@ -139,7 +141,7 @@ def build(specs, G, CLASS):
             return None
         if code in MANUAL:
             return MANUAL[code]
-        gc = specs[code].get("glottolog_code")
+        gc = catalog_ids(code).get("glottolog_code")
         if gc:
             f = family_from_code(gc, G, CLASS)
             if f:
