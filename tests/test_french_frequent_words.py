@@ -288,6 +288,34 @@ def test_ied_rule_needs_the_final_d():
     assert _t("sied") == "sje"
 
 
+# Martinon (1913: 171): ⟨e⟩ before a doubled consonant letter is not a mute
+# e, except in dessus, dessous and the prefix re- before ⟨ss⟩ (ressembler,
+# ressort, ressource). 59: the open e of -esse (vieillesse) and -effe (greffe).
+@pytest.mark.parametrize("text, expected", [
+    ("message", "mesaʒ"), ("dessert", "desɛʁ"), ("cesser", "sese"),
+    ("serrer", "seʁe"), ("terrible", "teʁibl"), ("nettoyer", "netwaje"),
+    ("effet", "efɛ"), ("dessin", "desɛ̃"),
+])
+def test_e_before_a_doubled_consonant_is_not_mute(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("messe", "mɛs"), ("presse", "pʁɛs"), ("greffe", "ɡʁɛf"),
+])
+def test_e_before_a_doubled_consonant_in_the_last_syllable_is_open(
+        text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("ressembler", "ʁəsɑ̃ble"), ("ressource", "ʁəsuʁs"),
+    ("dessus", "dəsy"), ("dessous", "dəsu"),
+])
+def test_re_ss_dessus_and_nasal_doubles_keep_their_reading(text, expected):
+    assert _t(text) == expected
+
+
 # Martinon (1913: 328): the ⟨t⟩ of huit is pronounced (page huit, huit hommes)
 # except before a plural that begins with a consonant (hui(t) sous).
 # Martinon (1913: 345): six and dix end in [s] (j'en ai six, page dix), are
