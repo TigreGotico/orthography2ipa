@@ -33,7 +33,7 @@ def test_every_declared_id_matches_linguatag():
 @pytest.mark.parametrize("code, field, value", [
     ("pt-PT", "glottolog_code", "port1283"),
     ("pt-PT", "wikidata_qid", "Q5146"),
-    ("yol", "glottolog_code", "yola1237"),
+    ("enm-x-yola", "glottolog_code", "yola1237"),
 ])
 def test_known_ids(code, field, value):
     assert catalog_ids(code)[field] == value
