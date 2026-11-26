@@ -32,3 +32,16 @@ def test_segment_per_is_micro_over_the_closest_variant(monkeypatch):
     # ab: 0 edits / 2 segments (the closer variant); abcd: 2 edits / 4.
     n, per = benchmark.segment_per([("ab", "ab"), ("ab", "zz"), ("abcd", "abcd")], "pt-PT")
     assert (n, per) == (2, 2 / 6)
+
+
+def test_an_empty_transcription_counts_as_a_full_deletion(monkeypatch):
+    class Engine:
+        def __init__(self, *a, **k):
+            pass
+
+        def transcribe_word(self, word):
+            return {"ab": "ab", "cd": ""}[word]
+
+    import orthography2ipa
+    monkeypatch.setattr(orthography2ipa, "G2P", Engine)
+    assert benchmark.segment_per([("ab", "ab"), ("cd", "cd")], "pt-PT") == (2, 2 / 4)

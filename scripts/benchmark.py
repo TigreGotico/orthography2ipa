@@ -3883,7 +3883,8 @@ def segments(ipa: str) -> List[str]:
 
 def segment_per(pairs: Sequence[GoldPair], lang: str) -> Tuple[int, float]:
     """Micro segment PER of the rules on *pairs*: the edits over the closest
-    gold variant of each word, summed, over the summed gold segments.
+    gold variant of each word, summed, over the summed gold segments. A word
+    with an empty transcription counts as the deletion of its gold.
     Returns ``(words scored, PER)``."""
     from orthography2ipa import G2P, Pipeline
 
@@ -3895,8 +3896,6 @@ def segment_per(pairs: Sequence[GoldPair], lang: str) -> Tuple[int, float]:
     for word, golds in refs.items():
         transcribe = engine.transcribe if _is_multiword(word) else engine.transcribe_word
         hyp = segments(transcribe(word))
-        if not hyp:
-            continue
         cost, size = min((levenshtein(hyp, segments(g)), len(segments(g))) for g in golds)
         edits += cost
         total += size

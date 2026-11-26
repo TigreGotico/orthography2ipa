@@ -105,7 +105,7 @@ PER is the Levenshtein edit distance between the hypothesis and the reference IP
 1. Apply NFD. Write ʧ ʤ ʦ ʣ as t͡ʃ d͡ʒ t͡s d͡z.
 2. Remove stress marks, syllable dots, joiners and spaces.
 3. Make one segment from each base symbol, with its combining marks and its modifier letters (ʰ ʲ ʷ ˠ ˤ ː ˑ). A tie bar joins the next base symbol into the same segment.
-4. Score each word against its closest gold variant. The PER is the sum of the edits over the sum of the gold segments (micro), not the mean of the word PERs.
+4. Score each word against its closest gold variant. A word with an empty transcription counts as the deletion of its gold. The PER is the sum of the edits over the sum of the gold segments (micro), not the mean of the word PERs.
 
 The segment PER applies no notation fold, and it reads the raw transcriptions of the engine and the gold. The board columns use the code-point PER.
 
