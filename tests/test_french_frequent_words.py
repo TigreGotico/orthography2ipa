@@ -459,3 +459,12 @@ def test_numeral_final_consonant_is_a_rule_that_variants_build_on():
 ])
 def test_foreign_final_ng_keeps_its_g(text, expected):
     assert _t(text) == expected
+
+
+# Martinon (1913: 171): the mute e stays in cresson and cressonnière, at
+# least at Paris.
+@pytest.mark.parametrize("text, expected", [
+    ("cresson", "kʁəsɔ̃"), ("cressonnière", "kʁəsɔnjɛʁ"),
+])
+def test_cresson_keeps_its_mute_e(text, expected):
+    assert _t(text) == expected
