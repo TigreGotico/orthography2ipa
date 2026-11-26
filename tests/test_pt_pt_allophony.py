@@ -339,3 +339,10 @@ def test_pinguim_keeps_its_glide_in_every_inflection():
     assert g.transcribe("pinguim") == "pĩˈɡwĩ"
     assert g.transcribe("pinguins") == "pĩˈɡwĩʃ"
     assert g.transcribe("pinguinzinho") == "pĩɡwĩˈziɲu"
+
+
+def test_the_diminutive_of_pinga_keeps_a_silent_u():
+    """pinguinha is pinga + -inha: Infopédia pinguinhas [pĩˈɡiɲɐʃ]."""
+    g = G2P("pt-PT")
+    assert g.transcribe("pinguinhas") == "pĩˈɡiɲɐʃ"
+    assert g.transcribe("pinguineira") == "pĩɡwiˈnejɾɐ"
