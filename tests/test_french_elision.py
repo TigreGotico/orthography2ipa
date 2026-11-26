@@ -36,9 +36,6 @@ VOWEL_INITIAL_EXCEPTIONS = {word: ipa for word, ipa in FR_EXCEPTIONS.items()
 #: Verb forms that cannot follow l' or d'. After those clitics est is the noun
 #: 'east', which has entries of its own (see test_l_est_is_the_noun).
 VERB_FORMS = {"et", "es", "est"}
-#: Entries whose ⟨h⟩ is aspirate, so no clitic elides before them: le huit,
-#: not *l'huit (Martinon 1913: 328 writes "le huit mai").
-ASPIRATE_H = {"huit"}
 #: The reading of each elided clitic: its consonant, with the vowel elided.
 CLITICS = {"l'": "l", "d'": "d"}
 
@@ -163,14 +160,14 @@ def test_a_stray_apostrophe_does_not_crash(text):
 
 
 def test_every_vowel_initial_exception_is_tested():
-    # 30 entries: 26 content words, the three verb forms and huit.
-    assert len(VOWEL_INITIAL_EXCEPTIONS) == 30
+    # 29 entries: 26 content words and the three verb forms.
+    assert len(VOWEL_INITIAL_EXCEPTIONS) == 29
     assert VERB_FORMS <= set(VOWEL_INITIAL_EXCEPTIONS)
 
 
 @pytest.mark.parametrize("clitic", sorted(CLITICS))
 @pytest.mark.parametrize("host", sorted(set(VOWEL_INITIAL_EXCEPTIONS)
-                                        - VERB_FORMS - ASPIRATE_H))
+                                        - VERB_FORMS))
 def test_an_elided_clitic_keeps_the_host_exception(clitic, host):
     # l'hiver is l + the entry for hiver, [livɛʁ]; the rules alone gave [live].
     expected = CLITICS[clitic] + VOWEL_INITIAL_EXCEPTIONS[host]

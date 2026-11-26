@@ -434,3 +434,12 @@ def test_numeral_keeps_its_consonant_before_a_function_word(text, expected):
 ])
 def test_neuf_links_with_v_before_heures_only(text, expected):
     assert _t(text) == expected
+
+
+# The final consonant of huit, six and dix comes from a rule, not a
+# whole-word entry, so the rules of a regional variety still reach the word:
+# fr-CA affricates /d/ before /i/ (tests/test_french_variants.py).
+def test_numeral_final_consonant_is_a_rule_that_variants_build_on():
+    assert _t("dix") == "dis"
+    assert o2i.transcribe("dix", "fr-CA").startswith("d͡z")
+    assert o2i.transcribe("dix", "fr-CA").endswith("s")
