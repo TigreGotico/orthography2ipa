@@ -142,6 +142,24 @@ def test_g_before_a_vowel_letter_is_not_final(text, expected):
     assert _t(text) == expected
 
 
+# Martinon (1913: 213): after a nasal vowel final ⟨c⟩ stayed mute (ban(c),
+# blan(c), fran(c), jon(c), tron(c)); donc is mute in principle. 214 n. 1:
+# zinc should be written zing.
+@pytest.mark.parametrize("text, expected", [
+    ("blanc", "blɑ̃"), ("blancs", "blɑ̃"), ("banc", "bɑ̃"), ("franc", "fʁɑ̃"),
+    ("tronc", "tʁɔ̃"), ("vainc", "vɛ̃"), ("donc", "dɔ̃"), ("zinc", "zɛ̃ɡ"),
+])
+def test_final_c_after_a_nasal_is_mute(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("sac", "sak"), ("parc", "paʁk"), ("blanche", "blɑ̃ʃ"),
+])
+def test_final_c_elsewhere_sounds(text, expected):
+    assert _t(text) == expected
+
+
 # Martinon (1913: 226): before a consonant ⟨ch⟩ is learned and keeps the
 # velar sound; the consonants are l, m, n, r (chlore, technique, chrétien).
 @pytest.mark.parametrize("text, expected", [

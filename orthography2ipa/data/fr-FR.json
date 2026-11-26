@@ -644,7 +644,7 @@
       "title": "Comment on prononce le français : traité complet de prononciation pratique avec les noms propres et les mots étrangers",
       "publisher": "Larousse, Paris",
       "url": "https://archive.org/details/commentonprononc00martuoft",
-      "pages": "53, 93, 123, 129, 130, 131, 145, 161, 164, 226, 236, 239, 240, 241, 284, 285, 328, 331, 345, 347, 348, 349",
+      "pages": "53, 93, 123, 129, 130, 131, 145, 161, 164, 213, 214, 226, 236, 239, 240, 241, 284, 285, 328, 331, 345, 347, 348, 349",
       "notes": "READ (archive.org full scan of the University of Toronto copy; each cited page read in the scan's text). The Paris orthoepic norm of 1913; the allophone rules that cite it give the page and the passage."
     },
     {
@@ -1056,7 +1056,8 @@
     "parfums": "paʁfœ̃",
     "huit": "ɥit",
     "six": "sis",
-    "dix": "dis"
+    "dix": "dis",
+    "zinc": "zɛ̃ɡ"
   },
   "timespan": {
     "start_year": 1300,
@@ -1790,6 +1791,24 @@
         "ü"
       ],
       "notes": "⟨g⟩ before ⟨ü⟩ is hard [ɡ]: the 1990 spellings ambigüe, aigüe and cigüe move the diaeresis to the ⟨u⟩ that Martinon (1913: 241) says is pronounced, so ambigüe [ɑ̃biɡy] reads as ambiguë. ⟨ü⟩ counts as a front vowel letter for before_front_vowel, which would otherwise soften the ⟨g⟩."
+    },
+    {
+      "id": "FR_C_MUTE_FINAL_AFTER_NASAL",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "",
+      "grapheme": [
+        "c"
+      ],
+      "preceded_by_grapheme": [
+        "n",
+        "ain",
+        "ein",
+        "oin"
+      ],
+      "word_final": true,
+      "notes": "Word-final ⟨c⟩ after a nasal spelling is mute, also behind the silent plural ⟨-s⟩: blanc [blɑ̃], blancs, banc, flanc, franc [fʁɑ̃], tronc, jonc, vainc [vɛ̃]. Martinon (1913, p. 213: after a nasal vowel final ⟨c⟩ stayed mute: ban(c), blan(c), flan(c), fran(c), vain(c), convain(c), jon(c), ajon(c), tron(c); in donc it is mute in principle and sounds only when the word opens a clause or is stressed (je pense, donc je suis)). The rule follows Martinon's principle for donc [dɔ̃], the first reading of wikipron fr too; the emphatic [dɔ̃k] is a reading of the sentence, not of the word. zinc keeps [ɡ] (Martinon 1913: 214 n. 1: 'on devrait tout simplement écrire zing') as a whole-word entry."
     }
   ],
   "vowel_graphemes": [
