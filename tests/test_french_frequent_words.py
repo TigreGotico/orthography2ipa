@@ -196,3 +196,22 @@ def test_p_of_the_compte_family_is_mute(text, expected):
 @pytest.mark.parametrize("text", ["somptueux", "présomption", "symptôme"])
 def test_p_outside_the_compte_family_is_kept(text):
     assert "p" in _t(text)[2:]
+
+
+# Martinon (1913: 123): the Latin final -um is [ɔm], also in fully French
+# words (album, forum, géranium); 130: parfum keeps the nasal vowel.
+@pytest.mark.parametrize("text, expected", [
+    ("forum", "fɔʁɔm"), ("album", "albɔm"), ("minimum", "minimɔm"),
+    ("maximum", "maksimɔm"), ("podium", "pɔdjɔm"), ("albums", "albɔm"),
+    ("rhum", "ʁɔm"),
+])
+def test_final_um_is_om(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("parfum", "paʁfœ̃"), ("parfums", "paʁfœ̃"), ("humble", "œ̃bl"),
+    ("brun", "bʁœ̃"), ("plume", "plym"),
+])
+def test_um_counter_cases(text, expected):
+    assert _t(text) == expected

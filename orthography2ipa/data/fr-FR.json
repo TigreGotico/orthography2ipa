@@ -626,7 +626,7 @@
       "title": "Comment on prononce le français : traité complet de prononciation pratique avec les noms propres et les mots étrangers",
       "publisher": "Larousse, Paris",
       "url": "https://archive.org/details/commentonprononc00martuoft",
-      "pages": "129, 161, 164, 226, 236, 239, 240, 284, 285, 331, 347, 348, 349",
+      "pages": "123, 129, 130, 131, 161, 164, 226, 236, 239, 240, 284, 285, 331, 347, 348, 349",
       "notes": "READ (archive.org full scan of the University of Toronto copy; each cited page read in the scan's text). The Paris orthoepic norm of 1913; the allophone rules that cite it give the page and the passage."
     },
     {
@@ -1033,7 +1033,9 @@
     "n'es": "nɛ",
     "l'est": "lɛst",
     "d'est": "dɛst",
-    "est": "ɛ"
+    "est": "ɛ",
+    "parfum": "paʁfœ̃",
+    "parfums": "paʁfœ̃"
   },
   "timespan": {
     "start_year": 1300,
@@ -1215,6 +1217,39 @@
       "notes": "Word-final ⟨ent⟩ after ⟨ai⟩ or ⟨oi⟩ is mute, so ⟨-aient⟩ is [ɛ] and ⟨-oient⟩ is [wa]: étaient [etɛ], avaient [avɛ], parlaient [paʁlɛ], seraient [səʁɛ], paient [pɛ], soient [swa], voient [vwa]. Martinon (1913, p. 161: the ⟨nt⟩ of the third-person plural changes nothing, so tombait dru and tombaient dru have the same pronunciation; n. 1 lists the ⟨-ent⟩ homographs that are also nouns or adjectives, and none ends in ⟨-aient⟩ or ⟨-oient⟩). Larousse (s.v. être, Homonymes) gives étaient as a homonym of étai, and soient as a homonym of soi, soie and soit. No French noun or adjective ends in ⟨-aient⟩ or ⟨-oient⟩, so the spelling decides here, unlike bare ⟨-ent⟩ (see ENDING \"ent\"): all 1654 ⟨-aient⟩ and 6 ⟨-oient⟩ types of the wikipron fr gold are mute, apart from 22 verb forms entered twice, once with a nasal reading that contradicts Martinon. The rule deletes the ⟨e⟩; FR_NASAL_ABSORB already drops the coda ⟨n⟩ after a vowel letter, and the word-final ⟨t⟩ is silent."
     },
     {
+      "id": "FR_UM_FINAL_LATIN",
+      "phonemes": [
+        "y"
+      ],
+      "surface": "ɔ",
+      "grapheme": [
+        "u"
+      ],
+      "followed_by_grapheme": [
+        "m"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "Word-final ⟨um⟩ is the Latin ending, read [ɔm] with the ⟨m⟩ pronounced and no nasal vowel: forum [fɔʁɔm], album [albɔm], minimum, maximum, podium, référendum, aquarium, rhum. Martinon (1913, p. 123: the Latin final -um is [ɔm], also in fully French words (album, forum, géranium); p. 130: parfum keeps the nasal vowel; p. 131: in every other word final m is pronounced on its own (album)). parfum, the one common word that keeps [œ̃], is a whole-word entry. FR_UM_FINAL_M keeps the ⟨m⟩, which FR_NASAL_ABSORB would otherwise drop."
+    },
+    {
+      "id": "FR_UM_FINAL_LATIN_PLURAL",
+      "phonemes": [
+        "y"
+      ],
+      "surface": "ɔ",
+      "grapheme": [
+        "u"
+      ],
+      "followed_by_grapheme": [
+        "m"
+      ],
+      "followed_by_phoneme_2": [
+        "s"
+      ],
+      "followed_by_3": "word_boundary",
+      "notes": "FR_UM_FINAL_LATIN behind the silent plural ⟨-s⟩: albums [albɔm], forums, aquariums. Martinon (1913, p. 123: the Latin final -um is [ɔm], also in fully French words (album, forum, géranium); p. 130: parfum keeps the nasal vowel; p. 131: in every other word final m is pronounced on its own (album))."
+    },
+    {
       "id": "FR_NASAL_a",
       "phonemes": [
         "a"
@@ -1258,6 +1293,18 @@
       "surface": "œ̃",
       "followed_by": "coda_nasal",
       "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨canne⟩, ⟨cana⟩) leaves it oral"
+    },
+    {
+      "id": "FR_UM_FINAL_M",
+      "phonemes": [
+        "m"
+      ],
+      "surface": "m",
+      "preceded_by_grapheme": [
+        "u"
+      ],
+      "word_final": true,
+      "notes": "Identity rule ordered before FR_NASAL_ABSORB: the ⟨m⟩ of a word-final ⟨um⟩ is pronounced (album [albɔm]), so it is not absorbed into a nasal vowel. word_final holds behind the silent plural ⟨-s⟩ too (albums). Martinon (1913, p. 123: the Latin final -um is [ɔm], also in fully French words (album, forum, géranium); p. 130: parfum keeps the nasal vowel; p. 131: in every other word final m is pronounced on its own (album))."
     },
     {
       "id": "FR_NASAL_ABSORB",
