@@ -27,6 +27,7 @@ their o2i parent, or take a value from ``MANUAL`` below.
 
 Usage:  python scripts/gen_family.py [--check]
 """
+from linguatag import catalog_ids
 from __future__ import annotations
 
 import argparse
@@ -139,7 +140,7 @@ def build(specs, G, CLASS):
             return None
         if code in MANUAL:
             return MANUAL[code]
-        gc = specs[code].get("glottolog_code")
+        gc = catalog_ids(code).get("glottolog_code")
         if gc:
             f = family_from_code(gc, G, CLASS)
             if f:
