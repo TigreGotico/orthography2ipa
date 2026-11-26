@@ -15,28 +15,38 @@ import json
 import os
 import sys
 
+import linguatag
 import orthography2ipa
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import docs_nav  # noqa: E402
+from benchmark import GATING_CUTOFF_TIER, RELIABILITY_TIERS  # noqa: E402
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REL = "languages/leaders.md"
 PATH = os.path.join(REPO_ROOT, "docs", REL)
 RESULTS = os.path.join(REPO_ROOT, "benchmarks", "results.json")
 DATA = os.path.join(REPO_ROOT, "orthography2ipa", "data")
+SUBTAGS = os.path.join(os.path.dirname(linguatag.__file__), "data",
+                       "language_subtags.json")
 EXPLORER = "https://tigregotico.github.io/orthography2ipa/"
 
 LEADERS = ("pt-PT", "pt-BR", "es-CO", "fr-FR", "it-IT", "de-DE", "nl-NL",
            "da-DK", "kab", "hi-IN", "bn-IN", "mwr")
 
 
-def best_gold_row(rows: list) -> dict | None:
-    """The gating row with the largest N, ties broken by dataset name."""
-    gating = [r for r in rows if r.get("gating")]
-    if not gating:
+def best_row(rows: list) -> dict | None:
+    """The row on the most trusted provenance tier, then with the largest N,
+    then first by dataset name."""
+    if not rows:
         return None
-    return min(gating, key=lambda r: (-r["n"], r["dataset"]))
+    return min(rows, key=lambda r: (RELIABILITY_TIERS.index(r["provenance"]),
+                                    -r["n"], r["dataset"]))
+
+
+def _macrolanguage(code: str) -> str | None:
+    with open(SUBTAGS, encoding="utf-8") as f:
+        return json.load(f)["language"].get(code, {}).get("macrolanguage")
 
 
 def _link(code: str) -> str:
@@ -51,18 +61,33 @@ def _tier(code: str) -> str:
         return json.load(f).get("quality", "research")
 
 
+def _board(rows: list) -> list:
+    best = best_row([r for r in rows if r.get("gating")])
+    mark = ""
+    if best is None:
+        best = best_row(rows)
+        mark = " (does not gate)"
+    if best is None:
+        return ["not measured"] + [""] * 4
+    return [f"`{best['dataset']}`", str(best["n"]), f"{best['per']:.4f}",
+            f"{best['per_ci_low']:.4f}–{best['per_ci_high']:.4f}",
+            best["provenance"] + mark]
+
+
 def _row(tag: str, results: list) -> str:
     code = orthography2ipa.get(tag).code
+    tier = _tier(code)
     own = os.path.exists(os.path.join(DATA, tag + ".json"))
-    resolved = f"`{code}`" if own or code == tag else f"`{code}` (no `{tag}` spec)"
-    best = best_gold_row([r for r in results if r["lang"] == code])
-    if best is None:
-        board = ["no gating row"] + [""] * 4
+    if own or code == tag:
+        resolved = f"`{code}`"
+    elif tier == "stub":
+        member = (f" (a member of the {tag} macrolanguage)"
+                  if _macrolanguage(code) == tag else "")
+        resolved = f"unsupported: resolves to the `{code}` stub{member}, no phonology"
     else:
-        board = [f"`{best['dataset']}`", str(best["n"]), f"{best['per']:.4f}",
-                 f"{best['per_ci_low']:.4f}–{best['per_ci_high']:.4f}",
-                 best["provenance"]]
-    cells = [f"`{tag}`", resolved, _tier(code), *board, _link(code)]
+        resolved = f"`{code}` (no `{tag}` spec)"
+    board = _board([r for r in results if r["lang"] == code])
+    cells = [f"`{tag}`", resolved, tier, *board, _link(code)]
     return "| " + " | ".join(cells) + " |"
 
 
@@ -83,8 +108,12 @@ def render() -> str:
         "resolved spec is the code that `orthography2ipa.get(tag)` returns. "
         "A tag with no spec file of its own resolves to a broader spec, and "
         "the table names that spec. The scoreboard has no rule that marks "
-        "one row as the primary row of a language, so the best gold row is "
-        "the gating row with the largest N.",
+        "one row as the primary row of a language. The best gold row is "
+        "the gating row on the most trusted provenance tier, in the order "
+        + ", ".join(RELIABILITY_TIERS[:RELIABILITY_TIERS.index(GATING_CUTOFF_TIER) + 1])
+        + ", and then the row with the largest N. A tag with no gating row "
+        "shows its best other row by the same rule, marked \"does not gate\". "
+        "A tag with no row shows \"not measured\".",
         "",
         "| Tag | Resolved spec | Spec tier | Best gold dataset | N | PER "
         "| 95% CI | Provenance tier | Page |",

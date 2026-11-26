@@ -31,7 +31,7 @@ def test_one_changed_cell_is_stale(monkeypatch, tmp_path):
     with open(leaders.RESULTS, encoding="utf-8") as f:
         rows = json.load(f)
     for row in rows:
-        if row["lang"] == "pt-PT" and row["dataset"] == "portuguese_unified":
+        if row["lang"] == "nl-NL" and row["dataset"] == "wikipron":
             row["per"] += 0.01
     bumped = tmp_path / "results.json"
     bumped.write_text(json.dumps(rows), encoding="utf-8")
@@ -47,11 +47,37 @@ def test_rows_follow_the_leader_order():
                     "nl-NL", "da-DK", "kab", "hi-IN", "bn-IN", "mwr"]
 
 
-def test_best_gold_row_is_the_largest_gating_row():
+def _rows(page):
+    return {line.split("|")[1].strip().strip("`"): [c.strip() for c in line.split("|")[1:-1]]
+            for line in page.splitlines() if line.startswith("| `")}
+
+
+def test_trusted_tier_beats_a_larger_n():
     rows = [
-        {"dataset": "a", "n": 10, "gating": True},
-        {"dataset": "b", "n": 900, "gating": False},
-        {"dataset": "c", "n": 50, "gating": True},
+        {"dataset": "big", "n": 900, "provenance": "machine-generated"},
+        {"dataset": "wiki", "n": 50, "provenance": "crowd-scraped"},
+        {"dataset": "lex", "n": 10, "provenance": "lexicon-derived"},
+        {"dataset": "lex2", "n": 20, "provenance": "lexicon-derived"},
     ]
-    assert leaders.best_gold_row(rows)["dataset"] == "c"
-    assert leaders.best_gold_row([rows[1]]) is None
+    assert leaders.best_row(rows)["dataset"] == "lex2"
+    assert leaders.best_row([]) is None
+
+
+def test_gating_rows_pick_the_trusted_tier():
+    rows = _rows(leaders.render())
+    assert rows["nl-NL"][3:5] == ["`wikipron`", "45872"]
+    assert rows["nl-NL"][7] == "crowd-scraped"
+    assert rows["pt-BR"][7] == "expert-human"
+
+
+def test_non_gating_row_is_marked():
+    rows = _rows(leaders.render())
+    assert rows["kab"][3] == "`vox_communis`"
+    assert rows["kab"][7] == "epitran-derived (does not gate)"
+
+
+def test_mwr_is_unsupported():
+    row = _rows(leaders.render())["mwr"]
+    assert row[1] == ("unsupported: resolves to the `dhd` stub "
+                      "(a member of the mwr macrolanguage), no phonology")
+    assert row[3] == "not measured"
