@@ -36,7 +36,7 @@ French is a Gallo-Romance language, written in the Latin script. Its code names 
 
 The `fr-FR` spec describes Standard Metropolitan French, as spoken in Paris and the north. That is the variety the WikiPron gold transcribes. The registry resolves the bare tag `fr` to this spec. French has a deep orthography, so the 0.25 PER threshold applies to a promotion (see [quality tiers](../specs/quality_tiers.md#the-per-threshold)).
 
-The sources are Fouché (1959), Tranel (1987), Fougeron & Smith (1993), Tranel (1995), Ladefoged & Maddieson (1996), Divay & Vitale (1997) and Walker (2001).
+The sources are Fouché (1959), Tranel (1987), Fougeron & Smith (1993), Tranel (1995), Ladefoged & Maddieson (1996), Divay & Vitale (1997) and Walker (2001). The readings of frequent words cite Martinon (1913) by page, with the Larousse online dictionary for ⟨est⟩, ⟨étaient⟩ and ⟨soient⟩.
 
 ## Benchmark
 
@@ -76,7 +76,7 @@ A closed set of words keeps /ɛʁ/. It holds ⟨mer fer cher ver hier hiver enfe
 
 The third-person plural ⟨-ent⟩ is silent, as in ⟨parlent⟩ [paʁl]. The ⟨-ent⟩ of nouns and adjectives is [ɑ̃], as in ⟨vent⟩, ⟨dent⟩ and ⟨moment⟩. The spelling does not separate the two. The difference is one of part of speech (Fouché 1959, Tranel 1987 §3, Divay & Vitale 1997), and this library takes no part-of-speech input.
 
-The spec therefore declares the ending as a list of candidates, `"ent": [null, ""]`. The `null` in the first place keeps the rank-1 reading from the grapheme tables, a nasal vowel plus a silent ⟨t⟩. So ⟨vent⟩ gives `vɑ̃`, ⟨moment⟩ gives `mɔmɑ̃` and ⟨parlent⟩ gives `paʁlɑ̃`. The silent reading comes second. There `word_candidates`, an oracle@k score or a downstream rescorer that knows the part of speech can reach it. The spec does not declare ⟨-ment⟩ on its own, because it has the same ambiguity: ⟨dorment⟩ is silent and ⟨moment⟩ is not.
+The spec therefore declares the ending as a list of candidates, `"ent": [null, ""]`. The `null` in the first place keeps the rank-1 reading from the grapheme tables, a nasal vowel plus a silent ⟨t⟩. So ⟨vent⟩ gives `vɑ̃`, ⟨moment⟩ gives `mɔmɑ̃` and ⟨parlent⟩ gives `paʁlɑ̃`. The silent reading comes second. There `word_candidates`, an oracle@k score or a downstream rescorer that knows the part of speech can reach it. The spec does not declare ⟨-ment⟩ on its own, because it has the same ambiguity: ⟨dorment⟩ is silent and ⟨moment⟩ is not. After ⟨ai⟩ and ⟨oi⟩ the ending is always silent, and a rule reads it so (see the section on readings that the spelling decides).
 
 ### Glide formation
 
@@ -155,6 +155,16 @@ Most nasal spellings are not graphemes. The rules `FR_NASAL_a`, `FR_NASAL_ə`, `
 Before a vowel in the same word, the nasal consonant is an onset, so no nasal vowel forms. So ⟨amateur⟩ gives `amatœʁ`, ⟨inutile⟩ gives `inytil` and ⟨unanime⟩ gives `ynanim`. For the nasal graphemes ⟨ain aim ein ien oin⟩, the `FR_NASAL_BLOCK_PREVOCALIC_*` rules remove the nasal vowel before a vowel. The `FR_NASAL_BLOCK_GEMINATE_*` rules remove it before ⟨n m nn mm⟩, so ⟨plaine⟩ gives `plɛn` and ⟨chienne⟩ gives `ʃjɛn`.
 
 Many speakers in and around Paris merge /œ̃/ into /ɛ̃/, so ⟨brun⟩ and ⟨brin⟩ sound the same (Fougeron & Smith 1993). Conservative Standard French keeps the contrast. The spec keeps both values as allophones of `œ̃` and does not reduce the inventory, because Fougeron & Smith still treat /œ̃/ as a phoneme for their reference speaker.
+
+## Readings that the spelling decides
+
+Some frequent words read wrong when each letter takes its default value. The spelling still decides each case below, so a rule states it. Martinon (1913) is the source for most of them, read in the [archive.org scan](https://archive.org/details/commentonprononc00martuoft) of the University of Toronto copy. The rule notes in the spec quote each page.
+
+| Rule | Effect | Spec output | Source |
+|:---|:---|:---|:---|
+| `FR_ENT_MUTE_AFTER_AI_OI` | ⟨ent⟩ after ⟨ai⟩ or ⟨oi⟩ at the end of the word is mute | ⟨étaient⟩ `etɛ`, ⟨soient⟩ `swa` | Martinon 1913: 161; Larousse, s.v. être |
+
+No noun or adjective ends in ⟨-aient⟩ or ⟨-oient⟩, so this rule needs no part of speech. Bare ⟨-ent⟩ stays ambiguous, as the section on that ending says.
 
 ## Liaison and elision
 
