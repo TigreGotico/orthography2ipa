@@ -468,3 +468,22 @@ def test_foreign_final_ng_keeps_its_g(text, expected):
 ])
 def test_cresson_keeps_its_mute_e(text, expected):
     assert _t(text) == expected
+
+
+# Martinon (1913: 348): before a hissing consonant, ⟨ce⟩ ⟨ci⟩ or ⟨s⟩, the
+# second half of ⟨x⟩ merges with the sound that follows, so [ks] is reduced
+# to [k]: ec-cellent, ec-centrique, ec-sangue. (The [e] of excellent is
+# FR_E_BEFORE_DOUBLED_NONFINAL.)
+@pytest.mark.parametrize("text, expected", [
+    ("excellent", "ɛkselɑ̃"), ("exception", "ɛksɛpsjɔ̃"), ("excès", "ɛksɛ"),
+    ("exciter", "ɛksite"),
+])
+def test_x_before_soft_c_is_k(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("excuse", "ɛkskyz"), ("expert", "ɛkspɛʁ"),
+])
+def test_x_before_hard_c_or_p_stays_ks(text, expected):
+    assert _t(text) == expected

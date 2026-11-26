@@ -1957,6 +1957,20 @@
         "huit"
       ],
       "notes": "The final ⟨t⟩ of huit, silent in other words, is [t]: huit [ɥit]. Martinon (1913, p. 328: the final ⟨t⟩ of huit is pronounced, page huit, le huit mai, huit hommes; p. 345: the final ⟨x⟩ of six and dix is [s], j'en ai six, page dix, le dix août). A rule on the whole word, not a word_exceptions entry, so the other rules and those of a regional variety still read the rest of the word (fr-CA affricates the /d/ of dix). The forms before a consonant and before a vowel are the FR_*_MUTE_BEFORE_CONSONANT and FR_NUMERAL_Z_BEFORE_VOWEL sandhi rules."
+    },
+    {
+      "id": "FR_X_K_BEFORE_SIBILANT",
+      "phonemes": [
+        "ks"
+      ],
+      "surface": "k",
+      "grapheme": [
+        "x"
+      ],
+      "followed_by_phoneme": [
+        "s"
+      ],
+      "notes": "⟨x⟩ before a letter that reads [s] (⟨c⟩ before a front vowel, ⟨s⟩) is [k], not [ks]: excellent [ɛksɛlɑ̃], exception [ɛksɛpsjɔ̃], excès [ɛksɛ], exciter [ɛksite], excentrique. Martinon (1913, p. 348: before a hissing consonant, ce or ci or an s, the second half of the x merges with the sound that follows, so ecs is reduced to ec: ec-cellent, ec-centrique, ec-sangue). Before a hard ⟨c⟩ the [ks] stays (excuse [ɛkskyz])."
     }
   ],
   "vowel_graphemes": [
