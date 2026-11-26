@@ -200,3 +200,32 @@ def test_the_midi_spec_is_a_variant_of_fr_fr():
     assert spec.parent == "fr-FR"
     assert o2i.resolve(MIDI) == MIDI
     assert "Gallo-Romance" in spec.family_path
+
+
+# --- review fixes ----------------------------------------------------------
+
+@pytest.mark.parametrize("tag", ["fr-BE"])
+@pytest.mark.parametrize("text, expected", [
+    ("fête", "fɛːt"),              # final closed syllable: long
+    ("rêve", "ʁɛːv"),
+    ("fêter", "fɛte"),             # the sources state the length in a final
+    ("bêtise", "bɛtiz"),           # syllable only (Bardiaux et al. 2016:
+    ("rêver", "ʁɛve"),             # 39-40; PFC faites ~ fête, belle ~ bêle)
+    ("pêcheur", "pɛʃœʁ"),
+    ("forêt", "fɔʁɛ"),             # open final syllable: no length stated
+    ("prêt", "pʁɛ"),
+])
+def test_the_circumflex_e_is_long_only_in_a_closed_final_syllable(
+        tag, text, expected):
+    assert _say(text, tag) == expected
+
+
+@pytest.mark.parametrize("text, be, ch", [
+    ("pluie", "plwiː", "plɥiː"),   # PFC e-caduc page: the final e survives
+    ("suie", "swiː", "sɥiː"),      # as the length of the vowel before it
+    ("joie", "ʒwaː", "ʒwaː"),
+    ("soie", "swaː", "swaː"),
+    ("proie", "pʁwaː", "pʁwaː"),
+])
+def test_the_vowel_of_a_unit_before_a_final_mute_e_is_long(text, be, ch):
+    assert _say(text, "fr-BE") == be
