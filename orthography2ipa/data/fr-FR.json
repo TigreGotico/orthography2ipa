@@ -626,7 +626,7 @@
       "title": "Comment on prononce le français : traité complet de prononciation pratique avec les noms propres et les mots étrangers",
       "publisher": "Larousse, Paris",
       "url": "https://archive.org/details/commentonprononc00martuoft",
-      "pages": "161, 164, 239, 240",
+      "pages": "161, 164, 239, 240, 347, 348, 349",
       "notes": "READ (archive.org full scan of the University of Toronto copy; each cited page read in the scan's text). The Paris orthoepic norm of 1913; the allophone rules that cite it give the page and the passage."
     },
     {
@@ -1419,6 +1419,74 @@
       ],
       "followed_by_nucleus": false,
       "notes": "⟨e⟩ before a doubled ⟨ll⟩, ⟨tt⟩ or ⟨rr⟩ in the last syllable of the word stands in a word-final closed syllable and is [ɛ], not schwa: elle [ɛl], cette [sɛt], belle [bɛl], terre [tɛʁ], guerre [ɡɛʁ] (Féry 2001: 8, ex. (19) 'Only [ɛ] in word-final closed syllables', with elle and cette among the examples, and generalisation (20b) 'No [e], but always [ɛ] before a final consonant'). followed_by_nucleus false keeps the rule to that syllable. The same closure is why ⟨ll tt rr⟩ stay one consonant. Lexique 3.83 (New et al. 2004) reads this ⟨e⟩ as [ɛ] in 1476 of the 1478 word types that end in -elle(s), -ette(s) or -erre(s); the other two are moelle and moelles [mwal], where ⟨oe⟩ spells one vowel. NOT MODELLED: the same ⟨e⟩ in an earlier syllable. Féry states the generalisation for word-final syllables only, and Lexique reads that ⟨e⟩ as [ɛ] in some words (terrible, tellement) and as [e] in others (cellule, nettoyer, serrer), so no rule here covers it. ⟨ss ff nn mm⟩ are left out: the prefixes de- and re- end with a schwa before ⟨ss⟩ (dessus [dəsy], ressembler [ʁəsɑ̃ble]), and ⟨mm⟩ after ⟨e⟩ can spell [a] (femme [fam])."
+    },
+    {
+      "id": "FR_X_VOICED_INITIAL_EX",
+      "phonemes": [
+        "ks"
+      ],
+      "surface": "ɡz",
+      "grapheme": [
+        "x"
+      ],
+      "preceded_by_grapheme": [
+        "e"
+      ],
+      "preceded_by_2": "word_boundary",
+      "followed_by": "vowel",
+      "notes": "⟨x⟩ of a word-initial ⟨ex⟩ before a vowel letter is [ɡz]: exemple [ɛɡzɑ̃pl], exercice, exister [ɛɡziste], exiger, exotique, examen, exact. Martinon (1913, pp. 348-349: before a vowel, initial ex- (or hex-) is regularly [ɡz] (exalter, exhaler, exécuter, exiger, exotique, exubérant) and so are its derivatives (inexigible, inexact); p. 347: elsewhere inside a word ⟨x⟩ is [ks] (laxatif, maxime, sexuel)). Martinon notes that exécration and exécrable are often said with [ks] for emphasis; they take the rule."
+    },
+    {
+      "id": "FR_X_VOICED_INITIAL_EX_H",
+      "phonemes": [
+        "ks"
+      ],
+      "surface": "ɡz",
+      "grapheme": [
+        "x"
+      ],
+      "preceded_by_grapheme": [
+        "e"
+      ],
+      "preceded_by_2": "word_boundary",
+      "followed_by_grapheme": [
+        "h"
+      ],
+      "notes": "FR_X_VOICED_INITIAL_EX before a mute ⟨h⟩: exhiber [ɛɡzibe], exhaler, exhaustif. Martinon (1913, pp. 348-349: before a vowel, initial ex- (or hex-) is regularly [ɡz] (exalter, exhaler, exécuter, exiger, exotique, exubérant) and so are its derivatives (inexigible, inexact); p. 347: elsewhere inside a word ⟨x⟩ is [ks] (laxatif, maxime, sexuel))."
+    },
+    {
+      "id": "FR_X_VOICED_PREFIXED_EX",
+      "phonemes": [
+        "ks"
+      ],
+      "surface": "ɡz",
+      "grapheme": [
+        "x"
+      ],
+      "preceded_by_grapheme": [
+        "e"
+      ],
+      "preceded_by_2": "vowel",
+      "followed_by": "vowel",
+      "notes": "FR_X_VOICED_INITIAL_EX after a vowel-final prefix, the derivatives Martinon names: coexister [kɔɛɡziste], réexaminer, préexistant. In these spellings a vowel letter before ⟨ex⟩ marks the prefix boundary; all 86 such types of the wikipron fr gold have [ɡz]. Martinon (1913, pp. 348-349: before a vowel, initial ex- (or hex-) is regularly [ɡz] (exalter, exhaler, exécuter, exiger, exotique, exubérant) and so are its derivatives (inexigible, inexact); p. 347: elsewhere inside a word ⟨x⟩ is [ks] (laxatif, maxime, sexuel)). RESIDUAL: after the consonant-final prefix in- (inexact, inexistant) the rule cannot see the word start three slots back, so ⟨x⟩ stays [ks]; hex- (Hexagone) is not reached either."
+    },
+    {
+      "id": "FR_X_Z_ORDINAL",
+      "phonemes": [
+        "ks"
+      ],
+      "surface": "z",
+      "grapheme": [
+        "x"
+      ],
+      "preceded_by_2": "consonant",
+      "followed_by_grapheme": [
+        "i"
+      ],
+      "followed_by_phoneme_2": [
+        "ɛ"
+      ],
+      "notes": "⟨x⟩ before the ordinal ⟨-ième⟩ is [z], the liaison consonant of deux, six and dix: deuxième [døzjɛm], sixième [sizjɛm], dixième [dizjɛm]. Martinon (1913, p. 348: deuxième, dixième, sixième have the [z] of the liaison of deux, six, dix). The condition on a consonant two slots back keeps out the letter name in ixième [iksjɛm] (wikipron fr)."
     }
   ],
   "vowel_graphemes": [
