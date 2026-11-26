@@ -183,8 +183,8 @@ The spec declares sandhi in `sandhi_rules` as the liaison rules `FR_LIAISON_Z`, 
 
 Five regional specs inherit this spec and state only what a source states. Each spec lists its sources and what it leaves out.
 
-- `fr-BE` (Belgian French): ⟨â⟩ as [aː] and ⟨ê⟩ as [ɛː], a long vowel before a word-final mute ⟨e⟩ (aimée [ɛmeː], vie [viː]), [w] for the [ɥ] of ⟨ui⟩ (lui [lwi], nuit [nwi]) and vingt as [vɛ̃t].
-- `fr-CH` (Swiss French): ⟨â⟩ as [aː] and ⟨ê⟩ as [ɛː], the same long vowel before a final mute ⟨e⟩, and vingt as [vɛ̃t].
+- `fr-BE` (Belgian French): ⟨â⟩ as [aː], ⟨ê⟩ as [ɛː] in a closed final syllable (fête [fɛːt], but fêter [fɛte]), a long vowel before a word-final mute ⟨e⟩ (aimée [ɛmeː], vie [viː]), [w] for the [ɥ] of ⟨ui⟩ (lui [lwi], nuit [nwi]) and vingt as [vɛ̃t].
+- `fr-CH` (Swiss French): ⟨â⟩ as [aː], ⟨ê⟩ as [ɛː] in a closed final syllable, the same long vowel before a final mute ⟨e⟩, and vingt as [vɛ̃t].
 - `fr-CA` (Laurentian French): affrication of /t d/ before /i y j ɥ/, laxing of /i y u/ in a closed final syllable, long vowels and their diphthongs in the last syllable (père [pai̯ʁ], fête [fai̯t], pâte [pɑu̯t], rose [ʁɔu̯z]), a back [ɒ] for a word-final /a/ (Canada [kanadɒ]), and the nasal vowels [ẽ] and a final [ã].
 - `fr-CI` (Ivorian French): ⟨â⟩ as [a].
 - `fr-FR-x-midi` (Southern French): a pronounced final schwa (petite [pøtitə]), [ø] for a schwa in the first syllable, the loi de position of the mid vowels (rose [ʁɔzə], lait [le]) and a nasal vowel as an oral vowel plus a nasal appendix (pain [pɛŋ], lampe [lampə]).

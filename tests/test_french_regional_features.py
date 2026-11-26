@@ -204,7 +204,7 @@ def test_the_midi_spec_is_a_variant_of_fr_fr():
 
 # --- review fixes ----------------------------------------------------------
 
-@pytest.mark.parametrize("tag", ["fr-BE"])
+@pytest.mark.parametrize("tag", ["fr-BE", "fr-CH"])
 @pytest.mark.parametrize("text, expected", [
     ("fête", "fɛːt"),              # final closed syllable: long
     ("rêve", "ʁɛːv"),
@@ -229,3 +229,4 @@ def test_the_circumflex_e_is_long_only_in_a_closed_final_syllable(
 ])
 def test_the_vowel_of_a_unit_before_a_final_mute_e_is_long(text, be, ch):
     assert _say(text, "fr-BE") == be
+    assert _say(text, "fr-CH") == ch

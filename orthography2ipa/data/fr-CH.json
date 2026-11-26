@@ -10,36 +10,39 @@
   "graphemes": {
     "â": [
       "aː"
-    ],
-    "ê": [
-      "ɛː"
     ]
   },
   "allophones": {
     "aː": [
       "aː"
     ],
-    "ɛː": [
-      "ɛː"
-    ],
-    "iː": [
+    "i": [
+      "i",
       "iː"
     ],
-    "yː": [
+    "y": [
+      "y",
       "yː"
     ],
-    "uː": [
+    "u": [
+      "u",
       "uː"
     ],
-    "eː": [
+    "e": [
+      "e",
       "eː"
     ],
-    "øː": [
+    "ø": [
+      "ø",
       "øː"
+    ],
+    "ɛ": [
+      "ɛ",
+      "ɛː"
     ]
   },
   "parent": "fr-FR",
-  "notes": "Swiss French as a thin variant of Metropolitan French (fr-FR). It inherits every table, rule and word exception of fr-FR and states only what a cited source states. LOW VOWELS: ⟨â⟩ is [aː]. Neuchâtel is listed under 'patte ≠ pâte (opposition de longueur)' (PFC vowel page, d) 1)), which the page introduces with 'Parfois, la distinction entre les deux voyelles est substituée par une différence de longueur'; Avanzi (2024, Sprachenräume der Schweiz: 114) says the same for Switzerland as a whole ('dans patte/pâte, l'opposition de timbre a été suppléée par la longueur'). The other PFC point, Nyon, keeps patte ≠ pâte as a clear difference of timbre, which is the fr-FR [ɑ]; this spec does not merge the two points. CIRCUMFLEX ⟨ê⟩: [ɛː]. PFC vowel page, d) 4): faites [fɛt] ≠ fête [fɛːt] and belle ≠ bêle at Neuchâtel; Avanzi (2024, Oxford Handbook ch. 14: 425-426): faites ~ fête is phonological for most of French-speaking Switzerland, Valais excepted. FINAL MUTE ⟨e⟩ AFTER A VOWEL: the vowel is long (rules FR_CH_FINAL_E_LONG_*: aimée [ɛmeː], vie [viː], nue [nyː], bleue [bløː]). The PFC e-caduc page states it as a pattern of Swiss and Belgian French (section 'Français de Suisse et de Belgique'), and Avanzi (2024, Sprachenräume der Schweiz: 115-116) says the quantity contrast of nu/nue holds in every canton. VINGT: [vɛ̃t] with its final [t] in isolation (word exception). The PFC consonant page (II d) 4)) records [vɛ̃t] at Nyon and Genève; Avanzi (2024, Sprachenräume der Schweiz: 117) says vingt has its final -t 'dans toute la Suisse', and the Français de nos régions map (Avanzi 2016) puts the Swiss cantons at about 90 to 100 per cent. The /ɛ̃/ ~ /œ̃/ contrast (brin ≠ brun) is kept as in fr-FR. The PFC page notes that it is being neutralised among young speakers at Neuchâtel and kept at Nyon, and Avanzi (2024, Sprachenräume der Schweiz: 114-115) that it is ageing. NOT MODELLED: the long vowel before a plural ⟨-es⟩, the palatal off-glide or diphthong after the long vowel in Vaud and parts of Geneva and Lower Valais (année [-eːj], épée [epei]; Avanzi 2024, Sprachenräume der Schweiz: 116 and n. 8; PFC e-caduc page), mettre ~ maître and other historical long vowels without a circumflex, vowel quality, diaeresis, the final consonants of alphabet, juillet, août and but in parts of Romandy, and the numerals septante, huitante and nonante (numbers are out of scope). The sources describe Romandy as a whole and two PFC points; this spec does not describe every Swiss variety.",
+  "notes": "Swiss French as a thin variant of Metropolitan French (fr-FR). It inherits every table, rule and word exception of fr-FR and states only what a cited source states. LOW VOWELS: ⟨â⟩ is [aː]. Neuchâtel is listed under 'patte ≠ pâte (opposition de longueur)' (PFC vowel page, d) 1)), which the page introduces with 'Parfois, la distinction entre les deux voyelles est substituée par une différence de longueur'; Avanzi (2024, Sprachenräume der Schweiz: 114) says the same for Switzerland as a whole ('dans patte/pâte, l'opposition de timbre a été suppléée par la longueur'). The other PFC point, Nyon, keeps patte ≠ pâte as a clear difference of timbre, which is the fr-FR [ɑ]; this spec does not merge the two points. CIRCUMFLEX ⟨ê⟩: [ɛː] in a final syllable closed by a pronounced consonant (FR_CH_CIRC_E_LONG: fête [fɛːt]), short elsewhere (fêter [fɛte], forêt [fɔʁɛ]); the sources give the length only there. PFC vowel page, d) 4): faites [fɛt] ≠ fête [fɛːt] and belle ≠ bêle at Neuchâtel; Avanzi (2024, Oxford Handbook ch. 14: 425-426): faites ~ fête is phonological for most of French-speaking Switzerland, Valais excepted. FINAL MUTE ⟨e⟩ AFTER A VOWEL: the vowel is long (rule FR_CH_FINAL_E_LONG: aimée [ɛmeː], vie [viː], nue [nyː], bleue [bløː], joie [ʒwaː], pluie [plɥiː]). The PFC e-caduc page states it as a pattern of Swiss and Belgian French (section 'Français de Suisse et de Belgique'), and Avanzi (2024, Sprachenräume der Schweiz: 115-116) says the quantity contrast of nu/nue holds in every canton. VINGT: [vɛ̃t] with its final [t] in isolation (word exception). The PFC consonant page (II d) 4)) records [vɛ̃t] at Nyon and Genève; Avanzi (2024, Sprachenräume der Schweiz: 117) says vingt has its final -t 'dans toute la Suisse', and the Français de nos régions map (Avanzi 2016) puts the Swiss cantons at about 90 to 100 per cent. The /ɛ̃/ ~ /œ̃/ contrast (brin ≠ brun) is kept as in fr-FR. The PFC page notes that it is being neutralised among young speakers at Neuchâtel and kept at Nyon, and Avanzi (2024, Sprachenräume der Schweiz: 114-115) that it is ageing. NOT MODELLED: the long vowel before a plural ⟨-es⟩, the palatal off-glide or diphthong after the long vowel in Vaud and parts of Geneva and Lower Valais (année [-eːj], épée [epei]; Avanzi 2024, Sprachenräume der Schweiz: 116 and n. 8; PFC e-caduc page), mettre ~ maître and other historical long vowels without a circumflex, vowel quality, diaeresis, the final consonants of alphabet, juillet, août and but in parts of Romandy, and the numerals septante, huitante and nonante (numbers are out of scope). The sources describe Romandy as a whole and two PFC points; this spec does not describe every Swiss variety.",
   "quality": "skeleton",
   "script_type": "alphabet",
   "sources": [
@@ -77,7 +80,7 @@
       "id": "avanzi2016_vingt",
       "author": "Avanzi, M.",
       "year": 2016,
-      "title": "1010 : vin ou vingt ?",
+      "title": "vingT et moinS",
       "publisher": "Français de nos régions (blog of the survey project)",
       "url": "https://francaisdenosregions.com/2016/08/31/1010-vin-ou-vingt/",
       "pages": null,
@@ -91,7 +94,7 @@
       "publisher": "In The Oxford Handbook of the French Language, ch. 14. Oxford University Press (uncorrected first proofs read)",
       "url": "https://libra.unine.ch/bitstreams/61d92ed1-b677-4eba-ac50-ab9a25840120/download",
       "pages": "421-426",
-      "notes": "READ (uncorrected proofs in the Neuchâtel LIBRA repository; page numbers are the proof's). p. 423: in southern mainland France the loi de position applies. p. 422: the south does not keep piqué ~ piquet apart (both [e]). p. 424: a circumflex triggers a long vowel in the north-eastern regions. pp. 425-426: the faites ~ fête length contrast is phonological for everyone in the French-speaking regions of Belgium and most of French-speaking Switzerland (except Valais)."
+      "notes": "READ (uncorrected proofs in the Neuchâtel LIBRA repository; page numbers are the proof's). p. 423: in southern mainland France the loi de position applies. p. 422: the south does not keep piqué ~ piquet apart (both [e]). p. 424: a circumflex triggers a long vowel in the north-eastern regions of France (a statement about France, not about Belgium or Switzerland). pp. 425-426: the faites ~ fête length contrast is phonological for everyone in the French-speaking regions of Belgium and most of French-speaking Switzerland (except Valais)."
     },
     {
       "id": "avanzi2024_suisse",
@@ -130,76 +133,55 @@
   ],
   "allophone_rules": [
     {
-      "id": "FR_CH_FINAL_E_LONG_i",
+      "id": "FR_CH_FINAL_E_LONG",
       "phonemes": [
-        "i"
+        "i",
+        "y",
+        "u",
+        "e",
+        "ø",
+        "ɛ",
+        "wa",
+        "ɥi"
       ],
-      "surface": "iː",
+      "append": "ː",
       "followed_by_grapheme": [
         "e"
       ],
       "followed_by_2": "word_boundary",
-      "notes": "A vowel before a word-final mute ⟨e⟩ is long: the ⟨e⟩ survives as the length of the vowel before it (PFC, Le e caduc : variation géographique, section 'Français de Suisse et de Belgique': ami [ami] vs amie [amiː], joué [ʒue] vs jouée [ʒueː], bleu [blø] vs bleue [bløː]; Avanzi 2024, Sprachenräume der Schweiz: 115-116: the quantity contrast of nu/nue and bout/boue holds fairly well in every canton; the PFC vowel page, d) 4), gives nu ~ nue and vit ~ vie at Neuchâtel). The ⟨e⟩ must end the word, so a plural ⟨-es⟩ keeps the short vowel here (NOT MODELLED)."
+      "notes": "A vowel before a word-final mute ⟨e⟩ is long, the vowel of a unit such as ⟨oi⟩ [wa] included (joie [ʒwaː], soie): the ⟨e⟩ survives as the length of the vowel before it (PFC, Le e caduc : variation géographique, section 'Français de Suisse et de Belgique': ami [ami] vs amie [amiː], joué [ʒue] vs jouée [ʒueː], bleu [blø] vs bleue [bløː]; Avanzi 2024, Sprachenräume der Schweiz: 115-116: the quantity contrast of nu/nue and bout/boue holds fairly well in every canton; the PFC vowel page, d) 4), gives nu ~ nue and vit ~ vie at Neuchâtel). The ⟨e⟩ must end the word, so a plural ⟨-es⟩ keeps the short vowel here (NOT MODELLED)."
     },
     {
-      "id": "FR_CH_FINAL_E_LONG_y",
-      "phonemes": [
-        "y"
-      ],
-      "surface": "yː",
-      "followed_by_grapheme": [
-        "e"
-      ],
-      "followed_by_2": "word_boundary",
-      "notes": "A vowel before a word-final mute ⟨e⟩ is long: the ⟨e⟩ survives as the length of the vowel before it (PFC, Le e caduc : variation géographique, section 'Français de Suisse et de Belgique': ami [ami] vs amie [amiː], joué [ʒue] vs jouée [ʒueː], bleu [blø] vs bleue [bløː]; Avanzi 2024, Sprachenräume der Schweiz: 115-116: the quantity contrast of nu/nue and bout/boue holds fairly well in every canton; the PFC vowel page, d) 4), gives nu ~ nue and vit ~ vie at Neuchâtel). The ⟨e⟩ must end the word, so a plural ⟨-es⟩ keeps the short vowel here (NOT MODELLED)."
-    },
-    {
-      "id": "FR_CH_FINAL_E_LONG_u",
-      "phonemes": [
-        "u"
-      ],
-      "surface": "uː",
-      "followed_by_grapheme": [
-        "e"
-      ],
-      "followed_by_2": "word_boundary",
-      "notes": "A vowel before a word-final mute ⟨e⟩ is long: the ⟨e⟩ survives as the length of the vowel before it (PFC, Le e caduc : variation géographique, section 'Français de Suisse et de Belgique': ami [ami] vs amie [amiː], joué [ʒue] vs jouée [ʒueː], bleu [blø] vs bleue [bløː]; Avanzi 2024, Sprachenräume der Schweiz: 115-116: the quantity contrast of nu/nue and bout/boue holds fairly well in every canton; the PFC vowel page, d) 4), gives nu ~ nue and vit ~ vie at Neuchâtel). The ⟨e⟩ must end the word, so a plural ⟨-es⟩ keeps the short vowel here (NOT MODELLED)."
-    },
-    {
-      "id": "FR_CH_FINAL_E_LONG_e",
-      "phonemes": [
-        "e"
-      ],
-      "surface": "eː",
-      "followed_by_grapheme": [
-        "e"
-      ],
-      "followed_by_2": "word_boundary",
-      "notes": "A vowel before a word-final mute ⟨e⟩ is long: the ⟨e⟩ survives as the length of the vowel before it (PFC, Le e caduc : variation géographique, section 'Français de Suisse et de Belgique': ami [ami] vs amie [amiː], joué [ʒue] vs jouée [ʒueː], bleu [blø] vs bleue [bløː]; Avanzi 2024, Sprachenräume der Schweiz: 115-116: the quantity contrast of nu/nue and bout/boue holds fairly well in every canton; the PFC vowel page, d) 4), gives nu ~ nue and vit ~ vie at Neuchâtel). The ⟨e⟩ must end the word, so a plural ⟨-es⟩ keeps the short vowel here (NOT MODELLED)."
-    },
-    {
-      "id": "FR_CH_FINAL_E_LONG_ø",
-      "phonemes": [
-        "ø"
-      ],
-      "surface": "øː",
-      "followed_by_grapheme": [
-        "e"
-      ],
-      "followed_by_2": "word_boundary",
-      "notes": "A vowel before a word-final mute ⟨e⟩ is long: the ⟨e⟩ survives as the length of the vowel before it (PFC, Le e caduc : variation géographique, section 'Français de Suisse et de Belgique': ami [ami] vs amie [amiː], joué [ʒue] vs jouée [ʒueː], bleu [blø] vs bleue [bløː]; Avanzi 2024, Sprachenräume der Schweiz: 115-116: the quantity contrast of nu/nue and bout/boue holds fairly well in every canton; the PFC vowel page, d) 4), gives nu ~ nue and vit ~ vie at Neuchâtel). The ⟨e⟩ must end the word, so a plural ⟨-es⟩ keeps the short vowel here (NOT MODELLED)."
-    },
-    {
-      "id": "FR_CH_FINAL_E_LONG_ɛ",
+      "id": "FR_CH_CIRC_E_LONG",
       "phonemes": [
         "ɛ"
       ],
       "surface": "ɛː",
-      "followed_by_grapheme": [
-        "e"
+      "grapheme": [
+        "ê"
       ],
-      "followed_by_2": "word_boundary",
-      "notes": "A vowel before a word-final mute ⟨e⟩ is long: the ⟨e⟩ survives as the length of the vowel before it (PFC, Le e caduc : variation géographique, section 'Français de Suisse et de Belgique': ami [ami] vs amie [amiː], joué [ʒue] vs jouée [ʒueː], bleu [blø] vs bleue [bløː]; Avanzi 2024, Sprachenräume der Schweiz: 115-116: the quantity contrast of nu/nue and bout/boue holds fairly well in every canton; the PFC vowel page, d) 4), gives nu ~ nue and vit ~ vie at Neuchâtel). The ⟨e⟩ must end the word, so a plural ⟨-es⟩ keeps the short vowel here (NOT MODELLED)."
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "⟨ê⟩ is long [ɛː] in a final syllable closed by a pronounced consonant (PFC vowel page, d) 4): faites [fɛt] ≠ fête [fɛːt] and belle ≠ bêle at Neuchâtel; Avanzi (2024, Sprachenräume der Schweiz: 115): mettre ~ maître). The sources give the length only in such a final syllable, so ⟨ê⟩ elsewhere keeps the fr-FR [ɛ]: fêter [fɛte], bêtise, forêt [fɔʁɛ]."
     }
   ],
   "word_exceptions": {
