@@ -1,21 +1,22 @@
-# Kashmiri (`kas`)
+# Kashmiri (`ks-Arab`)
 
 <!-- agent-hint
-covers: what the `kas` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
-source: `orthography2ipa/data/kas.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+covers: what the `ks-Arab` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ks-Arab.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
 generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
 verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
 see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
 -->
 
 <!-- atlas:summary begin -->
-Kashmiri is an Indo-Aryan language, written in the Arabic script. Glottolog places it in India and Pakistan. The `kas` spec is at the research tier. It cites 3 sources and has 1 scored dataset.
+Kashmiri is an Indo-Aryan language, written in the Arabic script. Glottolog places it in India and Pakistan. The `ks-Arab` spec is at the research tier. It cites 3 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
 | Field | Value |
 |:--|:--|
-| Code | `kas` |
+| Code | `ks-Arab` |
+| Aliases | `kas` |
 | ISO 639-3 | [kas](https://iso639-3.sil.org/code/kas), Kashmiri |
 | Glottolog | [kash1277](https://glottolog.org/resource/languoid/id/kash1277), Kashmiri |
 | Wikidata | [Q33552](https://www.wikidata.org/wiki/Q33552) |
@@ -25,8 +26,8 @@ Kashmiri is an Indo-Aryan language, written in the Arabic script. Glottolog plac
 | Script | [Arabic](by-script.md#arabic) (abjad) |
 | Tier | [research](../specs/quality_tiers.md#research) |
 | Parent | [Indo-Aryan](https://tigregotico.github.io/orthography2ipa/#x-clade-indo1321) `x-clade-indo1321` |
-| Explorer | [`kas` in the data explorer](https://tigregotico.github.io/orthography2ipa/#kas) |
-| Spec file | [`kas.json`](../../orthography2ipa/data/kas.json) |
+| Explorer | [`ks-Arab` in the data explorer](https://tigregotico.github.io/orthography2ipa/#ks-Arab) |
+| Spec file | [`ks-Arab.json`](../../orthography2ipa/data/ks-Arab.json) |
 <!-- atlas:header end -->
 
 <!-- atlas:overview begin -->
@@ -38,13 +39,13 @@ The notes of the spec file open with these words:
 
 The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 3 works, from 1997 to 2026. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes all 58 spellings of its letter table itself.
 
-The [spec file](../../orthography2ipa/data/kas.json) holds the full notes, with the caveats of the spec.
+The [spec file](../../orthography2ipa/data/ks-Arab.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
 
 <!-- atlas:lects begin -->
 ## Related lects
 
-No spec names `kas` as its parent.
+No spec names `ks-Arab` as its parent.
 <!-- atlas:lects end -->
 
 <!-- atlas:sources begin -->
@@ -172,7 +173,7 @@ The spec has no allophone rule and no cross-word rule.
 <!-- atlas:examples begin -->
 ## Examples
 
-The engine wrote every transcription in this section with `orthography2ipa.transcribe(text, "kas")`. They are engine output, not reference transcriptions.
+The engine wrote every transcription in this section with `orthography2ipa.transcribe(text, "ks-Arab")`. They are engine output, not reference transcriptions.
 
 No example words are chosen for this page yet.
 <!-- atlas:examples end -->
@@ -184,4 +185,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Karelian](krl.md) · [Home](../index.md) · [Kashmiri →](ks.md)
+[← Kashmiri](ks.md) · [Home](../index.md) · [Kashubian →](csb.md)

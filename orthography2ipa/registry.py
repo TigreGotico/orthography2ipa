@@ -116,20 +116,13 @@ _ALIASES: Dict[str, str] = {
     # generic Sardinian macrolanguage spec) under ``langcodes``, which would
     # otherwise shadow the dedicated ``src`` spec. Pin it to itself.
     "src": "src",
-    # ``oji`` (Ojibwa macrolanguage) and ``mnk`` (Mandinka) gained real specs
-    # while the registry also carries their langcodes-preferred siblings
-    # (``ojg`` Eastern Ojibwa, ``emk`` Eastern Maninkakan). Pin each to itself
-    # so standardisation does not rewrite an exact-file hit, same class of
-    # collision as bxr/diq above.
-    "oji": "oji",
+    # ``oji`` is the Ojibwa macrolanguage spec, ``oj``. ``mnk`` (Mandinka) is
+    # pinned to itself, so standardisation does not rewrite it to ``emk``.
+    "oji": "oj",
     "mnk": "mnk",
-    # ``kas`` (Kashmiri) is an ISO 639-3 individual code that langcodes'
-    # macro=True standardisation collapses into its macrolanguage tag ``ks``
-    # (Kashmiri, ISO 639-1) — same collision class as bxr/diq above. ``ks``
-    # already carries a Latin-transliteration research-tier spec; ``kas``
-    # is a distinct, separately-cited spec for the Perso-Arabic native
-    # script. Pin it to itself so the macro-collapse step does not shadow it.
-    "kas": "kas",
+    # ``kas`` is the Perso-Arabic Kashmiri spec, ``ks-Arab``; ``ks`` is the
+    # Latin transliteration.
+    "kas": "ks-Arab",
     # ``bcc`` (Southern Balochi) is an ISO 639-3 individual code that
     # langcodes' macro=True standardisation collapses into its
     # macrolanguage tag ``bal`` (Balochi) — same collision class as
@@ -333,6 +326,8 @@ _RENAMED: Dict[str, str] = {
     # ``enm``), so each variety takes a private-use key under its preferred code.
     "ajt":                  "aeb-x-judeo",
     "yol":                  "enm-x-yola",
+    # CLDR gives swc the canonical tag sw-CD.
+    "swc":                  "sw-CD",
 }
 _ALIASES.update(_RENAMED)
 

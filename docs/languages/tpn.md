@@ -172,4 +172,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Ojibwe](oji.md) · [Home](../index.md) · [Omani Arabic →](acx-OM.md)
+[← Ojibwe](oj.md) · [Home](../index.md) · [Omani Arabic →](acx-OM.md)
