@@ -576,6 +576,16 @@ PT_MOJIBAKE_AUTHORITY = (
     "the reading itself: 'Ã' is not an IPA symbol. It is the first byte of a "
     "two-byte UTF-8 character such as 'ã' (C3 A3) read as Latin-1"
 )
+PT_NOT_IPA = re.compile(r'[{}~"@ȷ0-9A-Z]')
+PT_NOT_IPA_REASON = (
+    "the reading is not IPA: a leaked wiki template or X-SAMPA notation; the "
+    "row is dropped"
+)
+PT_NOT_IPA_AUTHORITY = (
+    "the reading itself: {chars} is not an IPA symbol (IPA chart, revised to "
+    "2020); '{{{{AFI' opens the pt.wiktionary pronunciation template, and '\"', "
+    "'~' and the capital letters are X-SAMPA"
+)
 #: Hand-checked corrections of the ``ipa_narrow`` field:
 #: ``(word, region, source, original, corrected, kind, basis)``. ``corrected``
 #: ``None`` drops the source row. ``basis`` is a written accent letter, a key
@@ -583,6 +593,8 @@ PT_MOJIBAKE_AUTHORITY = (
 #: transcribes instead. ``scripts/build_gold_corrections.py`` checks every entry
 #: against the upstream file and stops on one that matches no row.
 PT_UNIFIED_DECISIONS: Tuple[Tuple[str, str, str, str, Optional[str], str, str], ...] = (
+    ("borguinhão", "pt-BR", "wiktionary", "boɹgoˈɲejs", None, "wrong_headword", "borguinhões: the reading ends in -ejs, the word in -ão"),
+    ("vida", "pt-BR", "wiktionary", "ˈvita", None, "wrong_segment", "the reading has [t] for the ⟨d⟩ of the spelling"),
     ("Blátidas", "pt-PT", "infopedia", "blaˈtidɐʃ", "ˈblatidɐʃ", "accent_contradiction", "á"),
     ("abígeo", "pt-PT", "infopedia", "ɐbiˈʒju", "ɐˈbiʒju", "accent_contradiction", "í"),
     ("acridídeo", "pt-PT", "infopedia", "ɐkridiˈdju", "ɐkriˈdidju", "accent_contradiction", "í"),
@@ -1005,6 +1017,9 @@ def pt_broad_from_narrow(broad: str, narrow: str) -> Optional[str]:
 def _pt_authority(kind: str, basis: str, word: str, region: str) -> str:
     if kind == "wrong_headword":
         text = f"the orthography of ⟨{word}⟩ against the reading"
+    elif kind == "wrong_segment":
+        text = (f"the orthography of ⟨{word}⟩ against the reading; the Michaelis "
+                f"row of the same word and region reads the letter as the spelling does")
     elif basis in PT_AUTHORITY:
         text = PT_AUTHORITY[basis]
     else:
@@ -1020,6 +1035,8 @@ def _pt_reason(kind: str, basis: str, original: str, corrected: Optional[str]) -
     if kind == "wrong_headword":
         what = "the row is dropped" if corrected is None else "that variant is dropped"
         return f"the reading transcribes another headword, {basis}; {what}"
+    if kind == "wrong_segment":
+        return f"{basis}; the row is dropped"
     if kind == "missing_mark":
         return "the reading has no primary stress mark; the mark is added"
     if kind == "a_quality":
@@ -1108,6 +1125,10 @@ def build_pt_unified_rows(rows: List[Dict]) -> Tuple[List[Dict], Dict[str, int]]
         if "Ã" in row["ipa_narrow"]:
             emit(row, "ipa_narrow", row["ipa_narrow"], None, "mojibake",
                  PT_MOJIBAKE_REASON, PT_MOJIBAKE_AUTHORITY)
+        elif PT_NOT_IPA.search(row["ipa_narrow"]):
+            chars = ", ".join(f"'{c}'" for c in sorted(set(PT_NOT_IPA.findall(row["ipa_narrow"]))))
+            emit(row, "ipa_narrow", row["ipa_narrow"], None, "not_ipa",
+                 PT_NOT_IPA_REASON, PT_NOT_IPA_AUTHORITY.format(chars=chars))
     out.sort(key=lambda r: (r["word"], r["region"], r["source"], r["pos"],
                             r["field"], r["original_reading"]))
     stats["overlay_rows"] = len(out)

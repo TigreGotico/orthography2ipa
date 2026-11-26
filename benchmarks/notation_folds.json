@@ -16,11 +16,11 @@
   {
     "lang": "pt-BR",
     "dataset": "portuguese_unified_corrected",
-    "words": 23124,
-    "per": 0.1414,
-    "folded_per": 0.0672,
-    "segment_per": 0.1243,
-    "folded_segment_per": 0.0679,
+    "words": 23109,
+    "per": 0.1412,
+    "folded_per": 0.0669,
+    "segment_per": 0.1237,
+    "folded_segment_per": 0.0673,
     "folds": [
       "michaelis_ã",
       "michaelis_no_palatal",
