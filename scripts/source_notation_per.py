@@ -87,10 +87,10 @@ def reading_sources(lang: str) -> Dict[Tuple[str, str], Set[Tuple[str, str]]]:
         ipa = (row.get("ipa_narrow") or "").strip()
         key = (row["word"], region, source, row.get("pos") or "", "ipa_narrow",
                row.get("ipa_narrow"))
-        ipa = overlay.get(key, ipa)
-        if ipa:
-            out.setdefault((row["word"], ipa.strip()), set()).update(
-                (src, row.get("pos") or "") for src in source.split("+"))
+        tags = {(src, row.get("pos") or "") for src in source.split("+")}
+        # Both readings: the base row scores the original, the corrected row the overlay's.
+        for reading in {ipa, (overlay.get(key) or "").strip()} - {""}:
+            out.setdefault((row["word"], reading), set()).update(tags)
     return out
 
 
