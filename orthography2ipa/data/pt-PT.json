@@ -275,7 +275,7 @@
       ],
       "preceded_by_2": "word_boundary",
       "followed_by": "vowel",
-      "notes": "Word-initial ⟨ex-⟩ before a vowel writes the ⟨x⟩ as [z]: exame [eˈzɐmɨ], existir [eziʃˈtiɾ], êxito [ˈezitu], exótico [eˈzɔtiku], exausto [eˈzawʃtu]. The Portal da Língua Portuguesa Dicionário fonético (ILTEC, Lisbon variety, European Portuguese) writes this consonant as [z] in exame [i.zˈɐ.mɨ], exato [i.zˈa.tu], existir [i.ziʃ.tˈiɾ], exausto [i.zˈawʃ.tu], exótico [i.zˈɔ.ti.ku], êxito [ˈe.zi.tu] and exemplo [i.zˈẽ.plu]. The Portal writes the initial vowel [i], and the spec writes [e] (Lisbon [ɐ]); no opened source gives a rule for that vowel, so it is not changed here. The rule matches the ⟨x⟩ slot after a word-initial ⟨e⟩ or ⟨ê⟩ when a vowel follows. ⟨ex⟩ before a consonant (texto, extra, explicar) is not matched; PT_EX_CONSONANT_GLIDE reads it [ejʃ]. ⟨exh⟩ and ⟨hex⟩ are not matched. The ⟨ex⟩ prefix inside a word (inexato, coexistir, ex-presidente) and the [ks] of sexo need a morphological rule that this rule does not cover; the Portal gives inexato [i.ni.zˈa.tu], coexistir [kwi.ziʃ.tˈiɾ] and sexo [sˈɛk.su]. The same value is written for pt-BR by PT_INITIAL_EX_VOICED in pt-BR.json, with its own sources. pt-AO, pt-MZ and pt-TL enable the rule with their own sources. The creoles and the other varieties outside Europe disable it, because no source for them was read."
+      "notes": "Word-initial ⟨ex-⟩ before a vowel writes the ⟨x⟩ as [z]: exame [eˈzɐmɨ], existir [eziʃˈtiɾ], êxito [ˈezitu], exótico [eˈzɔtiku], exausto [eˈzawʃtu]. The Portal da Língua Portuguesa Dicionário fonético (ILTEC, Lisbon variety, European Portuguese) writes this consonant as [z] in exame [i.zˈɐ.mɨ], exato [i.zˈa.tu], existir [i.ziʃ.tˈiɾ], exausto [i.zˈawʃ.tu], exótico [i.zˈɔ.ti.ku], êxito [ˈe.zi.tu] and exemplo [i.zˈẽ.plu]. The Portal writes the initial vowel [i], and the spec writes [e] (Lisbon [ɐ]); no opened source gives a rule for that vowel, so it is not changed here. The rule matches the ⟨x⟩ slot after a word-initial ⟨e⟩ or ⟨ê⟩ when a vowel follows. ⟨ex⟩ before a consonant (texto, extra, explicar) is not matched; PT_EX_CONSONANT_GLIDE reads it [ejʃ]. ⟨exh⟩ and ⟨hex⟩ are not matched. The ⟨ex⟩ prefix inside a word (inexato, coexistir, ex-presidente) and the [ks] of sexo need a morphological rule that this rule does not cover; the Portal gives inexato [i.ni.zˈa.tu], coexistir [kwi.ziʃ.tˈiɾ] and sexo [sˈɛk.su]. The same value is written for pt-BR by PT_INITIAL_EX_VOICED in pt-BR.json, with its own sources. pt-AO, pt-MZ and pt-TL enable the rule with their own sources. The creoles and the other varieties outside Europe disable it, because no source for them was read. Source: Infopédia exame [iˈzɐm(ə)] (Wayback 20240910232631), existir [iziʃˈtir] (Wayback 20260623161914); saved in Papers/Languages/Portuguese/Orthography and Dictionaries."
     },
     {
       "id": "PT_FINAL_EM_NUCLEUS",
@@ -410,7 +410,7 @@
         "ɛ",
         "ɨ"
       ],
-      "notes": "The word-final ⟨n⟩ of a learned ⟨-en⟩ noun is the consonant [n], not the nasalisation tilde that the word-final ⟨m⟩ and ⟨n⟩ map gives (hífen [ˈifɛn]; see PT_FINAL_EN_NUCLEUS for the sources). Gated on a preceding front vowel so ⟨-an -on -un -in⟩ keep their own value."
+      "notes": "The word-final ⟨n⟩ of a learned ⟨-en⟩ noun is the consonant [n], not the nasalisation tilde that the word-final ⟨m⟩ and ⟨n⟩ map gives (hífen [ˈifɛn]; see PT_FINAL_EN_NUCLEUS for the sources). Gated on a preceding front vowel so ⟨-an -on -un -in⟩ keep their own value. Source: Infopédia hífen [ˈifɛn], plural hífenes (Wayback 20241009004331), abdómen [ɐˈbdɔmɛn], plural abdómenes (Wayback 20250319143327); saved in Papers/Languages/Portuguese/Orthography and Dictionaries."
     },
     {
       "id": "PT_NASAL_A_RAISE",
@@ -1614,7 +1614,7 @@
       "word_initial": true,
       "stress": "unstressed",
       "followed_by": "coda_nasal",
-      "notes": "Guard for PT_INITIAL_O_OPEN. Before a coda nasal a word-initial ⟨o⟩ is the nasal [õ]: ondular [õduˈlaɾ], ombreira [õˈbɾejɾɐ]. The nasal rules give that vowel, so the open default does not apply."
+      "notes": "Guard for PT_INITIAL_O_OPEN. Before a coda nasal a word-initial ⟨o⟩ is the nasal [õ]: ondular [õduˈlaɾ], ombreira [õˈbɾejɾɐ]. The nasal rules give that vowel, so the open default does not apply. Source: Infopédia onda [ˈõdɐ] (Wayback 20241009153224), ontem [ˈõtɐ̃j̃] (Wayback 20250217121439); saved in Papers/Languages/Portuguese/Orthography and Dictionaries."
     },
     {
       "id": "PT_INITIAL_O_OPEN",
