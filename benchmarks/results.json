@@ -12015,9 +12015,9 @@
   "gating": false,
   "harness_version": "1.1",
   "limit": null,
-  "oracle_per_top3": 0.1369,
+  "oracle_per_top3": 0.137,
   "oracle_exact_top3": 0.382,
-  "oracle_per_top5": 0.1312,
+  "oracle_per_top5": 0.1313,
   "oracle_exact_top5": 0.4066,
   "oracle_fallback_words": 307,
   "oracle_scored_words": 22815
