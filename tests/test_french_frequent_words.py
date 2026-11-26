@@ -215,3 +215,21 @@ def test_final_um_is_om(text, expected):
 ])
 def test_um_counter_cases(text, expected):
     assert _t(text) == expected
+
+
+# Fougeron & Smith (1993: 74-75), JIPA 23(2): parking [paʁkiŋ]; the velar
+# nasal occurs only word-finally in borrowed, usually English, words.
+# Martinon (1913: 145): the English final -ing is not nasalised.
+@pytest.mark.parametrize("text, expected", [
+    ("parking", "paʁkiŋ"), ("camping", "kɑ̃piŋ"), ("jogging", "ʒɔɡiŋ"),
+    ("smoking", "smɔkiŋ"), ("ping", "piŋ"),
+])
+def test_final_ing_is_oral_i_and_velar_nasal(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("vingt", "vɛ̃"), ("linge", "lɛ̃ʒ"), ("lingot", "lɛ̃ɡo"),
+])
+def test_ing_inside_a_word_stays_nasal(text, expected):
+    assert _t(text) == expected

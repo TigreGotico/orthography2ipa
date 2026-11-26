@@ -626,7 +626,7 @@
       "title": "Comment on prononce le français : traité complet de prononciation pratique avec les noms propres et les mots étrangers",
       "publisher": "Larousse, Paris",
       "url": "https://archive.org/details/commentonprononc00martuoft",
-      "pages": "123, 129, 130, 131, 161, 164, 226, 236, 239, 240, 284, 285, 331, 347, 348, 349",
+      "pages": "123, 129, 130, 131, 145, 161, 164, 226, 236, 239, 240, 284, 285, 331, 347, 348, 349",
       "notes": "READ (archive.org full scan of the University of Toronto copy; each cited page read in the scan's text). The Paris orthoepic norm of 1913; the allophone rules that cite it give the page and the passage."
     },
     {
@@ -1250,6 +1250,24 @@
       "notes": "FR_UM_FINAL_LATIN behind the silent plural ⟨-s⟩: albums [albɔm], forums, aquariums. Martinon (1913, p. 123: the Latin final -um is [ɔm], also in fully French words (album, forum, géranium); p. 130: parfum keeps the nasal vowel; p. 131: in every other word final m is pronounced on its own (album))."
     },
     {
+      "id": "FR_ING_FINAL_ORAL_I",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "i",
+      "grapheme": [
+        "i"
+      ],
+      "followed_by_grapheme": [
+        "n"
+      ],
+      "followed_by_phoneme_2": [
+        "ɡ"
+      ],
+      "followed_by_3": "word_boundary",
+      "notes": "Identity rule ordered before FR_NASAL_i: the ⟨i⟩ of the English final ⟨-ing⟩ stays oral, parking [paʁkiŋ], camping [kɑ̃piŋ], marketing, jogging, meeting. Martinon (1913, p. 145: the English final -ing is not nasalised (shampoing excepted)). Fougeron & Smith (1993: 74-75) transcribe parking [paʁkiŋ] and state that the velar nasal occurs only word-finally in borrowed, usually English, words. RESIDUAL: the plural ⟨-ings⟩ (parkings) puts the ⟨i⟩ four slots from the word end, past the reach of the rule conditions, so the plural keeps the nasal reading."
+    },
+    {
       "id": "FR_NASAL_a",
       "phonemes": [
         "a"
@@ -1305,6 +1323,21 @@
       ],
       "word_final": true,
       "notes": "Identity rule ordered before FR_NASAL_ABSORB: the ⟨m⟩ of a word-final ⟨um⟩ is pronounced (album [albɔm]), so it is not absorbed into a nasal vowel. word_final holds behind the silent plural ⟨-s⟩ too (albums). Martinon (1913, p. 123: the Latin final -um is [ɔm], also in fully French words (album, forum, géranium); p. 130: parfum keeps the nasal vowel; p. 131: in every other word final m is pronounced on its own (album))."
+    },
+    {
+      "id": "FR_ING_FINAL_VELAR_NASAL",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "ŋ",
+      "preceded_by_grapheme": [
+        "i"
+      ],
+      "followed_by_grapheme": [
+        "g"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "The ⟨ng⟩ of the English final ⟨-ing⟩ is the velar nasal [ŋ]: parking [paʁkiŋ]. Fougeron & Smith (1993: 74-75) transcribe parking [paʁkiŋ] and state that the velar nasal occurs only word-finally in borrowed, usually English, words. Ordered before FR_NASAL_ABSORB, so the ⟨n⟩ is not absorbed. Martinon (1913, p. 145: the English final -ing is not nasalised (shampoing excepted))."
     },
     {
       "id": "FR_NASAL_ABSORB",
@@ -1622,6 +1655,24 @@
         "compt"
       ],
       "notes": "The ⟨p⟩ of the word family of compter is mute: compte [kɔ̃t], compter, comptable, comptoir, décompte, escompte, acompte, recompter. Martinon (1913, p. 285: p is mute in com(p)te and all its derivatives, com(p)tabilité included, but not in exemption, présomption, consomption or symptôme). This is a fact of one word family, not of the letters ⟨mpt⟩: the same letters keep [p] in somptueux, symptôme, présomption and péremptoire, so the condition names the family's spelling ⟨compt⟩ with word_contains_grapheme. Every ⟨compt⟩ type of the wikipron fr gold (about 130) has the mute [p]. Martinon also lists the derivatives of prompt and, with hesitation, dompter, but the gold splits on prompte, promptitude and dompter, and impromptu keeps [p], so those stay out."
+    },
+    {
+      "id": "FR_ING_FINAL_G_MUTE",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "",
+      "grapheme": [
+        "g"
+      ],
+      "preceded_by_grapheme": [
+        "n"
+      ],
+      "preceded_by_phoneme_2": [
+        "i"
+      ],
+      "followed_by": "word_boundary",
+      "notes": "The ⟨g⟩ of the English final ⟨-ing⟩ is part of [ŋ] and adds no [ɡ]. Fougeron & Smith (1993: 74-75) transcribe parking [paʁkiŋ] and state that the velar nasal occurs only word-finally in borrowed, usually English, words."
     }
   ],
   "vowel_graphemes": [
