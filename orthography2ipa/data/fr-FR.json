@@ -626,7 +626,7 @@
       "title": "Comment on prononce le français : traité complet de prononciation pratique avec les noms propres et les mots étrangers",
       "publisher": "Larousse, Paris",
       "url": "https://archive.org/details/commentonprononc00martuoft",
-      "pages": "161, 164, 226, 236, 239, 240, 331, 347, 348, 349",
+      "pages": "129, 161, 164, 226, 236, 239, 240, 284, 285, 331, 347, 348, 349",
       "notes": "READ (archive.org full scan of the University of Toronto copy; each cited page read in the scan's text). The Paris orthoepic norm of 1913; the allophone rules that cite it give the page and the passage."
     },
     {
@@ -1537,6 +1537,24 @@
         "n"
       ],
       "notes": "⟨ch⟩ before /l ʁ m n/ is [k]: chrétien [kʁetjɛ̃], Christ, chronologie, chrome, chlore [klɔʁ], technique [tɛknik], drachme. Martinon (1913, p. 226: before a consonant ⟨ch⟩ is always learned and keeps the velar sound; the consonants are the liquids and nasals l, m, n, r, and sometimes s and t (chlore, drachme, technique, chrétien)). The rule takes only the four consonants Martinon names without restriction; before ⟨s⟩ and ⟨t⟩ he says only 'parfois', and fichtre keeps [ʃ]."
+    },
+    {
+      "id": "FR_P_MUTE_FINAL_MPT",
+      "phonemes": [
+        "p"
+      ],
+      "surface": "",
+      "grapheme": [
+        "p"
+      ],
+      "preceded_by_grapheme": [
+        "m"
+      ],
+      "followed_by_grapheme": [
+        "t"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "⟨p⟩ of a word-final ⟨-mpt⟩ is mute, as the ⟨t⟩ is: prompt [pʁɔ̃], exempt [ɛɡzɑ̃], rompt [ʁɔ̃], corrompt, interrompt. Martinon (1913, p. 129: exempt, prompt, rompt end in the nasal vowel; p. 331: in ⟨-empt⟩ and ⟨-ompt⟩ neither p nor t sounds)."
     }
   ],
   "vowel_graphemes": [
