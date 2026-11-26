@@ -174,6 +174,7 @@ Some frequent words read wrong when each letter takes its default value. The spe
 | `FR_P_MUTE_COMPT` | ⟨p⟩ is mute in the word family of ⟨compter⟩ | ⟨compte⟩ `kɔ̃t`, ⟨comptable⟩ `kɔ̃tabl` | Martinon 1913: 285 |
 | `FR_UM_FINAL_*` | A final ⟨um⟩ is [ɔm]; ⟨parfum⟩ is an entry | ⟨forum⟩ `fɔʁɔm`, ⟨album⟩ `albɔm` | Martinon 1913: 123, 130 |
 | `FR_ING_FINAL_*` | A final ⟨ing⟩ is [iŋ] | ⟨parking⟩ `paʁkiŋ` | Fougeron & Smith 1993: 74-75; Martinon 1913: 145 |
+| `FR_EIL_AFTER_GU`, `FR_GU_BEFORE_TREMA_E`, `FR_IED_CLOSE_MID` | ⟨gueil⟩ is [ɡœj], ⟨guë⟩ is [ɡy], a final ⟨ied⟩ is [je] | ⟨orgueil⟩ `ɔʁɡœj`, ⟨ambiguë⟩ `ɑ̃biɡy`, ⟨pied⟩ `pje` | Martinon 1913: 53, 93, 241 |
 
 No noun or adjective ends in ⟨-aient⟩ or ⟨-oient⟩, so this rule needs no part of speech. Bare ⟨-ent⟩ stays ambiguous, as the section on that ending says. After the prefix ⟨in-⟩ the start of the word is too far back for a rule, so ⟨inexact⟩ keeps [ks]. ⟨Hexagone⟩ keeps [ks] too. The letters ⟨mpt⟩ do not decide the ⟨p⟩: ⟨somptueux⟩, ⟨symptôme⟩ and ⟨présomption⟩ keep it. So `FR_P_MUTE_COMPT` names the family's spelling ⟨compt⟩ with `word_contains_grapheme`. The plural ⟨parkings⟩ is out of reach of the rule conditions and keeps the nasal vowel.
 
