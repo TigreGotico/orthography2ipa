@@ -184,7 +184,8 @@ def test_an_extension_or_variant_keeps_the_region(tag, code):
 #: The whole-word entries a variant states over those of fr-FR: vingt with
 #: its final [t] (PFC consonant page II d) 4); Avanzi 2016, 2024), the
 #: Laurentian long vowel of the fr-FR ⟨-er⟩ exceptions (Dumas 1974: 18-21)
-#: and the [ø] of the Midi clitics (PFC e-caduc page, 'Timbre').
+#: and the [ø] of the Midi clitics (PFC e-caduc page, 'Timbre') with the
+#: Midi readings of the fr-FR exceptions its rules would change.
 OWN_EXCEPTIONS = {
     "fr-CA": {"mer": "mai̯ʁ", "mers": "mai̯ʁ", "fer": "fai̯ʁ", "fers": "fai̯ʁ",
               "cher": "ʃai̯ʁ", "chers": "ʃai̯ʁ", "hiver": "ivai̯ʁ",
@@ -194,7 +195,11 @@ OWN_EXCEPTIONS = {
     "fr-BE": {"vingt": "vɛ̃t"}, "fr-CH": {"vingt": "vɛ̃t"},
     "fr-FR-x-midi": {"le": "lø", "de": "dø", "que": "kø", "ce": "sø",
                      "ne": "nø", "se": "sø", "je": "ʒø", "me": "mø",
-                     "te": "tø"},
+                     "te": "tø", "ville": "vilə", "mille": "milə",
+                     "lille": "lilə", "tranquille": "tʁaŋkilə",
+                     "tranquillement": "tʁaŋkiləmaŋ", "enfer": "aɱfɛʁ",
+                     "enfers": "aɱfɛʁ", "sens": "sans", "cancer": "kansɛʁ",
+                     "cancers": "kansɛʁ"},
 }
 
 

@@ -159,7 +159,7 @@ def test_the_midi_pronounces_the_final_schwa(text, expected):
 
 def test_the_midi_final_schwa_falls_before_a_vowel():
     # PFC: '(sauf s'il est suivi d'une voyelle)'
-    assert _say("quatre heures", MIDI) == "katʁ œʁə"
+    assert _say("quatre heures", MIDI) == "katʁ‿ œʁə"
     assert _say("une petite fille", MIDI).split()[1] == "pøtitə"
 
 
@@ -258,3 +258,31 @@ def test_quebec_review_cases(text, expected):
 def test_quebec_proclitics_stay_short_inside_a_phrase():
     assert _say("par la porte", "fr-CA").split()[0] == "paʁ"
     assert _say("leur maison", "fr-CA").split()[0] == "lœʁ"
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("fille", "fijə"),             # PFC: the final schwa after a consonant
+    ("ville", "vilə"),             # sound, whatever spells it
+    ("mille", "milə"),
+    ("famille", "famijə"),
+    ("Marseille", "maʁsɛjə"),
+    ("paille", "pajə"),
+    ("bouteille", "butɛjə"),
+    ("feuille", "fœjə"),
+    ("aime", "ɛmə"),
+    ("semaine", "sømɛnə"),
+    ("laine", "lɛnə"),
+    ("fontaine", "fɔntɛnə"),
+    ("Seine", "sɛnə"),
+    ("escalier", "ɛskalje"),       # closed syllable before ⟨sc⟩ [sk]
+    ("escargot", "ɛskaʁɡo"),
+    ("poème", "poɛmə"),            # open syllable in hiatus: close
+    ("automne", "otɔnə"),          # the appendix and a following nasal
+])
+def test_midi_review_cases(text, expected):
+    assert _say(text, MIDI) == expected
+
+
+def test_the_midi_final_schwa_links_its_consonant_before_a_vowel():
+    # the schwa falls and the consonant links, as in fr-FR's enchaînement
+    assert _say("une école", MIDI) == "yn‿ ekɔlə"
