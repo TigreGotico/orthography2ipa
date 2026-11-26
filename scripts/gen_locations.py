@@ -26,8 +26,9 @@ Usage::
     python scripts/gen_locations.py            # write locations
     python scripts/gen_locations.py --check    # fail if any spec is stale or unsound
 """
-from linguatag import catalog_ids
 from __future__ import annotations
+
+from linguatag import catalog_ids
 
 import argparse
 import csv

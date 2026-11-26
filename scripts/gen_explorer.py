@@ -13,8 +13,9 @@ Usage::
 
     python scripts/gen_explorer.py
 """
-from linguatag import catalog_ids
 from __future__ import annotations
+
+from linguatag import catalog_ids
 
 import dataclasses
 import json

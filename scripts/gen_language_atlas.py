@@ -56,8 +56,9 @@ Usage::
 when an atlas page breaks the template.
 """
 
-from linguatag import catalog_ids
 from __future__ import annotations
+
+from linguatag import catalog_ids
 
 import argparse
 import csv

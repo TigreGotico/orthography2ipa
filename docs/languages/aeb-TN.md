@@ -49,7 +49,7 @@ The [spec file](../../orthography2ipa/data/aeb-TN.json) holds the full notes, wi
 
 These specs name `aeb-TN` as their parent. They are sorted by country, and a lect with no recorded country comes last.
 
-- [Judeo-Tunisian Arabic](https://tigregotico.github.io/orthography2ipa/#ajt) `ajt`: France, Israel, Italy, Spain, Tunisia, United States, stub tier
+- [Judeo-Tunisian Arabic](https://tigregotico.github.io/orthography2ipa/#aeb-x-judeo) `aeb-x-judeo`: France, Israel, Italy, Spain, Tunisia, United States, stub tier
 <!-- atlas:lects end -->
 
 <!-- atlas:sources begin -->

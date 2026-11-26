@@ -22,8 +22,9 @@ Codes whose spec legitimately points at a family node (macrolanguages such as
 are recorded with their level in the snapshot, so the reviewer sees the level
 rather than having to trust a comment.
 """
-from linguatag import catalog_ids
 from __future__ import annotations
+
+from linguatag import catalog_ids
 
 import argparse
 import glob

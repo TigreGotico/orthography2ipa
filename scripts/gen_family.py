@@ -27,8 +27,9 @@ their o2i parent, or take a value from ``MANUAL`` below.
 
 Usage:  python scripts/gen_family.py [--check]
 """
-from linguatag import catalog_ids
 from __future__ import annotations
+
+from linguatag import catalog_ids
 
 import argparse
 import json

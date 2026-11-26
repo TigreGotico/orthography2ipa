@@ -2008,8 +2008,8 @@ Stubs (13): Lishanid Noshan `aij`, Aramaic `arc`, North Mesopotamian Arabic `ayp
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
 | [Irish English (Hiberno-English)](https://tigregotico.github.io/orthography2ipa/#en-IE) | `en-IE` | skeleton | Indo-European > Germanic > Northwest Germanic > West Germanic |
+| [Yola](https://tigregotico.github.io/orthography2ipa/#enm-x-yola) | `enm-x-yola` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Irish](ga.md) (page) | `ga` | research | Indo-European > Celtic > Goidelic |
-| [Yola](https://tigregotico.github.io/orthography2ipa/#yol) | `yol` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 
 Stubs (2): Irish Sign Language `isg`, Shelta `sth`.
 
@@ -3780,7 +3780,7 @@ Stubs (1): American Sign Language `ase`.
 
 ### France
 
-Stubs (1): Judeo-Tunisian Arabic `ajt`.
+Stubs (1): Judeo-Tunisian Arabic `aeb-x-judeo`.
 
 ### Gabon
 
@@ -3798,11 +3798,11 @@ Stubs (1): American Sign Language `ase`.
 
 ### Israel
 
-Stubs (1): Judeo-Tunisian Arabic `ajt`.
+Stubs (1): Judeo-Tunisian Arabic `aeb-x-judeo`.
 
 ### Italy
 
-Stubs (1): Judeo-Tunisian Arabic `ajt`.
+Stubs (1): Judeo-Tunisian Arabic `aeb-x-judeo`.
 
 ### Jamaica
 
@@ -3834,7 +3834,7 @@ Stubs (1): American Sign Language `ase`.
 
 ### Spain
 
-Stubs (1): Judeo-Tunisian Arabic `ajt`.
+Stubs (1): Judeo-Tunisian Arabic `aeb-x-judeo`.
 
 ### Togo
 
@@ -3842,7 +3842,7 @@ Stubs (1): American Sign Language `ase`.
 
 ### Tunisia
 
-Stubs (1): Judeo-Tunisian Arabic `ajt`.
+Stubs (1): Judeo-Tunisian Arabic `aeb-x-judeo`.
 
 ### United Arab Emirates
 
@@ -3850,7 +3850,7 @@ Stubs (1): Soqotri `sqt`.
 
 ### United States
 
-Stubs (2): Judeo-Tunisian Arabic `ajt`, American Sign Language `ase`.
+Stubs (2): Judeo-Tunisian Arabic `aeb-x-judeo`, American Sign Language `ase`.
 
 ### Yemen
 
