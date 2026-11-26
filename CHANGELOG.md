@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.131.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.131.2a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.131.1a2...7.131.2a1)
+
+**Merged pull requests:**
+
+- fix\(pt\): give the equi- 'equal' compounds the \[kw\] glide [\#2648](https://github.com/TigreGotico/orthography2ipa/pull/2648) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- docs: cite sources for five allophone rules; last-resort Wikipedia policy [\#2646](https://github.com/TigreGotico/orthography2ipa/pull/2646) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.131.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.131.1a2) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.131.1a1...7.131.1a2)
