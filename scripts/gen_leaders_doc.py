@@ -20,7 +20,8 @@ import orthography2ipa
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import docs_nav  # noqa: E402
-from benchmark import GATING_CUTOFF_TIER, RELIABILITY_TIERS  # noqa: E402
+from benchmark import (GATING_CUTOFF_TIER, RELIABILITY_TIERS,  # noqa: E402
+                       THIN_ROW_MARK, THIN_ROW_N)
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REL = "languages/leaders.md"
@@ -73,8 +74,9 @@ def _board(rows: list) -> list:
         mark = " (does not gate)"
     if best is None:
         return ["not measured"] + [""] * 4
-    return [f"`{best['dataset']}`", str(best["n"]), f"{best['per']:.4f}",
-            f"{best['per_ci_low']:.4f}–{best['per_ci_high']:.4f}",
+    n = f"{best['n']}{THIN_ROW_MARK}" if best["n"] < THIN_ROW_N else str(best["n"])
+    return [f"`{best['dataset']}`", n, f"{best['per']:.4f}",
+            f"{best['per_ci_low']:.4f} to {best['per_ci_high']:.4f}",
             best["provenance"] + mark]
 
 
@@ -111,7 +113,9 @@ def render() -> str:
         "The table gives one board row for each leader language tag. The "
         "resolved spec is the code that `orthography2ipa.get(tag)` returns. "
         "A tag with no spec file of its own resolves to a broader spec, and "
-        "the table names that spec. The scoreboard has no rule that marks "
+        "the table names that spec.",
+        "",
+        "The scoreboard has no rule that marks "
         "one row as the primary row of a language. The best gold row is "
         "the gating row on the most trusted provenance tier, in the order "
         + ", ".join(RELIABILITY_TIERS[:RELIABILITY_TIERS.index(GATING_CUTOFF_TIER) + 1])
@@ -124,6 +128,10 @@ def render() -> str:
         "| 95% CI | Provenance tier | Page |",
         "| :--- | :--- | :--- | :--- | ---: | ---: | :--- | :--- | :--- |",
         *(_row(tag, results) for tag in LEADERS),
+        "",
+        f"Rows with fewer than {THIN_ROW_N} scored words carry a "
+        f"`{THIN_ROW_MARK}` after `N`, and must never be read as comparable "
+        "to a row scored on thousands of words.",
     ]
     return "\n".join(lines) + docs_nav.footer(REL)
 
