@@ -187,14 +187,14 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | bjb | wikipron | 136 | 0.1021 | - | - | 0.1021 | 0.1021 | 0.5956 | 0.5956 | [0.0773, 0.1261] | 0.5956 | research | crowd-scraped |
 | bn | vox_communis | 30261 | 0.1587‡ | - | - | 0.1533 | 0.1532 | 0.2928 | 0.2928 | [0.1569, 0.1603] | 0.2928 | research | epitran-derived |
 | bn | wikipron | 6527 | 0.2398 | - | 0.2274† (inherent_vowel_word_final_quality) | 0.2039 | 0.2015 | 0.2791 | 0.2821 | [0.2349, 0.2448] | 0.2398 | research | crowd-scraped |
-| bo | wikipron | 1564 | 0.3871 | - | - | 0.3806 | 0.3803 | 0.2174 | 0.2174 | [0.3683, 0.4061] | 0.2174 | research | crowd-scraped |
+| bo | wikipron | 1564 | 0.3860 | - | - | 0.3795 | 0.3792 | 0.2180 | 0.2180 | [0.3672, 0.4049] | 0.2180 | research | crowd-scraped |
 | br | wikipron | 803 | 0.3073 | - | 0.1726† (the /r/~/ʁ/ realisation difference, contingent vowel nasalisation, and the close/open ⟨e⟩ contrast) | 0.2237 | 0.2083 | 0.2354 | 0.2615 | [0.2936, 0.3207] | 0.1233 | research | crowd-scraped |
 | bua | northeuralex | 1174 | 0.0398 | - | - | 0.0398 | 0.0398 | 0.7726 | 0.7726 | [0.0351, 0.0448] | 0.7726 | research | lexicon-derived |
 | bua | wikipron | 140 | 0.3571 | - | - | 0.3120 | 0.3114 | 0.1571 | 0.1571 | [0.3243, 0.3881] | 0.1143 | research | crowd-scraped |
 | ca | 4catac | 160 | 0.0641 | - | - | - | - | - | - | [0.0587, 0.0695] | 0.0437 | research | expert-human |
 | ca | ipa_childes | 3813 | 0.2562‡ | - | - | 0.1674 | 0.1456 | 0.3677 | 0.4317 | [0.2498, 0.2631] | 0.2213 | research | espeak-derived |
 | ca | spain_romance_tts | 20 | 0.0562‡ | - | - | - | - | - | - | [0.0382, 0.0768] | 0.2000 | research | llm-corrected |
-| ca | vox_communis | 141623 | 0.1317‡ | 0.9534 | - | 0.1171 | 0.1065 | 0.5131 | 0.5498 | [0.1306, 0.1329] | 0.4724 | research | epitran-derived |
+| ca | vox_communis | 141623 | 0.1317‡ | 0.9535 | - | 0.1171 | 0.1065 | 0.5131 | 0.5498 | [0.1306, 0.1329] | 0.4724 | research | epitran-derived |
 | ca | wikipron | 106 | 0.2565 | - | - | 0.1488 | 0.1289 | 0.5094 | 0.5660 | [0.2121, 0.3003] | 0.3396 | research | crowd-scraped |
 | ca-x-balear | 4catac | 160 | 0.1360 | - | - | - | - | - | - | [0.1283, 0.1446] | 0.0062 | research | expert-human |
 | ca-x-balear | spain_romance_tts | 20 | 0.0775‡ | - | - | - | - | - | - | [0.0596, 0.0950] | 0.0500 | research | llm-corrected |
@@ -682,7 +682,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | sdc | wikipron | 321 | 0.1865 | - | - | 0.1865 | 0.1865 | 0.3738 | 0.3738 | [0.1653, 0.2072] | 0.3738 | research | crowd-scraped |
 | se | wikipron | 4125 | 0.2749 | - | - | 0.2749 | 0.2749 | 0.0742 | 0.0742 | [0.2702, 0.2794] | 0.0742 | research | crowd-scraped |
 | sel | northeuralex | 886 | 0.0342 | - | - | 0.0292 | 0.0291 | 0.8149 | 0.8160 | [0.0294, 0.0393] | 0.7935 | research | lexicon-derived |
-| sga | wikipron | 3700 | 0.0889 | · | - | 0.0626 | 0.0598 | 0.6859 | 0.6905 | [0.0843, 0.0936] | 0.6089 | research | crowd-scraped |
+| sga | wikipron | 3700 | 0.0888 | - | - | 0.0630 | 0.0602 | 0.6832 | 0.6878 | [0.0841, 0.0936] | 0.6095 | research | crowd-scraped |
 | shn | wikipron | 2604 | 0.2985 | - | 0.2547 (tone) | 0.2985 | 0.2985 | 0.0545 | 0.0545 | [0.2917, 0.3057] | 0.0545 | research | crowd-scraped |
 | shu-NG | arabic_tts | 20 | 0.1248‡ | - | - | - | - | - | - | [0.0956, 0.1585] | 0.0500 | research | llm-corrected |
 | shu-NG | gold20_arabic | 20 | 0.1211‡ | - | - | - | - | - | - | [0.0918, 0.1553] | 0.0500 | research | llm-corrected |
