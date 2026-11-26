@@ -771,6 +771,6 @@ def test_transcription_revision(monkeypatch):
 def test_output_changing_fields_have_semantics_versions():
     names = set(layout.manifest(build_ir("pt-PT")).split(";"))
     assert {"collapse_geminates=1", "apostrophe_elision=1", "clitic_marks=1", "compound_last=1",
-            "allophony_geminate=1", "tonic_after_diphthong=1", "hiatus=1", "overrides=1"} <= names
+            "allophony_geminate=1", "tonic_after_diphthong=1", "hiatus=2", "overrides=1"} <= names
     assert "ipa_diphthongs=1" in layout.manifest(build_ir("it-IT")).split(";")
     assert "ipa_diphthongs=1" not in names

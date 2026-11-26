@@ -1423,7 +1423,7 @@ class Interpreter:
                         and not (len(rest) > 1 and self._c(rest[1], "orth_vowel"))
                         and not any(rest.startswith(g) for g in rule["multi_keys"])):
                     found.append(k)
-                elif any(rest.startswith(o) for o in rule["atonic_onsets"]):
+                elif any(rest.startswith(o) for o in rule.get("atonic_onsets", ())):
                     found.append(k)
                     atonic.append(k)
         rule = self.syll.get("final_diphthongs")

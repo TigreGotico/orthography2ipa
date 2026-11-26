@@ -38,7 +38,7 @@ M.SEMANTICS = {
   fold = 1, tone_dock = 1, iambic = 1, prevocalic_backoff = 1,
   ipa_count = 1, consonant_nuclei = 1, computed_tone = 1,
   internal_apostrophe = 1, apostrophe_elision = 1, collapse_geminates = 1, context_beam = 1,
-  clitic_marks = 1, silent_stress_marks = 1, overrides = 1, words = 1, allophone_map = 1, hiatus = 1,
+  clitic_marks = 1, silent_stress_marks = 1, overrides = 1, words = 1, allophone_map = 1, hiatus = 2,
   semivowels = 1, cliticless = 1, compound_last = 1, tonic_after_diphthong = 1,
   ipa_diphthongs = 1, mark_onsets = 1, allophony_geminate = 1,
   weight = 1, virama_final = 1, vowel_signs = 1, preposed = 1,
@@ -2310,7 +2310,7 @@ function P:hiatus_positions(word)
           end
         end
         if not hit then
-          for _, o in ipairs(rule.atonic_onsets) do
+          for _, o in ipairs(rule.atonic_onsets or {}) do
             if startswith(rest, o) then hit = true; atonic[k] = true; break end
           end
         end
