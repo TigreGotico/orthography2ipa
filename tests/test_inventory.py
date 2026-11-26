@@ -392,6 +392,7 @@ KNOWN_DEAD_PREFIXES = {"ta": ("TA_GEM",), "ml": ("TA_GEM",),
                                "FR_ENT_MUTE_AFTER_AI_OI",
                                "FR_E_MUTE_AFTER_SOFT_G", "FR_IED_CLOSE_MID",
                                "FR_X_VOICED_", "FR_X_Z_ORDINAL",
+                               "FR_X_S_AFTER_OI",
                                "FR_EIL_AFTER_GU")}
 
 
