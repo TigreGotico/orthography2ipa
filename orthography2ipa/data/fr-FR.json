@@ -626,7 +626,7 @@
       "title": "Comment on prononce le français : traité complet de prononciation pratique avec les noms propres et les mots étrangers",
       "publisher": "Larousse, Paris",
       "url": "https://archive.org/details/commentonprononc00martuoft",
-      "pages": "123, 129, 130, 131, 145, 161, 164, 226, 236, 239, 240, 284, 285, 331, 347, 348, 349",
+      "pages": "53, 93, 123, 129, 130, 131, 145, 161, 164, 226, 236, 239, 240, 241, 284, 285, 331, 347, 348, 349",
       "notes": "READ (archive.org full scan of the University of Toronto copy; each cited page read in the scan's text). The Paris orthoepic norm of 1913; the allophone rules that cite it give the page and the passage."
     },
     {
@@ -1367,6 +1367,45 @@
       "notes": "⟨e⟩ between ⟨g⟩ and a back vowel letter is not a vowel: it only marks the soft [ʒ] of ⟨g⟩ before ⟨a o u⟩. mangeait [mɑ̃ʒɛ], pigeon [piʒɔ̃], bourgeois [buʁʒwa], nageant [naʒɑ̃], geôle [ʒol], George [ʒɔʁʒ]. The same mute ⟨e⟩ stands after ⟨j⟩ in Jean [ʒɑ̃] and Jeanne [ʒan]. Martinon (1913, pp. 164 and 239: the ⟨e⟩ between ⟨g⟩ and ⟨a o u⟩ is not pronounced and only gives ⟨g⟩ its sound before ⟨e i⟩ (mangea, pigeon, nageoire, Georges); p. 164 n. 1: J(e)an, J(e)anne, J(e)annot). ⟨g⟩ itself already reads [ʒ] before ⟨e⟩ (before_front_vowel). RESIDUAL: ⟨geu⟩ before ⟨r⟩ in gageure, mangeure and vergeure is [ʒy] (Martinon 1913: 240), but the tokenizer reads ⟨eu⟩ as one grapheme there, so the rule cannot reach it."
     },
     {
+      "id": "FR_IED_CLOSE_MID",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "e",
+      "grapheme": [
+        "e"
+      ],
+      "preceded_by_grapheme": [
+        "i"
+      ],
+      "followed_by_grapheme": [
+        "d"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "The ⟨e⟩ of a word-final ⟨-ied⟩ is close-mid [e], not the [ɛ] of FR_E_CLOSED_FINAL: pied [pje], sied [sje], assied, trépied, marchepied. Martinon (1913, p. 53: the final ⟨e⟩ of pied, sied, messied and assied is close [e])."
+    },
+    {
+      "id": "FR_IED_CLOSE_MID_PLURAL",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "e",
+      "grapheme": [
+        "e"
+      ],
+      "preceded_by_grapheme": [
+        "i"
+      ],
+      "followed_by_grapheme": [
+        "d"
+      ],
+      "followed_by_phoneme_2": [
+        "s"
+      ],
+      "followed_by_3": "word_boundary",
+      "notes": "FR_IED_CLOSE_MID behind the silent plural ⟨-s⟩: pieds [pje], trépieds. Martinon (1913, p. 53: the final ⟨e⟩ of pied, sied, messied and assied is close [e])."
+    },
+    {
       "id": "FR_E_CLOSED_MULTIGRAPH",
       "phonemes": [
         "ə"
@@ -1673,6 +1712,63 @@
       ],
       "followed_by": "word_boundary",
       "notes": "The ⟨g⟩ of the English final ⟨-ing⟩ is part of [ŋ] and adds no [ɡ]. Fougeron & Smith (1993: 74-75) transcribe parking [paʁkiŋ] and state that the velar nasal occurs only word-finally in borrowed, usually English, words."
+    },
+    {
+      "id": "FR_EIL_AFTER_GU",
+      "phonemes": [
+        "ɛj"
+      ],
+      "surface": "œj",
+      "grapheme": [
+        "eil",
+        "eill"
+      ],
+      "preceded_by_grapheme": [
+        "gu"
+      ],
+      "notes": "After ⟨gu⟩, ⟨eil⟩ and ⟨eill⟩ spell [œj], the ⟨ueil⟩ of accueil written with the ⟨u⟩ of ⟨gu⟩: orgueil [ɔʁɡœj], enorgueillir. Martinon (1913, p. 93: in ⟨-cueil⟩ and ⟨-gueil⟩ the ⟨ue⟩ is the vowel eu, the u needed by ⟨c⟩ or ⟨g⟩ standing for the second u (accueil, écueil, cercueil, orgueil)). ⟨cueil⟩ needs no rule, because the tokenizer reads its ⟨ueil⟩ as one grapheme."
+    },
+    {
+      "id": "FR_GU_BEFORE_TREMA_E",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "ɡy",
+      "grapheme": [
+        "gu"
+      ],
+      "followed_by_grapheme": [
+        "ë"
+      ],
+      "notes": "⟨gu⟩ before ⟨ë⟩ keeps its ⟨u⟩ as [y]: ambiguë [ɑ̃biɡy], ciguë [siɡy], aiguë, contiguë, exiguë. Martinon (1913, p. 241: the ⟨u⟩ of ⟨gu⟩ is pronounced before the mute final ⟨ë⟩ of aiguë, ambiguë, contiguë, exiguë, besaiguë and ciguë)."
+    },
+    {
+      "id": "FR_TREMA_E_MUTE_AFTER_GU",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "",
+      "grapheme": [
+        "ë"
+      ],
+      "preceded_by_grapheme": [
+        "gu"
+      ],
+      "notes": "The ⟨ë⟩ after ⟨gu⟩ is the mute final ⟨e⟩ of the feminine; its diaeresis only marks the ⟨u⟩ as a vowel. Martinon (1913, p. 241: the ⟨u⟩ of ⟨gu⟩ is pronounced before the mute final ⟨ë⟩ of aiguë, ambiguë, contiguë, exiguë, besaiguë and ciguë)."
+    },
+    {
+      "id": "FR_G_HARD_BEFORE_TREMA_U",
+      "phonemes": [
+        "ʒ"
+      ],
+      "surface": "ɡ",
+      "grapheme": [
+        "g"
+      ],
+      "followed_by_grapheme": [
+        "ü"
+      ],
+      "notes": "⟨g⟩ before ⟨ü⟩ is hard [ɡ]: the 1990 spellings ambigüe, aigüe and cigüe move the diaeresis to the ⟨u⟩ that Martinon (1913: 241) says is pronounced, so ambigüe [ɑ̃biɡy] reads as ambiguë. ⟨ü⟩ counts as a front vowel letter for before_front_vowel, which would otherwise soften the ⟨g⟩."
     }
   ],
   "vowel_graphemes": [

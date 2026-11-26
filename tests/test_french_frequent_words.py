@@ -233,3 +233,38 @@ def test_final_ing_is_oral_i_and_velar_nasal(text, expected):
 ])
 def test_ing_inside_a_word_stays_nasal(text, expected):
     assert _t(text) == expected
+
+
+# Martinon (1913: 93): in ⟨-gueil⟩ the ⟨ue⟩ is the vowel eu (orgueil).
+def test_orgueil():
+    assert _t("orgueil") == "ɔʁɡœj"
+
+
+# Martinon (1913: 241): the ⟨u⟩ of ⟨gu⟩ is pronounced before the mute ⟨ë⟩ of
+# aiguë, ambiguë, ciguë.
+@pytest.mark.parametrize("text, expected", [
+    ("ambiguë", "ɑ̃biɡy"), ("ciguë", "siɡy"), ("ambigüe", "ɑ̃biɡy"),
+])
+def test_gu_before_trema_e(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("Noël", "nɔɛl"), ("guerre", "ɡɛʁ"),
+])
+def test_trema_counter_cases(text, expected):
+    assert _t(text) == expected
+
+
+# Martinon (1913: 53): the final ⟨e⟩ of pied, sied, assied is close [e].
+@pytest.mark.parametrize("text, expected", [
+    ("pied", "pje"), ("pieds", "pje"), ("trépied", "tʁepje"),
+])
+def test_final_ied_is_close_mid(text, expected):
+    assert _t(text) == expected
+
+
+def test_ied_rule_needs_the_final_d():
+    # pieu: ⟨i⟩ before ⟨eu⟩, no ⟨d⟩; sied is in Martinon's list.
+    assert _t("pieu") == "pjø"
+    assert _t("sied") == "sje"
