@@ -199,7 +199,12 @@ OWN_EXCEPTIONS = {
                      "lille": "lilə", "tranquille": "tʁaŋkilə",
                      "tranquillement": "tʁaŋkiləmaŋ", "enfer": "aɱfɛʁ",
                      "enfers": "aɱfɛʁ", "sens": "sans", "cancer": "kansɛʁ",
-                     "cancers": "kansɛʁ"},
+                     "cancers": "kansɛʁ", "cresson": "kʁøsɔŋ",
+                     "cressonnière": "kʁøsɔnjɛʁə", "dessus": "døsy",
+                     "dessous": "døsu", "parfum": "paʁfœŋ",
+                     "parfums": "paʁfœŋ", "zinc": "zɛŋɡ",
+                     "chnoque": "ʃnɔkə", "chnoques": "ʃnɔkə",
+                     "chlingue": "ʃlɛŋɡə", "chlinguer": "ʃlɛŋɡe"},
 }
 
 

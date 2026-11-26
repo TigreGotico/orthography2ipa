@@ -182,6 +182,26 @@
       "followed_by_nucleus": false
     },
     {
+      "id": "FR_MIDI_ENT_MUTE_AFTER_AI_OI",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "",
+      "grapheme": [
+        "n"
+      ],
+      "preceded_by_grapheme": [
+        "e"
+      ],
+      "preceded_by_phoneme_2": [
+        "ɛ",
+        "w"
+      ],
+      "followed_by": "consonant",
+      "followed_by_2": "word_boundary",
+      "notes": "The ⟨n⟩ of the verb ending ⟨-ent⟩ after ⟨ai⟩ or ⟨oi⟩ (étaient, voient) is silent, not a nasal appendix: fr-FR mutes the ⟨e⟩ there (FR_ENT_MUTE_AFTER_AI_OI) and absorbs the ⟨n⟩ with FR_NASAL_ABSORB, which this spec disables. The rule reads the vowel two slots back by its underlying phoneme ([ɛ] for ⟨ai⟩, [w] at the start of ⟨oi⟩)."
+    },
+    {
       "id": "FR_MIDI_APPENDIX_BEFORE_NASAL",
       "phonemes": [
         "n",
@@ -1100,9 +1120,29 @@
     "enfers": "aɱfɛʁ",
     "sens": "sans",
     "cancer": "kansɛʁ",
-    "cancers": "kansɛʁ"
+    "cancers": "kansɛʁ",
+    "cresson": "kʁøsɔŋ",
+    "cressonnière": "kʁøsɔnjɛʁə",
+    "dessus": "døsy",
+    "dessous": "døsu",
+    "parfum": "paʁfœŋ",
+    "parfums": "paʁfœŋ",
+    "zinc": "zɛŋɡ",
+    "chnoque": "ʃnɔkə",
+    "chnoques": "ʃnɔkə",
+    "chlingue": "ʃlɛŋɡə",
+    "chlinguer": "ʃlɛŋɡe"
   },
   "sandhi_rules": [
+    {
+      "id": "FR_NEUF_V_BEFORE_HEURES",
+      "name": "neuf before heures",
+      "left_context": "^nœf$",
+      "right_context": "^œʁə?$",
+      "transform": "nœv‿",
+      "obligatory": true,
+      "notes": "fr-FR's FR_NEUF_V_BEFORE_HEURES (PR #2710), restated by id for the Midi heures [œʁə] with its final schwa (FR_MIDI_FINAL_SCHWA): neuf heures [nœv‿ œʁə]. Placed before FR_MIDI_SCHWA_ELISION. On a base without the fr-FR rule it is this spec's own rule and gives the same reading."
+    },
     {
       "id": "FR_MIDI_SCHWA_ELISION",
       "name": "final schwa elided before a vowel",
@@ -1114,7 +1154,7 @@
     }
   ],
   "parent": "fr-FR",
-  "notes": "Southern French (français du Midi, français méridional), the French of the south of France, as a thin variant of Metropolitan French (fr-FR). It inherits every table, rule and word exception of fr-FR and states only what a cited source states. The sources describe the traditional accent of the Midi (Languedoc, Toulouse, Provence); younger and urban speakers move toward fr-FR. FINAL SCHWA: the mute final ⟨e⟩ of a polysyllable is pronounced after a consonant sound (FR_MIDI_FINAL_SCHWA: petite [pøtitə], seule [sœlə], pattes [patə], fille [fijə], semaine [sømɛnə]) and dropped before a vowel-initial word, its consonant linking to that word (sandhi rule FR_MIDI_SCHWA_ELISION: quatre heures [katʁ‿ œʁə], une école [yn‿ ekɔlə]), after the PFC e-caduc page, section 'Français méridional'. A post-vocalic final ⟨e⟩ stays mute (vie [vi]): the page gives the pronounced schwa after a consonant. SCHWA TIMBRE: schwa is [ø] in the first syllable of a polysyllable (FR_MIDI_SCHWA_INITIAL*: petit [pøti], chemise [ʃømizə]) and in a monosyllable; the clitic monosyllables are word exceptions in fr-FR, so this spec restates them with [ø] (le [lø], de [dø], que [kø], ce, ne, se, je, me, te). fr-FR's whole-word exceptions bypass every rule, so the native ones the Midi rules would change are restated too: ville [vilə], mille, lille, tranquille [tʁaŋkilə], tranquillement, enfer [aɱfɛʁ], sens [sans], cancer. LOI DE POSITION: the mid vowels follow the loi de position, open in a closed syllable and before a schwa syllable, close in any other open syllable (FR_MIDI_LDP_*: rose [ʁɔzə], père [pɛʁə], jaune [ʒɔnə], port [pɔʁ], escalier [ɛskalje], lait [le], jamais [ʒame], maison [mezɔŋ], bêtise [betizə], poème [poɛmə]), after Eychenne (2006: 120, 124) and Avanzi (2024, Oxford Handbook ch. 14: 422-423). The rules run after fr-FR's own (allophone_passes 3): the final schwa appears in the first pass, the schwa timbre that needs it in the second and the loi de position that reads that timbre in the third. NASAL VOWELS: a nasal vowel is an oral vowel plus a nasal appendix, velar [ŋ] at the end of a word and homorganic before a consonant (FR_MIDI_APPENDIX_*, FR_MIDI_UNIT_*: pain [pɛŋ], lent [laŋ], vin [vɛŋ], brun [bʁœŋ], lampe [lampə], plainte [plɛntə], enfant [aɱfaŋ]), after Eychenne (2006: 115-117) quoting Durand (1988: 167). Before a nasal consonant the appendix is that consonant and is written once (automne [otɔnə]). The fr-FR rules FR_NASAL_a, FR_NASAL_ə, FR_NASAL_i, FR_NASAL_ɔ and FR_NASAL_y are restated with the oral vowel as their surface, FR_NASAL_ABSORB is disabled, FR_E_CLOSED_FINAL is restated without the plural ⟨-s⟩, and FR_O_BEFORE_Z, FR_EU_BEFORE_Z and FR_AU_BEFORE_R are restated so that they leave the Midi loi de position its contexts. A rule rewrites every candidate of a slot, so two rules that undo each other would swap the candidates on every pass. ⟨ê⟩ and ⟨â⟩ take the fr-FR values, and /ɛ̃/ and /œ̃/ stay apart (PFC vowel page, d) 2): brin ≠ brun, 'différence de timbre très marquée' at Toulouse). NOT MODELLED: the blocking of the elision and of the link by an aspirate h (une hache reads [yn‿ aʃə]; the sandhi rule sees only the IPA of the next word, where ⟨h⟩ is silent, the limit fr-FR has for liaison); the open vowel before a medial schwa (seulement [søləmaŋ], heureusement), because the rule layer reads the underlying /ə/ two slots ahead and cannot tell a medial schwa from the full vowel of ⟨-er⟩ and ⟨-ez⟩ (poser [poze]); the other whole-word exceptions inherited from fr-FR (loanwords such as container and gangster); the insertion after a final consonant (Marseille, the far south-west: sec[ə]), which belong to the phrase; the [ʌ], [e] and [ɐ] values of the final schwa; the variable medial schwa; the loi de position before a plural ⟨-s⟩ (roses keeps the fr-FR [o]) and in prefixed words; the [e] of /ɛ̃/ among conservative speakers (brin [breŋ]) and a labial appendix by harmony (pain [pɛm]); the loss of the appendix before a consonant cluster (transporter); the oral vowel of a liaison (bon ami [bɔnami]); the merger of /a/ and /ɑ/ at Toulouse (PFC vowel page, d) 1)), which no source states as a rule for the whole Midi; the final consonant of moins in the south-west (Avanzi 2016); and the ⟨e⟩ before a doubled nasal letter (femme), which fr-FR reads as schwa. huit and vingt read as fr-FR reads them: vingt keeps fr-FR's stray [ɡ] ([vɛŋɡ]) until fr-FR silences the final g, and then follows it.",
+  "notes": "Southern French (français du Midi, français méridional), the French of the south of France, as a thin variant of Metropolitan French (fr-FR). It inherits every table, rule and word exception of fr-FR and states only what a cited source states. The sources describe the traditional accent of the Midi (Languedoc, Toulouse, Provence); younger and urban speakers move toward fr-FR. FINAL SCHWA: the mute final ⟨e⟩ of a polysyllable is pronounced after a consonant sound (FR_MIDI_FINAL_SCHWA: petite [pøtitə], seule [sœlə], pattes [patə], fille [fijə], semaine [sømɛnə]) and dropped before a vowel-initial word, its consonant linking to that word (sandhi rule FR_MIDI_SCHWA_ELISION: quatre heures [katʁ‿ œʁə], une école [yn‿ ekɔlə]), after the PFC e-caduc page, section 'Français méridional'. A post-vocalic final ⟨e⟩ stays mute (vie [vi]): the page gives the pronounced schwa after a consonant. SCHWA TIMBRE: schwa is [ø] in the first syllable of a polysyllable (FR_MIDI_SCHWA_INITIAL*: petit [pøti], chemise [ʃømizə]) and in a monosyllable; the clitic monosyllables are word exceptions in fr-FR, so this spec restates them with [ø] (le [lø], de [dø], que [kø], ce, ne, se, je, me, te). fr-FR's whole-word exceptions bypass every rule, so the native ones the Midi rules would change are restated too: ville [vilə], mille, lille, tranquille [tʁaŋkilə], tranquillement, enfer [aɱfɛʁ], sens [sans], cancer, and the native words fr-FR adds to its exceptions in PR #2710 (cresson [kʁøsɔŋ], cressonnière, dessus [døsy], dessous, parfum [paʁfœŋ], zinc, chnoque [ʃnɔkə], chlingue, chlinguer). LOI DE POSITION: the mid vowels follow the loi de position, open in a closed syllable and before a schwa syllable, close in any other open syllable (FR_MIDI_LDP_*: rose [ʁɔzə], père [pɛʁə], jaune [ʒɔnə], port [pɔʁ], escalier [ɛskalje], lait [le], jamais [ʒame], maison [mezɔŋ], bêtise [betizə], poème [poɛmə]), after Eychenne (2006: 120, 124) and Avanzi (2024, Oxford Handbook ch. 14: 422-423). The rules run after fr-FR's own (allophone_passes 3): the final schwa appears in the first pass, the schwa timbre that needs it in the second and the loi de position that reads that timbre in the third. NASAL VOWELS: a nasal vowel is an oral vowel plus a nasal appendix, velar [ŋ] at the end of a word and homorganic before a consonant (FR_MIDI_APPENDIX_*, FR_MIDI_UNIT_*: pain [pɛŋ], lent [laŋ], vin [vɛŋ], brun [bʁœŋ], lampe [lampə], plainte [plɛntə], enfant [aɱfaŋ]), after Eychenne (2006: 115-117) quoting Durand (1988: 167). Before a nasal consonant the appendix is that consonant and is written once (automne [otɔnə]). The fr-FR rules FR_NASAL_a, FR_NASAL_ə, FR_NASAL_i, FR_NASAL_ɔ and FR_NASAL_y are restated with the oral vowel as their surface, FR_NASAL_ABSORB is disabled, FR_E_CLOSED_FINAL is restated without the plural ⟨-s⟩, and FR_O_BEFORE_Z, FR_EU_BEFORE_Z and FR_AU_BEFORE_R are restated so that they leave the Midi loi de position its contexts. A rule rewrites every candidate of a slot, so two rules that undo each other would swap the candidates on every pass. ⟨ê⟩ and ⟨â⟩ take the fr-FR values, and /ɛ̃/ and /œ̃/ stay apart (PFC vowel page, d) 2): brin ≠ brun, 'différence de timbre très marquée' at Toulouse). NOT MODELLED: the blocking of the elision and of the link by an aspirate h (une hache reads [yn‿ aʃə]; the sandhi rule sees only the IPA of the next word, where ⟨h⟩ is silent, the limit fr-FR has for liaison); the open vowel before a medial schwa (seulement [søləmaŋ], heureusement), because the rule layer reads the underlying /ə/ two slots ahead and cannot tell a medial schwa from the full vowel of ⟨-er⟩ and ⟨-ez⟩ (poser [poze]); the other whole-word exceptions inherited from fr-FR (loanwords such as container and gangster); the insertion after a final consonant (Marseille, the far south-west: sec[ə]), which belong to the phrase; the [ʌ], [e] and [ɐ] values of the final schwa; the variable medial schwa; the loi de position before a plural ⟨-s⟩ (roses keeps the fr-FR [o]) and in prefixed words; the [e] of /ɛ̃/ among conservative speakers (brin [breŋ]) and a labial appendix by harmony (pain [pɛm]); the loss of the appendix before a consonant cluster (transporter); the oral vowel of a liaison (bon ami [bɔnami]); the merger of /a/ and /ɑ/ at Toulouse (PFC vowel page, d) 1)), which no source states as a rule for the whole Midi; the final consonant of moins in the south-west (Avanzi 2016); and the ⟨e⟩ before a doubled nasal letter (femme), which fr-FR reads as schwa. huit, six, dix and vingt read as fr-FR reads them: vingt keeps fr-FR's stray [ɡ] ([vɛŋɡ]) until fr-FR silences the final g after a nasal vowel, and then reads [vɛŋ]. The ⟨n⟩ of ⟨-ent⟩ after ⟨ai⟩ or ⟨oi⟩ (étaient) is silent and takes no appendix (FR_MIDI_ENT_MUTE_AFTER_AI_OI).",
   "quality": "skeleton",
   "script_type": "alphabet",
   "sources": [
