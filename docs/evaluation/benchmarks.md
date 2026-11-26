@@ -109,6 +109,18 @@ PER is the Levenshtein edit distance between the hypothesis and the reference IP
 
 The segment PER applies no notation fold, and it reads the raw transcriptions of the engine and the gold. The board columns use the code-point PER.
 
+### Per-source notation folds
+
+`scripts/source_notation_per.py` scores the pt-BR `portuguese_unified` rows with per-source notation folds. It prints the code-point PER and the segment PER, each unfolded and folded. A fold applies only to a gold reading from a source whose own rows show no contrast for it, and it changes the hypothesis into the notation of that source. The Michaelis rows have three folds, and each one carries its count in the script:
+
+| Fold | Change | Michaelis usage |
+| :--- | :--- | :--- |
+| `michaelis_ã` | [ɐ̃] → [ã] | No ⟨ã⟩ word writes [ɐ̃]. |
+| `michaelis_no_palatal` | [t͡ʃ d͡ʒ] → [t d] before [i ĩ ɪ j] | Almost no ⟨ti di⟩ word writes a palatal. |
+| `michaelis_final_r` | The final rhotic of the gold does not count when the hypothesis has none. | Almost every -ar, -er, -ir word writes the final r. |
+
+The board columns stay unfolded.
+
 
 Gold rows are grouped by word. A hypothesis is scored against every gold variant of its word, and the lowest PER counts. A sentence-level gold entry, such as a `4catac` row, is transcribed with `G2P.transcribe`, so the word-final rules of each word still apply. A single-word entry goes through `G2P.transcribe_word`.
 
