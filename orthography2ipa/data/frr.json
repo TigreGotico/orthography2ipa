@@ -1,6 +1,5 @@
 {
   "code": "frr",
-  "glottolog_code": "nort2626",
   "name": "North Frisian",
   "script": "Latin",
   "quality": "research",
@@ -446,7 +445,6 @@
     "end_year": null
   },
   "iso639_3": "frr",
-  "wikidata_qid": "Q28224",
   "phoible_id": "nort2626",
   "wals_code": "fno",
   "location": {

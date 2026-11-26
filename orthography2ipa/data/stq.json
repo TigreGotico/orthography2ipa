@@ -1,6 +1,5 @@
 {
   "code": "stq",
-  "glottolog_code": "sate1242",
   "name": "Saterland Frisian",
   "script": "Latin",
   "quality": "research",
@@ -520,7 +519,6 @@
     "end_year": null
   },
   "iso639_3": "stq",
-  "wikidata_qid": "Q27154",
   "location": {
     "latitude": 53.117,
     "longitude": 7.721,

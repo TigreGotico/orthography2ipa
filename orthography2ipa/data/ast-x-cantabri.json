@@ -1,6 +1,5 @@
 {
   "code": "ast-x-cantabri",
-  "glottolog_code": "cant1245",
   "name": "Cantabrian",
   "script": "Latin",
   "parent": "ast",
@@ -177,7 +176,6 @@
   },
   "iso639_3": "ast",
   "quality": "research",
-  "wikidata_qid": "Q917021",
   "location": {
     "latitude": 43.333333,
     "longitude": -4,

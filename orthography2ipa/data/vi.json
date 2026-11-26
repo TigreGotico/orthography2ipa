@@ -1,7 +1,6 @@
 {
   "code": "vi",
   "name": "Vietnamese",
-  "glottolog_code": "viet1252",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "vie",
@@ -2874,7 +2873,6 @@
       "notes": "Sanskrit adstrate: older Indic learned terms."
     }
   ],
-  "wikidata_qid": "Q9199",
   "phoible_id": "viet1252",
   "wals_code": "vie",
   "location": {

@@ -1,20 +1,20 @@
 """Cross-reference catalog identifiers on a LanguageSpec.
 
-Each spec may carry standard ids into external knowledge bases so it is a
-node in the linked-data graph rather than an island: Glottolog (genealogy),
-ISO 639-3, Wikidata (the hub that resolves all the others), PHOIBLE (attested
-phoneme inventories) and WALS (typology).
+A spec carries its ISO 639-3, PHOIBLE and WALS ids. linguatag holds the
+Glottolog and Wikidata ids (``linguatag.catalog_ids``).
 """
 import json
 import glob
 import os
 
 import orthography2ipa as o2i
+from linguatag import catalog_ids
 from orthography2ipa.types import FIELD_INHERITANCE, InheritanceMode
 
 _DATA = os.path.join(os.path.dirname(__file__), "..", "orthography2ipa", "data")
 
-CROSSREF_FIELDS = ("glottolog_code", "iso639_3", "wikidata_qid", "phoible_id", "wals_code")
+CROSSREF_FIELDS = ("iso639_3", "phoible_id", "wals_code")
+CATALOG_FIELDS = ("glottolog_code", "wikidata_qid")
 
 
 def test_crossref_fields_are_own_only_never_inherited():
@@ -24,18 +24,25 @@ def test_crossref_fields_are_own_only_never_inherited():
         assert FIELD_INHERITANCE[field] is InheritanceMode.OWN_ONLY
 
 
-def test_glottolog_code_in_json_is_actually_loaded():
-    """A glottolog_code declared in a spec's JSON must reach the loaded spec."""
-    declared = {}
+def test_spec_files_hold_no_catalog_ids():
+    """linguatag holds the Glottolog and Wikidata ids, so no spec file repeats them."""
+    holders = []
     for path in glob.glob(os.path.join(_DATA, "*.json")):
         with open(path, encoding="utf-8") as fh:
             raw = json.load(fh)
-        if raw.get("glottolog_code"):
-            declared[raw["code"]] = raw["glottolog_code"]
+        holders += [(raw["code"], f) for f in CATALOG_FIELDS if f in raw]
+    assert not holders, holders
 
-    assert declared, "expected some specs to declare a glottolog_code"
-    for code, expected in declared.items():
-        assert o2i.get(code).glottolog_code == expected
+
+def test_deprecated_catalog_properties_read_linguatag():
+    import pytest
+    from linguatag import catalog_ids
+
+    pt = o2i.get("pt-PT")
+    with pytest.warns(DeprecationWarning):
+        assert pt.glottolog_code == catalog_ids("pt-PT")["glottolog_code"] == "port1283"
+    with pytest.warns(DeprecationWarning):
+        assert pt.wikidata_qid == "Q5146"
 
 
 def test_crossref_fields_round_trip_from_json():
@@ -85,7 +92,7 @@ def test_every_spec_field_is_parsed_by_the_loader():
 
 
 def test_new_crossref_fields_parse_from_a_synthetic_spec(tmp_path, monkeypatch):
-    """The three new ids have no data in-tree yet, so exercise their parse path
+    """These ids have little data in-tree, so exercise their parse path
     against a synthetic spec rather than relying on a round-trip over real
     specs, which would vacuously pass while nothing declares them."""
     from pathlib import Path
@@ -98,8 +105,6 @@ def test_new_crossref_fields_parse_from_a_synthetic_spec(tmp_path, monkeypatch):
         "family": "Test",
         "script": "Latin",
         "graphemes": {"a": ["a"]},
-        "glottolog_code": "test1234",
-        "wikidata_qid": "Q1321",
         "phoible_id": "2175",
         "wals_code": "spa",
         "urls": ["https://glottolog.org/resource/languoid/id/test1234"],
@@ -109,8 +114,6 @@ def test_new_crossref_fields_parse_from_a_synthetic_spec(tmp_path, monkeypatch):
     monkeypatch.setitem(json_loader._index, "xx", tmp_path / "xx.json")
     spec = json_loader.load_json_spec("xx")
 
-    assert spec.glottolog_code == "test1234"
-    assert spec.wikidata_qid == "Q1321"
     assert spec.phoible_id == "2175"
     assert spec.wals_code == "spa"
     assert spec.urls == ("https://glottolog.org/resource/languoid/id/test1234",)
@@ -126,16 +129,14 @@ def test_malformed_cross_reference_ids_are_rejected():
 
     base = dict(code="xx", name="Test", family="Test", script="Latin",
                 graphemes={"a": ["a"]})
-    for bad in ({"wikidata_qid": "banana"}, {"wikidata_qid": "Q0"},
-                {"glottolog_code": "!!"}, {"iso639_3": "spanish"},
+    for bad in ({"iso639_3": "spanish"},
                 {"phoible_id": ""}, {"wals_code": ""}):
         with pytest.raises(ValidationError):
             LanguageSpecModel(**base, **bad)
 
     # …and well-formed ids are accepted.
-    ok = LanguageSpecModel(**base, wikidata_qid="Q1321", glottolog_code="stan1288",
-                           iso639_3="spa", phoible_id="2175", wals_code="spa")
-    assert ok.wikidata_qid == "Q1321"
+    ok = LanguageSpecModel(**base, iso639_3="spa", phoible_id="2175", wals_code="spa")
+    assert ok.iso639_3 == "spa"
 
 
 def test_orthography_standard_is_a_first_class_field():
@@ -205,8 +206,9 @@ def _declared_glottolog_codes():
     for path in glob.glob(os.path.join(_DATA, "*.json")):
         with open(path) as fh:
             raw = json.load(fh)
-        if isinstance(raw, dict) and raw.get("glottolog_code"):
-            declared[raw["code"]] = raw["glottolog_code"]
+        gcode = catalog_ids(raw["code"]).get("glottolog_code")
+        if gcode:
+            declared[raw["code"]] = gcode
     return declared
 
 

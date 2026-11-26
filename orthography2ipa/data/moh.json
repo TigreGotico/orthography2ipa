@@ -36,8 +36,6 @@
     "r": ["r", "l"]
   },
   "iso639_3": "moh",
-  "glottolog_code": "moha1258",
-  "wikidata_qid": "Q13339",
   "notes": "Mohawk (Kanien'kéha), Northern Iroquoian. Four short oral vowels /a e i o/, each with a long counterpart written by doubling the letter (aa ee ii oo), plus two nasalized vowels written with a following ⟨n⟩: ⟨en⟩ /ʌ̃/ and ⟨on⟩ /ũ/ — the ⟨n⟩ here marks nasalization of the preceding vowel rather than a separate /n/ consonant, so the digraph is one phonological unit. ⟨ts⟩ (Eastern dialects, e.g. Kahnawà:ke/Akwesasne) and ⟨tsy⟩ (Western dialects, e.g. Six Nations) both spell the single affricate /dʒ/ before front vowels; ⟨ts⟩ before back vowels is instead the cluster /ts/, so only the affricate reading is asserted here and the plain-cluster case is left to the general t+s composition. /k t s/ are voiceless obstruents that voice allophonically to [ɡ d z] between vowels and before /j/; both realisations are captured as allophones of a single grapheme rather than separate keys. The rhotic/lateral consonant is written ⟨r⟩ in some community orthographies (Kahnawà:ke, Ahkwesásne) and ⟨l⟩ or bare vowel length in others (Six Nations Mohawk retains only /r/ in loans); ⟨r⟩ is kept as the primary key with ⟨l⟩ as an alternate spelling of the same phoneme. ⟨'⟩ is the glottal stop /ʔ/. Tone/pitch-accent and vowel length interactions are marked diacritically in some pedagogical materials but are not uniformly standardized across communities and are not represented here beyond the doubled-vowel length convention.",
   "sources": [
     {

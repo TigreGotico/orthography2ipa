@@ -68,8 +68,6 @@
   },
   "notes": "Vai, Mande language of Sierra Leone and Liberia, written with the Vai syllabary devised by Momolu Duwalu Bukele c. 1832-1839 (Everson 2005; Unicode 5.1, 2008, U+A500-U+A63F) — one of the few indigenous sub-Saharan African scripts still in everyday use. The script is a moraic (C)V(N) syllabary of roughly 270-300 non-cartesian, largely suppletive signs: each syllable is its own historically-assigned glyph, not a systematically composed consonant-plus-vowel pair, so the grapheme->IPA map cannot be safely derived from a CV grid without a primary syllabary chart giving each individual glyph's reading (the SIL 2004 chart and Welmers 1976 exist but were not machine-extractable here). Per AGENTS.md, fabricating a placeholder Latin-style inventory or a systematised CV table for a real syllabary would misrepresent the script, so `graphemes` is left empty and the phonology is instead declared directly via `phonemes` (Welmers 1976; Wikipedia): 11 vowel qualities (6 oral with length, 5 nasal), ~31 consonants including prenasalised stops, implosives ɓ/ɗ and the co-articulated labial-velars k͡p/ɡ͡b, and 4 tones (2 level, 2 contour) that are not marked in the orthography. A syllabary implementation for this spec is future work; contributions with a full glyph-by-glyph chart are welcome.",
   "iso639_3": "vai",
-  "glottolog_code": "vaii1241",
-  "wikidata_qid": "Q36939",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Vai_language",
     "https://en.wikipedia.org/wiki/Vai_syllabary",

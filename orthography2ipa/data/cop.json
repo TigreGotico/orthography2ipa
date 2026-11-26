@@ -264,7 +264,6 @@
     "start_year": 200,
     "end_year": 1400
   },
-  "glottolog_code": "copt1239",
   "parent": "egy",
   "ancestors": [
     {
@@ -280,7 +279,6 @@
       "notes": "Greek adstrate: the Coptic alphabet is Greek-based and Greek supplied a huge share of the lexicon."
     }
   ],
-  "wikidata_qid": "Q36155",
   "wals_code": "cop",
   "location": {
     "latitude": 29.472,

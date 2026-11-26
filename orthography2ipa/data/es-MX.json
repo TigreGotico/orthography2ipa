@@ -105,7 +105,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": "mexi1248",
   "iso639_3": "spa",
   "positional_graphemes": {
     "c": {
@@ -143,7 +142,6 @@
       "notes": "Yucatec Maya indigenous adstrate (see stub yua.json; Lipski 1994)."
     }
   ],
-  "wikidata_qid": "Q616620",
   "location": {
     "latitude": 19.353773,
     "longitude": -99.13589,

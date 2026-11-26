@@ -49,7 +49,7 @@ These sources are open to every reader, so a claim that cites them can be checke
 
 Two specs show the open sources at work. The Mi'kmaq spec (`mic.json`) cites Fidelholtz's 1968 dissertation on Micmac phonology at MIT's DSpace, handle [`1721.1/13001`](https://hdl.handle.net/1721.1/13001). The full text is open, and it is the source of the open-mid vowel values that the spec ships. The Mirandese vowel question was settled from archive.org. Leite de Vasconcelos's *Estudos de Philologia Mirandesa*, volume I, identifier [`estudosdephilolo01vascuoft`](https://archive.org/details/estudosdephilolo01vascuoft), gives the forms directly and in full text.
 
-A `phoible_id` answers "which phonemes does this language have", and nothing more. A phone inventory never settles which letter spells which phone ([writing a language spec](spec_authoring.md#looking-for-a-source-what-a-phone-inventory-cannot-tell-you)). Glottolog has no entry for some of the varieties that this project models. For those, `glottolog_code: null` is the honest state. Do not fill the field with the code of a nearby languoid.
+A `phoible_id` answers "which phonemes does this language have", and nothing more. A phone inventory never settles which letter spells which phone ([writing a language spec](spec_authoring.md#looking-for-a-source-what-a-phone-inventory-cannot-tell-you)). Glottolog has no entry for some of the varieties that this project models. For those, no Glottolog code in `linguatag.catalog_ids` is the honest state. Do not fill it with the code of a nearby languoid.
 
 ## Wikipedia and Ciberdúvidas are extra sources only
 

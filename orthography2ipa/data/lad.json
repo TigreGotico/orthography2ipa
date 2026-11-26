@@ -1,6 +1,5 @@
 {
   "code": "lad",
-  "glottolog_code": "ladi1251",
   "name": "Ladino (Judeo-Spanish)",
   "script": "Latin",
   "quality": "research",
@@ -320,7 +319,6 @@
     "https://www.ethnologue.com/language/lad/"
   ],
   "iso639_3": "lad",
-  "wikidata_qid": "Q36196",
   "phoible_id": "ladi1251",
   "wals_code": "lno",
   "location": {

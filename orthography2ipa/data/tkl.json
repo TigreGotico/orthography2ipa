@@ -37,7 +37,6 @@
   ],
   "notes": "Skeleton. Tokelauan is a Polynesian (Nuclear Polynesian, Samoic-Ellicean) Austronesian language of Tokelau, written in a Latin alphabet on the Samoan pattern. The grapheme map covers the small consonant inventory (f, g=ŋ, h, k, l, m, n, p, t, v; h is marginal and mostly in loans) and the five vowels, with phonemic long vowels written using the macron and mapped to length. Note the language-specific convention that the letter g denotes the velar nasal, not a stop. Tokelauan lacks a phonemic glottal stop, so nothing is left unencoded on that account; word/phrase stress is predictable and not marked. Text that omits the macron would lose the vowel-length contrast and raise PER, but the map itself follows fully macron-marked orthography.",
   "iso639_3": "tkl",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "tkl_glottolog",

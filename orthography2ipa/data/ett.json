@@ -95,7 +95,6 @@
   ],
   "notes": "Skeleton. Extinct, non-Indo-European (Tyrsenian) language of ancient Italy written in the Old Italic (Etruscan) alphabet. Grapheme map assigns each letter its conventional reconstructed value: four vowels a e i u (o is written but was not distinct from u), the aspirated stops θ [tʰ], φ [pʰ], χ [kʰ], the three redundant velar letters c/k/q all [k], z [ts], two sibilants s and ś [ʃ], and f written with the 8-shaped letter. Etruscan had essentially no voiced stops, so b and d occur only in loans. Reconstructed values carry inherent uncertainty; vowel length, stress and syncope are not recoverable from the spelling and are left unencoded, so a substantial PER floor is expected.",
   "iso639_3": "ett",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "ett_glottolog",

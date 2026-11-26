@@ -116,7 +116,6 @@
   ],
   "notes": "Skeleton. Atong is a Bodo-Garo (Sino-Tibetan) language of Meghalaya, India, written in a Latin-based orthography. Base Latin consonants and vowels plus digraphs ch/sh/ng/ny and aspirates kh/ph/th are mapped. Atong is only marginally tonal; any tone, plus vowel-length distinctions, are left unencoded, raising the PER floor. Atong stress/prominence is not distinctively marked in the orthography and is left unencoded (documented exemption).",
   "iso639_3": "aot",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "aot_glottolog",

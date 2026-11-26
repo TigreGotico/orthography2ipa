@@ -4,6 +4,7 @@ Speech labelled as these two was being transcribed as Cairene, which gets the tw
 diagnostic consonants of Arabic dialectology wrong in both, and the interdentals wrong
 in one. Each claim below carries a page-cited source in the spec's notes.
 """
+from linguatag import catalog_ids
 import pytest
 
 from orthography2ipa import get
@@ -16,7 +17,7 @@ SAIDI, BEDAWI, CAIRENE = "aec-EG", "avl-EG", "arz-EG"
 def test_the_spec_loads_and_hangs_off_cairene(code):
     s = get(code)
     assert s.parent == CAIRENE
-    assert s.iso639_3 and s.glottolog_code
+    assert s.iso639_3 and catalog_ids(s.code).get("glottolog_code")
     assert s.sources, f"{code} has no sources"
 
 

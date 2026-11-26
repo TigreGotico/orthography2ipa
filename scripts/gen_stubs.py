@@ -20,6 +20,8 @@ import glob
 import json
 import os
 
+from linguatag import catalog_ids
+
 DATA = os.path.join(os.path.dirname(__file__), "..", "orthography2ipa", "data")
 SNAPSHOT = os.path.join(os.path.dirname(__file__), "..", "tests", "data", "glottolog_levels.json")
 
@@ -56,11 +58,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--limit", type=int, default=0, help="cap number of stubs (0 = all)")
+    ap.add_argument("--nodes-out", help="write the catalog ids of the new specs to this JSON file, "
+                    "for linguatag scripts/add_nodes.py")
     args = ap.parse_args()
 
     specs = load_existing()
     covered = covered_iso(specs)
-    existing_glottocodes = {s.get("glottolog_code") for s in specs.values() if s.get("glottolog_code")}
+    existing_glottocodes = {catalog_ids(c).get("glottolog_code") for c in specs} - {None}
+    nodes = {}
 
     with open(os.path.expanduser("~/tmp/iso-639-3.tab"), encoding="utf-8") as fh:
         iso_rows = [r for r in csv.DictReader(fh, delimiter="\t")]
@@ -84,7 +89,7 @@ def main():
             if r["Level"] == "family":
                 families[r["Glottocode"]] = r
     spec_by_glottocode = {
-        s["glottolog_code"]: c for c, s in specs.items() if s.get("glottolog_code")
+        gc: c for c in specs if (gc := catalog_ids(c).get("glottolog_code"))
     }
 
     # fil (Filipino) shadows the existing Tagalog spec in code resolution: the
@@ -127,10 +132,10 @@ def main():
             "urls": [f"https://glottolog.org/resource/languoid/id/{g['Glottocode']}"],
         }
         if g["Level"] != "family":
-            stub["glottolog_code"] = g["Glottocode"]
+            nodes[iso] = {"glottolog_code": g["Glottocode"]}
         else:
             # Glottolog sometimes pins an ISO code on a family node (jya, chm, ...);
-            # glottolog_code may only point at a language, so leave it out.
+            # a glottolog_code may only point at a language, so leave it out.
             stub["notes"] += (
                 " No glottolog_code: Glottolog assigns this ISO code to a "
                 "family-level node, which the field may not point at."
@@ -166,6 +171,7 @@ def main():
             stub["parent"] = clade
             if clade not in specs and clade not in new_clades:
                 fam = families[fid]
+                nodes[clade] = {"glottolog_code": fid}
                 new_clades[clade] = {
                     "code": clade,
                     "name": fam["Name"],
@@ -179,7 +185,6 @@ def main():
                         "Carries no phonology: it is never a data-inheritance source, "
                         "only a step in the ancestry chain from which `family` is derived."
                     ),
-                    "glottolog_code": fid,
                     "sources": [GLOTTOLOG_SOURCE],
                     "urls": [f"https://glottolog.org/resource/languoid/id/{fid}"],
                 }
@@ -195,6 +200,10 @@ def main():
     if len(skipped) > 20:
         print(f"  ... and {len(skipped) - 20} more (see gen_stubs_skipped.tsv)")
 
+    if args.nodes_out:
+        with open(args.nodes_out, "w", encoding="utf-8") as fh:
+            json.dump(nodes, fh, ensure_ascii=False, indent=2, sort_keys=True)
+        print(f"wrote {len(nodes)} catalog-id rows to {args.nodes_out}")
     if not args.apply:
         return
 

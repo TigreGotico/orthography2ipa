@@ -111,7 +111,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "spa",
   "positional_graphemes": {
     "c": {
@@ -152,7 +151,6 @@
       "notes": "K'iche' indigenous adstrate (see stub quc.json; Lipski 1994)."
     }
   ],
-  "wikidata_qid": "Q3334987",
   "location": {
     "latitude": 14.641667,
     "longitude": -90.513333,

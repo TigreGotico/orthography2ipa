@@ -16,7 +16,6 @@
   ],
   "notes": "Austronesian (Malayic) language of the southern Thai coast and islands, written with the Thai script. Because the Thai abugida binds consonant symbols to an inherent vowel and distributes vowels across pre-, post-, above- and below-base positions with consonant-class and tone marking, a Thai-script Urak Lawoi' spelling cannot be converted to IPA symbol by symbol; it requires a per-word pronunciation lexicon that the engine does not bundle. Grapheme->IPA coverage is therefore lexicon-dependent and effectively zero without that stratum, and no alphabetic letter->IPA table is asserted. As a Malayic variety Urak Lawoi' is not lexically tonal, but any Thai-script tone/register marking is left unencoded.",
   "iso639_3": "urk",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "urk_glottolog",

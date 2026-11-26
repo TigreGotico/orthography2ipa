@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "sme",
-  "glottolog_code": "nort2671",
   "timespan": {
     "start_year": 1600,
     "end_year": null
@@ -143,7 +142,6 @@
     "https://en.wikipedia.org/wiki/Proto-Uralic_language",
     "https://se.wikipedia.org/wiki/Davvis%C3%A1megiella"
   ],
-  "wikidata_qid": "Q33947",
   "phoible_id": "nort2671",
   "wals_code": "sno",
   "location": {

@@ -14,6 +14,7 @@ Ortográfica do Barranquenho (2025).
 """
 
 import pytest
+from linguatag import catalog_ids
 
 import orthography2ipa
 from orthography2ipa.g2p import G2P
@@ -255,7 +256,7 @@ class TestLectCodeAndAlias:
 
     def test_spec_claims_no_crossref_of_another_language(self, barrancos):
         assert barrancos.iso639_3 is None
-        assert barrancos.glottolog_code is None
+        assert catalog_ids(barrancos.code).get("glottolog_code") is None
 
 
 def test_a_hyphen_does_not_move_the_mark_of_a_compound(g2p):

@@ -8,8 +8,6 @@
   "graphemes": {},
   "allophones": {},
   "iso639_3": "pih",
-  "glottolog_code": "pitc1234",
-  "wikidata_qid": "Q36554",
   "notes": "STUB (deliberate): the grapheme inventory of Pitkern-Norfolk is NOT specified. Pitkern (Pitcairn) / Norfuk (Norfolk Island) is an English-lexifier creole with a Tahitian substrate. English Wikipedia states outright that 'Pitkern spelling is not standardised', and the Norfuk article — while recording that Norfuk was made official by the 2004 Norfolk Island Language Act and that Alice Buffett & Donald Laycock produced a standardised orthography (Speak Norfuk Today, 1988), alongside Beryl Nobbs-Palmer's 1986 dictionary — still notes a lack of standardisation and contains NO letter->IPA table. Buffett's orthography is not available online, and the Omniglot chart is an image. The only IPA on record is A. C. Gimson's transcription of a 1951 Moverley dialogue, which is a text transcription, not a grapheme map. No map is claimed. INPUT CONTRACT (for any future spec): Latin-script Pitkern/Norfuk text, after ONE orthography (realistically Buffett 1988) is obtained and cited.",
   "sources": [
     {

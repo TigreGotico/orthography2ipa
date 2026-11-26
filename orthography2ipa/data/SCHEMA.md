@@ -114,8 +114,6 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `tone_inventory`            | object | no       | IPA tone mark → label (e.g. `{"˥": "high"}`) |
 | `tone_marks_syllable_final` | bool   | no       | Dock every tone mark at the end of its syllable. Set it when the orthography writes tone on the nucleus letter, so that ⟨ōng⟩ comes out `oŋ³³` and not `o³³ŋ` |
 | `sources`                   | array  | no       | Works consulted for the phonological claims in this spec (see Sources Schema below). A Wikipedia article is not a source; see `wikipedia` below |
-| `glottolog_code`            | string | no       | Glottolog languoid code (e.g. `"cast1244"`): genealogical classification |
-| `wikidata_qid`              | string | no       | Wikidata item id (e.g. `"Q1321"`): the linked-data hub; one QID resolves this language's Glottolog, ISO 639-3, PHOIBLE, WALS and Wikipedia articles in every edition |
 | `phoible_id`                | string | no       | PHOIBLE identifier: attested phoneme inventories, the reference a spec's emitted phoneme set can be validated against |
 | `wals_code`                 | string | no       | WALS (World Atlas of Language Structures) code: typological cross-reference |
 | `wikipedia`                 | array  | no       | Wikipedia article URLs (`https://<lang>.wikipedia.org/wiki/…`): a reading path into the literature, not itself a citation; see Sources Schema below |
@@ -923,9 +921,9 @@ match its heaviest-weighted ancestor, and the loader's `family_path` is empty
 for it, so the spec sets `family` itself.
 
 Glottolog is the authority consulted for the genealogy. Where it carries a
-languoid for the variety, its code goes in `glottolog_code` and its classification
-settles the prefix. Where it carries none (the usual case for a small contact
-variety or a recently codified vernacular), `glottolog_code` is `null`, and that
+languoid for the variety, linguatag holds its code (`linguatag.catalog_ids`) and
+its classification settles the prefix. Where it carries none (the usual case for
+a small contact variety or a recently codified vernacular), there is no code, and that
 is a legitimate and final state, not a placeholder: borrowing a neighbouring
 languoid's code to fill the field asserts a classification no authority makes.
 `iso639_3` follows the same rule and stays `null` when ISO 639-3 has no code for
