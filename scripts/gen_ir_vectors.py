@@ -33,8 +33,7 @@ from orthography2ipa.ir.interpreter import Interpreter, IRVersionError  # noqa: 
 OUT = REPO / "tests" / "conformance" / "ir-v1"
 GOLDEN = REPO / "tests" / "data" / "ir_golden_ci.json"
 #: The codes of ir_golden_ci.json and kab: the set that scripts/ir_parity_ci.py checks.
-SPECS = ("aa", "apw", "bjb", "cop", "en-GB", "fy", "ha", "id", "kab", "klj", "li", "mga",
-         "nci", "oc", "pl", "pt-PT", "sdc", "srn", "tl", "war", "zu")
+SPECS = tuple(sorted([*json.loads(GOLDEN.read_text(encoding="utf-8")), "kab"]))
 SAMPLE = 200
 EXTRA = {"pt-PT": ["os jogos"]}
 VERSION_ERROR = "unsupported primitive version"
@@ -86,29 +85,31 @@ def version_file(code: str) -> str:
             + _line({"kind": "case", "input": [], "expect_error": VERSION_ERROR}))
 
 
-def generate() -> Dict[str, str]:
+def generate(codes) -> Dict[str, str]:
     golden = json.loads(GOLDEN.read_text(encoding="utf-8"))
     files = {}
-    for code in SPECS:
+    for code in codes:
         texts = sample(code, golden) + EXTRA.get(code, []) + [""]
         files[f"{code}.jsonl"] = vector_file(code, texts)
         print(f"{code}: N in {len(texts)}, N out {files[f'{code}.jsonl'].count(chr(10)) - 1}", flush=True)
-    files["unknown-version.jsonl"] = version_file("cop")
+    if codes == SPECS:
+        files["unknown-version.jsonl"] = version_file("cop")
     return files
 
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--check", action="store_true", help="compare with the files on disk, write nothing")
+    ap.add_argument("--lang", action="append", choices=SPECS, help="write only the file of this spec")
     args = ap.parse_args()
-    files = generate()
+    files = generate(tuple(args.lang) if args.lang else SPECS)
     n_cases = sum(text.count("\n") - 1 for text in files.values())
     size = sum(len(text.encode()) for text in files.values())
     print(f"specs {len(SPECS)}, files {len(files)}, cases {n_cases}, bytes {size}")
     if args.check:
         stale = sorted(name for name, text in files.items()
                        if not (OUT / name).exists() or (OUT / name).read_text(encoding="utf-8") != text)
-        extra = sorted(p.name for p in OUT.glob("*.jsonl") if p.name not in files)
+        extra = [] if args.lang else sorted(p.name for p in OUT.glob("*.jsonl") if p.name not in files)
         for name in stale + extra:
             print(f"STALE {name}")
         return 1 if stale or extra else 0

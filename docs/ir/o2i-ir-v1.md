@@ -1655,12 +1655,13 @@ The example is pt-PT ⟨os jogos⟩ → `u ˈʒɔɡuʃ`, the output of the engin
 
 The package must generate vectors from the Python reference interpreter into `tests/conformance/ir-v1/`: for each spec a fixed sample of its gold or test data, plus targeted cases for every pattern, beam tie, normalisation rule, predicate node, tokenizer branch, ruled change and unknown version.
 
-`scripts/gen_ir_vectors.py` writes one file for each of 21 specs: the 20 codes of `tests/data/ir_golden_ci.json` and kab. Each file holds the first 200 sorted words of the golden rows (kab: its shipped gold sentences) and an empty input. The pt-PT file also holds ⟨os jogos⟩. `unknown-version.jsonl` holds the cop IR with one primitive version raised, and one case that expects the error text `unsupported primitive version`. A runner passes an `expect_error` case when the error message contains that text. The `ir` line omits `source`, so a package release does not change the files. The dialect corpus and the targeted cases are not in the files yet. Commands:
+`scripts/gen_ir_vectors.py` writes one file for each of 21 specs: the 20 codes of `tests/data/ir_golden_ci.json` and kab. Each file holds the first 200 sorted words of the golden rows (kab: its shipped gold sentences) and an empty input. The pt-PT file also holds ⟨os jogos⟩. `unknown-version.jsonl` holds the cop IR with one primitive version raised, and one case that expects the error text `unsupported primitive version`. A runner passes an `expect_error` case when the error message contains that text. The `ir` line omits `source`, so a package release does not change the files. Each file embeds its IR, so a spec change does not make the conformance tests fail. A spec PR that changes the output of one of these specs writes its file again with `--lang`. The dialect corpus and the targeted cases are not in the files yet. Commands:
 
 ```console
 python -I scripts/gen_ir_vectors.py            # write the files
 python -I scripts/gen_ir_vectors.py --check    # compare the files with a new run
-python -m pytest tests/test_ir_conformance.py  # Python interpreter, rules engine and Lua
+python -I scripts/gen_ir_vectors.py --lang pt-PT  # write the file of one spec
+python -m pytest tests/test_ir_conformance.py  # Python interpreter and Lua
 luajit scripts/ir_lua_conformance.lua tests/conformance/ir-v1/*.jsonl
 ```
 
