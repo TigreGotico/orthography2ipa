@@ -586,7 +586,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-BR | portuguese_unified_corrected | 23122 | 0.1421‡ | 0.9911 | - | 0.1372 | 0.1314 | 0.3816 | 0.4063 | [0.1401, 0.1441] | 0.3701 | production | lexicon-derived |
 | pt-BR | primary_sources | 21 | 0.0690 | - | - | 0.0690 | 0.0690 | 0.7619 | 0.7619 | [0.0119, 0.1310] | 0.7619 | production | expert-human |
 | pt-BR | vox_communis | 33958 | 0.3951‡ | - | - | 0.3028 | 0.2775 | 0.0850 | 0.1151 | [0.3932, 0.3969] | 0.0363 | production | epitran-derived |
-| pt-BR | wikipron | 57897 | 0.0248 | - | - | 0.0199 | 0.0143 | 0.8851 | 0.9168 | [0.0241, 0.0254] | 0.8708 | production | crowd-scraped |
+| pt-BR | wikipron | 57897 | 0.0247 | - | - | 0.0199 | 0.0143 | 0.8851 | 0.9168 | [0.0241, 0.0254] | 0.8708 | production | crowd-scraped |
 | pt-BR-x-bahia | portuguese_tts | 20 | 0.1611‡ | - | - | - | - | - | - | [0.1411, 0.1813] | 0.0000 | research | llm-corrected |
 | pt-BR-x-caipira | portuguese_tts | 20 | 0.0506‡ | - | - | - | - | - | - | [0.0363, 0.0676] | 0.1500 | research | llm-corrected |
 | pt-BR-x-caipira | portuguese_unified | 31 | 0.3331 | 1.0000 | - | 0.3216 | 0.3057 | 0.0000 | 0.0000 | [0.2779, 0.3917] | 0.0000 | research | crowd-scraped |
@@ -597,7 +597,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-BR-x-norte | portuguese_tts | 20 | 0.1397‡ | - | - | - | - | - | - | [0.1043, 0.1762] | 0.0500 | research | llm-corrected |
 | pt-BR-x-pr | portuguese_tts | 20 | 0.0922‡ | - | - | - | - | - | - | [0.0674, 0.1211] | 0.0500 | research | llm-corrected |
 | pt-BR-x-recife | portuguese_tts | 20 | 0.1591‡ | - | - | - | - | - | - | [0.1341, 0.1854] | 0.0000 | research | llm-corrected |
-| pt-BR-x-rj | portal_lupo | 53143 | 0.1694‡ | 0.9983 | - | 0.1488 | 0.1405 | 0.2133 | 0.2410 | [0.1684, 0.1703] | 0.1395 | research | lupo-derived |
+| pt-BR-x-rj | portal_lupo | 53143 | 0.1694‡ | 0.9983 | - | 0.1488 | 0.1405 | 0.2133 | 0.2410 | [0.1684, 0.1704] | 0.1395 | research | lupo-derived |
 | pt-BR-x-rj | portuguese_tts | 20 | 0.0363‡ | - | - | - | - | - | - | [0.0258, 0.0460] | 0.2000 | research | llm-corrected |
 | pt-BR-x-sp | portal_lupo | 53143 | 0.1589‡ | 0.9973 | - | 0.1554 | 0.1507 | 0.1914 | 0.1985 | [0.1578, 0.1599] | 0.1882 | research | lupo-derived |
 | pt-BR-x-sp | portuguese_tts | 20 | 0.1214‡ | - | - | - | - | - | - | [0.0918, 0.1521] | 0.0500 | research | llm-corrected |
