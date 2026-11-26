@@ -31,15 +31,19 @@ SUBTAGS = os.path.join(os.path.dirname(linguatag.__file__), "data",
                        "language_subtags.json")
 EXPLORER = "https://tigregotico.github.io/orthography2ipa/"
 
+#: A smaller row has a CI too wide to stand for the support level of a language.
+MIN_N = 1000
+
 LEADERS = ("pt-PT", "pt-BR", "es-CO", "fr-FR", "it-IT", "de-DE", "nl-NL",
            "da-DK", "kab", "hi-IN", "bn-IN", "mwr")
 
 
 def best_row(rows: list) -> dict | None:
     """The row on the most trusted provenance tier, then with the largest N,
-    then first by dataset name."""
+    then first by dataset name. Rows with N of at least MIN_N go first."""
     if not rows:
         return None
+    rows = [r for r in rows if r["n"] >= MIN_N] or rows
     return min(rows, key=lambda r: (RELIABILITY_TIERS.index(r["provenance"]),
                                     -r["n"], r["dataset"]))
 
@@ -111,7 +115,8 @@ def render() -> str:
         "one row as the primary row of a language. The best gold row is "
         "the gating row on the most trusted provenance tier, in the order "
         + ", ".join(RELIABILITY_TIERS[:RELIABILITY_TIERS.index(GATING_CUTOFF_TIER) + 1])
-        + ", and then the row with the largest N. A tag with no gating row "
+        + ", and then the row with the largest N. Only rows with N of at least "
+        f"{MIN_N} count, unless no row reaches {MIN_N}. A tag with no gating row "
         "shows its best other row by the same rule, marked \"does not gate\". "
         "A tag with no row shows \"not measured\".",
         "",

@@ -63,11 +63,21 @@ def test_trusted_tier_beats_a_larger_n():
     assert leaders.best_row([]) is None
 
 
+def test_small_expert_row_loses_to_a_large_lexicon_row():
+    rows = [
+        {"dataset": "ep_dialects", "n": 30, "provenance": "expert-human"},
+        {"dataset": "portuguese_unified", "n": 105553, "provenance": "lexicon-derived"},
+    ]
+    assert leaders.best_row(rows)["dataset"] == "portuguese_unified"
+    assert leaders.best_row(rows[:1])["dataset"] == "ep_dialects"
+
+
 def test_gating_rows_pick_the_trusted_tier():
     rows = _rows(leaders.render())
     assert rows["nl-NL"][3:5] == ["`wikipron`", "45872"]
     assert rows["nl-NL"][7] == "crowd-scraped"
-    assert rows["pt-BR"][7] == "expert-human"
+    assert rows["pt-BR"][3] == "`portuguese_unified`"
+    assert rows["pt-PT"][3] == "`portuguese_unified`"
 
 
 def test_non_gating_row_is_marked():
