@@ -61,7 +61,7 @@ def test_ex_before_s_is_not_voiced(lang):
 # ⟨x⟩ inside a word is not word-initial ⟨ex⟩, so the rule must not reach it. Portal rows in lda, mpx,
 # map and dli: vexame [vɛ.ʃˈa.mɨ] (id 31263).
 @pytest.mark.parametrize("lang", PORTAL)
-@pytest.mark.parametrize("word", ["sexo", "nexo", "complexo", "vexame"])
+@pytest.mark.parametrize("word", ["mexo", "roxo", "lixo", "vexame"])
 def test_x_inside_a_word_keeps_sh(lang, word):
     ipa = transcribe(word, lang)
     assert "ʃ" in ipa
