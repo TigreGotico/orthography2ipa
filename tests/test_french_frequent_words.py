@@ -364,3 +364,28 @@ def test_huit_six_dix(text, expected):
 ])
 def test_numeral_sandhi_counter_cases(text, expected):
     assert _t(text) == expected
+
+
+# Martinon (1913: 346): dix-huit (dizuite), the soft s of dix-neuf, and the
+# hard s of dix-sept (dis-sète). 328, 345: before a month the consonant of
+# huit, six and dix stays (le huit mai; six and dix before mai, juin,
+# septembre). 234-235: neuf links with [v] only in neuf ans and neuf heures.
+@pytest.mark.parametrize("text, expected", [
+    ("dix-sept", "dis sɛt"), ("dix-huit", "diz ɥit"), ("dix-neuf", "diz nœf"),
+    ("soixante-dix-sept", "swasɑ̃t dis sɛt"),
+    ("quatre-vingt-dix-huit", "katʁ vɛ̃ diz ɥit"),
+    ("le huit mai", "lə ɥit me"), ("le six mai", "lə sis me"),
+    ("le dix janvier", "lə dis ʒɑ̃vje"),
+    ("neuf ans", "nœv‿ ɑ̃"), ("neuf heures", "nœv‿ œʁ"),
+    ("dix-neuf ans", "diz nœv‿ ɑ̃"),
+])
+def test_numeral_compounds_months_and_neuf(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("neuf euros", "nœf øʁo"), ("neuf", "nœf"), ("six mois", "si mwa"),
+    ("huit jours", "ɥi ʒuʁ"),
+])
+def test_numeral_counter_cases(text, expected):
+    assert _t(text) == expected
