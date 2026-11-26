@@ -20,7 +20,7 @@ The interpreter never loads a spec, resolves a language code, follows inheritanc
 
 The reference semantics are the semantics in this document. The rules engine is the Python engine that read the spec at runtime before the IR; this document names its behaviour where the IR keeps it, and section 9 lists where the IR differs. Where the rules engine needs phonetics or a Unicode database at runtime, the IR changes the rule so that the interpreter stays small, and section 9 lists each change with the measurement that rules on it. Every interpreter matches the Python reference interpreter byte for byte. The Python reference interpreter matches the recorded output of the rules engine except for the ruled changes of section 9; `scripts/ir_parity.py` and `tests/frozen_rules.py` check it.
 
-Three interpreters implement IR v1. The Python reference interpreter is normative: `transcribe()` becomes `compile(spec)` (cached per process and per revision) followed by `interpret(ir, text)`. The Lua interpreter runs inside loom on LuaJIT 2.1 (section 10 gives its size). A C++ interpreter may follow.
+Two interpreters implement IR v1. The Python reference interpreter is normative: `transcribe()` becomes `compile_spec(code)` (cached per process, keyed by the spec chain, the engine source and the options) followed by `interpret(ir, text)`. The Lua interpreter runs inside loom on LuaJIT 2.1 (section 10 gives its size). A C++ interpreter may follow.
 
 Runtime plugins stay outside the IR. Section 3.1 names the point in the stage order where a host may call each one. The Lua interpreter in loom has no host hooks.
 
@@ -28,7 +28,7 @@ Runtime plugins stay outside the IR. Section 3.1 names the point in the stage or
 
 ### 2.1 Encoding
 
-The document is one JSON object. Its runtime part holds only integers, arrays and objects with string keys from a fixed vocabulary. Every string the interpreter compares or emits is an array of codepoints, held once in the `strings` table and referred to by index. Every number is an integer in the exact range of an IEEE double, `±(2^53-1)`, so LuaJIT reads every value exactly. For loom, the exporter also writes the same structure as a Lua table literal. The JSON document stays the source of truth.
+The document is one JSON object. Its runtime part holds integers, arrays and objects with string keys from a fixed vocabulary. The other strings in it are names from a fixed vocabulary: `lang`, the bit names of `bits`, and the operator and relation names of predicates and sandhi patterns. Every string the interpreter compares or emits is an array of codepoints, held once in the `strings` table and referred to by index. Every number is an integer in the exact range of an IEEE double, `±(2^53-1)`, so LuaJIT reads every value exactly. For loom, the exporter also writes the same structure as a Lua table literal. The JSON document stays the source of truth.
 
 ### 2.2 Top level
 
@@ -240,7 +240,7 @@ endings.sources[].vowels: sset
 
 ### 2.3 The primitive set
 
-The interpreter implements these primitives and no others. A new spec field compiles to them (section 7).
+The table lists the stage primitives. `layout.SEMANTICS` versions every primitive and every output-changing field (section 8.1), and the interpreter implements no primitive outside it. A new spec field compiles to these primitives (section 7).
 
 | # | Primitive | What the interpreter does |
 |---|---|---|
@@ -440,6 +440,7 @@ The rules-engine order is `prepare`: NFC, then `fold_diacritics`, then Arabic pr
 ```
 prepare(text):
   text = nfc(text)
+  if char_maps.fold: text = nfc(drop each char of char_maps.fold from nfd(text))
   if char_maps.presentation: text = map each char through char_maps.presentation
   for rw in rewrites, in order: text = sub(rw.pattern, rw.template, text)   # primitive 2, global
   return text
@@ -749,7 +750,7 @@ The atom list differs per caller:
 | clitic join (3.5), weight splitter and weight (3.7.3, 3.8.1) | `atoms.affricates` |
 | mark-placement splitter and its onset table (3.7.2, 3.7.3) | `atoms.mark` |
 
-`modifier` is a char bit. The compiler sets it on every codepoint, in any reading, rule output, allophone value or known char, for which `unicodedata.combining` is non-zero or the category is Lm or Sk. A reading can hold such a codepoint outside the known ranges: U+207F ⟨ⁿ⟩ occurs in the readings of 101 specs. The rule needs no phonetic fact beyond the `modifier` bit and the atom lists.
+`modifier` is a char bit. The compiler sets it on every codepoint, in any reading, rule output, allophone value or known char, for which `unicodedata.combining` is non-zero or the category is Lm or Sk. A reading can hold such a codepoint outside the known ranges: U+207F ⟨ⁿ⟩ occurs in the readings of many specs. The rule needs no phonetic fact beyond the `modifier` bit and the atom lists.
 
 ### 3.7 Syllabification (S5, S9f)
 
@@ -805,7 +806,7 @@ So tokenization depends on the stress decision. The tokenizer calls the filter t
 
 #### 3.7.5 Host syllabifier
 
-A host syllabifier (H5) replaces the written splitter. Its result is used only when it joins back to the word. `SilabificadorSyllabifier` is such a plugin. Its 25-code list says which codes it accepts, and it runs only when a caller passes it.
+A host syllabifier (the `syllables` hook at S5) replaces the written splitter. Its result is used only when it joins back to the word. `SilabificadorSyllabifier` is such a plugin. Its 25-code list says which codes it accepts, and it runs only when a caller passes it.
 
 ### 3.8 Stress (S5, S9e, S9f)
 
@@ -1447,14 +1448,14 @@ Each row says how IR v1 carries a behaviour or field. "IR" means a table or rule
 | 3 | Gurmukhi addak | `phonetok.py` | IR: pattern rewrite |
 | 4 | Turkish casing | `phonetok.py` | IR: `casefold` map; `plain_lower` keeps stress endings untouched |
 | 5 | `fold_diacritics` | `phonetok.py` | IR |
-| 6 | pt syllabifier plugin | `syllabifiers.py` | Host H5 |
+| 6 | pt syllabifier plugin | `syllabifiers.py` | Host, the `syllables` hook at S5 |
 | 7 | English mute e | `positional.py` | IR: predicate over entry sets |
 | 8 | Dialect profiles | `transforms.py`, `g2p.py` | IR: dialect program, primitives 13 to 16 (compile option) |
 | 9 | Code resolution | `registry.py` | Compile |
 | 10 | Vowel and glide sets | `vowels.py` | Compile: bits |
 | 11 | Abugida syllables for stress | `g2p.py`, `inventory.py` | IR: flag in `stress` |
 | 12 | Inherent vowel insertion | `phonetok.py` | IR: tokenizer branch with entry bits |
-| 13 | Nukta in the schwa decision | `types.py` (`consonant_marks`) | IR: char bit `consonant_mark` |
+| 13 | Nukta in the schwa decision | `types.py` (`consonant_marks`) | IR: entry bit `takes_inherent` |
 | 14 | Preposed and circumfix vowels | `phonetok.py` | IR: tokenizer branch with entry bits |
 | 15 | Consonant nuclei | `phonetok.py` | IR: entry table |
 | 16 | Marker heads | `_silent_marker_head` | IR: entry table |
@@ -1604,7 +1605,7 @@ The other fields belong to a primitive that the manifest always lists when their
 
 So a fix to the Thai tokenizer branch moves the revision of a Thai spec, whose IR uses that branch, and leaves pt-PT, whose IR does not, as it was.
 
-`canonical(ir)` is the runtime part of the IR (everything except `source`, `debug`, `primitives` and `ir_version`; `bits` is inside) as JSON with sorted keys, no whitespace and integers only, after these normalisations:
+`canonical(ir)` is the runtime part of the IR (everything except `source`, `debug`, `primitives` and `ir_version`; `bits` is inside) as JSON with sorted keys and no whitespace, with every number an integer, after these normalisations:
 
 - `strings` sorted by codepoint order, `entries` sorted by key codepoints, and every index renumbered to match.
 - Every set sorted ascending.
@@ -1627,13 +1628,13 @@ The loom exporter writes the IR revision as `O2I_REVISION[lang]`, in `o2i.spec_r
 
 ### 8.2 Compiling older spec data
 
-`compile(lang, data_ref=<tag or commit>)` reads `orthography2ipa/data/*.json` at that ref from the git checkout that holds the package, resolves inheritance with the current loader, and compiles with the current compiler. `source.data_ref` and `source.compiler_commit` record both.
+`compile_spec(code, data_ref=<tag or commit>)` reads `orthography2ipa/data/*.json` at that ref from the git checkout that holds the package, resolves inheritance with the current loader, and compiles with the current compiler. `source.data_ref` and `source.compiler_commit` record both.
 
 It guarantees: when only spec data changed between the data ref and the compiler's commit, the output equals the old release's output. It does not guarantee equal output when the engine changed between the two: a bug fix, a new default, a ruled change of section 9 or a changed Unicode table can change the output of old data. The compiler does not imitate old engine behaviour.
 
 Missing fields: a field that old data lacks takes the current default.
 
-**Acceptance test: Kabyle 7.30.0.** Two Kabyle voices (`phoonnx_kab-DZ_miro_o2i`, `phoonnx_kab-DZ_dii_o2i`) were trained on orthography2ipa 7.30.0. A sample file holds 3,000 `[text, ipa]` rows from that release. The drift to later output comes from a data change (⟨ɣ⟩ from `ɣ` to `ʁ`, and the ⟨k⟩ and ⟨c⟩ readings). The release reproduces all 3,000 rows from the 7.30.0 data. The test compiles `kab` at data ref `7.30.0` and runs the 3,000 texts. Each row must give the file's IPA. A mismatch must trace to a ruled change of section 9 or a named engine change, listed in the test's expected-differences file. Any other mismatch is a compiler defect.
+**Acceptance test: Kabyle 7.30.0.** Two Kabyle voices (`phoonnx_kab-DZ_miro_o2i`, `phoonnx_kab-DZ_dii_o2i`) were trained on orthography2ipa 7.30.0. The acceptance test needs a sample file of 3,000 `[text, ipa]` rows from that release. The drift to later output comes from a data change (⟨ɣ⟩ from `ɣ` to `ʁ`, and the ⟨k⟩ and ⟨c⟩ readings). The release must reproduce all 3,000 rows from the 7.30.0 data. The test compiles `kab` at data ref `7.30.0` and runs the 3,000 texts. Each row must give the file's IPA. A mismatch must trace to a ruled change of section 9 or a named engine change, listed in the test's expected-differences file. Any other mismatch is a compiler defect.
 
 ### 8.3 Compatibility
 
@@ -1649,9 +1650,9 @@ A vector file is JSON Lines. The first line holds the IR. Each later line is one
 {"kind": "case", "input": [], "expect_error": "unsupported primitive version"}
 ```
 
-The example is pt-PT ⟨os jogos⟩ → `u ˈʒɔɡuʃ`, the output of the engine at `690611bb2`. Every interpreter must give `expect` byte for byte. **Dialect corpus.** For each of the 15 profiles, the vector file holds every row of `tests/data/ep_dialect_sentences.csv` as `csv.DictReader` reads it: 235 rows, 228 distinct texts in the `text` column. The expected output is the rules-engine `G2P("pt-PT", dialect_profile=profile).transcribe(text)`. That gives 3,525 cases. The reference interpreter must match the rules-engine output byte for byte on all of them before the rules-engine `transforms.py` path is retired. Targeted cases add every context of 3.10.4, a sentence whose IPA and spelling word counts differ, an empty spelling, a lexical rule hit through a capitalised spelling word (the key test lowercases the spelling word), two lexical rules that match the same word (the last one wins), and a chain-shift mapping whose output is not a vowel (the off test reads the input codepoint).
+The example is pt-PT ⟨os jogos⟩ → `u ˈʒɔɡuʃ`, the output of the engine at `690611bb2`. Every interpreter must give `expect` byte for byte. **Dialect corpus.** For each of the 15 profiles, the vector file holds every row of `tests/data/ep_dialect_sentences.csv` as `csv.DictReader` reads it: 235 rows, 228 distinct texts in the `text` column. The expected output is the rules-engine `G2P("pt-PT", dialect_profile=profile).transcribe(text)`. That gives 3,525 cases. The reference interpreter must match the rules-engine output byte for byte on all of them before the rules-engine `transforms.py` path can be retired. Targeted cases add every context of 3.10.4, a sentence whose IPA and spelling word counts differ, an empty spelling, a lexical rule hit through a capitalised spelling word (the key test lowercases the spelling word), two lexical rules that match the same word (the last one wins), and a chain-shift mapping whose output is not a vowel (the off test reads the input codepoint).
 
-The package generates vectors from the Python reference interpreter into `tests/conformance/ir-v1/`: for each spec a fixed sample of its gold or test data, plus targeted cases for every pattern, beam tie, normalisation rule, predicate node, tokenizer branch, ruled change and unknown version.
+The package must generate vectors from the Python reference interpreter into `tests/conformance/ir-v1/`: for each spec a fixed sample of its gold or test data, plus targeted cases for every pattern, beam tie, normalisation rule, predicate node, tokenizer branch, ruled change and unknown version.
 
 ### 8.5 Stable Python API
 
@@ -1668,7 +1669,7 @@ These names keep their meaning, because outside code depends on them:
 | `registry.get`, `resolve`, `available_codes` | compile-time Python |
 | `phoneme_inventory(spec, lexicon=None)` | `inventory.py`, package root; phonematcher's coverage benchmark (`benchmarks/tasks/coverage.py`) reads it |
 | `packaged_lexicon(lang, patches=)`, `packaged_lexicon_sources(patches=)` | lexicon data for H4 |
-| `spec_revision(lang)` | unchanged: the spec JSON, its inherits chain and the engine fingerprint (8.1) |
+| `spec_revision(lang)` | the IR revision of the spec (8.1): a hash of the manifest and the canonical IR |
 | `lexicon_revision(lang, patches=)` | unchanged |
 | `transcription_revision(lang, patches=False)` | added: `spec_revision` plus the packaged lexicon (8.1) |
 | `exceptions.EngineSourceUnavailable` | unchanged |
@@ -1678,7 +1679,7 @@ Every method of `G2P` runs the IR; `G2P` has no other runtime. A spec that the c
 
 ## 9. Semantic changes from the rules engine
 
-Each change removes a runtime phonetic or Unicode test. Each one is measured before the switch on four corpora: the benchmark board (WikiPron gold, metric PER and changed-word count per language), the 336,234 recorded words (changed-output count per language), the pt-PT parity file of 4,569 lines, and the Kabyle 7.30.0 sample. A change that moves a language's PER up by more than the board's noise floor goes to a ruling before the switch, with the changed words listed.
+Each change removes a runtime phonetic or Unicode test. Each one is measured before the switch on four corpora: the benchmark board (WikiPron gold, metric PER and changed-word count per language), the recorded words of `tests/data/rules_outputs.json` (changed-output count per language), the pt-PT parity file, and the Kabyle 7.30.0 sample. A change that moves a language's PER up by more than the board's noise floor goes to a ruling before the switch, with the changed words listed.
 
 ### 9.1 Onsets from a compiled table
 
@@ -1686,7 +1687,7 @@ Each change removes a runtime phonetic or Unicode test. Each one is measured bef
 - New: the compiler runs the same judges on the unit sequences of 2 to 5 units that 3.7.2 searches, and writes the licit ones as a table (3.7.2). At runtime a run is licit only if its unit sequence is in the table.
 - Why: the judges are a feature grammar. The table removes sonority and feature tests from every interpreter.
 - Effect: none for runs built from the spec's own units. A run with a unit the spec does not produce (foreign input, an unseen IPA segment from a host hook) becomes unlicit instead of judged. Measure: changed-word count per language on the board and the recorded words. Expected: zero outside foreign-input words.
-- Effect of the 5-unit cap: a run of 6 or more units that the rules-engine judge licenses by stacking glides on a declared onset is not licit. No gold word of the 346 languages with a gold set needs such a run: 0 of 242,822 words.
+- Effect of the 5-unit cap: a run of 6 or more units that the rules-engine judge licenses by stacking glides on a declared onset is not licit. No gold word of a language with a gold set needs such a run.
 
 ### 9.2 Unknown characters: boundaries, not letters
 
@@ -1706,7 +1707,7 @@ Each change removes a runtime phonetic or Unicode test. Each one is measured bef
 
 - Old: `intervocalic_cross_word` (14 specs), `onset` (16 specs), `coda`, `consonantal` and `vocalic` are declared in data, but `grapheme_positions` never emits them, so they have no effect.
 - New: inert. The compiler writes no rule, and lists them in `debug.inert_positions` and in a compile lint.
-- Why: implementing them would change the output of 30 specs with no reviewed source behind the change. Keeping them inert keeps output equal and the predicate set unchanged.
+- Why: implementing them would change the output of every spec that declares them, with no reviewed source behind the change. Keeping them inert keeps output equal and the predicate set unchanged.
 - Recommendation: inert in v1. File one issue per position with the specs that declare it. Each owner either deletes the entry or asks for the position in a ruled change. Measure: none needed, output equal.
 
 ### 9.5 Positional vowel tests read entry bits
@@ -1738,7 +1739,7 @@ Each change removes a runtime phonetic or Unicode test. Each one is measured bef
 
 ## 10. Lua interpreter size
 
-The PoC driver `loom_driver.lua` has 3,416 lines, 3,130 of them code, for pt-PT only. The estimate takes each section's real size, removes what becomes a compiled table, and adds what the PoC refuses or v1 adds. The PoC refuses these 12 features, and the estimate includes all of them: secondary stress, `accent2_mark`, `vowel_letters`, `coda_liquid_capture`, `unstressed_prefixes`, prevocalic glide back-off, `trailing_vowel_axis_digraphs`, the aperture positions, silent stress marks, the emphatic class, the plain tokenizer beam and `_cut_written_syllables` with a dropped vowel letter. It also includes the features refused at spec load: grapheme weights, `constrain_onsets`, abugidas, tone, gemination rewrites, `mutates_neighbor`, grammatical endings and lookaround. The rules-engine runtime modules hold 5,076 Python code lines, and `stress.py` alone holds 869 code lines outside the onset judges.
+The estimate starts from a pt-PT-only proof-of-concept driver, `loom_driver.lua`, which is not in this repository. The estimate takes each section's real size, removes what becomes a compiled table, and adds what the PoC refuses or v1 adds. The PoC refuses these 12 features, and the estimate includes all of them: secondary stress, `accent2_mark`, `vowel_letters`, `coda_liquid_capture`, `unstressed_prefixes`, prevocalic glide back-off, `trailing_vowel_axis_digraphs`, the aperture positions, silent stress marks, the emphatic class, the plain tokenizer beam and `_cut_written_syllables` with a dropped vowel letter. It also includes the features refused at spec load: grapheme weights, `constrain_onsets`, abugidas, tone, gemination rewrites, `mutates_neighbor`, grammatical endings and lookaround. The rules-engine runtime modules hold 5,076 Python code lines, and `stress.py` alone holds 869 code lines outside the onset judges.
 
 | Stage | PoC lines (section span) | Moves to tables | Added for v1 | Estimate |
 |---|---|---|---|---|
@@ -1758,7 +1759,7 @@ The PoC driver `loom_driver.lua` has 3,416 lines, 3,130 of them code, for pt-PT 
 | Entry point | 17 | none | `info` call | 20 |
 | **Total** | 3,416 | | | **about 3,450** |
 
-The Lua interpreter is about 3,300 lines for the core stages and about 150 lines for the dialect program, about 3,450 in total. Two cuts change output and are measured later as ruled changes: end-relative stress-mark placement in place of the alignment heuristics of 3.8.3 (about 300 lines), and the Thai and Lao preposed-vowel branch as a compile-time reordering rewrite (about 120 lines).
+The estimate for the Lua interpreter is about 3,300 lines for the core stages and about 150 lines for the dialect program, about 3,450 in total. Two cuts change output and are measured later as ruled changes: end-relative stress-mark placement in place of the alignment heuristics of 3.8.3 (about 300 lines), and the Thai and Lao preposed-vowel branch as a compile-time reordering rewrite (about 120 lines).
 
 ## 11. Decisions
 
@@ -1776,7 +1777,7 @@ The Lua interpreter is about 3,300 lines for the core stages and about 150 lines
 
 **11.7 Gemination and casefold fields.** The gemination rewrite field and a casefold override field enter the spec schema in one design PR that quotes the schema clause it extends. Until then, the compiler derives them from `script`, as the rules-engine code does.
 
-**11.8 Size.** The Lua interpreter is about 3,300 lines plus about 150 lines of dialect primitives. The two output-changing cuts of section 10 are measured later as ruled changes.
+**11.8 Size.** The target size of the Lua interpreter is about 3,300 lines plus about 150 lines of dialect primitives. `interpreter.lua` is above the target. The two output-changing cuts of section 10 are measured later as ruled changes.
 
 ---
 [← Public API stability](../reference/api_stability.md) · [Home](../index.md) · [Architecture →](../engine/architecture.md)
