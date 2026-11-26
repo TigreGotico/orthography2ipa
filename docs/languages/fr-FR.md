@@ -169,6 +169,7 @@ Some frequent words read wrong when each letter takes its default value. The spe
 | Entry `est` | The verb ⟨est⟩ is [ɛ], and ⟨c'est⟩ reads it after the clitic | ⟨c'est⟩ `sɛ` | Martinon 1913: 331; Larousse, s.v. être |
 | `FR_G_MUTE_BEFORE_T` | ⟨g⟩ before ⟨t⟩ is mute | ⟨vingt⟩ `vɛ̃`, ⟨doigt⟩ `dwa` | Martinon 1913: 236 |
 | `FR_G_MUTE_FINAL_AFTER_NASAL` | A final ⟨g⟩ after a nasal spelling is mute | ⟨long⟩ `lɔ̃`, ⟨poing⟩ `pwɛ̃` | Martinon 1913: 236 |
+| `FR_C_MUTE_FINAL_AFTER_NASAL` | A final ⟨c⟩ after a nasal spelling is mute; ⟨zinc⟩ is an entry | ⟨blanc⟩ `blɑ̃`, ⟨franc⟩ `fʁɑ̃` | Martinon 1913: 213-214 |
 | `FR_CH_HARD_BEFORE_SONORANT` | ⟨ch⟩ before /l ʁ m n/ is [k] | ⟨chrétien⟩ `kʁetjɛ̃`, ⟨technique⟩ `tɛknik` | Martinon 1913: 226 |
 | `FR_P_MUTE_FINAL_MPT` | ⟨p⟩ of a final ⟨-mpt⟩ is mute | ⟨prompt⟩ `pʁɔ̃` | Martinon 1913: 129, 331 |
 | `FR_P_MUTE_COMPT` | ⟨p⟩ is mute in the word family of ⟨compter⟩ | ⟨compte⟩ `kɔ̃t`, ⟨comptable⟩ `kɔ̃tabl` | Martinon 1913: 285 |
