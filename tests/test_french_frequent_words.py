@@ -193,12 +193,16 @@ def test_ch_before_a_vowel_stays_sh(text, expected):
     assert _t(text) == expected
 
 
-@pytest.mark.xfail(strict=True, raises=AssertionError,
-                   reason="German and Slavic loans keep [ʃ] before a sonorant")
-def test_chleuh_keeps_sh():
-    # chleuh [ʃlø] (wikipron fr) is a loan, outside Martinon's learned words;
-    # the rule reads it [klø], like kalachnikov and punchline.
-    assert _t("chleuh") == "ʃlø"
+# Martinon (1913: 226) speaks of French words of learned origin. The German
+# loans with ⟨ch⟩ before a sonorant keep [ʃ]; they are whole-word entries
+# with the reading of Lexique 3.83 (New et al. 2004). Lexique also gives
+# kalachnikovs [kalaknikɔv], so that loan takes the rule.
+@pytest.mark.parametrize("text, expected", [
+    ("chleuh", "ʃlø"), ("chleuhs", "ʃlø"), ("chlinguer", "ʃlɛ̃ɡe"),
+    ("chnoque", "ʃnɔk"), ("kalachnikov", "kalaknikɔv"),
+])
+def test_german_loans_keep_sh_before_a_sonorant(text, expected):
+    assert _t(text) == expected
 
 
 # Martinon (1913: 129, 331): in ⟨-empt⟩ and ⟨-ompt⟩ neither p nor t sounds
@@ -443,3 +447,15 @@ def test_numeral_final_consonant_is_a_rule_that_variants_build_on():
     assert _t("dix") == "dis"
     assert o2i.transcribe("dix", "fr-CA").startswith("d͡z")
     assert o2i.transcribe("dix", "fr-CA").endswith("s")
+
+
+# Martinon (1913: 238): the final ⟨g⟩ sounds in foreign words such as rotang,
+# ginseng and gong. The loans in ⟨-ang⟩ and ⟨-ong⟩ are whole-word entries
+# with the reading of Lexique 3.83.
+@pytest.mark.parametrize("text, expected", [
+    ("gong", "ɡɔ̃ɡ"), ("ginseng", "ʒinsɛŋ"), ("rotang", "ʁɔtɑ̃ɡ"),
+    ("gang", "ɡɑ̃ɡ"), ("gangs", "ɡɑ̃ɡ"), ("bang", "bɑ̃ɡ"),
+    ("boomerang", "buməʁɑ̃ɡ"), ("slang", "slɑ̃ɡ"),
+])
+def test_foreign_final_ng_keeps_its_g(text, expected):
+    assert _t(text) == expected
