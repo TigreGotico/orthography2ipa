@@ -16,7 +16,6 @@
   ],
   "notes": "Austroasiatic (Monic) language of central Thailand, a close relative of Mon, written with the Thai script. The Thai abugida ties consonant symbols to an inherent vowel and layers pre-, post-, above- and below-base vowel signs plus consonant-class and tone marking, so the surface reading of a spelling depends on syllable structure and cannot be read off letter by letter. A segmental IPA rendering therefore requires a per-word pronunciation lexicon the engine does not bundle; grapheme->IPA coverage is lexicon-dependent and effectively zero without that stratum, and no alphabetic letter->IPA table is asserted. Nyahkur retains a register/vowel-quality contrast rather than lexical tone, and any such register distinction is left unencoded.",
   "iso639_3": "cbn",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "cbn_glottolog",

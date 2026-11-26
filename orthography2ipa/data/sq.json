@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "sqi",
-  "glottolog_code": "alba1267",
   "timespan": {
     "start_year": 1462,
     "end_year": null
@@ -164,7 +163,6 @@
     "https://en.wikipedia.org/wiki/Albanian_phonology",
     "https://sq.wikipedia.org/wiki/Gjuha_shqipe"
   ],
-  "wikidata_qid": "Q8748",
   "wals_code": "alb",
   "location": {
     "latitude": 40.99952,

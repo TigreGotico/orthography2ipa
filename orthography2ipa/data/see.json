@@ -32,8 +32,6 @@
   },
   "allophones": {},
   "iso639_3": "see",
-  "glottolog_code": "sene1264",
-  "wikidata_qid": "Q1185133",
   "notes": "Seneca (Onödowáʼga:), Northern Iroquoian, the westernmost of the Five Nations Iroquoian languages. Eight vowels: six oral /i e æ a o u/ (written a ä e i o u, with ⟨ä⟩ for the near-open front vowel) and two nasal /ɛ̃ ɔ̃/ (written with trema, ë ö). ⟨ts⟩ and ⟨dz⟩ are alveolar affricates /ts/ /dz/ and ⟨č⟩/⟨j⟩ the postalveolar affricates /tʃ/ /dʒ/ — each digraph or single character spells one affricate segment. Stops pattern in voiceless/voiced pairs (t/d, k/g) that are largely allophonic (voicing conditioned by environment) rather than contrastive; both members are kept as separate keys because the practical orthography spells them with distinct letters. ⟨'⟩ is the glottal stop /ʔ/. Vowel length is marked with a raised colon ⟨:⟩ and stress with an acute accent; both are suprasegmental diacritics layered onto a vowel letter rather than distinct orthographic units and are not encoded as separate grapheme keys here.",
   "sources": [
     {

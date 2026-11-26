@@ -155,7 +155,6 @@
   ],
   "notes": "Research. Livonian (Finnic, Uralic; last L1 speaker died 2013, now revitalised). Latin orthography with macron length (ā ē ī ō ū), the central rounded/unrounded pair ȯ/ȱ [ʊ]/[ʊː], the mid-central õ (realised [ɨ] except word-finally, where it centralises to [ə]: Moseley 2002, Viitso & Ernštreits 2012), the front ä/ǟ [æ]/[æː], and palatal ļ ņ ŗ ț ḑ. Word stress is fixed on the first syllable (Moseley 2002:18). The broken tone (stød-like laryngealisation, historically from Livonian/Latvian contact) is written with an apostrophe (’) after the syllable nucleus; NorthEuraLex's Segments column transcribes it inconsistently as a full glottal stop [ʔ] or as creaky voicing [ˀ] on the preceding vowel depending on the source dictionary entry it draws from, so this spec models the dominant [ʔ] realisation and accepts residual disagreement on the [ˀ] variant as a known engine-limit/gold-transcription-inconsistency case rather than an orthography gap. Long Latvian contact adstrate.",
   "iso639_3": "liv",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "viitso_ernstreits2012",

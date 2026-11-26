@@ -1,7 +1,6 @@
 {
   "code": "km",
   "name": "Khmer",
-  "glottolog_code": "cent1989",
   "script": "Khmer",
   "script_type": "abugida",
   "inherent_vowel": "ɑː",
@@ -3487,7 +3486,6 @@
     "start_year": 611,
     "end_year": null
   },
-  "wikidata_qid": "Q9205",
   "phoible_id": "cent1989",
   "wals_code": "khm",
   "location": {

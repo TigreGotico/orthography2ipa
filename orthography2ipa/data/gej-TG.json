@@ -111,8 +111,6 @@
   "allophones_base": "ee",
   "allophones": {},
   "iso639_3": "gej",
-  "glottolog_code": "genn1243",
-  "wikidata_qid": "Q33450",
   "notes": "Gen (Gɛn, Gɛ̃gbe, Mina, Guin, Popo), a Gbe (Kwa) language of the Maritime Region of southeastern Togo and adjoining Benin, mutually intelligible with and sometimes classed as a dialect of Ewe. Same Africa-Alphabet-derived Latin orthography convention as Ewe: ɖ ƒ ɣ ŋ ɔ ɛ ʋ plus digraphs gb kp ny ts. Vowels a e ɛ i o ɔ u, with nasalised counterparts written with a following ⟨n⟩ (ã ẽ ɛ̃ ĩ õ ɔ̃ ũ), not modelled as separate graphemes here, matching the ee convention. Standardised in Benin's Alphabet des langues nationales (2008). TONE: Gen is tonal; the standard orthography is largely toneless like Ewe, so tone is not modelled here. Consonant/allophone inventory inherited from Ewe (`ee`) given the close genetic and orthographic relationship; graphemes stated independently here because Gen's own letter set and grapheme-to-phoneme values are directly attested.",
   "sources": [
     {

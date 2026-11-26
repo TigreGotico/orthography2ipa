@@ -1,7 +1,6 @@
 {
   "code": "nd",
   "name": "Northern Ndebele",
-  "glottolog_code": "nort2795",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "nde",
@@ -383,7 +382,6 @@
     "start_year": 1830,
     "end_year": null
   },
-  "wikidata_qid": "Q35613",
   "location": {
     "latitude": -19.4,
     "longitude": 28.5,

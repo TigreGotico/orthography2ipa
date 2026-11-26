@@ -657,8 +657,6 @@ def load_json_spec(code: str) -> LanguageSpec:
             base_scalars.get("word_internal_apostrophe", False)),
         apostrophe_elision=bool(base_scalars.get("apostrophe_elision", False)),
         iso639_3=raw.get("iso639_3"),
-        glottolog_code=raw.get("glottolog_code"),
-        wikidata_qid=raw.get("wikidata_qid"),
         phoible_id=raw.get("phoible_id"),
         wals_code=raw.get("wals_code"),
         sandhi_rules=sandhi_rules,

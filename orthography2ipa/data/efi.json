@@ -32,8 +32,6 @@
  },
  "notes": "Standard Efik Latin orthography, established by Presbyterian mission linguists (Goldie 1862, A Dictionary of the Efik Language) and still in current use for Efik-language publications in Nigeria's Cross River State. Follows the underdotted-vowel convention shared with neighbouring Cross River languages: ⟨ẹ⟩ and ⟨ọ⟩ write the open-mid vowels /ɛ/ and /ɔ/ as distinct units from ⟨e⟩ /e/ and ⟨o⟩ /o/. ⟨ñ⟩ spells the palatal nasal /ɲ/ and ⟨ng⟩ the velar nasal /ŋ/ — a true digraph, since the file defines no separate ⟨g⟩ grapheme for /ŋ/ to be read as n+g would give (AGENTS.md test 1). ⟨kp⟩ is the single labial-velar stop /kp/, not a k-p cluster. The palatal glide is spelled ⟨y⟩ for /j/. This grapheme set covers all 20 non-marginal segments of the cited PHOIBLE inventory (7 vowels, 13 consonants). Efik/Ibibio is tonal; tone is not marked in ordinary orthography and is not modelled here (documented exemption, as for stress). Efik lacks lexical stress as a separate category from tone.",
  "iso639_3": "efi",
- "glottolog_code": "efik1245",
- "wikidata_qid": "Q34785",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Efik_language"
  ],

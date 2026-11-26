@@ -16,7 +16,6 @@
   ],
   "notes": "Historical stage of Koreanic (10th-16th century), written in early Hangul after 1443 with many now-obsolete jamo (arae-a, yesieung, pansios and other letters, plus obsolete consonant clusters) and marked with a pitch-accent tone-dot system. The text is encoded as precomposed syllable blocks, and recovering grapheme-to-IPA requires jamo decomposition together with a per-word philological pronunciation stratum for the obsolete letters that the engine does not bundle; engine coverage is therefore lexicon-dependent and effectively zero without that stratum. Left empty deliberately rather than faking single-codepoint syllable rules; the tone-dot marks are not encoded.",
   "iso639_3": "okm",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "okm_glottolog",

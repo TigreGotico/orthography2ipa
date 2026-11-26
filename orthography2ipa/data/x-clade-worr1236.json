@@ -7,7 +7,6 @@
  "graphemes": {},
  "allophones": {},
  "notes": "Classification-only clade node for the Worrorran family. Carries no phonology: it is never a data-inheritance source, only a step in the ancestry chain from which `family` is derived.",
- "glottolog_code": "worr1236",
  "sources": [
   {
    "id": "glottolog2024",

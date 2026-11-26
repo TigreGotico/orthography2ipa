@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "dsb",
-  "glottolog_code": "lowe1385",
   "timespan": {
     "start_year": 1574,
     "end_year": null
@@ -173,7 +172,6 @@
     "stress_mark": "ˈ",
     "notes": "Lower Sorbian (dsb) has categorical initial stress, following the West Slavic pattern shared with Czech. Source: Stone (1993), in The Slavonic Languages; Wikipedia: https://en.wikipedia.org/wiki/Lower_Sorbian_language"
   },
-  "wikidata_qid": "Q13286",
   "phoible_id": "lowe1385",
   "wals_code": "srl",
   "location": {

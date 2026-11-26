@@ -31,6 +31,9 @@ rescorer to choose. Normalised by
 """
 
 import copy as _copy
+import warnings
+
+from linguatag import catalog_ids
 
 
 class FrozenDict(dict):
@@ -1887,7 +1890,6 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "parent": InheritanceMode.OWN_ONLY,
     "ancestors": InheritanceMode.OWN_ONLY,
     "positional_graphemes": InheritanceMode.BASE_MERGE,
-    "glottolog_code": InheritanceMode.OWN_ONLY,
     "notes": InheritanceMode.OWN_ONLY,
     "quality": InheritanceMode.OWN_ONLY,
     "script_type": InheritanceMode.OWN_ONLY,
@@ -1918,7 +1920,6 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
     "iso639_3": InheritanceMode.OWN_ONLY,
-    "wikidata_qid": InheritanceMode.OWN_ONLY,
     "phoible_id": InheritanceMode.OWN_ONLY,
     "wals_code": InheritanceMode.OWN_ONLY,
     "trailing_vowel_axis_digraphs": InheritanceMode.OWN_ONLY,
@@ -1987,11 +1988,8 @@ class LanguageSpec:
     phonological positions.  When absent or empty, the base ``graphemes``
     mapping is used for all positions (backward-compatible).
 
-    The ``glottolog_code`` field provides an optional Glottolog languoid
-    identifier for cross-referencing with the Glottolog classification
-    (e.g. ``'cast1244'`` for Castilian). This enables interoperability
-    with Glottolog's genealogical database while keeping our own BCP-47
-    codes as primary identifiers.
+    The Glottolog and Wikidata ids of a spec come from
+    ``linguatag.catalog_ids``, not from the spec file.
     """
 
     code: str
@@ -2073,12 +2071,6 @@ class LanguageSpec:
             },
         }
     """
-
-    glottolog_code: Optional[str] = None
-    """Optional Glottolog languoid code (e.g. 'cast1244' for Castilian,
-    'west2813' for West Iberian). Enables cross-referencing with
-    Glottolog's genealogical classification database.
-    See https://glottolog.org for the full catalogue."""
 
     notes: str = ""
     """Free-form notes."""
@@ -2433,12 +2425,6 @@ class LanguageSpec:
 
     iso639_3: Optional[str] = None
     """ISO 639-3 three-letter code for PHOIBLE/Glottolog cross-referencing."""
-
-    wikidata_qid: Optional[str] = None
-    """Optional Wikidata item id (e.g. ``"Q1321"`` for Spanish). The hub of the
-    linked-data graph: one QID resolves to this language's Glottolog code,
-    ISO 639-3 code, PHOIBLE inventories, WALS entry and Wikipedia articles in
-    every edition. See https://www.wikidata.org."""
 
     phoible_id: Optional[str] = None
     """Optional PHOIBLE identifier for the language's attested phoneme
@@ -2897,6 +2883,20 @@ class LanguageSpec:
         if role is not None:
             anc = tuple(a for a in anc if a.role == role)
         return anc
+
+    @property
+    def glottolog_code(self) -> Optional[str]:
+        """Deprecated: read ``linguatag.catalog_ids(spec.code)``."""
+        warnings.warn("LanguageSpec.glottolog_code is deprecated; use "
+                      "linguatag.catalog_ids(spec.code)", DeprecationWarning, stacklevel=2)
+        return catalog_ids(self.code).get("glottolog_code")
+
+    @property
+    def wikidata_qid(self) -> Optional[str]:
+        """Deprecated: read ``linguatag.catalog_ids(spec.code)``."""
+        warnings.warn("LanguageSpec.wikidata_qid is deprecated; use "
+                      "linguatag.catalog_ids(spec.code)", DeprecationWarning, stacklevel=2)
+        return catalog_ids(self.code).get("wikidata_qid")
 
     @property
     def primary_parent(self) -> Optional[str]:

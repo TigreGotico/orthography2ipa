@@ -9,7 +9,6 @@
   "quality": "stub",
   "script_type": "alphabet",
   "iso639_3": null,
-  "glottolog_code": "azte1234",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Nahuatl_language",
     "https://nah.wikipedia.org/wiki/Nahuatlahtolli"
@@ -29,7 +28,6 @@
       "notes": "Reference for the classification and geographic distribution of this contact language (structural adstrate node only)."
     }
   ],
-  "wikidata_qid": "Q13300",
   "location": {
     "latitude": 17.666056,
     "longitude": -97.459862,

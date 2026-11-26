@@ -6,6 +6,7 @@ mountain-origin group [dʒ], and the Nejd-origin migrants [dʒ] or [j]. Which co
 recording belongs to is a fact about the speaker and not visible in the text, so the
 lattice carries all three and audio decides. That is what an allophone list is for.
 """
+from linguatag import catalog_ids
 import pytest
 
 from orthography2ipa import get
@@ -18,7 +19,7 @@ def test_it_hangs_off_omani_with_the_right_codes():
     s = get(DHOFARI)
     assert s.parent == OMANI
     assert s.iso639_3 == "adf", "acw is Hejazi, not Dhofari"
-    assert s.glottolog_code == "dhof1235"
+    assert catalog_ids(s.code).get("glottolog_code") == "dhof1235"
 
 
 def test_all_three_sociolect_readings_are_carried():

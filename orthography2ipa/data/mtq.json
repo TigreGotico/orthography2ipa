@@ -302,7 +302,6 @@
  ],
  "notes": "Austroasiatic (Vietic) language of northern Vietnam, written in a Vietnamese-based Latin orthography; the Hoa Binh provincial standard uses 28 letters plus tone diacritics. Consonant digraphs follow Vietnamese conventions (nh, ng/ngh, ch, ph, th, tr, gh), with d read /z/ and đ as the implosive. The orthography marks lexical tone with Vietnamese-style diacritics (grave, acute, hook above, tilde, dot below); this map deliberately reads every tone-marked vowel as its base vowel quality, so tone is left unencoded and contributes to the expected error floor. Vowel length beyond the a/ă and ơ/â pairings is likewise not separately encoded. Muong is tonal (marked by diacritics in the Vietnamese-based orthography, encoded separately from stress); stress is not a distinct contrastive category and is left unencoded (documented exemption).",
  "iso639_3": "mtq",
- "glottolog_code": null,
  "sources": [
   {
    "id": "mtq_glottolog",

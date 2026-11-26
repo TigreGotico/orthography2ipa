@@ -107,7 +107,6 @@
  "allophones": {},
  "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (gwd.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names. Gawwada stress is predictable (penultimate-mora weight-sensitive per Tosco) and not separately orthographically marked; left unencoded (documented exemption).",
  "iso639_3": "gwd",
- "glottolog_code": "gaww1239",
  "sources": [
   {
    "id": "glottolog2024",

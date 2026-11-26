@@ -28,7 +28,6 @@
   ],
   "code": "ba",
   "name": "Bashkir",
-  "glottolog_code": "bash1264",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "iso639_3": "bak",
@@ -363,7 +362,6 @@
     "stress_mark": "ˈ",
     "notes": "Bashkir default stress is word-final (-1). Certain grammatical endings (negation, question) are unstressed; not modeled here. Source: Poppe (1964), Johanson & Csató (1998)."
   },
-  "wikidata_qid": "Q13389",
   "phoible_id": "bash1264",
   "wals_code": "bsk",
   "location": {

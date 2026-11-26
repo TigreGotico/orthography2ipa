@@ -248,7 +248,6 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "egyp1253",
   "iso639_3": "arz",
   "allophone_rules": [
     {
@@ -328,7 +327,6 @@
       "notes": "Cairene monophthongization (Watson 2002 ch.2: Classical /aw/ → [oː], lawn→loːn; Mitchell 1956). Geminate [ww] (ɡaww) is not the diphthong atom and is untouched."
     }
   ],
-  "wikidata_qid": "Q29919",
   "phoible_id": "egyp1253",
   "wals_code": "aeg",
   "location": {
