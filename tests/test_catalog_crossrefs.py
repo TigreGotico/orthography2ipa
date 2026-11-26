@@ -36,7 +36,6 @@ def test_spec_files_hold_no_catalog_ids():
 
 def test_deprecated_catalog_properties_read_linguatag():
     import pytest
-    from linguatag import catalog_ids
 
     pt = o2i.get("pt-PT")
     with pytest.warns(DeprecationWarning):
