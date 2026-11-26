@@ -445,10 +445,15 @@
         "ɛn",
         "ɛm",
         "jɛn",
-        "wɛn"
+        "wɛn",
+        "ɛj",
+        "œj",
+        "aj",
+        "uj",
+        "ij"
       ],
       "requires_other_nucleus": true,
-      "notes": "The mute final ⟨e⟩ of a polysyllable is pronounced after a consonant (PFC, Le e caduc : variation géographique, section 'Français méridional': 'le e caduc est normalement prononcé en fin de polysyllabe (sauf s'il est suivi d'une voyelle) : le mot patte est ainsi prononcé [patə] avec une voyelle finale'; seul vs seule, Michel vs Michèle). The page gives a vowel close to [ø] or [œ] and a true neutral [ə] as its usual values; the spec writes [ə]. The condition is the pronounced consonant before the ⟨e⟩, whatever letters spell it, so a unit that starts with a vowel letter and ends in a consonant counts too (fille [fijə], ville, Marseille [maʁsɛjə], aime [ɛmə], semaine [sømɛnə]; the units fr-FR denasalises before a vowel, ⟨ain⟩ [ɛn], ⟨aim⟩ [ɛm], ⟨ien⟩ [jɛn], ⟨oin⟩ [wɛn], are listed whole because the engine reads them as one segment). A silent plural ⟨-s⟩ after the ⟨e⟩ leaves it final (pattes [patə]). Its deletion before a vowel-initial word is a matter of the phrase."
+      "notes": "The mute final ⟨e⟩ of a polysyllable is pronounced after a consonant (PFC, Le e caduc : variation géographique, section 'Français méridional': 'le e caduc est normalement prononcé en fin de polysyllabe (sauf s'il est suivi d'une voyelle) : le mot patte est ainsi prononcé [patə] avec une voyelle finale'; seul vs seule, Michel vs Michèle). The page gives a vowel close to [ø] or [œ] and a true neutral [ə] as its usual values; the spec writes [ə]. The condition is the pronounced consonant before the ⟨e⟩, whatever letters spell it, so a unit that starts with a vowel letter and ends in a consonant counts too (fille [fijə], ville, Marseille [maʁsɛjə], aime [ɛmə], semaine [sømɛnə]; the units fr-FR denasalises before a vowel, ⟨ain⟩ [ɛn], ⟨aim⟩ [ɛm], ⟨ien⟩ [jɛn], ⟨oin⟩ [wɛn], are listed whole because the engine reads them as one segment, as are the units in [j] of ⟨eill⟩, ⟨euill⟩, ⟨aill⟩, ⟨ouill⟩ and ⟨ill⟩ once a rule names them). A silent plural ⟨-s⟩ after the ⟨e⟩ leaves it final (pattes [patə]). Its deletion before a vowel-initial word is a matter of the phrase."
     },
     {
       "id": "FR_MIDI_SCHWA_INITIAL",
