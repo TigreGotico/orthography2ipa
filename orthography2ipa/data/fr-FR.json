@@ -1102,7 +1102,9 @@
     "bang": "bɑ̃ɡ",
     "bangs": "bɑ̃ɡ",
     "boomerang": "buməʁɑ̃ɡ",
-    "slang": "slɑ̃ɡ"
+    "slang": "slɑ̃ɡ",
+    "cresson": "kʁəsɔ̃",
+    "cressonnière": "kʁəsɔnjɛʁ"
   },
   "timespan": {
     "start_year": 1300,
@@ -1488,7 +1490,7 @@
       "followed_by_grapheme": [
         "ss"
       ],
-      "notes": "Identity rule ordered before FR_E_BEFORE_DOUBLED_NONFINAL: the prefix re- keeps its mute ⟨e⟩ before ⟨ss⟩, which only keeps the ⟨s⟩ voiceless: ressembler [ʁəsɑ̃ble], ressentir, resserrer, ressortir, ressource. Martinon (1913, p. 171: ⟨e⟩ before a doubled consonant letter is not a mute e, with the exceptions dessus, dessous and the prefix re- before ⟨ss⟩ (ressembler, ressentir, resserrer, ressort, ressource), where the ⟨ss⟩ only keeps the ⟨s⟩ voiceless; p. 151 n. 1 says the same of re- and of dessus and dessous). Martinon also names ressusciter and ressuyer as exceptions with [e]; they take this rule. dessus and dessous, the other exception he names, are whole-word entries."
+      "notes": "Identity rule ordered before FR_E_BEFORE_DOUBLED_NONFINAL: the prefix re- keeps its mute ⟨e⟩ before ⟨ss⟩, which only keeps the ⟨s⟩ voiceless: ressembler [ʁəsɑ̃ble], ressentir, resserrer, ressortir, ressource. Martinon (1913, p. 171: ⟨e⟩ before a doubled consonant letter is not a mute e, with the exceptions dessus, dessous and the prefix re- before ⟨ss⟩ (ressembler, ressentir, resserrer, ressort, ressource), where the ⟨ss⟩ only keeps the ⟨s⟩ voiceless; p. 151 n. 1 says the same of re- and of dessus and dessous). Martinon also names ressusciter and ressuyer as exceptions with [e]; they take this rule. dessus and dessous, the other exception he names, are whole-word entries. cresson and cressonnière, where Martinon (1913: 171) keeps the mute e 'at least at Paris', are whole-word entries too."
     },
     {
       "id": "FR_E_BEFORE_DOUBLED_NONFINAL",
