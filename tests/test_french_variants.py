@@ -60,7 +60,7 @@ def _say(text, tag):
     ("tu", "t͡sy"),                # Dow 2019: 1, before /y/
     ("nuit", "nɥi"),               # no stop before the glide: no affricate
     ("tuile", "t͡sɥɪl"),           # before /ɥ/ (Dow 2019: 1)
-    ("tiens", "t͡sjɛ̃"),            # before the glide of ⟨ien⟩ (Dow 2019: 1)
+    ("tiens", "t͡sjẽ"),            # before the glide of ⟨ien⟩ (Dow 2019: 1)
     ("pitié", "pit͡sje"),          # before /j/
 ])
 def test_quebec_affricates_a_coronal_stop_before_a_high_front_vocoid(
@@ -71,7 +71,7 @@ def test_quebec_affricates_a_coronal_stop_before_a_high_front_vocoid(
 @pytest.mark.parametrize("text, expected", [
     ("trois", "tʁwa"),             # /w/ and /ʁ/ do not trigger it
     ("toit", "twa"),
-    ("tête", "tɛt"),               # /t/ before a mid vowel
+    ("tête", "tai̯t"),             # /t/ before a mid vowel (long [ɛː] -> [ai̯])
     ("dos", "do"),
     ("patte", "pat"),
 ])
@@ -100,9 +100,10 @@ def test_quebec_keeps_a_high_vowel_tense_in_an_open_final_syllable(
 
 
 def test_quebec_keeps_the_a_and_open_a_contrast():
-    # Burness et al. 2022: 1 (patte [pat], pâte [pɑt])
+    # Burness et al. 2022: 1 (patte [pat], pâte [pɑt]); the long back vowel
+    # of pâte is the diphthong [ɑu̯] (Dumas 1974: 15-16, Table II, p. 26)
     assert _say("patte", "fr-CA") == "pat"
-    assert _say("pâte", "fr-CA") == "pɑt"
+    assert _say("pâte", "fr-CA") == "pɑu̯t"
 
 
 # --- fr-BE, fr-CH, fr-CI ------------------------------------------------
@@ -131,12 +132,16 @@ def test_the_circumflex_e_is_long_only_where_a_source_states_it(
     assert _say("bêle", tag) == bele
 
 
-@pytest.mark.parametrize("tag", ["fr-FR", "fr-CA", "fr-BE", "fr-CH", "fr-CI"])
-def test_every_variant_keeps_brin_and_brun_apart(tag):
-    # PFC page d) 2): the contrast survives at Tournai, Nyon and Abidjan;
-    # fr-FR keeps both phonemes, so the variants inherit it.
-    assert _say("brin", tag) == "bʁɛ̃"
-    assert _say("brun", tag) == "bʁœ̃"
+@pytest.mark.parametrize("tag, brin, brun", [
+    ("fr-FR", "bʁɛ̃", "bʁœ̃"), ("fr-BE", "bʁɛ̃", "bʁœ̃"),
+    ("fr-CH", "bʁɛ̃", "bʁœ̃"), ("fr-CI", "bʁɛ̃", "bʁœ̃"),
+    ("fr-CA", "bʁẽ", "bʁœ̃"),       # the front nasal is [ẽ] (Dumas 1974: 26)
+])
+def test_every_variant_keeps_brin_and_brun_apart(tag, brin, brun):
+    # PFC page d) 2): the contrast survives at Tournai, Nyon, Toulouse and
+    # Abidjan; fr-FR keeps both phonemes, so the variants inherit it.
+    assert _say("brin", tag) == brin
+    assert _say("brun", tag) == brun
 
 
 # --- resolution and inheritance -----------------------------------------
@@ -198,7 +203,7 @@ def test_a_variant_inherits_fr_fr(tag):
     ("fr-BE", ["maison", "chat", "école", "parler", "brun", "d'accord"]),
     ("fr-CH", ["maison", "chat", "école", "parler", "brun", "d'accord"]),
     ("fr-CI", ["maison", "chat", "école", "parler", "brun", "d'accord"]),
-    ("fr-CA", ["maison", "chat", "école", "parler", "brun", "d'accord"]),
+    ("fr-CA", ["maison", "ami", "école", "parler", "brun", "d'accord"]),
 ])
 def test_a_variant_reads_like_fr_fr_where_no_feature_applies(tag, words):
     for word in words:
@@ -220,11 +225,22 @@ def test_the_assistant_sentences_differ_from_fr_fr_only_at_a_cited_feature():
         assert "ê" in text or "ée " in text, text
 
 
+def _undo_laurentian(ipa):
+    # Each cited surface back to the fr-FR phoneme it comes from. [ɑu̯] comes
+    # from /ɔ/, /a/ or /ɑ/, so those three fold into one symbol on both sides.
+    undo = [("ɛ̃i̯", "ɛ̃"), ("ãy̯", "œ̃"), ("ɔ̃u̯", "ɔ̃"), ("ɑ̃u̯", "ɑ̃"),
+            ("ai̯", "ɛ"), ("ɛi̯", "e"), ("œy̯", "ø"), ("ay̯", "œ"),
+            ("ɔu̯", "o"), ("ɑu̯", "A"), ("ẽ", "ɛ̃"), ("ã", "ɑ̃"), ("ɒ", "a"),
+            ("iː", "i"), ("yː", "y"), ("uː", "u"), ("ɪ", "i"), ("ʏ", "y"),
+            ("ʊ", "u"), ("t͡s", "t"), ("d͡z", "d")]
+    for cited, plain in undo:
+        ipa = ipa.replace(cited, plain)
+    return ipa.replace("ɑ̃", "Ñ").replace("ɔ̃", "Ō").translate(
+        str.maketrans("ɔaɑ", "AAA"))
+
+
 def test_a_laurentian_difference_is_always_a_cited_allophone():
-    # Undo the four cited changes: what is left must be fr-FR, word for word.
-    undo = {"ɪ": "i", "ʏ": "y", "ʊ": "u", "t͡s": "t", "d͡z": "d"}
+    # Undo the cited changes: what is left must be fr-FR, word for word.
     for text in TEXTS:
-        ours = _say(text, "fr-CA")
-        for cited, plain in undo.items():
-            ours = ours.replace(cited, plain)
-        assert ours == _say(text, "fr-FR"), text
+        ours = _undo_laurentian(_say(text, "fr-CA"))
+        assert ours == _undo_laurentian(_say(text, "fr-FR")), text

@@ -72,3 +72,66 @@ def test_a_vowel_before_a_final_mute_e_is_long(tag, text, expected):
 def test_vingt_keeps_its_final_t(tag, expected):
     # PFC consonant page II d) 4); Avanzi 2016 (map); Avanzi 2024: 117
     assert _say("vingt", tag) == expected
+
+
+# --- Laurentian French: length and diphthongs (Dumas 1974) ----------------
+
+@pytest.mark.parametrize("text, expected", [
+    ("père", "pai̯ʁ"),             # ɛ before a final /ʁ/: ɛː -> aⁱ
+    ("chaise", "ʃai̯z"),            # ex. (15): deux chaises
+    ("rase", "ʁɑu̯z"),             # ex. (15): il se rase; ɒː -> ɑᵘ
+    ("cuir", "kɥiːʁ"),            # high vowels are written long (Hall 2016)
+    ("pire", "piːʁ"),             # p. 20: pire
+    ("juge", "ʒyːʒ"),
+    ("fête", "fai̯t"),              # ex. (1): bête, même; the circumflex
+    ("pâte", "pɑu̯t"),             # ex. (1): âme, pâle
+    ("rose", "ʁɔu̯z"),             # close-mid tense vowel, closed syllable
+    ("jaune", "ʒɔu̯n"),
+    ("côte", "kɔu̯t"),             # ex. (8)
+    ("jeûne", "ʒœy̯n"),            # ex. (8)
+    ("monde", "mɔ̃u̯d"),            # ex. (8): nasal vowels
+    ("ventre", "vɑ̃u̯tʁ"),
+    ("mince", "mɛ̃i̯s"),
+    ("humble", "ãy̯bl"),
+])
+def test_quebec_diphthongises_a_long_vowel_in_the_last_syllable(
+        text, expected):
+    assert _say(text, "fr-CA") == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("barbe", "baʁb"),             # /ʁ/ is not the final consonant
+    ("porte", "pɔʁt"),
+    ("fêter", "fɛte"),             # not the last syllable
+    ("patte", "pat"),              # /a/ in a closed syllable: short and front
+    ("mai", "me"),                 # word-final close-mid: never diphthongised
+    ("élite", "elɪt"),             # the laxing rule still applies
+])
+def test_quebec_leaves_short_vowels_alone(text, expected):
+    assert _say(text, "fr-CA") == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("Canada", "kanadɒ"),          # Dumas 1974: 27: [ɒ] at the end of a word
+    ("pas", "pɒ"),                 # ex. (17); a silent letter does not close it
+    ("là", "lɒ"),                  # n. 13: the adverb là is [ɒ]
+    ("la", "la"),                  # n. 13: the proclitics stay [a]
+    ("à", "a"),
+    ("ça", "sa"),
+    ("jusqu'à", "ʒyska"),
+])
+def test_quebec_a_is_back_at_the_end_of_a_word(text, expected):
+    assert _say(text, "fr-CA") == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("pain", "pẽ"),                # Dumas 1974: 26: the front nasal is [ẽ]
+    ("vin", "vẽ"),
+    ("moins", "mwẽ"),
+    ("bien", "bjẽ"),
+    ("enfant", "ɑ̃fã"),            # /ɑ̃/ is front [ã] at the end of a word
+    ("temps", "tã"),
+    ("ensemble", "ɑ̃sɑ̃u̯bl"),        # but long and back before a coda
+])
+def test_quebec_nasal_vowel_values(text, expected):
+    assert _say(text, "fr-CA") == expected
