@@ -12,7 +12,7 @@ Every mapping in a spec is a claim about a language, and every claim needs a sou
 
 ## Principles
 
-Primary sources come before secondary sources. Every phonological claim traces back to a peer-reviewed article, a reference grammar or a phonology monograph. Wikipedia, language-learning applications and the output of an AI model are not sources.
+Primary sources come before secondary sources. Every phonological claim traces back to a peer-reviewed article, a reference grammar or a phonology monograph. Language-learning applications and the output of an AI model are not sources. Wikipedia is a source of last resort only, as the next section says.
 
 A spec describes the standard or prestige variety first. A dialect spec then states how it differs from that standard, and says so in its `notes`.
 
@@ -53,7 +53,15 @@ A `phoible_id` answers "which phonemes does this language have", and nothing mor
 
 ## Wikipedia and Ciberdúvidas are extra sources only
 
-Wikipedia and Wiktionary are pointers, never sources. Put a Wikipedia article in the `wikipedia` field, and cite the reference grammar or paper that the article cites. Open that reference, and make sure it says what the article claims. Do not cite the paraphrase of Wikipedia. Do not cite an author whose name you took from a `<ref>` tag and whose work you did not read. Keep the Wikipedia link next to the citation, and do not remove it.
+Wikipedia and Wiktionary are pointers first. Use Wikipedia as a source only when no primary source can be read. Do these steps:
+
+1. Read the same claim in several language editions of Wikipedia.
+2. In the rule's `notes`, quote each edition with its URL and revision date, and say which editions agree and which disagree.
+3. Write `WIKIPEDIA-ONLY` in the note.
+
+A `WIKIPEDIA-ONLY` claim goes in a rule's `notes` and never in the spec's `sources`. A spec with such a rule stays below the `production` tier until someone reads a primary source and replaces the note.
+
+Otherwise, Wikipedia is a pointer. Put a Wikipedia article in the `wikipedia` field, and cite the reference grammar or paper that the article cites. Open that reference, and make sure it says what the article claims. Do not cite the paraphrase of Wikipedia. Do not cite an author whose name you took from a `<ref>` tag and whose work you did not read. Keep the Wikipedia link next to the citation, and do not remove it.
 
 A Wiktionary rewrite module such as [`Module:crk-IPA`](https://en.wiktionary.org/wiki/Module:crk-IPA) is a parser that someone wrote, and it encodes the decisions of its author. Its output is not evidence of what a reference grammar says.
 
