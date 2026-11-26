@@ -118,7 +118,7 @@ class TestStress:
 
     @pytest.mark.xfail(strict=True, reason=(
         "the vowel run αέ is one nucleus for the mark, so the mark goes before "
-        "a; el gives ˈaeɾas for αέρας in the same way"))
+        "a; el gives ˈaeɾas for αέρας in the same way"), raises=AssertionError)
     def test_hiatus_before_the_accented_vowel(self):
         assert _vowels_after_mark(_pnt("αέν")) == _vowels_after_mark("aˈen")
 

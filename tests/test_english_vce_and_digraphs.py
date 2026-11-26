@@ -315,7 +315,7 @@ def test_en_unstressed_ow_is_goat_before_an_inflection(word, rp, ga):
 _STRESS_LIMIT = pytest.mark.xfail(
     strict=True,
     reason="stress limit: the spec stresses the first syllable, so the final "
-           "⟨ow⟩ of a final-stress word or a compound is called unstressed")
+           "⟨ow⟩ of a final-stress word or a compound is called unstressed", raises=AssertionError)
 
 
 @pytest.mark.parametrize("code", ["en-GB", "en-US"])

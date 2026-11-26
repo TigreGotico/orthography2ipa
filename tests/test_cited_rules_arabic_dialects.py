@@ -362,7 +362,7 @@ def test_qeltu_uvular_r_is_documented_not_applied():
 @pytest.mark.xfail(
     strict=True,
     reason="ar-TN notes claim θ → /t/ in urban Tunis, but the spec re-declares ث "
-           "as [θ] over the Maghrebi parent's merged [t] — engine gives θaˈlaːθa",
+           "as [θ] over the Maghrebi parent's merged [t] — engine gives θaˈlaːθa", raises=AssertionError,
 )
 def test_tn_tha_merges_to_t():
     """Tunisian ⟨ث⟩ merges to /t/ in the urban Tunis reference variety.
@@ -378,7 +378,7 @@ def test_tn_tha_merges_to_t():
 @pytest.mark.xfail(
     strict=True,
     reason="ar-LY notes claim ق is preserved as /q/, but the spec's ق reads [ɡ] "
-           "first — engine gives ˈɡalb",
+           "first — engine gives ˈɡalb", raises=AssertionError,
 )
 def test_ly_qaf_is_preserved():
     """Libyan ⟨ق⟩ is preserved as /q/.
@@ -474,7 +474,7 @@ def test_dz_short_i_reduces_to_schwa_before_cluster():
 @pytest.mark.xfail(
     strict=True,
     reason="xaa notes call imāla the diagnostic feature, but /aː/→[eː] is only "
-           "declared as a secondary allophone variant — engine gives baːb",
+           "declared as a secondary allophone variant — engine gives baːb", raises=AssertionError,
 )
 def test_xaa_imala_raises_long_a():
     """Andalusi imāla: /aː/ → [eː], the diagnostic feature.
@@ -491,7 +491,7 @@ def test_xaa_imala_raises_long_a():
 @pytest.mark.xfail(
     strict=True,
     reason="xaa notes claim the interdental merger, but ث is only given [t]/[s] "
-           "as secondary variants — engine gives θaldʒ",
+           "as secondary variants — engine gives θaldʒ", raises=AssertionError,
 )
 def test_xaa_interdental_merges():
     """Andalusi ⟨ث⟩ merges to /t/ (or /s/).
@@ -504,7 +504,7 @@ def test_xaa_interdental_merges():
 @pytest.mark.xfail(
     strict=True,
     reason="xaa notes claim ḍād and ẓāʾ conflate, but ض inherits Classical [ɮˤ] "
-           "while ظ is [ðˤ] — engine keeps them distinct",
+           "while ظ is [ðˤ] — engine keeps them distinct", raises=AssertionError,
 )
 def test_xaa_emphatic_merger():
     """Andalusi ⟨ض⟩ and ⟨ظ⟩ conflate into a single emphatic.
@@ -519,7 +519,7 @@ def test_xaa_emphatic_merger():
 @pytest.mark.xfail(
     strict=True,
     reason="xaa notes claim a Romance-origin /p/, but ⟨پ⟩ has no grapheme entry — "
-           "engine drops it, giving baː",
+           "engine drops it, giving baː", raises=AssertionError,
 )
 def test_xaa_romance_p_is_available():
     """Andalusi has a Romance-origin /p/.

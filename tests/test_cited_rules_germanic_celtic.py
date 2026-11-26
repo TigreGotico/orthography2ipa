@@ -143,7 +143,7 @@ def test_af_diphthong_oey():
 @pytest.mark.xfail(
     strict=True,
     reason="Donaldson (1993) claims initial /ɡ/ (Dutch ɣ→ɡ); engine produces "
-    "[xud] for goed and [xaːn] for gaan — the fricative is kept, not stopped",
+    "[xud] for goed and [xaːn] for gaan — the fricative is kept, not stopped", raises=AssertionError,
 )
 def test_af_initial_g_is_a_stop():
     """DEFINING CHANGE (2): /ɡ/ initial (Dutch ɣ → ɡ).
@@ -158,7 +158,7 @@ def test_af_initial_g_is_a_stop():
 @pytest.mark.xfail(
     strict=True,
     reason="Donaldson (1993) claims /r/ = uvular [ʀ] or [χ]; engine produces "
-    "[roːɪ] for rooi — the alveolar trill inherited from Dutch",
+    "[roːɪ] for rooi — the alveolar trill inherited from Dutch", raises=AssertionError,
 )
 def test_af_uvular_r():
     """DEFINING CHANGE (4): /r/ = uvular [ʀ] or [χ].
@@ -178,7 +178,7 @@ def test_af_uvular_r():
     strict=True,
     reason="Dudenredaktion (2015) claims Austrian ä merges with /eː/; de-AT "
     "produces [bɛʁ] for Bär — identical to the de-DE parent, so the declared "
-    "delta is absent from the spec",
+    "delta is absent from the spec", raises=AssertionError,
 )
 def test_de_at_ae_raises_to_long_e():
     """ä [ɛ] → [eː] in most Austrian German (merged with /eː/).
@@ -208,7 +208,7 @@ def test_de_ch_no_glottal_stop():
 @pytest.mark.xfail(
     strict=True,
     reason="König & van der Auwera (1994) claim Swiss /r/ = alveolar trill [r]; "
-    "de-CH produces [ʁɔt] for rot — the uvular fricative inherited from de-DE",
+    "de-CH produces [ʁɔt] for rot — the uvular fricative inherited from de-DE", raises=AssertionError,
 )
 def test_de_ch_alveolar_trill_r():
     """/r/ = alveolar trill [r], vs Standard German uvular [ʀ].
@@ -234,7 +234,7 @@ def test_de_bavarian_pf_cluster_preserved():
     strict=True,
     reason="König & van der Auwera (1994) claim r-vocalisation to [ɐ] before a "
     "consonant; bar-AT produces [vɔʁt] for Wort — the consonantal [ʁ] is "
-    "kept",
+    "kept", raises=AssertionError,
 )
 def test_de_bavarian_r_vocalisation_before_consonant():
     """r-vocalisation [ɐ] before consonants is common.
@@ -269,7 +269,7 @@ def test_sv_fi_no_tonal_accent():
     strict=True,
     reason="Elert (1994) claims Finland-Swedish has NO retroflexion; sv-FI "
     "produces [baɳ] for barn — the retroflex series is inherited from sv "
-    "unchanged",
+    "unchanged", raises=AssertionError,
 )
 def test_sv_fi_no_retroflexion():
     """NO RETROFLEXION: alveolar r always; no ɳ ɖ ʈ ʂ clusters.
@@ -286,7 +286,7 @@ def test_sv_fi_no_retroflexion():
 @pytest.mark.xfail(
     strict=True,
     reason="Elert (1994) claims the Finland-Swedish sj-sound is [ʃ] or [sk], not "
-    "the mainland [ɧ]; sv-FI produces [ɧœ] for sjö",
+    "the mainland [ɧ]; sv-FI produces [ɧœ] for sjö", raises=AssertionError,
 )
 def test_sv_fi_sj_sound_is_not_the_mainland_sound():
     """sj-sound = [ʃ] or [sk], not the mainland [ɧ].
@@ -324,7 +324,7 @@ def test_sv_rikssvenska_sj_sound():
 @pytest.mark.xfail(
     strict=True,
     reason="Wells (1982), Elert (1994) claim Scanian /r/ is uvular [ʀ]/[ʁ]; "
-    "sv-x-skanska produces [rɔt] for rot — the alveolar trill inherited from sv",
+    "sv-x-skanska produces [rɔt] for rot — the alveolar trill inherited from sv", raises=AssertionError,
 )
 def test_sv_skanska_uvular_r():
     """UVULAR /r/ [ʀ] or [ʁ] — shared with Danish.
@@ -341,7 +341,7 @@ def test_sv_skanska_uvular_r():
 @pytest.mark.xfail(
     strict=True,
     reason="Wells (1982), Elert (1994) claim Scanian has no retroflexion because "
-    "the uvular r cannot trigger it; sv-x-skanska produces [baɳ] for barn",
+    "the uvular r cannot trigger it; sv-x-skanska produces [baɳ] for barn", raises=AssertionError,
 )
 def test_sv_skanska_no_retroflexion():
     """No retroflexion — the uvular r does not trigger it.
@@ -363,7 +363,7 @@ def test_sv_skanska_no_retroflexion():
     strict=True,
     reason="Grønnum (1998) claims stød on sonorant-final syllables, hund "
     "[hɔnˀ]; da-x-copenhag produces [hun] — stød is suprasegmental and the da "
-    "parent explicitly does not encode it",
+    "parent explicitly does not encode it", raises=AssertionError,
 )
 def test_da_cph_stod():
     """STØD: glottalisation on etymologically long vowels and sonorant-final syllables.
@@ -381,7 +381,7 @@ def test_da_cph_stod():
     strict=True,
     reason="Grønnum (1998) claims the Copenhagen soft d is the very weak "
     "approximant [ð̞], bide [ˈb̥iˀð̞ə]; da-x-copenhag produces [biðɛ] — the "
-    "plain [ð] inherited from da",
+    "plain [ð] inherited from da", raises=AssertionError,
 )
 def test_da_cph_soft_d_is_weak_approximant():
     """SOFT D: /d/ → [ð̞] (very weak approximant) in common words.
@@ -396,7 +396,7 @@ def test_da_cph_soft_d_is_weak_approximant():
     strict=True,
     reason="Grønnum (1998) claims /r/ → [ɐ] before consonants; "
     "da-x-copenhag produces [kɔʁt] for kort — the consonantal uvular [ʁ] "
-    "inherited from da, whose notes state coda r-vocalisation is not encoded",
+    "inherited from da, whose notes state coda r-vocalisation is not encoded", raises=AssertionError,
 )
 def test_da_cph_r_vocalisation_before_consonant():
     """/r/ → [ɐ] before consonants; often deleted.
@@ -760,7 +760,7 @@ def test_fo_no_voiceless_sonorants():
     reason="Árnason (2011), Hanssen (2010) claim ⟨g⟩ → [w] before back vowels "
     "and [j] elsewhere; fo produces [kuːlʊɹ] for gulur — the plain stop — and "
     "[tʃeːɹa] for gera, where the front vowel gives the affricate rather than "
-    "the glide",
+    "the glide", raises=AssertionError,
 )
 def test_fo_g_glides():
     """⟨g⟩ → [w] before back vowels, [j] elsewhere.
@@ -828,7 +828,7 @@ def test_fy_circumflex_a_e_o():
 @pytest.mark.xfail(
     strict=True,
     reason="Popkema (2006) claims ⟨û⟩ = /yː/; fy produces [huːs] for hûs — the "
-    "back rounded [uː], so the circumflex-⟨u⟩ grapheme is not front-rounded",
+    "back rounded [uː], so the circumflex-⟨u⟩ grapheme is not front-rounded", raises=AssertionError,
 )
 def test_fy_circumflex_u_is_front_rounded():
     """KEY FEATURE (4): ⟨û⟩ /yː/.
@@ -1185,7 +1185,7 @@ def test_non_kn_and_gn_clusters_preserved():
     reason="Gordon (1957), Noreen (1923) claim Old Norse preserves the voiceless "
     "resonants hl-, hr-, hn-; non produces [hlaða] for hlaða and [hriŋɡr] for "
     "hringr — a plain [h] plus a voiced sonorant, where the Icelandic descendant "
-    "spec does devoice them ([l̥], [r̥])",
+    "spec does devoice them ([l̥], [r̥])", raises=AssertionError,
 )
 def test_non_voiceless_resonants():
     """PRESERVED: voiceless resonants hl-, hr-, hn-.
@@ -1219,7 +1219,7 @@ def test_ang_cg_is_affricate():
     strict=True,
     reason="Campbell (1959), Hogg (1992) claim ⟨c⟩ → [tʃ] before a front vowel "
     "(cild 'child'); ang produces [kild] — the velar stop, so the palatalisation "
-    "the notes name is not in the spec",
+    "the notes name is not in the spec", raises=AssertionError,
 )
 def test_ang_palatalisation_of_c():
     """Palatalisation: *k → [tʃ] / ⟨c⟩ before a front vowel (cild 'child').
@@ -1236,7 +1236,7 @@ def test_ang_palatalisation_of_c():
 @pytest.mark.xfail(
     strict=True,
     reason="Campbell (1959), Hogg (1992) claim ⟨g⟩ → [j] before a front vowel "
-    "(gear 'year'); ang produces [ɡæɑr] — the velar stop",
+    "(gear 'year'); ang produces [ɡæɑr] — the velar stop", raises=AssertionError,
 )
 def test_ang_palatalisation_of_g():
     """Palatalisation: *g → [j] before a front vowel (gear 'year').
@@ -1250,7 +1250,7 @@ def test_ang_palatalisation_of_g():
 @pytest.mark.xfail(
     strict=True,
     reason="Campbell (1959) claims ⟨f⟩ = [v] between voiced sounds; ang produces "
-    "[ofer] for ofer — the voiceless fricative in a fully voiced environment",
+    "[ofer] for ofer — the voiceless fricative in a fully voiced environment", raises=AssertionError,
 )
 def test_ang_intervocalic_f_is_voiced():
     """⟨f⟩ = [v] between voiced sounds.
@@ -1268,7 +1268,7 @@ def test_ang_intervocalic_f_is_voiced():
 @pytest.mark.xfail(
     strict=True,
     reason="Hogg (1992), Fischer (2000) claim /ʒ/ enters late ME in vision, "
-    "pleasure; enm produces [visiɔn] for vision — a plain [s]",
+    "pleasure; enm produces [visiɔn] for vision — a plain [s]", raises=AssertionError,
 )
 def test_enm_zh_from_french():
     """NORMAN FRENCH SUPERSTRATE: /ʒ/ enters (vision, pleasure) in late ME.
@@ -1286,7 +1286,7 @@ def test_enm_zh_from_french():
     strict=True,
     reason="Ringe (2006), Kroonen (2013) claim *ɸ is still bilabial at the "
     "Proto-Germanic stage, not yet [f]; gem produces [fader] for fader — the "
-    "labiodental",
+    "labiodental", raises=AssertionError,
 )
 def test_gem_f_is_still_bilabial():
     """*ɸ (bilabial) at this stage, not yet [f].
@@ -1332,7 +1332,7 @@ def test_en_us_no_trap_bath_split():
     reason="Wells (1982) vol. 3 claims /t/ and /d/ flap to [ɾ] intervocalically "
     "in butter, ladder, city; en-US produces [bʌttɜːɹ], [læddɜːɹ] and [sɪtj] — "
     "the flap fires only on a single ⟨t⟩ (water → [wæɾɜːɹ]), so the ⟨tt⟩/⟨dd⟩ "
-    "geminate graphemes bypass the rule entirely",
+    "geminate graphemes bypass the rule entirely", raises=AssertionError,
 )
 def test_en_us_t_flapping():
     """T-FLAPPING: /t/ and /d/ → [ɾ] intervocalically in unstressed syllables.
@@ -1354,7 +1354,7 @@ def test_en_us_t_flapping():
     strict=True,
     reason="Wells (1982) vol. 3 claims the LOT-PALM merger gives /ɑː/ for both; "
     "en-US produces [lɒt] for lot and [pælm] for palm — three distinct vowels "
-    "instead of one",
+    "instead of one", raises=AssertionError,
 )
 def test_en_us_lot_palm_merger():
     """LOT-PALM merger: /ɑː/ for both.
@@ -1371,7 +1371,7 @@ def test_en_us_lot_palm_merger():
 @pytest.mark.xfail(
     strict=True,
     reason="Wells (1982) vol. 3 claims the CAUGHT-COT merger (thought = lot); "
-    "en-US produces [θɔːt] for thought and [lɒt] for lot — two distinct nuclei",
+    "en-US produces [θɔːt] for thought and [lɒt] for lot — two distinct nuclei", raises=AssertionError,
 )
 def test_en_us_caught_cot_merger():
     """CAUGHT-COT merger: thought = lot.
@@ -1401,7 +1401,7 @@ def test_en_au_non_rhotic():
 @pytest.mark.xfail(
     strict=True,
     reason="Wells (1982) vol. 3 claims FACE raising /eɪ/ → [æɪ]; en-AU produces "
-    "[deɪ] for day — the unraised RP nucleus",
+    "[deɪ] for day — the unraised RP nucleus", raises=AssertionError,
 )
 def test_en_au_face_raising():
     """FACE raising: /eɪ/ → [æɪ] (the 'Strine' stereotype).
@@ -1417,7 +1417,7 @@ def test_en_au_face_raising():
 @pytest.mark.xfail(
     strict=True,
     reason="Wells (1982) vol. 3 claims PRICE = [ɑɪ]; en-AU produces [pɹɪs] for "
-    "price — a bare short [ɪ], not a diphthong at all",
+    "price — a bare short [ɪ], not a diphthong at all", raises=AssertionError,
 )
 def test_en_au_price_backing():
     """PRICE = [ɑɪ].
@@ -1431,7 +1431,7 @@ def test_en_au_price_backing():
 @pytest.mark.xfail(
     strict=True,
     reason="Wells (1982) vol. 3 claims FLEECE = [ɪi] (diphthongal); en-AU "
-    "produces [fliːs] for fleece — the RP monophthong",
+    "produces [fliːs] for fleece — the RP monophthong", raises=AssertionError,
 )
 def test_en_au_fleece_is_diphthongal():
     """FLEECE = [ɪi] (diphthongal).
@@ -1458,7 +1458,7 @@ def test_en_ca_rhotic():
     reason="Wells (1982) vol. 3 claims CANADIAN RAISING /aɪ/ → [ʌɪ] before a "
     "voiceless consonant only; en-CA produces [nɪf] for knife and [nɪvɛs] for "
     "knives — a bare [ɪ] in both, so the nucleus is neither the raised diphthong "
-    "nor conditioned by the following consonant's voicing",
+    "nor conditioned by the following consonant's voicing", raises=AssertionError,
 )
 def test_en_ca_canadian_raising():
     """CANADIAN RAISING: /aɪ/ → [ʌɪ] before a voiceless consonant.
@@ -1500,7 +1500,7 @@ def test_en_ie_clear_l_everywhere():
     strict=True,
     reason="Wells (1982) vol. 2 claims the Gaelic-substrate dental stops /θ/ → "
     "[t̪] and /ð/ → [d̪]; en-IE produces [θɪnk] for think — the RP interdental "
-    "fricative is inherited unchanged",
+    "fricative is inherited unchanged", raises=AssertionError,
 )
 def test_en_ie_th_stopping():
     """/θ/ → [t̪] and /ð/ → [d̪] (dental stops — Gaelic substrate).
@@ -1550,7 +1550,7 @@ def test_en_scotland_no_trap_bath_split():
     strict=True,
     reason="Wells (1982) vol. 2 claims /x/ is phonemic in Scottish English, loch "
     "[lɔx]; en-GB-x-scotland produces [lɒtʃ] — the English ⟨ch⟩ = [tʃ] reading "
-    "inherited from en-GB",
+    "inherited from en-GB", raises=AssertionError,
 )
 def test_en_scotland_velar_fricative():
     """/x/ phonemic (loch [lɔx]).
@@ -1844,7 +1844,7 @@ def test_cy_velar_fricative():
     strict=True,
     reason="Thomas (1996), Ball & Müller (2009) claim penultimate stress; cy "
     "produces [kariad] for cariad with no stress mark at all — the spec declares "
-    "no stress block",
+    "no stress block", raises=AssertionError,
 )
 def test_cy_penultimate_stress():
     """Stress on the penultimate syllable.
@@ -1933,7 +1933,7 @@ def test_el_af_ef_before_voiceless():
     strict=True,
     reason="Arvaniti (2007), Setatos (1974) claim ΑΥ/ΕΥ = [av]/[ev] before voiced "
     "sounds; el produces [aˈfɣo] for αυγό and [ˈefʝe] for εύγε — the voiceless [f] "
-    "fires in every environment, so only half the cited alternation is encoded",
+    "fires in every environment, so only half the cited alternation is encoded", raises=AssertionError,
 )
 def test_el_av_ev_before_voiced():
     """ΑΥ/ΕΥ: [av]/[ev] before voiced sounds.
@@ -2086,7 +2086,7 @@ def test_grc_rough_breathing_is_h():
 @pytest.mark.xfail(
     strict=True,
     reason="Allen (1968) claims /r/ is voiceless word-initially [r̥]; grc produces "
-    "[rɛːtɔːr] for ρητωρ — the plain trill in both positions",
+    "[rɛːtɔːr] for ρητωρ — the plain trill in both positions", raises=AssertionError,
 )
 def test_grc_initial_r_is_voiceless():
     """(10) /r/ probably trilled, voiceless word-initially [r̥].

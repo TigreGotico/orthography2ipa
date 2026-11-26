@@ -131,7 +131,7 @@ _KNOWN_GAPS = {"ycl": "#2503: a mark below plus tone letters joins the vowel bef
 
 
 @pytest.mark.parametrize("code", [
-    pytest.param(code, marks=pytest.mark.xfail(strict=True, reason=_KNOWN_GAPS[code]))
+    pytest.param(code, marks=pytest.mark.xfail(strict=True, reason=_KNOWN_GAPS[code], raises=AssertionError))
     if code in _KNOWN_GAPS else code
     for code in ALL_CODES
 ])

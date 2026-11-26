@@ -75,7 +75,7 @@ def test_exceptions_use_the_spec_dorsal_and_w(lang, word, ipa):
     assert G2P(lang).transcribe(word) == ipa
 
 
-@pytest.mark.xfail(strict=True, reason="stated gap: bestel is not in Paardekooper, so it has no word exception")
+@pytest.mark.xfail(strict=True, reason="stated gap: bestel is not in Paardekooper, so it has no word exception", raises=AssertionError)
 def test_bestel_takes_the_stress_after_the_prefix():
     """bestel is be+stel with a full [ɛ]: ipadict nl and WikiPron nld write the [ɛ]."""
     assert G2P("nl-NL").transcribe("bestel") == "bəˈstɛl"

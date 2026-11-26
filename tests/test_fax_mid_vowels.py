@@ -28,7 +28,7 @@ def test_accented_mid_vowel_is_close_mid(fax, word, ipa):
 
 @pytest.mark.xfail(strict=True, reason="⟨éi⟩ reads as a hiatus [ei]; "
                    "Carrasco González (2024: 104, Acentuación 1.2) reads "
-                   "an accented ⟨ei oi⟩ as a diphthong")
+                   "an accented ⟨ei oi⟩ as a diphthong", raises=AssertionError)
 def test_accented_ei_is_a_diphthong(fax):
     assert fax.transcribe("léiti") == "lejti"
 
