@@ -313,7 +313,7 @@ weighted_full_distance(spec_a, spec_b, *, w_inventory=0.25, w_grapheme=0.20,
 from orthography2ipa.distance import weighted_full_distance
 
 result = weighted_full_distance(es, pt)
-round(result.combined, 3)   # 0.317
+round(result.combined, 3)   # 0.32
 result.weights              # (0.25, 0.2, 0.15, 0.4, 0.0)
 
 only_inventory = weighted_full_distance(es, pt, w_inventory=1.0, w_grapheme=0.0,

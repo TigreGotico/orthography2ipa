@@ -584,14 +584,16 @@ class TestPortuguesePT:
         _assert_null(self._spec, "rh", "pt-PT rh")
 
     def test_grapheme_u_umlaut_reads_glide(self):
-        # The trema of pre-1990 texts marks a pronounced u (AO1990 Base XX, 5.º).
-        _assert_first(_grapheme(self._spec, "ü"), "w", "pt-PT ü")
+        # Bare ⟨ü⟩ occurs in foreign names (Müller) and reads [u]; the glide of
+        # the pre-1990 trema lives in the ⟨gü qü⟩ rows.
+        _assert_first(_grapheme(self._spec, "ü"), "u", "pt-PT ü")
 
-    def test_grapheme_qu_umlaut_has_no_own_row(self):
-        _assert_null(self._spec, "qü", "pt-PT qü")
+    def test_grapheme_qu_umlaut_reads_kw(self):
+        # The trema marks a pronounced u (AO1990 Base XX, 5.º).
+        assert _grapheme(self._spec, "qü") == ["kw"]
 
-    def test_grapheme_gu_umlaut_has_no_own_row(self):
-        _assert_null(self._spec, "gü", "pt-PT gü")
+    def test_grapheme_gu_umlaut_reads_gw(self):
+        assert _grapheme(self._spec, "gü") == ["ɡw"]
 
     # --- Allophones ---
 

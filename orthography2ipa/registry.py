@@ -193,6 +193,9 @@ _ALIASES: Dict[str, str] = {
     # code reads the base.
     "pt-BR-x-brasilia": "pt-BR",
     "pt-PT-x-lisboa": "pt-PT-x-lisbon",
+    # Retired key of the Latin-script Etruscan spec. ISO 639-3 etr is Edolo;
+    # Etruscan is ett. Kept for one stable cycle.
+    "etr": "ett-Latn",
     # The cnr spec reads both Montenegrin alphabets. Standardization folds
     # cnr into sr, so only an alias names it without a nearest match, and
     # these tags keep resolving under ``strict=True``.

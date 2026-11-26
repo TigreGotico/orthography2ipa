@@ -694,7 +694,7 @@ Stubs (1): Western Kayah `kyu`.
 | [Estonian](et.md) (page) | `et` | research | Uralic > Finnic |
 | [Eton (Vanuatu)](https://tigregotico.github.io/orthography2ipa/#etn) | `etn` | skeleton | Austronesian |
 | [Eton (Cameroon)](https://tigregotico.github.io/orthography2ipa/#eto) | `eto` | skeleton | Atlantic-Congo |
-| [Etruscan](https://tigregotico.github.io/orthography2ipa/#etr) | `etr` | skeleton | Tyrsenian |
+| [Etruscan](https://tigregotico.github.io/orthography2ipa/#ett-Latn) | `ett-Latn` | skeleton | Tyrsenian |
 | [Basque (Euskara)](eu.md) (page) | `eu` | production | Vasconic |
 | [Biscayan Basque (Bizkaiera)](eu-biscayan.md) (page) | `eu-biscayan` | research | Vasconic |
 | [Gipuzkoan Basque (Gipuzkera)](eu-x-gipuzkoa.md) (page) | `eu-x-gipuzkoa` | research | Vasconic |

@@ -8442,7 +8442,7 @@
     "per_ci_high": 0.1528,
     "stress_acc": 0.9917,
     "n_stress": 968,
-    "exact_match": 0.364,
+    "exact_match": 0.367,
     "quality_tier": "production",
     "provenance": "lexicon-derived",
     "gating": false,

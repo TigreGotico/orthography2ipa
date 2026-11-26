@@ -2594,8 +2594,8 @@ Stubs (18): Ainu (China) `aib`, Northern Altai `atv`, South Azerbaijani `azb`, B
 
 | Spec | Code | Tier | Script |
 |:--|:--|:--|:--|
-| [Etruscan](https://tigregotico.github.io/orthography2ipa/#etr) | `etr` | skeleton | Latin |
 | [Etruscan](ett.md) (page) | `ett` | research | Old Italic |
+| [Etruscan](https://tigregotico.github.io/orthography2ipa/#ett-Latn) | `ett-Latn` | skeleton | Latin |
 
 Stubs (1): Raetic `xrr`.
 

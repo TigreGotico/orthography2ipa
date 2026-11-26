@@ -389,6 +389,7 @@ from benchmark import (  # noqa: E402
     row_gates,
 )
 from build_gold_corrections import (  # noqa: E402
+    PT_NOT_IPA,
     PT_UNIFIED_BROAD_DECISIONS,
     PT_UNIFIED_DECISIONS,
     build_pt_unified_rows,
@@ -399,7 +400,8 @@ PT_FIELDS = {"dataset", "source", "region", "word", "pos", "field",
              "original_reading", "corrected_reading", "kind", "reason",
              "authority"}
 PT_KINDS = {"accent_contradiction", "unaccented_stress", "missing_mark",
-            "a_quality", "wrong_headword", "mojibake"}
+            "a_quality", "wrong_headword", "mojibake", "not_ipa",
+            "wrong_segment"}
 PT_SOURCES = {"infopedia", "infopedia+wiktionary", "michaelis", "wiktionary"}
 
 
@@ -434,7 +436,7 @@ def test_pt_unified_corrections_move_marks_and_keep_segments():
     for row in read_pt_unified_corrections():
         original, corrected = row["original_reading"], row["corrected_reading"]
         if corrected is None:
-            assert row["kind"] in ("wrong_headword", "mojibake")
+            assert row["kind"] in ("wrong_headword", "mojibake", "not_ipa", "wrong_segment")
             continue
         if row["kind"] == "wrong_headword":
             assert set(corrected.split(",")) < set(original.split(","))
@@ -452,11 +454,14 @@ def test_pt_unified_corrections_move_marks_and_keep_segments():
 def test_pt_unified_drops_are_only_headword_and_mojibake_rows():
     rows = read_pt_unified_corrections()
     dropped = [r for r in rows if r["corrected_reading"] is None]
-    assert {r["kind"] for r in dropped} == {"wrong_headword", "mojibake"}
+    assert {r["kind"] for r in dropped} == {"wrong_headword", "mojibake", "not_ipa",
+                                            "wrong_segment"}
     for row in dropped:
         assert row["field"] == "ipa_narrow"
         if row["kind"] == "mojibake":
             assert "Ã" in row["original_reading"]
+        if row["kind"] == "not_ipa":
+            assert PT_NOT_IPA.search(row["original_reading"])
 
 
 def test_pt_unified_corrected_langs_match_the_overlay():
