@@ -583,7 +583,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-BR | ipadict_corrected | 95933 | 0.2313‡ | 0.9973 | - | 0.2276 | 0.2213 | 0.0500 | 0.0516 | [0.2303, 0.2323] | 0.0477 | production | machine-generated |
 | pt-BR | portuguese_tts | 20 | 0.0552‡ | - | - | - | - | - | - | [0.0382, 0.0735] | 0.1500 | production | llm-corrected |
 | pt-BR | portuguese_unified | 23123 | 0.1421 | 0.9909 | - | 0.1372 | 0.1314 | 0.3816 | 0.4063 | [0.1400, 0.1440] | 0.3701 | production | lexicon-derived |
-| pt-BR | portuguese_unified_corrected | 23122 | 0.1421‡ | 0.9911 | - | 0.1372 | 0.1314 | 0.3816 | 0.4063 | [0.1401, 0.1441] | 0.3701 | production | lexicon-derived |
+| pt-BR | portuguese_unified_corrected | 23122 | 0.1414‡ | 0.9911 | - | 0.1370 | 0.1313 | 0.3820 | 0.4066 | [0.1395, 0.1434] | 0.3722 | production | lexicon-derived |
 | pt-BR | primary_sources | 21 | 0.0690 | - | - | 0.0690 | 0.0690 | 0.7619 | 0.7619 | [0.0119, 0.1310] | 0.7619 | production | expert-human |
 | pt-BR | vox_communis | 33958 | 0.3951‡ | - | - | 0.3028 | 0.2775 | 0.0850 | 0.1151 | [0.3932, 0.3969] | 0.0363 | production | epitran-derived |
 | pt-BR | wikipron | 57897 | 0.0247 | - | - | 0.0199 | 0.0143 | 0.8851 | 0.9168 | [0.0241, 0.0254] | 0.8708 | production | crowd-scraped |
