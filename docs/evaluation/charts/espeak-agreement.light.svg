@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="718" height="830" viewBox="0 0 718 830" role="img" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"><title>Segmental agreement with espeak-ng</title><desc>Highest eo 0.97, lowest ga 0.48, over 41 languages.</desc>
+<text x="20" y="26" font-size="16" text-anchor="start" font-weight="bold" fill="#0b0b0b">Segmental agreement with espeak-ng (41 languages)</text>
+<text x="20" y="46" font-size="12" text-anchor="start" font-weight="normal" fill="#52514e">Share of segments where o2i and espeak-ng give the same phone (1 = all).</text>
+<line x1="142" y1="58" x2="142" y2="800" stroke="#e3e6ea" stroke-width="1"/>
+<text x="142" y="814" font-size="11" text-anchor="middle" font-weight="normal" fill="#52514e">0</text>
+<line x1="272" y1="58" x2="272" y2="800" stroke="#e3e6ea" stroke-width="1"/>
+<text x="272" y="814" font-size="11" text-anchor="middle" font-weight="normal" fill="#52514e">0.25</text>
+<line x1="402" y1="58" x2="402" y2="800" stroke="#e3e6ea" stroke-width="1"/>
+<text x="402" y="814" font-size="11" text-anchor="middle" font-weight="normal" fill="#52514e">0.5</text>
+<line x1="532" y1="58" x2="532" y2="800" stroke="#e3e6ea" stroke-width="1"/>
+<text x="532" y="814" font-size="11" text-anchor="middle" font-weight="normal" fill="#52514e">0.75</text>
+<line x1="662" y1="58" x2="662" y2="800" stroke="#e3e6ea" stroke-width="1"/>
+<text x="662" y="814" font-size="11" text-anchor="middle" font-weight="normal" fill="#52514e">1</text>
+<text x="134" y="74" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">eo</text>
+<path d="M142 62H641.89Q645.89 62 645.89 66V74Q645.89 78 641.89 78H142Z" fill="#2a78d6"/>
+<text x="651.89" y="74" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.97</text>
+<text x="134" y="92" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">pl</text>
+<path d="M142 80H634.35Q638.35 80 638.35 84V92Q638.35 96 634.35 96H142Z" fill="#2a78d6"/>
+<text x="644.35" y="92" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.95</text>
+<text x="134" y="110" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">es</text>
+<path d="M142 98H622.27Q626.27 98 626.27 102V110Q626.27 114 622.27 114H142Z" fill="#2a78d6"/>
+<text x="632.27" y="110" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.93</text>
+<text x="134" y="128" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">ro</text>
+<path d="M142 116H594.69Q598.69 116 598.69 120V128Q598.69 132 594.69 132H142Z" fill="#2a78d6"/>
+<text x="604.69" y="128" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.88</text>
+<text x="134" y="146" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">el</text>
+<path d="M142 134H593.5Q597.5 134 597.5 138V146Q597.5 150 593.5 150H142Z" fill="#2a78d6"/>
+<text x="603.5" y="146" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.88</text>
+<text x="134" y="164" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">fr</text>
+<path d="M142 152H592.07Q596.07 152 596.07 156V164Q596.07 168 592.07 168H142Z" fill="#2a78d6"/>
+<text x="602.07" y="164" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.87</text>
+<text x="134" y="182" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">it</text>
+<path d="M142 170H586.06Q590.06 170 590.06 174V182Q590.06 186 586.06 186H142Z" fill="#2a78d6"/>
+<text x="596.06" y="182" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.86</text>
+<text x="134" y="200" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">eu</text>
+<path d="M142 188H578.2Q582.2 188 582.2 192V200Q582.2 204 578.2 204H142Z" fill="#2a78d6"/>
+<text x="588.2" y="200" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.85</text>
+<text x="134" y="218" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">sk</text>
+<path d="M142 206H569.56Q573.56 206 573.56 210V218Q573.56 222 569.56 222H142Z" fill="#2a78d6"/>
+<text x="579.56" y="218" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.83</text>
+<text x="134" y="236" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">tr</text>
+<path d="M142 224H554.15Q558.15 224 558.15 228V236Q558.15 240 554.15 240H142Z" fill="#2a78d6"/>
+<text x="564.15" y="236" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.8</text>
+<text x="134" y="254" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">cy</text>
+<path d="M142 242H540.01Q544.01 242 544.01 246V254Q544.01 258 540.01 258H142Z" fill="#2a78d6"/>
+<text x="550.01" y="254" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.77</text>
+<text x="134" y="272" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">pt-PT</text>
+<path d="M142 260H530.97Q534.97 260 534.97 264V272Q534.97 276 530.97 276H142Z" fill="#2a78d6"/>
+<text x="540.97" y="272" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.76</text>
+<text x="134" y="290" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">sv</text>
+<path d="M142 278H514.98Q518.98 278 518.98 282V290Q518.98 294 514.98 294H142Z" fill="#2a78d6"/>
+<text x="524.98" y="290" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.72</text>
+<text x="134" y="308" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">nl-NL</text>
+<path d="M142 296H501.75Q505.75 296 505.75 300V308Q505.75 312 501.75 312H142Z" fill="#2a78d6"/>
+<text x="511.75" y="308" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.7</text>
+<text x="134" y="326" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">pt-BR</text>
+<path d="M142 314H500.36Q504.36 314 504.36 318V326Q504.36 330 500.36 330H142Z" fill="#2a78d6"/>
+<text x="510.36" y="326" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.7</text>
+<text x="134" y="344" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">hr</text>
+<path d="M142 332H492.43Q496.43 332 496.43 336V344Q496.43 348 492.43 348H142Z" fill="#2a78d6"/>
+<text x="502.43" y="344" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.68</text>
+<text x="134" y="362" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">pt-PT-x-acores</text>
+<path d="M142 350H490.24Q494.24 350 494.24 354V362Q494.24 366 490.24 366H142Z" fill="#2a78d6"/>
+<text x="500.24" y="362" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.68</text>
+<text x="134" y="380" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">sq</text>
+<path d="M142 368H489.97Q493.97 368 493.97 372V380Q493.97 384 489.97 384H142Z" fill="#2a78d6"/>
+<text x="499.97" y="380" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.68</text>
+<text x="134" y="398" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">pt-PT-x-madeira</text>
+<path d="M142 386H487.11Q491.11 386 491.11 390V398Q491.11 402 487.11 402H142Z" fill="#2a78d6"/>
+<text x="497.11" y="398" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.67</text>
+<text x="134" y="416" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">ta</text>
+<path d="M142 404H480.13Q484.13 404 484.13 408V416Q484.13 420 480.13 420H142Z" fill="#2a78d6"/>
+<text x="490.13" y="416" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.66</text>
+<text x="134" y="434" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">pt-PT-x-algarve</text>
+<path d="M142 422H476.57Q480.57 422 480.57 426V434Q480.57 438 476.57 438H142Z" fill="#2a78d6"/>
+<text x="486.57" y="434" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.65</text>
+<text x="134" y="452" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">pt-MZ</text>
+<path d="M142 440H469.84Q473.84 440 473.84 444V452Q473.84 456 469.84 456H142Z" fill="#2a78d6"/>
+<text x="479.84" y="452" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.64</text>
+<text x="134" y="470" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">fi</text>
+<path d="M142 458H461.33Q465.33 458 465.33 462V470Q465.33 474 461.33 474H142Z" fill="#2a78d6"/>
+<text x="471.33" y="470" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.62</text>
+<text x="134" y="488" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">is</text>
+<path d="M142 476H456.78Q460.78 476 460.78 480V488Q460.78 492 456.78 492H142Z" fill="#2a78d6"/>
+<text x="466.78" y="488" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.61</text>
+<text x="134" y="506" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">pt-PT-x-lisbon</text>
+<path d="M142 494H454.42Q458.42 494 458.42 498V506Q458.42 510 454.42 510H142Z" fill="#2a78d6"/>
+<text x="464.42" y="506" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.61</text>
+<text x="134" y="524" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">de</text>
+<path d="M142 512H453.97Q457.97 512 457.97 516V524Q457.97 528 453.97 528H142Z" fill="#2a78d6"/>
+<text x="463.97" y="524" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.61</text>
+<text x="134" y="542" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">pt-AO</text>
+<path d="M142 530H452.77Q456.77 530 456.77 534V542Q456.77 546 452.77 546H142Z" fill="#2a78d6"/>
+<text x="462.77" y="542" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.61</text>
+<text x="134" y="560" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">hi</text>
+<path d="M142 548H441.89Q445.89 548 445.89 552V560Q445.89 564 441.89 564H142Z" fill="#2a78d6"/>
+<text x="451.89" y="560" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.58</text>
+<text x="134" y="578" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">pt-PT-x-alentejo</text>
+<path d="M142 566H441.52Q445.52 566 445.52 570V578Q445.52 582 441.52 582H142Z" fill="#2a78d6"/>
+<text x="451.52" y="578" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.58</text>
+<text x="134" y="596" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">en-US</text>
+<path d="M142 584H436.36Q440.36 584 440.36 588V596Q440.36 600 436.36 600H142Z" fill="#2a78d6"/>
+<text x="446.36" y="596" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.57</text>
+<text x="134" y="614" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">pt-TL</text>
+<path d="M142 602H426Q430 602 430 606V614Q430 618 426 618H142Z" fill="#2a78d6"/>
+<text x="436" y="614" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.55</text>
+<text x="134" y="632" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">hy</text>
+<path d="M142 620H425.96Q429.96 620 429.96 624V632Q429.96 636 425.96 636H142Z" fill="#2a78d6"/>
+<text x="435.96" y="632" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.55</text>
+<text x="134" y="650" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">ru</text>
+<path d="M142 638H423.64Q427.64 638 427.64 642V650Q427.64 654 423.64 654H142Z" fill="#2a78d6"/>
+<text x="433.64" y="650" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.55</text>
+<text x="134" y="668" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">en</text>
+<path d="M142 656H418.49Q422.49 656 422.49 660V668Q422.49 672 418.49 672H142Z" fill="#2a78d6"/>
+<text x="428.49" y="668" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.54</text>
+<text x="134" y="686" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">nb</text>
+<path d="M142 674H414.71Q418.71 674 418.71 678V686Q418.71 690 414.71 690H142Z" fill="#2a78d6"/>
+<text x="424.71" y="686" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.53</text>
+<text x="134" y="704" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">en-GB</text>
+<path d="M142 692H414.61Q418.61 692 418.61 696V704Q418.61 708 414.61 708H142Z" fill="#2a78d6"/>
+<text x="424.61" y="704" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.53</text>
+<text x="134" y="722" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">pt-PT-x-porto</text>
+<path d="M142 710H414.11Q418.11 710 418.11 714V722Q418.11 726 414.11 726H142Z" fill="#2a78d6"/>
+<text x="424.11" y="722" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.53</text>
+<text x="134" y="740" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">ml</text>
+<path d="M142 728H411.86Q415.86 728 415.86 732V740Q415.86 744 411.86 744H142Z" fill="#2a78d6"/>
+<text x="421.86" y="740" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.53</text>
+<text x="134" y="758" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">da</text>
+<path d="M142 746H410.55Q414.55 746 414.55 750V758Q414.55 762 410.55 762H142Z" fill="#2a78d6"/>
+<text x="420.55" y="758" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.52</text>
+<text x="134" y="776" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">gd</text>
+<path d="M142 764H400.23Q404.23 764 404.23 768V776Q404.23 780 400.23 780H142Z" fill="#2a78d6"/>
+<text x="410.23" y="776" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.5</text>
+<text x="134" y="794" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">ga</text>
+<path d="M142 782H386.94Q390.94 782 390.94 786V794Q390.94 798 386.94 798H142Z" fill="#2a78d6"/>
+<text x="396.94" y="794" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">0.48</text>
+<line x1="142" y1="58" x2="142" y2="800" stroke="#b4bac1" stroke-width="1"/>
+</svg>

@@ -2253,6 +2253,16 @@ def _primary_rows(rows: List[dict]) -> List[dict]:
     return out
 
 
+def fair_pairs(comparison: list) -> List[Tuple[float, float]]:
+    """(o2i PER, rules-only espeak-ng PER) of each row both engines scored on
+    gold-tier references that neither engine wrote, the rows a "beats espeak"
+    claim may use. No lexicon-backed or stock espeak column."""
+    return [(r["o2i_per"], r["espeak_rules_per"]) for r in comparison
+            if r.get("o2i_per") is not None and r.get("espeak_rules_per") is not None
+            and not r.get("o2i_same_source") and not r.get("espeak_rules_same_source")
+            and r.get("provenance_tier") in _GOLD_TIERS]
+
+
 def _comparable_and_wins(rows: List[dict]) -> Tuple[List[dict], int]:
     """espeak-comparable rows (both PERs present, neither same-source) from
     *rows*, and how many of them o2i wins on."""
@@ -4191,6 +4201,8 @@ def write_comparison(
     agreement_comparable, agreement_wins = _comparable_and_wins(agreement_primary)
     scoreboard_note = _scoreboard_staleness_note(rows)
     espeak_rules_note = _espeak_rules_coverage_note(rows)
+    espeak_pairs = fair_pairs(rows)
+    o2i_lower = sum(1 for o2i, espeak in espeak_pairs if o2i < espeak)
 
     lines = [
         "# Comparison to other G2P systems",
@@ -4207,11 +4219,22 @@ def write_comparison(
                 "`docs/evaluation/benchmarks.md`, `docs/contributing/board.md`"),
         "",
         "This table shows how well orthography2ipa (o2i) predicts IPA "
-        "pronunciation compared to twelve other G2P systems (including the "
-        "five o2i-downstream family engines — arbtok, tugaphone, "
-        "g2p_barranquenho, mwl_phonemizer, udarnik), on the same gold "
-        "word lists, "
-        "language by language.",
+        "pronunciation compared with other G2P systems, on the same gold "
+        "word lists, language by language. The systems include the o2i "
+        "family engines arbtok, tugaphone, g2p_barranquenho, mwl_phonemizer "
+        "and udarnik. \"How to read this\" below counts the rows of each "
+        "system.",
+        "",
+        "<picture>",
+        '  <source media="(prefers-color-scheme: dark)" '
+        'srcset="../charts/o2i-vs-espeak.dark.svg">',
+        f'  <img alt="o2i against rules-only espeak-ng on gold-tier rows: '
+        f'o2i has the lower PER on {o2i_lower} of {len(espeak_pairs)} rows." '
+        'src="../charts/o2i-vs-espeak.light.svg">',
+        "</picture>",
+        "",
+        "`scripts/gen_doc_charts.py` makes this figure from "
+        "`benchmarks/comparison.json`.",
         "",
         "Every number is a **PER (Phoneme Error Rate)**: lower is "
         "better, `0.0000` is a perfect match, and it CAN exceed `1.0` "

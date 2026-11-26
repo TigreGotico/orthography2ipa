@@ -18,6 +18,9 @@ The charts:
     engine are left out, and so is every lexicon-backed column.
 ``coverage``
     Board rows per gold dataset, from ``benchmarks/results.json``.
+``espeak-agreement``
+    Segmental agreement of o2i with espeak-ng per language, from
+    ``benchmarks/espeak_agreement.json``.
 
 Usage::
 
@@ -37,7 +40,7 @@ import sys
 from collections import Counter
 from typing import Dict, List, Optional, Sequence, Tuple
 
-from compare_systems import _GOLD_TIERS
+from compare_systems import fair_pairs
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CHART_DIR = os.path.join("docs", "evaluation", "charts")
@@ -156,16 +159,6 @@ def per_distribution(rows: list, c: Dict[str, str]) -> str:
     return svg(width, height, title, desc, body)
 
 
-def fair_pairs(comparison: list) -> List[Tuple[float, float]]:
-    """(o2i PER, rules-only espeak-ng PER) of each row both engines scored on
-    gold-tier references that neither engine wrote, the rows a "beats espeak"
-    claim may use. No lexicon-backed or stock espeak column."""
-    return [(r["o2i_per"], r["espeak_rules_per"]) for r in comparison
-            if r["o2i_per"] is not None and r["espeak_rules_per"] is not None
-            and not r["o2i_same_source"] and not r["espeak_rules_same_source"]
-            and r["provenance_tier"] in _GOLD_TIERS]
-
-
 def o2i_vs_espeak(comparison: list, c: Dict[str, str]) -> str:
     pairs = fair_pairs(comparison)
     lower = sum(1 for o, e in pairs if o < e)
@@ -231,11 +224,38 @@ def coverage(rows: list, c: Dict[str, str]) -> str:
     return svg(width, height, "Board rows per gold dataset", desc, body)
 
 
+def espeak_agreement(rows: list, c: Dict[str, str]) -> str:
+    scored = sorted(((r["lang"], r["segmental"]) for r in rows), key=lambda kv: (-kv[1], kv[0]))
+    left, right, top, step, bh = 30 + 7 * max(len(lang) for lang, _ in scored), 56, 62, 18, 16
+    pw = 520
+    width, height = left + pw + right, top + step * len(scored) + 30
+    body = [text(20, 26, f"Segmental agreement with espeak-ng ({len(scored)} languages)",
+                 c, 16, weight="bold"),
+            text(20, 46, "Share of segments where o2i and espeak-ng give the same phone (1 = all).",
+                 c, 12, muted=True)]
+    for g in (0.0, 0.25, 0.5, 0.75, 1.0):
+        gx = left + pw * g
+        body.append(line(gx, top - 4, gx, top + step * len(scored), c["grid"]))
+        body.append(text(gx, top + step * len(scored) + 14, num(g), c, 11, "middle", muted=True))
+    for i, (lang, v) in enumerate(scored):
+        y = top + i * step
+        body.append(text(left - 8, y + 12, lang, c, 12, "end"))
+        body.append(bar(left, y, pw * v, bh, c["series"], "right"))
+        body.append(text(left + pw * v + 6, y + 12, num(v), c, 11, muted=True))
+    body.append(line(left, top - 4, left, top + step * len(scored), c["axis"]))
+    hi, lo = scored[0], scored[-1]
+    desc = (f"Highest {hi[0]} {num(hi[1])}, lowest {lo[0]} {num(lo[1])}, "
+            f"over {len(scored)} languages.")
+    return svg(width, height, "Segmental agreement with espeak-ng", desc, body)
+
+
 def outputs() -> Dict[str, str]:
     results, comparison = load("results.json"), load("comparison.json")
+    agreement = load("espeak_agreement.json")
     charts = {"per-distribution": lambda c: per_distribution(results, c),
               "o2i-vs-espeak": lambda c: o2i_vs_espeak(comparison, c),
-              "coverage": lambda c: coverage(results, c)}
+              "coverage": lambda c: coverage(results, c),
+              "espeak-agreement": lambda c: espeak_agreement(agreement, c)}
     return {os.path.join(CHART_DIR, f"{name}.{mode}.svg"): draw(colors)
             for name, draw in charts.items() for mode, colors in MODES.items()}
 

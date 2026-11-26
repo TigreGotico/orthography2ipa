@@ -223,6 +223,8 @@ def write_agreement_scoreboard(rows: List[dict]) -> None:
         json.dump(rows, fh, indent=2, ensure_ascii=False)
         fh.write("\n")
 
+    hi = max(rows, key=lambda r: r["segmental"])
+    lo = min(rows, key=lambda r: r["segmental"])
     lines = [
         "# espeak-ng agreement",
         "",
@@ -249,6 +251,18 @@ def write_agreement_scoreboard(rows: List[dict]) -> None:
         "",
         "Machine-readable form: [`benchmarks/espeak_agreement.json`]"
         "(../../../benchmarks/espeak_agreement.json).",
+        "",
+        "<picture>",
+        '  <source media="(prefers-color-scheme: dark)" '
+        'srcset="../charts/espeak-agreement.dark.svg">',
+        f'  <img alt="Segmental agreement with espeak-ng: {hi["lang"]} '
+        f'{hi["segmental"]:.2f}, the highest of {len(rows)} languages; '
+        f'{lo["lang"]} {lo["segmental"]:.2f}, the lowest." '
+        'src="../charts/espeak-agreement.light.svg">',
+        "</picture>",
+        "",
+        "`scripts/gen_doc_charts.py` makes this figure from "
+        "`benchmarks/espeak_agreement.json`.",
         "",
         "| Lang | espeak voice | N | Exact | Exact (no stress) | "
         "Segmental | OOV rate |",
