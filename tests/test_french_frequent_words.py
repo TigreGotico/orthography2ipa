@@ -268,3 +268,25 @@ def test_ied_rule_needs_the_final_d():
     # pieu: ⟨i⟩ before ⟨eu⟩, no ⟨d⟩; sied is in Martinon's list.
     assert _t("pieu") == "pjø"
     assert _t("sied") == "sje"
+
+
+# Martinon (1913: 328): the ⟨t⟩ of huit is pronounced (page huit, huit hommes)
+# except before a plural that begins with a consonant (hui(t) sous).
+# Martinon (1913: 345): six and dix end in [s] (j'en ai six, page dix), are
+# mute before a consonant plural (di(x) francs) and take [z] before a vowel
+# (six hommes).
+@pytest.mark.parametrize("text, expected", [
+    ("huit", "ɥit"), ("six", "sis"), ("dix", "dis"),
+    ("huit jours", "ɥi ʒuʁ"), ("six sous", "si su"), ("dix jours", "di ʒuʁ"),
+    ("six ans", "siz‿ ɑ̃"), ("dix heures", "diz‿ œʁ"),
+    ("huit heures", "ɥit‿ œʁ"),
+])
+def test_huit_six_dix(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("tu dis", "ty di"), ("sept jours", "sɛt ʒuʁ"),
+])
+def test_numeral_sandhi_counter_cases(text, expected):
+    assert _t(text) == expected
