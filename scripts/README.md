@@ -40,7 +40,7 @@ The procedure and the guards are in
 | Script | Does |
 |---|---|
 | `gen_stubs.py`, `gen_africa_orthographies.py`, `gen_phoible.py` | Fill stub specs from ISO 639-3, africa-g2p and PHOIBLE |
-| `gen_family.py`, `gen_locations.py`, `dialect_places.py` | Fill classification and location fields from Glottolog and Wikidata |
+| `gen_locations.py`, `dialect_places.py` | Fill location fields from Glottolog and Wikidata |
 | `gen_burmese.py`, `gen_khmer.py`, `gen_tibetan.py`, `gen_vietnamese.py`, `gen_arabic_orthography_keys.py` | Regenerate the systematic tables of one spec |
 | `check_doi_titles.py`, `check_glottolog_codes.py` | Check that cited DOIs and Glottolog codes resolve to the right work and language |
 | `which_tests.py` | Names the test files that assert on a spec |
