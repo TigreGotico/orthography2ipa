@@ -84,6 +84,18 @@
   },
   "allophone_rules": [
     {
+      "id": "FR_NASAL_ɔ",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "ɔ̃",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨canne⟩, ⟨cana⟩) leaves it oral Restated for fr-CA with the condition that the vowel is spelled ⟨o⟩: fr-CA runs its rules in three passes, and a later pass would otherwise nasalise an [ɔ] that another fr-FR rule wrote for a different letter (the Latin ⟨-um⟩ of maximum [maksimɔm]).",
+      "grapheme": [
+        "o"
+      ]
+    },
+    {
       "id": "FR_CA_AFFRICATE_T",
       "phonemes": [
         "t"
