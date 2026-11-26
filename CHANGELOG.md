@@ -1,5 +1,21 @@
 # Changelog
 
+## [7.130.1a4](https://github.com/TigreGotico/orthography2ipa/tree/7.130.1a4) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.130.1a3...7.130.1a4)
+
+**Merged pull requests:**
+
+- ci: cancel superseded runs; heavy jobs on ready PRs only [\#2624](https://github.com/TigreGotico/orthography2ipa/pull/2624) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [7.130.1a3](https://github.com/TigreGotico/orthography2ipa/tree/7.130.1a3) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.130.1a2...7.130.1a3)
+
+**Merged pull requests:**
+
+- refactor\(registry\): import the tag parser from the linguatag top level [\#2631](https://github.com/TigreGotico/orthography2ipa/pull/2631) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.130.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.130.1a2) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.130.1a1...7.130.1a2)
@@ -368,7 +384,6 @@
 **Merged pull requests:**
 
 - fix\(pt-AO\): the coda glide also applies to ⟨x⟩ before \[s\] [\#2471](https://github.com/TigreGotico/orthography2ipa/pull/2471) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix\(pt-AO\): the coda glide needs a vowel before it [\#2470](https://github.com/TigreGotico/orthography2ipa/pull/2470) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.124.41a1](https://github.com/TigreGotico/orthography2ipa/tree/7.124.41a1) (2026-11-22)
 
@@ -1932,15 +1947,15 @@
 
 ## [7.93.16a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.16a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.16a1)
-
-## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.14a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.15a1...7.93.16a1)
 
 ## [7.93.15a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.15a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.15a1)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.14a1...7.93.15a1)
+
+## [7.93.14a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.14a1) (2026-09-17)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.93.13a1...7.93.14a1)
 
 ## [7.93.13a1](https://github.com/TigreGotico/orthography2ipa/tree/7.93.13a1) (2026-09-17)
 
@@ -2372,19 +2387,19 @@
 
 ## [7.82.41a2](https://github.com/TigreGotico/orthography2ipa/tree/7.82.41a2) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.41a1...7.82.41a2)
-
-## [7.82.41a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.41a1) (2026-08-26)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a6...7.82.41a1)
-
-## [7.82.40a6](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a6) (2026-08-26)
-
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a5...7.82.40a6)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a5...7.82.41a2)
 
 ## [7.82.40a5](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a5) (2026-08-26)
 
-[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a4...7.82.40a5)
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a6...7.82.40a5)
+
+## [7.82.40a6](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a6) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.41a1...7.82.40a6)
+
+## [7.82.41a1](https://github.com/TigreGotico/orthography2ipa/tree/7.82.41a1) (2026-08-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.82.40a4...7.82.41a1)
 
 ## [7.82.40a4](https://github.com/TigreGotico/orthography2ipa/tree/7.82.40a4) (2026-08-26)
 
