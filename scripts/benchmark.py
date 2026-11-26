@@ -4858,15 +4858,15 @@ def notation_fold_section() -> List[str]:
         "Each fold applies only to a gold reading from a source whose own rows "
         "show no contrast for it (`scripts/source_notation_per.py`). The Michaelis "
         "folds rest on counts of its rows, not on its transcription key, so the "
-        "folded numbers never gate.", "",
-        "| Language | Dataset | Words | PER | Folded PER | Segment PER | Folded segment PER | Folds |",
-        "|---|---|---|---|---|---|---|---|",
+        "folded numbers never gate. The section is a list, not a table, because "
+        "the board checks read every table row of this page as a board row.", "",
     ]
     for r in rows:
         lines.append(
-            f"| {r['lang']} | {r['dataset']} | {r['words']} | {r['per']:.4f} | "
-            f"{r['folded_per']:.4f} | {r['segment_per']:.4f} | "
-            f"{r['folded_segment_per']:.4f} | {', '.join(f'`{f}`' for f in r['folds'])} |")
+            f"- {r['lang']} {r['dataset']} ({r['words']} words): PER {r['per']:.4f}, "
+            f"folded {r['folded_per']:.4f}. Segment PER {r['segment_per']:.4f}, "
+            f"folded {r['folded_segment_per']:.4f}. Folds: "
+            f"{', '.join(f'`{f}`' for f in r['folds'])}.")
     return lines + [""]
 
 

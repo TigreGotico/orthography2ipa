@@ -788,12 +788,10 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 
 ## Per-source notation folds (reported, not gated)
 
-Each fold applies only to a gold reading from a source whose own rows show no contrast for it (`scripts/source_notation_per.py`). The Michaelis folds rest on counts of its rows, not on its transcription key, so the folded numbers never gate.
+Each fold applies only to a gold reading from a source whose own rows show no contrast for it (`scripts/source_notation_per.py`). The Michaelis folds rest on counts of its rows, not on its transcription key, so the folded numbers never gate. The section is a list, not a table, because the board checks read every table row of this page as a board row.
 
-| Language | Dataset | Words | PER | Folded PER | Segment PER | Folded segment PER | Folds |
-|---|---|---|---|---|---|---|---|
-| pt-BR | portuguese_unified | 23125 | 0.1421 | 0.0679 | 0.1249 | 0.0685 | `michaelis_ã`, `michaelis_no_palatal`, `michaelis_final_r` |
-| pt-BR | portuguese_unified_corrected | 23124 | 0.1414 | 0.0672 | 0.1243 | 0.0679 | `michaelis_ã`, `michaelis_no_palatal`, `michaelis_final_r` |
+- pt-BR portuguese_unified (23125 words): PER 0.1421, folded 0.0679. Segment PER 0.1249, folded 0.0685. Folds: `michaelis_ã`, `michaelis_no_palatal`, `michaelis_final_r`.
+- pt-BR portuguese_unified_corrected (23124 words): PER 0.1414, folded 0.0672. Segment PER 0.1243, folded 0.0679. Folds: `michaelis_ã`, `michaelis_no_palatal`, `michaelis_final_r`.
 
 ---
 [← Gold defects](../gold_defects.md) · [Home](../../index.md) · [Comparison to other G2P systems →](comparison.md)

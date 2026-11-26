@@ -6,7 +6,9 @@ contrast for it. It changes the hypothesis into the notation of that source,
 so the score counts the engine's errors and not the notation of the gold.
 Counts are over the pt-BR Michaelis rows of the dataset, ``ipa_narrow``:
 
-- ``michaelis_ã``: 0 of 1,530 words spelled with ⟨ã⟩ write [ɐ̃]. [ɐ̃] → [ã].
+- ``michaelis_ã``: 0 of 20,774 Michaelis readings write [ɐ̃], also 0 of the
+  4,878 words spelled with ⟨an am en em⟩ and no ⟨ã⟩. [ã] occurs in 2,798.
+  [ɐ̃] → [ã] in every spelling.
 - ``michaelis_no_palatal``: 1 of 1,378 ⟨ti⟩ words and 0 of 982 ⟨di⟩ words
   write a palatal. [t͡ʃ d͡ʒ] → [t d] before [i ĩ ɪ j].
 - ``michaelis_final_r``: 3,865 of 3,868 words in -ar, -er, -ir write the
@@ -47,8 +49,7 @@ from benchmark import (  # noqa: E402
 )
 
 _NFD = lambda s: unicodedata.normalize("NFD", s)  # noqa: E731
-_FRONT = "iĩɪj"
-_PALATAL = re.compile(_NFD(f"(t͡ʃ|tʃ|ʧ|d͡ʒ|dʒ|ʤ)(?=[{_FRONT}]|[{_FRONT}]̃)"))
+_PALATAL = re.compile(_NFD("(t͡ʃ|tʃ|ʧ|d͡ʒ|dʒ|ʤ)(?=[iɪj]|ĩ)"))
 _RHOTIC_END = re.compile("[ɾrʁhχɹxɻ]$")
 
 SOURCE_FOLDS = {"michaelis": ("michaelis_ã", "michaelis_no_palatal", "michaelis_final_r")}
