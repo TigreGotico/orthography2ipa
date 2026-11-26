@@ -1776,6 +1776,7 @@ Stubs (8): Tornedalen Finnish `fit`, Kven Finnish `fkv`, Finnish Sign Language `
 | [Corsican](co.md) (page) | `co` | research | Indo-European > Italic > Romance > Italo-Romance |
 | [Basque (Euskara)](eu.md) (page) | `eu` | production | Vasconic |
 | [French](fr-FR.md) (page) | `fr-FR` | research | Indo-European > Italic > Romance > Gallo-Romance |
+| [Southern French (Midi)](https://tigregotico.github.io/orthography2ipa/#fr-FR-x-midi) | `fr-FR-x-midi` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [Franco-Provençal (Arpitan)](frp.md) (page) | `frp` | research | Indo-European > Italic > Romance > Gallo-Romance |
 | [Interlingua](ia.md) (page) | `ia` | research | Constructed |
 | [Ido](io.md) (page) | `io` | research | Constructed |

@@ -27,7 +27,7 @@ French is a Gallo-Romance language, written in the Latin script. Its code names 
 | Tier | [research](../specs/quality_tiers.md#research) |
 | Attested | from 1300, living |
 | Parent | [Gallo-Romance](https://tigregotico.github.io/orthography2ipa/#x-clade-gallorom) `x-clade-gallorom` |
-| Child lects | 5, see [Related lects](#related-lects) |
+| Child lects | 6, see [Related lects](#related-lects) |
 | Explorer | [`fr-FR` in the data explorer](https://tigregotico.github.io/orthography2ipa/#fr-FR) |
 | Spec file | [`fr-FR.json`](../../orthography2ipa/data/fr-FR.json) |
 <!-- atlas:header end -->
@@ -181,7 +181,15 @@ The spec declares sandhi in `sandhi_rules` as the liaison rules `FR_LIAISON_Z`, 
 
 ## Regional variants
 
-Four regional specs inherit this spec and state only what a source states: `fr-CA` (Laurentian French: affrication of /t d/ before /i y j ɥ/ and laxing of /i y u/ in a closed final syllable), `fr-BE` (⟨â⟩ as [aː]), `fr-CH` (⟨â⟩ as [aː] and ⟨ê⟩ as [ɛː]) and `fr-CI` (⟨â⟩ as [a]). The PFC survey reports that in Tournai and Neuchâtel the contrast of ⟨patte⟩ and ⟨pâte⟩ is one of length, not of quality. Each spec lists its sources and what it leaves out. Every other French tag with a region, such as `fr-LU`, `fr-SN`, `fr-US` or `fr-150`, reads `fr-FR`, because the cited sources state no difference for it. All of them read an elided clitic and its host as one word.
+Five regional specs inherit this spec and state only what a source states. Each spec lists its sources and what it leaves out.
+
+- `fr-BE` (Belgian French): ⟨â⟩ as [aː] and ⟨ê⟩ as [ɛː], a long vowel before a word-final mute ⟨e⟩ (aimée [ɛmeː], vie [viː]), [w] for the [ɥ] of ⟨ui⟩ (lui [lwi], nuit [nwi]) and vingt as [vɛ̃t].
+- `fr-CH` (Swiss French): ⟨â⟩ as [aː] and ⟨ê⟩ as [ɛː], the same long vowel before a final mute ⟨e⟩, and vingt as [vɛ̃t].
+- `fr-CA` (Laurentian French): affrication of /t d/ before /i y j ɥ/, laxing of /i y u/ in a closed final syllable, long vowels and their diphthongs in the last syllable (père [pai̯ʁ], fête [fai̯t], pâte [pɑu̯t], rose [ʁɔu̯z]), a back [ɒ] for a word-final /a/ (Canada [kanadɒ]), and the nasal vowels [ẽ] and a final [ã].
+- `fr-CI` (Ivorian French): ⟨â⟩ as [a].
+- `fr-FR-x-midi` (Southern French): a pronounced final schwa (petite [pøtitə]), [ø] for a schwa in the first syllable, the loi de position of the mid vowels (rose [ʁɔzə], lait [le]) and a nasal vowel as an oral vowel plus a nasal appendix (pain [pɛŋ], lampe [lampə]).
+
+The PFC survey reports that in Tournai and Neuchâtel the contrast of ⟨patte⟩ and ⟨pâte⟩ is one of length, not of quality. huit reads [wi] in `fr-BE`, without its final [t], because `fr-FR` does not yet give huit its [t]. Every other French tag with a region, such as `fr-LU`, `fr-SN`, `fr-US` or `fr-150`, reads `fr-FR`, because the cited sources state no difference for it. `fr-FR-x-midi` is a private-use tag and is reached only by that tag. All of them read an elided clitic and its host as one word.
 
 ## Stress marks
 
@@ -209,6 +217,7 @@ These specs name `fr-FR` as their parent. They are sorted by country, and a lect
 - [Belgian French](https://tigregotico.github.io/orthography2ipa/#fr-BE) `fr-BE`: Belgium, skeleton tier
 - [Canadian French (Laurentian)](https://tigregotico.github.io/orthography2ipa/#fr-CA) `fr-CA`: Canada, skeleton tier
 - [Ivorian French](https://tigregotico.github.io/orthography2ipa/#fr-CI) `fr-CI`: Côte d’Ivoire, skeleton tier
+- [Southern French (Midi)](https://tigregotico.github.io/orthography2ipa/#fr-FR-x-midi) `fr-FR-x-midi`: France, skeleton tier
 - [Seychellois Creole](crs.md) `crs`: Seychelles, research tier
 - [Swiss French (Romandy)](https://tigregotico.github.io/orthography2ipa/#fr-CH) `fr-CH`: Switzerland, skeleton tier
 <!-- atlas:lects end -->

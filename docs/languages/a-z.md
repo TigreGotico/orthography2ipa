@@ -1672,6 +1672,7 @@ Stubs (117): Rabha `rah`, Rade `rad`, Raetic `xrr`, Rahambuu `raz`, Rajah Kabuns
 | [South Slavey](xsl.md) (page) | `xsl` | research | Athabaskan-Eyak-Tlingit |
 | [Southern Altai](alt.md) (page) | `alt` | research | Turkic |
 | [Southern Dagaare](dga.md) (page) | `dga` | research | Atlantic-Congo |
+| [Southern French (Midi)](https://tigregotico.github.io/orthography2ipa/#fr-FR-x-midi) | `fr-FR-x-midi` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [Southern Kurdish](https://tigregotico.github.io/orthography2ipa/#sdh) | `sdh` | skeleton | Indo-European |
 | [Southern Min (Hokkien / Taiwanese), Pe̍h-ōe-jī](nan-Latn-pehoeji.md) (page) | `nan-Latn-pehoeji` | research | Sino-Tibetan > Sinitic |
 | [Southern Nuni](https://tigregotico.github.io/orthography2ipa/#nnw) | `nnw` | skeleton | Atlantic-Congo |

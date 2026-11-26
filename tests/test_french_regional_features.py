@@ -135,3 +135,68 @@ def test_quebec_a_is_back_at_the_end_of_a_word(text, expected):
 ])
 def test_quebec_nasal_vowel_values(text, expected):
     assert _say(text, "fr-CA") == expected
+
+
+# --- Southern French (Midi) ----------------------------------------------
+
+MIDI = "fr-FR-x-midi"
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("patte", "patə"),             # PFC: patte [patə]
+    ("pattes", "patə"),            # the plural ⟨-s⟩ is silent
+    ("seule", "sœlə"),             # seul vs seule
+    ("seul", "sœl"),
+    ("petite", "pøtitə"),          # [ø] in the first syllable
+    ("petit", "pøti"),             # PFC: petit [pøti]
+    ("chemise", "ʃømizə"),
+    ("le", "lø"),                  # monosyllables are [ø]
+    ("vie", "vi"),                 # after a vowel the ⟨e⟩ stays mute
+])
+def test_the_midi_pronounces_the_final_schwa(text, expected):
+    assert _say(text, MIDI) == expected
+
+
+def test_the_midi_final_schwa_falls_before_a_vowel():
+    # PFC: '(sauf s'il est suivi d'une voyelle)'
+    assert _say("quatre heures", MIDI) == "katʁ œʁə"
+    assert _say("une petite fille", MIDI).split()[1] == "pøtitə"
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("rose", "ʁɔzə"),              # open before the schwa syllable
+    ("père", "pɛʁə"),              # Eychenne 2006: 120, père [ˈpɛ.rə]
+    ("jaune", "ʒɔnə"),
+    ("creuse", "kʁœzə"),
+    ("port", "pɔʁ"),               # closed syllable
+    ("peau", "po"),                # open syllable
+    ("lait", "le"),                # close in an open syllable
+    ("jamais", "ʒame"),
+    ("bêtise", "betizə"),          # p. 124: bêtise [betiz]
+    ("fleuri", "fløʁi"),           # p. 124: fleuri [fløri]
+    ("poser", "poze"),             # before a full vowel: close
+])
+def test_the_midi_follows_the_loi_de_position(text, expected):
+    assert _say(text, MIDI) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("pain", "pɛŋ"),               # velar appendix at the end of a word
+    ("lent", "laŋ"),               # Durand 1988: 167: lent [laN]
+    ("vin", "vɛŋ"),
+    ("brun", "bʁœŋ"),
+    ("bien", "bjɛŋ"),
+    ("lampe", "lampə"),            # homorganic before a consonant
+    ("lenteur", "lantœʁ"),
+    ("plainte", "plɛntə"),
+    ("enfant", "aɱfaŋ"),
+])
+def test_the_midi_nasal_vowel_is_a_vowel_plus_an_appendix(text, expected):
+    assert _say(text, MIDI) == expected
+
+
+def test_the_midi_spec_is_a_variant_of_fr_fr():
+    spec = o2i.get(MIDI)
+    assert spec.parent == "fr-FR"
+    assert o2i.resolve(MIDI) == MIDI
+    assert "Gallo-Romance" in spec.family_path

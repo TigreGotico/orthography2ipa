@@ -136,6 +136,7 @@ def test_the_circumflex_e_is_long_only_where_a_source_states_it(
     ("fr-FR", "bʁɛ̃", "bʁœ̃"), ("fr-BE", "bʁɛ̃", "bʁœ̃"),
     ("fr-CH", "bʁɛ̃", "bʁœ̃"), ("fr-CI", "bʁɛ̃", "bʁœ̃"),
     ("fr-CA", "bʁẽ", "bʁœ̃"),       # the front nasal is [ẽ] (Dumas 1974: 26)
+    ("fr-FR-x-midi", "bʁɛŋ", "bʁœŋ"),  # vowel + appendix (Eychenne 2006: 115)
 ])
 def test_every_variant_keeps_brin_and_brun_apart(tag, brin, brun):
     # PFC page d) 2): the contrast survives at Tournai, Nyon, Toulouse and
@@ -181,13 +182,18 @@ def test_an_extension_or_variant_keeps_the_region(tag, code):
 
 
 #: The whole-word entries a variant states over those of fr-FR: vingt with
-#: its final [t] (PFC consonant page II d) 4); Avanzi 2016, 2024).
+#: its final [t] (PFC consonant page II d) 4); Avanzi 2016, 2024) and the
+#: [ø] of the Midi clitics (PFC e-caduc page, 'Timbre').
 OWN_EXCEPTIONS = {
     "fr-BE": {"vingt": "vɛ̃t"}, "fr-CH": {"vingt": "vɛ̃t"},
+    "fr-FR-x-midi": {"le": "lø", "de": "dø", "que": "kø", "ce": "sø",
+                     "ne": "nø", "se": "sø", "je": "ʒø", "me": "mø",
+                     "te": "tø"},
 }
 
 
-@pytest.mark.parametrize("tag", ["fr-CA", "fr-BE", "fr-CH", "fr-CI"])
+@pytest.mark.parametrize("tag", ["fr-CA", "fr-BE", "fr-CH", "fr-CI",
+                                 "fr-FR-x-midi"])
 def test_a_variant_inherits_fr_fr(tag):
     spec, base = o2i.get(tag), o2i.get("fr-FR")
     assert spec.code == tag
@@ -195,7 +201,12 @@ def test_a_variant_inherits_fr_fr(tag):
     assert spec.word_internal_apostrophe is True
     assert spec.word_exceptions == {**base.word_exceptions,
                                     **OWN_EXCEPTIONS.get(tag, {})}
-    assert spec.sandhi_rules == base.sandhi_rules
+    own_sandhi = {r.id for r in spec.sandhi_rules} - {
+        r.id for r in base.sandhi_rules}
+    assert own_sandhi == ({"FR_MIDI_SCHWA_ELISION"}
+                          if tag == "fr-FR-x-midi" else set())
+    assert [r for r in spec.sandhi_rules if r.id not in own_sandhi] == list(
+        base.sandhi_rules)
 
 
 @pytest.mark.parametrize("tag, words", [
