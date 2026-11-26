@@ -166,6 +166,7 @@ Some frequent words read wrong when each letter takes its default value. The spe
 | `FR_E_MUTE_AFTER_SOFT_G` | ⟨e⟩ after ⟨g⟩ or ⟨j⟩ and before a back vowel letter is mute | ⟨pigeon⟩ `piʒɔ̃`, ⟨Jean⟩ `ʒɑ̃` | Martinon 1913: 164, 239 |
 | `FR_X_VOICED_*_EX` | ⟨x⟩ of an initial or prefixed ⟨ex⟩ before a vowel or ⟨h⟩ is [ɡz] | ⟨exemple⟩ `ɛɡzɑ̃pl`, ⟨exhiber⟩ `ɛɡzibe` | Martinon 1913: 347-349 |
 | `FR_X_Z_ORDINAL` | ⟨x⟩ before ⟨-ième⟩ is [z] | ⟨deuxième⟩ `døzjɛm` | Martinon 1913: 348 |
+| Entry `est` | The verb ⟨est⟩ is [ɛ], and ⟨c'est⟩ reads it after the clitic | ⟨c'est⟩ `sɛ` | Martinon 1913: 331; Larousse, s.v. être |
 
 No noun or adjective ends in ⟨-aient⟩ or ⟨-oient⟩, so this rule needs no part of speech. Bare ⟨-ent⟩ stays ambiguous, as the section on that ending says. After the prefix ⟨in-⟩ the start of the word is too far back for a rule, so ⟨inexact⟩ keeps [ks]. ⟨Hexagone⟩ keeps [ks] too.
 
