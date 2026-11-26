@@ -51,6 +51,12 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 | `segment_distance` | function | Phonetic distance between two IPA segments, normalised to [0.0, 1.0]. |
 | `spelling_divergence` | function | Measure how differently two orthographies spell the same phonemes. |
 
+## `orthography2ipa.exceptions`
+
+| Name | Kind | Summary |
+| --- | --- | --- |
+| `UnmappedGraphemeWarning` | class | Emitted when a letter or combining mark has no grapheme mapping. |
+
 ## `orthography2ipa.features`
 
 | Name | Kind | Summary |
@@ -85,6 +91,7 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 | `clear_lexicons` | function | Deprecated: forget every registered lexicon, the lexicon dir and the enabled packaged lexicons. |
 | `get_lexicon` | function | Deprecated: return the process-wide `{word: ipa}` overlay for *code*. |
 | `is_ipa_string` | function | Return `True` when *ipa* is NFC and contains only IPA characters. |
+| `lexicon_path` | function | The local file backing *code*'s lexicon, or `None` if there is none. |
 | `load_lexicon` | function | Read the lexicon at *source* into a `{word: ipa}` mapping. |
 | `packaged_lexicon` | function | The `{word: ipa}` mapping an installed package supplies for *code*. |
 | `packaged_lexicon_sources` | function | The installed packaged lexicons, as `{resolved code: local file}`. |

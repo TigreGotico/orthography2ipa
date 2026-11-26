@@ -54,8 +54,10 @@ from orthography2ipa.g2p import (
 )
 from orthography2ipa.features import GraphemeFeatures, WordFeatures
 from orthography2ipa.lexicon import _warn_deprecated
+from orthography2ipa.exceptions import UnmappedGraphemeWarning
 from orthography2ipa.lexicon import (
     available_lexicon_codes,
+    lexicon_path,
     parse_lexicon_text,
     clear_lexicons,
     get_lexicon,
@@ -240,6 +242,8 @@ __all__ = [
     "MarkupError",
     "parse_markup",
     "parse_lexicon_text",
+    "lexicon_path",
+    "UnmappedGraphemeWarning",
     "Token",
     "TokenKind",
     "IPAPath",
