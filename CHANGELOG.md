@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.131.4a5](https://github.com/TigreGotico/orthography2ipa/tree/7.131.4a5) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.131.4a4...7.131.4a5)
+
+**Merged pull requests:**
+
+- test: strict xfails name raises=AssertionError [\#2680](https://github.com/TigreGotico/orthography2ipa/pull/2680) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.131.4a4](https://github.com/TigreGotico/orthography2ipa/tree/7.131.4a4) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.131.4a3...7.131.4a4)
