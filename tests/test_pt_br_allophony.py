@@ -104,8 +104,9 @@ def test_br_declares_the_nasal_raise_rules():
     # the gu/qu glide rules inherited from pt-PT-x-medieval come first, then
     # the word-final nasal-diphthong glide rules and the raised-final-e
     # affrication rules; the nasal-raise trio follows.
-    assert ids[:3] == ["PT_GU_GLIDE", "PT_QU_GLIDE", "PT_QU_GLIDE_EQUINO"]
-    assert ids[3:9] == [
+    assert ids[:4] == [
+        "PT_GU_GLIDE", "PT_QU_GLIDE", "PT_QU_GLIDE_EQUI", "PT_QU_GLIDE_EQUINO"]
+    assert ids[4:10] == [
         "BR_FINAL_EM_GLIDE", "BR_FINAL_ENS_GLIDE", "BR_FINAL_AM_GLIDE",
         "BR_AFFRIC_T_RAISED", "BR_AFFRIC_D_RAISED", "PT_NASAL_A_RAISE"]
     assert [i for i in ids if i.startswith("PT_NASAL")][:3] == [

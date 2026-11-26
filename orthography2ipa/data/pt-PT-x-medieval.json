@@ -135,9 +135,13 @@
     {"id": "PT_QU_GLIDE", "phonemes": ["k"], "surface": "kw", "grapheme": ["qu"],
      "word_contains_grapheme": ["cinquent", "equestr", "frequent", "frequênc", "tranquil", "ubiquidad", "sequênc", "delinquent", "eloquent", "quinquén", "quinquên", "consequent", "consequênc", "aquífer", "antiquíssim"],
      "notes": "AO1990 Base XIV 1.º: the u of ⟨gu qu⟩ before ⟨e i⟩ is pronounced in the words that Base XIV lists and in others of the same class, written with the trema before 1990 (agüentar, sagüi). Priberam: |güen| aguentar, |àgüí| sagui. The stems match every inflected form. argueiro and equipa keep a silent u."},
+    {"id": "PT_QU_GLIDE_EQUI", "phonemes": ["k"], "surface": "kw", "grapheme": ["qu"],
+     "word_contains_grapheme": ["equian", "equiax", "equida", "equide", "equidi", "equifo", "equigr", "equila", "equimol", "equinu", "equipen", "equipr", "equiss", "equitat", "equivalv", "equiân", "equipol", "equipot"],
+     "word_contains_grapheme_not": ["tequil", "ressequ", "senequ"],
+     "notes": "The learned prefix equi- 'equal' keeps the glide in a transparent compound: Infopédia equidade [ekwiˈdad], equidistante, equipotente, equivalve. The older lexicalized words have [k]: equilíbrio, equipa, equivalente, equívoco, equinodermo. The class is mixed, so the stems come from the 101 Infopédia equi- rows in the papers library (Languages/Portuguese/Orthography and Dictionaries/infopedia_equi_rows.tsv): each stem matches a [kw] row and no [k] row. equilátero has one record with each reading and is left out. The stems match anywhere in a word, so word_contains_grapheme_not keeps out tequila, ressequido and senequiano, and equipol/equipot replace equipo, which also spells the [k] verb forms of equipar (equipo, equipou)."},
     {"id": "PT_QU_GLIDE_EQUINO", "phonemes": ["k"], "surface": "kw", "grapheme": ["qu"],
-     "word": ["equino", "equina", "equinos", "equinas"],
-     "notes": "equino keeps the glide; equinócio and equinocial keep a silent u, so the rule names the word forms."}
+     "word": ["equino", "equina", "equinos", "equinas", "equídeo", "equídea", "equídeos", "equídeas"],
+     "notes": "equino is two homographs. equino 'equine' (Latin equinus) has the glide: Priberam |qüi|, ABL PVO 1943 eqüino 'cavalar'. equino 'sea urchin' (Latin echinus) has [k]: Priberam |qui|, ABL 1943 equino 'ouriço'. The default is the common sense, 'equine', in both norms. equídeo has the glide (ABL 1943 eqüídeo). equinócio, equinocial and equinodermo keep a silent u. Source: Papers/Languages/Portuguese/Orthography and Dictionaries/priberam_equino.txt."}
   ],
   "positional_graphemes_base": "roa-x-galaico-pt",
   "positional_graphemes": {
