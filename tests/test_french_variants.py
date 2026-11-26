@@ -203,6 +203,13 @@ OWN_EXCEPTIONS = {
 }
 
 
+#: The sandhi rules a variant adds to those of fr-FR.
+OWN_SANDHI = {
+    "fr-BE": {"FR_BE_HUIT_MUTE_BEFORE_CONSONANT", "FR_BE_DIX_Z_BEFORE_HUIT"},
+    "fr-FR-x-midi": {"FR_MIDI_SCHWA_ELISION"},
+}
+
+
 @pytest.mark.parametrize("tag", ["fr-CA", "fr-BE", "fr-CH", "fr-CI",
                                  "fr-FR-x-midi"])
 def test_a_variant_inherits_fr_fr(tag):
@@ -214,8 +221,7 @@ def test_a_variant_inherits_fr_fr(tag):
                                     **OWN_EXCEPTIONS.get(tag, {})}
     own_sandhi = {r.id for r in spec.sandhi_rules} - {
         r.id for r in base.sandhi_rules}
-    assert own_sandhi == ({"FR_MIDI_SCHWA_ELISION"}
-                          if tag == "fr-FR-x-midi" else set())
+    assert own_sandhi == OWN_SANDHI.get(tag, set())
     assert [r for r in spec.sandhi_rules if r.id not in own_sandhi] == list(
         base.sandhi_rules)
 

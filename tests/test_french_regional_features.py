@@ -286,3 +286,11 @@ def test_midi_review_cases(text, expected):
 def test_the_midi_final_schwa_links_its_consonant_before_a_vowel():
     # the schwa falls and the consonant links, as in fr-FR's enchaînement
     assert _say("une école", MIDI) == "yn‿ ekɔlə"
+
+
+# --- combined with the fr-FR numeral rules (PR #2710) ----------------------
+
+def test_belgian_huit_drops_its_t_before_a_consonant():
+    # fr-FR mutes the [t] of huit before a consonant; the Belgian [wit]
+    # follows it (Bardiaux et al. 2016: 41 for the [w])
+    assert _say("huit livres", "fr-BE").split()[0] == "wi"
