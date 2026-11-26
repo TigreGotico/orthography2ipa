@@ -3849,6 +3849,61 @@ def levenshtein(a: str, b: str) -> int:
     return prev[-1]
 
 
+_SEG_LIGATURES = (("ʧ", "t\u0361ʃ"), ("ʤ", "d\u0361ʒ"), ("ʦ", "t\u0361s"), ("ʣ", "d\u0361z"))
+_SEG_TIES = "\u0361\u035c"
+_SEG_MODIFIERS = "ʰʲʷˠˤːˑ"
+_SEG_DROP = "ˈˌ.·|‿'"
+
+
+def segments(ipa: str) -> List[str]:
+    """The phone segments of *ipa*, by the shared segment rule of the PER
+    board: NFD; ʧ ʤ ʦ ʣ become their tied forms; stress marks, syllable
+    dots, joiners and spaces drop; a segment is one base symbol with its
+    combining marks and modifier letters, and a tie bar joins the next base
+    into the same segment."""
+    s = unicodedata.normalize("NFD", ipa)
+    for lig, tied in _SEG_LIGATURES:
+        s = s.replace(lig, tied)
+    out: List[str] = []
+    join = False
+    for ch in s:
+        if ch in _SEG_DROP or ch.isspace():
+            continue
+        if ch in _SEG_TIES:
+            join = bool(out)
+            if out:
+                out[-1] += "\u0361"
+        elif out and (join or unicodedata.combining(ch) or ch in _SEG_MODIFIERS):
+            out[-1] += ch
+            join = False
+        else:
+            out.append(ch)
+    return out
+
+
+def segment_per(pairs: Sequence[GoldPair], lang: str) -> Tuple[int, float]:
+    """Micro segment PER of the rules on *pairs*: the edits over the closest
+    gold variant of each word, summed, over the summed gold segments.
+    Returns ``(words scored, PER)``."""
+    from orthography2ipa import G2P, Pipeline
+
+    engine = G2P(lang, pipeline=Pipeline(lexicon=None))
+    refs: Dict[str, List[str]] = {}
+    for word, gold in pairs:
+        refs.setdefault(word, []).append(gold)
+    edits = total = scored = 0
+    for word, golds in refs.items():
+        transcribe = engine.transcribe if _is_multiword(word) else engine.transcribe_word
+        hyp = segments(transcribe(word))
+        if not hyp:
+            continue
+        cost, size = min((levenshtein(hyp, segments(g)), len(segments(g))) for g in golds)
+        edits += cost
+        total += size
+        scored += 1
+    return scored, (edits / total if total else 1.0)
+
+
 def align(a: str, b: str) -> List[Tuple[Optional[str], Optional[str]]]:
     """Character-level edit-distance alignment between ``a`` (e.g. gold)
     and ``b`` (e.g. hypothesis), with full backpointer traceback.
@@ -5177,6 +5232,8 @@ def main() -> None:
                          "report which ones upstream has changed. Scoring "
                          "otherwise uses the cached copy, so a row measured "
                          "against a stale snapshot is invisible.")
+    ap.add_argument("--segment-per", action="store_true",
+                    help="also print the micro segment PER of the shared board rule")
     ap.add_argument("--scoreboard", action="store_true",
                     help="Run every registered gold dataset/language "
                          "combination and write docs/evaluation/generated/scoreboard.md + "
@@ -5294,6 +5351,9 @@ def main() -> None:
     )
     line = (f"{args.dataset} lang={lang} n={n} covered={covered} "
             f"PER={per:.4f} WER={wer:.4f}")
+    if args.segment_per:
+        seg_n, seg = segment_per(pairs, lang)
+        line += f" segPER={seg:.4f} (micro, {seg_n} words)"
     if oracle_res is not None:
         line += "".join(f" oracle@{k}={oracle_res.oracle_per[k]:.4f}"
                         f"/x{oracle_res.oracle_exact[k]:.4f}"
