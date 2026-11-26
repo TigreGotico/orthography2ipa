@@ -266,4 +266,4 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 | `is_ipa_vowel` | function | Return True if *ch* is an IPA vowel symbol (vocoid). |
 
 ---
-[← Known limitations](../guide/known_limitations.md) · [Home](../index.md) · [Command line →](cli.md)
+[← Other G2P systems and the o2i ecosystem](../guide/ecosystem.md) · [Home](../index.md) · [Command line →](cli.md)

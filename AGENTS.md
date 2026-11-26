@@ -38,7 +38,7 @@ Use uv, never pip. `which_tests.py` lists the test files that name a spec. With 
 2. A `graphemes` key is an orthographic unit, never an n-gram or a suffix chunk ([spec_authoring.md](docs/contributing/spec_authoring.md#a-grapheme-key-is-an-orthographic-unit)).
 3. Context goes in the rule layer, never in an enumeration of keys ([spec_authoring.md](docs/contributing/spec_authoring.md#express-a-context)).
 4. Linguistic accuracy outranks the score. A hack that lowers PER is removed ([engine.md](docs/contributing/engine.md#accuracy-outranks-the-score)).
-5. Every mapping is a cited claim, with the page of the source you opened. Wikipedia and Ciberdúvidas are extra sources only ([citations.md](docs/contributing/citations.md)).
+5. Every mapping is a cited claim, with the page of the source you opened. Wikipedia is a last-resort source in rule notes only, marked `WIKIPEDIA-ONLY`, and Ciberdúvidas is an extra source only ([citations.md](docs/contributing/citations.md)).
 6. LLM-written and engine-pinned reference sets are silver labels. They gate nothing ([citations.md](docs/contributing/citations.md#silver-labels-are-never-gold)).
 7. The wheel ships no lexicon and no weights. A caller supplies a lexicon ([spec_authoring.md](docs/contributing/spec_authoring.md#supply-a-lexicon-never-bundle-one)).
 8. The library does not normalise text. Normalisation and script conversion belong downstream ([getting_started.md](docs/guide/getting_started.md#preparing-text-before-the-lattice)).
