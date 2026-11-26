@@ -165,3 +165,19 @@ def test_chleuh_keeps_sh():
     # chleuh [ʃlø] (wikipron fr) is a loan, outside Martinon's learned words;
     # the rule reads it [klø], like kalachnikov and punchline.
     assert _t("chleuh") == "ʃlø"
+
+
+# Martinon (1913: 129, 331): in ⟨-empt⟩ and ⟨-ompt⟩ neither p nor t sounds
+# (exempt, prompt, rompt).
+@pytest.mark.parametrize("text, expected", [
+    ("prompt", "pʁɔ̃"), ("rompt", "ʁɔ̃"), ("exempt", "ɛɡzɑ̃"),
+])
+def test_p_of_final_mpt_is_mute(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("exemption", "ɛɡzɑ̃psjɔ̃"), ("symptôme", "sɛ̃ptom"),
+])
+def test_p_before_a_non_final_t_is_kept(text, expected):
+    assert _t(text) == expected
