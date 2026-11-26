@@ -105,3 +105,38 @@ def test_the_verb_est_is_open_e(text, expected):
 
 def test_the_noun_est_after_l_keeps_its_st():
     assert _t("l'est") == "lɛst"
+
+
+# Martinon (1913: 236): ⟨g⟩ is mute in vin(gt) and its derivatives,
+# lon(g)temps and doi(gt).
+@pytest.mark.parametrize("text, expected", [
+    ("vingt", "vɛ̃"), ("vingtaine", "vɛ̃tɛn"), ("vingtième", "vɛ̃tjɛm"),
+    ("doigt", "dwa"), ("longtemps", "lɔ̃tɑ̃"),
+])
+def test_g_before_t_is_mute(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("langue", "lɑ̃ɡ"), ("vingt et un", "vɛ̃ e œ̃"), ("gare", "ɡaʁ"),
+])
+def test_g_elsewhere_is_untouched(text, expected):
+    assert _t(text) == expected
+
+
+# Martinon (1913: 236): word-final ⟨g⟩ is not pronounced in French words;
+# it survives in the spelling after a nasal: ran(g), san(g), étan(g),
+# haren(g), coin(g), poin(g), lon(g).
+@pytest.mark.parametrize("text, expected", [
+    ("long", "lɔ̃"), ("longs", "lɔ̃"), ("sang", "sɑ̃"), ("rang", "ʁɑ̃"),
+    ("étang", "etɑ̃"), ("hareng", "aʁɑ̃"), ("poing", "pwɛ̃"),
+])
+def test_final_g_after_a_nasal_is_mute(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("linge", "lɛ̃ʒ"), ("langue", "lɑ̃ɡ"), ("longue", "lɔ̃ɡ"),
+])
+def test_g_before_a_vowel_letter_is_not_final(text, expected):
+    assert _t(text) == expected

@@ -626,7 +626,7 @@
       "title": "Comment on prononce le français : traité complet de prononciation pratique avec les noms propres et les mots étrangers",
       "publisher": "Larousse, Paris",
       "url": "https://archive.org/details/commentonprononc00martuoft",
-      "pages": "161, 164, 239, 240, 331, 347, 348, 349",
+      "pages": "161, 164, 236, 239, 240, 331, 347, 348, 349",
       "notes": "READ (archive.org full scan of the University of Toronto copy; each cited page read in the scan's text). The Paris orthoepic norm of 1913; the allophone rules that cite it give the page and the passage."
     },
     {
@@ -1488,6 +1488,38 @@
         "ɛ"
       ],
       "notes": "⟨x⟩ before the ordinal ⟨-ième⟩ is [z], the liaison consonant of deux, six and dix: deuxième [døzjɛm], sixième [sizjɛm], dixième [dizjɛm]. Martinon (1913, p. 348: deuxième, dixième, sixième have the [z] of the liaison of deux, six, dix). The condition on a consonant two slots back keeps out the letter name in ixième [iksjɛm] (wikipron fr)."
+    },
+    {
+      "id": "FR_G_MUTE_BEFORE_T",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "",
+      "grapheme": [
+        "g"
+      ],
+      "followed_by_grapheme": [
+        "t"
+      ],
+      "notes": "⟨g⟩ before ⟨t⟩ is mute: vingt [vɛ̃], vingtaine [vɛ̃tɛn], vingtième, doigt [dwa], doigté, longtemps [lɔ̃tɑ̃]. Martinon (1913, p. 236: ⟨g⟩ is mute in vin(gt) and its derivatives, lon(g)temps and doi(gt)). Every native ⟨gt⟩ type of the wikipron fr gold agrees; the foreign names Washington and Pingtung keep [ŋt] there and are lexical."
+    },
+    {
+      "id": "FR_G_MUTE_FINAL_AFTER_NASAL",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "",
+      "grapheme": [
+        "g"
+      ],
+      "preceded_by_grapheme": [
+        "n",
+        "ain",
+        "ein",
+        "oin"
+      ],
+      "word_final": true,
+      "notes": "Word-final ⟨g⟩ after a nasal spelling is mute, also behind the silent plural ⟨-s⟩: long [lɔ̃], longs, sang [sɑ̃], rang, étang [etɑ̃], hareng [aʁɑ̃], poing [pwɛ̃], coing, seing. Martinon (1913, p. 236: at the end of a French word ⟨g⟩ is not pronounced; it survives in the spelling after a nasal: ran(g), san(g), étan(g), haren(g), sein(g), coin(g), poin(g), lon(g)). Martinon (1913: 238) gives the pronounced final ⟨g⟩ of foreign words (gong, ginseng, iceberg, the English -ing); the open class of loans in ⟨-ang⟩ and ⟨-ong⟩ (gang, slang, boomerang, mustang) keeps [ɡ] in the wikipron fr gold and is lexical, the same residual as the loanwords in ⟨-er⟩."
     }
   ],
   "vowel_graphemes": [
