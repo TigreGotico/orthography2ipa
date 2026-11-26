@@ -288,6 +288,9 @@
     }
   },
   "allophone_rules": [
+    {"id": "BR_QU_GLIDE_EQUINO", "phonemes": ["k"], "surface": "kw", "grapheme": ["qu"],
+     "word": ["equino", "equina", "equinos", "equinas"],
+     "notes": "Michaelis gives pt-BR equino [eˈkwinu] (michaelis.uol.com.br/palavra/LmxZD/equino), and the 1943 Formulário spelling eqüino marks the pronounced u. pt-PT equino has [k] (Infopédia [eˈkinu]), so the rule is pt-BR only. equinócio and equinocial keep a silent u."},
     {
       "id": "BR_FINAL_EM_GLIDE",
       "phonemes": [
