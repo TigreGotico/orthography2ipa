@@ -65,7 +65,7 @@ def main():
     specs = load_existing()
     covered = covered_iso(specs)
     existing_glottocodes = {catalog_ids(c).get("glottolog_code") for c in specs} - {None}
-    nodes = {}
+    stub_gcode = {}
 
     with open(os.path.expanduser("~/tmp/iso-639-3.tab"), encoding="utf-8") as fh:
         iso_rows = [r for r in csv.DictReader(fh, delimiter="\t")]
@@ -132,8 +132,9 @@ def main():
             "urls": [f"https://glottolog.org/resource/languoid/id/{g['Glottocode']}"],
         }
         if g["Level"] != "family":
-            nodes[iso] = {"glottolog_code": g["Glottocode"]}
+            stub_gcode[iso] = g["Glottocode"]
         else:
+            stub_gcode[iso] = None  # null: Glottolog has no language node
             # Glottolog sometimes pins an ISO code on a family node (jya, chm, ...);
             # a glottolog_code may only point at a language, so leave it out.
             stub["notes"] += (
@@ -171,7 +172,6 @@ def main():
             stub["parent"] = clade
             if clade not in specs and clade not in new_clades:
                 fam = families[fid]
-                nodes[clade] = {"glottolog_code": fid}
                 new_clades[clade] = {
                     "code": clade,
                     "name": fam["Name"],
@@ -201,6 +201,12 @@ def main():
         print(f"  ... and {len(skipped) - 20} more (see gen_stubs_skipped.tsv)")
 
     if args.nodes_out:
+        # add_nodes.py reads "parent" on every row; a top-level clade or an
+        # isolate has none, so its parent is null.
+        nodes = {c: {"parent": s.get("parent"), "glottolog_code": stub_gcode[c]}
+                 for c, s in new_specs.items()}
+        nodes.update({c: {"parent": None, "glottolog_code": c.removeprefix("x-clade-")}
+                      for c in new_clades})
         with open(args.nodes_out, "w", encoding="utf-8") as fh:
             json.dump(nodes, fh, ensure_ascii=False, indent=2, sort_keys=True)
         print(f"wrote {len(nodes)} catalog-id rows to {args.nodes_out}")
