@@ -93,6 +93,22 @@ def test_the_letter_name_ixieme_keeps_ks():
     assert _t("ixième") == "iksjɛm"
 
 
+# Martinon (1913: 347): the simple [s] of soixante and its derivatives.
+@pytest.mark.parametrize("text, expected", [
+    ("soixante", "swasɑ̃t"), ("soixantaine", "swasɑ̃tɛn"),
+    ("soixantième", "swasɑ̃tjɛm"),
+])
+def test_x_of_soixante_is_s(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("noix", "nwa"), ("choix", "ʃwa"), ("taxi", "taksi"),
+])
+def test_x_elsewhere_after_oi_or_a_vowel(text, expected):
+    assert _t(text) == expected
+
+
 # Martinon (1913: 331): final ⟨st⟩ is mute in the verb e(st). Larousse, s.v.
 # être (Homonymes): est is a homonym of ai, ais, haie and hais.
 @pytest.mark.parametrize("text, expected", [
