@@ -30,3 +30,22 @@ def test_fold(hyp, gold, folds, expected):
 
 def test_all_folds_together():
     assert fold("kɐ̃t͡ʃiˈla", "kãtiˈlaɾ", ALL) == (N("kãtiˈla"), N("kãtiˈla"))
+
+
+def test_committed_unfolded_numbers_equal_the_board():
+    import json
+    root = os.path.join(os.path.dirname(__file__), "..", "benchmarks")
+    folds = json.load(open(os.path.join(root, "notation_folds.json"), encoding="utf-8"))
+    board = {(r["lang"], r["dataset"]): r["per"]
+             for r in json.load(open(os.path.join(root, "results.json"), encoding="utf-8"))}
+    assert folds
+    for row in folds:
+        assert round(board[(row["lang"], row["dataset"])], 4) == row["per"]
+        assert row["folded_per"] < row["per"]
+
+
+def test_the_scoreboard_marks_the_folded_rows_as_not_gated():
+    import benchmark
+    section = "\n".join(benchmark.notation_fold_section())
+    assert "reported, not gated" in section
+    assert "`michaelis_final_r`" in section
