@@ -14,7 +14,7 @@ This page compares o2i with other grapheme-to-phoneme (G2P) systems and lists th
 
 The [comparison board](../evaluation/generated/comparison.md) scores o2i and other G2P systems on the same gold words, language by language.
 
-- The general systems on the board are [espeak-ng](https://github.com/espeak-ng/espeak-ng), [epitran](https://github.com/dmort27/epitran) and [gruut](https://github.com/rhasspy/gruut).
+- The general systems on the board are [espeak-ng](https://github.com/espeak-ng/espeak-ng), [epitran](https://github.com/dmort27/epitran) and [gruut](https://github.com/rhasspy/gruut) (archived upstream).
 - The board also scores engines for one language or one region:
   - [pycotovia](https://github.com/TigreGotico/pycotovia) for Galician and Spanish;
   - [ahotts-g2p](https://github.com/TigreGotico/ahotts-g2p) for Basque and Spanish;
