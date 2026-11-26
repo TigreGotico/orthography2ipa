@@ -121,10 +121,10 @@ def test_the_pate_patte_contrast_follows_the_region(tag, expected):
 @pytest.mark.parametrize("tag, fete, belle, bele", [
     ("fr-CH", "fɛːt", "bɛl", "bɛːl"),   # faites ~ fête, belle ~ bêle (PFC)
     ("fr-FR", "fɛt", "bɛl", "bɛl"),
-    ("fr-BE", "fɛt", "bɛl", "bɛl"),     # the PFC page does not state it
+    ("fr-BE", "fɛːt", "bɛl", "bɛːl"),   # Bardiaux et al. 2016: 40
     ("fr-CI", "fɛt", "bɛl", "bɛl"),
 ])
-def test_the_circumflex_e_is_long_only_where_pfc_states_it(
+def test_the_circumflex_e_is_long_only_where_a_source_states_it(
         tag, fete, belle, bele):
     assert _say("fête", tag) == fete
     assert _say("faites", tag) == "fɛt"   # the short member of the pair
@@ -175,13 +175,21 @@ def test_an_extension_or_variant_keeps_the_region(tag, code):
     assert o2i.resolve(tag) == code
 
 
+#: The whole-word entries a variant states over those of fr-FR: vingt with
+#: its final [t] (PFC consonant page II d) 4); Avanzi 2016, 2024).
+OWN_EXCEPTIONS = {
+    "fr-BE": {"vingt": "vɛ̃t"},
+}
+
+
 @pytest.mark.parametrize("tag", ["fr-CA", "fr-BE", "fr-CH", "fr-CI"])
 def test_a_variant_inherits_fr_fr(tag):
     spec, base = o2i.get(tag), o2i.get("fr-FR")
     assert spec.code == tag
     assert spec.parent == "fr-FR"
     assert spec.word_internal_apostrophe is True
-    assert spec.word_exceptions == base.word_exceptions
+    assert spec.word_exceptions == {**base.word_exceptions,
+                                    **OWN_EXCEPTIONS.get(tag, {})}
     assert spec.sandhi_rules == base.sandhi_rules
 
 
@@ -203,9 +211,11 @@ def test_the_assistant_sentences_differ_from_fr_fr_only_at_a_cited_feature():
         for text in TEXTS:
             if _say(text, tag) != _say(text, "fr-FR"):
                 found.add(text)
-    # the sentences hold no ⟨â⟩; fr-CH differs only through ⟨ê⟩
-    assert diffs["fr-BE"] == set()
+    # the sentences hold no ⟨â⟩; fr-BE differs through ⟨ui⟩ [wi] and a long
+    # vowel before a final mute ⟨e⟩, fr-CH only through ⟨ê⟩
     assert diffs["fr-CI"] == set()
+    for text in diffs["fr-BE"]:
+        assert "ui" in text or "ée " in text or "ê" in text, text
     for text in diffs["fr-CH"]:
         assert "ê" in text
 

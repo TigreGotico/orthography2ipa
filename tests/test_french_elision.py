@@ -55,6 +55,11 @@ REGIONAL = {
         # A silent ⟨h⟩ stands between /d/ and /ɥ/, and no source says whether
         # it blocks the affrication, so aujourd'hui reads like fr-FR.
     },
+    # Belgian [w] for the [ɥ] of ⟨ui⟩ (Bardiaux et al. 2016: 41, huit [wit]).
+    "fr-BE": {
+        "puisqu'on": "pwiskɔ̃",
+        "aujourd'hui": "oʒuʁdwi", "aujourd’hui": "oʒuʁdwi",
+    },
 }
 
 ELISIONS = [
