@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.131.6a3](https://github.com/TigreGotico/orthography2ipa/tree/7.131.6a3) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.131.6a2...7.131.6a3)
+
+**Merged pull requests:**
+
+- chore\(bench\): score the pt-BR Michaelis rows with per-source notation folds [\#2693](https://github.com/TigreGotico/orthography2ipa/pull/2693) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.131.6a2](https://github.com/TigreGotico/orthography2ipa/tree/7.131.6a2) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.131.6a1...7.131.6a2)
