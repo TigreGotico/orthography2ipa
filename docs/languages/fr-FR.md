@@ -9,7 +9,7 @@ see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/da
 -->
 
 <!-- atlas:summary begin -->
-French is a Gallo-Romance language, written in the Latin script. Its code names France. The `fr-FR` spec is at the research tier. It cites 9 sources and has 3 scored datasets.
+French is a Gallo-Romance language, written in the Latin script. Its code names France. The `fr-FR` spec is at the research tier. It cites 11 sources and has 3 scored datasets.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -243,7 +243,7 @@ These specs name `fr-FR` as their parent. They are sorted by country, and a lect
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 9 works. 4 of them have a DOI or a URL. The spec file holds a note on what 6 of them support.
+The spec cites 11 works. 6 of them have a DOI or a URL. The spec file holds a note on what 8 of them support.
 
 1. <a id="src-fouche1959"></a>Fouché, P. (1959). *Traité de prononciation française*. Klincksieck.
 2. <a id="src-divay_vitale1997"></a>Divay, M. & Vitale, A.J. (1997). *Algorithms for grapheme-phoneme translation for English and French: applications for database searches and speech synthesis*. Computational Linguistics 23(4), 495-523. Cited: 495-523.
@@ -254,6 +254,8 @@ The spec cites 9 works. 4 of them have a DOI or a URL. The spec file holds a not
 7. <a id="src-walker2001"></a>Walker, D.C. (2001). *French Sound Structure*. University of Calgary Press.
 8. <a id="src-new2004"></a>New, B., Pallier, C., Brysbaert, M. & Ferrand, L. (2004). *Lexique 2: A new French lexical database*. Behavior Research Methods, Instruments, & Computers 36(3), 516-524. [lexique.org](http://www.lexique.org)
 9. <a id="src-fery2001"></a>Féry, C. (2001). *Markedness, Faithfulness, Vowel Quality and Syllable Structure in French*. Linguistics in Potsdam 15, Rutgers Optimality Archive ROA-474. Cited: 7-8. [roa.rutgers.edu](https://roa.rutgers.edu/files/474-1101/474-1101-FERY-0-0.PDF)
+10. <a id="src-martinon1913"></a>Martinon, P. (1913). *Comment on prononce le français : traité complet de prononciation pratique avec les noms propres et les mots étrangers*. Larousse, Paris. Cited: 53, 59, 62, 93, 123, 129, 130, 131, 145, 151, 161, 164, 171, 213, 214, 226, 234, 235, 236, 239, 240, 241, 284, 285, 328, 331, 345, 346, 347, 348, 349. [archive.org](https://archive.org/details/commentonprononc00martuoft)
+11. <a id="src-larousse_etre"></a>Éditions Larousse (2026). *Dictionnaire de français, s.v. être (Homonymes des variantes de être)*. Larousse, online edition, read 2026-11-26. [larousse.fr](https://www.larousse.fr/dictionnaires/francais/%C3%AAtre/31549)
 <!-- atlas:sources end -->
 
 ### Notes on the sources
@@ -267,9 +269,9 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `fr` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 85500 | 0.0648 | yes |
-| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `fr-FR` | generated | machine-generated | MIT, each file its own | 245718 | 0.0753 | yes |
-| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `fr-FR` | generated | espeak-derived | CC BY 4.0 | 9446 | 0.0848 | no |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `fr` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 85500 | 0.0514 | yes |
+| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `fr-FR` | generated | machine-generated | MIT, each file its own | 245718 | 0.0587 | yes |
+| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `fr-FR` | generated | espeak-derived | CC BY 4.0 | 9446 | 0.0790 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
@@ -358,6 +360,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨oui⟩ | [wi] |  |
 | ⟨ouil⟩ | [uj] | before vowel [ul] · default [uj] · word final [uj] |
 | ⟨ouill⟩ | [uj] |  |
+| ⟨oê⟩ | [wa] |  |
 | ⟨oî⟩ | [wa] |  |
 | ⟨où⟩ | [u] |  |
 | ⟨oû⟩ | [u] |  |
@@ -406,7 +409,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 
 The spec declares no stress rule.
 
-Whole-word exceptions (135): ⟨affenpinscher⟩ [afənpinʃəʁ], ⟨afrikander⟩ [afʁikɑ̃dɛʁ], ⟨afrikaner⟩ [afʁikanɛʁ], ⟨amer⟩ [amɛʁ], ⟨amers⟩ [amɛʁ], ⟨angledozer⟩ [ɑ̃ɡlədozœʁ], ⟨aster⟩ [astɛʁ], ⟨atlas⟩ [atlas], ⟨autobus⟩ [otobys], ⟨blazer⟩ [blazœʁ], ⟨bloomer⟩ [blumœʁ], ⟨boomer⟩ [bumœʁ], ⟨bus⟩ [bys], ⟨bécher⟩ [beʃɛʁ], ⟨cactus⟩ [kaktys], ⟨campus⟩ [kɑ̃pys], ⟨cancer⟩ [kɑ̃sɛʁ], ⟨cancers⟩ [kɑ̃sɛʁ], ⟨casher⟩ [kaʃɛʁ], ⟨cathéter⟩ [katetɛʁ], ⟨ce⟩ [sə], ⟨ces⟩ [se], ⟨cet⟩ [sɛt], ⟨charter⟩ [ʃaʁtɛʁ], ⟨cher⟩ [ʃɛʁ], ⟨chers⟩ [ʃɛʁ], ⟨container⟩ [kɔ̃tɛnɛʁ], ⟨containers⟩ [kɔ̃tɛnɛʁ], ⟨cover⟩ [kɔvœʁ], ⟨cracker⟩ [kʁakœʁ], and 105 more in the spec file.
+Whole-word exceptions (144): ⟨affenpinscher⟩ [afənpinʃəʁ], ⟨afrikander⟩ [afʁikɑ̃dɛʁ], ⟨afrikaner⟩ [afʁikanɛʁ], ⟨amer⟩ [amɛʁ], ⟨amers⟩ [amɛʁ], ⟨angledozer⟩ [ɑ̃ɡlədozœʁ], ⟨aster⟩ [astɛʁ], ⟨atlas⟩ [atlas], ⟨autobus⟩ [otobys], ⟨blazer⟩ [blazœʁ], ⟨bloomer⟩ [blumœʁ], ⟨boomer⟩ [bumœʁ], ⟨bus⟩ [bys], ⟨bécher⟩ [beʃɛʁ], ⟨cactus⟩ [kaktys], ⟨campus⟩ [kɑ̃pys], ⟨cancer⟩ [kɑ̃sɛʁ], ⟨cancers⟩ [kɑ̃sɛʁ], ⟨casher⟩ [kaʃɛʁ], ⟨cathéter⟩ [katetɛʁ], ⟨ce⟩ [sə], ⟨ces⟩ [se], ⟨cet⟩ [sɛt], ⟨charter⟩ [ʃaʁtɛʁ], ⟨cher⟩ [ʃɛʁ], ⟨chers⟩ [ʃɛʁ], ⟨container⟩ [kɔ̃tɛnɛʁ], ⟨containers⟩ [kɔ̃tɛnɛʁ], ⟨cover⟩ [kɔvœʁ], ⟨cracker⟩ [kʁakœʁ], and 114 more in the spec file.
 
 Grammatical endings: ⟨-ent⟩ ∅ ∅, ⟨-er⟩ [e], ⟨-ez⟩ [e], ⟨-stion⟩ [stjɔ̃], ⟨-tial⟩ [sjal], ⟨-tiel⟩ [sjɛl], ⟨-tience⟩ [sjɑ̃s], ⟨-tion⟩ [sjɔ̃].
 <!-- atlas:spelling end -->
@@ -414,7 +417,7 @@ Grammatical endings: ⟨-ent⟩ ∅ ∅, ⟨-er⟩ [e], ⟨-ez⟩ [e], ⟨-stion
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 26 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 54 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -428,12 +431,24 @@ The spec applies 26 allophone rules after the letters are read. The change colum
 | `FR_NASAL_BLOCK_GEMINATE_IEN` | /jɛ̃/ → [jɛ], spelled ⟨ien⟩, before ⟨n⟩ ⟨m⟩ ⟨nn⟩ ⟨mm⟩ | - | [Fouché 1959](#src-fouche1959), [Tranel 1987](#src-tranel1987), [Walker 2001](#src-walker2001) |
 | `FR_NASAL_BLOCK_PREVOCALIC_OIN` | /wɛ̃/ → [wɛn], before a vowel, spelled ⟨oin⟩ | - | [Fouché 1959](#src-fouche1959), [Tranel 1987](#src-tranel1987), [Walker 2001](#src-walker2001) |
 | `FR_NASAL_BLOCK_GEMINATE_OIN` | /wɛ̃/ → [wɛ], spelled ⟨oin⟩, before ⟨n⟩ ⟨m⟩ ⟨nn⟩ ⟨mm⟩ | - | [Fouché 1959](#src-fouche1959), [Tranel 1987](#src-tranel1987), [Walker 2001](#src-walker2001) |
+| `FR_ENT_MUTE_AFTER_AI_OI` | /ə/ → ∅, spelled ⟨e⟩, after ⟨ai⟩ ⟨oi⟩, before ⟨n⟩, with more context in the spec | ⟨parlaient⟩ [paʁlɛ] | [Martinon 1913](#src-martinon1913) |
+| `FR_UM_FINAL_LATIN` | /y/ → [ɔ], spelled ⟨u⟩, before ⟨m⟩, with more context in the spec | ⟨forum⟩ [fɔʁɔm] | [Martinon 1913](#src-martinon1913) |
+| `FR_UM_FINAL_LATIN_PLURAL` | /y/ → [ɔ], spelled ⟨u⟩, before ⟨m⟩, with more context in the spec | ⟨albums⟩ [albɔm] | [Martinon 1913](#src-martinon1913) |
+| `FR_ING_FINAL_ORAL_I` | /i/ → [i], spelled ⟨i⟩, before ⟨n⟩, with more context in the spec | ⟨parking⟩ [paʁkiŋ] | [Fougeron 1993](#src-fougeron_smith1993), [Martinon 1913](#src-martinon1913) |
 | `FR_NASAL_a` | /a/ → [ɑ̃], before a coda nasal | - | - |
 | `FR_NASAL_ə` | /ə/ → [ɑ̃], before a coda nasal | - | - |
 | `FR_NASAL_i` | /i/ → [ɛ̃], before a coda nasal | - | - |
 | `FR_NASAL_ɔ` | /ɔ/ → [ɔ̃], before a coda nasal | - | - |
 | `FR_NASAL_y` | /y/ → [œ̃], before a coda nasal | - | - |
+| `FR_UM_FINAL_M` | /m/ → [m], word-finally, after ⟨u⟩ | ⟨album⟩ [albɔm] | [Martinon 1913](#src-martinon1913) |
+| `FR_ING_FINAL_VELAR_NASAL` | /n/ → [ŋ], after ⟨i⟩, before ⟨g⟩, with more context in the spec | ⟨parking⟩ [paʁkiŋ] | [Fougeron 1993](#src-fougeron_smith1993), [Martinon 1913](#src-martinon1913) |
 | `FR_NASAL_ABSORB` | /n m/ → ∅, in the coda, after a vowel | - | - |
+| `FR_E_MUTE_AFTER_SOFT_G` | /ə/ → ∅, before a back vowel, spelled ⟨e⟩, after ⟨g⟩ ⟨j⟩ | ⟨mangeait⟩ [mɑ̃ʒɛ] | [Martinon 1913](#src-martinon1913) |
+| `FR_IED_CLOSE_MID` | /ə/ → [e], spelled ⟨e⟩, after ⟨i⟩, before ⟨d⟩, with more context in the spec | ⟨pied⟩ [pje] | [Martinon 1913](#src-martinon1913) |
+| `FR_IED_CLOSE_MID_PLURAL` | /ə/ → [e], spelled ⟨e⟩, after ⟨i⟩, before ⟨d⟩, with more context in the spec | ⟨pieds⟩ [pje] | [Martinon 1913](#src-martinon1913) |
+| `FR_E_MUTE_PREFIX_RE_SS` | /ə/ → [ə], spelled ⟨e⟩, after ⟨r⟩, before ⟨ss⟩, with more context in the spec | ⟨ressembler⟩ [ʁəsɑ̃ble] | [Martinon 1913](#src-martinon1913) |
+| `FR_E_BEFORE_DOUBLED_NONFINAL` | /ə/ → [e], spelled ⟨e⟩, before ⟨ss⟩ ⟨ll⟩ ⟨tt⟩ ⟨rr⟩ ⟨ff⟩ ⟨pp⟩ ⟨cc⟩, with more context in the spec | ⟨message⟩ [mesaʒ] | [Martinon 1913](#src-martinon1913) |
+| `FR_E_BEFORE_DOUBLED_FINAL` | /ə/ → [ɛ], spelled ⟨e⟩, before ⟨ss⟩ ⟨ff⟩ ⟨pp⟩ ⟨cc⟩, with more context in the spec | ⟨messe⟩ [mɛs] | [Martinon 1913](#src-martinon1913) |
 | `FR_E_CLOSED_MULTIGRAPH` | /ə/ → [ɛ], before a consonant cluster, spelled ⟨e⟩ | ⟨Abel⟩ [abɛl] | [Tranel 1987](#src-tranel1987), [Walker 2001](#src-walker2001) |
 | `FR_E_CLOSED_CLUSTER` | /ə/ → [ɛ], before a consonant, spelled ⟨e⟩, with more context in the spec | ⟨Abel⟩ [abɛl] | [Tranel 1987](#src-tranel1987) |
 | `FR_E_CLOSED_FINAL` | /ə/ → [ɛ], before a consonant, spelled ⟨e⟩, with more context in the spec | ⟨Abel⟩ [abɛl] | [Tranel 1987](#src-tranel1987) |
@@ -444,11 +459,31 @@ The spec applies 26 allophone rules after the letters are read. The change colum
 | `FR_C_HARD_BEFORE_OEU` | /s/ → [k], spelled ⟨c⟩, before ⟨œu⟩ | ⟨cœur⟩ [kœʁ] | - |
 | `FR_AI_FINAL_CLOSE_MID` | /ɛ/ → [e], before a word boundary, spelled ⟨ai⟩ | ⟨j'ai⟩ [ʒe] | [Fouché 1959](#src-fouche1959), [Walker 2001](#src-walker2001) |
 | `FR_E_BEFORE_DOUBLED_CONSONANT` | /ə/ → [ɛ], spelled ⟨e⟩, before ⟨ll⟩ ⟨tt⟩ ⟨rr⟩, with more context in the spec | ⟨elle⟩ [ɛl] | [Féry 2001](#src-fery2001), New et al. 2004 |
+| `FR_X_VOICED_INITIAL_EX` | /ks/ → [ɡz], before a vowel, spelled ⟨x⟩, after ⟨e⟩, with more context in the spec | ⟨exemple⟩ [ɛɡzɑ̃pl] | [Martinon 1913](#src-martinon1913) |
+| `FR_X_VOICED_INITIAL_EX_H` | /ks/ → [ɡz], spelled ⟨x⟩, after ⟨e⟩, before ⟨h⟩, with more context in the spec | ⟨exhiber⟩ [ɛɡzibe] | [Martinon 1913](#src-martinon1913) |
+| `FR_X_VOICED_PREFIXED_EX` | /ks/ → [ɡz], before a vowel, spelled ⟨x⟩, after ⟨e⟩, with more context in the spec | ⟨coexister⟩ [kɔɛɡziste] | [Martinon 1913](#src-martinon1913) |
+| `FR_X_Z_ORDINAL` | /ks/ → [z], spelled ⟨x⟩, before ⟨i⟩, with more context in the spec | ⟨deuxième⟩ [døzjɛm] | [Martinon 1913](#src-martinon1913) |
+| `FR_G_MUTE_BEFORE_T` | /ɡ/ → ∅, spelled ⟨g⟩, before ⟨t⟩ | ⟨vingt⟩ [vɛ̃] | [Martinon 1913](#src-martinon1913) |
+| `FR_G_MUTE_FINAL_AFTER_NASAL` | /ɡ/ → ∅, word-finally, spelled ⟨g⟩, after ⟨n⟩ ⟨ain⟩ ⟨ein⟩ ⟨oin⟩ | ⟨sang⟩ [sɑ̃] | [Martinon 1913](#src-martinon1913) |
+| `FR_CH_HARD_BEFORE_SONORANT` | /ʃ/ → [k], before [l] [ʁ] [m] [n], spelled ⟨ch⟩ | ⟨chrétien⟩ [kʁetjɛ̃] | [Martinon 1913](#src-martinon1913) |
+| `FR_P_MUTE_FINAL_MPT` | /p/ → ∅, spelled ⟨p⟩, after ⟨m⟩, before ⟨t⟩, with more context in the spec | ⟨prompt⟩ [pʁɔ̃] | [Martinon 1913](#src-martinon1913) |
+| `FR_P_MUTE_COMPT` | /p/ → ∅, spelled ⟨p⟩, after ⟨m⟩, before ⟨t⟩, with more context in the spec | ⟨compte⟩ [kɔ̃t] | [Martinon 1913](#src-martinon1913) |
+| `FR_ING_FINAL_G_MUTE` | /ɡ/ → ∅, before a word boundary, spelled ⟨g⟩, after ⟨n⟩, with more context in the spec | ⟨parking⟩ [paʁkiŋ] | [Fougeron 1993](#src-fougeron_smith1993) |
+| `FR_EIL_AFTER_GU` | /ɛj/ → [œj], spelled ⟨eil⟩ ⟨eill⟩, after ⟨gu⟩ | ⟨orgueil⟩ [ɔʁɡœj] | [Martinon 1913](#src-martinon1913) |
+| `FR_GU_BEFORE_TREMA_E` | /ɡ/ → [ɡy], spelled ⟨gu⟩, before ⟨ë⟩ | ⟨ambiguë⟩ [ɑ̃biɡy] | [Martinon 1913](#src-martinon1913) |
+| `FR_TREMA_E_MUTE_AFTER_GU` | /ɛ/ → ∅, spelled ⟨ë⟩, after ⟨gu⟩ | - | [Martinon 1913](#src-martinon1913) |
+| `FR_G_HARD_BEFORE_TREMA_U` | /ʒ/ → [ɡ], spelled ⟨g⟩, before ⟨ü⟩ | ⟨ambigüe⟩ [ɑ̃biɡy] | [Martinon 1913](#src-martinon1913) |
+| `FR_C_MUTE_FINAL_AFTER_NASAL` | /k/ → ∅, word-finally, spelled ⟨c⟩, after ⟨n⟩ ⟨ain⟩ ⟨ein⟩ ⟨oin⟩ | ⟨blanc⟩ [blɑ̃] | [Martinon 1913](#src-martinon1913) |
+| `FR_X_S_AFTER_OI` | /ks/ → [s], before a vowel, spelled ⟨x⟩, after ⟨oi⟩ | ⟨x⟩ [ks] | [Martinon 1913](#src-martinon1913) |
 
-The spec applies 6 rules across a word boundary. The contexts are regular expressions on the IPA of the two words.
+The spec applies 10 rules across a word boundary. The contexts are regular expressions on the IPA of the two words.
 
 | Rule | End of word | Start of next word | Change | Example | Cited |
 |:--|:--|:--|:--|:--|:--|
+| `FR_NEUF_V_BEFORE_ANS_HEURES` | `^nœf$` | `^(?:ɑ̃\|œʁ)$` | left [nœv‿] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_DIX_Z_BEFORE_HUIT_NEUF` | `^dis$` | `^(?:ɥit\|nœf)$` | left [diz] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_NUMERAL_MUTE_BEFORE_CONSONANT` | `^(ɥi\|si\|di)[ts]$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|sɛt)$\|ʒɥ)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | [Martinon 1913](#src-martinon1913) |
+| `FR_NUMERAL_Z_BEFORE_VOWEL` | `^(si\|di)s$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_Z` | `z$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | - |
 | `FR_LIAISON_T` | `t$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [t‿] | - | - |
 | `FR_LIAISON_N` | `n$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [n‿] | - | - |
