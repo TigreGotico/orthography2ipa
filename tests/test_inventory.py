@@ -383,17 +383,8 @@ KNOWN_DEAD_PREFIXES = {"ta": ("TA_GEM",), "ml": ("TA_GEM",),
                        "anr": ("MR_",), "dcc": ("MR_",),
                        # crs inherits the fr-FR rule set but has no schwa
                        # slot to match (its parent's open-e rule for ⟨ell⟩,
-                       # ⟨ett⟩, ⟨err⟩ has nothing to rewrite there). The same
-                       # holds for the French rules that delete or close a
-                       # schwa (⟨-aient⟩, the ⟨e⟩ after soft ⟨g⟩, ⟨-ied⟩), and
-                       # its tables have no /ks/ unit for the ⟨x⟩ rules and no
-                       # /ɛj/ for ⟨gueil⟩.
-                       "crs": ("FR_E_BEFORE_DOUBLED_CONSONANT",
-                               "FR_ENT_MUTE_AFTER_AI_OI",
-                               "FR_E_MUTE_AFTER_SOFT_G", "FR_IED_CLOSE_MID",
-                               "FR_X_VOICED_", "FR_X_Z_ORDINAL",
-                               "FR_X_S_AFTER_OI",
-                               "FR_EIL_AFTER_GU")}
+                       # ⟨ett⟩, ⟨err⟩ has nothing to rewrite there).
+                       "crs": ("FR_E_BEFORE_DOUBLED_CONSONANT",)}
 
 
 @pytest.mark.parametrize("code", ALL_CODES)
