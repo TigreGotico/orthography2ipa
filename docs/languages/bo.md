@@ -71,7 +71,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `bo` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 1564 | 0.3871 | yes |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `bo` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 1564 | 0.3860 | yes |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
