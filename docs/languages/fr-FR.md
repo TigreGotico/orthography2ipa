@@ -176,6 +176,7 @@ Some frequent words read wrong when each letter takes its default value. The spe
 | `FR_UM_FINAL_*` | A final ⟨um⟩ is [ɔm]; ⟨parfum⟩ is an entry | ⟨forum⟩ `fɔʁɔm`, ⟨album⟩ `albɔm` | Martinon 1913: 123, 130 |
 | `FR_ING_FINAL_*` | A final ⟨ing⟩ is [iŋ] | ⟨parking⟩ `paʁkiŋ` | Fougeron & Smith 1993: 74-75; Martinon 1913: 145 |
 | `FR_EIL_AFTER_GU`, `FR_GU_BEFORE_TREMA_E`, `FR_IED_CLOSE_MID` | ⟨gueil⟩ is [ɡœj], ⟨guë⟩ is [ɡy], a final ⟨ied⟩ is [je] | ⟨orgueil⟩ `ɔʁɡœj`, ⟨ambiguë⟩ `ɑ̃biɡy`, ⟨pied⟩ `pje` | Martinon 1913: 53, 93, 241 |
+| `FR_E_BEFORE_DOUBLED_*`, `FR_E_MUTE_PREFIX_RE_SS` | ⟨e⟩ before a doubled consonant letter is [e] before the last syllable and [ɛ] in it, except in re- before ⟨ss⟩ and in the entries ⟨dessus⟩ and ⟨dessous⟩ | ⟨message⟩ `mesaʒ`, ⟨messe⟩ `mɛs`, ⟨ressembler⟩ `ʁəsɑ̃ble` | Martinon 1913: 59, 151, 171 |
 | Entries `huit`, `six`, `dix` and `FR_NUMERAL_*` | The numerals keep their final consonant, drop it before a consonant and link with [z] before a vowel | ⟨huit⟩ `ɥit`, ⟨huit jours⟩ `ɥi ʒuʁ`, ⟨six ans⟩ `siz‿ ɑ̃` | Martinon 1913: 328, 345 |
 
 No noun or adjective ends in ⟨-aient⟩ or ⟨-oient⟩, so this rule needs no part of speech. Bare ⟨-ent⟩ stays ambiguous, as the section on that ending says. After the prefix ⟨in-⟩ the start of the word is too far back for a rule, so ⟨inexact⟩ keeps [ks]. ⟨Hexagone⟩ keeps [ks] too. The letters ⟨mpt⟩ do not decide the ⟨p⟩: ⟨somptueux⟩, ⟨symptôme⟩ and ⟨présomption⟩ keep it. So `FR_P_MUTE_COMPT` names the family's spelling ⟨compt⟩ with `word_contains_grapheme`. The plural ⟨parkings⟩ is out of reach of the rule conditions and keeps the nasal vowel. The sandhi rule cannot see whether the next word is a plural, so ⟨le huit mai⟩ reads `lə ɥi me` and ⟨dix-sept⟩ reads `di sɛt`, the rapid form that Martinon (1913: 346) also gives.
@@ -219,7 +220,6 @@ Four regional specs inherit this spec and state only what a source states: `fr-C
 | No stress marks | ⟨chose⟩ `ʃoz` | Analyses differ on whether French has lexical stress (see [Stress marks](#stress-marks)), so this spec has no `stress` block |
 | ⟨neuf⟩ takes one reading, and the numeral sandhi cannot see a plural | ⟨neuf ans⟩ `nœf ɑ̃`, ⟨le huit mai⟩ `lə ɥi me` | The final consonant depends on the next word and on its number |
 | A digit is dropped | ⟨3 minutes⟩ `minyt` | Numbers are not text for this library. The engine drops a character that it cannot map and raises an `UnmappedGraphemeWarning`. Pass `on_unmapped="raise"` to stop instead. Spell the number out first |
-| ⟨ss⟩ after ⟨e⟩ is not read as open | ⟨dessus⟩ `dəsy` is right, ⟨messe⟩ `məs` is not | The prefixes ⟨de-⟩ and ⟨re-⟩ end before ⟨ss⟩ with a schwa, so a rule on ⟨ess⟩ would be right for only about half of the running words |
 | Aspirate-h does not block liaison or elision | ⟨le héros⟩ `lə eʁo` | ⟨h⟩ maps to nothing for both mute and aspirate h, and the spec has no aspirate-h word list |
 | ⟨e⟩ before a doubled nasal letter reads as schwa | ⟨femme⟩ `fəm`, ⟨ennemi⟩ `ənəmi` | The `FR_NASAL_BLOCK_GEMINATE_*` rules cover only ⟨ain aim ein ien oin⟩ |
 
