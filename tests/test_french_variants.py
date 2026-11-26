@@ -178,7 +178,7 @@ def test_an_extension_or_variant_keeps_the_region(tag, code):
 #: The whole-word entries a variant states over those of fr-FR: vingt with
 #: its final [t] (PFC consonant page II d) 4); Avanzi 2016, 2024).
 OWN_EXCEPTIONS = {
-    "fr-BE": {"vingt": "vɛ̃t"},
+    "fr-BE": {"vingt": "vɛ̃t"}, "fr-CH": {"vingt": "vɛ̃t"},
 }
 
 
@@ -212,12 +212,12 @@ def test_the_assistant_sentences_differ_from_fr_fr_only_at_a_cited_feature():
             if _say(text, tag) != _say(text, "fr-FR"):
                 found.add(text)
     # the sentences hold no ⟨â⟩; fr-BE differs through ⟨ui⟩ [wi] and a long
-    # vowel before a final mute ⟨e⟩, fr-CH only through ⟨ê⟩
+    # vowel before a final mute ⟨e⟩, fr-CH through ⟨ê⟩ and that long vowel
     assert diffs["fr-CI"] == set()
     for text in diffs["fr-BE"]:
         assert "ui" in text or "ée " in text or "ê" in text, text
     for text in diffs["fr-CH"]:
-        assert "ê" in text
+        assert "ê" in text or "ée " in text, text
 
 
 def test_a_laurentian_difference_is_always_a_cited_allophone():

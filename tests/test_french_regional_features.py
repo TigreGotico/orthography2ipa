@@ -49,7 +49,7 @@ def test_belgian_french_has_w_for_the_glide_of_ui(text, be, ch):
     assert _say(text, "fr-CH") == ch
 
 
-@pytest.mark.parametrize("tag", ["fr-BE"])
+@pytest.mark.parametrize("tag", ["fr-BE", "fr-CH"])
 @pytest.mark.parametrize("text, expected", [
     ("aimée", "ɛmeː"),             # joué ~ jouée (PFC e-caduc page)
     ("jouée", "ʒueː"),
@@ -67,7 +67,7 @@ def test_a_vowel_before_a_final_mute_e_is_long(tag, text, expected):
 
 
 @pytest.mark.parametrize("tag, expected", [
-    ("fr-BE", "vɛ̃t"),
+    ("fr-BE", "vɛ̃t"), ("fr-CH", "vɛ̃t"),
 ])
 def test_vingt_keeps_its_final_t(tag, expected):
     # PFC consonant page II d) 4); Avanzi 2016 (map); Avanzi 2024: 117
