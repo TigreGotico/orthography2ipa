@@ -108,6 +108,7 @@ syllable.closed_hiatus: object
 syllable.closed_hiatus.pairs: list of s
 syllable.closed_hiatus.onsets: list of s
 syllable.closed_hiatus.codas: list of s
+syllable.closed_hiatus.atonic_onsets: list of s
 syllable.closed_hiatus.multi_keys: list of s
 syllable.final_diphthongs: object
 syllable.final_diphthongs.diphthongs: list of s
@@ -800,7 +801,7 @@ At runtime the splitter segments the consonant run into units by trie match, and
 
 #### 3.7.4 Hiatus
 
-`hiatus_positions` has two steps. First it collects candidate cut points: `_closed_hiatus_candidates` tests letter pairs against `closed_hiatus.pairs`, then the rest of the word against `onsets` and `codas`, and `_final_diphthong_candidates` tests the word end against `final_diphthongs`. Second, it filters them by stress: it splits the word with the written splitter, using the candidates as hiatus cuts, runs the decision of 3.8.1 on that split, and keeps only the candidate that opens the stressed syllable.
+`hiatus_positions` has two steps. First it collects candidate cut points: `_closed_hiatus_candidates` tests letter pairs against `closed_hiatus.pairs`, then the rest of the word against `onsets`, `codas` and `atonic_onsets`, and `_final_diphthong_candidates` tests the word end against `final_diphthongs`. Second, it filters them by stress: it splits the word with the written splitter, using the candidates as hiatus cuts, runs the decision of 3.8.1 on that split, and keeps the candidate that opens the stressed syllable. A candidate found by `atonic_onsets` stays also where its vowel is atonic.
 
 So tokenization depends on the stress decision. The tokenizer calls the filter through `_hiatus_prefix` when it meets a multi-letter vowel key. In the stage order this is a nested call: S4 calls the S5 splitter and decision on the word for this one filter, before S5 runs for the word. The interpreter caches the result per word, as `hiatus_by_word` does in the rules-engine code. The tables are strings over the lowercased word, and the vowel tests read char bit `orth_vowel`.
 

@@ -439,8 +439,13 @@ class ClosedHiatus:
         Consonant letters that split the pair when they close its syllable:
         no vowel letter follows them, and they do not start a longer
         grapheme of the spec (⟨lh rr⟩ are onsets of the next syllable).
+    atonic_onsets : Tuple[str, ...]
+        Consonant graphemes that split the pair wherever they follow it, also
+        where the split-off vowel is atonic. Portuguese ⟨nh⟩: the hiatus of
+        ra-i-nha stays in em-ba-i-nhar (Infopédia ẽbɐiˈɲar).
 
-    The split holds only where the split-off vowel is the stressed one, as
+    Except after an ``atonic_onsets`` grapheme, the split holds only where
+    the split-off vowel is the stressed one, as
     the stress rules place it over the split syllables. Base X, 2.º is about
     tonic vowels, and the spelling does not tell an atonic ⟨i u⟩ in hiatus
     from a diphthong (Base XIV, 1.º: arruinar, faiscar).
@@ -448,6 +453,7 @@ class ClosedHiatus:
     pairs: Tuple[str, ...] = ()
     onsets: Tuple[str, ...] = ()
     codas: Tuple[str, ...] = ()
+    atonic_onsets: Tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)

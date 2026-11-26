@@ -335,6 +335,7 @@ class ClosedHiatusModel(_Strict):
     pairs: List[str] = Field(min_length=1)
     onsets: List[str] = Field(default_factory=list)
     codas: List[str] = Field(default_factory=list)
+    atonic_onsets: List[str] = Field(default_factory=list)
 
 
 class FinalDiphthongsModel(_Strict):
