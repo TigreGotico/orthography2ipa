@@ -555,7 +555,8 @@ def load_json_spec(code: str) -> LanguageSpec:
             closed_hiatus=(ClosedHiatus(
                 pairs=tuple(raw_hiatus.get("pairs", ())),
                 onsets=tuple(raw_hiatus.get("onsets", ())),
-                codas=tuple(raw_hiatus.get("codas", ())))
+                codas=tuple(raw_hiatus.get("codas", ())),
+                atonic_onsets=tuple(raw_hiatus.get("atonic_onsets", ())))
                 if raw_hiatus else None),
             final_diphthongs=(FinalDiphthongs(
                 diphthongs=tuple(raw_final.get("diphthongs", ())),

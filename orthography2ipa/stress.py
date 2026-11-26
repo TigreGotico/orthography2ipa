@@ -1179,8 +1179,14 @@ def hiatus_positions(word: str, spec: LanguageSpec) -> FrozenSet[int]:
     if rules is None:
         return frozenset()
     found: List[int] = []
+    atonic: List[int] = []
     if rules.closed_hiatus is not None:
         found += _closed_hiatus_candidates(word, rules, spec.graphemes)
+        atonic = [k for k in range(1, len(word))
+                  if word[k - 1:k + 1].lower() in rules.closed_hiatus.pairs
+                  and any(word[k + 1:].lower().startswith(o)
+                          for o in rules.closed_hiatus.atonic_onsets)]
+        found += [k for k in atonic if k not in found]
     if rules.final_diphthongs is not None:
         found += _final_diphthong_candidates(word, rules)
     if not found:
@@ -1188,7 +1194,7 @@ def hiatus_positions(word: str, spec: LanguageSpec) -> FrozenSet[int]:
     sylls = _bundled_syllables(word, spec, rules.diphthongs, frozenset(found))
     stressed = detect_stress(word, rules, syllables=sylls)
     start = sum(len(syll) for syll in sylls[:stressed])
-    return frozenset(k for k in found if k == start)
+    return frozenset(k for k in found if k == start or k in atonic)
 
 
 def _spec_for(lang: str) -> Optional[LanguageSpec]:

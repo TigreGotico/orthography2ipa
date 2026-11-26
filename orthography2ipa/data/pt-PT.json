@@ -2779,7 +2779,7 @@
       "üí"
     ],
     "ipa_diphthongs": [],
-    "closed_hiatus": {"pairs": ["ai", "au", "ei", "eu", "iu", "oi", "ui"], "onsets": ["nh"], "codas": ["l", "m", "n", "r", "z"]},
+    "closed_hiatus": {"pairs": ["ai", "au", "ei", "eu", "iu", "oi", "ui"], "atonic_onsets": ["nh"], "codas": ["l", "m", "n", "r", "z"]},
     "final_diphthongs": {"diphthongs": ["iu", "ui"], "finals": ["s"]},
     "tonic_after_diphthong": ["i", "u", "í", "ú"]
   },

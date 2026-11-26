@@ -1410,6 +1410,7 @@ class Interpreter:
         if self.stress is None:
             return frozenset()
         found: List[int] = []
+        atonic: List[int] = []
         lowered = self.lower(word)
         rule = self.syll.get("closed_hiatus")
         if rule:
@@ -1422,6 +1423,9 @@ class Interpreter:
                         and not (len(rest) > 1 and self._c(rest[1], "orth_vowel"))
                         and not any(rest.startswith(g) for g in rule["multi_keys"])):
                     found.append(k)
+                elif any(rest.startswith(o) for o in rule["atonic_onsets"]):
+                    found.append(k)
+                    atonic.append(k)
         rule = self.syll.get("final_diphthongs")
         if rule:
             for diphthong in rule["diphthongs"]:
@@ -1434,7 +1438,7 @@ class Interpreter:
         sylls = self._bundled(word, frozenset(found))
         stressed = self.detect_stress(word, sylls)
         start = sum(len(s) for s in sylls[:stressed])
-        return frozenset(k for k in found if k == start)
+        return frozenset(k for k in found if k == start or k in atonic)
 
     def secondary_positions(self, n: int, stressed: Optional[int]) -> FrozenSet[int]:
         if not self.stress["alternating"] or stressed is None or stressed < 0 or n < 3:

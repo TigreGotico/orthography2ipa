@@ -39,7 +39,7 @@ LAYOUT = O(
     beam=O(tilde=S),
     allophone_map=L(("pair", S, L(S))),
     syllable=O(diphthongs=L(S), onset_graphemes=SSET, semivowels=L(L(S)),
-               closed_hiatus=O(pairs=L(S), onsets=L(S), codas=L(S), multi_keys=L(S)),
+               closed_hiatus=O(pairs=L(S), onsets=L(S), codas=L(S), atonic_onsets=L(S), multi_keys=L(S)),
                final_diphthongs=O(diphthongs=L(S), finals=L(S)), vowel_letters=SSET, silent_tail=SSET,
                onsets=O(max=I, units=L(S), velar=SSET, table=L(L(S)))),
     stress=O(mark=S, secondary_mark=S, alternating=I, prefixes=L(S), schwa_rimes=SSET, coda_liquid=I, accent2=O(mark=S, finals=SSET), iambic=O(max_onset=I), marked=SSET, final=L(S), penult=L(S), antepenult=L(S),
