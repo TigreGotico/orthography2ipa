@@ -140,3 +140,28 @@ def test_final_g_after_a_nasal_is_mute(text, expected):
 ])
 def test_g_before_a_vowel_letter_is_not_final(text, expected):
     assert _t(text) == expected
+
+
+# Martinon (1913: 226): before a consonant ⟨ch⟩ is learned and keeps the
+# velar sound; the consonants are l, m, n, r (chlore, technique, chrétien).
+@pytest.mark.parametrize("text, expected", [
+    ("chrétien", "kʁetjɛ̃"), ("chronologie", "kʁɔnɔlɔʒi"), ("chlore", "klɔʁ"),
+    ("technique", "tɛknik"), ("chrome", "kʁɔm"),
+])
+def test_ch_before_l_m_n_r_is_k(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("chat", "ʃa"), ("chef", "ʃɛf"), ("chœur", "ʃœʁ"),
+])
+def test_ch_before_a_vowel_stays_sh(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.xfail(strict=True, raises=AssertionError,
+                   reason="German and Slavic loans keep [ʃ] before a sonorant")
+def test_chleuh_keeps_sh():
+    # chleuh [ʃlø] (wikipron fr) is a loan, outside Martinon's learned words;
+    # the rule reads it [klø], like kalachnikov and punchline.
+    assert _t("chleuh") == "ʃlø"
