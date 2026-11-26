@@ -203,6 +203,15 @@ OWN_EXCEPTIONS = {
 }
 
 
+#: fr-FR numeral sandhi rules that fr-CA restates by id, so that the high
+#: vowel left in an open syllable is tense (Hall 2016: 7). On a base
+#: without them they are fr-CA's own, inert rules.
+SANDHI_RESTATED = {
+    "fr-CA": {"FR_DIX_Z_BEFORE_HUIT_NEUF", "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
+              "FR_HUIT_MUTE_BEFORE_CONSONANT", "FR_NUMERAL_Z_BEFORE_VOWEL",
+              "FR_NEUF_V_BEFORE_HEURES"},
+    "fr-FR-x-midi": {"FR_NEUF_V_BEFORE_HEURES"},
+}
 #: The sandhi rules a variant adds to those of fr-FR.
 OWN_SANDHI = {
     "fr-BE": {"FR_BE_HUIT_MUTE_BEFORE_CONSONANT", "FR_BE_DIX_Z_BEFORE_HUIT"},
@@ -219,11 +228,13 @@ def test_a_variant_inherits_fr_fr(tag):
     assert spec.word_internal_apostrophe is True
     assert spec.word_exceptions == {**base.word_exceptions,
                                     **OWN_EXCEPTIONS.get(tag, {})}
+    restated = SANDHI_RESTATED.get(tag, set())
     own_sandhi = {r.id for r in spec.sandhi_rules} - {
-        r.id for r in base.sandhi_rules}
+        r.id for r in base.sandhi_rules} - restated
     assert own_sandhi == OWN_SANDHI.get(tag, set())
-    assert [r for r in spec.sandhi_rules if r.id not in own_sandhi] == list(
-        base.sandhi_rules)
+    assert [r for r in spec.sandhi_rules
+            if r.id not in own_sandhi | restated] == [
+        r for r in base.sandhi_rules if r.id not in restated]
 
 
 @pytest.mark.parametrize("tag, words", [

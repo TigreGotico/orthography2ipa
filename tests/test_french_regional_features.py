@@ -294,3 +294,9 @@ def test_belgian_huit_drops_its_t_before_a_consonant():
     # fr-FR mutes the [t] of huit before a consonant; the Belgian [wit]
     # follows it (Bardiaux et al. 2016: 41 for the [w])
     assert _say("huit livres", "fr-BE").split()[0] == "wi"
+
+
+def test_quebec_high_vowel_is_tense_once_the_numeral_consonant_falls():
+    # Hall 2016: 7, ex. (11): a high vowel in an open final syllable is tense
+    assert _say("dix livres", "fr-CA").split()[0] == "d͡zi"
+    assert _say("huit livres", "fr-CA").split()[0] == "ɥi"
