@@ -15,7 +15,6 @@
     ]
   },
   "inherits": "eu",
-  "glottolog_code": null,
   "ancestors": [
     {
       "code": "eu",
@@ -103,7 +102,6 @@
     "end_year": null
   },
   "iso639_3": "eus",
-  "wikidata_qid": "Q3125314",
   "location": {
     "latitude": 42.816667,
     "longitude": -1.65,

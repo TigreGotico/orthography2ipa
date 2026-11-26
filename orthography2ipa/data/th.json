@@ -1,7 +1,6 @@
 {
   "code": "th",
   "name": "Thai",
-  "glottolog_code": "thai1261",
   "script": "Thai",
   "script_type": "abugida",
   "inherent_vowel": "o",
@@ -866,7 +865,6 @@
     "start_year": 1283,
     "end_year": null
   },
-  "wikidata_qid": "Q9217",
   "phoible_id": "thai1261",
   "wals_code": "tha",
   "location": {

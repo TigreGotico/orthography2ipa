@@ -38,7 +38,6 @@
   ],
   "notes": "Research. Pama-Nyungan (Yuwaalaraay-Gamilaraay) language of New South Wales, Australia. The single stop series is spelled with voiced letters (b d g, dental dh, palatal dj); rr is the alveolar trill and single r the retroflex approximant. Long vowels are written by doubling (aa ii uu). Any predictable stop-voicing allophony is not encoded. The dh/dj values follow standard Australianist digraph conventions and some Gamilaraay materials instead spell the stops p/t/k; the language has no separate retroflex stop/nasal/lateral series. Grapheme table checked against Austin (1993): no discrepancy found. Stress: Austin (1993) documents Gamilaraay stress as falling on the initial syllable of the word (typical of Pama-Nyungan languages generally), with no lexical contrast; `default_position=1` encodes this directly.",
   "iso639_3": "kld",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "kld_glottolog",

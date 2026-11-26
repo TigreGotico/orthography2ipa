@@ -199,8 +199,6 @@
     ]
   },
   "iso639_3": "mos",
-  "glottolog_code": "moss1236",
-  "wikidata_qid": "Q36096",
   "notes": "Mooré (Moore, Mossi), the principal Gur / Oti-Volta language of Burkina Faso. INPUT CONTRACT: text is assumed to be in the official Burkinabè national-alphabet Mooré orthography: a ʼ b d e ɛ f g h i ɩ k l m n o p r s t u ʋ v w y z, with nasal vowels written with a TILDE (ã ẽ ĩ õ ũ). The alternative Goulsse script and the ad-hoc French-based spellings found in place names are out of scope. KEY FEATURES: (1) The letter-to-sound relation is close to one-to-one: ⟨ɩ⟩ = [ɪ], ⟨ʋ⟩ = [ʊ], ⟨y⟩ = /j/, ⟨ʼ⟩ = glottal stop [ʔ]; there is no ⟨ɔ⟩ in the alphabet and no ⟨c j q x⟩. (2) VOWELS: /i ɪ e o u ʊ a/ plus ⟨ɛ⟩; all vowels except /e/ and /o/ can be nasalised, and all vowels (oral and nasal) can be short or long (length written by doubling). (3) /j/ (⟨y⟩) is realised as the palatal nasal [ɲ] before nasal vowels — listed as an allophone. (4) TONE: Mooré is a TONE LANGUAGE. The standard orthography DOES NOT MARK TONE, so tone is NOT RECOVERABLE from orthographic input and is not modelled here.",
   "sources": [
     {

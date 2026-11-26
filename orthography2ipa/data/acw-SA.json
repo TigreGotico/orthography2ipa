@@ -418,7 +418,6 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "hija1235",
   "iso639_3": "acw",
   "allophone_rules": [
     {
@@ -438,7 +437,6 @@
       "notes": "Urban Hejazi monophthongization (Omar 1975; Abdoh 2010): the Classical diphthong /aw/ is realised [oː], e.g. yawm → [joːm]."
     }
   ],
-  "wikidata_qid": "Q56608",
   "wals_code": "arh",
   "location": {
     "latitude": 22.8346,

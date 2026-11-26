@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "stub",
   "iso639_3": "aat",
-  "glottolog_code": "arva1236",
   "timespan": {
     "start_year": 1200,
     "end_year": null
@@ -55,7 +54,6 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Arvanitika"
   ],
-  "wikidata_qid": "Q35870",
   "location": {
     "latitude": 38.0,
     "longitude": 23.5,

@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "nrf",
-  "glottolog_code": "norm1245",
   "timespan": {
     "start_year": 911,
     "end_year": null
@@ -653,7 +652,6 @@
     "https://en.wikipedia.org/wiki/J%C3%A8rriais",
     "https://fr.wikipedia.org/wiki/Normand"
   ],
-  "wikidata_qid": "Q33850",
   "location": {
     "latitude": 49.081,
     "longitude": -0.6591,

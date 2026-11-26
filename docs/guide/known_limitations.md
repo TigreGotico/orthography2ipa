@@ -111,4 +111,4 @@ The aperture positions let a spec choose a vowel by whether its syllable is open
 | Boundaries inside compounds | The word-level rules cannot see a boundary inside a compound. French intervocalic ⟨s⟩ in learned compounds (*pléonasme*, *œcuménisme*) goes wrong in both directions. Dutch devoicing at the boundary does not fire: *opvanghuis* gives `ˈoupvɑŋɦœys` with [v]. | compound segmentation |
 
 ---
-[← Distance Metrics](distance.md) · [Home](../index.md) · [Python API →](../reference/api.md)
+[← Distance Metrics](distance.md) · [Home](../index.md) · [Other G2P systems and the o2i ecosystem →](ecosystem.md)

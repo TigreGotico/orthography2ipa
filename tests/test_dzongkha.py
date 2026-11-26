@@ -247,7 +247,7 @@ def test_the_fricative_letters_keep_their_voicing():
     "structurally ambiguous — ⟨དང⟩ is root+suffix [tɑŋ] but is read as "
     "prefix+root, because the engine resolves letters left to right and cannot "
     "look at the whole syllable first"
-))
+), raises=AssertionError)
 def test_two_letter_syllable_is_read_as_root_plus_suffix():
     """'⟨དང⟩ is root+suffix [tɑŋ]' (dz notes; van Driem 1998 ch. 2)"""
     assert segments("དང") == "tɑŋ"

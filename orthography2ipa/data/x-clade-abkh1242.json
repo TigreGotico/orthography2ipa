@@ -5,7 +5,6 @@
   "script_type": "reconstruction",
   "quality": "stub",
   "clade": true,
-  "glottolog_code": "abkh1242",
   "graphemes": {},
   "allophones": {},
   "notes": "Abkhaz-Adyge — a classification node, not a language. It groups its descendants and carries no phonology of its own: a clade is a set, not something anyone spoke. Glottolog languoid abkh1242 (family level).",

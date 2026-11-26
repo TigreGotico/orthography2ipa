@@ -484,7 +484,7 @@ PLACES: dict[str, dict] = {
              "stands in for the country."),
     "pt-ST": dict(
         qid="Q3932", label="São Tomé", country="São Tomé and Príncipe",
-        note="the city of São Tomé. Note the spec's wikidata_qid (Q36536) is Forro "
+        note="the city of São Tomé. Note the Wikidata item of the spec (Q36536) is Forro "
              "CREOLE, a different language from this Portuguese variety, so it was "
              "NOT used as the source of this point."),
     "pt-TL": dict(

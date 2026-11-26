@@ -23,8 +23,6 @@
   ],
   "notes": "Grapheme inventory NOT YET SPECIFIED (stub). Literary/Classical Chinese (文言) is a written register, not a spoken vernacular: it is written in Chinese characters (Han script) and has no pronunciation of its own — it is read aloud in the reading pronunciation of whatever language the reader speaks (Mandarin, Cantonese, Sino-Japanese on'yomi, Sino-Korean, Sino-Vietnamese …). No logographic character-to-phoneme map is claimed here: Chinese characters do not encode pronunciation systematically, so a Han-script G2P for this variety would need either a full character-reading lexicon or a romanised input. INPUT CONTRACT: this spec expects a romanisation of a chosen reading tradition as input, not Han characters — e.g. Hanyu Pinyin for a Mandarin reading (the `zh` precedent), Jyutping for a Cantonese reading, or a Middle Chinese reconstruction (see `ltc`) for a historical one. Because the reading tradition must be chosen by the consumer, NO single grapheme map can be correct for this code.",
   "iso639_3": "lzh",
-  "glottolog_code": "lite1248",
-  "wikidata_qid": "Q37041",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Classical_Chinese"
   ],

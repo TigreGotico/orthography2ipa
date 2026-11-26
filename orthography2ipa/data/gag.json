@@ -201,8 +201,6 @@
   },
   "notes": "Gagauz (Gagauz dili), an Oghuz Turkic language of Gagauzia (Moldova). Written since 1996 in a 29-letter Latin alphabet modelled on Turkish, plus ⟨ä⟩, ⟨ê⟩ and ⟨ţ⟩ (the last used for /ts/ in Romanian/Slavic loans); Q, W, X are not used (rendered k, v, ks). As in Turkish, ⟨ı⟩ (dotless) and ⟨i⟩ are distinct letters, ⟨c⟩ = /dʒ/, ⟨ç⟩ = /tʃ/, ⟨ş⟩ = /ʃ/, ⟨j⟩ = /ʒ/, ⟨y⟩ = /j/. ⟨e⟩ and ⟨ê⟩ both correspond to /e/; the two spellings distinguish an onglide-bearing ⟨e⟩ from a plain one in some positions (a residue of the Cyrillic е/э pair) and this is not modelled. Velars /k ɡ/ are fronted next to front vowels ([c ɟ]). A Cyrillic alphabet was used 1957-1993 and is still occasionally seen; this spec covers the Latin orthography only.",
   "iso639_3": "gag",
-  "glottolog_code": "gaga1249",
-  "wikidata_qid": "Q33457",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Gagauz_language",
     "https://en.wikipedia.org/wiki/Gagauz_alphabet",

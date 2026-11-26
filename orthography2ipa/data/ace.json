@@ -188,8 +188,6 @@
   },
   "notes": "Acehnese (Basa Acèh / Acèh), Malayo-Polynesian language of Aceh, Sumatra. Latin orthography (1980 standard, replacing the earlier Husaini/Dutch-based spelling); the Jawoë (Arabic-derived) script is also traditionally used and is NOT modelled here — input is assumed to be in the Latin orthography. Ten oral vowel qualities; nasal vowels are written with a preceding apostrophe and are not enumerated as separate graphemes here. Word-final ⟨k⟩ is realised as a glottal stop.",
   "iso639_3": "ace",
-  "glottolog_code": "achi1257",
-  "wikidata_qid": "Q27683",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Acehnese_language",
     "https://ace.wikipedia.org/wiki/Basa_Ac%C3%A8h"

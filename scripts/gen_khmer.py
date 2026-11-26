@@ -448,7 +448,6 @@ for src, dst in (("kʰ", "k"), ("cʰ", "c"), ("tʰ", "t"), ("pʰ", "p")):
 spec = collections.OrderedDict()
 spec["code"] = "km"
 spec["name"] = "Khmer"
-spec["glottolog_code"] = "cent1989"
 spec["script"] = "Khmer"
 spec["script_type"] = "abugida"
 spec["inherent_vowel"] = "ɑː"
@@ -553,7 +552,6 @@ spec["wikipedia"] = [
     "https://km.wikipedia.org/wiki/%E1%9E%97%E1%9E%B6%E1%9E%9F%E1%9E%B6%E1%9E%81%E1%9F%92%E1%9E%98%E1%9F%82%E1%9E%9A",
 ]
 spec["timespan"] = {"start_year": 611, "end_year": None}
-spec["wikidata_qid"] = "Q9205"
 spec["phoible_id"] = "cent1989"
 spec["wals_code"] = "khm"
 spec["location"] = {

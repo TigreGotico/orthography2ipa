@@ -8,7 +8,6 @@
   "quality": "stub",
   "script_type": "alphabet",
   "iso639_3": "och",
-  "glottolog_code": "oldc1244",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Old_Chinese"
   ],
@@ -37,7 +36,6 @@
       "notes": "Sinitic branch of Sino-Tibetan."
     }
   ],
-  "wikidata_qid": "Q35137",
   "location": {
     "latitude": 36.12,
     "longitude": 114.32,

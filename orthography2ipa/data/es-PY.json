@@ -107,7 +107,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "spa",
   "positional_graphemes": {
     "c": {
@@ -139,7 +138,6 @@
       "notes": "Guaraní indigenous adstrate (see stub gn.json; Lipski 1994)."
     }
   ],
-  "wikidata_qid": "Q773631",
   "location": {
     "latitude": -25.28,
     "longitude": -57.634444,

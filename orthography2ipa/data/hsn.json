@@ -16,7 +16,6 @@
   ],
   "notes": "Skeleton. Xiang (Hunanese) is a primary branch of Sinitic written in Han (Chinese) characters. Han script is logographic: a character's reading is a lexical fact, not composable from graphic parts, so grapheme-to-IPA requires a per-word pronunciation stratum (a character-to-reading lexicon for this specific variety) that the engine does not bundle. Without that stratum engine coverage is effectively zero, so graphemes are left empty rather than faked. Lexical tone and any tone sandhi are not recoverable from the characters.",
   "iso639_3": "hsn",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "hsn_glottolog",

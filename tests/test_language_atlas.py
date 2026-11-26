@@ -6,6 +6,7 @@ page author relies on: the check mode fails on a stale block, hand-written
 text survives a rewrite, the template is enforced, and the values the blocks
 print come from the spec, not from the generator.
 """
+from linguatag import catalog_ids
 import importlib.util
 import json
 import os
@@ -105,7 +106,7 @@ def test_blocks_out_of_order_break_the_template(atlas):
 def test_header_values_come_from_the_spec(atlas):
     spec = orthography2ipa.get("mwl")
     header = atlas_gen.block_header(atlas, spec)
-    assert f"glottolog.org/resource/languoid/id/{spec.glottolog_code})" in header
+    assert f"glottolog.org/resource/languoid/id/{catalog_ids(spec.code)['glottolog_code']})" in header
     assert f"iso639-3.sil.org/code/{spec.iso639_3})" in header
     assert "| Child lects | 2, see [Related lects](#related-lects) |" in header
     lects = atlas_gen.block_lects(atlas, spec)
@@ -328,12 +329,12 @@ def test_cut_is_living_research_and_production(raw, expected):
 
 
 def test_az_pages_with_one_name_are_ordered_by_code(atlas, monkeypatch):
-    # ks and kas are both named Kashmiri. Their order must not depend on
+    # ks and ks-Arab are both named Kashmiri. Their order must not depend on
     # the order the page set yields them in.
-    assert atlas.raw["ks"]["name"] == atlas.raw["kas"]["name"]
-    monkeypatch.setattr(atlas, "pages", ["ks", "kas"])
+    assert atlas.raw["ks"]["name"] == atlas.raw["ks-Arab"]["name"]
+    monkeypatch.setattr(atlas, "pages", ["ks-Arab", "ks"])
     table = atlas_gen.index_az(atlas).split("## Pages", 1)[1].split("\n\n[A]", 1)[0]
-    assert re.findall(r"^\| \[[^\]]+\]\(([^)]+)\)", table, re.M) == ["kas.md", "ks.md"]
+    assert re.findall(r"^\| \[[^\]]+\]\(([^)]+)\)", table, re.M) == ["ks.md", "ks-Arab.md"]
 
 
 def test_rule_change_caps_a_long_letter_list():

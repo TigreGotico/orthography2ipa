@@ -1,6 +1,5 @@
 {
   "code": "ff",
-  "glottolog_code": "fula1264",
   "name": "Fula (Fulah / Fulfulde / Pular)",
   "inherits": "x-clade-atla1278",
   "script": "Latin",
@@ -323,7 +322,6 @@
     "end_year": null
   },
   "iso639_3": "ful",
-  "wikidata_qid": "Q33454",
   "location": {
     "latitude": 12.238092,
     "longitude": -1.393895,

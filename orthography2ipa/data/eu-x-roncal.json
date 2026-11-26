@@ -24,7 +24,6 @@
     ]
   },
   "inherits": "eu",
-  "glottolog_code": "ronc1236",
   "ancestors": [
     {
       "code": "eu",
@@ -163,7 +162,6 @@
     "end_year": 1991
   },
   "iso639_3": "eus",
-  "wikidata_qid": "Q47494",
   "location": {
     "latitude": 42.832739,
     "longitude": -0.887691,

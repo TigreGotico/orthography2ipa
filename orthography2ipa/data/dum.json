@@ -128,7 +128,6 @@
   ],
   "notes": "Research. West Germanic (Low Franconian) medieval stage written in the Latin alphabet. Grapheme map covers the monophthong letters, the digraph long vowels (ae/ee/oo/oe/ie/uu) and diphthongs (ij/ou/au/ei), the fricative digraphs sch and ch, and the plain consonants including g [ɣ] and w [w]. Middle Dutch spelling varied widely by scribe and region; vowel length was written inconsistently and reduced/schwa realisations of e are not recoverable, so these are left unencoded and a real PER floor is expected. DISCREPANCY FOUND AND FIXED while citing: `w` was mapped to [ʋ] (the labiodental approximant of the MODERN Dutch consonant system); Van Loey's Klankleer (Middelnederlandse Spraakkunst, part II) describes the medieval `w` as a bilabial semivowel [w], distinct from `v`, with the shift toward a labiodental realisation a later, early-modern development. Fixed to [w].",
   "iso639_3": "dum",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "dum_glottolog",

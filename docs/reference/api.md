@@ -51,6 +51,12 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 | `segment_distance` | function | Phonetic distance between two IPA segments, normalised to [0.0, 1.0]. |
 | `spelling_divergence` | function | Measure how differently two orthographies spell the same phonemes. |
 
+## `orthography2ipa.exceptions`
+
+| Name | Kind | Summary |
+| --- | --- | --- |
+| `UnmappedGraphemeWarning` | class | Emitted when a letter or combining mark has no grapheme mapping. |
+
 ## `orthography2ipa.features`
 
 | Name | Kind | Summary |
@@ -85,14 +91,23 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 | `clear_lexicons` | function | Deprecated: forget every registered lexicon, the lexicon dir and the enabled packaged lexicons. |
 | `get_lexicon` | function | Deprecated: return the process-wide `{word: ipa}` overlay for *code*. |
 | `is_ipa_string` | function | Return `True` when *ipa* is NFC and contains only IPA characters. |
+| `lexicon_path` | function | The local file backing *code*'s lexicon, or `None` if there is none. |
 | `load_lexicon` | function | Read the lexicon at *source* into a `{word: ipa}` mapping. |
 | `packaged_lexicon` | function | The `{word: ipa}` mapping an installed package supplies for *code*. |
 | `packaged_lexicon_sources` | function | The installed packaged lexicons, as `{resolved code: local file}`. |
+| `parse_lexicon_text` | function | Parse TSV *text* into a `{word: ipa}` map, first entry winning. |
 | `register_lexicon` | function | Deprecated: register the lexicon *source* to use for language *code*. |
 | `resolve_lexicon_source` | function | Resolve a lexicon *source* to a local file, fetching it if remote. |
 | `set_lexicon_dir` | function | Deprecated: use *path* as a directory of `{code}.tsv` lexicons (`None` to unset). |
 | `use_packaged_lexicons` | function | Deprecated: enable the installed packaged lexicons for *codes*, or for all of them. |
 | `validate_lexicon_text` | function | Validate a lexicon TSV body; return a list of `(line_no, reason)`. |
+
+## `orthography2ipa.markup`
+
+| Name | Kind | Summary |
+| --- | --- | --- |
+| `MarkupError` | class | The markup is malformed. The message says what, and where. |
+| `parse_markup` | function | Split *text* into plain runs and forced-pronunciation words. |
 
 ## `orthography2ipa.phonetok`
 
@@ -106,6 +121,7 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 | `Token` | class | A single token emitted by `PhonetokTokenizer`. |
 | `TokenKind` | class | Classification of a single token produced by the tokenizer. |
 | `TokenSequence` | class | An indexed, context-aware view over a tokenised string. |
+| `expand_arabic_gemination` | function | Expand shadda gemination: double the carrying consonant, drop shadda. |
 
 ## `orthography2ipa.pipeline`
 
@@ -189,6 +205,8 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 | --- | --- | --- |
 | `apply_stress_mark` | function | Insert `rules.stress_mark` before the stressed syllable of *ipa*. |
 | `detect_stress` | function | Return the 0-based index of the stressed syllable of *word*. |
+| `detect_stress_by_weight` | function | Locate the stressed syllable of *ipa* by weight. Returns an end-anchored index (`-1` final, `-2` penult, …), ready for `apply_stress_mark`. |
+| `is_cliticless` | function | Whether *word* is a declared prosodic clitic that takes no word stress. |
 | `syllabify` | function | Split *word* into syllables by vowel groups. |
 | `syllabify_ipa` | function | Split an IPA word into syllables, dividing clusters by *max_onset*. |
 
@@ -241,5 +259,11 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 | `mark_density` | function | The fraction of *word*'s letters the writing actually determines, in `[0, 1]`. |
 | `underdetermined_positions` | function | Indices of the letters in *word* whose reading the writing does not fix. |
 
+## `orthography2ipa.vowels`
+
+| Name | Kind | Summary |
+| --- | --- | --- |
+| `is_ipa_vowel` | function | Return True if *ch* is an IPA vowel symbol (vocoid). |
+
 ---
-[← Known limitations](../guide/known_limitations.md) · [Home](../index.md) · [Command line →](cli.md)
+[← Other G2P systems and the o2i ecosystem](../guide/ecosystem.md) · [Home](../index.md) · [Command line →](cli.md)

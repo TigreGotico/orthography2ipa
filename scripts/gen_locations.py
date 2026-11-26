@@ -28,6 +28,8 @@ Usage::
 """
 from __future__ import annotations
 
+from linguatag import catalog_ids
+
 import argparse
 import csv
 import io
@@ -241,7 +243,7 @@ def location_for(spec: dict, glottolog: dict, places: dict) -> dict | None:
     if anchored:
         return anchored
 
-    code = spec.get("glottolog_code")
+    code = catalog_ids(spec["code"]).get("glottolog_code")
     if not code:
         return None
     entry = glottolog.get(code)

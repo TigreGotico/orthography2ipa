@@ -1,6 +1,5 @@
 {
   "code": "pt-MO",
-  "glottolog_code": null,
   "name": "Macau Portuguese",
   "script": "Latin",
   "quality": "skeleton",
@@ -103,7 +102,6 @@
     "end_year": null
   },
   "iso639_3": "por",
-  "wikidata_qid": "Q9290867",
   "location": {
     "latitude": 22.19,
     "longitude": 113.538056,

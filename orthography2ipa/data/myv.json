@@ -202,8 +202,6 @@
   },
   "notes": "Erzya (эрзянь кель), Mordvinic (Uralic) language of Mordovia. Written in the Russian Cyrillic alphabet. Five vowels /a e i o u/ and a palatalised consonant series (/nʲ tʲ dʲ sʲ zʲ lʲ rʲ t͡sʲ/) marked, as in Russian, by ⟨ь⟩ or by a following front vowel — the palatalisation modifier is emitted as /ʲ/ rather than folded into the preceding consonant. ⟨ф х щ⟩ occur essentially only in Russian loanwords; the hard sign ⟨ъ⟩ is not used and is not mapped. Vowel harmony governs suffixes but is not a grapheme-level phenomenon.",
   "iso639_3": "myv",
-  "glottolog_code": "erzy1239",
-  "wikidata_qid": "Q29952",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Erzya_language",
     "https://myv.wikipedia.org/wiki/%D0%AD%D1%80%D0%B7%D1%8F%D0%BD%D1%8C_%D0%BA%D0%B5%D0%BB%D1%8C"

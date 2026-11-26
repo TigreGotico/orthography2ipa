@@ -1,6 +1,5 @@
 {
   "code": "cri",
-  "glottolog_code": "saot1239",
   "name": "Sãotomense (Forro / Santome)",
   "script": "Latin",
   "quality": "research",
@@ -901,7 +900,6 @@
     "end_year": null
   },
   "iso639_3": "cri",
-  "wikidata_qid": "Q36536",
   "phoible_id": "saot1239",
   "location": {
     "latitude": 0.3301,

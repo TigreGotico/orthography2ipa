@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "hye",
-  "glottolog_code": "nucl1235",
   "timespan": {
     "start_year": 405,
     "end_year": null
@@ -176,7 +175,6 @@
     "https://en.wikipedia.org/wiki/Armenian_phonology",
     "https://hy.wikipedia.org/wiki/%D5%80%D5%A1%D5%B5%D5%A5%D6%80%D5%A5%D5%B6"
   ],
-  "wikidata_qid": "Q8785",
   "phoible_id": "nucl1235",
   "wals_code": "arz",
   "location": {

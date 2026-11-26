@@ -11,13 +11,19 @@ name: Downstream Smoke
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     branches: [dev]
   push:
     branches: [dev]
   workflow_dispatch: {}
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   consumer-suite:
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:

@@ -10,8 +10,6 @@
   "grammatical_endings_base": "nrf",
   "notes": "Norman (Nouormand) under the ⟨nrm⟩ code used by the Norman Wikipedia; ISO 639-3 assigns the language the code ⟨nrf⟩, which carries the description. This entry inherits it whole so the two codes cannot drift apart — see the ⟨nrf⟩ spec for the orthography, the input contract and the sources.",
   "iso639_3": "nrf",
-  "glottolog_code": "norm1245",
-  "wikidata_qid": "Q33850",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Norman_language",
     "https://nrm.wikipedia.org/wiki/Normaund"

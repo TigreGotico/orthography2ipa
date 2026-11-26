@@ -238,8 +238,6 @@
   },
   "notes": "Emilian-Romagnol (emiliàn e rumagnòl), a Gallo-Italic group of northern Italy. COMMITMENT: this map implements ONE variety and ONE norm — BOLOGNESE (Emilian side) written in the Ortografia Lessicografica Moderna (OLM) of Vitali & Lepri. Emilian-Romagnol is a dialect continuum with several competing city norms; Romagnol proper (and other Emilian cities) use different letter values and are NOT covered — a Romagnol-specific spec is the honest unit of future work. INPUT CONTRACT: lowercase Bolognese text in OLM spelling, with its diacritics intact (â å ä è ê î ò ô û, and the dotted sibilants ṡ / ż). Vowel length and quality are carried entirely by the diacritics, so stripping them destroys the mapping. Key OLM values: <z> = /θ/ and <ż> = /ð/ (NOT Italian /ts dz/); <s> = /s/ vs <ṡ> = /z/; <n> before a velar = [ŋ]; <c> and <g> are /k ɡ/ hard and /ts dz/ soft (before front vowels); <gn> = /ɲ/, <gli> = /ʎ/. Note the English Wikipedia 'Emilian language' article gives an incompatible Bolognese consonant chart (/tʃ dʒ/ and front rounded vowels); the OLM-anchored 'Bolognese dialect' table is followed here.",
   "iso639_3": null,
-  "glottolog_code": "emil1243",
-  "wikidata_qid": "Q242648",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Emilian%E2%80%93Romagnol",
     "https://eml.wikipedia.org/wiki/L%C3%A4ngua_emigli%C3%A8na-rumagn%C3%B4la"

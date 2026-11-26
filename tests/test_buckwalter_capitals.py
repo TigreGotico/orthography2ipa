@@ -7,7 +7,7 @@ import pytest
 from orthography2ipa import transcribe
 
 CAPITALS_FOLDED = pytest.mark.xfail(
-    strict=True, reason="https://github.com/TigreGotico/orthography2ipa/issues/2541")
+    strict=True, reason="https://github.com/TigreGotico/orthography2ipa/issues/2541", raises=AssertionError)
 
 
 @pytest.mark.parametrize("buckwalter, arabic", [

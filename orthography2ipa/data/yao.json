@@ -1,7 +1,6 @@
 {
   "code": "yao",
   "name": "Yao (Chiyao)",
-  "glottolog_code": "yaoo1241",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "yao",
@@ -101,7 +100,6 @@
     "start_year": 1900,
     "end_year": null
   },
-  "wikidata_qid": "Q36902",
   "location": {
     "latitude": -13.5,
     "longitude": 35.3,

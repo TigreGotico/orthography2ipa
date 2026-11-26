@@ -55,7 +55,7 @@ def test_the_open_e_rule_leaves_its_neighbours_alone(text, expected):
     assert o2i.transcribe(text, "fr-FR") == expected
 
 
-@pytest.mark.xfail(strict=True, reason="⟨e⟩ before ⟨nn⟩ is not modelled")
+@pytest.mark.xfail(strict=True, reason="⟨e⟩ before ⟨nn⟩ is not modelled", raises=AssertionError)
 def test_ennemi_has_its_lexique_reading():
     # Lexique 3.83: ennemi, phon En°mi
     assert o2i.transcribe("ennemi", "fr-FR") == "ɛnəmi"

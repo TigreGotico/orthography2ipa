@@ -398,8 +398,6 @@
     ]
   },
   "iso639_3": "nav",
-  "glottolog_code": "nava1243",
-  "wikidata_qid": "Q13310",
   "notes": "Navajo (Diné bizaad), Southern Athabaskan (Na-Dene), written in a Latin alphabet standardised in the 1930s (Young & Morgan). Stops and affricates come in three laryngeal series: plain/unaspirated (b d g dz dl j), aspirated (t k ts tł ch) and ejective (tʼ kʼ tsʼ tłʼ chʼ); note that orthographic ⟨b d g⟩ are voiceless unaspirated [p t k], not voiced. ⟨ʼ⟩ standing alone is the glottal stop /ʔ/. Four vowel qualities a e i o, each in four shapes: short oral, long oral (doubled letter), short nasal (ogonek: ą ę į ǫ) and long nasal (doubled ogonek letter). TONE CONVENTION: Navajo is a two-tone language; HIGH tone is written with an acute accent (á é í ó, nasal ą́ ę́ į́ ǫ́) and LOW tone is unmarked (the default). This spec therefore emits the IPA acute (U+0301) on high-tone vowels and nothing on low-tone vowels; nasalisation is U+0303 and length is ː. Long vowels with mixed tone (rising ⟨aá⟩, falling ⟨áa⟩) fall out of the sequence of the two short-vowel graphemes and are not listed separately. No tone_inventory is declared because the acute/unmarked convention is orthographic rather than an IPA tone-letter inventory.",
   "sources": [
     {

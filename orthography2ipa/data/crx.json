@@ -16,7 +16,6 @@
   ],
   "notes": "Skeleton. Carrier (Dakelh) is a Northern Athabaskan language of central British Columbia, here written in Canadian Aboriginal syllabics (the Carrier/Déné syllabary). The syllabics are abugida-like: each glyph encodes a consonant-plus-vowel unit whose value is set by glyph orientation and added marks, and the traditional syllabary does not consistently record tone, glottalization, or the full consonant inventory that the phonology contrasts. Recovering IPA from syllabic glyphs therefore needs a per-word orthographic-to-phonemic stratum that the engine does not bundle, so graphemes are left empty and coverage is effectively lexicon-dependent. Tone and ejective/glottalized contrasts are not recoverable from the syllabics.",
   "iso639_3": "crx",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "crx_glottolog",

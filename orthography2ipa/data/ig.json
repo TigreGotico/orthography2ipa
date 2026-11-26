@@ -1,7 +1,6 @@
 {
   "code": "ig",
   "name": "Igbo",
-  "glottolog_code": "nucl1417",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "ibo",
@@ -252,7 +251,6 @@
     "start_year": 1900,
     "end_year": null
   },
-  "wikidata_qid": "Q33578",
   "phoible_id": "nucl1417",
   "wals_code": "igb",
   "location": {

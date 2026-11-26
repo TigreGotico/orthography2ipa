@@ -251,7 +251,7 @@ def _decompose_arabic_presentation_forms(text: str) -> str:
         lambda m: unicodedata.normalize("NFKC", m[0]), text)
 
 
-def _expand_arabic_gemination(text: str) -> str:
+def expand_arabic_gemination(text: str) -> str:
     """Expand shadda gemination: double the carrying consonant, drop shadda.
 
     Handles both mark orderings, then any remaining bare shadda (gemination
@@ -263,6 +263,10 @@ def _expand_arabic_gemination(text: str) -> str:
     text = _AR_GEM_HARAKAT_FIRST.sub(r"\1\1\2", text)
     text = _AR_GEM_BARE.sub(r"\1\1", text)
     return text
+
+
+#: The private name stays for one stable cycle; arbtok imports it.
+_expand_arabic_gemination = expand_arabic_gemination
 
 
 # Gurmukhi gemination. The addak ੱ (U+0A71) is written after the vowel of the
@@ -1721,7 +1725,7 @@ class PhonetokTokenizer:
             # Arabic-script specs that do not declare shadda (Persian) stay
             # byte-identical.
             if declares_shadda:
-                text = _expand_arabic_gemination(text)
+                text = expand_arabic_gemination(text)
         elif self.spec.script == "Gurmukhi":
             text = _expand_gurmukhi_gemination(text)
         return text

@@ -571,7 +571,6 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "mode1248",
   "iso639_3": "ell",
   "stress": {
     "constrain_mark_onsets": false,
@@ -606,7 +605,6 @@
     "stress_mark": "ˈ",
     "notes": "Modern Greek (Standard) uses a single written acute accent (monotonic system since 1982) to mark the stressed syllable on every polysyllable. Marked vowels listed here are the nine accented forms of the monotonic system, plus the polytonic circumflex (perispomeni) and grave (varia) forms, which mark the same stressed syllable in pre-1982 text and in the many proper names and learned words still printed polytonically. The dialytika-tonos letters ΐ (U+0390) and ΰ (U+03B0) carry both diaeresis and stress. Monosyllables are unaccented. Source: Arvaniti (2007), Greek Phonetics; Holton, Mackridge & Philippaki-Warburton (2012), Greek: A Comprehensive Grammar, ch. 1."
   },
-  "wikidata_qid": "Q36510",
   "phoible_id": "mode1248",
   "wals_code": "grk",
   "location": {

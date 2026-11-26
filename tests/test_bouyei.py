@@ -136,7 +136,7 @@ def test_a_sibilant_does_not_condition_an_apical_nucleus(pcc, word, ipa):
            "not mark it. The only string separating the four is the "
            "following tone letter, which does not determine vowel quality. "
            "One word does not establish a rule, so this stays unmodelled.",
-    strict=True,
+    strict=True, raises=AssertionError,
 )
 def test_a_chinese_loan_takes_the_apical_vowel(pcc):
     assert pcc.transcribe_word("siyzij") == "sz̩˧tsz̩˥˧"

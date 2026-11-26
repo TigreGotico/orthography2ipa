@@ -526,8 +526,6 @@
   },
   "notes": "Cherokee (ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ, Tsalagi Gawonihisdi), the only Southern Iroquoian language. Written in the syllabary devised by Sequoyah (completed 1821): 85 characters, plus the later addition Ᏽ (mv), so 86 grapheme keys here; each character stands for a CV syllable (plus six bare vowels and the coda character Ꮝ /s/). Grapheme keys are the syllabary characters themselves, so no romanisation is needed as input. The romanisation letter ⟨v⟩ denotes the nasal mid-central vowel /ə̃/; ⟨d t⟩ = /t tʰ/, ⟨g k⟩ = /k kʰ/, ⟨qu⟩ = /kʷ/, ⟨dl tl⟩ = /t͡ɬ t͡ɬʰ/, ⟨ts⟩ = /t͡s/. Vowel length and the six-way tone system are NOT written in the syllabary and are therefore not represented here.",
   "iso639_3": "chr",
-  "glottolog_code": "cher1273",
-  "wikidata_qid": "Q33388",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Cherokee_language",
     "https://chr.wikipedia.org/wiki/%E1%8F%A3%E1%8E%B3%E1%8E%A9_%E1%8E%A7%E1%8F%AC%E1%8F%82%E1%8E%AF%E1%8F%8D%E1%8F%97",

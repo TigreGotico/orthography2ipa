@@ -143,7 +143,6 @@
  "allophones": {},
  "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (fak.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "fak",
- "glottolog_code": "fang1248",
  "sources": [
   {
    "id": "glottolog2024",

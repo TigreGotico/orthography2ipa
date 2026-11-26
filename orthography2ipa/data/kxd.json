@@ -47,7 +47,6 @@
   ],
   "notes": "Skeleton. Brunei Malay is a Malayic (Malayo-Polynesian) Austronesian language written with a Latin alphabet on the standard Malay/Rumi convention. The grapheme map follows Malay orthography: the digraphs ng, ny, sy, kh, gh; c=voiceless and j=voiced palatal affricates; and the vowels, with e mapped to schwa (the letter e also spells /e/ in some words, a distinction the orthography does not disambiguate). Brunei Malay characteristically reduces the vowel system toward /a i u/, so mid vowels o and e overlap with high vowels in native words; this conditioned variation is not encoded. Final /k/ and orthographic q realized as glottal stop, and any phonemic glottal stop, are left unencoded, as are stress and length. Loan letters f, v, z, q are mapped to their nearest Malay values.",
   "iso639_3": "kxd",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "kxd_glottolog",

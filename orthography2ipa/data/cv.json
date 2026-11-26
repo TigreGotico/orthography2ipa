@@ -22,7 +22,6 @@
   ],
   "code": "cv",
   "name": "Chuvash",
-  "glottolog_code": "chuv1255",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "iso639_3": "chv",
@@ -284,7 +283,6 @@
     "start_year": 1938,
     "end_year": null
   },
-  "wikidata_qid": "Q33348",
   "phoible_id": "chuv1255",
   "wals_code": "chv",
   "location": {

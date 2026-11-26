@@ -176,7 +176,6 @@
  "allophones": {},
  "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (kdx.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "kdx",
- "glottolog_code": "kamm1249",
  "sources": [
   {
    "id": "glottolog2024",

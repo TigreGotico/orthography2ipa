@@ -61,7 +61,7 @@ def test_en_gb_g_softening():
     strict=True,
     reason="Cruttenden (2014): get/give/girl retain [ɡ]; engine now produces "
     "[dʒɛt], [dʒɪv], [dʒɜːɹl] — ⟨g⟩ softens to [dʒ] before every front vowel with "
-    "no exception carve-out (regression from dropping the enumerated n-grams)",
+    "no exception carve-out (regression from dropping the enumerated n-grams)", raises=AssertionError,
 )
 def test_en_gb_g_softening_exceptions():
     """The get/give/girl exception class keeps hard [ɡ] before a front vowel.
@@ -172,7 +172,7 @@ def test_en_gb_tion_family_sh():
     reason="Cruttenden (2014): -sion → [ʒən]/[ʃən]; the engine produces "
     "[vɪzɪɒn] for vision and [tɛnsɪɒn] for tension. The split is conditioned on "
     "the segment BEFORE the ending, and `grammatical_endings` carries no "
-    "preceding-segment condition, so the ending is spelled out s-i-o-n",
+    "preceding-segment condition, so the ending is spelled out s-i-o-n", raises=AssertionError,
 )
 def test_en_gb_sion_voiced_after_vowel():
     """-sion → [ʒən] after a vowel, [ʃən] after a consonant.
@@ -222,7 +222,7 @@ def test_en_gb_gh_weight_favours_silent():
     strict=True,
     reason="Wells (1982) TRAP-BATH split claims BATH words = /ɑː/; engine "
     "produces [kæsəl] for castle and [ɡɹæs] for grass — the BATH lexical set is "
-    "not distinguished from TRAP, both reading ⟨a⟩ as [æ]",
+    "not distinguished from TRAP, both reading ⟨a⟩ as [æ]", raises=AssertionError,
 )
 def test_en_gb_trap_bath_split():
     """TRAP-BATH split: BATH words take /ɑː/, not the TRAP vowel /æ/.
@@ -489,7 +489,7 @@ def test_en_gb_stem_ed_monosyllables_are_not_past_tense(word, expected):
         "condition to close it (deliberately not enumerated in "
         "word_exceptions — see PR body residual list)."
     ),
-    strict=True,
+    strict=True, raises=AssertionError,
 )
 @pytest.mark.parametrize("word,expected", [
     ("bled", "blɛd"), ("bred", "bɹɛd"), ("cred", "kɹɛd"),

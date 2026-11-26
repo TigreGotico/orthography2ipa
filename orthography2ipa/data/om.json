@@ -2,7 +2,6 @@
   "code": "om",
   "name": "Oromo",
   "inherits": "x-clade-cush1243",
-  "glottolog_code": "west2721",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "orm",
@@ -288,7 +287,6 @@
     "start_year": 1991,
     "end_year": null
   },
-  "wikidata_qid": "Q33864",
   "location": {
     "latitude": 8.81391,
     "longitude": 36.7365,

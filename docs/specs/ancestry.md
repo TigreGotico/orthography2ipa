@@ -28,7 +28,7 @@ A proto-language, such as `ine` (Proto-Indo-European) or `la-x-hispania` (Hispan
 
 A clade node, such as `x-clade-roma1334` (Romance) or `x-clade-west2793` (West Germanic), is classification only. It has `"clade": true`, empty `graphemes` and `allophones`, and the quality tier `stub`. It is never a source of inherited data. It puts the classification hierarchy into the one ancestry graph, so that no spec carries a hand-kept family string.
 
-A clade node cites its [Glottolog](https://glottolog.org) languoid in `glottolog_code`, such as [`roma1334`](https://glottolog.org/resource/languoid/id/roma1334) Romance, [`celt1248`](https://glottolog.org/resource/languoid/id/celt1248) Celtic and [`semi1276`](https://glottolog.org/resource/languoid/id/semi1276) Semitic, and it cites its Wikipedia page. Some clades have no Glottolog node with exactly their membership, such as Ibero-Romance, Gallo-Romance, Italo-Romance, Vasconic and Tyrsenian. Such a node cites Wikipedia, and its `notes` name the nearest Glottolog node.
+A clade node has a [Glottolog](https://glottolog.org) languoid in `linguatag.catalog_ids`, such as [`roma1334`](https://glottolog.org/resource/languoid/id/roma1334) Romance, [`celt1248`](https://glottolog.org/resource/languoid/id/celt1248) Celtic and [`semi1276`](https://glottolog.org/resource/languoid/id/semi1276) Semitic, and it cites its Wikipedia page. Some clades have no Glottolog node with exactly their membership, such as Ibero-Romance, Gallo-Romance, Italo-Romance, Vasconic and Tyrsenian. Such a node cites Wikipedia, and its `notes` name the nearest Glottolog node.
 
 The loader splices the clade nodes into the parent chain and never puts one in place of a language:
 
@@ -39,6 +39,50 @@ ancestry_chain("pt-PT")
 # ['pt-PT-x-medieval', 'roa-x-galaico-pt', 'x-clade-iberrom', 'la-x-hispania',
 #  'x-clade-roma1334', 'la-x-late', 'la', 'la-x-archaic', 'ine-x-italic',
 #  'x-clade-ital1284', 'ine', 'x-clade-indo1319']
+```
+
+The diagram shows that chain as `inherits` edges. A rounded box is a clade node, and a plain box is a language or proto-language.
+
+```mermaid
+flowchart TD
+    p0["pt-PT"] --> p1["pt-PT-x-medieval"]
+    p1 --> p2["roa-x-galaico-pt"]
+    p2 --> p3(["x-clade-iberrom"])
+    p3 --> p4["la-x-hispania"]
+    p4 --> p5(["x-clade-roma1334"])
+    p5 --> p6["la-x-late"]
+    p6 --> p7["la"]
+    p7 --> p8["la-x-archaic"]
+    p8 --> p9["ine-x-italic"]
+    p9 --> p10(["x-clade-ital1284"])
+    p10 --> p11["ine"]
+    p11 --> p12(["x-clade-indo1319"])
+```
+
+Basque and Arabic give two shorter chains. The first is `ancestry_chain("eu")` and the second is `ancestry_chain("ar")`:
+
+```mermaid
+flowchart TD
+    eu["eu"] --> e1["xaq"]
+    e1 --> e2(["x-clade-vascon"])
+    ar["ar"] --> a1["xpa"]
+    a1 --> a2["sem-x-central"]
+    a2 --> a3(["x-clade-cent2236"])
+    a3 --> a4["sem-x-west"]
+    a4 --> a5["sem"]
+    a5 --> a6(["x-clade-semi1276"])
+    a6 --> a7(["x-clade-afro1255"])
+```
+
+The Basque and Arabic chains come from these calls:
+
+```python
+from orthography2ipa.registry import ancestry_chain
+
+ancestry_chain("eu")   # ['xaq', 'x-clade-vascon']
+ancestry_chain("ar")
+# ['xpa', 'sem-x-central', 'x-clade-cent2236', 'sem-x-west', 'sem',
+#  'x-clade-semi1276', 'x-clade-afro1255']
 ```
 
 The loader derives `family` from this chain. It walks `inherits` upwards and collects the names of the clades it passes, broadest first:
@@ -177,22 +221,24 @@ Glottolog governs genetic classification only. This library is finer than Glotto
 
 | Concern | Authority |
 |---|---|
-| `glottolog_code` on a spec | Glottolog. The code must resolve, and it must point at that language, not at the subgroup above it. |
+| The Glottolog code of a spec (`linguatag.catalog_ids`) | Glottolog. The code must resolve, and it must point at that language, not at the subgroup above it. |
 | The clade node a language hangs from | Glottolog, where it has an opinion. |
 | Whether a dialect exists | This library. Glottolog files most sub-national varieties under the national language, which is a coarser resolution and not a correction. |
 | Contact ancestry | This library. Glottolog does not model it. |
 | `family` | The clade chain. It is never authored and never copied from a Glottolog string. |
 
-`null` is the correct `glottolog_code` when Glottolog has no node for a variety. A wrong code is worse than no code: a code that points at the subgroup above the language, or at an unrelated language, corrupts every audit that reads it. `scripts/check_glottolog_codes.py` queries Glottolog for every code. It writes the level of each languoid to a snapshot, and `tests/test_catalog_crossrefs.py` asserts against that snapshot offline.
+No Glottolog code is the correct value when Glottolog has no node for a variety. A wrong code is worse than no code: a code that points at the subgroup above the language, or at an unrelated language, corrupts every audit that reads it. `scripts/check_glottolog_codes.py` queries Glottolog for the code of every spec. It writes the level of each languoid to a snapshot, and `tests/test_catalog_crossrefs.py` asserts against that snapshot offline.
 
 ### Coverage
 
 Compute the coverage from the data. A printed figure goes stale as specs are added:
 
 ```python
+from linguatag import catalog_ids
+
 codes = orthography2ipa.available_codes()                                        # languages
 clades = set(orthography2ipa.available_codes(include_clades=True)) - set(codes)  # clade nodes
-with_code = [c for c in codes if orthography2ipa.get(c).glottolog_code]          # languages with a glottolog_code
+with_code = [c for c in codes if catalog_ids(c).get("glottolog_code")]          # languages with a Glottolog code
 families = orthography2ipa.available_families()                                  # codes grouped by family path
 
 len(codes), len(clades), len(codes) + len(clades), len(with_code)
@@ -206,7 +252,7 @@ Depth matters. A flat scheme with two levels would put every Romance variety int
 
 ### Where Glottolog has no node
 
-A spec without a `glottolog_code` is usually one of three kinds.
+A spec without a Glottolog code is usually one of three kinds.
 
 The first is a dialect or historical variety with an `-x-` code, such as `pt-PT-x-porto`. Glottolog files it under the national language. A code that pointed at the parent would claim that the spec is the parent, which is the error `null` avoids.
 

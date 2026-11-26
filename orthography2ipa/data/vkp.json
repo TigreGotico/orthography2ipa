@@ -1,6 +1,5 @@
 {
   "code": "vkp",
-  "glottolog_code": "korl1238",
   "name": "Korlai Indo-Portuguese (Korlai Creole Portuguese)",
   "script": "Latin",
   "quality": "research",
@@ -825,7 +824,6 @@
     "end_year": null
   },
   "iso639_3": "vkp",
-  "wikidata_qid": "Q3436603",
   "phoible_id": "korl1238",
   "location": {
     "latitude": 18.5232,

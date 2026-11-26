@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "skeleton",
   "iso639_3": "aln",
-  "glottolog_code": "gheg1238",
   "timespan": {
     "start_year": 1462,
     "end_year": null
@@ -49,7 +48,6 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Gheg_Albanian"
   ],
-  "wikidata_qid": "Q34079",
   "location": {
     "latitude": 42.2,
     "longitude": 20.4,

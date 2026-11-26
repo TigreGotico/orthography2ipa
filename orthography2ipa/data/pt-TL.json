@@ -1,6 +1,5 @@
 {
   "code": "pt-TL",
-  "glottolog_code": null,
   "name": "East Timorese Portuguese",
   "script": "Latin",
   "quality": "research",
@@ -741,7 +740,6 @@
       "notes": "DISABLED for East Timorese Portuguese. PT_STRONG_R_AFTER_CODA gives an ⟨r⟩ after a coda consonant or a nasal vowel the pt-PT strong rhotic [ʁ]. This spec writes its strong rhotic as [r] (carro [ˈkaro]), not [ʁ]. No source for this context in this language was read, so its output stays what it was."
     }
   ],
-  "wikidata_qid": "Q4373396",
   "location": {
     "latitude": -8.553611,
     "longitude": 125.578333,

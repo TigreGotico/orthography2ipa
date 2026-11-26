@@ -9,7 +9,6 @@
   "quality": "stub",
   "script_type": "alphabet",
   "iso639_3": "kmb",
-  "glottolog_code": "kimb1241",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kimbundu_language"
   ],
@@ -29,7 +28,6 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Kimbundu_language"
     }
   ],
-  "wikidata_qid": "Q35891",
   "location": {
     "latitude": -8.97835,
     "longitude": 14.8893,

@@ -1,7 +1,6 @@
 {
   "code": "ast-x-occident",
   "name": "Western Asturian-Leonese",
-  "glottolog_code": "west2339",
   "script": "Latin",
   "inherits": "ast",
   "graphemes_base": "ast",

@@ -1,6 +1,5 @@
 {
   "code": "tet",
-  "glottolog_code": "tetu1245",
   "name": "Tetum (Tetun Dili / Tetun Prasa)",
   "inherits": "x-clade-mala1545",
   "script": "Latin",
@@ -345,7 +344,6 @@
     "end_year": null
   },
   "iso639_3": "tet",
-  "wikidata_qid": "Q34125",
   "phoible_id": "tetu1245",
   "wals_code": "ttn",
   "location": {

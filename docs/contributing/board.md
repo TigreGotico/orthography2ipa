@@ -89,6 +89,12 @@ PYTHONPATH=$PWD python scripts/gen_language_atlas.py --write
 python scripts/docs_nav.py --write
 ```
 
+The charts of the evaluation pages read the same board files. Rewrite them too:
+
+```bash
+PYTHONPATH=$PWD python scripts/gen_doc_charts.py --write
+```
+
 After the run, diff the CI sample against the merge base and count the rows
 that changed. Only your rows may move. The
 [regression gate](../evaluation/benchmarks.md#stale-board-rows) is one-sided,
@@ -130,6 +136,7 @@ in between.
 | Scoreboard in sync | A `docs/evaluation/generated/scoreboard.md` that differs from what `results.json` renders | `PYTHONPATH=$PWD python -m pytest tests/test_thin_row_marker.py` |
 | Docs prose | A generated page that fails the prose lint (fix the generator, then regenerate) | `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py` |
 | Language atlas | An atlas block or index that differs from what the specs and `results.json` render | `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check` |
+| Evaluation charts | A chart that differs from what the board files render | `PYTHONPATH=$PWD python scripts/gen_doc_charts.py --check` |
 
 The CI workflow `.github/workflows/benchmark-regression.yml` runs the first
 four guards. `board-not-reverting` runs the copy of the script on the base

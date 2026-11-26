@@ -74,7 +74,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "spa",
   "positional_graphemes": {
     "c": {
@@ -86,7 +85,6 @@
       ]
     }
   },
-  "wikidata_qid": "Q1115875",
   "location": {
     "latitude": 4.60971,
     "longitude": -74.08175,

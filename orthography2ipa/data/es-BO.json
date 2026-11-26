@@ -111,7 +111,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": "boli1265",
   "iso639_3": "spa",
   "positional_graphemes": {
     "c": {
@@ -149,7 +148,6 @@
       "notes": "Aymara indigenous adstrate (see stub ay.json; Lipski 1994)."
     }
   ],
-  "wikidata_qid": "Q510730",
   "location": {
     "latitude": -16.495833,
     "longitude": -68.133333,

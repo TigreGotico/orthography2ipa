@@ -992,6 +992,8 @@ def _build(spec: LanguageSpec, data_ref, apply_stress, apply_allophony, apply_sa
                 "pairs": list(st.closed_hiatus.pairs), "onsets": list(st.closed_hiatus.onsets),
                 "codas": list(st.closed_hiatus.codas),
                 "multi_keys": [g for g in spec.graphemes if len(g) > 1]}
+            if st.closed_hiatus.atonic_onsets:
+                ir["syllable"]["closed_hiatus"]["atonic_onsets"] = list(st.closed_hiatus.atonic_onsets)
         if st.final_diphthongs is not None:
             ir["syllable"]["final_diphthongs"] = {
                 "diphthongs": list(st.final_diphthongs.diphthongs),

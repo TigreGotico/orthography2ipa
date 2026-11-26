@@ -43,8 +43,6 @@
  },
  "notes": "Garifuna Latin orthography as codified by the Garifuna Language Academies of Belize/Honduras/Guatemala (Cayetano & Cayetano 2005; Suazo 1994) and described phonologically by Taylor (1977). Six-vowel system /a e i o u ɨ/, the last spelled ⟨ü⟩; vowel length is phonemic and written by doubling the vowel letter (⟨aa⟩, ⟨ee⟩, ⟨ii⟩, ⟨oo⟩, ⟨uu⟩, ⟨üü⟩) — a geminate-vowel spelling for one long nucleus, the same unit-earning pattern as the geminate consonants cited in AGENTS.md test 2, not two short vowels in hiatus. ⟨ch⟩ spells the single affricate /tʃ/ (not c+h, which the spec does not otherwise define), and ⟨ñ⟩ spells /ɲ/. The apostrophe marks a phonemic glottal stop. Garifuna has predictable, non-contrastive stress (regularly penultimate); it is not marked orthographically and is documented here as an exemption rather than encoded, since the orthography gives no signal to derive it from.",
  "iso639_3": "cab",
- "glottolog_code": "gari1256",
- "wikidata_qid": "Q35876",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Garifuna_language"
  ],

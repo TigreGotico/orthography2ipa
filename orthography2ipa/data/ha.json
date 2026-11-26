@@ -1,7 +1,6 @@
 {
   "code": "ha",
   "name": "Hausa",
-  "glottolog_code": "haus1257",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "hau",
@@ -386,7 +385,6 @@
       "notes": "English adstrate: colonial and modern loanwords (Nigeria)."
     }
   ],
-  "wikidata_qid": "Q56475",
   "phoible_id": "haus1257",
   "wals_code": "hau",
   "location": {

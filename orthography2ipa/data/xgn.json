@@ -9,7 +9,6 @@
   "quality": "stub",
   "script_type": "reconstruction",
   "iso639_3": null,
-  "glottolog_code": "mong1329",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Mongolic_languages"
   ],
@@ -29,7 +28,6 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Mongolic_languages"
     }
   ],
-  "wikidata_qid": "Q33750",
   "location": {
     "latitude": 41.516709,
     "longitude": 96.85676,

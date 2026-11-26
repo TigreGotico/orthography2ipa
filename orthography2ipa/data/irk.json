@@ -160,7 +160,6 @@
  },
  "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (irk.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names. Iraqw carries lexical tone (PHOIBLE records 3 tone segments) rather than stress; tone is not orthographically marked and is left unencoded, and there is no separate stress system to model (documented exemption).",
  "iso639_3": "irk",
- "glottolog_code": "iraq1241",
  "sources": [
   {
    "id": "glottolog2024",

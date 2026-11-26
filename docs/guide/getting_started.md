@@ -221,11 +221,23 @@ from functools import partial
 
 from orthography2ipa import G2P, Pipeline
 
+
+def write_out_numbers(text):
+    return text.replace("2", "dois")
+
+
+def add_extra_diacritics(text, lang):
+    return text.replace("tranquilo", "tranqüilo") if lang == "pt-PT" else text
+
+
 engine = G2P("pt-PT", pipeline=Pipeline(
     expand=write_out_numbers,
     mark=partial(add_extra_diacritics, lang="pt-PT"),
 ))
+engine.transcribe("2 tranquilo")  # 'ˈdojʃ tɾɐ̃ˈkwilu'
 ```
+
+The two functions stand in for a number expander and a diacritic marker, such as the ones a downstream package supplies.
 
 `expand` takes a string and returns a string, and the words may change. It runs once per plain run of the input, so it never sees a `<phoneme>` tag or a forced word. A run that starts or ends with whitespace must still do so after `expand`. When the pipeline has a `mark` stage, the engine joins the runs and the forced words with no separator before `mark` reads the sentence.
 

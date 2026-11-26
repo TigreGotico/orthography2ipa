@@ -150,7 +150,6 @@
  },
  "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. PHOIBLE 1368 writes fifteen of the labialised allophones with the mark first (ʷd, ʷk); the spec writes them in IPA order, mark after the base (dʷ, kʷ), as the same inventory already writes bʷ, fʷ and mʷ.",
  "iso639_3": "hig",
- "glottolog_code": "kamw1239",
  "sources": [
   {
    "id": "glottolog2024",

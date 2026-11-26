@@ -160,8 +160,6 @@
   },
   "allophones": {},
   "iso639_3": "sah",
-  "glottolog_code": "yaku1245",
-  "wikidata_qid": "Q34299",
   "notes": "Yakut (Sakha, саха тыла), a Siberian Turkic language of the Sakha Republic, Russia, written since 1939 in an extended Cyrillic alphabet: the Russian letters plus Ҕҕ, Ҥҥ, Өө, Һһ, Үү and the digraphs ⟨дь⟩ /d͡ʒ/ and ⟨нь⟩ /ɲ/. Yakut has eight vowel qualities with a phonemic length contrast; long vowels are written by DOUBLING the vowel letter (аа оо уу ыы ии ээ өө үү) and the four diphthongs are written ⟨ыа иэ уо үө⟩ — all of these are listed as multigraph keys so that maximal-munch matching prefers them over the single letters. Ф, ц, щ and the iotated letters occur essentially only in Russian loanwords; their values follow the alphabet table of the cited source. The soft sign ⟨ь⟩ and hard sign ⟨ъ⟩ are NOT mapped: they carry no independent segment (⟨ь⟩ only forms the digraphs дь/нь or marks palatalisation in loans), so they are deliberately omitted rather than given an invented value. INPUT CONTRACT: Cyrillic Sakha text, Unicode NFC, lowercase-normalised by the engine; the earlier Novgorodov and Latin (Jaꞑalif) orthographies are out of scope.",
   "sources": [
     {

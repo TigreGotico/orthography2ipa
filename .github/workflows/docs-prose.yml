@@ -39,12 +39,17 @@ on:
       # The language atlas reads the specs, the board and the snapshot.
       - "scripts/gen_language_atlas.py"
       - "scripts/atlas_snapshot.json"
-      - "benchmarks/results.json"
+      - "benchmarks/*.json"
+      - "scripts/gen_doc_charts.py"
       - "orthography2ipa/data/gold/primary_sources/**"
       - "tests/test_language_atlas.py"
       - "orthography2ipa/**"
       - ".github/workflows/docs-prose.yml"
   workflow_dispatch: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   docs-prose:
@@ -85,3 +90,8 @@ jobs:
         run: |
           PYTHONPATH=$PWD .venv/bin/python scripts/gen_language_atlas.py --check
           PYTHONPATH=$PWD .venv/bin/python -m pytest -q tests/test_language_atlas.py
+
+      # The charts of the evaluation pages read the board files.
+      - name: Check the evaluation charts
+        run: |
+          PYTHONPATH=$PWD .venv/bin/python scripts/gen_doc_charts.py --check

@@ -23,8 +23,6 @@
   ],
   "notes": "Grapheme inventory NOT YET SPECIFIED (stub). Wu (Shanghainese, Suzhounese, …) is written with Chinese characters (Han script). No logographic character-to-phoneme map is claimed here: Chinese characters do not encode pronunciation systematically, so a Han-script G2P for this variety would need either a full character-reading lexicon or a romanised input. INPUT CONTRACT: this spec expects a Wu romanisation as input, not Han characters — Wugniu (吳語學堂) romanisation, or the Qian Nairong / Shanghainese Latin schemes — in the same way that `zh` expects Hanyu Pinyin, `nan` expects Pe̍h-ōe-jī / Tâi-lô, Cantonese expects Jyutping, Hakka expects Pha̍k-fa-sṳ and Mindong expects Bàng-uâ-cê. Wu is distinctive for keeping a three-way voicing contrast in its initials and for tone sandhi spanning whole prosodic words; neither is recoverable from Han characters. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode wuch1236), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
   "iso639_3": "wuu",
-  "glottolog_code": "wuch1236",
-  "wikidata_qid": "Q34290",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Wu_Chinese",
     "https://wuu.wikipedia.org/wiki/%E5%90%B4%E8%AF%AD"

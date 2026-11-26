@@ -49,8 +49,6 @@
   },
   "notes": "Gilaki (گیلکی) — Northwestern Iranian language of Gilan Province, Iran, written in the Perso-Arabic script (a Persian-alphabet-based abjad). SKELETON: consonant/vowel-letter table now specified. The consonant letter set is the shared Perso-Arabic inventory Gilaki uses with Persian (`fa`) — the same 32 letters, adapted rather than copied wholesale: unlike Persian, ⟨ق⟩ and ⟨غ⟩ are kept as a distinct plain uvular stop /ɢ/ from the fricative pair merged in Tehrani Persian (Rastorgueva et al. 2012, 'The Gilan Language'; Wikipedia), since Caspian (Gilaki/Mazanderani/Talysh) dialects generally preserve the historical /q/-/ɣ/ contrast that colloquial Persian has lost. As an ABJAD, short vowels are normally unwritten (the harakat diacritics exist but are rarely used outside pedagogical text), so this grapheme table is necessarily incomplete for full vocalisation without a lexicon or vowel-restoration model — the same INPUT CONTRACT limitation already documented for `fa`/`ar`. STRESS EXEMPTION: no `stress` block is declared; Gilaki word-stress is not reconstructible from unvocalised Perso-Arabic spelling.",
   "iso639_3": "glk",
-  "glottolog_code": "gila1241",
-  "wikidata_qid": "Q33657",
   "sources": [
     {
       "id": "gilaki_language_wiki",

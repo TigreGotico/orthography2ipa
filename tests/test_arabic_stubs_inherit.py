@@ -46,7 +46,7 @@ FIXED = {
     # stops being a placeholder; that is the map's meaning, not an exemption.
     # these four already named an Arabic parent on dev and keep it
     "jrb": ("arb", "arb"),
-    "ajt": ("aeb-TN", "aeb-TN"),
+    "aeb-x-judeo": ("aeb-TN", "aeb-TN"),
     "aju": ("ary-MA", "ary-MA"),
     "yhd": ("acm-IQ", "acm-IQ"),
 }

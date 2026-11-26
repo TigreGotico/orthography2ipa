@@ -54,8 +54,6 @@
  },
  "notes": "Standard Tiv Latin orthography (East 1937; Abraham 1940; Tiv Bible Society conventions still used in current Tiv-language materials). Tiv is known for a rich series of prenasalized stops/affricates, each written as a digraph or trigraph that spells one single prenasalized segment, not a nasal followed by an oral obstruent (AGENTS.md test 2): ⟨mb⟩ /mb/, ⟨nd⟩ /nd/, ⟨ndz⟩ /ndz/, ⟨nj⟩ /n̠d̠ʒ/, ⟨ngg⟩ /ŋɡ/, ⟨ngmgb⟩ /ŋmɡb/ (the labial-velar prenasalized stop). ⟨c⟩ and ⟨j⟩ spell the affricates /t̠ʃ/ and /d̠ʒ/, ⟨gb⟩ and ⟨kp⟩ the labial-velar stops /ɡb/ and /kp/, ⟨gh⟩ the velar fricative /ɣ/, ⟨ny⟩ the palatal nasal /ɲ/, and ⟨ô⟩ the mid-back vowel /ɔ/ distinguished from ⟨o⟩ /o/. Tiv is tonal (PHOIBLE 1331: high/falling/low); tone is marked with diacritics in pedagogical texts but is frequently left unmarked in everyday orthography and is not encoded here — a documented exemption distinct from stress, which Tiv, like most Niger-Congo tone languages, does not contrast.",
  "iso639_3": "tiv",
- "glottolog_code": "tivv1240",
- "wikidata_qid": "Q34235",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Tiv_language"
  ],

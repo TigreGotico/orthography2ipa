@@ -65,7 +65,6 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "stan1306",
   "stress": {
     "default_position": -2,
     "final_stress_endings": [],
@@ -113,7 +112,6 @@
       "notes": "Portuguese adstrate: early trade loanwords."
     }
   ],
-  "wikidata_qid": "Q9237",
   "phoible_id": "stan1306",
   "location": {
     "latitude": 3.08896,

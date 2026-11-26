@@ -52,8 +52,6 @@
  },
  "notes": "Standard Dyula (Jula) Latin orthography as used in Côte d'Ivoire and Burkina Faso (Braconnier & Diané 1982; DNAFLA-derived Manding conventions shared with Bambara). Nasal vowels are written with a vowel followed by ⟨n⟩ (⟨an⟩, ⟨en⟩, ⟨in⟩, ⟨on⟩, ⟨ɔn⟩, ⟨ɛn⟩, ⟨un⟩): each spells one nasalized vowel nucleus, not vowel+consonant (AGENTS.md test 1 — the phonemic value is not the concatenation of the oral vowel and /n/). ⟨ny⟩, ⟨gb⟩ and ⟨kp⟩ are true digraphs for the single segments /ɲ/, /ɡb/, /kp/ (labial-velars and the palatal nasal are not sequences in Manding phonology). ⟨c⟩ and ⟨j⟩ represent the palatal affricates /t̠ʃ/ and /d̠ʒ/. Dyula is tonal (two-tone system, PHOIBLE 696); tone is not consistently marked in everyday orthography and is left unencoded here — a documented exemption distinct from lexical stress, which Manding varieties do not contrast phonemically.",
  "iso639_3": "dyu",
- "glottolog_code": "dyul1238",
- "wikidata_qid": "Q33641",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Dyula_language"
  ],

@@ -80,6 +80,23 @@ A lattice is a list of slots, one per grapheme, in surface order. Each slot is a
 | `candidates` | A tuple of `Candidate(ipa, cost)`, best (lowest cost) first |
 | `top` | The first candidate, which is the canonical choice |
 
+The diagram shows how the standalone tokenizer builds the lattice and then chooses a path from it. The rescore step runs only when the caller passes a rescorer.
+
+```mermaid
+flowchart TD
+    A["PhonetokTokenizer.tokenize"] --> B["TokenSequence: GraphemeContext per grapheme"]
+    B --> C["grapheme_positions"]
+    C --> D["positional_candidates"]
+    D --> E["build_branches: candidate_base_costs"]
+    E --> F["apply_rescorers"]
+    F --> G["ipa_lattice: SegmentSlot list"]
+    F --> H["ipa_beam: _expand_beam per slot"]
+    H --> I["IPAPath list, best first"]
+    I --> J["ipa_best: first path"]
+```
+
+The `grapheme_positions`, `positional_candidates` and `build_branches` steps together are `resolve_branches`. `ipa_lattice`, and `ipa_beam` with a rescorer, reach it through `_grapheme_slots`. Without a rescorer, `ipa_beam` calls `resolve_branches` directly.
+
 Two methods return a lattice. `PhonetokTokenizer.ipa_lattice(text, *, beam_width=8, expand_allophones=False, rescorer=None)` works from the spec alone. `G2P.ipa_lattice(word, *, beam_width=8)` adds the engine's context, as [Positional overrides apply here too](#positional-overrides-apply-here-too) explains. In both, `beam_width` is the number of candidates kept per slot, and `-1` keeps all of them. The truncation never removes the top candidate. A grapheme that resolves to no candidates, such as a silent marker letter, gets no slot.
 
 The costs of the slots are independent and additive. The lattice and the beam are therefore two views of the same search:
@@ -476,9 +493,9 @@ The latent final consonant of *nous* becomes the onset of *avons*. The right wor
 
 The sentence seam sits above the word lattice. Each `WordSlot.slots` is the word's `ipa_lattice`. A `SentenceRescorer` reads the edge slots and rewrites at the level of the word's IPA.
 
-`apply_sentence_rescorers` returns the IPA of each word, and it runs no `sandhi_rules`. The deprecated `G2P(sentence_rescorer=...)` runs the same rescorers in `transcribe`, with a view of the whole utterance, and then the spec's declarative `sandhi_rules` run through `SandhiEngine`. In `transcribe`, a cross-word rule goes in `Pipeline(sandhi=...)`, which runs after the `sandhi_rules`. A list of sentence rescorers composes like lattice rescorers: each pass sees the rewrites of the pass before it. Inside one pass, every word reads the same snapshot taken before the pass, so the order of the words does not change the result.
+`apply_sentence_rescorers` returns the IPA of each word, and it runs no `sandhi_rules`. In `transcribe`, the spec's declarative `sandhi_rules` run first, as the sandhi rules of the IR ([IR spec 3.10](../ir/o2i-ir-v1.md#310-sandhi-s11-and-dialect-profiles-s13)). The deprecated `G2P(sentence_rescorer=...)` then runs the same rescorers, with a view of the whole utterance, on the output of the `sandhi_rules`. A cross-word rule in code goes in `Pipeline(sandhi=...)`, which runs last. A list of sentence rescorers composes like lattice rescorers: each pass sees the rewrites of the pass before it. Inside one pass, every word reads the same snapshot taken before the pass, so the order of the words does not change the result.
 
-The engine passes `SandhiEngine.apply` the pause flag of each word, so a declarative rule stays inside its prosodic domain. No rule joins two words that a pause separates (Nespor & Vogel 1986, *Prosodic Phonology*). The blocked boundary is the intonational phrase, which is what punctuation writes. Some rules have the smaller phonological phrase as their real domain. Such a rule still applies at a phonological-phrase edge inside a clause, so the pause flags give a lower bound only. A sentence rescorer sees the same positions through `WordSlot.phrase_position`.
+The interpreter gives the sandhi rules the pause flag of each word, so a declarative rule stays inside its prosodic domain. No rule joins two words that a pause separates (Nespor & Vogel 1986, *Prosodic Phonology*). The blocked boundary is the intonational phrase, which is what punctuation writes. Some rules have the smaller phonological phrase as their real domain. Such a rule still applies at a phonological-phrase edge inside a clause, so the pause flags give a lower bound only. A sentence rescorer sees the same positions through `WordSlot.phrase_position`.
 
 ### Off by default
 

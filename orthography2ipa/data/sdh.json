@@ -50,7 +50,6 @@
   },
   "notes": "Southern Kurdish (Kermanshahi/Feyli) — Southwestern Iranian language spoken across Kermanshah, Ilam and Khuzestan provinces of Iran and adjoining Iraq, generally written in a Kurdish adaptation of the Perso-Arabic script. SKELETON: consonant/vowel-letter table now specified, adapted from the already-encoded `ckb` (Central Kurdish/Sorani) spec's Kurdish-specific Arabic-script letter set — full vowel letters (unlike Persian/Arabic proper) for ⟨ه/ە⟩ /ɛ/, ⟨و⟩ /o/, ⟨ۆ⟩ /oː/, ⟨ی⟩ /iː/ and ⟨ێ⟩ /eː/, plus the rhotic ⟨ر⟩/⟨ڕ⟩ and lateral ⟨ل⟩/⟨ڵ⟩ pairs — because Southern Kurdish dialects share this Central-Kurdish-derived orthographic convention (Fattah 2000, 'Les Dialectes Kurdes Méridionaux') rather than Sorani's phonology outright: Southern Kurdish differs from Sorani in retaining historical clusters Sorani has simplified and in vowel quality in several lexical sets, so this letter table asserts the SHARED SCRIPT CONVENTION only, not shared phonology (see AGENTS.md, 'a shared alphabet is not a shared phonology'). As an ABJAD-derived script that DOES write full vowels, this table is closer to alphabetic than `fa`/`ar`, but is not yet validated against a Southern Kurdish-specific corpus. STRESS EXEMPTION: no `stress` block is declared.",
   "iso639_3": "sdh",
-  "glottolog_code": "sout2640",
   "sources": [
     {
       "id": "glottolog2024",

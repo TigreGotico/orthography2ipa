@@ -98,7 +98,6 @@
   "quality": "research",
   "script_type": "alphabet",
   "iso639_3": "ain",
-  "glottolog_code": "ainu1240",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Ainu_language"
   ],
@@ -140,7 +139,6 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Ainu_language"
     }
   ],
-  "wikidata_qid": "Q27969",
   "phoible_id": "ainu1240",
   "location": {
     "latitude": 43.633654,

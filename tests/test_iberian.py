@@ -583,13 +583,14 @@ class TestPortuguesePT:
     def test_grapheme_rh_null(self):
         _assert_null(self._spec, "rh", "pt-PT rh")
 
-    def test_grapheme_u_umlaut_null(self):
-        _assert_null(self._spec, "ü", "pt-PT ü")
+    def test_grapheme_u_umlaut_reads_glide(self):
+        # The trema of pre-1990 texts marks a pronounced u (AO1990 Base XX, 5.º).
+        _assert_first(_grapheme(self._spec, "ü"), "w", "pt-PT ü")
 
-    def test_grapheme_qu_umlaut_null(self):
+    def test_grapheme_qu_umlaut_has_no_own_row(self):
         _assert_null(self._spec, "qü", "pt-PT qü")
 
-    def test_grapheme_gu_umlaut_null(self):
+    def test_grapheme_gu_umlaut_has_no_own_row(self):
         _assert_null(self._spec, "gü", "pt-PT gü")
 
     # --- Allophones ---

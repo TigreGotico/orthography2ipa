@@ -323,7 +323,7 @@ def test_pl_word_final_e_nasal_denasalizes():
     strict=True,
     reason="pl notes claim ą → [ɔ] word-finally (de-nasalization); engine produces "
     "[sɔw̃] for są — the word-final nasal vowel keeps a nasal glide, while the "
-    "parallel claim for ę is honoured (tę → [tɛ])",
+    "parallel claim for ę is honoured (tę → [tɛ])", raises=AssertionError,
 )
 def test_pl_word_final_a_nasal_denasalizes():
     """Word-final ⟨ą⟩ is [ɔ], not a nasal vowel.
@@ -439,7 +439,7 @@ def test_cs_h_devoices_to_x_in_coda():
     strict=True,
     reason="cs notes claim obstruents devoice in coda as well as word-finally "
     "(b→p); engine produces [obxot] for obchod — the coda /b/ before voiceless "
-    "/x/ stays voiced, so only the word-final half of the claim is implemented",
+    "/x/ stays voiced, so only the word-final half of the claim is implemented", raises=AssertionError,
 )
 def test_cs_coda_devoicing_word_internally():
     """Coda obstruents devoice word-internally, not only word-finally.
@@ -549,7 +549,7 @@ def test_mk_palatal_sonorants():
     strict=True,
     reason="mk notes claim fixed antepenultimate stress; engine emits no stress "
     "mark at all for Macedonian (планина → [planina]) — the spec carries no "
-    "stress block, unlike its Slavic siblings",
+    "stress block, unlike its Slavic siblings", raises=AssertionError,
 )
 def test_mk_antepenultimate_stress():
     """Stress is fixed on the third-from-last syllable.
@@ -665,7 +665,7 @@ def test_ltg_macron_marks_length():
     strict=True,
     reason="ltg notes claim first-syllable stress; engine emits no stress mark at "
     "all for Latgalian (volūda → [vɔluːda]), while its sister lv marks it "
-    "(valoda → [ˈvaluoda]) — the ltg spec carries no stress block",
+    "(valoda → [ˈvaluoda]) — the ltg spec carries no stress block", raises=AssertionError,
 )
 def test_ltg_initial_stress():
     """Stress is on the first syllable.
@@ -979,7 +979,7 @@ def test_gag_tsedilla_letter():
     strict=True,
     reason="gag notes claim /k ɡ/ front to [c ɟ] next to front vowels; engine "
     "produces [kim] and [ɡel] — no fronting rule exists in the spec, so the claim "
-    "never fires",
+    "never fires", raises=AssertionError,
 )
 def test_gag_velars_front_before_front_vowels():
     """Velars /k ɡ/ are fronted to [c ɟ] next to front vowels.

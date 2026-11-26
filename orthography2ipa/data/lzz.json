@@ -119,7 +119,6 @@
   ],
   "notes": "Skeleton. Laz is a Kartvelian (South Caucasian) language written here in the Georgian Mkhedruli script, a cleanly phonemic alphabet. All 33 standard Georgian letters are mapped to their phonemic values, including the three-way stop/affricate contrasts of voiced, aspirated and ejective (e.g. კ kʼ, ქ kʰ, გ ɡ; წ tsʼ, ც tsʰ, ძ dz) and the uvular ejective ყ. The extra Laz letter ჷ writes the schwa vowel ə. Word stress is not marked in the script and is left unencoded; otherwise grapheme-to-phoneme mapping is close to complete for the alphabet.",
   "iso639_3": "lzz",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "lzz_glottolog",

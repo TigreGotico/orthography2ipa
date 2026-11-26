@@ -1,6 +1,5 @@
 {
   "code": "ext",
-  "glottolog_code": "extr1243",
   "name": "Extremaduran",
   "script": "Latin",
   "inherits": "es-ES",
@@ -209,7 +208,6 @@
   },
   "iso639_3": "ext",
   "quality": "research",
-  "wikidata_qid": "Q30007",
   "location": {
     "latitude": 39.1926,
     "longitude": -6.10179,

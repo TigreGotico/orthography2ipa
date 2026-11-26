@@ -1,6 +1,5 @@
 {
   "code": "pre",
-  "glottolog_code": "prin1242",
   "name": "Principense (Lung'ie)",
   "script": "Latin",
   "quality": "research",
@@ -311,7 +310,6 @@
     "˦": "high",
     "˨": "low"
   },
-  "wikidata_qid": "Q36520",
   "phoible_id": "prin1242",
   "wals_code": "pri",
   "location": {

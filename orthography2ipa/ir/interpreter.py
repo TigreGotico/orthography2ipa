@@ -66,6 +66,7 @@ class WordResult:
     dropped: Tuple[str, ...] = ()
     paths: Tuple[Tuple[Tuple[str, ...], int], ...] = ()
     forced: bool = False
+    override: bool = False
 
 
 @dataclass
@@ -80,6 +81,8 @@ class _Word:
     hyphen_joined: bool = False
     pausal: bool = False
     forced: Optional[str] = None
+    #: The spelling before the caller's mark stage, when it differs: the lexicon key.
+    key: Optional[str] = None
 
 
 #: One slot of the word beam: ``[(ipa, cost)]``, best first. A cost is an
@@ -1407,6 +1410,7 @@ class Interpreter:
         if self.stress is None:
             return frozenset()
         found: List[int] = []
+        atonic: List[int] = []
         lowered = self.lower(word)
         rule = self.syll.get("closed_hiatus")
         if rule:
@@ -1419,6 +1423,9 @@ class Interpreter:
                         and not (len(rest) > 1 and self._c(rest[1], "orth_vowel"))
                         and not any(rest.startswith(g) for g in rule["multi_keys"])):
                     found.append(k)
+                elif any(rest.startswith(o) for o in rule.get("atonic_onsets", ())):
+                    found.append(k)
+                    atonic.append(k)
         rule = self.syll.get("final_diphthongs")
         if rule:
             for diphthong in rule["diphthongs"]:
@@ -1431,7 +1438,7 @@ class Interpreter:
         sylls = self._bundled(word, frozenset(found))
         stressed = self.detect_stress(word, sylls)
         start = sum(len(s) for s in sylls[:stressed])
-        return frozenset(k for k in found if k == start)
+        return frozenset(k for k in found if k == start or k in atonic)
 
     def secondary_positions(self, n: int, stressed: Optional[int]) -> FrozenSet[int]:
         if not self.stress["alternating"] or stressed is None or stressed < 0 or n < 3:
@@ -2216,21 +2223,24 @@ class Interpreter:
         out.append(ipa[last:])
         return "".join(out)
 
-    def transcribe_word(self, word: str, width: int, lexicon=None, forced: Optional[str] = None) -> WordResult:
+    def transcribe_word(self, word: str, width: int, lexicon=None, forced: Optional[str] = None,
+                        key: Optional[str] = None) -> WordResult:
         """*word* to IPA. A *forced* reading takes the place of a lexicon hit
-        and is not stressed. Without a lexicon or a forced reading the
-        result depends on *word* and *width* alone, so it is cached."""
-        if lexicon is None and forced is None:
+        and is not stressed. *key* is the spelling to look up in place of
+        *word*. Without a lexicon, a forced reading or a key the result
+        depends on *word* and *width* alone, so it is cached."""
+        if lexicon is None and forced is None and key is None:
             hit = self._words.get((word, width))
             if hit is None:
                 if len(self._words) >= 65536:
                     self._words.clear()
                 hit = self._words[(word, width)] = self._transcribe_word(word, width, None, None)
             return hit
-        return self._transcribe_word(word, width, lexicon, forced)
+        return self._transcribe_word(word, width, lexicon, forced, key)
 
-    def _transcribe_word(self, word: str, width: int, lexicon, forced: Optional[str]) -> WordResult:
-        override = forced if forced is not None else self._override_for(word, lexicon)
+    def _transcribe_word(self, word: str, width: int, lexicon, forced: Optional[str],
+                         key: Optional[str] = None) -> WordResult:
+        override = forced if forced is not None else self._override_for(key or word, lexicon)
         paths = []
         if override is not None:
             ipa = self._finalize(word, override, None, collapse=False, forced=forced is not None)
@@ -2239,7 +2249,7 @@ class Interpreter:
             best = paths[0] if paths else None
             ipa = self._finalize(word, word if best is None else "".join(best[0]), best, collapse=True)
         return WordResult(word, ipa, self._dropped(word), tuple((p[0], p[1]) for p in paths),
-                          forced is not None)
+                          forced is not None, override is not None)
 
     # ─── S10 to S14: the sentence ────────────────────────────────────
     def _mark_compounds(self, words: List[_Word], ipa_words: List[str]) -> List[str]:
@@ -2305,29 +2315,46 @@ class Interpreter:
                 tpl.append(part)
         return "".join(map(chr, pattern.sub(node, tpl, s, strings)))
 
-    def words(self, runs: Sequence[Tuple[str, Optional[str]]], lexicon=None) -> List[_Word]:
+    def words(self, runs: Sequence[Tuple], lexicon=None) -> List[_Word]:
         """The words of *runs*, as :meth:`transcribe_runs` reads them, the
         last one pausal."""
         words: List[_Word] = []
-        for text, forced in runs:
+        for text, forced, *unmarked in runs:
             if forced is not None:
                 words.append(_Word(text.strip(), forced=forced))
                 continue
-            if self.hooks.text is not None:
-                text = self.hooks.text(text)
-            self._group_words(self.prepare(text), words, lexicon)
+            start = len(words)
+            self._group_words(self._run_text(text), words, lexicon)
+            if unmarked and unmarked[0] != text:
+                self._key_words(words[start:], unmarked[0], lexicon)
         if words:
             words[-1].pausal = True
         return words
 
-    def transcribe_runs(self, runs: Sequence[Tuple[str, Optional[str]]], *, width: int = 1,
+    def _run_text(self, text: str) -> str:
+        return self.prepare(text if self.hooks.text is None else self.hooks.text(text))
+
+    def _key_words(self, words: List[_Word], unmarked: str, lexicon) -> None:
+        keys: List[_Word] = []
+        self._group_words(self._run_text(unmarked), keys, lexicon)
+        if len(keys) != len(words):
+            raise ValueError(
+                f"the mark stage made {len(words)} words of the {len(keys)} words in "
+                f"{unmarked!r}. A mark stage keeps the words")
+        for word, key in zip(words, keys):
+            if key.surface != word.surface:
+                word.key = key.surface
+
+    def transcribe_runs(self, runs: Sequence[Tuple], *, width: int = 1,
                         lexicon=None) -> Result:
         """Transcribe a text given as runs. A run ``(text, None)`` is plain
-        text; a run ``(surface, ipa)`` is one word with a forced reading."""
+        text; a run ``(surface, ipa)`` is one word with a forced reading. A
+        plain run ``(text, None, unmarked)`` is *text* after a mark stage: the
+        lexicon is looked up by the words of *unmarked*, and the rules read *text*."""
         words = self.words(runs, lexicon)
         if not words:
             return Result("")
-        results = [self.transcribe_word(w.surface, width, lexicon, w.forced) for w in words]
+        results = [self.transcribe_word(w.surface, width, lexicon, w.forced, w.key) for w in words]
         ipa_words = [r.ipa for r in results]
         if self.stress is not None and self.stress["compound_last"]:
             ipa_words = self._mark_compounds(words, ipa_words)
@@ -2344,7 +2371,8 @@ class Interpreter:
             ipa = run_program(self, self.ir["dialect"], ipa, " ".join(w.surface for w in words))
         if ipa:
             ipa = self.nfc(ipa)
-        return Result(ipa, tuple(WordResult(r.word, self.nfc(iw) if iw else iw, r.dropped, r.paths, r.forced)
+        return Result(ipa, tuple(WordResult(r.word, self.nfc(iw) if iw else iw, r.dropped, r.paths, r.forced,
+                                            r.override)
                                  for r, iw in zip(results, ipa_words)))
 
     def transcribe(self, text: str, *, width: int = 1, lexicon=None) -> str:

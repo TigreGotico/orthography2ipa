@@ -58,6 +58,8 @@ when an atlas page breaks the template.
 
 from __future__ import annotations
 
+from linguatag import catalog_ids
+
 import argparse
 import csv
 import dataclasses
@@ -282,7 +284,7 @@ class Atlas:
         """
         macroarea, countries = "", []
         for depth, spec in enumerate(self.lineage(code)):
-            entry = self.snapshot["geography"].get(spec.glottolog_code or "")
+            entry = self.snapshot["geography"].get(catalog_ids(spec.code).get("glottolog_code") or "")
             if entry:
                 macroarea, _, listed = entry.partition("|")
                 if depth == 0:
@@ -429,14 +431,15 @@ def block_header(atlas: Atlas, spec) -> str:
         cell = (f"[{spec.iso639_3}](https://iso639-3.sil.org/code/"
                 f"{spec.iso639_3})")
         rows.append(("ISO 639-3", f"{cell}, {name}" if name else cell))
-    if spec.glottolog_code:
-        name = atlas.snapshot["glottolog_names"].get(spec.glottolog_code)
-        cell = (f"[{spec.glottolog_code}](https://glottolog.org/resource/"
-                f"languoid/id/{spec.glottolog_code})")
+    ids = catalog_ids(spec.code)
+    glottocode, qid = ids.get("glottolog_code"), ids.get("wikidata_qid")
+    if glottocode:
+        name = atlas.snapshot["glottolog_names"].get(glottocode)
+        cell = (f"[{glottocode}](https://glottolog.org/resource/"
+                f"languoid/id/{glottocode})")
         rows.append(("Glottolog", f"{cell}, {name}" if name else cell))
-    if spec.wikidata_qid:
-        rows.append(("Wikidata", f"[{spec.wikidata_qid}](https://www.wikidata"
-                                 f".org/wiki/{spec.wikidata_qid})"))
+    if qid:
+        rows.append(("Wikidata", f"[{qid}](https://www.wikidata.org/wiki/{qid})"))
     wiki = _wikipedia(spec)
     if wiki:
         title = urllib.parse.unquote(wiki.rsplit("/", 1)[-1]).replace("_", " ")
@@ -1384,8 +1387,8 @@ def refresh_snapshot() -> None:
     for path in sorted(glob.glob(os.path.join(DATA_DIR, "*.json"))):
         with open(path, encoding="utf-8") as fh:
             specs.append(json.load(fh))
-    glottocodes = {s.get("glottolog_code") for s in specs} - {None}
-    named = {s.get("glottolog_code") for s in specs
+    glottocodes = {catalog_ids(s["code"]).get("glottolog_code") for s in specs} - {None}
+    named = {catalog_ids(s["code"]).get("glottolog_code") for s in specs
              if s.get("quality", "research") != "stub"} - {None}
     iso_codes = {s.get("iso639_3") for s in specs
                  if s.get("quality", "research") != "stub"} - {None}

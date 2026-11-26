@@ -9,8 +9,8 @@ from functools import lru_cache
 from importlib.metadata import entry_points
 from typing import Dict, List, Optional
 
-from linguatag import closest_lang, likely_script, standardize_lang, with_default_region
-from linguatag.bcp47 import LanguageTag, LanguageTagError, parse
+from linguatag import (LanguageTag, LanguageTagError, closest_lang, likely_script, parse_tag,
+                       standardize_lang, with_default_region)
 
 import orthography2ipa.json_loader as json_loader
 from orthography2ipa.json_loader import available_json_codes, load_json_spec
@@ -116,20 +116,13 @@ _ALIASES: Dict[str, str] = {
     # generic Sardinian macrolanguage spec) under ``langcodes``, which would
     # otherwise shadow the dedicated ``src`` spec. Pin it to itself.
     "src": "src",
-    # ``oji`` (Ojibwa macrolanguage) and ``mnk`` (Mandinka) gained real specs
-    # while the registry also carries their langcodes-preferred siblings
-    # (``ojg`` Eastern Ojibwa, ``emk`` Eastern Maninkakan). Pin each to itself
-    # so standardisation does not rewrite an exact-file hit, same class of
-    # collision as bxr/diq above.
-    "oji": "oji",
+    # ``oji`` is the Ojibwa macrolanguage spec, ``oj``. ``mnk`` (Mandinka) is
+    # pinned to itself, so standardisation does not rewrite it to ``emk``.
+    "oji": "oj",
     "mnk": "mnk",
-    # ``kas`` (Kashmiri) is an ISO 639-3 individual code that langcodes'
-    # macro=True standardisation collapses into its macrolanguage tag ``ks``
-    # (Kashmiri, ISO 639-1) — same collision class as bxr/diq above. ``ks``
-    # already carries a Latin-transliteration research-tier spec; ``kas``
-    # is a distinct, separately-cited spec for the Perso-Arabic native
-    # script. Pin it to itself so the macro-collapse step does not shadow it.
-    "kas": "kas",
+    # ``kas`` is the Perso-Arabic Kashmiri spec, ``ks-Arab``; ``ks`` is the
+    # Latin transliteration.
+    "kas": "ks-Arab",
     # ``bcc`` (Southern Balochi) is an ISO 639-3 individual code that
     # langcodes' macro=True standardisation collapses into its
     # macrolanguage tag ``bal`` (Balochi) — same collision class as
@@ -329,6 +322,12 @@ _RENAMED: Dict[str, str] = {
     # SIL retired ``bbz`` as non-existent and names no replacement, so Babalia
     # Creole Arabic takes a private-use key. ``bbz`` is no other language's code.
     "bbz":                  "ar-TD-x-babalia",
+    # IANA deprecates ``ajt`` (preferred ``aeb``) and ``yol`` (preferred
+    # ``enm``), so each variety takes a private-use key under its preferred code.
+    "ajt":                  "aeb-x-judeo",
+    "yol":                  "enm-x-yola",
+    # CLDR gives swc the canonical tag sw-CD.
+    "swc":                  "sw-CD",
 }
 _ALIASES.update(_RENAMED)
 
@@ -356,8 +355,8 @@ def _region_subtag(code: str) -> Optional[str]:
     """The region subtag of the spec key *code* in upper case, or None.
 
     Some legacy keys are not well-formed tags (``ar-Latn-buckwalter``), which
-    ``linguatag.bcp47.parse`` rejects, so keys are read here and a caller's
-    tag is read with ``parse``.
+    ``linguatag.parse_tag`` rejects, so keys are read here and a caller's
+    tag is read with ``parse_tag``.
     """
     for subtag in code.split("-")[1:]:
         if len(subtag) == 1:
@@ -442,8 +441,8 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     requested_head, *requested_private = _PRIVATE_USE.split(requested, maxsplit=1)
     code_head, *private = _PRIVATE_USE.split(code, maxsplit=1)
     try:
-        wanted = parse(requested_head)
-        tag = parse(code_head)
+        wanted = parse_tag(requested_head)
+        tag = parse_tag(code_head)
     except LanguageTagError:
         wanted = tag = LanguageTag()
     # A script subtag that linguatag gives as the likely script of the rest of

@@ -28,7 +28,7 @@ A spec does not declare a `family` string. The family comes from the clade nodes
 
 5. Cite every claim in `sources`, as [citation honesty](citations.md) describes.
 
-6. Add `glottolog_code`, `wikidata_qid` and `iso639_3` where they exist. Look them up in [Glottolog](https://glottolog.org), [Wikidata](https://www.wikidata.org) and the [ISO 639-3 registry](https://iso639-3.sil.org). Make sure that each identifier resolves to this language. A null code is better than a wrong one.
+6. Add `iso639_3` where it exists, from the [ISO 639-3 registry](https://iso639-3.sil.org). The [Glottolog](https://glottolog.org) and [Wikidata](https://www.wikidata.org) ids come from `linguatag.catalog_ids(code)`. A spec file does not hold them. For a new variety, add its ids to linguatag (`scripts/add_nodes.py`). Make sure that each identifier resolves to this language. A null code is better than a wrong one.
 
 7. Connect the ancestry with `inherits` or `ancestors`. Give a new language or dialect the full `ancestors` list, because it carries the most data. A dialect that differs little from its parent can use `inherits` alone. The ancestor roles and their typical weights are in [data model](../specs/data_model.md#ancestorrole) and in [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#ancestor-role-values).
 
@@ -102,7 +102,7 @@ The merge is one level deep, and `null` deletes an inherited entry ([`SCHEMA.md`
 
 ## Metadata worth filling in
 
-A spec also records what the language is. Fill in `sources`, `orthography_standard`, `location` and `timespan`. Add the cross-references `glottolog_code` ([Glottolog](https://glottolog.org)), `wikidata_qid` ([Wikidata](https://www.wikidata.org)), `phoible_id` ([PHOIBLE](https://phoible.org)), `wals_code` ([WALS](https://wals.info)) and `iso639_3` ([ISO 639-3](https://iso639-3.sil.org)), and the reader links `wikipedia` and `urls`. [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#fields) defines each field and what reads it.
+A spec also records what the language is. Fill in `sources`, `orthography_standard`, `location` and `timespan`. Add the cross-references `phoible_id` ([PHOIBLE](https://phoible.org)), `wals_code` ([WALS](https://wals.info)) and `iso639_3` ([ISO 639-3](https://iso639-3.sil.org)), and the reader links `wikipedia` and `urls`. [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#fields) defines each field and what reads it.
 
 ## Looking for a source: what a phone inventory cannot tell you
 

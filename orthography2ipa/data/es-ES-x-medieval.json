@@ -1,6 +1,5 @@
 {
   "code": "es-ES-x-medieval",
-  "glottolog_code": "olds1249",
   "name": "Castilian",
   "script": "Latin",
   "inherits": "x-clade-iberrom",
@@ -440,7 +439,6 @@
   },
   "iso639_3": "osp",
   "quality": "research",
-  "wikidata_qid": "Q1088025",
   "location": {
     "latitude": 41.5,
     "longitude": -3.9,

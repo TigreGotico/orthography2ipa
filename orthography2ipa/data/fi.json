@@ -345,7 +345,6 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "finn1318",
   "iso639_3": "fin",
   "stress": {
     "default_position": 1,
@@ -370,7 +369,6 @@
       "notes": "Russian/eastern adstrate. (Swedish is the major historical contact language but is modelled from the Swedish side to avoid a graph cycle.)"
     }
   ],
-  "wikidata_qid": "Q1412",
   "phoible_id": "finn1318",
   "wals_code": "fin",
   "location": {

@@ -49,7 +49,6 @@
   "notes": "Standard K'iche' Latin orthography as codified by the Academia de Lenguas Mayas de Guatemala (ALMG), described in Mondloch (1978), Basic Quiche Grammar. Ejective consonants are a following apostrophe on the plain stop/affricate letter (⟨k'⟩ /kʼ/, ⟨q'⟩ /qʼ/, ⟨t'⟩ /tʼ/, ⟨ch'⟩ /tʃʼ/, ⟨tz'⟩ /tsʼ/), each one glottalized segment rather than a stop plus a separate glottal stop (AGENTS.md test 2). ⟨b'⟩ is the implosive /ɓ/. ⟨ch⟩ and ⟨tz⟩ spell the single affricates /tʃ/ and /ts/. ⟨j⟩ and ⟨x⟩ distinguish the uvular/velar fricative /x/ from the palatal fricative /ʃ/ (a widespread K'iche'an contrast). Vowel length is phonemic in K'iche' and written by doubling the vowel letter. Stress is fixed on the final syllable and is not marked orthographically; it is left unencoded here as a documented, fully predictable exemption. This spec models the phonology and orthography of K'iche' as a language in its own right, distinct from its earlier role as a bare adstrate placeholder for Guatemalan Spanish contact studies.",
   "script_type": "alphabet",
   "iso639_3": "quc",
-  "glottolog_code": "kich1262",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kiche_language"
   ],
@@ -81,7 +80,6 @@
       "notes": "Official Mayan-language alphabet standard, including K'iche'."
     }
   ],
-  "wikidata_qid": "Q36494",
   "phoible_id": "kich1262",
   "wals_code": "qch",
   "location": {
