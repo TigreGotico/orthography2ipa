@@ -608,11 +608,11 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | pt-MZ | portal_lupo | 53143 | 0.1668‡ | 0.9981 | - | 0.1426 | 0.1262 | 0.3287 | 0.3854 | [0.1656, 0.1680] | 0.2618 | research | lupo-derived |
 | pt-MZ | portuguese_tts | 20 | 0.2095‡ | - | - | - | - | - | - | [0.1891, 0.2302] | 0.0000 | research | llm-corrected |
 | pt-PT | ep_dialects | 30 | 0.0645 | - | - | - | - | - | - | [0.0467, 0.0854] | 0.3000 | research | expert-human |
-| pt-PT | ipa_childes | 3846 | 0.2288‡ | - | - | 0.1759 | 0.1653 | 0.3768 | 0.3999 | [0.2220, 0.2355] | 0.2787 | research | espeak-derived |
+| pt-PT | ipa_childes | 3846 | 0.2284‡ | - | - | 0.1757 | 0.1651 | 0.3770 | 0.4004 | [0.2215, 0.2352] | 0.2793 | research | espeak-derived |
 | pt-PT | portuguese_tts | 20 | 0.0264‡ | - | - | - | - | - | - | [0.0121, 0.0413] | 0.5500 | research | llm-corrected |
-| pt-PT | portuguese_unified | 105553 | 0.1866 | 0.9906 | - | 0.1773 | 0.1746 | 0.2157 | 0.2196 | [0.1857, 0.1875] | 0.1987 | research | lexicon-derived |
-| pt-PT | portuguese_unified_corrected | 105534 | 0.1866‡ | 0.9913 | - | 0.1772 | 0.1746 | 0.2157 | 0.2197 | [0.1857, 0.1874] | 0.1987 | research | lexicon-derived |
-| pt-PT | wikipron | 56979 | 0.0578 | - | - | 0.0484 | 0.0455 | 0.6921 | 0.7052 | [0.0570, 0.0587] | 0.6534 | research | crowd-scraped |
+| pt-PT | portuguese_unified | 105553 | 0.1862 | 0.9906 | - | 0.1771 | 0.1746 | 0.2159 | 0.2197 | [0.1852, 0.1870] | 0.1991 | research | lexicon-derived |
+| pt-PT | portuguese_unified_corrected | 105534 | 0.1861‡ | 0.9913 | - | 0.1770 | 0.1745 | 0.2159 | 0.2198 | [0.1852, 0.1869] | 0.1991 | research | lexicon-derived |
+| pt-PT | wikipron | 56979 | 0.0572 | - | - | 0.0481 | 0.0454 | 0.6926 | 0.7053 | [0.0564, 0.0580] | 0.6545 | research | crowd-scraped |
 | pt-PT-x-acores | clup_dialect | 2† | 0.3066‡ | - | - | - | - | - | - | n too small | 0.0000 | research | expert-human |
 | pt-PT-x-acores | ep_dialects | 29 | 0.0974 | - | - | - | - | - | - | [0.0720, 0.1254] | 0.1724 | research | expert-human |
 | pt-PT-x-acores | portuguese_tts | 20 | 0.1057‡ | - | - | - | - | - | - | [0.0802, 0.1322] | 0.0000 | research | llm-corrected |
