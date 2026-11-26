@@ -241,7 +241,7 @@ def espeak_agreement(rows: list, c: Dict[str, str]) -> str:
         y = top + i * step
         body.append(text(left - 8, y + 12, lang, c, 12, "end"))
         body.append(bar(left, y, pw * v, bh, c["series"], "right"))
-        body.append(text(left + pw * v + 6, y + 12, num(v), c, 11, muted=True))
+        body.append(text(left + pw * v + 6, y + 12, f"{v:.2f}", c, 11, muted=True))
     body.append(line(left, top - 4, left, top + step * len(scored), c["axis"]))
     hi, lo = scored[0], scored[-1]
     desc = (f"Highest {hi[0]} {num(hi[1])}, lowest {lo[0]} {num(lo[1])}, "
