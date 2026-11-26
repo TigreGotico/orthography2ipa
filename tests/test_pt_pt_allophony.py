@@ -331,3 +331,11 @@ def test_alfena_and_alentejo_write_the_broken_vowel_untied():
     assert [alfena[v] for v in ("e", "ɛ", "o", "ɔ")] == [
         ["e", "eɐ"], ["ɛ", "ɛɐ"], ["o", "oɐ"], ["ɔ", "ɔɐ"]]
     assert get("pt-PT-x-alentejo").allophones["ɛ"] == ["ɛ", "ɛɐ"]
+
+
+def test_pinguim_keeps_its_glide_in_every_inflection():
+    """#2665: the plural and the diminutive keep the [w] of pinguim."""
+    g = G2P("pt-PT")
+    assert g.transcribe("pinguim") == "pĩˈɡwĩ"
+    assert g.transcribe("pinguins") == "pĩˈɡwĩʃ"
+    assert g.transcribe("pinguinzinho") == "pĩɡwĩˈziɲu"
