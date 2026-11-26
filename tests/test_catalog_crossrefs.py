@@ -179,7 +179,7 @@ _FAMILY_LEVEL_OK = {
     # Ojibwe: ISO 639-3 "oji" is a macrolanguage (ojib1241 is the family
     # node covering ojb/ojc/ojg/ojs/ojw/otw/alq); no language-level node
     # exists for the macrolanguage itself.
-    "oji",
+    "oj",
     # Family / grouping / proto specs — these ARE family nodes by design.
     "afa", "ber", "iir", "ira", "khi", "nic", "sla", "xbr",
     "ta-x-proto-dravidia", "mni-x-proto-kuki-chin",

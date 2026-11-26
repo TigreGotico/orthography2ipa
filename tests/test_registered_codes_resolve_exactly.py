@@ -13,7 +13,7 @@ from orthography2ipa.json_loader import available_json_codes
 from orthography2ipa.registry import resolve, resolves_exactly
 
 MACRO_FOLDED = ["bcl", "bxk", "cld", "cnr", "dhd", "emk", "gbo", "gno", "gya",
-                "hdn", "hea", "lbk", "ojg", "spy", "swc", "tl", "ttq", "umu",
+                "hdn", "hea", "lbk", "ojg", "spy", "tl", "ttq", "umu",
                 "xsl", "zai"]
 
 
