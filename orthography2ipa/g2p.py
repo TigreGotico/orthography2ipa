@@ -542,12 +542,13 @@ class G2P:
             ipa_words = rewritten
         return list(ipa_words)
 
-    def _ir_runs(self, text: str) -> List[Tuple[str, Optional[str]]]:
+    def _ir_runs(self, text: str) -> List[Tuple]:
         """*text* after ``expand`` and ``mark``, as interpreter runs: a plain
-        run, or a forced word with its checked IPA."""
+        run with its text before ``mark``, or a forced word with its checked IPA."""
+        unmarked = self._expanded(parse_markup(text))
         return [(chunk.text, self._check_forced(chunk.forced_ipa)) if chunk.is_forced
-                else (chunk.text, None)
-                for chunk in self._prepared(parse_markup(text))]
+                else (chunk.text, None, before.text)
+                for chunk, before in zip(self._marked(unmarked), unmarked)]
 
     def _ir_lexicon(self):
         lexicon = self.pipeline.lexicon
@@ -576,7 +577,7 @@ class G2P:
         unmapped, coverage = self._unmapped_chars(wr.word)
         if unmapped:
             self._handle_unmapped(wr.word, unmapped)
-        override = wr.forced or it._override_for(wr.word, lexicon) is not None
+        override = wr.forced or wr.override
         confidence = 1.0 if override else lattice_confidence(self.ipa_lattice(wr.word))
         candidates = tuple(IPAPath(segs, cost / 1_000_000) for segs, cost in wr.paths) if width > 1 else ()
         return WordTranscription(word=unicodedata.normalize("NFC", wr.word), ipa=wr.ipa, candidates=candidates,
@@ -661,7 +662,7 @@ class G2P:
         it = self._interpreter
         lexicon = self._ir_lexicon()
         words = self._ir_words(it, text, lexicon)
-        transcribed = [self._ir_word(it, it.transcribe_word(w.surface, width, lexicon, w.forced),
+        transcribed = [self._ir_word(it, it.transcribe_word(w.surface, width, lexicon, w.forced, w.key),
                                      width, lexicon) for w in words]
         return self._build_sentence_lattice(words, transcribed, width)
 
@@ -887,13 +888,17 @@ class G2P:
             f"search must be 'greedy' or 'beam', got {search!r}")
 
 
-    def _prepared(self, chunks: List[Chunk]) -> List[Chunk]:
-        """*chunks* after the pipeline's ``expand`` and ``mark``."""
-        expand, mark = self.pipeline.expand, self.pipeline.mark
-        if expand is not None:
-            chunks = [chunk if chunk.is_forced
-                      else replace(chunk, text=expand(chunk.text))
-                      for chunk in chunks]
+    def _expanded(self, chunks: List[Chunk]) -> List[Chunk]:
+        """*chunks* after the pipeline's ``expand``."""
+        expand = self.pipeline.expand
+        if expand is None:
+            return chunks
+        return [chunk if chunk.is_forced else replace(chunk, text=expand(chunk.text))
+                for chunk in chunks]
+
+    def _marked(self, chunks: List[Chunk]) -> List[Chunk]:
+        """*chunks* after the pipeline's ``mark``."""
+        mark = self.pipeline.mark
         if mark is None:
             return chunks
         text = "".join(chunk.text for chunk in chunks)

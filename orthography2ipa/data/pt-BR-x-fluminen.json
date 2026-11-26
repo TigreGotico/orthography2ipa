@@ -508,7 +508,6 @@
       "notes": "Switched off. This spec writes every word-final /R/ as the aspirate of FLU_CODA_R_FINAL, which stands after the base rules, so the base drop would pre-empt it in verbs and the base tap list in non-verbs. Callou, Moraes & Leite (1998: 67) give Rio de Janeiro verbs 73-82 % deletion and other words 32 %; the spec keeps one value for both classes."
     }
   ],
-  "wikidata_qid": "Q10265999",
   "location": {
     "latitude": -22.033333,
     "longitude": -42.7,

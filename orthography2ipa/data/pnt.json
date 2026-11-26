@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "pnt",
-  "glottolog_code": "pont1253",
   "timespan": {
     "start_year": 700,
     "end_year": null
@@ -613,7 +612,6 @@
     "https://pnt.wikipedia.org/wiki/%CE%A0%CE%BF%CE%BD%CF%84%CE%B9%CE%B1%CE%BA%CF%8C%CE%BD_%CE%BB%CE%B1%CE%BB%CE%AF%CE%B1%CE%BD",
     "https://en.wikipedia.org/wiki/Greek_diacritics"
   ],
-  "wikidata_qid": "Q36748",
   "location": {
     "latitude": 41.266015,
     "longitude": 36.097421,

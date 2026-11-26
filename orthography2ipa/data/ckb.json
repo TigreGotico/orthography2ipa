@@ -117,8 +117,6 @@
   "allophones": {},
   "notes": "Central Kurdish / Sorani (کوردیی ناوەندی), the main Kurdish variety of Iraq and western Iran. INPUT CONTRACT: the Kurdish Arabic-script orthography (Unicode Arabic block, NFC), RIGHT-TO-LEFT, in its abstract (nominal) letter forms — contextual initial/medial/final presentation forms are expected to be normalised away by the caller, and the Sorani Latin alphabet is out of scope. Typologically the script descends from an ABJAD, but the Sorani orthography is near-alphabetic: the vowels are written with letters (ا /aː/, ە /ɛ/, ێ /eː/, ی /iː/, ۆ /oː/, و /ʊ/, وو /uː/), which is what makes a letter-to-IPA map tractable. وو is keyed as a multigraph so it beats a sequence of two و. ئ is the hamza-carrier: it is a glottal stop, and silent when it merely carries a word-initial vowel. Sorani writes two rhotic and two lateral letters: ر /ɾ/ vs ڕ /r/ and ل /l/ vs ڵ /ɫ/. LEFT UNSOLVED: the short vowel /ɨ/ is systematically NOT written and cannot be restored from the letters alone — it requires lexical knowledge, so no grapheme carries it. The ezafe is likewise a morphological, not orthographic, matter.",
   "iso639_3": "ckb",
-  "glottolog_code": "cent1972",
-  "wikidata_qid": "Q36811",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Central_Kurdish",
     "https://ckb.wikipedia.org/wiki/%DA%A9%D9%88%D8%B1%D8%AF%DB%8C%DB%8C_%D9%86%D8%A7%D9%88%DB%95%D9%86%D8%AF%DB%8C"

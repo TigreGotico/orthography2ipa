@@ -188,7 +188,7 @@ def test_the_ho_nam_digraph_forms_word_finally(lo):
     reason="⟨ເ...ອ⟩ is a preposed-sign/⟨ອ⟩ circumfix, like ⟨ເ◌ີ⟩, and is "
            "not encoded for the same reason: the vowel key cannot see "
            "which preposed sign it belongs to",
-    strict=True,
+    strict=True, raises=AssertionError,
 )
 def test_the_e_o_circumfix_keeps_its_preposed_nucleus(lo):
     assert lo.transcribe("ເສອ") == "seːɔː"
@@ -208,7 +208,7 @@ def test_the_e_o_circumfix_keeps_its_preposed_nucleus(lo):
            "after-consonant-AND-before-consonant condition the engine's "
            "positional lookup does not expose as a single key, so this is "
            "tracked as a known gap rather than encoded around.",
-    strict=True,
+    strict=True, raises=AssertionError,
 )
 def test_bare_wa_between_consonants_is_the_nucleus(lo):
     assert lo.transcribe("ຫຼວງ") == "luːə̯ŋ"
@@ -243,7 +243,7 @@ def test_a_word_final_liquid_letter_may_still_be_an_onset(lo, word, ipa):
            "/n/. Two unrelated causes over three words do not establish a "
            "rule, and the only rule they motivate breaks the six onset "
            "spellings above.",
-    strict=True,
+    strict=True, raises=AssertionError,
 )
 def test_an_abbreviated_indic_spelling_is_read_as_its_full_spelling(lo):
     assert lo.transcribe("ນຄຣ") == lo.transcribe("ນະຄອນ")

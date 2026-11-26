@@ -48,7 +48,7 @@ def test_onset_cluster_obstruent_stays_voiced():
            "needs the syllabifier: word_final under-covers it and "
            "before_consonant would over-devoice onset clusters (Adler). "
            "Model it as a syllable_position:'coda' allophone rule with "
-           "voicing assimilation, not a positional grapheme override.",
+           "voicing assimilation, not a positional grapheme override.", raises=AssertionError,
 )
 def test_preconsonantal_coda_obstruent_devoices():
     """German ⟨Magd⟩: coda ⟨g⟩ before ⟨d⟩ should devoice to [k] ([maːkt])."""

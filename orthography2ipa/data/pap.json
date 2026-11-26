@@ -1,6 +1,5 @@
 {
   "code": "pap",
-  "glottolog_code": "papi1253",
   "name": "Papiamentu (Papiamento)",
   "script": "Latin",
   "quality": "research",
@@ -370,7 +369,6 @@
     "end_year": null
   },
   "iso639_3": "pap",
-  "wikidata_qid": "Q33856",
   "wals_code": "pap",
   "location": {
     "latitude": 12.48485,

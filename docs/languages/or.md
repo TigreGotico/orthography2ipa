@@ -189,4 +189,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Occitan](oc.md) · [Home](../index.md) · [Ojibwe →](oji.md)
+[← Occitan](oc.md) · [Home](../index.md) · [Ojibwe →](oj.md)

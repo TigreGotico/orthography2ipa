@@ -46,7 +46,6 @@
   ],
   "notes": "Skeleton. Extinct Anatolian (Indo-European) language attested in cuneiform Luwian texts embedded in the Hittite archives (16th-13th c. BCE), scored in the standard Hittitological/Luwian Latin transliteration (as akk.json for Akkadian and hit.json for Hittite). Three-vowel system /a i u/ with length contrast; consonant inventory largely parallels Hittite, including doubled-letter spelling of the fortis member of a lenis-fortis contrast (⟨pp tt kk⟩ vs ⟨p t k⟩). ⟨š⟩=/ʃ/, ⟨ḫ⟩=/χ/, ⟨z⟩=/ts/. Rhotacism (certain consonants realized as /r/ in some environments) and syllabic cuneiform sign-boundary effects are not modeled; a substantial PER floor is expected. Distinct from Hieroglyphic Luwian (code hlu, its own native hieroglyphic script), not covered here.",
   "iso639_3": "xlu",
-  "glottolog_code": "cune1239",
   "sources": [
     {
       "id": "melchert2003",

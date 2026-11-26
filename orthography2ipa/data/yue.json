@@ -17,8 +17,6 @@
   ],
   "notes": "Cantonese (粵語), Yue Chinese, Guangdong/Hong Kong/Macau. STUB: the grapheme inventory is NOT yet specified and none is claimed. Cantonese is written with Chinese characters (written Cantonese adds Cantonese-specific characters); the script is logographic, so there is no letter-to-sound mapping — a romanisation (Jyutping, or Yale) would be required as input, exactly as `zh` requires pinyin. Cantonese has six contrastive tones, which Jyutping writes as trailing digits.",
   "iso639_3": null,
-  "glottolog_code": "cant1236",
-  "wikidata_qid": "Q9186",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Cantonese"
   ],

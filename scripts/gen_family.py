@@ -22,12 +22,14 @@ dropping any level that does not apply. Examples::
 The CLI's ``--family`` filter matches *any* step of the path, so ``--family Romance`` and
 ``--family Ibero-Romance`` both work.
 
-Specs with no ``glottolog_code`` (reconstructed proto-nodes, contact nodes) inherit ``family`` from
+Specs with no Glottolog code in linguatag (reconstructed proto-nodes, contact nodes) inherit ``family`` from
 their o2i parent, or take a value from ``MANUAL`` below.
 
 Usage:  python scripts/gen_family.py [--check]
 """
 from __future__ import annotations
+
+from linguatag import catalog_ids
 
 import argparse
 import json
@@ -139,7 +141,7 @@ def build(specs, G, CLASS):
             return None
         if code in MANUAL:
             return MANUAL[code]
-        gc = specs[code].get("glottolog_code")
+        gc = catalog_ids(code).get("glottolog_code")
         if gc:
             f = family_from_code(gc, G, CLASS)
             if f:

@@ -1018,9 +1018,7 @@
     "start_year": 1300,
     "end_year": null
   },
-  "glottolog_code": "stan1290",
   "iso639_3": "fra",
-  "wikidata_qid": "Q150",
   "phoible_id": "stan1290",
   "wals_code": "fre",
   "location": {
@@ -1335,7 +1333,7 @@
       "followed_by_grapheme": [
         "œu"
       ],
-      "notes": "⟨c⟩ before ⟨œu⟩ is hard [k] (cœur [kœʁ], écœurer), although ⟨œ⟩ is a front vowel letter: ⟨œu⟩ is the native ⟨eu⟩ vowel written with an ⟨o⟩ that imitates the Latin spelling, and a ⟨c⟩ before it stays [k]. Before a bare ⟨œ⟩, which is Greek ⟨οι⟩, ⟨c⟩ softens as before ⟨é⟩ (cœlacanthe [selakɑ̃t]). French orthography, Wikipedia: after ⟨c⟩, ⟨œ⟩ gives [k] in some words (cœur) and [s] in others (cœlacanthe), and the [s] reading is the one before ⟨æ⟩ and ⟨œ⟩ in scientific terms of Latin and Greek origin. RESIDUAL: ⟨ch⟩ before ⟨œu⟩ in the Greek loan chœur [kœʁ] stays [ʃ]; ⟨ch⟩ = [k] in Greek loans is lexical and is not modelled. Stated as a rule on ⟨c⟩, not as a ⟨cœu⟩ key: a ⟨cœu⟩ key would pass none of the three key tests, because its value [kœ] is the concatenation of a hard ⟨c⟩ and ⟨œu⟩."
+      "notes": "⟨c⟩ before ⟨œu⟩ is hard [k] (cœur [kœʁ], écœurer), although ⟨œ⟩ is a front vowel letter: ⟨œu⟩ is the native ⟨eu⟩ vowel written with an ⟨o⟩ that imitates the Latin spelling, and a ⟨c⟩ before it stays [k]. Before a bare ⟨œ⟩, which is Greek ⟨οι⟩, ⟨c⟩ softens as before ⟨é⟩ (cœlacanthe [selakɑ̃t]). French orthography, Wikipedia: after ⟨c⟩, ⟨œ⟩ gives [k] in some words (cœur) and [s] in others (cœlacanthe), and the [s] reading is the one before ⟨æ⟩ and ⟨œ⟩ in scientific terms of Latin and Greek origin. RESIDUAL: ⟨ch⟩ before ⟨œu⟩ in the Greek loan chœur [kœʁ] stays [ʃ]; ⟨ch⟩ = [k] in Greek loans is lexical and is not modelled. Stated as a rule on ⟨c⟩, not as a ⟨cœu⟩ key: a ⟨cœu⟩ key would pass none of the three key tests, because its value [kœ] is the concatenation of a hard ⟨c⟩ and ⟨œu⟩. Source: TLFi chœur, Prononc. [kœ:ʀ], 'Homon. cœur', so cœur is [kœ:ʀ] too (cnrtl.fr/definition/chœur; saved in Papers/Languages/Romance/French/cnrtl_choeur.html)."
     },
     {
       "id": "FR_AI_FINAL_CLOSE_MID",

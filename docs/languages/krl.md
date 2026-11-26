@@ -193,4 +193,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Karakalpak](kaa.md) · [Home](../index.md) · [Kashmiri →](kas.md)
+[← Karakalpak](kaa.md) · [Home](../index.md) · [Kashmiri →](ks.md)

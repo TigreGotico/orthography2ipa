@@ -124,6 +124,7 @@ The pages under `evaluation/generated/` are written by scripts.
 | [revisions.md](guide/revisions.md) | Which revision names a phonemizer, what moves it, and how to compare it later |
 | [distance.md](guide/distance.md) | Every relational axis between languages and its API |
 | [known_limitations.md](guide/known_limitations.md) | What the specs and the ranker do not do, classified |
+| [ecosystem.md](guide/ecosystem.md) | How o2i differs from other G2P systems, and the projects that build on it |
 
 ### Reference
 

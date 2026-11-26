@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "wln",
-  "glottolog_code": "wall1255",
   "timespan": {
     "start_year": 1300,
     "end_year": null
@@ -424,7 +423,6 @@
     "https://wa.wikipedia.org/wiki/Walon",
     "https://fr.wikipedia.org/wiki/Wallon"
   ],
-  "wikidata_qid": "Q34219",
   "location": {
     "latitude": 50.2235,
     "longitude": 5.14509,

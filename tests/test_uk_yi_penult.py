@@ -4,7 +4,7 @@ import pytest
 from orthography2ipa import transcribe
 
 YI_FINAL_STRESS = pytest.mark.xfail(
-    strict=True, reason="https://github.com/TigreGotico/orthography2ipa/issues/2538")
+    strict=True, reason="https://github.com/TigreGotico/orthography2ipa/issues/2538", raises=AssertionError)
 
 
 @pytest.mark.parametrize("word, ipa", [

@@ -270,7 +270,7 @@ KNOWN_DEAD_RULES = {
     # AR_EMPHASIS_SPREAD_* family (the "emphatic" neighbour class, Watson
     # 2002; Davis 1995) — dead here for the same reason as the rest of the
     # inherited rule set: empty own inventory, nothing can ever fire.
-    "ajt": {"AR_EMPH_BACK_A_AFTER", "AR_EMPH_BACK_A_BEFORE",
+    "aeb-x-judeo": {"AR_EMPH_BACK_A_AFTER", "AR_EMPH_BACK_A_BEFORE",
             "AR_TN_MONO_AJ", "AR_TN_MONO_AW", "AR_WASL_EPENTHESIS",
             "AR_EMPHASIS_SPREAD_A_AFTER", "AR_EMPHASIS_SPREAD_A_BEFORE",
             "AR_EMPHASIS_SPREAD_AA_AFTER", "AR_EMPHASIS_SPREAD_AA_BEFORE",

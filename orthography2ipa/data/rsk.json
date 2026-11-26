@@ -4,7 +4,6 @@
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "research",
-  "wikidata_qid": "Q35660",
   "graphemes": {
     "дз": [
       "dz"

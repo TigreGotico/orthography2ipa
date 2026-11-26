@@ -307,7 +307,6 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "nort3139",
   "iso639_3": "apc",
   "allophone_rules": [
     {
@@ -387,7 +386,6 @@
       "notes": "Emphasis spreading (leftward): long /aː/ backs to [ɑː] before an adjacent emphatic. Watson 2002."
     }
   ],
-  "wikidata_qid": "Q56593",
   "location": {
     "latitude": 34.1709,
     "longitude": 36.0468,

@@ -22,7 +22,6 @@
   ],
   "notes": "Stub: no citable grapheme-to-IPA inventory. Extinct language of the Alpine region (modern Italy/Austria/Switzerland/Germany/Slovenia), attested 6th-1st c. BCE in ~280 inscriptions, written in two Old Italic script variants (Sanzeno and Magrè alphabets). Wikipedia states plainly that 'our understanding of Raetic phonology is quite uncertain, and the working hypothesis is that it is very similar to Etruscan phonology' (Salomon 2020) -- i.e. the inventory below is not independently established from Raetic evidence itself but only inferred by analogy with Etruscan (ett.json). No published grapheme-by-grapheme phonological inventory for Raetic specifically was sourceable this session; adding an Etruscan-derived inventory here would misrepresent an analogy as an attested fact, so graphemes is left empty pending a dedicated Raetic phonological study.",
   "iso639_3": "xrr",
-  "glottolog_code": "raet1238",
   "sources": [
     {
       "id": "salomon2020",

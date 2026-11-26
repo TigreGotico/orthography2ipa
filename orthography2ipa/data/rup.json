@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "rup",
-  "glottolog_code": "arom1237",
   "timespan": {
     "start_year": 1731,
     "end_year": null
@@ -140,7 +139,6 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Aromanian_language"
   ],
-  "wikidata_qid": "Q29316",
   "location": {
     "latitude": 40.616,
     "longitude": 21.2,

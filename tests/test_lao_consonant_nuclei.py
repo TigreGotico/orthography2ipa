@@ -36,7 +36,7 @@ def test_bare_wo_between_consonants_is_the_nucleus(lo, word, expected):
 @pytest.mark.xfail(
     strict=True,
     reason="a key ending in the combining semivowel sign is read as a bare "
-           "mark, so the letter after ⟨ຫຼ⟩ is not tested for a nucleus")
+           "mark, so the letter after ⟨ຫຼ⟩ is not tested for a nucleus", raises=AssertionError)
 @pytest.mark.parametrize("word, expected", [
     ("ຫຼວງ", "luːəŋ"),
     ("ທາງຫຼວງ", "tʰaːŋluːəŋ"),

@@ -16,6 +16,13 @@ PYTHONPATH=$PWD python scripts/espeak_agreement.py --scoreboard
 
 Machine-readable form: [`benchmarks/espeak_agreement.json`](../../../benchmarks/espeak_agreement.json).
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../charts/espeak-agreement.dark.svg">
+  <img alt="Segmental agreement with espeak-ng: eo 0.97, the highest of 41 languages; ga 0.48, the lowest." src="../charts/espeak-agreement.light.svg">
+</picture>
+
+`scripts/gen_doc_charts.py` makes this figure from `benchmarks/espeak_agreement.json`.
+
 | Lang | espeak voice | N | Exact | Exact (no stress) | Segmental | OOV rate |
 |---|---|---:|---:|---:|---:|---:|
 | cy | cy | 300 | 0.0000 | 0.2700 | 0.7731 | 0.0267 |

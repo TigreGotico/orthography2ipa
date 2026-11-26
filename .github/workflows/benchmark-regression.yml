@@ -6,6 +6,7 @@ name: Benchmark Regression
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     branches: [dev]
     paths:
       - "orthography2ipa/**"
@@ -25,8 +26,13 @@ on:
       - ".github/workflows/benchmark-regression.yml"
   workflow_dispatch: {}
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   benchmark-regression:
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -127,7 +133,7 @@ jobs:
   # file, about 2.7 million word pairs), which one job cannot measure inside
   # its time limit; the shards keep every one of those rows measured.
   board-freshness-plan:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 15
     outputs:
@@ -223,7 +229,7 @@ jobs:
 
   board-freshness:
     needs: [board-freshness-plan, board-freshness-shard]
-    if: always() && github.event_name == 'pull_request'
+    if: always() && github.event_name == 'pull_request' && !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -258,7 +264,7 @@ jobs:
             --plan board-freshness-plan.json --aggregate board-freshness-results
 
   board-not-reverting:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && !github.event.pull_request.draft
     runs-on: ubuntu-latest
     permissions:
       contents: read

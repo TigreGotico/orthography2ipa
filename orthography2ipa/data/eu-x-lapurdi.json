@@ -1,6 +1,5 @@
 {
   "code": "eu-x-lapurdi",
-  "glottolog_code": "basq1249",
   "name": "Lapurdian Basque (Lapurtera)",
   "script": "Latin",
   "quality": "research",
@@ -135,7 +134,6 @@
     "https://en.wikipedia.org/wiki/Basque_dialects"
   ],
   "iso639_3": "eus",
-  "wikidata_qid": "Q12953386",
   "location": {
     "latitude": 43.4,
     "longitude": -1.45,

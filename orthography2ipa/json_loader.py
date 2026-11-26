@@ -555,7 +555,8 @@ def load_json_spec(code: str) -> LanguageSpec:
             closed_hiatus=(ClosedHiatus(
                 pairs=tuple(raw_hiatus.get("pairs", ())),
                 onsets=tuple(raw_hiatus.get("onsets", ())),
-                codas=tuple(raw_hiatus.get("codas", ())))
+                codas=tuple(raw_hiatus.get("codas", ())),
+                atonic_onsets=tuple(raw_hiatus.get("atonic_onsets", ())))
                 if raw_hiatus else None),
             final_diphthongs=(FinalDiphthongs(
                 diphthongs=tuple(raw_final.get("diphthongs", ())),
@@ -657,8 +658,6 @@ def load_json_spec(code: str) -> LanguageSpec:
             base_scalars.get("word_internal_apostrophe", False)),
         apostrophe_elision=bool(base_scalars.get("apostrophe_elision", False)),
         iso639_3=raw.get("iso639_3"),
-        glottolog_code=raw.get("glottolog_code"),
-        wikidata_qid=raw.get("wikidata_qid"),
         phoible_id=raw.get("phoible_id"),
         wals_code=raw.get("wals_code"),
         sandhi_rules=sandhi_rules,

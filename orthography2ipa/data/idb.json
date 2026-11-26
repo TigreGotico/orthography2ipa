@@ -1,6 +1,5 @@
 {
   "code": "idb",
-  "glottolog_code": "sril1245",
   "name": "Sri Lanka Portuguese Creole",
   "script": "Latin",
   "quality": "research",
@@ -833,7 +832,6 @@
     "end_year": null
   },
   "iso639_3": "idb",
-  "wikidata_qid": "Q2427343",
   "phoible_id": "sril1245",
   "location": {
     "latitude": 7.6,

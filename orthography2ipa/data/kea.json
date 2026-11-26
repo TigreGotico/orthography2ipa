@@ -1,6 +1,5 @@
 {
   "code": "kea",
-  "glottolog_code": "kabu1256",
   "name": "Kabuverdianu (Cape Verdean Creole)",
   "script": "Latin",
   "quality": "research",
@@ -374,7 +373,6 @@
     "end_year": null
   },
   "iso639_3": "kea",
-  "wikidata_qid": "Q35963",
   "phoible_id": "kabu1256",
   "location": {
     "latitude": 15.0586,

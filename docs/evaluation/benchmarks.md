@@ -98,6 +98,30 @@ Each overlay is described with its dataset: [`portuguese_unified_corrected`](dat
 
 PER is the Levenshtein edit distance between the hypothesis and the reference IPA, divided by the length of the reference. Both are counted in Unicode code points after NFC normalization. A row reports the mean of the per-word PERs over the words it covers. WER is the share of covered words with any error. A word for which the engine writes nothing is not covered and adds nothing to either figure.
 
+### Segment PER
+
+`scripts/benchmark.py --dataset D --lang L --segment-per` also prints the segment PER of the shared PER board. It counts phone segments, not code points:
+
+1. Apply NFD. Write ʧ ʤ ʦ ʣ as t͡ʃ d͡ʒ t͡s d͡z.
+2. Remove stress marks, syllable dots, joiners and spaces.
+3. Make one segment from each base symbol, with its combining marks and its modifier letters (ʰ ʲ ʷ ˠ ˤ ː ˑ). A tie bar joins the next base symbol into the same segment.
+4. Score each word against its closest gold variant. A word with an empty transcription counts as the deletion of its gold. The PER is the sum of the edits over the sum of the gold segments (micro), not the mean of the word PERs.
+
+The segment PER applies no notation fold, and it reads the raw transcriptions of the engine and the gold. The board columns use the code-point PER.
+
+### Per-source notation folds
+
+`scripts/source_notation_per.py` scores the pt-BR `portuguese_unified` rows with per-source notation folds. It prints the code-point PER and the segment PER, each unfolded and folded. A fold applies only to a gold reading from a source whose own rows show no contrast for it, and it changes the hypothesis into the notation of that source. The Michaelis rows have three folds, and each one carries its count in the script:
+
+| Fold | Change | Michaelis usage |
+| :--- | :--- | :--- |
+| `michaelis_ã` | [ɐ̃] → [ã] | No ⟨ã⟩ word writes [ɐ̃]. |
+| `michaelis_no_palatal` | [t͡ʃ d͡ʒ] → [t d] before [i ĩ ɪ j] | Almost no ⟨ti di⟩ word writes a palatal. |
+| `michaelis_final_r` | The final rhotic of the gold does not count when the hypothesis has none. | Almost every -ar, -er, -ir word writes the final r. |
+
+The board columns stay unfolded.
+
+
 Gold rows are grouped by word. A hypothesis is scored against every gold variant of its word, and the lowest PER counts. A sentence-level gold entry, such as a `4catac` row, is transcribed with `G2P.transcribe`, so the word-final rules of each word still apply. A single-word entry goes through `G2P.transcribe_word`.
 
 Before the comparison, `normalize()` in `scripts/benchmark.py` applies the same folds to both sides. Some folds apply in every mode, because they remove notation, not phonology:

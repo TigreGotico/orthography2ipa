@@ -55,7 +55,6 @@
   "quality": "stub",
   "script_type": "alphabet",
   "iso639_3": "spa",
-  "glottolog_code": null,
   "timespan": {
     "start_year": 1600,
     "end_year": null
@@ -107,7 +106,6 @@
     "https://es.wikipedia.org/wiki/Espa%C3%B1ol_hondure%C3%B1o",
     "https://en.wikipedia.org/wiki/Honduran_Spanish"
   ],
-  "wikidata_qid": "Q5840049",
   "location": {
     "latitude": 14.105783,
     "longitude": -87.204706,

@@ -176,7 +176,7 @@ def test_uk_no_vowel_reduction():
     reason="UK_REGR_PALAT_s and UK_REGR_PALAT_t cite кістка [kʲisʲtʲkɐ]; engine "
     "produces [kʲistkɐ] — neither the /s/ nor the /t/ softens, so the rules do "
     "not fire on the very word their citation names (be's parallel rules do fire "
-    "on адкласці)",
+    "on адкласці)", raises=AssertionError,
 )
 def test_uk_regr_palat_on_cited_word():
     """UK_REGR_PALAT_s/_t: the dentals palatalise before a soft dental.
@@ -192,7 +192,7 @@ def test_uk_regr_palat_on_cited_word():
     strict=True,
     reason="UK_REGR_PALAT_z cites звер [zʲvʲer]; engine produces [zʋɛr] — the /z/ "
     "does not soften before the soft labial (be's identically-worded rule does "
-    "produce [zʲvʲer])",
+    "produce [zʲvʲer])", raises=AssertionError,
 )
 def test_uk_regr_palat_z_before_soft_labial():
     """UK_REGR_PALAT_z: /z/ softens before a soft labial.
@@ -208,7 +208,7 @@ def test_uk_regr_palat_z_before_soft_labial():
     strict=True,
     reason="uk notes claim ⟨в⟩ = [ʋ] approximant; engine produces [wɔdɐ] for "
     "вода — word-initial prevocalic ⟨в⟩ selects [w], not the declared [ʋ] it "
-    "selects intervocalically (нива → [nɪʋɐ])",
+    "selects intervocalically (нива → [nɪʋɐ])", raises=AssertionError,
 )
 def test_uk_v_is_approximant():
     """⟨в⟩ is the approximant [ʋ].

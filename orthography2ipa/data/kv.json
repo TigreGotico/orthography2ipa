@@ -245,8 +245,6 @@
   },
   "notes": "Komi (коми кыв), a Permic (Uralic) language of the Komi Republic, Russia; the Komi-Zyrian literary standard. INPUT CONTRACT: modern Komi Cyrillic text, Unicode NFC, lower-cased by the caller if case-folding is desired. Orthography: the Russian alphabet plus ⟨І і⟩ ('hard i') and ⟨Ӧ ӧ⟩ /ɘ/. Consonant palatalisation is not written with a separate series of letters: ⟨д з л н с т⟩ are realised as /ɟ ʑ ʎ ɲ ɕ c/ before ⟨е ё и ю я⟩ and before the soft sign ⟨ь⟩, so those sequences are entered here as multigraph keys (де, дё, ди, дю, дя, дь, …) which the maximal-munch matcher prefers over the bare letters. ⟨і⟩ is the 'hard i': it spells /i/ after т д с з н л without palatalising them, so it is deliberately NOT part of any digraph. The affricates /dʒ dʑ tʃ/ are written with the digraphs ⟨дж дз тш⟩, also entered as keys. Iotated letters ⟨е ё ю я⟩ list the plain vowel first and the [j]-initial reading second (the latter applies word-initially and after a vowel); the engine is context-free, so the alternative is offered as a second candidate rather than selected. ⟨ъ⟩ maps to the empty string. Historic Old Permic (Abur) and Molodtsov orthographies are out of scope: input is assumed to be the 1938-onward Cyrillic orthography.",
   "iso639_3": "kom",
-  "glottolog_code": "komi1267",
-  "wikidata_qid": "Q36126",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Komi_language",
     "https://kv.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BC%D0%B8_%D0%BA%D1%8B%D0%B2"

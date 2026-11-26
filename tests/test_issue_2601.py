@@ -16,7 +16,7 @@ ACUTE_TO_BASE = {"á": "a", "é": "e", "í": "i", "ó": "o", "ú": "u"}
 
 @pytest.mark.xfail(
     strict=True,
-    reason="https://github.com/TigreGotico/orthography2ipa/issues/2601")
+    reason="https://github.com/TigreGotico/orthography2ipa/issues/2601", raises=AssertionError)
 @pytest.mark.parametrize("acute, base", ACUTE_TO_BASE.items())
 def test_acute_vowel_is_mapped_and_kept(acute, base):
     with warnings.catch_warnings(record=True) as caught:

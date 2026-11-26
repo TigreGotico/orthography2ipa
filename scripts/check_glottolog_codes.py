@@ -24,6 +24,8 @@ rather than having to trust a comment.
 """
 from __future__ import annotations
 
+from linguatag import catalog_ids
+
 import argparse
 import glob
 import json
@@ -41,13 +43,14 @@ _OK_LEVELS = ("language", "dialect")
 
 
 def declared_codes() -> dict:
-    """Map spec code -> glottolog_code for every spec that declares one."""
+    """Map spec code -> the linguatag glottolog_code of every spec that has one."""
     out = {}
     for path in sorted(glob.glob(os.path.join(_DATA, "*.json"))):
         with open(path, encoding="utf-8") as fh:
-            raw = json.load(fh)
-        if isinstance(raw, dict) and raw.get("glottolog_code"):
-            out[raw["code"]] = raw["glottolog_code"]
+            code = json.load(fh)["code"]
+        gcode = catalog_ids(code).get("glottolog_code")
+        if gcode:
+            out[code] = gcode
     return out
 
 

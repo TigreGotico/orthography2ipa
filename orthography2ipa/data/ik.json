@@ -151,8 +151,6 @@
   },
   "notes": "Iñupiaq (Iñupiatun), Inuit language of northern Alaska. Latin orthography (Webster–Zibell, 1970s); the values above follow the North Slope dialect. Three vowel qualities /a i u/, each with a long counterpart written double (aa, ii, uu) and therefore derivable from the single-vowel mapping. ⟨g⟩ = /ɣ/ vs ⟨ġ⟩ = /ʁ/; ⟨ł⟩ = voiceless lateral /ɬ/; ⟨sr⟩ = /ʂ/. Seward Peninsula and Uummarmiutun dialects differ slightly and are not separately modelled. Glottolog: `ik`/`ipk` is the Inupiaq macrolanguage, so the code is the `inup1234` family node by necessity.",
   "iso639_3": "ipk",
-  "glottolog_code": "inup1234",
-  "wikidata_qid": "Q27183",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/I%C3%B1upiaq_language",
     "https://ik.wikipedia.org/wiki/I%C3%B1upiatun_uqatchiq"

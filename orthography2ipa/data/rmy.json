@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "rmy",
-  "glottolog_code": "vlax1238",
   "timespan": {
     "start_year": 1800,
     "end_year": null
@@ -55,7 +54,6 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Vlax_Romani"
   ],
-  "wikidata_qid": "Q2669199",
   "phoible_id": "vlax1238",
   "location": {
     "latitude": 46.09,

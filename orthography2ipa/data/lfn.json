@@ -146,8 +146,6 @@
     ]
   },
   "iso639_3": "lfn",
-  "glottolog_code": "ling1267",
-  "wikidata_qid": "Q146803",
   "notes": "Lingua Franca Nova (elefen), constructed auxiliary language created by C. George Boeree (1998), Romance lexicon with a creole-like grammar. Fully regular phonemic orthography: 22 Latin letters (k, q, w, y are used only in proper names). ⟨c⟩ is always [k], ⟨x⟩ is [ʃ], ⟨j⟩ is [ʒ]. ⟨i⟩ and ⟨u⟩ are [j]/[w] before another vowel; ⟨n⟩ is [ŋ] before a velar. Stress falls on the vowel or diphthong before the last consonant. A Cyrillic orthography also exists but is not modelled here; the input contract for this spec is the Latin-script standard.",
   "sources": [
     {

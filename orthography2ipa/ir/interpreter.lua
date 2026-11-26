@@ -38,7 +38,7 @@ M.SEMANTICS = {
   fold = 1, tone_dock = 1, iambic = 1, prevocalic_backoff = 1,
   ipa_count = 1, consonant_nuclei = 1, computed_tone = 1,
   internal_apostrophe = 1, apostrophe_elision = 1, collapse_geminates = 1, context_beam = 1,
-  clitic_marks = 1, silent_stress_marks = 1, overrides = 1, words = 1, allophone_map = 1, hiatus = 1,
+  clitic_marks = 1, silent_stress_marks = 1, overrides = 1, words = 1, allophone_map = 1, hiatus = 2,
   semivowels = 1, cliticless = 1, compound_last = 1, tonic_after_diphthong = 1,
   ipa_diphthongs = 1, mark_onsets = 1, allophony_geminate = 1,
   weight = 1, virama_final = 1, vowel_signs = 1, preposed = 1,
@@ -315,7 +315,7 @@ local LAYOUT = Ob{
   beam = Ob{tilde = S_},
   allophone_map = Lt(Pr(S_, Lt(S_))),
   syllable = Ob{diphthongs = Lt(S_), onset_graphemes = SSET, semivowels = Lt(Lt(S_)),
-                closed_hiatus = Ob{pairs = Lt(S_), onsets = Lt(S_), codas = Lt(S_), multi_keys = Lt(S_)},
+                closed_hiatus = Ob{pairs = Lt(S_), onsets = Lt(S_), codas = Lt(S_), atonic_onsets = Lt(S_), multi_keys = Lt(S_)},
                 final_diphthongs = Ob{diphthongs = Lt(S_), finals = Lt(S_)}, vowel_letters = SSET, silent_tail = SSET,
                 onsets = Ob{max = I_, units = Lt(S_), velar = SSET, table = Lt(Lt(S_))}},
   stress = Ob{mark = S_, secondary_mark = S_, alternating = I_, prefixes = Lt(S_),
@@ -2292,6 +2292,7 @@ function P:hiatus_positions(word)
   local found = {}
   local lowered = self:lower(word)
   local ln = slen(lowered)
+  local atonic = {}
   local rule = self.syll.closed_hiatus
   if T(rule) then
     for k = 1, ln - 1 do
@@ -2306,6 +2307,11 @@ function P:hiatus_positions(word)
           hit = true
           for _, g in ipairs(rule.multi_keys) do
             if startswith(rest, g) then hit = false; break end
+          end
+        end
+        if not hit then
+          for _, o in ipairs(rule.atonic_onsets or {}) do
+            if startswith(rest, o) then hit = true; atonic[k] = true; break end
           end
         end
         if hit then found[#found + 1] = k end
@@ -2333,7 +2339,7 @@ function P:hiatus_positions(word)
   local start = 0
   for k = 1, min(stressed, #sylls) do start = start + slen(sylls[k]) end
   local out = {}
-  for _, k in ipairs(found) do if k == start then out[k] = true end end
+  for _, k in ipairs(found) do if k == start or atonic[k] then out[k] = true end end
   return out
 end
 

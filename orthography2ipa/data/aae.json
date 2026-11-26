@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "skeleton",
   "iso639_3": "aae",
-  "glottolog_code": "arbe1236",
   "timespan": {
     "start_year": 1592,
     "end_year": null
@@ -130,7 +129,6 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Arb%C3%ABresh_language"
   ],
-  "wikidata_qid": "Q35852",
   "location": {
     "latitude": 39.3,
     "longitude": 16.4,

@@ -1,6 +1,5 @@
 {
   "code": "aoa",
-  "glottolog_code": "ango1258",
   "name": "Angolar",
   "script": "Latin",
   "quality": "research",
@@ -327,7 +326,6 @@
     "˦": "high",
     "˨": "low"
   },
-  "wikidata_qid": "Q34994",
   "phoible_id": "ango1258",
   "wals_code": "ago",
   "location": {

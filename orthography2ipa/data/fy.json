@@ -1,6 +1,5 @@
 {
   "code": "fy",
-  "glottolog_code": "west2354",
   "name": "West Frisian",
   "script": "Latin",
   "quality": "research",
@@ -523,7 +522,6 @@
     "end_year": null
   },
   "iso639_3": "fry",
-  "wikidata_qid": "Q27175",
   "phoible_id": "west2354",
   "wals_code": "frw",
   "location": {

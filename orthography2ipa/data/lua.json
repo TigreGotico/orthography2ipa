@@ -1,7 +1,6 @@
 {
   "code": "lua",
   "name": "Luba-Kasai (Tshiluba)",
-  "glottolog_code": "luba1249",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "lua",
@@ -108,7 +107,6 @@
     "start_year": 1900,
     "end_year": null
   },
-  "wikidata_qid": "Q34173",
   "location": {
     "latitude": -6.0,
     "longitude": 23.0,

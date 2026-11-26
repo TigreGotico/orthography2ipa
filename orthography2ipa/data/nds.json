@@ -479,7 +479,6 @@
     "start_year": 1600,
     "end_year": null
   },
-  "glottolog_code": "nort2627",
   "positional_graphemes": {
     "g": {
       "word_initial": [
@@ -565,7 +564,6 @@
       ]
     }
   },
-  "wikidata_qid": "Q25433",
   "phoible_id": "nort2627",
   "wals_code": "lge",
   "location": {

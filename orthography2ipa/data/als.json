@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "als",
-  "glottolog_code": "tosk1239",
   "timespan": {
     "start_year": 1462,
     "end_year": null
@@ -49,7 +48,6 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Tosk_Albanian"
   ],
-  "wikidata_qid": "Q34248",
   "location": {
     "latitude": 40.4,
     "longitude": 20.2,

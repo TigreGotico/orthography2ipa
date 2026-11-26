@@ -163,8 +163,6 @@
   "allophones": {},
   "notes": "Maldivian (Dhivehi, ދިވެހި), Indo-Aryan, written in the Thaana script. INPUT CONTRACT: native Thaana text (Unicode block U+0780..U+07B1, NFC), written RIGHT-TO-LEFT; the older Dhives Akuru script and the Malé Latin transliteration are out of scope. Thaana is an alphabet/abugida hybrid: its consonant letters carry NO inherent vowel, and each consonant is obligatorily followed by a fili — one of the ten vowel diacritics — or by the sukun ް, which marks the absence of a vowel and maps to the empty string. Because vowels are always written, the letter and the following fili can simply be transcribed in sequence: no combining consonant+fili keys are needed and no inherent vowel is declared. އ ALIFU is a null carrier: it is silent when it merely bears a fili (word-initial vowels), and the sequence އް (alifu + sukun) marks a glottal stop / the gemination of the following consonant, so it is keyed as a multigraph. ޱ NAAVIYANI /ɳ/ was abolished from official orthography in 1953 (replaced by ޏ GNAVIYANI /ɲ/) but survives in Addu and Fuvahmulah writing, so both are mapped. The thikijehi thaana ޘ..ޥ appear only in Arabic loanwords and are given their Arabic values; their use is receding as loans are respelt.",
   "iso639_3": "div",
-  "glottolog_code": "dhiv1236",
-  "wikidata_qid": "Q32656",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Maldivian_language",
     "https://dv.wikipedia.org/wiki/%DE%8B%DE%A8%DE%88%DE%AC%DE%80%DE%A8"
