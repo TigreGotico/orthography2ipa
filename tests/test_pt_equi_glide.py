@@ -13,7 +13,8 @@ GLIDE = ["equiangular", "equiaxial", "equidade", "equidecomponível",
 PLAIN = ["equilíbrio", "equimose", "equinoderme", "equipa",
          "equipar", "equipamento", "equiparação", "equipartição",
          "equitação", "equivalência", "equivalente", "equivaler",
-         "equívoco", "equidna"]
+         "equívoco", "equidna", "equipo", "equipou",
+         "equipos", "tequila", "ressequida", "senequiano"]
 
 
 @pytest.mark.parametrize("word", GLIDE)
