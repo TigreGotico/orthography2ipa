@@ -9,8 +9,9 @@ its consonant (⟨d'⟩, ⟨j'⟩, ⟨s'⟩ came out empty) and ⟨qu⟩ before 
 apostrophe lost its mute ⟨u⟩.
 
 The expected IPA below is written in the test, never read back from the
-engine. The cases where only the clitic is pinned (``n'est``, ``c'est``) leave
-the reading of the host ⟨est⟩ out: this spec does not make that claim.
+engine. The host ⟨est⟩ is the verb, a whole-word entry [ɛ] (Martinon 1913:
+331, mute ⟨st⟩; Larousse, s.v. être), so ``c'est`` is [sɛ] and ``n'est``
+[nɛ]; tests/test_french_frequent_words.py pins both.
 """
 import json
 import warnings
@@ -32,9 +33,9 @@ VOWEL_OR_H = set("aàâeéèêëiîïoôuùûüyh")
 #: Every fr-FR entry that can follow an elided clitic.
 VOWEL_INITIAL_EXCEPTIONS = {word: ipa for word, ipa in FR_EXCEPTIONS.items()
                             if word[0] in VOWEL_OR_H and "'" not in word}
-#: Verb forms that cannot follow l' or d'. The verb est has no entry, and
-#: after those clitics est is the noun 'east' (see test_l_est_is_the_noun).
-VERB_FORMS = {"et", "es"}
+#: Verb forms that cannot follow l' or d'. After those clitics est is the noun
+#: 'east', which has entries of its own (see test_l_est_is_the_noun).
+VERB_FORMS = {"et", "es", "est"}
 #: The reading of each elided clitic: its consonant, with the vowel elided.
 CLITICS = {"l'": "l", "d'": "d"}
 
@@ -159,8 +160,8 @@ def test_a_stray_apostrophe_does_not_crash(text):
 
 
 def test_every_vowel_initial_exception_is_tested():
-    # 28 entries: 26 content words and the two verb forms.
-    assert len(VOWEL_INITIAL_EXCEPTIONS) == 28
+    # 29 entries: 26 content words and the three verb forms.
+    assert len(VOWEL_INITIAL_EXCEPTIONS) == 29
     assert VERB_FORMS <= set(VOWEL_INITIAL_EXCEPTIONS)
 
 

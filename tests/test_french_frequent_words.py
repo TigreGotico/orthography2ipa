@@ -91,3 +91,17 @@ def test_x_of_the_ordinal_is_z(text, expected):
 def test_the_letter_name_ixieme_keeps_ks():
     # wikipron fr: ixième [iksjɛm]
     assert _t("ixième") == "iksjɛm"
+
+
+# Martinon (1913: 331): final ⟨st⟩ is mute in the verb e(st). Larousse, s.v.
+# être (Homonymes): est is a homonym of ai, ais, haie and hais.
+@pytest.mark.parametrize("text, expected", [
+    ("est", "ɛ"), ("c'est", "sɛ"), ("n'est", "nɛ"), ("c’est", "sɛ"),
+    ("il est content", "il ɛ kɔ̃tɑ̃"),
+])
+def test_the_verb_est_is_open_e(text, expected):
+    assert _t(text) == expected
+
+
+def test_the_noun_est_after_l_keeps_its_st():
+    assert _t("l'est") == "lɛst"
