@@ -181,3 +181,18 @@ def test_p_of_final_mpt_is_mute(text, expected):
 ])
 def test_p_before_a_non_final_t_is_kept(text, expected):
     assert _t(text) == expected
+
+
+# Martinon (1913: 285): p is mute in com(p)te and all its derivatives,
+# com(p)tabilité included, but not in exemption, présomption or symptôme.
+@pytest.mark.parametrize("text, expected", [
+    ("compte", "kɔ̃t"), ("compter", "kɔ̃te"), ("comptable", "kɔ̃tabl"),
+    ("comptoir", "kɔ̃twaʁ"), ("décompte", "dekɔ̃t"), ("acompte", "akɔ̃t"),
+])
+def test_p_of_the_compte_family_is_mute(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text", ["somptueux", "présomption", "symptôme"])
+def test_p_outside_the_compte_family_is_kept(text):
+    assert "p" in _t(text)[2:]

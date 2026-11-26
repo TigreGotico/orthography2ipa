@@ -1555,6 +1555,26 @@
       ],
       "followed_by_2": "word_boundary",
       "notes": "⟨p⟩ of a word-final ⟨-mpt⟩ is mute, as the ⟨t⟩ is: prompt [pʁɔ̃], exempt [ɛɡzɑ̃], rompt [ʁɔ̃], corrompt, interrompt. Martinon (1913, p. 129: exempt, prompt, rompt end in the nasal vowel; p. 331: in ⟨-empt⟩ and ⟨-ompt⟩ neither p nor t sounds)."
+    },
+    {
+      "id": "FR_P_MUTE_COMPT",
+      "phonemes": [
+        "p"
+      ],
+      "surface": "",
+      "grapheme": [
+        "p"
+      ],
+      "preceded_by_grapheme": [
+        "m"
+      ],
+      "followed_by_grapheme": [
+        "t"
+      ],
+      "word_contains_grapheme": [
+        "compt"
+      ],
+      "notes": "The ⟨p⟩ of the word family of compter is mute: compte [kɔ̃t], compter, comptable, comptoir, décompte, escompte, acompte, recompter. Martinon (1913, p. 285: p is mute in com(p)te and all its derivatives, com(p)tabilité included, but not in exemption, présomption, consomption or symptôme). This is a fact of one word family, not of the letters ⟨mpt⟩: the same letters keep [p] in somptueux, symptôme, présomption and péremptoire, so the condition names the family's spelling ⟨compt⟩ with word_contains_grapheme. Every ⟨compt⟩ type of the wikipron fr gold (about 130) has the mute [p]. Martinon also lists the derivatives of prompt and, with hesitation, dompter, but the gold splits on prompte, promptitude and dompter, and impromptu keeps [p], so those stay out."
     }
   ],
   "vowel_graphemes": [
