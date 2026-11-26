@@ -576,7 +576,7 @@ PT_MOJIBAKE_AUTHORITY = (
     "the reading itself: 'Ã' is not an IPA symbol. It is the first byte of a "
     "two-byte UTF-8 character such as 'ã' (C3 A3) read as Latin-1"
 )
-PT_NOT_IPA = re.compile(r'[{}~"@ȷᶴ0-9A-Z]')
+PT_NOT_IPA = re.compile(r'[{}~"@ȷ0-9A-Z]')
 PT_NOT_IPA_REASON = (
     "the reading is not IPA: a leaked wiki template or X-SAMPA notation; the "
     "row is dropped"

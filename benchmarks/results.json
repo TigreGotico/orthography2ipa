@@ -12003,13 +12003,13 @@
  {
   "lang": "pt-BR",
   "dataset": "portuguese_unified_corrected",
-  "n": 23106,
+  "n": 23107,
   "per": 0.1412,
-  "per_ci_low": 0.1393,
-  "per_ci_high": 0.1433,
+  "per_ci_low": 0.1392,
+  "per_ci_high": 0.1434,
   "stress_acc": 0.9911,
-  "n_stress": 22425,
-  "exact_match": 0.3725,
+  "n_stress": 22426,
+  "exact_match": 0.3724,
   "quality_tier": "production",
   "provenance": "lexicon-derived",
   "gating": false,
@@ -12020,7 +12020,7 @@
   "oracle_per_top5": 0.131,
   "oracle_exact_top5": 0.4069,
   "oracle_fallback_words": 307,
-  "oracle_scored_words": 22799
+  "oracle_scored_words": 22800
  },
  {
   "lang": "pt-BR",
