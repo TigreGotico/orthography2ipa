@@ -4842,6 +4842,34 @@ def read_ci_sample_rows() -> List[dict]:
 SCOREBOARD_JSON_INDENT = 1
 
 
+NOTATION_FOLDS_JSON = os.path.join(REPO_ROOT, "benchmarks", "notation_folds.json")
+
+
+def notation_fold_section() -> List[str]:
+    """The scoreboard section of the per-source notation-fold rows that
+    ``scripts/source_notation_per.py --write`` commits. They are reported and
+    never gate."""
+    if not os.path.exists(NOTATION_FOLDS_JSON):
+        return []
+    with open(NOTATION_FOLDS_JSON, encoding="utf-8") as fh:
+        rows = json.load(fh)
+    lines = [
+        "## Per-source notation folds (reported, not gated)", "",
+        "Each fold applies only to a gold reading from a source whose own rows "
+        "show no contrast for it (`scripts/source_notation_per.py`). The Michaelis "
+        "folds rest on counts of its rows, not on its transcription key, so the "
+        "folded numbers never gate.", "",
+        "| Language | Dataset | Words | PER | Folded PER | Segment PER | Folded segment PER | Folds |",
+        "|---|---|---|---|---|---|---|---|",
+    ]
+    for r in rows:
+        lines.append(
+            f"| {r['lang']} | {r['dataset']} | {r['words']} | {r['per']:.4f} | "
+            f"{r['folded_per']:.4f} | {r['segment_per']:.4f} | "
+            f"{r['folded_segment_per']:.4f} | {', '.join(f'`{f}`' for f in r['folds'])} |")
+    return lines + [""]
+
+
 def write_scoreboard(rows: List[dict]) -> None:
     os.makedirs(os.path.dirname(SCOREBOARD_JSON), exist_ok=True)
     with open(SCOREBOARD_JSON, "w", encoding="utf-8") as fh:
@@ -5070,6 +5098,7 @@ def write_scoreboard(rows: List[dict]) -> None:
             f"| {'-' if em is None else f'{em:.4f}'} | {tier} | {prov} |"
         )
     lines.append("")
+    lines += notation_fold_section()
     os.makedirs(os.path.dirname(SCOREBOARD_MD), exist_ok=True)
     with open(SCOREBOARD_MD, "w", encoding="utf-8") as fh:
         fh.write("\n".join(lines).rstrip() + footer("evaluation/generated/scoreboard.md"))
