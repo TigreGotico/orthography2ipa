@@ -163,6 +163,7 @@ Some frequent words read wrong when each letter takes its default value. The spe
 | Rule | Effect | Spec output | Source |
 |:---|:---|:---|:---|
 | `FR_ENT_MUTE_AFTER_AI_OI` | ⟨ent⟩ after ⟨ai⟩ or ⟨oi⟩ at the end of the word is mute | ⟨étaient⟩ `etɛ`, ⟨soient⟩ `swa` | Martinon 1913: 161; Larousse, s.v. être |
+| `FR_E_MUTE_AFTER_SOFT_G` | ⟨e⟩ after ⟨g⟩ or ⟨j⟩ and before a back vowel letter is mute | ⟨pigeon⟩ `piʒɔ̃`, ⟨Jean⟩ `ʒɑ̃` | Martinon 1913: 164, 239 |
 
 No noun or adjective ends in ⟨-aient⟩ or ⟨-oient⟩, so this rule needs no part of speech. Bare ⟨-ent⟩ stays ambiguous, as the section on that ending says.
 

@@ -626,7 +626,7 @@
       "title": "Comment on prononce le français : traité complet de prononciation pratique avec les noms propres et les mots étrangers",
       "publisher": "Larousse, Paris",
       "url": "https://archive.org/details/commentonprononc00martuoft",
-      "pages": "161",
+      "pages": "161, 164, 239, 240",
       "notes": "READ (archive.org full scan of the University of Toronto copy; each cited page read in the scan's text). The Paris orthoepic norm of 1913; the allophone rules that cite it give the page and the passage."
     },
     {
@@ -1268,6 +1268,22 @@
       "syllable_position": "coda",
       "notes": "the coda nasal is absorbed into the nasal vowel it created; keyed on the nasal vowel so it cannot bleed the rule that makes it",
       "preceded_by": "vowel"
+    },
+    {
+      "id": "FR_E_MUTE_AFTER_SOFT_G",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "",
+      "grapheme": [
+        "e"
+      ],
+      "preceded_by_grapheme": [
+        "g",
+        "j"
+      ],
+      "followed_by": "back_vowel",
+      "notes": "⟨e⟩ between ⟨g⟩ and a back vowel letter is not a vowel: it only marks the soft [ʒ] of ⟨g⟩ before ⟨a o u⟩. mangeait [mɑ̃ʒɛ], pigeon [piʒɔ̃], bourgeois [buʁʒwa], nageant [naʒɑ̃], geôle [ʒol], George [ʒɔʁʒ]. The same mute ⟨e⟩ stands after ⟨j⟩ in Jean [ʒɑ̃] and Jeanne [ʒan]. Martinon (1913, pp. 164 and 239: the ⟨e⟩ between ⟨g⟩ and ⟨a o u⟩ is not pronounced and only gives ⟨g⟩ its sound before ⟨e i⟩ (mangea, pigeon, nageoire, Georges); p. 164 n. 1: J(e)an, J(e)anne, J(e)annot). ⟨g⟩ itself already reads [ʒ] before ⟨e⟩ (before_front_vowel). RESIDUAL: ⟨geu⟩ before ⟨r⟩ in gageure, mangeure and vergeure is [ʒy] (Martinon 1913: 240), but the tokenizer reads ⟨eu⟩ as one grapheme there, so the rule cannot reach it."
     },
     {
       "id": "FR_E_CLOSED_MULTIGRAPH",

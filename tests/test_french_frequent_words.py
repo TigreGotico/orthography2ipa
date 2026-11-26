@@ -35,3 +35,24 @@ def test_ent_after_ai_and_oi_is_mute(text, expected):
 ])
 def test_other_ent_endings_are_untouched(text, expected):
     assert _t(text) == expected
+
+
+# Martinon (1913: 164, 239): the ⟨e⟩ between ⟨g⟩ and ⟨a o u⟩ is not
+# pronounced; it only gives ⟨g⟩ its sound before ⟨e i⟩. 164 n. 1: J(e)an,
+# J(e)anne.
+@pytest.mark.parametrize("text, expected", [
+    ("mangeait", "mɑ̃ʒɛ"), ("pigeon", "piʒɔ̃"), ("bourgeois", "buʁʒwa"),
+    ("nageant", "naʒɑ̃"), ("geôle", "ʒol"), ("Georges", "ʒɔʁʒ"),
+    ("Jean", "ʒɑ̃"), ("Jeanne", "ʒan"),
+])
+def test_e_after_soft_g_before_a_back_vowel_is_mute(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("gelé", "ʒəle"),      # before a consonant the ⟨e⟩ is a vowel
+    ("je", "ʒə"),          # the whole-word entry
+    ("geai", "ʒe"),        # Martinon (1913: 164): g(e)ai
+])
+def test_e_after_soft_g_counter_cases(text, expected):
+    assert _t(text) == expected
