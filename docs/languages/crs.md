@@ -71,7 +71,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 39 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 36 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -81,13 +81,12 @@ The spec can emit 39 segments. They come from the letter table, the positional r
 | Approximant |  |  |  |  | j |  |  |  |
 | Lateral approximant |  |  | l |  |  |  |  |  |
 
-| Vowels | Front | Central | Back |
-|:--|:-:|:-:|:-:|
-| Close | i y |  | u |
-| Close-mid | e ø |  | o |
-| Mid |  | ə |  |
-| Open-mid | œ œ̃ ɛ ɛ̃ |  | ɔ ɔ̃ |
-| Open | a ã |  | ɑ̃ |
+| Vowels | Front | Back |
+|:--|:-:|:-:|
+| Close | i | u |
+| Close-mid | e ø | o |
+| Open-mid | œ̃ ɛ ɛ̃ | ɔ ɔ̃ |
+| Open | a ã | ɑ̃ |
 
 Sequences that the spec writes as one unit: [w] [‿].
 <!-- atlas:inventory end -->
@@ -134,7 +133,7 @@ The spec declares no stress rule.
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 56 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 28 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -148,24 +147,12 @@ The spec applies 56 allophone rules after the letters are read. The change colum
 | `FR_NASAL_BLOCK_GEMINATE_IEN` | /jɛ̃/ → [jɛ], spelled ⟨ien⟩, before ⟨n⟩ ⟨m⟩ ⟨nn⟩ ⟨mm⟩ | - | Tranel 1987, Walker 2001, Fouché 1959 |
 | `FR_NASAL_BLOCK_PREVOCALIC_OIN` | /wɛ̃/ → [wɛn], before a vowel, spelled ⟨oin⟩ | - | Tranel 1987, Walker 2001, Fouché 1959 |
 | `FR_NASAL_BLOCK_GEMINATE_OIN` | /wɛ̃/ → [wɛ], spelled ⟨oin⟩, before ⟨n⟩ ⟨m⟩ ⟨nn⟩ ⟨mm⟩ | - | Tranel 1987, Walker 2001, Fouché 1959 |
-| `FR_ENT_MUTE_AFTER_AI_OI` | /ə/ → ∅, spelled ⟨e⟩, after ⟨ai⟩ ⟨oi⟩, before ⟨n⟩, with more context in the spec | ⟨parlaient⟩ [paʁlɛ] | Martinon 1913 |
-| `FR_UM_FINAL_LATIN` | /y/ → [ɔ], spelled ⟨u⟩, before ⟨m⟩, with more context in the spec | ⟨forum⟩ [fɔʁɔm] | Martinon 1913 |
-| `FR_UM_FINAL_LATIN_PLURAL` | /y/ → [ɔ], spelled ⟨u⟩, before ⟨m⟩, with more context in the spec | ⟨albums⟩ [albɔm] | Martinon 1913 |
-| `FR_ING_FINAL_ORAL_I` | /i/ → [i], spelled ⟨i⟩, before ⟨n⟩, with more context in the spec | ⟨parking⟩ [paʁkiŋ] | Martinon 1913, Fougeron & Smith 1993 |
 | `FR_NASAL_a` | /a/ → [ɑ̃], before a coda nasal | - | - |
 | `FR_NASAL_ə` | /ə/ → [ɑ̃], before a coda nasal | - | - |
 | `FR_NASAL_i` | /i/ → [ɛ̃], before a coda nasal | - | - |
 | `FR_NASAL_ɔ` | /ɔ/ → [ɔ̃], before a coda nasal | - | - |
 | `FR_NASAL_y` | /y/ → [œ̃], before a coda nasal | - | - |
-| `FR_UM_FINAL_M` | /m/ → [m], word-finally, after ⟨u⟩ | ⟨album⟩ [albɔm] | Martinon 1913 |
-| `FR_ING_FINAL_VELAR_NASAL` | /n/ → [ŋ], after ⟨i⟩, before ⟨g⟩, with more context in the spec | ⟨parking⟩ [paʁkiŋ] | Fougeron & Smith 1993, Martinon 1913 |
 | `FR_NASAL_ABSORB` | /n m/ → ∅, in the coda, after a vowel | - | - |
-| `FR_E_MUTE_AFTER_SOFT_G` | /ə/ → ∅, before a back vowel, spelled ⟨e⟩, after ⟨g⟩ ⟨j⟩ | ⟨mangeait⟩ [mɑ̃ʒɛ] | Martinon 1913 |
-| `FR_IED_CLOSE_MID` | /ə/ → [e], spelled ⟨e⟩, after ⟨i⟩, before ⟨d⟩, with more context in the spec | ⟨pied⟩ [pje] | Martinon 1913 |
-| `FR_IED_CLOSE_MID_PLURAL` | /ə/ → [e], spelled ⟨e⟩, after ⟨i⟩, before ⟨d⟩, with more context in the spec | ⟨pieds⟩ [pje] | Martinon 1913 |
-| `FR_E_MUTE_PREFIX_RE_SS` | /ə/ → [ə], spelled ⟨e⟩, after ⟨r⟩, before ⟨ss⟩, with more context in the spec | ⟨ressembler⟩ [ʁəsɑ̃ble] | Martinon 1913 |
-| `FR_E_BEFORE_DOUBLED_NONFINAL` | /ə/ → [e], spelled ⟨e⟩, before ⟨ss⟩ ⟨ll⟩ ⟨tt⟩ ⟨rr⟩ ⟨ff⟩ ⟨pp⟩ ⟨cc⟩, with more context in the spec | ⟨message⟩ [mesaʒ] | Martinon 1913 |
-| `FR_E_BEFORE_DOUBLED_FINAL` | /ə/ → [ɛ], spelled ⟨e⟩, before ⟨ss⟩ ⟨ff⟩ ⟨pp⟩ ⟨cc⟩, with more context in the spec | ⟨messe⟩ [mɛs] | Martinon 1913 |
 | `FR_E_CLOSED_MULTIGRAPH` | /ə/ → [ɛ], before a consonant cluster, spelled ⟨e⟩ | ⟨Abel⟩ [abɛl] | Tranel 1987, Walker 2001 |
 | `FR_O_FINAL_OPEN` | /ɔ/ → [o], word-finally, spelled ⟨o⟩ | ⟨mot⟩ [mo] | Tranel 1987 |
 | `FR_O_BEFORE_Z` | /ɔ/ → [o], before [z], spelled ⟨o⟩ | ⟨mot⟩ [mo] | Tranel 1987 |
@@ -174,35 +161,20 @@ The spec applies 56 allophone rules after the letters are read. The change colum
 | `FR_C_HARD_BEFORE_OEU` | /s/ → [k], spelled ⟨c⟩, before ⟨œu⟩ | ⟨cœur⟩ [kœʁ] | - |
 | `FR_AI_FINAL_CLOSE_MID` | /ɛ/ → [e], before a word boundary, spelled ⟨ai⟩ | ⟨j'ai⟩ [ʒe] | Walker 2001, Fouché 1959 |
 | `FR_E_BEFORE_DOUBLED_CONSONANT` | /ə/ → [ɛ], spelled ⟨e⟩, before ⟨ll⟩ ⟨tt⟩ ⟨rr⟩, with more context in the spec | ⟨elle⟩ [ɛl] | Féry 2001, New et al. 2004 |
-| `FR_X_VOICED_INITIAL_EX` | /ks/ → [ɡz], before a vowel, spelled ⟨x⟩, after ⟨e⟩, with more context in the spec | ⟨exemple⟩ [ɛɡzɑ̃pl] | Martinon 1913 |
-| `FR_X_VOICED_INITIAL_EX_H` | /ks/ → [ɡz], spelled ⟨x⟩, after ⟨e⟩, before ⟨h⟩, with more context in the spec | ⟨exhiber⟩ [ɛɡzibe] | Martinon 1913 |
-| `FR_X_VOICED_PREFIXED_EX` | /ks/ → [ɡz], before a vowel, spelled ⟨x⟩, after ⟨e⟩, with more context in the spec | ⟨coexister⟩ [kɔɛɡziste] | Martinon 1913 |
-| `FR_X_Z_ORDINAL` | /ks/ → [z], spelled ⟨x⟩, before ⟨i⟩, with more context in the spec | ⟨deuxième⟩ [døzjɛm] | Martinon 1913 |
-| `FR_G_MUTE_BEFORE_T` | /ɡ/ → ∅, spelled ⟨g⟩, before ⟨t⟩ | ⟨vingt⟩ [vɛ̃] | Martinon 1913 |
-| `FR_G_MUTE_FINAL_AFTER_NASAL` | /ɡ/ → ∅, word-finally, spelled ⟨g⟩, after ⟨n⟩ ⟨ain⟩ ⟨ein⟩ ⟨oin⟩ | ⟨sang⟩ [sɑ̃] | Martinon 1913 |
-| `FR_CH_HARD_BEFORE_SONORANT` | /ʃ/ → [k], before [l] [ʁ] [m] [n], spelled ⟨ch⟩ | ⟨chrétien⟩ [kʁetjɛ̃] | Martinon 1913 |
-| `FR_P_MUTE_FINAL_MPT` | /p/ → ∅, spelled ⟨p⟩, after ⟨m⟩, before ⟨t⟩, with more context in the spec | ⟨prompt⟩ [pʁɔ̃] | Martinon 1913 |
-| `FR_P_MUTE_COMPT` | /p/ → ∅, spelled ⟨p⟩, after ⟨m⟩, before ⟨t⟩, with more context in the spec | ⟨compte⟩ [kɔ̃t] | Martinon 1913 |
-| `FR_ING_FINAL_G_MUTE` | /ɡ/ → ∅, before a word boundary, spelled ⟨g⟩, after ⟨n⟩, with more context in the spec | ⟨parking⟩ [paʁkiŋ] | Fougeron & Smith 1993 |
-| `FR_EIL_AFTER_GU` | /ɛj/ → [œj], spelled ⟨eil⟩ ⟨eill⟩, after ⟨gu⟩ | ⟨orgueil⟩ [ɔʁɡœj] | Martinon 1913 |
-| `FR_GU_BEFORE_TREMA_E` | /ɡ/ → [ɡy], spelled ⟨gu⟩, before ⟨ë⟩ | ⟨ambiguë⟩ [ɑ̃biɡy] | Martinon 1913 |
-| `FR_TREMA_E_MUTE_AFTER_GU` | /ɛ/ → ∅, spelled ⟨ë⟩, after ⟨gu⟩ | - | Martinon 1913 |
-| `FR_G_HARD_BEFORE_TREMA_U` | /ʒ/ → [ɡ], spelled ⟨g⟩, before ⟨ü⟩ | ⟨ambigüe⟩ [ɑ̃biɡy] | Martinon 1913 |
-| `FR_C_MUTE_FINAL_AFTER_NASAL` | /k/ → ∅, word-finally, spelled ⟨c⟩, after ⟨n⟩ ⟨ain⟩ ⟨ein⟩ ⟨oin⟩ | ⟨blanc⟩ [blɑ̃] | Martinon 1913 |
-| `FR_X_S_AFTER_OI` | /ks/ → [s], before a vowel, spelled ⟨x⟩, after ⟨oi⟩ | ⟨x⟩ [ks] | Martinon 1913 |
 | `CRS_NASAL_a` | /a/ → [ã], before a coda nasal | - | - |
 | `CRS_NASAL_e` | /e/ → [ɛ̃], before a coda nasal | - | - |
 | `CRS_NASAL_o` | /o/ → [ɔ̃], before a coda nasal | - | - |
 | `CRS_NASAL_ABSORB` | /n m/ → ∅, in the coda, after a vowel | - | - |
 
-The spec applies 10 rules across a word boundary. The contexts are regular expressions on the IPA of the two words.
+The spec applies 11 rules across a word boundary. The contexts are regular expressions on the IPA of the two words.
 
 | Rule | End of word | Start of next word | Change | Example | Cited |
 |:--|:--|:--|:--|:--|:--|
-| `FR_NEUF_V_BEFORE_ANS_HEURES` | `^nœf$` | `^(?:ɑ̃\|œʁ)$` | left [nœv‿] | - | Martinon 1913 |
-| `FR_DIX_Z_BEFORE_HUIT_NEUF` | `^dis$` | `^(?:ɥit\|nœf)$` | left [diz] | - | Martinon 1913 |
-| `FR_NUMERAL_MUTE_BEFORE_CONSONANT` | `^(ɥi\|si\|di)[ts]$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|sɛt)$\|ʒɥ)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | Martinon 1913 |
-| `FR_NUMERAL_Z_BEFORE_VOWEL` | `^(si\|di)s$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | Martinon 1913 |
+| `FR_NEUF_V_BEFORE_HEURES` | `(?!)` | `(?!)` | left ∅ | - | Martinon 1913 |
+| `FR_DIX_Z_BEFORE_HUIT_NEUF` | `(?!)` | `(?!)` | left ∅ | - | Martinon 1913 |
+| `FR_NUMERAL_MUTE_BEFORE_CONSONANT` | `(?!)` | `(?!)` | left ∅ | - | Martinon 1913 |
+| `FR_HUIT_MUTE_BEFORE_CONSONANT` | `(?!)` | `(?!)` | left ∅ | - | Martinon 1913 |
+| `FR_NUMERAL_Z_BEFORE_VOWEL` | `(?!)` | `(?!)` | left ∅ | - | Martinon 1913 |
 | `FR_LIAISON_Z` | `z$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | - |
 | `FR_LIAISON_T` | `t$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [t‿] | - | - |
 | `FR_LIAISON_N` | `n$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [n‿] | - | - |
@@ -210,7 +182,7 @@ The spec applies 10 rules across a word boundary. The contexts are regular expre
 | `FR_LIAISON_P` | `p$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [p‿] | - | - |
 | `FR_ENCHAÎNEMENT` | `([bdɡvzʒ])$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [‿] | - | - |
 
-The spec switches off 2 inherited rules: `FR_E_CLOSED_CLUSTER`, `FR_E_CLOSED_FINAL`.
+The spec switches off 33 inherited rules: `FR_ENT_MUTE_AFTER_AI_OI`, `FR_UM_FINAL_LATIN`, `FR_UM_FINAL_LATIN_PLURAL`, `FR_ING_FINAL_ORAL_I`, `FR_UM_FINAL_M`, `FR_ING_FINAL_VELAR_NASAL`, `FR_E_MUTE_AFTER_SOFT_G`, `FR_IED_CLOSE_MID`, `FR_IED_CLOSE_MID_PLURAL`, `FR_E_MUTE_PREFIX_RE_SS`, `FR_E_BEFORE_DOUBLED_NONFINAL`, `FR_E_BEFORE_DOUBLED_FINAL`, `FR_E_CLOSED_CLUSTER`, `FR_E_CLOSED_FINAL`, `FR_X_VOICED_INITIAL_EX`, `FR_X_VOICED_INITIAL_EX_H`, `FR_X_VOICED_PREFIXED_EX`, `FR_X_Z_ORDINAL`, `FR_G_MUTE_BEFORE_T`, `FR_G_MUTE_FINAL_AFTER_NASAL`, `FR_CH_HARD_BEFORE_SONORANT`, `FR_P_MUTE_FINAL_MPT`, `FR_P_MUTE_COMPT`, `FR_ING_FINAL_G_MUTE`, `FR_EIL_AFTER_GU`, `FR_GU_BEFORE_TREMA_E`, `FR_TREMA_E_MUTE_AFTER_GU`, `FR_G_HARD_BEFORE_TREMA_U`, `FR_C_MUTE_FINAL_AFTER_NASAL`, `FR_X_S_AFTER_OI`, `FR_NUMERAL_FINAL_X_SOUNDS`, `FR_HUIT_FINAL_T_SOUNDS`, `FR_X_K_BEFORE_SIBILANT`.
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin -->
