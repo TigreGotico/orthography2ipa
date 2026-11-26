@@ -316,6 +316,18 @@ def test_re_ss_dessus_and_nasal_doubles_keep_their_reading(text, expected):
     assert _t(text) == expected
 
 
+# Martinon (1913: 62): poêle (pwâl) and its derivatives.
+@pytest.mark.parametrize("text, expected", [
+    ("poêle", "pwal"), ("poêlon", "pwalɔ̃"),
+])
+def test_oe_circumflex_is_wa(text, expected):
+    assert _t(text) == expected
+
+
+def test_noel_keeps_two_vowels():
+    assert _t("Noël") == "nɔɛl"
+
+
 # Martinon (1913: 328): the ⟨t⟩ of huit is pronounced (page huit, huit hommes)
 # except before a plural that begins with a consonant (hui(t) sous).
 # Martinon (1913: 345): six and dix end in [s] (j'en ai six, page dix), are
