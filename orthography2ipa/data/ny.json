@@ -1,6 +1,5 @@
 {
   "code": "ny",
-  "glottolog_code": "nyan1308",
   "name": "Chichewa (Nyanja)",
   "parent": "x-clade-narr1281",
   "script": "Latin",
@@ -355,7 +354,6 @@
     "end_year": null
   },
   "iso639_3": "nya",
-  "wikidata_qid": "Q33273",
   "wals_code": "cic",
   "location": {
     "latitude": -14.8047,

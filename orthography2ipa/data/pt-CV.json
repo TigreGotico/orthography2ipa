@@ -1,6 +1,5 @@
 {
   "code": "pt-CV",
-  "glottolog_code": null,
   "name": "Cape Verdean Portuguese",
   "script": "Latin",
   "quality": "skeleton",
@@ -645,7 +644,6 @@
       "notes": "DISABLED for Cape Verdean Portuguese. PT_STRONG_R_AFTER_CODA gives an ⟨r⟩ after a coda consonant or a nasal vowel the pt-PT strong rhotic [ʁ]. This spec writes its strong rhotic as [r] (carro [ˈkaru]), not [ʁ]. No source for this context in this language was read, so its output stays what it was."
     }
   ],
-  "wikidata_qid": "Q5035141",
   "location": {
     "latitude": 14.917719,
     "longitude": -23.509156,

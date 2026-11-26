@@ -61,7 +61,6 @@
   ],
   "notes": "Research. Austroasiatic (Bahnaric) language of the Vietnamese Central Highlands, written in a Vietnamese-modeled Latin missionary orthography. The map covers the Vietnamese-style consonant digraphs (nh, ng/ngh, ch, kh, ph, th) and quality-bearing vowel letters (a, ă, â, e, ê, o, ô, ơ, u, ư); b and d are read as the implosives characteristic of the inventory. Bahnar is atonal, so no tone is at stake, but phonemic vowel length is only inconsistently written and is left unencoded, and the orthography is not fully standardized across missionary traditions, so spelling variants and the exact reading of b/d (implosive vs plain) raise the expected error floor. Onset clusters (bl, kr, hm, hng, etc.) are read as concatenations of their members. Grapheme table checked against Banker & Banker (1979): no discrepancy found. Stress: Bahnar, like other Bahnaric/Mon-Khmer languages, is sesquisyllabic -- a native word is a minor (unstressed) presyllable plus a main syllable that carries stress and is (near-)always word-final in the native lexicon (Banker & Banker 1979); `default_position=-1` encodes the main-syllable-final pattern. Disyllabic loanwords from Vietnamese/French that do not follow this template are a documented gap.",
   "iso639_3": "bdq",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "bdq_glottolog",

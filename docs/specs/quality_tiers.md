@@ -97,5 +97,15 @@ A production spec has a page under [`docs/languages/`](../languages). The page c
 
 A change of tier to `production` is a claim that a test checks. The benchmark row must exist and pass the checks above, and `test_production_tier_has_qualifying_benchmark` fails every spec that claims `production` without one. For a shallow orthography, a reviewer also confirms the 0.15 target before the tier claim stands.
 
+## Who writes the specs
+
+Large language models (Anthropic Claude) wrote most specs, under the direction of a human maintainer. No small project can recruit a native-speaker linguist for thousands of languages, so the choice was between an AI-written spec and no spec.
+
+- Every mapping must trace to a published description: a reference grammar, a peer-reviewed paper or a university dataset.
+- The engine stays language-agnostic, so a spec cannot hide logic.
+- The tests check the structure, and the benchmarks score the output against external data.
+
+A cited spec that a model wrote is still not native-speaker validation, and the `quality` tier records that. If you speak a language and its spec is wrong, [open an issue](https://github.com/TigreGotico/orthography2ipa/issues) with a citation or a native-speaker judgment. Corrections have priority over all other work here.
+
 ---
 [← Data Model](data_model.md) · [Home](../index.md) · [Ancestry System →](ancestry.md)

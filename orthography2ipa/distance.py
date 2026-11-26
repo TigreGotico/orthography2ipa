@@ -53,6 +53,8 @@ import math
 
 import functools
 import warnings
+
+import linguatag
 from dataclasses import dataclass, replace
 from typing import Dict, List, Optional, Set, Tuple
 
@@ -543,7 +545,7 @@ def pairwise_distances(
     for i in range(n):
         for j in range(i + 1, n):
             if metric == "ancestry":
-                d = 1.0 - ancestry_similarity(specs[i], specs[j])
+                d = 1.0 - linguatag.ancestry_similarity(specs[i].code, specs[j].code)
             else:
                 pd = phonological_distance(specs[i], specs[j])
                 if metric == "combined":
@@ -733,6 +735,8 @@ def ancestry_similarity(
     - ~0.05-0.2: remote connection (substrate/adstrate only)
     - 0.0: no traceable connection
     """
+    warnings.warn("orthography2ipa.distance.ancestry_similarity is deprecated; use linguatag.ancestry_similarity "
+                  "with the spec codes", DeprecationWarning, stacklevel=2)
     from orthography2ipa.registry import get as _get
 
     if spec_a.code == spec_b.code:
@@ -903,7 +907,7 @@ def full_distance(
         Distance in [0.0, 1.0].
     """
     pd = phonological_distance(spec_a, spec_b)
-    anc_sim = ancestry_similarity(spec_a, spec_b)
+    anc_sim = linguatag.ancestry_similarity(spec_a.code, spec_b.code)
     return w_phonological * pd.combined + w_ancestry * (1.0 - anc_sim)
 
 
@@ -1025,8 +1029,8 @@ def weighted_full_distance(
     inv = inventory_distance(spec_a, spec_b)
     gra = grapheme_divergence(spec_a, spec_b)
     allo = allophone_overlap(spec_a, spec_b)
-    anc = ancestry_similarity(spec_a, spec_b)
-    temp = temporal_distance(spec_a, spec_b, reference_year=reference_year)
+    anc = linguatag.ancestry_similarity(spec_a.code, spec_b.code)
+    temp = linguatag.temporal_distance(spec_a.code, spec_b.code, reference_year=reference_year)
 
     # If temporal data is unavailable, exclude it from the combined score
     effective_w_temporal = w_temporal if temp is not None else 0.0
@@ -1089,6 +1093,8 @@ def temporal_distance(
     >>> # Languages with full overlap → distance 0.0
     >>> # Languages in different eras → distance 1.0
     """
+    warnings.warn("orthography2ipa.distance.temporal_distance is deprecated; use linguatag.temporal_distance "
+                  "with the spec codes", DeprecationWarning, stacklevel=2)
     if spec_a.timespan is None or spec_b.timespan is None:
         return None
 
@@ -1283,6 +1289,8 @@ def geographic_distance(
     computed centroid and is weaker still. Weight this axis low, or off, when
     comparing macrolanguages.
     """
+    warnings.warn("orthography2ipa.distance.geographic_distance is deprecated; use linguatag.geographic_distance "
+                  "with the spec codes", DeprecationWarning, stacklevel=2)
     loc_a, loc_b = spec_a.location, spec_b.location
     if loc_a is None or loc_b is None:
         return None

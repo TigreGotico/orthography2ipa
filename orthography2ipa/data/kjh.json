@@ -1,7 +1,6 @@
 {
   "code": "kjh",
   "name": "Khakas",
-  "glottolog_code": "khak1248",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "iso639_3": "kjh",
@@ -145,7 +144,6 @@
     "start_year": 1939,
     "end_year": null
   },
-  "wikidata_qid": "Q33575",
   "phoible_id": "khak1248",
   "location": {
     "latitude": 53.72,

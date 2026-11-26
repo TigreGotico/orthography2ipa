@@ -15,6 +15,8 @@ Usage::
 """
 from __future__ import annotations
 
+from linguatag import catalog_ids
+
 import dataclasses
 import json
 import os
@@ -107,7 +109,7 @@ def _spec_to_dict(spec, bench_by_lang):
         "quality": spec.quality.value if spec.quality else None,
         "parent": spec.parent,
         "ancestors": ancestors,
-        "glottolog_code": spec.glottolog_code,
+        "glottolog_code": catalog_ids(spec.code).get("glottolog_code"),
         "iso639_3": spec.iso639_3,
         "graphemes": dict(sorted((spec.graphemes or {}).items())),
         "allophones": dict(sorted((spec.allophones or {}).items())),

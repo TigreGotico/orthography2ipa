@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "stub",
   "iso639_3": "ruo",
-  "glottolog_code": "istr1245",
   "timespan": {
     "start_year": 1698,
     "end_year": null
@@ -62,7 +61,6 @@
     "https://en.wikipedia.org/wiki/Istro-Romanian_language",
     "https://en.wikipedia.org/wiki/Istro-Romanian_alphabet"
   ],
-  "wikidata_qid": "Q662668",
   "location": {
     "latitude": 45.27,
     "longitude": 14.07,

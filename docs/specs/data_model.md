@@ -71,7 +71,7 @@ A `LanguageSpec` holds all the data for one language, dialect, historical stage 
 | Group | Fields | What they hold |
 | :--- | :--- | :--- |
 | Identity | `code`, `name`, `script`, `script_type`, `orthography_kind` | The [BCP 47](https://www.rfc-editor.org/rfc/rfc5646) code, the display name, the script and its type, and what kind of writing the graphemes are |
-| Cross-references | `iso639_3`, `glottolog_code`, `wikidata_qid`, `phoible_id`, `wals_code` | Identifiers in [ISO 639-3](https://iso639-3.sil.org/), [Glottolog](https://glottolog.org), [Wikidata](https://www.wikidata.org/), [PHOIBLE](https://phoible.org) and [WALS](https://wals.info/) |
+| Cross-references | `iso639_3`, `phoible_id`, `wals_code` | Identifiers in [ISO 639-3](https://iso639-3.sil.org/), [PHOIBLE](https://phoible.org) and [WALS](https://wals.info/). The [Glottolog](https://glottolog.org) and [Wikidata](https://www.wikidata.org/) ids come from `linguatag.catalog_ids(code)`. |
 | Classification | `family`, `family_path`, `clade`, `parent`, `ancestors` | The derived family path, the clade flag and the typed ancestry |
 | Sound and spelling | `graphemes`, `allophones`, `phonemes`, `positional_graphemes`, `grapheme_weights` | The two maps, the declared inventory, the context-sensitive overrides and the candidate weights |
 | Whole words and endings | `word_exceptions`, `grammatical_endings` | Overrides for an irregular set of words, and suffix readings at the word end |

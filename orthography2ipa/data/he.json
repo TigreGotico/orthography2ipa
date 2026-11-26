@@ -1,7 +1,6 @@
 {
   "code": "he",
   "name": "Hebrew",
-  "glottolog_code": "hebr1245",
   "script": "Hebrew",
   "script_type": "abjad",
   "iso639_3": "heb",
@@ -684,7 +683,6 @@
       "notes": "Arabic adstrate: shared Semitic areal features and modern loanwords."
     }
   ],
-  "wikidata_qid": "Q9288",
   "phoible_id": "hebr1245",
   "wals_code": "heb",
   "location": {

@@ -37,7 +37,7 @@ Two programs make that string. The compiler reads the `pt-PT` spec and writes th
 
 ```
 
-The document holds only integers, arrays and objects. Every string is an index into the `strings` table. `layout.decode` turns the indexes back into text, so a person can read the tables:
+The tables hold integers, arrays and objects. Every string that the interpreter compares or emits is an index into the `strings` table; the only other strings are names from a fixed vocabulary, such as the bit names. `layout.decode` turns the indexes back into text, so a person can read the tables:
 
 ```python
 >>> from orthography2ipa.ir import layout

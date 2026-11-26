@@ -76,7 +76,7 @@ def test_inheriting_specs(lang, word, ipa):
 
 
 
-@pytest.mark.xfail(strict=True, reason="known gap: the nominal ver- takes the main stress")
+@pytest.mark.xfail(strict=True, reason="known gap: the nominal ver- takes the main stress", raises=AssertionError)
 @pytest.mark.parametrize("word, ipa", [
     ("verkoop", "ˈvɛɹkoup"),
 ])

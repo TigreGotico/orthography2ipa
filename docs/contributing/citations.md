@@ -12,7 +12,7 @@ Every mapping in a spec is a claim about a language, and every claim needs a sou
 
 ## Principles
 
-Primary sources come before secondary sources. Every phonological claim traces back to a peer-reviewed article, a reference grammar or a phonology monograph. Wikipedia, language-learning applications and the output of an AI model are not sources.
+Primary sources come before secondary sources. Every phonological claim traces back to a peer-reviewed article, a reference grammar or a phonology monograph. Language-learning applications and the output of an AI model are not sources. Wikipedia is a source of last resort only, as the next section says.
 
 A spec describes the standard or prestige variety first. A dialect spec then states how it differs from that standard, and says so in its `notes`.
 
@@ -49,11 +49,19 @@ These sources are open to every reader, so a claim that cites them can be checke
 
 Two specs show the open sources at work. The Mi'kmaq spec (`mic.json`) cites Fidelholtz's 1968 dissertation on Micmac phonology at MIT's DSpace, handle [`1721.1/13001`](https://hdl.handle.net/1721.1/13001). The full text is open, and it is the source of the open-mid vowel values that the spec ships. The Mirandese vowel question was settled from archive.org. Leite de Vasconcelos's *Estudos de Philologia Mirandesa*, volume I, identifier [`estudosdephilolo01vascuoft`](https://archive.org/details/estudosdephilolo01vascuoft), gives the forms directly and in full text.
 
-A `phoible_id` answers "which phonemes does this language have", and nothing more. A phone inventory never settles which letter spells which phone ([writing a language spec](spec_authoring.md#looking-for-a-source-what-a-phone-inventory-cannot-tell-you)). Glottolog has no entry for some of the varieties that this project models. For those, `glottolog_code: null` is the honest state. Do not fill the field with the code of a nearby languoid.
+A `phoible_id` answers "which phonemes does this language have", and nothing more. A phone inventory never settles which letter spells which phone ([writing a language spec](spec_authoring.md#looking-for-a-source-what-a-phone-inventory-cannot-tell-you)). Glottolog has no entry for some of the varieties that this project models. For those, no Glottolog code in `linguatag.catalog_ids` is the honest state. Do not fill it with the code of a nearby languoid.
 
 ## Wikipedia and Ciberdúvidas are extra sources only
 
-Wikipedia and Wiktionary are pointers, never sources. Put a Wikipedia article in the `wikipedia` field, and cite the reference grammar or paper that the article cites. Open that reference, and make sure it says what the article claims. Do not cite the paraphrase of Wikipedia. Do not cite an author whose name you took from a `<ref>` tag and whose work you did not read. Keep the Wikipedia link next to the citation, and do not remove it.
+Wikipedia and Wiktionary are pointers first. Use Wikipedia as a source only when no primary source can be read. Do these steps:
+
+1. Read the same claim in several language editions of Wikipedia.
+2. In the rule's `notes`, quote each edition with its URL and revision date, and say which editions agree and which disagree.
+3. Write `WIKIPEDIA-ONLY` in the note.
+
+A `WIKIPEDIA-ONLY` claim goes in a rule's `notes` and never in the spec's `sources`. A spec with such a rule stays below the `production` tier until someone reads a primary source and replaces the note.
+
+Otherwise, Wikipedia is a pointer. Put a Wikipedia article in the `wikipedia` field, and cite the reference grammar or paper that the article cites. Open that reference, and make sure it says what the article claims. Do not cite the paraphrase of Wikipedia. Do not cite an author whose name you took from a `<ref>` tag and whose work you did not read. Keep the Wikipedia link next to the citation, and do not remove it.
 
 A Wiktionary rewrite module such as [`Module:crk-IPA`](https://en.wiktionary.org/wiki/Module:crk-IPA) is a parser that someone wrote, and it encodes the decisions of its author. Its output is not evidence of what a reference grammar says.
 

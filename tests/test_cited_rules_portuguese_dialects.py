@@ -62,7 +62,7 @@ def test_gl_distincion():
     strict=True,
     reason="gl notes claim an apico-alveolar /s/ [s̺]; engine produces a plain "
     "unmarked [s] in casa — the apical diacritic the spec's own prose asserts is "
-    "never emitted (contrast mwl/pt-PT-x-tras-os-montes, which do mark it)",
+    "never emitted (contrast mwl/pt-PT-x-tras-os-montes, which do mark it)", raises=AssertionError,
 )
 def test_gl_apico_alveolar_s():
     """Galician /s/ is the apico-alveolar [s̺], not the Portuguese predorsal [s̻].
@@ -134,7 +134,7 @@ def test_gl_no_unstressed_vowel_reduction():
     strict=True,
     reason="gl notes cite irmán [ɐ̃] and corazón [õ]; engine produces [iˈɾmaŋ] and "
     "[koɾaˈθɔŋ] — the word-final nasal is realised as a separate velar [ŋ] and "
-    "the vowel is neither nasalised nor raised, so no nasal vowel is produced",
+    "the vowel is neither nasalised nor raised, so no nasal vowel is produced", raises=AssertionError,
 )
 def test_gl_word_final_nasal_vowels():
     """NASAL VOWELS word-finally: irmán has [ɐ̃], corazón has [õ].
@@ -266,7 +266,7 @@ def test_gl_occidental_gu_digraph_keeps_the_stop():
     reason="gl-ES-x-occident cites galego → [haˈlɛho]; engine produces [haleho] — "
     "the gheada itself fires, but the spec carries no stress block (no stress "
     "mark is emitted at all, unlike its parent gl) and the tonic ⟨e⟩ is the "
-    "close [e], not the cited open [ɛ]",
+    "close [e], not the cited open [ɛ]", raises=AssertionError,
 )
 def test_gl_occidental_cited_galego_transcription():
     """gl-ES-x-occident cites galego as [haˈlɛho].
@@ -546,7 +546,7 @@ def test_caipira_palatal_lateral_vocalises_to_glide():
     "palavra: andá, muié, esquecê'; engine produces [ɐ̃ˈdaɻ] for andar and "
     "[koˈmeɻ] for comer — the word-final rhotic is retroflexed, not elided. DATA "
     "gap: deletion IS expressible (cf. pt-PT-x-alentejo "
-    "ALE_FINAL_HIGH_VOWEL_DELETION), but no such rule is declared",
+    "ALE_FINAL_HIGH_VOWEL_DELETION), but no such rule is declared", raises=AssertionError,
 )
 def test_caipira_word_final_r_elides():
     """Word-final /r/ elides: andar → andá.

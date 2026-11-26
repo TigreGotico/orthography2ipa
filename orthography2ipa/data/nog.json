@@ -1,7 +1,6 @@
 {
   "code": "nog",
   "name": "Nogai",
-  "glottolog_code": "noga1249",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "iso639_3": "nog",
@@ -148,7 +147,6 @@
     "start_year": 1960,
     "end_year": null
   },
-  "wikidata_qid": "Q33871",
   "phoible_id": "noga1249",
   "location": {
     "latitude": 44.5,

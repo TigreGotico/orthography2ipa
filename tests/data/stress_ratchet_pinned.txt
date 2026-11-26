@@ -143,7 +143,6 @@ ka
 kaa
 kab
 kac
-kas
 kbd
 kbp
 kca
@@ -167,6 +166,7 @@ krc
 kri
 kru
 ks
+ks-Arab
 ktz
 ku
 kum
@@ -250,7 +250,7 @@ nso
 nup
 nv
 ny
-oji
+oj
 olo
 om
 one

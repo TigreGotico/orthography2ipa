@@ -110,7 +110,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": "riop1234",
   "iso639_3": "spa",
   "positional_graphemes": {
     "c": {
@@ -205,7 +204,6 @@
       "notes": "Quechua indigenous adstrate (see stub qu.json; Lipski 1994)."
     }
   ],
-  "wikidata_qid": "Q85146618",
   "location": {
     "latitude": -34.599722,
     "longitude": -58.381944,

@@ -170,7 +170,7 @@ The spec applies 16 allophone rules after the letters are read. The change colum
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
-| `DE_FINAL_IG_SPIRANT` | /k/ → [ç], word-finally, after [ɪ], spelled ⟨g⟩ | - | - |
+| `DE_FINAL_IG_SPIRANT` | /k/ → [ç], word-finally, after [ɪ], spelled ⟨g⟩ | ⟨Aussprache⟩ [ˈkøːnɪç] | - |
 | `DE_OPEN_SYLLABLE_A` | /a/ → [aː], stressed, in the nucleus, before a consonant, spelled ⟨a⟩, with more context in the spec | - | [Wiese 1996](#src-wiese1996) |
 | `DE_OPEN_SYLLABLE_E` | /ɛ/ → [eː], stressed, in the nucleus, before a consonant, spelled ⟨e⟩, with more context in the spec | - | [Wiese 1996](#src-wiese1996) |
 | `DE_OPEN_SYLLABLE_I` | /ɪ/ → [iː], stressed, in the nucleus, before a consonant, spelled ⟨i⟩, with more context in the spec | - | [Wiese 1996](#src-wiese1996) |

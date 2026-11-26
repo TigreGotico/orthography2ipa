@@ -2,7 +2,6 @@
   "code": "so",
   "name": "Somali",
   "parent": "x-clade-cush1243",
-  "glottolog_code": "soma1255",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "som",
@@ -420,7 +419,6 @@
     "start_year": 1972,
     "end_year": null
   },
-  "wikidata_qid": "Q13275",
   "phoible_id": "soma1255",
   "wals_code": "som",
   "location": {

@@ -35,13 +35,13 @@ VOWEL = [
 ]
 
 
-@pytest.mark.xfail(strict=True, reason="a loan outside the Portuguese stress rules")
+@pytest.mark.xfail(strict=True, reason="a loan outside the Portuguese stress rules", raises=AssertionError)
 @pytest.mark.parametrize("lang,word,expected,gold", STRESS)
 def test_loan_stress(lang, word, expected, gold):
     assert expected in G2P(lang).transcribe_word(word)
 
 
-@pytest.mark.xfail(strict=True, reason="a loan outside the Portuguese vowel rules")
+@pytest.mark.xfail(strict=True, reason="a loan outside the Portuguese vowel rules", raises=AssertionError)
 @pytest.mark.parametrize("lang,word,expected,gold", VOWEL)
 def test_loan_vowel(lang, word, expected, gold):
     assert expected in G2P(lang).transcribe_word(word).replace("ˈ", "").replace("ˌ", "")

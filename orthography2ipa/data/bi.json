@@ -163,7 +163,6 @@
   },
   "notes": "Bislama — English-lexifier creole (national language of Vanuatu), with an Oceanic (Austronesian) phonology and grammar. Post-1995 standard orthography: 5 vowels, the digraphs ⟨ae⟩ and ⟨ao⟩ for diphthongs, ⟨ng⟩ /ŋ/. The pre-1995 spelling used ⟨é⟩, ⟨ai⟩/⟨au⟩ and macron-marked ⟨m̄⟩ /mʷ/, ⟨p̄⟩ /pʷ/; labialised consonants are now written with a following ⟨w⟩ (mw, pw) — labialisation is not modelled here. Spelling is broadly phonemic. Some speakers have a few Oceanic-substrate phonemes (/pʷ/, /mʷ/) not present for all.",
   "iso639_3": "bis",
-  "glottolog_code": "bisl1239",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Bislama",
     "https://bi.wikipedia.org/wiki/Bislama"

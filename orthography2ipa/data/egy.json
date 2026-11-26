@@ -84,7 +84,6 @@
   "quality": "research",
   "script_type": "alphabet",
   "iso639_3": "egy",
-  "glottolog_code": "egyp1246",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Egyptian_language"
   ],
@@ -159,7 +158,6 @@
       "notes": "Egyptian branch of Afroasiatic."
     }
   ],
-  "wikidata_qid": "Q50868",
   "location": {
     "latitude": 28.381735,
     "longitude": 30.834959,

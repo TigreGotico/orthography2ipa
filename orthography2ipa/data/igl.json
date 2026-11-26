@@ -17,8 +17,6 @@
   ],
   "notes": "Igala, a Volta-Niger (Yoruboid) language of Kogi State, Nigeria. STUB: the grapheme inventory is NOT yet specified. Written in a Latin orthography with the letters ẹ, ọ and tone marks; Wikidata records no writing system for the item and no published letter-to-phoneme table was consulted, so no grapheme map is claimed. Igala is tonal (three level tones), and tone marking would have to be handled. wikidata_qid left unset: the code's Wikidata row resolves to the Wikimedia project item, not the language item; not recorded rather than record a wrong id.",
   "iso639_3": null,
-  "glottolog_code": null,
-  "wikidata_qid": null,
   "sources": [
     {
       "id": "wikidata_Q125573207",

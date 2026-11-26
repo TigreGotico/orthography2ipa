@@ -22,7 +22,6 @@
   ],
   "notes": "Stub: no citable grapheme-to-IPA inventory. Extinct, definitely Indo-European language of ancient eastern Sicily, attested in fewer than thirty inscriptions (only ~6 considered intelligibly Sicel) plus ~25 glosses in ancient authors, written in the Greek alphabet. No published phonological inventory (grapheme-by-grapheme sound values) is sourceable from the extremely limited corpus; the literature (Hartmann 2017, Weiss 2022, Tribulato 2012) discusses individual sound-law arguments (e.g. reflexes of PIE voiced aspirates) from isolated forms, not a systematic orthography-to-phoneme table, so graphemes is left empty rather than fabricated from Greek-alphabet defaults.",
   "iso639_3": "scx",
-  "glottolog_code": "sicu1234",
   "sources": [
     {
       "id": "hartmann2017",

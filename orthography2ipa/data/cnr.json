@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "skeleton",
   "iso639_3": "cnr",
-  "glottolog_code": "mont1282",
   "timespan": {
     "start_year": 2007,
     "end_year": null
@@ -203,7 +202,6 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Montenegrin_language"
   ],
-  "wikidata_qid": "Q8821",
   "location": {
     "latitude": 42.708,
     "longitude": 19.374,

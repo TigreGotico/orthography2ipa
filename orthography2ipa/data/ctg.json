@@ -242,7 +242,6 @@
   },
   "notes": "Chittagonian (চাটগাঁইয়া) has no official orthography standard; it is written informally with the Bengali abugida, borrowing Bengali's letter inventory but NOT its phoneme values, since Chittagonian's own sound changes diverge sharply from standard Bengali (Rahman 2019): notably চ/ছ/জ/ঝ (Bengali affricates) are realised as fricatives /s/ /sʰ/ /dz/ /dzʱ/ in Chittagonian, and ফ has a documented /h/ allophone alongside /pʰ/. These divergent values are cited claims about Chittagonian phonology, not the Bengali reading of the same letters — reusing the Bengali script does not imply reusing bn.json's graphemes table. Vowel signs (kar) are matras applied to a preceding consonant per the abugida convention shared with `bn`/`as`. Word stress is not orthographically predictable and is exempt per quality_tiers.md. No WikiPron gold exists for ctg, so the tier stays at skeleton.",
   "iso639_3": "ctg",
-  "glottolog_code": "chit1275",
   "sources": [
     {
       "id": "glottolog2024",

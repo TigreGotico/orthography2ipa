@@ -5,8 +5,6 @@
   "script_type": "abugida",
   "quality": "stub",
   "iso639_3": "blk",
-  "glottolog_code": "paok1235",
-  "wikidata_qid": "Q7121294",
   "graphemes": {},
   "allophones": {},
   "notes": "Pa'O (Pa-O Karen) of Myanmar, written in the Mon–Burmese (Myanmar) script, an abugida. The grapheme inventory is NOT yet specified: no consonant/vowel-sign → IPA mapping is claimed here. A correct spec requires the full Myanmar-script akshara model (consonant letters with an inherent vowel, dependent vowel signs, medials, the virama/asat, and the Pa'O-specific tone letters) plus a documented Pa'O phoneme inventory; that research has not been done. Metadata only. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode paok1235), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",

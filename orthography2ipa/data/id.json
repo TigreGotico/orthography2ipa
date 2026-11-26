@@ -1,6 +1,5 @@
 {
   "code": "id",
-  "glottolog_code": "indo1316",
   "name": "Indonesian (Bahasa Indonesia)",
   "script": "Latin",
   "quality": "research",
@@ -356,7 +355,6 @@
       "notes": "Portuguese adstrate: early trade loanwords."
     }
   ],
-  "wikidata_qid": "Q9240",
   "phoible_id": "indo1316",
   "wals_code": "ind",
   "location": {

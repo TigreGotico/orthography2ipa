@@ -2995,7 +2995,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": "braz1246",
   "iso639_3": "por",
   "constrain_onsets": true,
   "word_exceptions": {
@@ -3202,7 +3201,6 @@
     "final_diphthongs": {"diphthongs": ["iu", "ui"], "finals": ["s"]},
     "tonic_after_diphthong": ["i", "u", "í", "ú"]
   },
-  "wikidata_qid": "Q750553",
   "location": {
     "latitude": -14,
     "longitude": -53,

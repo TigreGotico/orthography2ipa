@@ -26,5 +26,7 @@ here, so never edit one by hand. The procedure is in
 whole-board `--scoreboard` run also writes `results_environment.json`, the
 versions of the plugin and scorer packages it used.
 
+After a board regeneration, run `PYTHONPATH=$PWD python scripts/gen_doc_charts.py --write` to redraw the charts of the evaluation pages.
+
 How a score is computed and how far it can be trusted is in
 [docs/evaluation/benchmarks.md](../docs/evaluation/benchmarks.md).

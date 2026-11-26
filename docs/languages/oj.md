@@ -1,21 +1,22 @@
-# Ojibwe (`oji`)
+# Ojibwe (`oj`)
 
 <!-- agent-hint
-covers: what the `oji` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
-source: `orthography2ipa/data/oji.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+covers: what the `oj` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/oj.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
 generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
 verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
 see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
 -->
 
 <!-- atlas:summary begin -->
-Ojibwe is an Algic language, written in the Latin script. Glottolog places it in the North America macroarea. The `oji` spec is at the research tier. It cites 3 sources and has 1 scored dataset.
+Ojibwe is an Algic language, written in the Latin script. Glottolog places it in the North America macroarea. The `oj` spec is at the research tier. It cites 3 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
 | Field | Value |
 |:--|:--|
-| Code | `oji` |
+| Code | `oj` |
+| Aliases | `oji` |
 | ISO 639-3 | [oji](https://iso639-3.sil.org/code/oji), Ojibwa |
 | Glottolog | [ojib1241](https://glottolog.org/resource/languoid/id/ojib1241), Ojibwa |
 | Wikidata | [Q33875](https://www.wikidata.org/wiki/Q33875) |
@@ -25,8 +26,8 @@ Ojibwe is an Algic language, written in the Latin script. Glottolog places it in
 | Script | [Latin](by-script.md#latin) (alphabet) |
 | Tier | [research](../specs/quality_tiers.md#research) |
 | Parent | [Algic](https://tigregotico.github.io/orthography2ipa/#x-clade-algi1248) `x-clade-algi1248` |
-| Explorer | [`oji` in the data explorer](https://tigregotico.github.io/orthography2ipa/#oji) |
-| Spec file | [`oji.json`](../../orthography2ipa/data/oji.json) |
+| Explorer | [`oj` in the data explorer](https://tigregotico.github.io/orthography2ipa/#oj) |
+| Spec file | [`oj.json`](../../orthography2ipa/data/oj.json) |
 <!-- atlas:header end -->
 
 <!-- atlas:overview begin -->
@@ -38,13 +39,13 @@ The notes of the spec file open with these words:
 
 The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 3 works, from 1995 to 2026. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes all 27 spellings of its letter table itself.
 
-The [spec file](../../orthography2ipa/data/oji.json) holds the full notes, with the caveats of the spec.
+The [spec file](../../orthography2ipa/data/oj.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
 
 <!-- atlas:lects begin -->
 ## Related lects
 
-No spec names `oji` as its parent.
+No spec names `oj` as its parent.
 <!-- atlas:lects end -->
 
 <!-- atlas:sources begin -->
@@ -139,7 +140,7 @@ The spec has no allophone rule and no cross-word rule.
 <!-- atlas:examples begin -->
 ## Examples
 
-The engine wrote every transcription in this section with `orthography2ipa.transcribe(text, "oji")`. They are engine output, not reference transcriptions.
+The engine wrote every transcription in this section with `orthography2ipa.transcribe(text, "oj")`. They are engine output, not reference transcriptions.
 
 No example words are chosen for this page yet.
 <!-- atlas:examples end -->

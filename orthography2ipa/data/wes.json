@@ -40,8 +40,6 @@
  },
  "notes": "Cameroon Pidgin English / Kamtok has no single legislated orthography but literacy materials (CABTAL primers; Kouega 2008) converge on an English-based Latin spelling: 21 English-shaped letters plus the digraphs ⟨ch⟩ /tʃ/, ⟨sh⟩ /ʃ/ and ⟨ng⟩ /ŋ/, none of which is the concatenation of its parts under this spec's own single-letter values (AGENTS.md test 1 — there is no separate ⟨c⟩ key, so ⟨ch⟩ cannot be read as c+h). The seven-vowel inventory /i e ɛ a ɔ o u/ (Todd 1979; Kouega 2008) is not fully disambiguated by the five-vowel spelling: ⟨e⟩ and ⟨o⟩ each carry both the tense and lax reading as competing lattice candidates. Stress generally tracks the English etymon but is not marked in the orthography and is not reliably predictable from spelling alone, so it is left unencoded (documented exemption).",
  "iso639_3": "wes",
- "glottolog_code": "came1254",
- "wikidata_qid": "Q3363260",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Cameroonian_Pidgin_English"
  ],

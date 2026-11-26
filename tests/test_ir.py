@@ -461,19 +461,11 @@ class TestInherentVowel:
 
 class TestPreposedVowels:
     # Thai and Lao write ⟨เ แ โ ใ ไ⟩ before the consonant they follow: ⟨เก⟩ is /keː/ (Smyth 2002).
-    # Both specs still refuse tone fields and consonant_nuclei, so this compares the tokens.
-    @pytest.fixture
-    def tokenizer_only(self, monkeypatch):
-        from orthography2ipa.ir import compiler
-        later = {"consonant_nuclei", "tone_rules", "tone_marks_syllable_final"}
-        monkeypatch.setattr(compiler, "_REFUSED_FIELDS",
-                            tuple(f for f in compiler._REFUSED_FIELDS if f[0] not in later))
-
     @pytest.mark.parametrize("code,words", [
         ("th", ["เก", "ไหม", "โหม", "โหมด", "แหล่", "เหลือ", "เอกชน", "คลอโรฟอร์ม"]),
         ("lo", ["ເອກ", "ເຫຼົ້າ", "ໂຫລ", "ເມືອງ"]),
     ])
-    def test_tokens_like_legacy(self, tokenizer_only, code, words):
+    def test_tokens_like_legacy(self, code, words):
         from orthography2ipa import registry
         from orthography2ipa.phonetok import PhonetokTokenizer
         interp, legacy = Interpreter(build_ir(code, apply_stress=False)), PhonetokTokenizer(registry.get(code))
@@ -481,7 +473,7 @@ class TestPreposedVowels:
             assert [(t.grapheme, t.readings) for t in interp.grapheme_tokens(w)] == \
                 [(t.grapheme, tuple(t.ipa)) for t in legacy.tokenize(w) if t.kind.name == "GRAPHEME"]
 
-    def test_host_is_no_coda(self, tokenizer_only):
+    def test_host_is_no_coda(self):
         interp = Interpreter(build_ir("th", apply_stress=False))
         assert interp._word_paths("เก", 1)[0][0] == ("keː",)
 
@@ -502,13 +494,10 @@ class TestConsonantNuclei:
         interp, g = Interpreter(build_ir("lo")), FrozenRules("lo")
         assert [interp.transcribe(w) for w in words] == [g.transcribe(w) for w in words]
 
-    def test_thai_cluster_backs_off(self, monkeypatch):
+    def test_thai_cluster_backs_off(self):
         # ⟨ขว⟩ is a cluster in ⟨ขวา⟩, but ⟨ว⟩ is the nucleus of ⟨ขวด⟩.
         from orthography2ipa import registry
-        from orthography2ipa.ir import compiler
         from orthography2ipa.phonetok import PhonetokTokenizer
-        monkeypatch.setattr(compiler, "_REFUSED_FIELDS", tuple(
-            f for f in compiler._REFUSED_FIELDS if f[0] not in {"tone_rules", "tone_marks_syllable_final"}))
         interp, legacy = Interpreter(build_ir("th", apply_stress=False)), PhonetokTokenizer(registry.get("th"))
         for w in ["ขวด", "ขวา", "สวน"]:
             assert [(t.grapheme, t.readings) for t in interp.grapheme_tokens(w)] == \
@@ -782,6 +771,6 @@ def test_transcription_revision(monkeypatch):
 def test_output_changing_fields_have_semantics_versions():
     names = set(layout.manifest(build_ir("pt-PT")).split(";"))
     assert {"collapse_geminates=1", "apostrophe_elision=1", "clitic_marks=1", "compound_last=1",
-            "allophony_geminate=1", "tonic_after_diphthong=1", "hiatus=1", "overrides=1"} <= names
+            "allophony_geminate=1", "tonic_after_diphthong=1", "hiatus=2", "overrides=1"} <= names
     assert "ipa_diphthongs=1" in layout.manifest(build_ir("it-IT")).split(";")
     assert "ipa_diphthongs=1" not in names

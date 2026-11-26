@@ -468,7 +468,6 @@ class G2P:
         the compiler refuses."""
         from orthography2ipa.ir.cache import interpreter
         from orthography2ipa.ir.compiler import build_ir
-        from orthography2ipa.ir.interpreter import Hooks, Interpreter
         options = dict(dialect_profile=self.dialect_profile, apply_stress=self.apply_stress,
                        apply_allophony=self.apply_allophony, apply_sandhi=self.apply_sandhi,
                        expand_allophones=self.expand_allophones)
@@ -479,7 +478,7 @@ class G2P:
         if self._caller_spec or self.spec.plugins:
             # The host runs the declared plugins, so the IR is compiled
             # without them. A caller spec is compiled for this engine alone.
-            it = Interpreter(build_ir(self.lang, spec=replace(self.spec, plugins=None), **options))
+            it = ir_kinds.Interpreter(build_ir(self.lang, spec=replace(self.spec, plugins=None), **options))
         else:
             it = interpreter(self.lang, **options)
         normalizers = [functools.partial(plugin.normalize, lang=self.lang)
@@ -488,13 +487,14 @@ class G2P:
             normalizers.append(self.normalizer)
         sandhi = self.pipeline.sandhi
         self._sandhi_plugins = [sandhi] if sandhi is not None else self._stage_plugins.get("sandhi")
-        hooks = Hooks(
+        hooks = ir_kinds.Hooks(
             text=(lambda run: functools.reduce(lambda t, f: f(t), normalizers, run))
             if normalizers else None,
             rescore=self._ir_rescore if self._host_rescorers else None,
-            syllables=self._ir_syllables if self.pipeline.syllabifier is not None else None,
+            syllables=(lambda word: plugin_syllables(word, self.lang, self.pipeline.syllabifier))
+            if self.pipeline.syllabifier is not None else None,
             sandhi=self._ir_sandhi if self._sandhi_plugins or self._sentence_rescorers else None)
-        return it if hooks == Hooks() else it.with_hooks(hooks)
+        return it if hooks == ir_kinds.Hooks() else it.with_hooks(hooks)
 
     def _ir_rescore(self, word: str, tokens, slots, syllables, stressed):
         """Run the caller's rescorers on the beam slots of *word*. A cost
@@ -523,9 +523,6 @@ class G2P:
                                    syll_for_token=syllables, stressed_syll_idx=stressed)
         return [[(c.ipa, round(c.cost * 1_000_000)) for c in s.candidates] for s in rescored]
 
-    def _ir_syllables(self, word: str) -> Optional[List[str]]:
-        return plugin_syllables(word, self.lang, self.pipeline.syllabifier)
-
     def _ir_sandhi(self, ipa_words: List[str], surfaces: List[str],
                    pausal: List[bool]) -> List[str]:
         """The sentence rescorers, then the sandhi plugins."""
@@ -545,12 +542,13 @@ class G2P:
             ipa_words = rewritten
         return list(ipa_words)
 
-    def _ir_runs(self, text: str) -> List[Tuple[str, Optional[str]]]:
+    def _ir_runs(self, text: str) -> List[Tuple]:
         """*text* after ``expand`` and ``mark``, as interpreter runs: a plain
-        run, or a forced word with its checked IPA."""
+        run with its text before ``mark``, or a forced word with its checked IPA."""
+        unmarked = self._expanded(parse_markup(text))
         return [(chunk.text, self._check_forced(chunk.forced_ipa)) if chunk.is_forced
-                else (chunk.text, None)
-                for chunk in self._prepared(parse_markup(text))]
+                else (chunk.text, None, before.text)
+                for chunk, before in zip(self._marked(unmarked), unmarked)]
 
     def _ir_lexicon(self):
         lexicon = self.pipeline.lexicon
@@ -579,7 +577,7 @@ class G2P:
         unmapped, coverage = self._unmapped_chars(wr.word)
         if unmapped:
             self._handle_unmapped(wr.word, unmapped)
-        override = wr.forced or it._override_for(wr.word, lexicon) is not None
+        override = wr.forced or wr.override
         confidence = 1.0 if override else lattice_confidence(self.ipa_lattice(wr.word))
         candidates = tuple(IPAPath(segs, cost / 1_000_000) for segs, cost in wr.paths) if width > 1 else ()
         return WordTranscription(word=unicodedata.normalize("NFC", wr.word), ipa=wr.ipa, candidates=candidates,
@@ -664,7 +662,7 @@ class G2P:
         it = self._interpreter
         lexicon = self._ir_lexicon()
         words = self._ir_words(it, text, lexicon)
-        transcribed = [self._ir_word(it, it.transcribe_word(w.surface, width, lexicon, w.forced),
+        transcribed = [self._ir_word(it, it.transcribe_word(w.surface, width, lexicon, w.forced, w.key),
                                      width, lexicon) for w in words]
         return self._build_sentence_lattice(words, transcribed, width)
 
@@ -890,13 +888,17 @@ class G2P:
             f"search must be 'greedy' or 'beam', got {search!r}")
 
 
-    def _prepared(self, chunks: List[Chunk]) -> List[Chunk]:
-        """*chunks* after the pipeline's ``expand`` and ``mark``."""
-        expand, mark = self.pipeline.expand, self.pipeline.mark
-        if expand is not None:
-            chunks = [chunk if chunk.is_forced
-                      else replace(chunk, text=expand(chunk.text))
-                      for chunk in chunks]
+    def _expanded(self, chunks: List[Chunk]) -> List[Chunk]:
+        """*chunks* after the pipeline's ``expand``."""
+        expand = self.pipeline.expand
+        if expand is None:
+            return chunks
+        return [chunk if chunk.is_forced else replace(chunk, text=expand(chunk.text))
+                for chunk in chunks]
+
+    def _marked(self, chunks: List[Chunk]) -> List[Chunk]:
+        """*chunks* after the pipeline's ``mark``."""
+        mark = self.pipeline.mark
         if mark is None:
             return chunks
         text = "".join(chunk.text for chunk in chunks)

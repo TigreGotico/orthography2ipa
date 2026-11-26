@@ -2,9 +2,8 @@
 
 The readable form holds Python strings. The canonical form (section 2.1 and
 8.1 of docs/ir/o2i-ir-v1.md) holds every data string once, as a codepoint
-array in ``strings``, sorted by codepoint order, and refers to it by index.
-Both directions walk the same layout, so ``decode(encode(ir))`` gives the
-runtime part back with the same JSON form: a tuple may come back as a list.
+array in ``strings``, and refers to it by index. ``decode(encode(ir))`` gives
+the runtime part back; a tuple may come back as a list.
 """
 import hashlib
 import json
@@ -40,7 +39,7 @@ LAYOUT = O(
     beam=O(tilde=S),
     allophone_map=L(("pair", S, L(S))),
     syllable=O(diphthongs=L(S), onset_graphemes=SSET, semivowels=L(L(S)),
-               closed_hiatus=O(pairs=L(S), onsets=L(S), codas=L(S), multi_keys=L(S)),
+               closed_hiatus=O(pairs=L(S), onsets=L(S), codas=L(S), atonic_onsets=L(S), multi_keys=L(S)),
                final_diphthongs=O(diphthongs=L(S), finals=L(S)), vowel_letters=SSET, silent_tail=SSET,
                onsets=O(max=I, units=L(S), velar=SSET, table=L(L(S)))),
     stress=O(mark=S, secondary_mark=S, alternating=I, prefixes=L(S), schwa_rimes=SSET, coda_liquid=I, accent2=O(mark=S, finals=SSET), iambic=O(max_onset=I), marked=SSET, final=L(S), penult=L(S), antepenult=L(S),
@@ -65,7 +64,8 @@ LAYOUT = O(
               vowels=L(O(key=S, reduced=SSET, readings=SSET)),
               sources=L(O(surface=S, vowels=SSET))),
 )
-RUNTIME_FIELDS = tuple(LAYOUT[1]) + ("chars",)
+_FIELDS = LAYOUT[1]
+RUNTIME_FIELDS = tuple(_FIELDS) + ("chars",)
 
 # The semantics version of every primitive and predicate node (section 8.1).
 SEMANTICS = {
@@ -75,7 +75,7 @@ SEMANTICS = {
     "allophony": 1, "mark_placement": 1, "sandhi": 1, "sandhi_spelling": 1, "sandhi_pause": 1, "rewrite": 1, "endings": 1, "inherent": 1, "written_onsets": 1, "vowel_letters": 1, "secondary": 1, "aperture": 1, "prefixes": 1, "coda_liquid": 1, "mutate": 1, "accent2": 1, "fold": 1, "tone_dock": 1, "iambic": 1, "prevocalic_backoff": 1,
     "weight": 1, "virama_final": 1, "vowel_signs": 1, "preposed": 1, "ipa_count": 1, "consonant_nuclei": 1, "computed_tone": 1,
     "internal_apostrophe": 1, "apostrophe_elision": 1, "collapse_geminates": 1, "context_beam": 1,
-    "clitic_marks": 1, "silent_stress_marks": 1, "overrides": 1, "words": 1, "allophone_map": 1, "hiatus": 1,
+    "clitic_marks": 1, "silent_stress_marks": 1, "overrides": 1, "words": 1, "allophone_map": 1, "hiatus": 2,
     "semivowels": 1, "cliticless": 1, "compound_last": 1, "tonic_after_diphthong": 1,
     "ipa_diphthongs": 1, "mark_onsets": 1, "allophony_geminate": 1,
     "node.and": 1, "node.or": 1, "node.not": 1, "node.true": 1, "node.false": 1,
@@ -187,7 +187,7 @@ def _ranges(chars: Dict[int, int]) -> List[List[int]]:
 
 def encode(ir: dict) -> dict:
     """The canonical JSON-ready form of a readable IR."""
-    runtime = {k: v for k, v in ir.items() if k in LAYOUT[1]}
+    runtime = {k: v for k, v in ir.items() if k in _FIELDS}
     runtime = _normalise_preds(LAYOUT, runtime)
     seen = {""}
     _walk(LAYOUT, runtime, lambda s: seen.add(s), lambda e: None, False)
@@ -199,8 +199,7 @@ def encode(ir: dict) -> dict:
            "strings": [_cps(s) for s in strings],
            "chars": {"ranges": _ranges(ir["chars"])}}
     doc.update(body)
-    doc["primitives"] = dict(item.split("=") for item in manifest(ir).split(";"))
-    doc["primitives"] = {k: int(v) for k, v in doc["primitives"].items()}
+    doc["primitives"] = {k: int(v) for k, v in (item.split("=") for item in manifest(ir).split(";"))}
     doc["bits"] = ir.get("bits", {})
     doc["debug"] = ir.get("debug", {})
     return doc
@@ -210,7 +209,7 @@ def decode(doc: dict) -> dict:
     """The readable form of a canonical IR document."""
     strings = ["".join(map(chr, s)) for s in doc["strings"]]
     keys = [strings[e["key"]] for e in doc.get("entries", ())]
-    body = {k: v for k, v in doc.items() if k in LAYOUT[1]}
+    body = {k: v for k, v in doc.items() if k in _FIELDS}
     ir = _walk(LAYOUT, body, strings.__getitem__, keys.__getitem__, False)
     chars = {}
     for lo, hi, bits in doc["chars"]["ranges"]:
@@ -350,7 +349,7 @@ def manifest(ir: dict) -> str:
         if value:
             used.add(name)
     nodes: set = set()
-    runtime = {k: v for k, v in ir.items() if k in LAYOUT[1]}
+    runtime = {k: v for k, v in ir.items() if k in _FIELDS}
     _ops(LAYOUT, runtime, nodes)
     if "node.word_has" in nodes:
         used.add("word_has")

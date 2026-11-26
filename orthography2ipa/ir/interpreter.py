@@ -1,21 +1,17 @@
 """The o2i IR reference interpreter (docs/ir/o2i-ir-v1.md, section 3).
 
-It reads one IR document and one text and writes one IPA string. It knows
-the primitives of section 2.3 and nothing about any language, script or
-phoneme class: every fact it tests is a table, an attribute bit or a
-predicate that the compiler wrote. It imports no engine module.
-
-A host may run its own steps around the interpreter through :class:`Hooks`.
-A hook is a host callback, never part of the IR: an IR document holds the
-same program with hooks or without them.
+It reads one IR document and one text and writes one IPA string. Every fact
+it tests is a table, an attribute bit or a predicate that the compiler wrote;
+it imports no engine module. A host may run its own steps through :class:`Hooks`.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, field, replace
-from itertools import accumulate, islice
+from dataclasses import dataclass, replace
+from itertools import accumulate
 from typing import Callable, Dict, FrozenSet, List, Mapping, Optional, Sequence, Set, Tuple
 
 from orthography2ipa.ir import layout, pattern
+from orthography2ipa.ir.dialect import run_program
 
 __all__ = ["Interpreter", "IRVersionError", "WordResult", "Result", "Hooks"]
 
@@ -70,6 +66,7 @@ class WordResult:
     dropped: Tuple[str, ...] = ()
     paths: Tuple[Tuple[Tuple[str, ...], int], ...] = ()
     forced: bool = False
+    override: bool = False
 
 
 @dataclass
@@ -84,6 +81,8 @@ class _Word:
     hyphen_joined: bool = False
     pausal: bool = False
     forced: Optional[str] = None
+    #: The spelling before the caller's mark stage, when it differs: the lexicon key.
+    key: Optional[str] = None
 
 
 #: One slot of the word beam: ``[(ipa, cost)]``, best first. A cost is an
@@ -93,24 +92,18 @@ Slot = List[Tuple[str, int]]
 
 @dataclass(frozen=True)
 class Hooks:
-    """The host callbacks the interpreter runs. Every field is optional.
-
-    ``text(run)`` rewrites one plain run of the input before the interpreter
-    prepares it. ``rescore(word, tokens, slots, syllables, stressed)`` gets
-    the grapheme tokens of a word and its beam slots, and returns the new
-    slots; it runs before the allophony pass. ``syllables`` holds the
-    syllable index of each token, or ``None`` when the word takes no
-    syllable context, and ``stressed`` the index of the stressed syllable.
-    A returned slot with no candidates deletes its grapheme.
-    ``syllables(word)`` returns the written syllables of *word*, or ``None``
-    to let the IR split it. ``sandhi(words, surfaces, pausal)`` gets the IPA
-    of each word after the IR sandhi and returns one IPA string per word;
-    the dialect program and NFC run after it.
-    """
+    """The host callbacks the interpreter runs. Every field is optional, and a
+    hook is never part of the IR."""
+    # text(run): rewrites one plain run of the input before it is prepared.
     text: Optional[Callable[[str], str]] = None
+    # rescore(word, tokens, slots, syllables, stressed): returns new beam slots, before the
+    # allophony pass. syllables is the syllable index of each token (None without syllable
+    # context); stressed is the stressed syllable. A slot with no candidates deletes its grapheme.
     rescore: Optional[Callable[[str, Sequence["Token"], List[Slot], Optional[List[Optional[int]]],
                                 Optional[int]], List[Slot]]] = None
+    # syllables(word): the written syllables of *word*, or None to let the IR split it.
     syllables: Optional[Callable[[str], Optional[List[str]]]] = None
+    # sandhi(words, surfaces, pausal): one IPA string per word; the dialect program and NFC run after.
     sandhi: Optional[Callable[[List[str], List[str], List[bool]], List[str]]] = None
 
 
@@ -236,17 +229,11 @@ class Interpreter:
             return bits
         return bits | self._ebit["vowel"] if vowel else bits & ~self._ebit["vowel"]
 
-    def _slot_vowel(self, ctx: "_Ctx", j: int) -> bool:
-        return bool(self._slot_bits(ctx, j) & self._ebit["vowel"])
-
     def _comb(self, ch: str) -> bool:
         return self._c(ch, "combining")
 
     def _vowel_char(self, ch: str) -> bool:
         return not self._comb(ch) and (self._c(ch, "orth_vowel") or self._c(ch, "ipa_vowel"))
-
-    def _casefold_char(self, ch: str) -> str:
-        return self._casefold.get(ch, ch)
 
     def lower(self, text: str) -> str:
         return "".join(self._lower.get(c, c) for c in text)
@@ -336,7 +323,8 @@ class Interpreter:
         node = self._trie
         best = None
         for i in range(start, min(start + self._max_key, len(text))):
-            ch = self._casefold_char(text[i])
+            ch = text[i]
+            ch = self._casefold.get(ch, ch)
             node = node.get(ch) if len(ch) == 1 else None
             if node is None:
                 break
@@ -451,8 +439,8 @@ class Interpreter:
         return pos
 
     def _unfuse_nucleus(self, text: str, pos: int, gkey: str, tokens: List[Token]) -> str:
-        """``_unfuse_consonant_nucleus``: a cluster key that ends in a
-        consonant nucleus backs off to its head when the letter is the nucleus."""
+        """A cluster key that ends in a consonant nucleus backs off to its head
+        when the letter is the nucleus."""
         cands = self.entries[self._key_index[gkey]]["cands"]
         if not cands or self._is_nucleus(cands[0]):
             return gkey
@@ -494,8 +482,8 @@ class Interpreter:
         return post
 
     def _head_is_the_onset(self, gkey: str, c: int, text: str, after: int) -> bool:
-        """``_marker_head_is_the_onset``: the silent head of the host is the
-        onset when the vowel ends open and nothing audible follows the tail."""
+        """The silent head of the host is the onset when the vowel ends open and
+        nothing audible follows the tail."""
         if not self._e(self._key_index[gkey], "preposed_open") or self._e(c, "head_not_coda"):
             return False
         pos = after + len(self.entries[c]["key"])
@@ -517,7 +505,8 @@ class Interpreter:
         node = self._trie
         best, best_end, i = None, start, start
         while i < len(text):
-            ch = self._casefold_char(text[i])
+            ch = text[i]
+            ch = self._casefold.get(ch, ch)
             if len(ch) == 1 and ch in node:
                 node = node[ch]
                 i += 1
@@ -568,12 +557,13 @@ class Interpreter:
             if (next_ch and self._c(next_ch, "elision_apostrophe") and after + 1 < n
                     and self._c(text[after + 1], "alpha")):
                 after += 1
-                low = self._casefold_char(text[after])
+                low = text[after]
+                low = self._casefold.get(low, low)
                 silent = low in self._trie_keys and self.entries[self._key_index[low]]["cands"] == [""]
                 if silent and after + 1 < n and self._c(text[after + 1], "alpha"):
                     after += 1
                 next_ch = text[after]
-            nlow = self._casefold_char(next_ch) if next_ch else ""
+            nlow = self._casefold.get(next_ch, next_ch) if next_ch else ""
             if not (next_ch and self._c(next_ch, "orth_vowel")):
                 bit = "glide_vowel_cons" if next_ch else "glide_vowel_final"
                 if not self._e(e, bit):
@@ -839,12 +829,12 @@ class Interpreter:
         raise ValueError(f"unknown syll relation {rel!r}")
 
     def _syllable_position(self, ctx: _Ctx, j: int) -> str:
-        if self._slot_vowel(ctx, j):
+        if self._slot_bits(ctx, j) & self._ebit["vowel"]:
             return "nucleus"
         k = j + 1
         while k < len(ctx.entries) and self._e(ctx.entries[k], "spells_nothing"):
             k += 1
-        if k < len(ctx.entries) and self._slot_vowel(ctx, k):
+        if k < len(ctx.entries) and self._slot_bits(ctx, k) & self._ebit["vowel"]:
             return "onset"
         return "coda"
 
@@ -951,8 +941,9 @@ class Interpreter:
     def _heterosyllabic(self, ctx: _Ctx, i: int, step: int) -> bool:
         before, after = i - step, i + 2 * step
         n = len(ctx.entries)
-        return (0 <= before < n and self._slot_vowel(ctx, before)
-                and 0 <= after < n and self._slot_vowel(ctx, after))
+        vowel = self._ebit["vowel"]
+        return bool(0 <= before < n and self._slot_bits(ctx, before) & vowel
+                    and 0 <= after < n and self._slot_bits(ctx, after) & vowel)
 
     def _realize(self, ipa: str, ctx: _Ctx, i: int) -> Optional[str]:
         twin = self._twin_side(ipa, ctx, i)
@@ -1419,6 +1410,7 @@ class Interpreter:
         if self.stress is None:
             return frozenset()
         found: List[int] = []
+        atonic: List[int] = []
         lowered = self.lower(word)
         rule = self.syll.get("closed_hiatus")
         if rule:
@@ -1431,6 +1423,9 @@ class Interpreter:
                         and not (len(rest) > 1 and self._c(rest[1], "orth_vowel"))
                         and not any(rest.startswith(g) for g in rule["multi_keys"])):
                     found.append(k)
+                elif any(rest.startswith(o) for o in rule.get("atonic_onsets", ())):
+                    found.append(k)
+                    atonic.append(k)
         rule = self.syll.get("final_diphthongs")
         if rule:
             for diphthong in rule["diphthongs"]:
@@ -1443,7 +1438,7 @@ class Interpreter:
         sylls = self._bundled(word, frozenset(found))
         stressed = self.detect_stress(word, sylls)
         start = sum(len(s) for s in sylls[:stressed])
-        return frozenset(k for k in found if k == start)
+        return frozenset(k for k in found if k == start or k in atonic)
 
     def secondary_positions(self, n: int, stressed: Optional[int]) -> FrozenSet[int]:
         if not self.stress["alternating"] or stressed is None or stressed < 0 or n < 3:
@@ -1493,9 +1488,6 @@ class Interpreter:
             if self._c(ch, "orth_vowel"):
                 return syllable[i:]
         return ""
-
-    def _weight_segments(self, ipa: str) -> List[str]:
-        return self.segment(ipa, self._affricates)
 
     def _vowel_segment(self, seg: str) -> bool:
         return bool(seg) and self._c(seg[0], "ipa_vowel")
@@ -1547,7 +1539,7 @@ class Interpreter:
         start = 0 if self.syllable_weight(sylls[0]) else 1
         for i in range(start, n - 1, 2):
             if self.syllable_weight(sylls[i]) == 0:
-                segs = self._weight_segments(sylls[i])
+                segs = self.segment(sylls[i], self._affricates)
                 k = next((k for k, seg in enumerate(segs) if self._vowel_segment(seg)), None)
                 if k is not None:
                     segs[k] += "ː"
@@ -1557,7 +1549,7 @@ class Interpreter:
     def syllabify_by_weight(self, ipa: str, max_onset: Optional[int] = None) -> List[str]:
         if not ipa:
             return []
-        segs = self._weight_segments(ipa)
+        segs = self.segment(ipa, self._affricates)
         nuclei: List[Tuple[int, int]] = []
         i = 0
         while i < len(segs):
@@ -1592,7 +1584,7 @@ class Interpreter:
 
     def syllable_weight(self, syllable: str) -> int:
         """0 light, 1 heavy, 2 superheavy."""
-        segs = self._weight_segments(syllable)
+        segs = self.segment(syllable, self._affricates)
         start = next((i for i, s in enumerate(segs) if self._vowel_segment(s)), None)
         if start is None:
             return 0
@@ -1705,13 +1697,10 @@ class Interpreter:
             i += 1
         return syll[:i] + mark + syll[i:]
 
-    def _basic(self, ch: str) -> bool:
-        return self._c(ch, "basic_vowel")
-
     def _merge_sites(self, syllables: Sequence[str]) -> List[int]:
         return [i for i in range(1, len(syllables))
                 if syllables[i - 1] and syllables[i]
-                and self._basic(syllables[i - 1][-1]) and self._basic(syllables[i][0])]
+                and self._c(syllables[i - 1][-1], "basic_vowel") and self._c(syllables[i][0], "basic_vowel")]
 
     def _contact_units(self, run: str) -> List[str]:
         units = self.stress["contact_units"]
@@ -1737,10 +1726,10 @@ class Interpreter:
         contacts: Dict[int, str] = {}
         for i in range(1, len(syllables)):
             before, after = syllables[i - 1], syllables[i]
-            if not before or not self._basic(before[-1]):
+            if not before or not self._c(before[-1], "basic_vowel"):
                 continue
             j = 0
-            while j < len(after) and not self._basic(after[j]):
+            while j < len(after) and not self._c(after[j], "basic_vowel"):
                 j += 1
             if j == len(after):
                 continue
@@ -2061,7 +2050,7 @@ class Interpreter:
     # ─── S9a: computed tone ──────────────────────────────────────────
     def _computed_tones(self, graphemes: Sequence[str], segments: Sequence[str]) -> str:
         """3.9: append each syllable's tone, from its initial's class, its
-        rime's shape and its tone mark (``assign_computed_tones``)."""
+        rime's shape and its tone mark."""
         sylls = self._tone_syllables(segments)
         if not sylls:
             return "".join(segments)
@@ -2072,7 +2061,7 @@ class Interpreter:
         return "".join(out)
 
     def _tone_syllables(self, segments: Sequence[str]) -> List[List[int]]:
-        """Slot indices grouped by maximal onset over slots (``_syllable_slots``)."""
+        """Slot indices grouped by maximal onset."""
         nuclei = [i for i, seg in enumerate(segments) if any(self._c(ch, "ipa_vowel") for ch in seg)]
         if not nuclei:
             return []
@@ -2234,21 +2223,24 @@ class Interpreter:
         out.append(ipa[last:])
         return "".join(out)
 
-    def transcribe_word(self, word: str, width: int, lexicon=None, forced: Optional[str] = None) -> WordResult:
+    def transcribe_word(self, word: str, width: int, lexicon=None, forced: Optional[str] = None,
+                        key: Optional[str] = None) -> WordResult:
         """*word* to IPA. A *forced* reading takes the place of a lexicon hit
-        and is not stressed. Without a lexicon or a forced reading the
-        result depends on *word* and *width* alone, so it is cached."""
-        if lexicon is None and forced is None:
+        and is not stressed. *key* is the spelling to look up in place of
+        *word*. Without a lexicon, a forced reading or a key the result
+        depends on *word* and *width* alone, so it is cached."""
+        if lexicon is None and forced is None and key is None:
             hit = self._words.get((word, width))
             if hit is None:
                 if len(self._words) >= 65536:
                     self._words.clear()
                 hit = self._words[(word, width)] = self._transcribe_word(word, width, None, None)
             return hit
-        return self._transcribe_word(word, width, lexicon, forced)
+        return self._transcribe_word(word, width, lexicon, forced, key)
 
-    def _transcribe_word(self, word: str, width: int, lexicon, forced: Optional[str]) -> WordResult:
-        override = forced if forced is not None else self._override_for(word, lexicon)
+    def _transcribe_word(self, word: str, width: int, lexicon, forced: Optional[str],
+                         key: Optional[str] = None) -> WordResult:
+        override = forced if forced is not None else self._override_for(key or word, lexicon)
         paths = []
         if override is not None:
             ipa = self._finalize(word, override, None, collapse=False, forced=forced is not None)
@@ -2257,7 +2249,7 @@ class Interpreter:
             best = paths[0] if paths else None
             ipa = self._finalize(word, word if best is None else "".join(best[0]), best, collapse=True)
         return WordResult(word, ipa, self._dropped(word), tuple((p[0], p[1]) for p in paths),
-                          forced is not None)
+                          forced is not None, override is not None)
 
     # ─── S10 to S14: the sentence ────────────────────────────────────
     def _mark_compounds(self, words: List[_Word], ipa_words: List[str]) -> List[str]:
@@ -2323,32 +2315,46 @@ class Interpreter:
                 tpl.append(part)
         return "".join(map(chr, pattern.sub(node, tpl, s, strings)))
 
-    def transcribe_detailed(self, text: str, *, width: int = 1, lexicon=None) -> Result:
-        return self.transcribe_runs([(text, None)], width=width, lexicon=lexicon)
-
-    def words(self, runs: Sequence[Tuple[str, Optional[str]]], lexicon=None) -> List[_Word]:
+    def words(self, runs: Sequence[Tuple], lexicon=None) -> List[_Word]:
         """The words of *runs*, as :meth:`transcribe_runs` reads them, the
         last one pausal."""
         words: List[_Word] = []
-        for text, forced in runs:
+        for text, forced, *unmarked in runs:
             if forced is not None:
                 words.append(_Word(text.strip(), forced=forced))
                 continue
-            if self.hooks.text is not None:
-                text = self.hooks.text(text)
-            self._group_words(self.prepare(text), words, lexicon)
+            start = len(words)
+            self._group_words(self._run_text(text), words, lexicon)
+            if unmarked and unmarked[0] != text:
+                self._key_words(words[start:], unmarked[0], lexicon)
         if words:
             words[-1].pausal = True
         return words
 
-    def transcribe_runs(self, runs: Sequence[Tuple[str, Optional[str]]], *, width: int = 1,
+    def _run_text(self, text: str) -> str:
+        return self.prepare(text if self.hooks.text is None else self.hooks.text(text))
+
+    def _key_words(self, words: List[_Word], unmarked: str, lexicon) -> None:
+        keys: List[_Word] = []
+        self._group_words(self._run_text(unmarked), keys, lexicon)
+        if len(keys) != len(words):
+            raise ValueError(
+                f"the mark stage made {len(words)} words of the {len(keys)} words in "
+                f"{unmarked!r}. A mark stage keeps the words")
+        for word, key in zip(words, keys):
+            if key.surface != word.surface:
+                word.key = key.surface
+
+    def transcribe_runs(self, runs: Sequence[Tuple], *, width: int = 1,
                         lexicon=None) -> Result:
         """Transcribe a text given as runs. A run ``(text, None)`` is plain
-        text; a run ``(surface, ipa)`` is one word with a forced reading."""
+        text; a run ``(surface, ipa)`` is one word with a forced reading. A
+        plain run ``(text, None, unmarked)`` is *text* after a mark stage: the
+        lexicon is looked up by the words of *unmarked*, and the rules read *text*."""
         words = self.words(runs, lexicon)
         if not words:
             return Result("")
-        results = [self.transcribe_word(w.surface, width, lexicon, w.forced) for w in words]
+        results = [self.transcribe_word(w.surface, width, lexicon, w.forced, w.key) for w in words]
         ipa_words = [r.ipa for r in results]
         if self.stress is not None and self.stress["compound_last"]:
             ipa_words = self._mark_compounds(words, ipa_words)
@@ -2362,12 +2368,12 @@ class Interpreter:
             ipa_words = list(rewritten)
         ipa = " ".join(w for w in ipa_words if w)
         if self.ir.get("dialect"):
-            from orthography2ipa.ir.dialect import run_program
             ipa = run_program(self, self.ir["dialect"], ipa, " ".join(w.surface for w in words))
         if ipa:
             ipa = self.nfc(ipa)
-        return Result(ipa, tuple(WordResult(r.word, self.nfc(iw) if iw else iw, r.dropped, r.paths, r.forced)
+        return Result(ipa, tuple(WordResult(r.word, self.nfc(iw) if iw else iw, r.dropped, r.paths, r.forced,
+                                            r.override)
                                  for r, iw in zip(results, ipa_words)))
 
     def transcribe(self, text: str, *, width: int = 1, lexicon=None) -> str:
-        return self.transcribe_detailed(text, width=width, lexicon=lexicon).ipa
+        return self.transcribe_runs([(text, None)], width=width, lexicon=lexicon).ipa

@@ -177,4 +177,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Kashmiri](kas.md) · [Home](../index.md) · [Kashubian →](csb.md)
+[← Karelian](krl.md) · [Home](../index.md) · [Kashmiri →](ks-Arab.md)

@@ -1,5 +1,5 @@
 {
-  "code": "kas",
+  "code": "ks-Arab",
   "name": "Kashmiri",
   "script": "Arabic",
   "script_type": "abjad",
@@ -15,8 +15,6 @@
     }
   ],
   "iso639_3": "kas",
-  "glottolog_code": "kash1277",
-  "wikidata_qid": "Q33552",
   "graphemes": {
     "ا": ["aː"],
     "آ": ["aː"],

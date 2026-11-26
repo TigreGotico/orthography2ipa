@@ -7,7 +7,6 @@
  "graphemes": {},
  "allophones": {},
  "notes": "Classification-only clade node for the Heibanic family. Carries no phonology: it is never a data-inheritance source, only a step in the ancestry chain from which `family` is derived. Wikipedia treats Heibanic within Talodi–Heiban.",
- "glottolog_code": "heib1242",
  "sources": [
   {
    "id": "glottolog2024",

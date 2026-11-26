@@ -9,6 +9,7 @@ ancestry-weighted distance metrics have a chain to traverse:
 Kabyle kaby1243). The intermediate/top nodes ber-x-kabyle-atlas and afa are
 structural STUB specs (no invented phonology).
 """
+from linguatag import catalog_ids
 import pytest
 
 import orthography2ipa
@@ -43,8 +44,8 @@ class TestChainResolves:
         assert orthography2ipa.get(code).quality is QualityTier.STUB
 
     def test_stub_glottocodes(self):
-        assert orthography2ipa.get("afa").glottolog_code == "afro1255"
-        assert orthography2ipa.get("ber-x-kabyle-atlas").glottolog_code == "kaby1244"
+        assert catalog_ids("afa").get("glottolog_code") == "afro1255"
+        assert catalog_ids("ber-x-kabyle-atlas").get("glottolog_code") == "kaby1244"
 
     def test_stubs_are_afroasiatic(self):
         assert orthography2ipa.get("afa").family == "Afro-Asiatic"

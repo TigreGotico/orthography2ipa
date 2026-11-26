@@ -12,6 +12,28 @@ see: `docs/engine/lattice.md`, `docs/engine/positional_graphemes.md`
 
 ## Core concepts
 
+The diagram shows the steps of `tokenize`. The scan tries the five kinds of token in this order at each position. A punctuation or digit match yields to a grapheme that claims the span, and a character with no trie entry can still become a grapheme through its canonical decomposition.
+
+```mermaid
+flowchart TD
+    A["prepare: NFC, fold_diacritics, script rewrites"] --> B{"next position"}
+    B --> C["_WS_RE: WHITESPACE"]
+    B --> D["_PUNCT_RE: PUNCTUATION"]
+    B --> E["_DIGIT_RE: DIGIT"]
+    B --> F["_GraphemeTrie.longest_match: GRAPHEME"]
+    D -->|a grapheme claims the span| F
+    E -->|a grapheme claims the span| F
+    F -->|no trie entry| I["NFD decomposition: every piece a grapheme"]
+    I -->|decomposes to a grapheme| J["GRAPHEME"]
+    I -->|a piece is unmapped| G["single character: UNKNOWN"]
+    C --> H["list of Token"]
+    D --> H
+    E --> H
+    F --> H
+    J --> H
+    G --> H
+```
+
 ### Maximal munch
 
 At each position the tokenizer takes the longest grapheme key in the spec's table. This is the [maximal munch](https://en.wikipedia.org/wiki/Maximal_munch) rule, and a [trie](https://en.wikipedia.org/wiki/Trie) of the keys finds the match. A digraph or trigraph therefore wins over the single letters it contains. Portuguese ⟨ch⟩ is one grapheme read /ʃ/, not ⟨c⟩ followed by ⟨h⟩:

@@ -64,7 +64,7 @@ def test_floripa_prevocalic_phrases(lang, phrase, expected):
 
 
 @pytest.mark.xfail(strict=True, reason="no opened source gives the prevocalic value of this chiado coda; "
-                   "https://github.com/TigreGotico/orthography2ipa/issues/2052")
+                   "https://github.com/TigreGotico/orthography2ipa/issues/2052", raises=AssertionError)
 @pytest.mark.parametrize("lang", UNSOURCED)
 @pytest.mark.parametrize("phrase", VOWEL_PHRASES)
 def test_final_sh_is_voiced_before_a_vowel(phrase, lang):

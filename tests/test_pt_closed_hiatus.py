@@ -142,5 +142,20 @@ def test_pt_specs_declare_the_rule():
     for code in ("pt-PT", "pt-BR", "pt-PT-x-lisbon", "pt-BR-x-sp", "pt-UY"):
         rule = get(code).stress.closed_hiatus
         assert rule.pairs == ("ai", "au", "ei", "eu", "iu", "oi", "ui")
-        assert rule.onsets == ("nh",)
+        assert (*rule.onsets, *rule.atonic_onsets) == ("nh",)
         assert rule.codas == ("l", "m", "n", "r", "z")
+
+
+# Infopédia (Porto Editora), pt-PT pronunciations: the atonic ⟨i⟩ of a
+# derivative of bainha keeps the hiatus before ⟨nh⟩.
+INFOPEDIA_ATONIC_NH = {"bainhar": "bɐiˈɲaɾ", "embainhar": "ẽbɐiˈɲaɾ"}
+
+
+@pytest.mark.parametrize("word,ipa", sorted(INFOPEDIA_ATONIC_NH.items()))
+def test_atonic_i_before_nh_keeps_the_hiatus_in_pt_pt(word, ipa):
+    assert G2P("pt-PT").transcribe_word(word) == ipa
+
+
+@pytest.mark.parametrize("word,ipa", sorted(INFOPEDIA_ATONIC_NH.items()))
+def test_atonic_i_before_nh_with_the_plugin(word, ipa, plugin_engine):
+    assert plugin_engine("pt-PT").transcribe_word(word) == ipa

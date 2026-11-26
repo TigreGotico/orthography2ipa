@@ -958,7 +958,7 @@ class TestYola:
         import json
         from pathlib import Path
         raw = json.loads((Path(orthography2ipa.__file__).parent / "data"
-                          / "yol.json").read_text())
+                          / "enm-x-yola.json").read_text())
         assert raw["parent"] == "enm"
         assert raw.get("graphemes_base") is None
         assert "ā" in _load("enm").graphemes

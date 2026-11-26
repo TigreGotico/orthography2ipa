@@ -1,14 +1,10 @@
 """The o2i IR compiler: a resolved ``LanguageSpec`` in, an IR document out.
 
-Every phonetic and Unicode question the rules engine asked at runtime is
-asked here, once, and the answer is written into the IR as a table, an
-attribute bit or a predicate (docs/ir/o2i-ir-v1.md, sections 2 to 7). The
-engine's own knowledge functions are the source of every answer, so the
-interpreter reads the same facts the engine computes.
-
-``compile_spec(code)`` returns the canonical JSON document (section 8.1).
-``build_ir(code)`` returns the same IR with plain Python strings, which the
-reference interpreter also accepts.
+Every phonetic and Unicode question is asked here, once, and the answer is
+written into the IR as a table, an attribute bit or a predicate
+(docs/ir/o2i-ir-v1.md, sections 2 to 7). ``compile_spec(code)`` returns the
+canonical JSON document (section 8.1); ``build_ir(code)`` returns the same IR
+with plain Python strings.
 """
 from __future__ import annotations
 
@@ -106,7 +102,7 @@ _EDGE_CHAR = re.compile(_EDGE_PUNCT_CHAR)
 _WORD_LETTER = re.compile(r"[^\W\d_]")
 _NASALS = frozenset("mnɲŋɳɴ")
 
-# The ``_before_r_or_closed`` consonant class of transforms.py.
+# The consonants that close a syllable in the "before r or closed syllable" context.
 _DIALECT_C = "[bcdfɡhjklmnpqrstvwxzʃʒŋɲʎ]"
 
 
@@ -177,7 +173,7 @@ def _git_head() -> str:
 
 
 # ─── characters ──────────────────────────────────────────────────────────
-def _char_bits(c: str, spec: LanguageSpec, elision: bool) -> int:
+def _char_bits(c: str, elision: bool) -> int:
     cat = unidata.category(c)
     tests = {
         "known": True,
@@ -352,8 +348,14 @@ def _or(*ps: list) -> list:
     return ["or", *ps]
 
 
-_EX = lambda k: ["exists", k]  # noqa: E731
-_V = lambda k: _eb(k, "vowel")  # noqa: E731
+def _EX(k):
+    return ["exists", k]
+
+
+def _V(k):
+    return _eb(k, "vowel")
+
+
 _N0 = _or(_V(0), _eb(0, "carries_nucleus"))
 
 
@@ -364,8 +366,7 @@ def _final_or_last_audible(k: int) -> list:
 
 
 def _positional_rules(spec: LanguageSpec, declared: Dict[P, List[str]]) -> List[list]:
-    """The rules of one positional entry, in the emission order of
-    ``grapheme_positions`` (positional.py)."""
+    """The rules of one positional entry, in the order the positional pass applies them."""
     took_preposed = _and(_eb(-1, "preposed"), _not(["reading_vowel", -1]))
     has = _and(["syll", "has_stress"])
     eq = ["syll", "idx_eq_stressed"]
@@ -530,24 +531,16 @@ def _allophone_rule(rule, spec: LanguageSpec, atoms: Sequence[str], keys: Dict[s
 
 # ─── onset tables ────────────────────────────────────────────────────────
 def _onset_table(judge, units: Sequence[str], declared: Sequence[str]) -> List[List[str]]:
-    """Every unit sequence of two to five units the legacy judge licenses.
-
-    The interpreter looks a run up by its own segmentation, so only a
-    sequence that segments back to itself is a key. A licit run of three or
-    more units extends a licit run one unit shorter at the end (a final
-    glide), or is a palatal glide or an /s/ appendix on a licit two-unit
-    core, or is a declared cluster (stress.py:481-510, 668-703). So longer
-    runs are searched only from those, and the judge decides each.
-    """
+    """Every unit sequence of two to five units that the judge licenses and that
+    segments back to itself. Longer runs are searched only from licit shorter
+    ones: a final glide, a palatal glide or /s/ appendix, or a declared cluster."""
     atoms = judge._atoms if isinstance(judge, _IpaOnsetJudge) else None
     reach = max(map(len, atoms), default=1) if atoms is not None else 0
     splits: Dict[Tuple[str, ...], bool] = {}
 
     def splits_into(c: Tuple[str, ...]) -> bool:
-        """True if *c* joined segments back to *c*. A greedy longest-match
-        split of a prefix that splits into itself changes only within the
-        last *reach* characters, so for the IPA judge only that tail is
-        re-split."""
+        """True if *c* joined segments back to *c*. For the IPA judge only the
+        last *reach* characters are re-split."""
         if atoms is None or len(c) < 2:
             return judge.graphemes_of("".join(c)) == list(c)
         hit = splits.get(c)
@@ -617,11 +610,7 @@ def _licit_onsets(judge, units, declared, atoms, keys) -> List[List[str]]:
 
 
 def _fast_split(judge) -> Callable[[str], List[str]]:
-    """``judge.graphemes_of`` memoized, with no case fold for a run that is its own fold.
-
-    The onset candidates are joined from lowercased units, so the fold per
-    probe that the legacy splitter does changes nothing for them.
-    """
+    """``judge.graphemes_of`` memoized, without a case fold: the onset candidates are lowercase."""
     split = judge.graphemes_of
     memo: Dict[str, List[str]] = {}
 
@@ -645,7 +634,7 @@ def _fast_split(judge) -> Callable[[str], List[str]]:
 
 
 def _written_onsets(spec: LanguageSpec) -> dict:
-    """The written onset judge of ``constrain_onsets`` as tables (stress.py:355-520)."""
+    """The written onset judge of ``constrain_onsets`` as tables."""
     st = spec.stress
     judge = _judge_for(spec, st.max_onset if st is not None and st.max_onset_declared else None)
     units = sorted({g.lower() for g in spec.graphemes if g}, key=lambda g: (-len(g), g))
@@ -694,7 +683,9 @@ def _dialect_program(name: str, spirants: bool) -> List[dict]:
             "[aeiouáéíóúâêôãõ]s[aeiouáéíóúâêôãõ]")]],
         "no_ortho_available": ["spell", ["spell_empty"]],
     }
-    lit = lambda find, rep, gate=("true",): {"gate": list(gate), "kind": "replace", "find": find, "rep": rep}  # noqa: E731
+    def lit(find, rep, gate=("true",)):
+        return {"gate": list(gate), "kind": "replace", "find": find, "rep": rep}
+
     steps: List[dict] = []
     if profile.requires_debiasing:
         ei = ["spell_search", compile_pattern("ei")]
@@ -736,19 +727,12 @@ def _dialect_program(name: str, spirants: bool) -> List[dict]:
 
 
 # ─── the compiler ────────────────────────────────────────────────────────
-_REFUSED_FIELDS = (
-    ("plugins", "declared plugins"),
-)
-
-
 def _check_supported(spec: LanguageSpec) -> None:
-    for field, label in _REFUSED_FIELDS:
-        if getattr(spec, field, None):
-            raise IRUnsupportedFeature(spec.code, label)
+    if spec.plugins:
+        raise IRUnsupportedFeature(spec.code, "declared plugins")
     st = spec.stress
-    if st is not None:
-        if st.source == "plugin":
-            raise IRUnsupportedFeature(spec.code, 'stress.source = "plugin"')
+    if st is not None and st.source == "plugin":
+        raise IRUnsupportedFeature(spec.code, 'stress.source = "plugin"')
 
 
 def _readings_of(spec: LanguageSpec, entries: Dict[str, Tuple[str, ...]]) -> Set[str]:
@@ -773,13 +757,8 @@ def build_ir(code: str, data_ref: Optional[str] = None, *, dialect_profile: Opti
              spec: Optional[LanguageSpec] = None, fragments: Sequence[dict] = ()) -> dict:
     """The IR of *code* with plain strings (the readable form).
 
-    The IR without a dialect program is compiled once per process; a
-    dialect program is added to a copy. A caller *spec* is compiled in
-    place of the registry spec of *code*, and its IR is not kept.
-    ``expose_ambiguous_endings=False`` drops the lower-ranked readings of a
-    list-valued ``grammatical_endings`` entry, so they never reach the beam.
-    *fragments* are plugin fragments (docs/ir/o2i-ir-v1.md, 3.5) merged into
-    the document. With none, the IR is as it was.
+    A caller *spec* replaces the registry spec of *code*, and its IR is not kept.
+    *fragments* are plugin fragments (docs/ir/o2i-ir-v1.md, 3.5) merged into the document.
     """
     if spec is None:
         base, spec, elision = _base_ir(code, data_ref, apply_stress, apply_allophony, apply_sandhi,
@@ -794,7 +773,7 @@ def build_ir(code: str, data_ref: Optional[str] = None, *, dialect_profile: Opti
         _collect_dialect_chars(ir["dialect"], extra)
         chars = dict(base["chars"])
         for c in extra - {chr(cp) for cp in chars}:
-            chars[ord(c)] = _char_bits(c, spec, elision) & ~(1 << CB["known"])
+            chars[ord(c)] = _char_bits(c, elision) & ~(1 << CB["known"])
         ir["chars"] = chars
         ir["char_maps"] = _char_maps(spec, {chr(cp) for cp in chars})
     if not expose_ambiguous_endings and "endings" in ir:
@@ -825,11 +804,9 @@ def merge_fragments(fragments: Sequence[dict], ir_version: int) -> Tuple[Dict[st
     IR rules in fragment order. A later fragment wins on a duplicate word.
 
     Raises:
-        ValueError: a fragment has a key other than ``ir_version``, ``words``, ``sandhi`` and
-            ``unsupported``, an ``ir_version`` other than *ir_version*, a ``words`` key that is
-            not lowercase NFC, a ``words`` entry that is not a pair of strings, an
-            ``unsupported`` entry that is not a string, or a ``sandhi`` rule that
-            :func:`_sandhi_rule` refuses.
+        ValueError: a fragment is malformed (an unknown key, a wrong ``ir_version``, a
+            ``words`` key that is not lowercase NFC, a non-string entry) or has a
+            ``sandhi`` rule that :func:`_sandhi_rule` refuses.
     """
     words: Dict[str, str] = {}
     sandhi: List[dict] = []
@@ -859,12 +836,11 @@ def fragment_unsupported(fragments: Sequence[dict]) -> List[str]:
 
 
 def _sandhi_rule(rule: dict) -> dict:
-    """The IR sandhi rule of a fragment rule: the pattern and template texts of a spec
-    ``SandhiRule`` under the IR keys, with optional spelling conditions and ``pause``.
+    """The IR sandhi rule of a fragment rule, with optional spelling conditions.
 
     A pair rule has ``left`` and ``right`` patterns (an absent one matches every word) and
     at least one of ``left_out`` and ``right_out``. A pause rule has ``"pause": true``, a
-    ``left`` pattern and ``left_out``; it rewrites a word at a pause, and has no right word.
+    ``left`` pattern and ``left_out``, and has no right word.
 
     Raises:
         ValueError: a key outside those of the rule kind, a text that is not a string, a
@@ -941,7 +917,7 @@ def _build(spec: LanguageSpec, data_ref, apply_stress, apply_allophony, apply_sa
     readings.update(r for rs in fallback.values() for r in rs)
 
     entries: List[dict] = []
-    for key in sorted(set(table) | {c for c in fallback}, key=lambda s: [ord(c) for c in s]):
+    for key in sorted(set(table) | set(fallback), key=lambda s: [ord(c) for c in s]):
         is_fallback = key not in table
         rs = fallback[key] if is_fallback else table[key]
         w = None if is_fallback else weights.get(key)
@@ -1016,6 +992,8 @@ def _build(spec: LanguageSpec, data_ref, apply_stress, apply_allophony, apply_sa
                 "pairs": list(st.closed_hiatus.pairs), "onsets": list(st.closed_hiatus.onsets),
                 "codas": list(st.closed_hiatus.codas),
                 "multi_keys": [g for g in spec.graphemes if len(g) > 1]}
+            if st.closed_hiatus.atonic_onsets:
+                ir["syllable"]["closed_hiatus"]["atonic_onsets"] = list(st.closed_hiatus.atonic_onsets)
         if st.final_diphthongs is not None:
             ir["syllable"]["final_diphthongs"] = {
                 "diphthongs": list(st.final_diphthongs.diphthongs),
@@ -1135,7 +1113,7 @@ def _build(spec: LanguageSpec, data_ref, apply_stress, apply_allophony, apply_sa
     ir["rewrites"] = rewrites
     for _, out in presentation:
         all_chars.update(out)
-    ir["chars"] = {ord(c): _char_bits(c, spec, elision) | _abugida_char_bits(c, table, spec.dependent_vowels)
+    ir["chars"] = {ord(c): _char_bits(c, elision) | _abugida_char_bits(c, table, spec.dependent_vowels)
                    for c in sorted(all_chars)}
     for c in all_chars - known:
         ir["chars"][ord(c)] &= ~(1 << CB["known"])
@@ -1156,8 +1134,7 @@ def _collect_dialect_chars(steps: List[dict], out: Set[str]) -> None:
 
 
 def _endings(spec: LanguageSpec) -> dict:
-    """``grammatical_endings`` and the data its tail rewrite reads
-    (positional.py:403-436, g2p.py:1858-2048)."""
+    """``grammatical_endings`` and the data its tail rewrite reads."""
     table = []
     for ending, value in sorted(spec.grammatical_endings.items()):
         rank1, alts = normalize_ending_value(value)
@@ -1192,7 +1169,7 @@ def _endings(spec: LanguageSpec) -> dict:
 
 
 def _inherent_entry_bits(key: str, readings: Tuple[str, ...], spec: LanguageSpec) -> int:
-    """The entry facts the inherent-vowel branch reads (phonetok.py:2044-2100)."""
+    """The entry facts the inherent-vowel branch reads."""
     bits = 0
     first = readings[0] if readings else ""
     is_mark = (unidata.category(key[-1]) in ("Mn", "Mc") and not _is_subjoined_letter_cluster(key)
@@ -1215,7 +1192,7 @@ def _inherent_entry_bits(key: str, readings: Tuple[str, ...], spec: LanguageSpec
 
 
 def _tone(spec: LanguageSpec) -> dict:
-    """``tone_rules`` with each tone name resolved to its IPA (tone.py:173-239)."""
+    """``tone_rules`` with each tone name resolved to its IPA."""
     rules = spec.tone_rules
     table = [[cls, shape, mark, rules.tones.get(tone, "") if tone else ""]
              for cls, by_shape in sorted(rules.table.items())
@@ -1227,7 +1204,7 @@ def _tone(spec: LanguageSpec) -> dict:
 
 
 def _preposed_entry_bits(key: str, table: Dict[str, Tuple[str, ...]], spec: LanguageSpec) -> int:
-    """The entry facts of the preposed-vowel branch (phonetok.py:1471-1565, 1803-1912)."""
+    """The entry facts of the preposed-vowel branch."""
     preposed = {v.lower() for v in spec.preposed_vowels}
     readings = table.get(key, ())
     bits = 0
@@ -1268,8 +1245,7 @@ def _onset_reading(key: str, readings: Tuple[str, ...], spec: LanguageSpec) -> T
 
 
 def _abugida_char_bits(c: str, table: Dict[str, Tuple[str, ...]], vowel_signs: Sequence[str]) -> int:
-    """``_is_nucleus``, ``_spells_nothing`` and ``_supplies_vowel`` of one char
-    (phonetok.py:361, 1449, 1571)."""
+    """The ``syllabic_mark``, ``mark_spells_nothing`` and ``supplies_vowel`` bits of one char."""
     bits = 0
     if c in SYLLABIC_MARKS:
         bits |= 1 << CB["syllabic_mark"]
@@ -1284,8 +1260,8 @@ def _abugida_char_bits(c: str, table: Dict[str, Tuple[str, ...]], vowel_signs: S
 
 
 def _prepare_rewrites(spec: LanguageSpec, table) -> Tuple[List[Tuple[int, str]], List[dict]]:
-    """The script rewrites of ``prepare`` (phonetok.py:1703-1725): the Arabic
-    presentation forms as a codepoint map, and gemination as pattern rewrites."""
+    """The script rewrites of ``prepare``: the Arabic presentation forms as a
+    codepoint map, and gemination as pattern rewrites."""
     from orthography2ipa.ir.compile_patterns import compile_pattern, compile_template
     presentation: List[Tuple[int, str]] = []
     rules: List[Tuple[str, str]] = []
@@ -1334,7 +1310,6 @@ def _compositions() -> Tuple[Tuple[str, str, str], ...]:
 
 def _char_maps(spec: LanguageSpec, chars: Set[str]) -> dict:
     casefold, lower, nfd, ccc = {}, {}, {}, {}
-    compose = []
     for c in sorted(chars):
         cp = ord(c)
         if _lower(c, spec.code) != c:

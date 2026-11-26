@@ -29,7 +29,7 @@ from orthography2ipa.g2p import G2P
     "hi notes: 'ड/ढ FLAPPING: retroflex stops [ɖ/ɖʱ] become flaps [ɽ/ɽʱ] "
     "intervocalically' — no such allophone rule exists; बडा (plain ⟨ड⟩ between "
     "vowels) is transcribed [bəɖaː], the stop is never flapped"
-))
+), raises=AssertionError)
 def test_hi_retroflex_stop_flaps_intervocalically():
     """'ड/ढ FLAPPING: retroflex stops [ɖ/ɖʱ] become flaps [ɽ/ɽʱ]
     intervocalically.' (hi notes; Ohala 1983, Masica 1991)
@@ -42,7 +42,7 @@ def test_hi_retroflex_stop_flaps_intervocalically():
 @pytest.mark.xfail(strict=True, reason=(
     "hi notes: 'ड/ढ FLAPPING: retroflex stops [ɖ/ɖʱ] become flaps [ɽ/ɽʱ] "
     "intervocalically' — बुढा (plain ⟨ढ⟩ between vowels) is [bʊɖʱaː], not [bʊɽʱaː]"
-))
+), raises=AssertionError)
 def test_hi_breathy_retroflex_stop_flaps_intervocalically():
     """The breathy half of the same claim: intervocalic ⟨ढ⟩ [ɖʱ] → [ɽʱ].
     (hi notes; Ohala 1983, Masica 1991)
@@ -105,7 +105,7 @@ def test_sa_x_vedic_retains_the_retroflex_lateral():
     "vsn notes: 'Retains pitch accent system (udātta/anudātta/svarita)' "
     "— the accent marks ॑ (U+0951) and ॒ (U+0952) are not graphemes; अ॒ग्नि॑ "
     "transcribes to [əɡn̪i], identical to the unaccented spelling"
-))
+), raises=AssertionError)
 def test_sa_x_vedic_pitch_accent_is_realised():
     """'Retains pitch accent system (udātta/anudātta/svarita).'
     (vsn notes; Macdonell 1910, *Vedic Grammar*)
@@ -141,7 +141,7 @@ def test_brx_aspirated_and_plain_stops_both_phonemic():
     "brx notes: 'Written in Devanagari (official since 2003)' — the spec's "
     "script is Latin and its graphemes are romanised; Devanagari input "
     "transcribes to the empty string"
-))
+), raises=AssertionError)
 def test_brx_devanagari_input_is_transcribed():
     """'Written in Devanagari (official since 2003).' (brx notes)"""
     assert G2P("brx").transcribe_word("बर")
@@ -164,7 +164,7 @@ def test_proto_boro_garo_aspirated_plain_stop_contrast():
     "mni notes: 'Meitei Mayek script (traditional, restored 2013 as official)' "
     "— the spec's script is Latin; Meitei Mayek input transcribes to the empty "
     "string"
-))
+), raises=AssertionError)
 def test_mni_meitei_mayek_input_is_transcribed():
     """'Meitei Mayek script (traditional, restored 2013 as official).'
     (mni notes)
@@ -175,7 +175,7 @@ def test_mni_meitei_mayek_input_is_transcribed():
 @pytest.mark.xfail(strict=True, reason=(
     "mni notes: 'Also written in Bengali script officially' — the spec's script "
     "is Latin; Bengali-script input transcribes to the empty string"
-))
+), raises=AssertionError)
 def test_mni_bengali_script_input_is_transcribed():
     """'Also written in Bengali script officially.' (mni notes)"""
     assert G2P("mni").transcribe_word("মৈতৈ")
@@ -228,7 +228,7 @@ def test_sat_has_no_retroflex_consonants():
     "sat notes: 'Written officially in Ol Chiki script (invented 1925 by "
     "Raghunath Murmu)' — the spec's script is Latin; Ol Chiki input transcribes "
     "to the empty string"
-))
+), raises=AssertionError)
 def test_sat_ol_chiki_input_is_transcribed():
     """'Written officially in Ol Chiki script (invented 1925 by Raghunath
     Murmu); also Latin and Devanagari.' (sat notes)
@@ -348,7 +348,7 @@ def test_ii_yi_pinyin_romanisation_is_not_accepted():
     "ii notes: 'LEFT OUT: the syllable iteration mark ꀕ (U+A015) … has no fixed "
     "segmental value' — U+A015 is nevertheless in the syllabogram map and "
     "transcribes to [ɣu˧]"
-))
+), raises=AssertionError)
 def test_ii_iteration_mark_is_left_out():
     """'LEFT OUT: the syllable iteration mark ꀕ (U+A015), which reduplicates the
     preceding syllable and has no fixed segmental value.' (ii notes)
@@ -573,7 +573,7 @@ def test_os_russian_loan_letters_are_not_mapped():
     "os notes: 'Stress falls on the first or second syllable depending on vowel "
     "strength' — no stress is placed; ⟨ирон⟩ transcribes to [iron] with no "
     "stress mark"
-))
+), raises=AssertionError)
 def test_os_stress_falls_on_the_first_or_second_syllable():
     """'Stress falls on the first or second syllable depending on vowel
     strength.' (os notes)

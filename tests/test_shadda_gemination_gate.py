@@ -15,7 +15,7 @@ from orthography2ipa.phonetok import _AR_SHADDA
 
 # word, doubled consonant the shadda must produce
 WORDS = (("سِتَّة", "tt"), ("قُوَّة", "uww"), ("كَتَّبَ", "tt"))
-SPECS = ("acq", "aao", "ssh", "ajt", "jrb", "yud")
+SPECS = ("acq", "aao", "ssh", "aeb-x-judeo", "jrb", "yud")
 
 
 @pytest.mark.parametrize("code", SPECS)

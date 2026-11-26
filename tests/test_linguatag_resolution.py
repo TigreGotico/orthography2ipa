@@ -100,7 +100,7 @@ def test_every_regional_spec_is_named_with_its_likely_script():
 
 
 @pytest.mark.parametrize("tag,spec", [
-    ("kas-Arab", "kas"), ("pnb-Arab", "pnb-PK"), ("fat-Latn", "fat"), ("mhr-Cyrl", "mhr"),
+    ("kas-Arab", "ks-Arab"), ("pnb-Arab", "pnb-PK"), ("fat-Latn", "fat"), ("mhr-Cyrl", "mhr"),
 ])
 def test_a_likely_script_keeps_the_language_the_tag_gives(tag, spec):
     """Standardization changes the language subtag of these codes (``kas`` to

@@ -60,8 +60,6 @@
  },
  "notes": "Standard Mam orthography codified by the Academia de Lenguas Mayas de Guatemala (ALMG) and described by England (1983), A Grammar of Mam. Ejective consonants are written with a following apostrophe (⟨k'⟩ /kʼ/, ⟨q'⟩ /qʼ/, ⟨t'⟩ /tʼ/, ⟨ch'⟩ /t̠ʃʼ/, ⟨tz'⟩ /tsʼ/, ⟨tx'⟩ /ʈʂʼ/), each a single glottalized segment, not a plain stop followed by a glottal stop (AGENTS.md test 2, the aspirate/ejective-unit pattern). ⟨b'⟩ is the implosive /ɓ/. ⟨ch⟩, ⟨tz⟩ and ⟨tx⟩ spell the single affricates /t̠ʃ/, /ts/ and /ʈʂ/ (palato-alveolar, alveolar and retroflex respectively; Mam contrasts all three places). ⟨x⟩ and ⟨xh⟩ distinguish the palatal and retroflex fricatives /ʃ/ and /ʂ/. ⟨j⟩ is the uvular fricative /χ/ (not the palatal glide, which is ⟨y⟩ /j/). Vowel length is phonemic and written by doubling the vowel letter. Laryngealized (glottalized/breathy) vowel allophones from the cited PHOIBLE inventory are retained. Mam word stress is regular (typically final) and not marked orthographically; it is left unencoded here as a documented exemption rather than modelled from spelling.",
  "iso639_3": "mam",
- "glottolog_code": "mamm1241",
- "wikidata_qid": "Q642928",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Mam_language"
  ],
