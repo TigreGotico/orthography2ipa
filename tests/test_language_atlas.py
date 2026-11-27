@@ -396,3 +396,11 @@ def test_every_no_page_entry_names_specs_in_the_cut_that_have_no_page(atlas):
 ])
 def test_no_page_entry_covers_its_code_and_its_hyphenated_children(code, expected):
     assert (atlas_gen.no_page_reason(code) is not None) is expected
+
+
+def test_ranked_names_every_tied_count():
+    counts = {"Eurasia": 124, "Africa": 62, "North America": 39,
+              "Papunesia": 39, "Australia": 12}
+    assert atlas_gen._ranked(counts, 3) == (
+        "Eurasia 124, Africa 62, North America and Papunesia 39")
+    assert atlas_gen._ranked({"a": 2, "b": 2, "c": 2}, 1) == "a, b and c 2"

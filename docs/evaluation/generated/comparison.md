@@ -32,7 +32,7 @@ One line per language: the best system on its primary gold, and where o2i lands.
 - **"... with its lexicon scores N, informational"**: a lexicon-backed stock value that would have scored lowest of all systems on this row, named so it is never hidden, just not counted as the winner.
 
 - **ar**: tie (arbtok, o2i) #1
-- **arb (Classical Arabic)**: o2i not scored: this gold was drafted by o2i's own lineage, see same-source (africa-g2p #1 among the rest)
+- **arb (Classical Arabic)**: o2i is not scored. o2i's own lineage drafted this gold (see same-source). Among the rest, africa-g2p is #1
 - **ca (Catalan)**: o2i #1 (beats espeak rules-only) (espeak with its lexicon scores 0.0403, informational)
 - **ca-x-balear (Balearic Catalan)**: o2i #1 (beats espeak rules-only) (espeak with its lexicon scores 0.0797, informational)
 - **ca-x-occident (North-Western Catalan)**: o2i #1 (beats espeak rules-only) (espeak with its lexicon scores 0.0497, informational)
@@ -88,7 +88,7 @@ orthography2ipa is a shared lattice, a grapheme table plus allophone/sandhi rule
 
 **Reading a family row: headroom, not a loss.** Where a family system's PER beats bare o2i's on a row that is NOT `same-source` (see below, same-source rows are refused as a comparison point, exactly like every other system on this board), that gap is a concrete demonstration of what the shared `orthography2ipa` specs could still absorb into the base lattice, a diacritizer pass, a closed-class lexicon, a dialect rule, not evidence o2i "lost" to a competitor. Where a family row instead ties o2i exactly, that is equally informative: it means the family member's extra stages are not (yet, or not on this gold) adding anything the base lattice does not already do on its own.
 
-**Headroom is not automatically absorbable: the measured `ar` case.** "Headroom" above says a family gap shows what the base lattice *could* absorb. For the two independent Arabic rows (`ipadict`, raw `wikipron`) that reading has been tested directly and it does NOT hold, the entire arbtok margin is its neural diacritizer, which is a model, not a rule, and therefore not portable into a grapheme lattice at all. The ablation, run over the same word sets and the same scorer as the board rows (`ArbtokG2PPlugin(lang="ar", lexicon=None, dialect_lexicon=False)`, one stage disabled at a time):
+**Headroom is not automatically absorbable: the measured `ar` case.** "Headroom" above says a family gap shows what the base lattice *could* absorb. For the two independent Arabic rows (`ipadict`, raw `wikipron`) that reading has been tested directly and it does NOT hold. The entire arbtok margin is its neural diacritizer, which is a model, not a rule, and therefore not portable into a grapheme lattice at all. The ablation, run over the same word sets and the same scorer as the board rows (`ArbtokG2PPlugin(lang="ar", lexicon=None, dialect_lexicon=False)`, one stage disabled at a time):
 
 | arbtok config | ipadict PER | wikipron PER |
 |---|---|---|
@@ -445,7 +445,7 @@ Turning the diacritizer off collapses arbtok onto o2i exactly (ipadict 0.3073, t
 
 ## Robustness across golds
 
-A system winning on one gold and losing on another for the SAME language is real signal, not noise to average away. Every language with 2+ espeak-comparable gold datasets is listed below with its exact win/loss split (same-source cells excluded — they are never comparable, see above).
+A system winning on one gold and losing on another for the SAME language is real signal, not noise to average away. Every language with 2+ espeak-comparable gold datasets is listed below with its exact win/loss split. Same-source cells are excluded, because they are never comparable (see above).
 
 - **`ca`** (loses on all golds):
   - `4catac` (n=160, tier=expert-human): o2i 0.0641 vs espeak 0.0403 (o2i loses)
@@ -457,10 +457,10 @@ A system winning on one gold and losing on another for the SAME language is real
 - **`el`** (wins on all golds):
   - `vox_communis` (n=5994, tier=epitran-derived): o2i 0.2672 vs espeak 0.3347 (o2i wins)
   - `wikipron` (n=19108, tier=crowd-scraped): o2i 0.0330 vs espeak 0.0785 (o2i wins)
-- **`en-US`** (MIXED, wins on some golds, loses on others):
+- **`en-US`** (MIXED: wins on some golds and loses on others):
   - `cmudict` (n=126052, tier=lexicon-derived): o2i 0.3376 vs espeak 0.3048 (o2i loses)
   - `ipadict` (n=125927, tier=lexicon-derived): o2i 0.2908 vs espeak 0.2954 (o2i wins)
-- **`es`** (MIXED, wins on some golds, loses on others):
+- **`es`** (MIXED: wins on some golds and loses on others):
   - `vox_communis` (n=48068, tier=epitran-derived): o2i 0.0758 vs espeak 0.0755 (o2i loses)
   - `wikipron` (n=132190, tier=crowd-scraped): o2i 0.0797 vs espeak 0.1071 (o2i wins)
 - **`eu`** (wins on all golds):
@@ -481,7 +481,7 @@ A system winning on one gold and losing on another for the SAME language is real
 - **`it`** (wins on all golds):
   - `vox_communis` (n=48570, tier=epitran-derived): o2i 0.1031 vs espeak 0.1368 (o2i wins)
   - `wikipron` (n=82280, tier=crowd-scraped): o2i 0.0441 vs espeak 0.0722 (o2i wins)
-- **`nl-NL`** (MIXED, wins on some golds, loses on others):
+- **`nl-NL`** (MIXED: wins on some golds and loses on others):
   - `ipadict` (n=117869, tier=machine-generated): o2i 0.1767 vs espeak 0.1607 (o2i loses)
   - `vox_communis` (n=26137, tier=epitran-derived): o2i 0.2925 vs espeak 0.3054 (o2i wins)
   - `wikipron` (n=45872, tier=crowd-scraped): o2i 0.0902 vs espeak 0.1099 (o2i wins)
@@ -501,7 +501,7 @@ A system winning on one gold and losing on another for the SAME language is real
   - `primary_sources` (n=36, tier=expert-human): o2i 0.1867 vs espeak 0.3119 (o2i wins)
   - `vox_communis` (n=50517, tier=epitran-derived): o2i 0.3462 vs espeak 0.3578 (o2i wins)
   - `wikipron` (n=403873, tier=crowd-scraped): o2i 0.1444 vs espeak 0.3953 (o2i wins)
-- **`sv`** (MIXED, wins on some golds, loses on others):
+- **`sv`** (MIXED: wins on some golds and loses on others):
   - `ipadict` (n=21095, tier=lexicon-derived): o2i 0.2583 vs espeak 0.2611 (o2i wins)
   - `vox_communis` (n=19516, tier=epitran-derived): o2i 0.3428 vs espeak 0.3214 (o2i loses)
   - `wikipron` (n=5082, tier=crowd-scraped): o2i 0.2317 vs espeak 0.2337 (o2i wins)
@@ -513,10 +513,10 @@ A system winning on one gold and losing on another for the SAME language is real
 
 The table above conflates espeak-ng's letter-to-sound RULES with its hand-curated word-EXCEPTION list (o2i, by hard rule, ships no such list). This 2x2 isolates the dictionary's contribution on the same gold rows, for the languages where both extra columns are wired up (the `DICTSOURCE_LANG`-mapped subset, see the script's module docstring for how to enable `espeak_rules` via `scripts/build_espeak_rules_only.sh` and `o2i_lex` via `$ESPEAK_DICTSOURCE_PATH`). The dictionary is not a one-way upgrade: across every row with both numbers, espeak-ng's rules-only column actually BEATS stock (dictionary-included) espeak-ng on 27 of 53 rows, the word-exception list sometimes makes espeak-ng WORSE (e.g. letter-spelling acronyms getting a dictionary hit that is wrong for the gold's convention), not always better.
 
-- `o2i`, orthography2ipa, rules only (unchanged from the main table).
-- `o2i_lex`, orthography2ipa + a runtime lexicon built from espeak-ng's OWN word-exception list, each word's IPA obtained from espeak-ng itself (o2i rules + espeak's dictionary).
-- `espeak`, espeak-ng, rules + its own word-exception dictionary (unchanged from the main table).
-- `espeak_rules`, espeak-ng with the word-exception dictionary emptied before compiling (rules only).
+- `o2i`: orthography2ipa, rules only (unchanged from the main table).
+- `o2i_lex`: orthography2ipa + a runtime lexicon built from espeak-ng's OWN word-exception list, each word's IPA obtained from espeak-ng itself (o2i rules + espeak's dictionary).
+- `espeak`: espeak-ng, rules + its own word-exception dictionary (unchanged from the main table).
+- `espeak_rules`: espeak-ng with the word-exception dictionary emptied before compiling (rules only).
 
 | Lang | Dataset | N | o2i | o2i_lex | espeak | espeak_rules |
 |---|---|---:|---:|---:|---:|---:|
@@ -582,7 +582,7 @@ Reading the four numbers together: `espeak - espeak_rules` is espeak-ng's dictio
 
 ## Lexicon-backed tier, gold filtered against all compared lexicons
 
-This is a SECOND, separate ranking, and it never feeds the leaderboard or the Winner column above. Here every engine runs in its STOCK configuration, lexicons ON, exactly as a caller gets it with no arguments, and o2i takes part on the same terms, as `o2i_lex` (o2i plus espeak-ng's own word list). Ranking stock engines on the raw gold would measure nothing but dictionary size: a gold word that sits in an engine's lexicon is a lookup, not a prediction. So the gold is FILTERED first, every entry present in ANY compared engine's lexicon for that language is removed, the same words removed for every engine, and what remains is scored. The tier therefore measures how well each stock system GENERALIZES beyond the lexicons it ships, not how much of this particular test set it already knows. `N` is the original gold size, `filtered N` what survived the union filter; below 50 residual words a row is reported as insufficient rather than ranked on noise.
+This is a SECOND, separate ranking, and it never feeds the leaderboard or the Winner column above. Here every engine runs in its STOCK configuration, lexicons ON, exactly as a caller gets it with no arguments, and o2i takes part on the same terms, as `o2i_lex` (o2i plus espeak-ng's own word list). Ranking stock engines on the raw gold would measure nothing but dictionary size: a gold word that sits in an engine's lexicon is a lookup, not a prediction. So the gold is FILTERED first. Every entry present in ANY compared engine's lexicon for that language is removed, the same words for every engine, and what remains is scored. The tier therefore measures how well each stock system GENERALIZES beyond the lexicons it ships, not how much of this particular test set it already knows. `N` is the original gold size, `filtered N` what survived the union filter; below 50 residual words a row is reported as insufficient rather than ranked on noise.
 
 | Language | Gold | N | filtered N | o2i + espeak lexicon | espeak-ng (stock) | gruut (stock) | tugaphone (stock) | Winner |
 |---|---|---|---|---|---|---|---|---|
@@ -621,7 +621,7 @@ This is a SECOND, separate ranking, and it never feeds the leaderboard or the Wi
 
 ## Catalan dialects vs espeak (BSC)
 
-The Barcelona Supercomputing Center (BSC) added Catalan dialect voices to espeak-ng (central, balearic, north-western, valencian). This table compares each o2i Catalan dialect spec against the matching espeak-ng dialect voice on the 4catac gold (expert human-annotated regional accents) — the same expert gold used for the `ca` row in the main table above.
+The Barcelona Supercomputing Center (BSC) added Catalan dialect voices to espeak-ng (central, balearic, north-western, valencian). This table compares each o2i Catalan dialect spec against the matching espeak-ng dialect voice on the 4catac gold (expert human-annotated regional accents). This is the same expert gold that is used for the `ca` row in the main table above.
 
 All three BSC dialect voices (`ca-ba`, `ca-nw`, `ca-va`) were found on this machine's espeak-ng install; each dialect row below uses its own dialect-specific voice.
 

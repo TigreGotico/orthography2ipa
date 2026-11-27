@@ -1243,8 +1243,16 @@ def _figure(name: str, alt: str) -> List[str]:
 
 
 def _ranked(counts: Dict[str, int], n: int) -> str:
-    top = sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))[:n]
-    return ", ".join(f"{name} {count:,}" for name, count in top)
+    """The *n* largest counts, each with every name that has that count."""
+    names: Dict[int, List[str]] = {}
+    for name, count in sorted(counts.items()):
+        names.setdefault(count, []).append(name)
+    parts = []
+    for count in sorted(names, reverse=True)[:n]:
+        tied = names[count]
+        label = tied[0] if len(tied) == 1 else f"{', '.join(tied[:-1])} and {tied[-1]}"
+        parts.append(f"{label} {count:,}")
+    return ", ".join(parts)
 
 
 def _index_head(title: str, intro: str) -> List[str]:

@@ -117,7 +117,7 @@ The diff then keeps the 35,800 shared entries whose transcriptions have the same
 | ɐ to a | 1,858 |
 | ɫ to w | 1,724 |
 
-Further down come d to ð (223) and ɡ to ɣ (150). These counts are over the first-variant pairs of equal length.
+These counts are over the first-variant pairs of equal length.
 
 Another symbol for the reduced unstressed vowel of European Portuguese does not remove the vowel. 60% of `pt-TL-x-dili` entries still have a reduced [ə], and 31% still end in a reduced [ʊ]. Coda /s/ still surfaces as the Lisbon hush: gold *instrumentista* is `ĩʃtɾumẽntˈiʃtə`, and Lisbon has `ĩʃtɾumẽtˈiʃtɐ`. [Albuquerque (2010:275 fn. 7, 277)](http://www.revel.inf.br/files/artigos/revel_15_peculiaridades_prosodicas_do_portugues_falado_em_timor_leste.pdf), the source of the `pt-TL` spec, documents the opposite for this variety. It has no reduction of unstressed vowels and an alveolar coda /s/ with no hush. The row therefore measures agreement with European Portuguese in other symbols, not with the East Timorese acrolect that the spec models.
 

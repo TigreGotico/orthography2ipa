@@ -2569,7 +2569,7 @@ class TestRobustnessSection:
         ]
         lines = cs._robustness_section(rows)
         text = "\n".join(lines)
-        assert "**`xx`** (MIXED, wins on some golds, loses on others)" in text
+        assert "**`xx`** (MIXED: wins on some golds and loses on others)" in text
         assert "gold_a" in text and "o2i wins" in text
         assert "gold_b" in text and "o2i loses" in text
 

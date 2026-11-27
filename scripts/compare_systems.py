@@ -2826,8 +2826,8 @@ def _catalan_dialect_table_lines(rows: List[dict],
         "voices to espeak-ng (central, balearic, north-western, "
         "valencian). This table compares each o2i Catalan dialect spec "
         "against the matching espeak-ng dialect voice on the 4catac gold "
-        "(expert human-annotated regional accents) — the same expert "
-        "gold used for the `ca` row in the main table above.",
+        "(expert human-annotated regional accents). This is the same expert "
+        "gold that is used for the `ca` row in the main table above.",
         "",
     ]
     dialect_voices_found = {t: v for t, v in voices.items()
@@ -2845,7 +2845,7 @@ def _catalan_dialect_table_lines(rows: List[dict],
                 "Some BSC dialect voices were **not** found on this "
                 "machine's espeak-ng install (`espeak-ng --voices=ca` "
                 "listing). Affected dialects fall back to the generic "
-                "`ca` voice, clearly labeled below — those rows do NOT "
+                "`ca` voice, clearly labeled below. Those rows do NOT "
                 "reflect dialect-specific espeak output."
             )
         else:
@@ -2891,8 +2891,8 @@ def _robustness_section(rows: List[dict]) -> List[str]:
         "A system winning on one gold and losing on another for the SAME "
         "language is real signal, not noise to average away. Every "
         "language with 2+ espeak-comparable gold datasets is listed "
-        "below with its exact win/loss split (same-source cells excluded "
-        "— they are never comparable, see above)."
+        "below with its exact win/loss split. Same-source cells are "
+        "excluded, because they are never comparable (see above)."
     )
     lines.append("")
     multi = {lang: rs for lang, rs in by_lang.items() if len(rs) >= 2}
@@ -2909,7 +2909,7 @@ def _robustness_section(rows: List[dict]) -> List[str]:
         losses = [r["dataset"] for r in rs if r["o2i_per"] >= r["espeak_per"]]
         verdict = ("wins on all golds" if not losses else
                     "loses on all golds" if not wins else
-                    "MIXED, wins on some golds, loses on others")
+                    "MIXED: wins on some golds and loses on others")
         lines.append(f"- **`{lang}`** ({verdict}):")
         for r in rs:
             outcome = "o2i wins" if r["dataset"] in wins else "o2i loses"
@@ -3003,8 +3003,8 @@ def _scoreboard_staleness_note(rows: List[dict]) -> str:
         parts.append(
             f"The `o2i PER` column here matches "
             f"[`benchmarks/results.json`](../../../benchmarks/results.json)'s "
-            f"`per` for most shared language/dataset pairs, EXCEPT the "
-            f"{len(stale)} listed below, those `benchmarks/results.json` "
+            f"`per` for most shared language/dataset pairs. The exceptions are the "
+            f"{len(stale)} rows listed below. Those `benchmarks/results.json` "
             f"rows are stale (a prior PR changed the engine but did not "
             f"regenerate every affected row there; see e.g. PR #802's "
             f"`ca`/`4catac`-only regeneration). The numbers in THIS table "
@@ -3065,7 +3065,7 @@ def _espeak_rules_coverage_note(rows: List[dict]) -> str:
     )
     return (
         f"{len(missing)} row(s) have a stock `espeak` number but no "
-        f"`espeak-rules-only` one yet in this run, deferred, not "
+        f"`espeak-rules-only` one yet in this run. These rows are deferred, not "
         f"fabricated (see `scripts/build_espeak_rules_only.sh`): "
         f"{listed}."
     )
@@ -3465,9 +3465,9 @@ def _leaderboard_line(lang: str, primary_row: dict,
     if "o2i" not in values:
         winner_str = _winner_label_str(tie_winners)
         if primary_row.get("o2i_same_source"):
-            return (f"**{disp}**: o2i not scored: this gold was drafted "
-                     f"by o2i's own lineage, see same-source "
-                     f"({winner_str} #1 among the rest){aside}")
+            return (f"**{disp}**: o2i is not scored. o2i's own lineage drafted "
+                     f"this gold (see same-source). Among the rest, "
+                     f"{winner_str} is #1{aside}")
         return (f"**{disp}**: {winner_str} #1 "
                 f"(o2i not scored on this gold){aside}")
     if min(values.values()) > _NO_SYSTEM_USABLE_THRESHOLD:
@@ -3683,7 +3683,7 @@ def _o2i_family_section(rows: List[dict]) -> List[str]:
         "case.** \"Headroom\" above says a family gap shows what the base "
         "lattice *could* absorb. For the two independent Arabic rows "
         "(`ipadict`, raw `wikipron`) that reading has been tested "
-        "directly and it does NOT hold, the entire arbtok margin is its "
+        "directly and it does NOT hold. The entire arbtok margin is its "
         "neural diacritizer, which is a model, not a rule, and therefore "
         "not portable into a grapheme lattice at all. The ablation, run "
         "over the same word sets and the same scorer as the board rows "
@@ -3833,9 +3833,9 @@ def _lexicon_backed_tier_lines(rows: List[dict]) -> List[str]:
         "terms, as `o2i_lex` (o2i plus espeak-ng's own word list). "
         "Ranking stock engines on the raw gold would measure nothing but "
         "dictionary size: a gold word that sits in an engine's lexicon "
-        "is a lookup, not a prediction. So the gold is FILTERED first, "
-        "every entry present in ANY compared engine's lexicon for that "
-        "language is removed, the same words removed for every engine, "
+        "is a lookup, not a prediction. So the gold is FILTERED first. "
+        "Every entry present in ANY compared engine's lexicon for that "
+        "language is removed, the same words for every engine, "
         "and what remains is scored. The tier therefore measures how "
         "well each stock system GENERALIZES beyond the lexicons it "
         "ships, not how much of this particular test set it already "
@@ -3933,14 +3933,14 @@ def _fair_comparison_2x2_lines(rows: List[dict]) -> List[str]:
         f"letter-spelling acronyms getting a dictionary hit that is "
         f"wrong for the gold's convention), not always better.",
         "",
-        "- `o2i`, orthography2ipa, rules only (unchanged from the main "
+        "- `o2i`: orthography2ipa, rules only (unchanged from the main "
         "table).",
-        "- `o2i_lex`, orthography2ipa + a runtime lexicon built from "
+        "- `o2i_lex`: orthography2ipa + a runtime lexicon built from "
         "espeak-ng's OWN word-exception list, each word's IPA obtained "
         "from espeak-ng itself (o2i rules + espeak's dictionary).",
-        "- `espeak`, espeak-ng, rules + its own word-exception dictionary "
+        "- `espeak`: espeak-ng, rules + its own word-exception dictionary "
         "(unchanged from the main table).",
-        "- `espeak_rules`, espeak-ng with the word-exception dictionary "
+        "- `espeak_rules`: espeak-ng with the word-exception dictionary "
         "emptied before compiling (rules only).",
         "",
         "| Lang | Dataset | N | o2i | o2i_lex | espeak | espeak_rules |",
