@@ -869,7 +869,8 @@ def _change(rule) -> str:
     rest = [f.name for f in dataclasses.fields(rule)
             if f.name in ("preceded_by_2", "followed_by_2", "preceded_by_3",
                           "followed_by_3", "preceded_by_phoneme_2",
-                          "followed_by_phoneme_2", "preceded_by_surface_phoneme_2",
+                          "followed_by_phoneme_2", "followed_by_phoneme_3",
+                          "preceded_by_surface_phoneme_2",
                           "requires_other_nucleus", "followed_by_nucleus",
                           "followed_by_grapheme_not", "word_contains_grapheme",
                           "word_contains_grapheme_not", "mutates_neighbor")

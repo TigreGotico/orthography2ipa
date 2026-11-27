@@ -1491,6 +1491,10 @@ class AllophoneRule:
         (Russian ⟨с⟩ of ⟨гости⟩ palatalises because the ⟨т⟩ after it stands
         before a soft vowel; that is a fact about the ⟨т⟩'s underlying
         identity, not about what it surfaces as). Empty = don't care.
+    followed_by_phoneme_3 : Tuple[str, ...]
+        Like :attr:`followed_by_phoneme_2`, three graphemes ahead (the
+        Midi loi de position: a mid vowel before an obstruent-liquid onset
+        is close only when a full vowel, not a schwa, follows the onset).
     requires_other_nucleus : Optional[bool]
         Require (``True``) — or forbid (``False``) — that some OTHER slot
         in the word carries a syllable nucleus. A rule that DELETES a
@@ -1645,6 +1649,7 @@ class AllophoneRule:
     followed_by_3: Optional[str] = None
     preceded_by_phoneme_2: Tuple[str, ...] = ()
     followed_by_phoneme_2: Tuple[str, ...] = ()
+    followed_by_phoneme_3: Tuple[str, ...] = ()
     preceded_by_surface_phoneme_2: Tuple[str, ...] = ()
     requires_other_nucleus: Optional[bool] = None
     followed_by_nucleus: Optional[bool] = None
@@ -1674,6 +1679,8 @@ class AllophoneRule:
             self, "preceded_by_phoneme_2", tuple(self.preceded_by_phoneme_2))
         object.__setattr__(
             self, "followed_by_phoneme_2", tuple(self.followed_by_phoneme_2))
+        object.__setattr__(
+            self, "followed_by_phoneme_3", tuple(self.followed_by_phoneme_3))
         object.__setattr__(
             self, "preceded_by_surface_phoneme_2",
             tuple(self.preceded_by_surface_phoneme_2))

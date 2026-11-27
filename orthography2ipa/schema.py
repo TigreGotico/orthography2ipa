@@ -207,6 +207,7 @@ class AllophoneRuleModel(_Strict):
         "front_vowel", "back_vowel", "palatal", "emphatic", "word_boundary", "any"]] = None
     preceded_by_phoneme_2: Optional[List[str]] = None
     followed_by_phoneme_2: Optional[List[str]] = None
+    followed_by_phoneme_3: Optional[List[str]] = None
     preceded_by_surface_phoneme_2: Optional[List[str]] = None
     requires_other_nucleus: Optional[bool] = None
     followed_by_nucleus: Optional[bool] = None

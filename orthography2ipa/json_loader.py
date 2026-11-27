@@ -254,6 +254,7 @@ def load_json_spec(code: str) -> LanguageSpec:
                     ar.get("word_contains_grapheme_not", ())),
                 preceded_by_phoneme_2=tuple(ar.get("preceded_by_phoneme_2", ())),
                 followed_by_phoneme_2=tuple(ar.get("followed_by_phoneme_2", ())),
+                followed_by_phoneme_3=tuple(ar.get("followed_by_phoneme_3", ())),
                 preceded_by_surface_phoneme_2=tuple(
                     ar.get("preceded_by_surface_phoneme_2", ())),
                 requires_other_nucleus=ar.get("requires_other_nucleus"),

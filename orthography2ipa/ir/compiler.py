@@ -476,7 +476,8 @@ def _allophone_rule(rule, spec: LanguageSpec, atoms: Sequence[str], keys: Dict[s
             hits = sorted(key for key in keys if key and key.lower() in wanted)
             test = _and(_EX(k), ["entry_in", k, hits])
             slot.append(_not(test) if negate else test)
-    for name, k in (("preceded_by_phoneme_2", -2), ("followed_by_phoneme_2", 2)):
+    for name, k in (("preceded_by_phoneme_2", -2), ("followed_by_phoneme_2", 2),
+                    ("followed_by_phoneme_3", 3)):
         wanted = getattr(rule, name)
         if wanted:
             hits = sorted(key for key, rs in keys.items()
