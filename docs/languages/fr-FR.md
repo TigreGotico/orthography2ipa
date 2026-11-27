@@ -491,15 +491,15 @@ The spec applies 11 rules across a word boundary. The contexts are regular expre
 |:--|:--|:--|:--|:--|:--|
 | `FR_NEUF_V_BEFORE_HEURES` | `^nœf$` | `^œʁ$` | left [nœv‿] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_DIX_Z_BEFORE_HUIT_NEUF` | `^((?:d\|d͡z)[iɪ])s$` | `^(?:ɥit\|nœf)$` | left [z] | - | [Martinon 1913](#src-martinon1913) |
-| `FR_NUMERAL_MUTE_BEFORE_CONSONANT` | `^((?:s\|d\|d͡z)[iɪ])s$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|ʒɥ(?:i\|ɛ̃\|ilɛ\|ijɛ)\|sɛt\|də\|dy\|de\|puʁ\|paʁ\|syʁ)$)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | [Martinon 1913](#src-martinon1913) |
-| `FR_HUIT_MUTE_BEFORE_CONSONANT` | `^(ɥ[iɪ])t$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|ʒɥ(?:i\|ɛ̃\|ilɛ\|ijɛ)\|sɛt\|də\|dy\|de\|puʁ\|paʁ\|syʁ)$)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | [Martinon 1913](#src-martinon1913) |
+| `FR_NUMERAL_MUTE_BEFORE_CONSONANT` | `^((?:s\|d\|d͡z)[iɪ])s$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|ʒɥ(?:i\|ɛ̃\|ilɛ\|ijɛ)\|sɛt\|də\|dy\|de\|puʁ\|paʁ\|syʁ\|kɔ̃tʁ\|ʃe\|pɑ̃dɑ̃\|səlɔ̃\|dəvɑ̃\|deʁjɛʁ\|dɛʁjɛʁ\|dəpɥi\|paʁmi\|dyʁɑ̃\|malɡʁe\|mwɛ̃\|plys?\|lə\|la\|le\|sə\|se\|te\|mɛ\|ni\|dɔ̃k\|nu\|vu\|ʒə\|kə\|ki\|nə)$)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | [Martinon 1913](#src-martinon1913) |
+| `FR_HUIT_MUTE_BEFORE_CONSONANT` | `^(ɥ[iɪ])t$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|ʒɥ(?:i\|ɛ̃\|ilɛ\|ijɛ)\|sɛt\|də\|dy\|de\|puʁ\|paʁ\|syʁ\|kɔ̃tʁ\|ʃe\|pɑ̃dɑ̃\|səlɔ̃\|dəvɑ̃\|deʁjɛʁ\|dɛʁjɛʁ\|dəpɥi\|paʁmi\|dyʁɑ̃\|malɡʁe\|mwɛ̃\|plys?\|lə\|la\|le\|sə\|se\|te\|mɛ\|ni\|dɔ̃k\|nu\|vu\|ʒə\|kə\|ki\|nə)$)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | [Martinon 1913](#src-martinon1913) |
 | `FR_NUMERAL_Z_BEFORE_VOWEL` | `^((?:s\|d\|d͡z)[iɪ])s$` | `^(?!(?:avʁil\|au\|ut\|u\|ɔktɔbʁ\|e\|a)$)[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | [Martinon 1913](#src-martinon1913) |
-| `FR_LIAISON_Z` | `z$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | - |
-| `FR_LIAISON_T` | `t$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [t‿] | - | - |
-| `FR_LIAISON_N` | `n$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [n‿] | - | - |
-| `FR_LIAISON_R` | `ʁ$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [ʁ‿] | - | - |
-| `FR_LIAISON_P` | `p$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [p‿] | - | - |
-| `FR_ENCHAÎNEMENT` | `([bdɡvzʒ])$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [‿] | - | - |
+| `FR_LIAISON_Z` | `z$` | `^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | - |
+| `FR_LIAISON_T` | `t$` | `^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]` | left [t‿] | - | - |
+| `FR_LIAISON_N` | `n$` | `^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]` | left [n‿] | - | - |
+| `FR_LIAISON_R` | `ʁ$` | `^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]` | left [ʁ‿] | - | - |
+| `FR_LIAISON_P` | `p$` | `^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]` | left [p‿] | - | - |
+| `FR_ENCHAÎNEMENT` | `([bdɡvzʒ])$` | `^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]` | left [‿] | - | - |
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin words="Abel|Algérie|amateur|bon|botte|boulanger|brun|chienne|Deleuze|dinosaure|été|parlent|ennemi|cœur" -->
