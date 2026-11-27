@@ -52,7 +52,7 @@ def test_e_after_soft_g_before_a_back_vowel_is_mute(text, expected):
 @pytest.mark.parametrize("text, expected", [
     ("gelé", "ʒəle"),      # before a consonant the ⟨e⟩ is a vowel
     ("je", "ʒə"),          # the whole-word entry
-    ("geai", "ʒe"),        # Martinon (1913: 164): g(e)ai
+    ("geais", "ʒɛ"),       # Martinon (1913: 164): g(e)ai; geai is an entry
 ])
 def test_e_after_soft_g_counter_cases(text, expected):
     assert _t(text) == expected
@@ -497,7 +497,7 @@ def test_x_before_hard_c_or_p_stays_ks(text, expected):
 # [ʒɥ] is a counted plural (Martinon 1913: 328, 345).
 @pytest.mark.parametrize("text, expected", [
     ("huit juifs", "ɥi ʒɥif"), ("six juifs", "si ʒɥif"),
-    ("le six juillet", "lə sis ʒɥilɛ"), ("le huit juin", "lə ɥit ʒɥi"),
+    ("le six juillet", "lə sis ʒɥijɛ"), ("le huit juin", "lə ɥit ʒɥɛ̃"),
 ])
 def test_only_the_months_in_zh_keep_the_consonant(text, expected):
     assert _t(text) == expected
@@ -618,3 +618,29 @@ def test_numeral_drops_its_consonant_before_a_plural_noun_with_the_same_ipa(
 ])
 def test_liaison_onsets_include_y_and_front_rounded_vowels(text, expected):
     assert _t(text) == expected
+
+
+# Martinon (1913: 196): the groups ui and uin are diphthongs, juin; Lexique
+# 3.83 juin [ʒɥɛ̃], suint [sɥɛ̃]; Fougeron & Smith (1993: 74) suint [sɥɛ̃].
+# Martinon (1913: 269): the ⟨ll⟩ of cuiller and juillet is mouillé; Lexique
+# 3.83 juillet [ʒɥijɛ], cuillère [kɥijɛʁ].
+@pytest.mark.parametrize("text, expected", [
+    ("juin", "ʒɥɛ̃"), ("suint", "sɥɛ̃"), ("juillet", "ʒɥijɛ"),
+    ("cuillère", "kɥijɛʁ"), ("ruine", "ʁɥin"), ("tuile", "tɥil"),
+])
+def test_ui_before_a_coda_nasal_or_ll(text, expected):
+    assert _t(text) == expected
+
+
+# The numeral keeps its consonant before juin and juillet as months.
+@pytest.mark.parametrize("text, expected", [
+    ("le huit juin", "lə ɥit ʒɥɛ̃"), ("le six juillet", "lə sis ʒɥijɛ"),
+])
+def test_numeral_keeps_its_consonant_before_juin_and_juillet(text, expected):
+    assert _t(text) == expected
+
+
+
+# TLFi and Lexique 3.83 (ZE): geai [ʒɛ].
+def test_geai_is_open_e():
+    assert _t("geai") == "ʒɛ"

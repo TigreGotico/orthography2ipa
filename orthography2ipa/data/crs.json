@@ -486,6 +486,18 @@
       "phonemes": [],
       "surface": "",
       "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_LL_YOD_AFTER_UI",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_NASAL_BLOCK_PREVOCALIC_UIN",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
     }
   ],
   "parent": "fr-FR",
