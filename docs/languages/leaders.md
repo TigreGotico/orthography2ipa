@@ -17,7 +17,7 @@ The scoreboard has no rule that marks one row as the primary row of a language. 
 | `pt-PT` | `pt-PT` | research | `portuguese_unified` | 105553 | 0.1866 | 0.1857 to 0.1875 | lexicon-derived | [pt-PT.md](pt-PT.md) |
 | `pt-BR` | `pt-BR` | production | `portuguese_unified` | 23123 | 0.1421 | 0.1400 to 0.1440 | lexicon-derived | [pt-BR.md](pt-BR.md) |
 | `es-CO` | `es-CO` | skeleton | `spain_romance_tts` | 20 | 0.0120 | 0.0043 to 0.0210 | llm-corrected (does not gate) | [`es-CO` in the data explorer](https://tigregotico.github.io/orthography2ipa/#es-CO) |
-| `fr-FR` | `fr-FR` | research | `ipadict` | 245718 | 0.0753 | 0.0748 to 0.0758 | machine-generated | [fr-FR.md](fr-FR.md) |
+| `fr-FR` | `fr-FR` | research | `ipadict` | 245718 | 0.0575 | 0.0571 to 0.0579 | machine-generated | [fr-FR.md](fr-FR.md) |
 | `it-IT` | `it-IT` | research | `ipa_childes` | 4583 | 0.2353 | 0.2299 to 0.2407 | espeak-derived (does not gate) | [it-IT.md](it-IT.md) |
 | `de-DE` | `de-DE` | research | `ipadict` | 777785 | 0.2303 | 0.2300 to 0.2307 | crowd-scraped | [de-DE.md](de-DE.md) |
 | `nl-NL` | `nl-NL` | research | `wikipron` | 45872 | 0.1803 | 0.1790 to 0.1817 | crowd-scraped | [nl-NL.md](nl-NL.md) |
