@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.133.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.133.1a2) (2026-11-27)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.133.1a1...7.133.1a2)
+
+**Merged pull requests:**
+
+- chore: drop the Babalia Creole Arabic spec [\#2732](https://github.com/TigreGotico/orthography2ipa/pull/2732) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.133.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.133.1a1) (2026-11-27)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.133.0a2...7.133.1a1)
@@ -353,10 +361,6 @@
 ## [7.129.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.129.0a1) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.128.0a1...7.129.0a1)
-
-**Merged pull requests:**
-
-- feat\(ir\): carry a plugin's sandhi rules in the IR [\#2600](https://github.com/TigreGotico/orthography2ipa/pull/2600) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.128.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.128.0a1) (2026-11-25)
 
