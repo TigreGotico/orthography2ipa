@@ -612,3 +612,12 @@ def test_numeral_drops_its_consonant_before_a_plural_noun_with_the_same_ipa(
         text, expected):
     assert _t(text) == expected
 
+
+# Liaison and enchaînement onset classes take every French vowel, front
+# rounded and schwa included. Glides stay out of the class.
+@pytest.mark.parametrize("text, expected", [
+    ("huit unités", "ɥit‿ ynite"), ("sept usines", "sɛt‿ yzin"),
+    ("sept euros", "sɛt‿ øʁo"), ("rouge usine", "ʁuʒ‿ yzin"),
+])
+def test_liaison_onsets_include_y_and_front_rounded_vowels(text, expected):
+    assert _t(text) == expected
