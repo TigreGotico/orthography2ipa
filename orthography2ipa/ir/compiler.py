@@ -846,10 +846,10 @@ def _strings(value, where: str, min_len: int = 1) -> List[str]:
     return list(value)
 
 
-def _keys(value, where: str, allowed: Set[str]) -> dict:
+def _keys(value, where: str, allowed: Optional[Set[str]] = None) -> dict:
     if not isinstance(value, dict):
         raise ValueError(f"fragment syllable {where}: an object is required")
-    unknown = sorted(set(value) - allowed)
+    unknown = sorted(set(value) - allowed) if allowed is not None else []
     if unknown:
         raise ValueError(f"fragment syllable {where}: key {unknown[0]!r} is not allowed")
     return value
@@ -890,11 +890,11 @@ def merge_syllable_fragments(fragments: Sequence[dict]) -> dict:
             out["hiatus"] = {k: _strings(h.get(k, []), "hiatus." + k)
                              for k in ("glides", "before", "codas", "diphthong_words")}
         if "stem_cuts" in part:
-            cuts = _keys(part["stem_cuts"], "stem_cuts", set(part["stem_cuts"]))
+            cuts = _keys(part["stem_cuts"], "stem_cuts")
             _strings(list(cuts), "stem_cuts")
             for stem, offsets in cuts.items():
                 if not isinstance(offsets, list) or not offsets or not all(
-                        isinstance(o, int) and 0 < o < len(stem) for o in offsets):
+                        type(o) is int and 0 < o < len(stem) for o in offsets):
                     raise ValueError(f"fragment syllable stem_cuts {stem!r}: the cuts must be offsets inside the stem")
             out["stem_cuts"] = {k: sorted(set(v)) for k, v in cuts.items()}
         if "prefix_boundaries" in part:
@@ -911,10 +911,12 @@ def merge_syllable_fragments(fragments: Sequence[dict]) -> dict:
                                                  "stems": _strings(r.get("stems", []), "prefix_boundaries.stems")})
         if "seams" in part:
             seams = _keys(part["seams"], "seams", {"suffixes", "stems", "next"})
+            if not isinstance(seams.get("suffixes", []), list):
+                raise ValueError("fragment syllable seams.suffixes: a list is required")
             suffixes = []
             for rule in seams.get("suffixes", []):
                 r = _keys(rule, "seams.suffixes", {"pattern", "cut"})
-                if not isinstance(r.get("cut", 0), int) or r.get("cut", 0) < 0:
+                if type(r.get("cut", 0)) is not int or r.get("cut", 0) < 0:
                     raise ValueError("fragment syllable seams.suffixes: cut must be an integer of 0 or more")
                 suffixes.append({"pattern": _fragment_pattern(r.get("pattern"), "seams.suffixes"),
                                  "cut": r.get("cut", 0)})
@@ -923,15 +925,14 @@ def merge_syllable_fragments(fragments: Sequence[dict]) -> dict:
         if "onsets" in part:
             onsets = _keys(part["onsets"], "onsets", {"complex", "max_onset", "digraphs"})
             cap = onsets.get("max_onset", -1)
-            if not isinstance(cap, int) or cap == 0 or cap < -1:
+            if type(cap) is not int or cap == 0 or cap < -1:
                 raise ValueError("fragment syllable onsets.max_onset: a positive integer or -1 is required")
             out["onsets"] = {"complex": _strings(onsets.get("complex", []), "onsets.complex", 2),
                              "max_onset": cap,
                              "digraphs": _strings(onsets.get("digraphs", []), "onsets.digraphs", 2)}
         if "foreign" in part:
             foreign = _keys(part["foreign"], "foreign", {"units", "pattern", "nuclei", "final_nuclei"})
-            finals = _keys(foreign.get("final_nuclei", {}), "foreign.final_nuclei",
-                           set(foreign.get("final_nuclei", {})))
+            finals = _keys(foreign.get("final_nuclei", {}), "foreign.final_nuclei")
             _strings(list(finals), "foreign.final_nuclei", 2)
             for nucleus, tails in finals.items():
                 if not isinstance(tails, list) or not all(isinstance(t, str) for t in tails):

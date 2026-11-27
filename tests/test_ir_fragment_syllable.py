@@ -5,6 +5,7 @@ dictionaries it cites; this file never reads them back from the interpreter.
 """
 import copy
 import json
+import sys
 from pathlib import Path
 
 import pytest
@@ -13,6 +14,10 @@ from orthography2ipa.ir import layout
 from orthography2ipa.ir.compiler import build_ir
 from orthography2ipa.ir.interpreter import Interpreter
 
+sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
+
+# A trimmed fixture written by hand: a few rows of each table of
+# scripts/silabificador_fragment.py, so a silabificador release does not move it.
 FRAGMENT = json.loads((Path(__file__).parent / "data" / "ir_fragment_syllable.json").read_text(encoding="utf-8"))
 
 
@@ -114,7 +119,20 @@ def test_a_later_fragment_replaces_a_table():
     ({"onsets": {"max_onset": 0}}, "max_onset"),
     ({"foreign": {"nuclei": ["ee"]}}, "nuclei need a pattern"),
     ({"prefix_boundaries": [{"prefix": 3}]}, "prefix_boundaries.prefix"),
+    ({"stem_cuts": {"ruin": [True]}}, "offsets inside the stem"),
+    ({"seams": {"suffixes": [{"pattern": "c$", "cut": True}]}}, "cut must be an integer"),
+    ({"onsets": {"max_onset": True}}, "max_onset"),
+    ({"stem_cuts": None}, "stem_cuts: an object is required"),
+    ({"seams": {"suffixes": None}}, "seams.suffixes: a list is required"),
+    ({"foreign": {"final_nuclei": None}}, "foreign.final_nuclei: an object is required"),
 ])
 def test_a_malformed_table_is_refused(part, message):
     with pytest.raises(ValueError, match=message.replace("(", r"\(").replace(")", r"\)")):
         build_ir("pt-PT", fragments=[{"ir_version": 1, "syllable": part}])
+
+
+def test_the_silabificador_fragment_compiles():
+    import silabificador_fragment
+    fragment = silabificador_fragment.fragment()
+    assert "ruin" in fragment["syllable"]["stem_cuts"]
+    assert splitter(fragment).syllables("neymar") == ["ney", "mar"]
