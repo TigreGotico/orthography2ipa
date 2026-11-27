@@ -6936,7 +6936,7 @@
   "per_ci_high": 0.0589,
   "stress_acc": null,
   "n_stress": 0,
-  "exact_match": 0.7061,
+  "exact_match": 0.7062,
   "quality_tier": "research",
   "provenance": "machine-generated",
   "gating": true,
