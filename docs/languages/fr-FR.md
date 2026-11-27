@@ -386,6 +386,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ueil⟩ | [œj] | before vowel [œl] · default [œj] · word final [œj] |
 | ⟨ueill⟩ | [œj] |  |
 | ⟨ui⟩ | [ɥi] |  |
+| ⟨uin⟩ | [ɥɛ̃] |  |
 | ⟨v⟩ | [v] |  |
 | ⟨w⟩ | [w] [v] |  |
 | ⟨x⟩ | [ks] [ɡz] | default [ks] · intervocalic cross word [z] · word final ∅ |
@@ -413,7 +414,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 
 The spec declares no stress rule.
 
-Whole-word exceptions (154): ⟨affenpinscher⟩ [afənpinʃəʁ], ⟨afrikander⟩ [afʁikɑ̃dɛʁ], ⟨afrikaner⟩ [afʁikanɛʁ], ⟨amer⟩ [amɛʁ], ⟨amers⟩ [amɛʁ], ⟨angledozer⟩ [ɑ̃ɡlədozœʁ], ⟨aster⟩ [astɛʁ], ⟨atlas⟩ [atlas], ⟨autobus⟩ [otobys], ⟨bang⟩ [bɑ̃ɡ], ⟨bangs⟩ [bɑ̃ɡ], ⟨blazer⟩ [blazœʁ], ⟨bloomer⟩ [blumœʁ], ⟨boomer⟩ [bumœʁ], ⟨boomerang⟩ [buməʁɑ̃ɡ], ⟨bus⟩ [bys], ⟨bécher⟩ [beʃɛʁ], ⟨cactus⟩ [kaktys], ⟨campus⟩ [kɑ̃pys], ⟨cancer⟩ [kɑ̃sɛʁ], ⟨cancers⟩ [kɑ̃sɛʁ], ⟨casher⟩ [kaʃɛʁ], ⟨cathéter⟩ [katetɛʁ], ⟨ce⟩ [sə], ⟨ces⟩ [se], ⟨cet⟩ [sɛt], ⟨charter⟩ [ʃaʁtɛʁ], ⟨cher⟩ [ʃɛʁ], ⟨chers⟩ [ʃɛʁ], ⟨container⟩ [kɔ̃tɛnɛʁ], and 124 more in the spec file.
+Whole-word exceptions (155): ⟨affenpinscher⟩ [afənpinʃəʁ], ⟨afrikander⟩ [afʁikɑ̃dɛʁ], ⟨afrikaner⟩ [afʁikanɛʁ], ⟨amer⟩ [amɛʁ], ⟨amers⟩ [amɛʁ], ⟨angledozer⟩ [ɑ̃ɡlədozœʁ], ⟨aster⟩ [astɛʁ], ⟨atlas⟩ [atlas], ⟨autobus⟩ [otobys], ⟨bang⟩ [bɑ̃ɡ], ⟨bangs⟩ [bɑ̃ɡ], ⟨blazer⟩ [blazœʁ], ⟨bloomer⟩ [blumœʁ], ⟨boomer⟩ [bumœʁ], ⟨boomerang⟩ [buməʁɑ̃ɡ], ⟨bus⟩ [bys], ⟨bécher⟩ [beʃɛʁ], ⟨cactus⟩ [kaktys], ⟨campus⟩ [kɑ̃pys], ⟨cancer⟩ [kɑ̃sɛʁ], ⟨cancers⟩ [kɑ̃sɛʁ], ⟨casher⟩ [kaʃɛʁ], ⟨cathéter⟩ [katetɛʁ], ⟨ce⟩ [sə], ⟨ces⟩ [se], ⟨cet⟩ [sɛt], ⟨charter⟩ [ʃaʁtɛʁ], ⟨cher⟩ [ʃɛʁ], ⟨chers⟩ [ʃɛʁ], ⟨container⟩ [kɔ̃tɛnɛʁ], and 125 more in the spec file.
 
 Grammatical endings: ⟨-ent⟩ ∅ ∅, ⟨-er⟩ [e], ⟨-ez⟩ [e], ⟨-stion⟩ [stjɔ̃], ⟨-tial⟩ [sjal], ⟨-tiel⟩ [sjɛl], ⟨-tience⟩ [sjɑ̃s], ⟨-tion⟩ [sjɔ̃].
 <!-- atlas:spelling end -->
@@ -421,7 +422,7 @@ Grammatical endings: ⟨-ent⟩ ∅ ∅, ⟨-er⟩ [e], ⟨-ez⟩ [e], ⟨-stion
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 59 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 61 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -435,10 +436,12 @@ The spec applies 59 allophone rules after the letters are read. The change colum
 | `FR_NASAL_BLOCK_GEMINATE_IEN` | /jɛ̃/ → [jɛ], spelled ⟨ien⟩, before ⟨n⟩ ⟨m⟩ ⟨nn⟩ ⟨mm⟩ | - | [Fouché 1959](#src-fouche1959), [Tranel 1987](#src-tranel1987), [Walker 2001](#src-walker2001) |
 | `FR_NASAL_BLOCK_PREVOCALIC_OIN` | /wɛ̃/ → [wɛn], before a vowel, spelled ⟨oin⟩ | - | [Fouché 1959](#src-fouche1959), [Tranel 1987](#src-tranel1987), [Walker 2001](#src-walker2001) |
 | `FR_NASAL_BLOCK_GEMINATE_OIN` | /wɛ̃/ → [wɛ], spelled ⟨oin⟩, before ⟨n⟩ ⟨m⟩ ⟨nn⟩ ⟨mm⟩ | - | [Fouché 1959](#src-fouche1959), [Tranel 1987](#src-tranel1987), [Walker 2001](#src-walker2001) |
+| `FR_NASAL_BLOCK_PREVOCALIC_UIN` | /ɥɛ̃/ → [ɥin], before a vowel, spelled ⟨uin⟩ | ⟨ruine⟩ [ʁɥin] | [Fouché 1959](#src-fouche1959), [Tranel 1987](#src-tranel1987), [Walker 2001](#src-walker2001) |
 | `FR_ENT_MUTE_AFTER_AI_OI` | /ə/ → ∅, spelled ⟨e⟩, after ⟨ai⟩ ⟨oi⟩, before ⟨n⟩, with more context in the spec | ⟨parlaient⟩ [paʁlɛ] | [Martinon 1913](#src-martinon1913) |
 | `FR_UM_FINAL_LATIN` | /y/ → [ɔ], spelled ⟨u⟩, before ⟨m⟩, with more context in the spec | ⟨forum⟩ [fɔʁɔm] | [Martinon 1913](#src-martinon1913) |
 | `FR_UM_FINAL_LATIN_PLURAL` | /y/ → [ɔ], spelled ⟨u⟩, before ⟨m⟩, with more context in the spec | ⟨albums⟩ [albɔm] | [Martinon 1913](#src-martinon1913) |
 | `FR_ING_FINAL_ORAL_I` | /i/ → [i], spelled ⟨i⟩, before ⟨n⟩, with more context in the spec | ⟨parking⟩ [paʁkiŋ] | [Fougeron 1993](#src-fougeron_smith1993), [Martinon 1913](#src-martinon1913) |
+| `FR_LL_YOD_AFTER_UI` | /l/ → [j], spelled ⟨ll⟩, after ⟨ui⟩ | ⟨juillet⟩ [ʒɥijɛ] | [Martinon 1913](#src-martinon1913) |
 | `FR_NASAL_a` | /a/ → [ɑ̃], before a coda nasal | - | - |
 | `FR_NASAL_ə` | /ə/ → [ɑ̃], before a coda nasal | - | - |
 | `FR_NASAL_i` | /i/ → [ɛ̃], before a coda nasal | - | - |
@@ -480,10 +483,10 @@ The spec applies 59 allophone rules after the letters are read. The change colum
 | `FR_TREMA_E_MUTE_AFTER_GU` | /ɛ/ → ∅, spelled ⟨ë⟩, after ⟨gu⟩ | - | [Martinon 1913](#src-martinon1913) |
 | `FR_G_HARD_BEFORE_TREMA_U` | /ʒ/ → [ɡ], spelled ⟨g⟩, before ⟨ü⟩ | ⟨ambigüe⟩ [ɑ̃biɡy] | [Martinon 1913](#src-martinon1913) |
 | `FR_C_MUTE_FINAL_AFTER_NASAL` | /k/ → ∅, word-finally, spelled ⟨c⟩, after ⟨n⟩ ⟨ain⟩ ⟨ein⟩ ⟨oin⟩ | ⟨blanc⟩ [blɑ̃] | [Martinon 1913](#src-martinon1913) |
-| `FR_X_S_AFTER_OI` | /ks/ → [s], before a vowel, spelled ⟨x⟩, after ⟨oi⟩ | ⟨x⟩ [ks] | [Martinon 1913](#src-martinon1913) |
+| `FR_X_S_AFTER_OI` | /ks/ → [s], before a vowel, spelled ⟨x⟩, after ⟨oi⟩ | ⟨soixante⟩ [swasɑ̃t] | [Martinon 1913](#src-martinon1913) |
 | `FR_NUMERAL_FINAL_X_SOUNDS` | ∅ → [s], spelled ⟨x⟩, in 2 listed words | ⟨six⟩ [sis] | [Martinon 1913](#src-martinon1913) |
 | `FR_HUIT_FINAL_T_SOUNDS` | ∅ → [t], spelled ⟨t⟩, in 1 listed words | ⟨huit⟩ [ɥit] | [Martinon 1913](#src-martinon1913) |
-| `FR_X_K_BEFORE_SIBILANT` | /ks/ → [k], before [s], spelled ⟨x⟩ | ⟨not⟩ [ks] | [Martinon 1913](#src-martinon1913) |
+| `FR_X_K_BEFORE_SIBILANT` | /ks/ → [k], before [s], spelled ⟨x⟩ | ⟨excès⟩ [ɛksɛ] | [Martinon 1913](#src-martinon1913) |
 
 The spec applies 11 rules across a word boundary. The contexts are regular expressions on the IPA of the two words.
 
@@ -491,8 +494,8 @@ The spec applies 11 rules across a word boundary. The contexts are regular expre
 |:--|:--|:--|:--|:--|:--|
 | `FR_NEUF_V_BEFORE_HEURES` | `^nœf$` | `^œʁ$` | left [nœv‿] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_DIX_Z_BEFORE_HUIT_NEUF` | `^((?:d\|d͡z)[iɪ])s$` | `^(?:ɥit\|nœf)$` | left [z] | - | [Martinon 1913](#src-martinon1913) |
-| `FR_NUMERAL_MUTE_BEFORE_CONSONANT` | `^((?:s\|d\|d͡z)[iɪ])s$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|ʒɥ(?:i\|ɛ̃\|ilɛ\|ijɛ)\|sɛt\|də\|dy\|de\|puʁ\|paʁ\|syʁ\|kɔ̃tʁ\|ʃe\|pɑ̃dɑ̃\|səlɔ̃\|dəvɑ̃\|deʁjɛʁ\|dɛʁjɛʁ\|dəpɥi\|paʁmi\|dyʁɑ̃\|malɡʁe\|mwɛ̃\|plys?\|lə\|la\|le\|sə\|se\|te\|mɛ\|ni\|dɔ̃k\|nu\|vu\|ʒə\|kə\|ki\|nə)$)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | [Martinon 1913](#src-martinon1913) |
-| `FR_HUIT_MUTE_BEFORE_CONSONANT` | `^(ɥ[iɪ])t$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|ʒɥ(?:i\|ɛ̃\|ilɛ\|ijɛ)\|sɛt\|də\|dy\|de\|puʁ\|paʁ\|syʁ\|kɔ̃tʁ\|ʃe\|pɑ̃dɑ̃\|səlɔ̃\|dəvɑ̃\|deʁjɛʁ\|dɛʁjɛʁ\|dəpɥi\|paʁmi\|dyʁɑ̃\|malɡʁe\|mwɛ̃\|plys?\|lə\|la\|le\|sə\|se\|te\|mɛ\|ni\|dɔ̃k\|nu\|vu\|ʒə\|kə\|ki\|nə)$)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | [Martinon 1913](#src-martinon1913) |
+| `FR_NUMERAL_MUTE_BEFORE_CONSONANT` | `^((?:s\|d\|d͡z)[iɪ])s$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|ʒɥ(?:ɛ̃\|ijɛ)\|sɛt\|də\|dy\|de\|puʁ\|paʁ\|syʁ\|kɔ̃tʁ\|ʃe\|pɑ̃dɑ̃\|səlɔ̃\|dəvɑ̃\|deʁjɛʁ\|dɛʁjɛʁ\|dəpɥi\|paʁmi\|dyʁɑ̃\|malɡʁe\|mwɛ̃\|plys?\|lə\|la\|le\|sə\|se\|te\|mɛ\|ni\|dɔ̃k\|nu\|vu\|ʒə\|kə\|ki\|nə)$)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | [Martinon 1913](#src-martinon1913) |
+| `FR_HUIT_MUTE_BEFORE_CONSONANT` | `^(ɥ[iɪ])t$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|ʒɥ(?:ɛ̃\|ijɛ)\|sɛt\|də\|dy\|de\|puʁ\|paʁ\|syʁ\|kɔ̃tʁ\|ʃe\|pɑ̃dɑ̃\|səlɔ̃\|dəvɑ̃\|deʁjɛʁ\|dɛʁjɛʁ\|dəpɥi\|paʁmi\|dyʁɑ̃\|malɡʁe\|mwɛ̃\|plys?\|lə\|la\|le\|sə\|se\|te\|mɛ\|ni\|dɔ̃k\|nu\|vu\|ʒə\|kə\|ki\|nə)$)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | [Martinon 1913](#src-martinon1913) |
 | `FR_NUMERAL_Z_BEFORE_VOWEL` | `^((?:s\|d\|d͡z)[iɪ])s$` | `^(?!(?:avʁil\|au\|ut\|u\|ɔktɔbʁ\|e\|a)$)[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_Z` | `z$` | `^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | - |
 | `FR_LIAISON_T` | `t$` | `^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]` | left [t‿] | - | - |

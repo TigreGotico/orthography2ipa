@@ -923,13 +923,24 @@ def _show(example) -> str:
     return f"⟨{_clean(example[0])}⟩ [{_clean(example[1])}]" if example else ""
 
 
-def _example(notes: str, output: str = "") -> str:
+def _example(notes: str, output: str = "", graphemes=()) -> str:
     """The first example of the note whose transcription holds *output*.
 
     A note that three rules share must not give the labial example to the
     velar rule, so an example that does not show the rule's output is skipped.
+    When the rule names its *graphemes*, the example must also spell one of
+    them inside a longer word: an output that is a substring of another
+    segment ([s] of [ks]) would otherwise accept an unrelated word, and the
+    bare letter cited on its own (⟨x⟩ [ks]) is not a worked example.
     """
-    return _show(next((e for e in _examples(notes) if output in e[1]), None))
+    wanted = [g.lower() for g in graphemes or () if g]
+
+    def spells(example) -> bool:
+        spelled = example[0].lower()
+        return not wanted or any(g in spelled and spelled != g for g in wanted)
+
+    return _show(next((e for e in _examples(notes)
+                       if output in e[1] and spells(e)), None))
 
 
 def _sandhi_example(rule, output: str) -> str:
@@ -1032,7 +1043,7 @@ def block_rules(atlas: Atlas, spec) -> str:
             "| Rule | Change | Example | Cited |", "|:--|:--|:--|:--|"]
         for rule in active:
             lines.append(f"| `{rule.id}` | {_change(rule)} | "
-                         f"{_example(rule.notes, rule.surface or rule.append) or '-'} | "
+                         f"{_example(rule.notes, rule.surface or rule.append, rule.grapheme) or '-'} | "
                          f"{_citations(spec, rule.notes) or '-'} |")
     if sandhi:
         lines += ["", f"The spec applies {len(sandhi)} rules across a word "
