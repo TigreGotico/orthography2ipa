@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.134.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.134.0a1) (2026-11-27)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.133.2a2...7.134.0a1)
+
+**Merged pull requests:**
+
+- feat\(engine\): spelling conditions on sandhi rules; fr-FR liaison \(carry of \#2737\) [\#2760](https://github.com/TigreGotico/orthography2ipa/pull/2760) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.133.2a2](https://github.com/TigreGotico/orthography2ipa/tree/7.133.2a2) (2026-11-27)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.133.2a1...7.133.2a2)
@@ -331,10 +339,6 @@
 ## [7.130.1a3](https://github.com/TigreGotico/orthography2ipa/tree/7.130.1a3) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.130.1a2...7.130.1a3)
-
-**Merged pull requests:**
-
-- refactor\(registry\): import the tag parser from the linguatag top level [\#2631](https://github.com/TigreGotico/orthography2ipa/pull/2631) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.130.1a2](https://github.com/TigreGotico/orthography2ipa/tree/7.130.1a2) (2026-11-25)
 
