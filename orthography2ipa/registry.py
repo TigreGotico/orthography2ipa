@@ -322,9 +322,6 @@ _RENAMED: Dict[str, str] = {
     "sc-x-logudorese":      "sc-x-logudoro",
     "sv-x-rikssvenska":     "sv-x-rikssven",
     "ta-x-proto-dravidian": "ta-x-proto-dravidia",
-    # SIL retired ``bbz`` as non-existent and names no replacement, so Babalia
-    # Creole Arabic takes a private-use key. ``bbz`` is no other language's code.
-    "bbz":                  "ar-TD-x-babalia",
     # IANA deprecates ``ajt`` (preferred ``aeb``) and ``yol`` (preferred
     # ``enm``), so each variety takes a private-use key under its preferred code.
     "ajt":                  "aeb-x-judeo",
