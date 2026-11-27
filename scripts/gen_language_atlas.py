@@ -967,16 +967,19 @@ def _sandhi_example(rule, output: str) -> str:
 _MAX_SPELLING_CELL = 60
 
 
-def _context_cell(context: str, spelling) -> str:
+def _context_cell(context: str, spelling, joined) -> str:
     """A table cell for one side of a sandhi rule: the IPA context, and the
-    spelling condition when the rule has one (a long one is named, not printed)."""
+    spelling conditions when the rule has them (a long one is named, not printed)."""
     # GitHub splits a table cell at a pipe, even inside a code span.
     cell = "`" + context.replace("|", "\\|") + "`"
-    if spelling is None:
-        return cell
-    if len(spelling) > _MAX_SPELLING_CELL:
-        return cell + ", and a condition on the spelling"
-    return cell + ", spelled `" + spelling.replace("|", "\\|") + "`"
+    for label, text in (("spelled", spelling), ("joined", joined)):
+        if text is None:
+            continue
+        if len(text) > _MAX_SPELLING_CELL:
+            cell += f", {label} by a long condition"
+        else:
+            cell += f", {label} `" + text.replace("|", "\\|") + "`"
+    return cell
 
 
 def _cites(name: str, year: int, notes: str) -> bool:
@@ -1054,8 +1057,10 @@ def block_rules(atlas: Atlas, spec) -> str:
         lines += ["", f"The spec applies {len(sandhi)} rules across a word "
                   "boundary. The contexts are regular expressions on the IPA "
                   "of the two words."
-                  + (" A rule may also read the spelling of a word."
-                     if any(r.left_spelling or r.right_spelling for r in sandhi) else ""), "",
+                  + (" A rule may also read the spelling of a word, or its joined spelling, "
+                     "which adds the word before a hyphen."
+                     if any(r.left_spelling or r.right_spelling or r.left_joined_spelling
+                            or r.right_joined_spelling for r in sandhi) else ""), "",
                   "| Rule | End of word | Start of next word | Change | Example | Cited |",
                   "|:--|:--|:--|:--|:--|:--|"]
         for rule in sandhi:
@@ -1068,8 +1073,9 @@ def block_rules(atlas: Atlas, spec) -> str:
                 value = re.sub(r"\\\d|\\g<\w+>", "", value)
                 output = output or value
                 change.append(f"{side} [{value}]" if value else f"{side} ∅")
-            left, right = (_context_cell(c, sp) for c, sp in (
-                (rule.left_context, rule.left_spelling), (rule.right_context, rule.right_spelling)))
+            left, right = (_context_cell(c, sp, joined) for c, sp, joined in (
+                (rule.left_context, rule.left_spelling, rule.left_joined_spelling),
+                (rule.right_context, rule.right_spelling, rule.right_joined_spelling)))
             lines.append(
                 f"| `{rule.id}` | {left} | {right} | "
                 f"{', '.join(change) or 'none'} | {_sandhi_example(rule, output) or '-'} | "

@@ -323,7 +323,7 @@ The side that a rule rewrites is its target, which is not the same as its direct
 
 The two sides resolve apart from each other, and the first matching rule wins on each side. So one boundary can voice the coda of the left word and lenite the onset of the right word: *els dos* gives `əlz ˈðos`. The contexts always match against the original words, so the side that fires first cannot hide the trigger of the other.
 
-`left_spelling` and `right_spelling` are regexes on the spelling of each word. A rule needs them when two words sound the same and take different sandhi. French ⟨cent⟩ and ⟨sang⟩ are both [sɑ̃], and only *cent ans* links with [t]. A word after a hyphen reads from the start of its compound, so the ⟨vingt⟩ of *quatre-vingt-deux* reads `quatre-vingt` and the ⟨vingt⟩ of *vingt-deux* reads `vingt`.
+`left_spelling` and `right_spelling` are regexes on the spelling of each word, and `left_joined_spelling` and `right_joined_spelling` on its joined spelling. A rule needs them when two words sound the same and take different sandhi. French ⟨cent⟩ and ⟨sang⟩ are both [sɑ̃], and only *cent ans* links with [t]. A hyphen ends a word, and the joined spelling of a word after a hyphen adds the word before it: the ⟨vingt⟩ of *quatre-vingt-deux* has the spelling `vingt` and the joined spelling `quatre-vingt`.
 
 ## `StressRules`: syllable nuclei
 

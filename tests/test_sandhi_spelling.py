@@ -62,25 +62,44 @@ def test_a_spec_rule_reads_the_spelling_in_both_interpreters(extra, text, expect
 
 
 @pytest.mark.parametrize("extra, text, fires", [
-    # The second word of a compound reads the compound: "casa-mesa".
-    ({"right_spelling": "^mesa$"}, "casa-mesa", False),
-    ({"right_spelling": "^casa-mesa$"}, "casa-mesa", True),
-    ({"right_spelling": "^casa-mesa$"}, "casa mesa", False),
-    # The left word reads the compound up to itself: "mesa-casa" in "mesa-casa mesa".
-    ({"left_spelling": "^casa$"}, "mesa-casa mesa", False),
-    ({"left_spelling": "-casa$"}, "mesa-casa mesa", True),
-    ({"left_spelling": "^casa$"}, "casa-mesa", True),
+    # The spelling of a word is the word alone, also after a hyphen.
+    ({"right_spelling": "^mesa$"}, "casa-mesa", True),
+    ({"left_spelling": "^casa$"}, "mesa-casa mesa", True),
+    # The joined spelling adds the word before and a hyphen, and spans two words.
+    ({"right_joined_spelling": "^casa-mesa$"}, "casa-mesa", True),
+    ({"right_joined_spelling": "^casa-mesa$"}, "casa mesa", False),
+    ({"right_joined_spelling": "^mesa$"}, "casa-mesa", False),
+    ({"left_joined_spelling": "^mesa-casa$"}, "mesa-casa mesa", True),
+    ({"left_joined_spelling": "^casa$"}, "mesa-casa mesa", False),
+    ({"left_joined_spelling": "^casa$"}, "casa-mesa", True),
+    ({"right_joined_spelling": "^mesa-casa$"}, "casa-mesa-casa", True),
+    ({"right_joined_spelling": "^casa-mesa-casa$"}, "casa-mesa-casa", False),
 ])
-def test_a_word_after_a_hyphen_reads_from_the_start_of_its_compound(extra, text, fires, tmp_path):
+def test_the_joined_spelling_adds_the_word_before_a_hyphen(extra, text, fires, tmp_path):
     plain = both(SandhiRule(**{**FINAL, "transform": "ɐ"}), text, tmp_path)
     assert (both(SandhiRule(**FINAL, **extra), text, tmp_path) != plain) is fires
 
 
-def test_the_fields_compile_to_the_sandhi_spelling_primitive():
+def test_a_long_hyphen_chain_matches_in_linear_depth(tmp_path):
+    # Each spelling spans at most two words, so a pattern with a repetition
+    # recurses no deeper on a 2000-character chain than on two words.
+    rule = SandhiRule(**FINAL, left_spelling="^(?:.*a)?$", left_joined_spelling="^(?:.*-)?casa$",
+                      right_joined_spelling="(?:.*-)?casa$")
+    text = "-".join(["casa"] * 400)
+    assert len(text) > 1990
+    out = both(rule, text, tmp_path)
+    assert out.count("A") == 399
+
+
+def test_the_fields_compile_to_the_sandhi_spelling_primitives():
     rule = SandhiRule(**FINAL, left_spelling="^c", right_spelling="^m")
     ir = build_ir("pt-PT", spec=_spec(rule))
     assert {"left_spelling", "right_spelling"} <= ir["sandhi"][0].keys()
-    assert "sandhi_spelling=2" in layout.manifest(ir)
+    assert "sandhi_spelling=1" in layout.manifest(ir)
+    assert "sandhi_joined" not in layout.manifest(ir)
+    joined = build_ir("pt-PT", spec=_spec(SandhiRule(**FINAL, left_joined_spelling="^c")))
+    assert "left_joined_spelling" in joined["sandhi"][0]
+    assert "sandhi_joined=1" in layout.manifest(joined)
     assert "sandhi_spelling" not in layout.manifest(build_ir("pt-PT", spec=_spec(SandhiRule(**FINAL))))
 
 
@@ -89,7 +108,8 @@ def test_a_rule_without_the_fields_keeps_its_ir():
         "left", "right", "obligatory", "left_out"}
 
 
-@pytest.mark.parametrize("field", ["left_spelling", "right_spelling"])
+@pytest.mark.parametrize("field", ["left_spelling", "right_spelling", "left_joined_spelling",
+                                   "right_joined_spelling"])
 def test_the_schema_refuses_a_spelling_that_is_not_a_regex(field):
     SandhiRuleModel.model_validate({**FINAL, field: "^c"})
     with pytest.raises(ValidationError, match="not a valid regex"):
@@ -105,3 +125,22 @@ def test_the_reference_engine_reads_the_spellings():
     assert engine.apply(["sɑ̃", "ɑ̃"]) == ["sɑ̃", "ɑ̃"]
     with pytest.raises(ValueError, match="spellings"):
         engine.apply(["sɑ̃", "ɑ̃"], spellings=["cent"])
+
+
+def test_the_reference_engine_reads_the_joined_spellings():
+    rule = SandhiRule(id="T", name="t", left_context="$", right_context="", transform="t",
+                      left_joined_spelling="^(?!quatre-vingt$)", left_spelling="^vingt$")
+    engine = SandhiEngine((rule,))
+    words = ["vɛ̃", "dø"]
+    assert engine.apply(words, spellings=["vingt", "deux"]) == ["vɛ̃t", "dø"]
+    assert engine.apply(words, spellings=["vingt", "deux"],
+                        joined_spellings=["quatre-vingt", "vingt-deux"]) == ["vɛ̃", "dø"]
+
+
+def test_a_spelling_free_rule_runs_without_spellings():
+    block = SandhiRule(id="B", name="b", left_context="$", right_context="", transform="",
+                       right_spelling="^h")
+    link = SandhiRule(id="L", name="l", left_context="t$", right_context="^a", transform="t‿")
+    engine = SandhiEngine((block, link))
+    assert engine.apply(["sɛt", "aʃ"]) == ["sɛt‿", "aʃ"]
+    assert engine.apply(["sɛt", "aʃ"], spellings=["cette", "hache"]) == ["sɛt", "aʃ"]

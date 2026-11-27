@@ -1347,15 +1347,23 @@ class SandhiRule:
         ``None`` (the default) sets no spelling condition. It is the spelling
         mirror of :attr:`left_context`: what a rule needs when two words with
         the same IPA take different sandhi, because only the written form
-        tells them apart (French ⟨cent⟩ and ⟨sans⟩ are both [sɑ̃], and only
+        tells them apart (French ⟨cent⟩ and ⟨sang⟩ are both [sɑ̃], and only
         ⟨cent ans⟩ links with [t]). The spelling is the casefolded text of the
-        word without the punctuation around it. A word written after a hyphen
-        reads from the start of its hyphenated compound, joined with ``-``:
-        in ⟨quatre-vingt-deux⟩ the word ⟨vingt⟩ reads ``quatre-vingt`` and
-        ⟨deux⟩ reads ``quatre-vingt-deux``, so ``^vingt$`` holds for
-        ⟨vingt-deux⟩ and not for ⟨quatre-vingt-deux⟩.
+        word without the punctuation around it, and a hyphen ends it: in
+        ⟨vingt-deux⟩ the two words read ``vingt`` and ``deux``.
     right_spelling : Optional[str]
         The same condition on the spelling of the right word.
+    left_joined_spelling : Optional[str]
+        Regex that must find a match in the JOINED spelling of the left word:
+        for a word joined to the word before it by a hyphen, the spelling of
+        that word, ``-`` and its own spelling; for any other word, its own
+        spelling. It spans at most two words. In ⟨quatre-vingt-deux⟩ the
+        joined spellings are ``quatre``, ``quatre-vingt`` and ``vingt-deux``,
+        so ``^(?!quatre-vingt$)`` tells ⟨vingt-deux⟩ from ⟨quatre-vingt-deux⟩,
+        and an anchored word list such as ``^(?:les|des)$`` also says that the
+        word is not joined (⟨donne-les⟩ reads ``donne-les``).
+    right_joined_spelling : Optional[str]
+        The same condition on the joined spelling of the right word.
     obligatory : bool
         Whether this rule applies unconditionally.
     notes : str
@@ -1369,6 +1377,8 @@ class SandhiRule:
     right_transform: Optional[str] = None
     left_spelling: Optional[str] = None
     right_spelling: Optional[str] = None
+    left_joined_spelling: Optional[str] = None
+    right_joined_spelling: Optional[str] = None
     obligatory: bool = True
     notes: str = ""
 

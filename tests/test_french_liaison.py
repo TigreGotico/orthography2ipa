@@ -77,8 +77,11 @@ def test_no_liaison_before_an_h_aspire_word(text, expected):
     ("il est allé", "il ɛt‿ ale"), ("c'est un ami", "sɛt‿ œ̃n‿ ami"),
     ("ils sont arrivés", "il sɔ̃t‿ aʁive"), ("tout à fait", "tut‿ a fɛ"),
     ("quand il viendra", "kɑ̃t‿ il vjɛ̃dʁa"), ("dont il est", "dɔ̃t‿ il ɛ"),
-    ("grand homme", "ɡʁɑ̃t‿ ɔm"), ("quant à", "kɑ̃t‿ a"),
+    ("quant à", "kɑ̃t‿ a"), ("tout est fini", "tut‿ ɛ fini"),
     ("grand et fort", "ɡʁɑ̃ e fɔʁ"), ("le tout et la partie", "lə tu e la paʁti"),
+    # Martinon (1913: 365-366) links grand only before its noun; two words
+    # cannot show the noun, so grand does not link (il est grand aussi).
+    ("il est grand aussi", "il ɛ ɡʁɑ̃ osi"),
 ])
 def test_t_after_est_and_the_proclitics(text, expected):
     assert _t(text) == expected
@@ -153,3 +156,55 @@ def test_the_regional_specs_inherit_the_liaison(code):
 ])
 def test_six_dix_huit_before_an_h_aspire(text, expected):
     assert _t(text) == expected
+
+
+# A hyphen does not hide the right word from its exclusions: Martinon (1913:
+# 253 note 2) cent-huit sans liaison; 358 note 1 cent un; 253 trois huit.
+@pytest.mark.parametrize("text, expected", [
+    ("cent-huit", "sɑ̃ ɥit"), ("cent-onze", "sɑ̃ ɔ̃z"), ("cent-un", "sɑ̃ œ̃"),
+    ("deux-cent-un", "dø sɑ̃ œ̃"), ("trois-huit", "tʁwa ɥit"), ("le Très-Haut", "lə tʁɛ o"),
+])
+def test_a_hyphenated_right_word_keeps_its_exclusions(text, expected):
+    assert _t(text) == expected
+
+
+# Martinon (1913: 390) vingt et un avril; 376 plusieurs ont prétendu and
+# chez vous / entre nous before a subject; 345 the months.
+@pytest.mark.parametrize("text, expected", [
+    ("vingt et un avril", "vɛ̃t‿ e œ̃ avʁil"), ("le trente et un août", "lə tʁɑ̃t‿ e œ̃ au"),
+    ("certains ont dit", "sɛʁtɛ̃ ɔ̃ di"), ("certains auteurs", "sɛʁtɛ̃z‿ otœʁ"),
+    ("plusieurs autres", "plyzjœʁz‿ otʁ"),
+    ("chez vous il fait froid", "ʃe vu il fɛ fʁwa"), ("entre nous on dit", "ɑ̃tʁ nu ɔ̃ di"),
+    ("le premier avril", "lə pʁəmje avʁil"), ("vingt-et-un ans", "vɛ̃t‿ e œ̃n‿ ɑ̃"),
+])
+def test_no_liaison_where_martinon_has_none(text, expected):
+    assert _t(text) == expected
+
+
+# Martinon (1913: 251, 254): hongrois, Huns; the Swiss huitante is the numeral.
+@pytest.mark.parametrize("text, code, expected", [
+    ("les Hongrois", "fr-FR", "le ɔ̃ɡʁwa"), ("les Huns", "fr-FR", "le œ̃"),
+    ("les huitante", "fr-CH", "le ɥitɑ̃t"),
+])
+def test_more_h_aspire_and_numeral_blocks(text, code, expected):
+    assert _t(text, code) == expected
+
+
+# Martinon (1913: 358): il es(t) tonze heures, avec liaison, cas spécial.
+def test_est_links_before_onze():
+    assert _t("il est onze heures") == "il ɛt‿ ɔ̃z‿ œʁ"
+    assert _t("les onze") == "le ɔ̃z"
+
+
+# The enchaînement rules read no spelling, so the reference engine keeps them
+# when the caller passes no spellings.
+def test_the_enchainement_rules_run_without_spellings():
+    engine = o2i.SandhiEngine(o2i.get("fr-FR").sandhi_rules)
+    assert engine.apply(["sɛt", "ɔm"]) == ["sɛt‿", "ɔm"]
+    assert engine.apply(["sɛt", "aʃ"], spellings=["cette", "hache"]) == ["sɛt", "aʃ"]
+    assert engine.apply(["le", "ami"], spellings=["les", "amis"]) == ["lez‿", "ami"]
+
+
+def test_the_h_aspire_stems_are_written_once():
+    rules = o2i.get("fr-FR").sandhi_rules
+    assert sum("haricot" in (r.right_spelling or "") for r in rules) == 1

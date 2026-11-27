@@ -21,10 +21,11 @@ def _own_ids(code):
 
 def test_every_french_spelling_rule_is_overridden_in_crs():
     spelled = {r.id for r in o2i.get("fr-FR").sandhi_rules
-               if r.left_spelling is not None or r.right_spelling is not None}
+               if any((r.left_spelling, r.right_spelling, r.left_joined_spelling, r.right_joined_spelling))}
     assert spelled
     assert spelled <= _own_ids("crs")
-    assert not any(r.left_spelling or r.right_spelling for r in o2i.get("crs").sandhi_rules)
+    assert not any(r.left_spelling or r.right_spelling or r.left_joined_spelling or r.right_joined_spelling
+                   for r in o2i.get("crs").sandhi_rules)
 
 
 @pytest.mark.parametrize("text, expected", [

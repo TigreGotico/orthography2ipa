@@ -154,10 +154,13 @@ class SandhiRuleModel(_Strict):
     right_transform: Optional[str] = None
     left_spelling: Optional[str] = None
     right_spelling: Optional[str] = None
+    left_joined_spelling: Optional[str] = None
+    right_joined_spelling: Optional[str] = None
     obligatory: bool = True
     notes: str = ""
 
-    @field_validator("left_context", "right_context", "left_spelling", "right_spelling")
+    @field_validator("left_context", "right_context", "left_spelling", "right_spelling",
+                     "left_joined_spelling", "right_joined_spelling")
     @classmethod
     def _valid_regex(cls, v: Optional[str]) -> Optional[str]:
         """A context or spelling condition must be a regex that compiles."""

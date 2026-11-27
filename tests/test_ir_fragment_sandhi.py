@@ -114,7 +114,7 @@ def test_no_fragment_leaves_the_ir_byte_identical(code):
     plain = layout.encode(build_ir(code))
     empty = layout.encode(build_ir(code, fragments=({"ir_version": 1},)))
     assert layout.canonical_bytes(empty) == layout.canonical_bytes(plain)
-    assert not {"sandhi_spelling", "sandhi_pause"} & set(plain["primitives"])
+    assert not {"sandhi_spelling", "sandhi_joined", "sandhi_pause"} & set(plain["primitives"])
 
 
 def test_the_new_fields_have_their_own_semantics_versions():
@@ -122,7 +122,9 @@ def test_the_new_fields_have_their_own_semantics_versions():
     primitives = lambda *rules: layout.manifest(build_ir("kab", fragments=(fragment(*rules),)))
     assert "sandhi_pause" not in primitives(FINAL) and "sandhi_spelling" not in primitives(FINAL)
     assert "sandhi_pause=1" in primitives({"pause": True, **FINAL})
-    assert "sandhi_spelling=2" in primitives({**FINAL, "right_spelling": "^m"})
+    assert "sandhi_spelling=1" in primitives({**FINAL, "right_spelling": "^m"})
+    assert "sandhi_joined=1" in primitives({**FINAL, "right_joined_spelling": "^m"})
+    assert "sandhi_joined" not in primitives({**FINAL, "right_spelling": "^m"})
 
 
 def test_the_revision_covers_the_rules():
@@ -132,9 +134,10 @@ def test_the_revision_covers_the_rules():
     assert len({plain, one, other}) == 3
 
 
-@pytest.mark.parametrize("field, version", [("sandhi_pause", 2), ("sandhi_spelling", 3)])
+@pytest.mark.parametrize("field, version", [("sandhi_pause", 2), ("sandhi_spelling", 2), ("sandhi_joined", 2)])
 def test_both_interpreters_refuse_a_newer_condition(field, version, tmp_path):
-    doc = layout.encode(build_ir("pt-PT", fragments=(fragment({"pause": True, **FINAL, "left_spelling": "^m"}),)))
+    doc = layout.encode(build_ir("pt-PT", fragments=(fragment(
+        {"pause": True, **FINAL, "left_spelling": "^m", "left_joined_spelling": "^m"}),)))
     assert field in doc["primitives"]
     doc["primitives"][field] = version
     with pytest.raises(IRVersionError, match=field):
@@ -145,9 +148,10 @@ def test_both_interpreters_refuse_a_newer_condition(field, version, tmp_path):
     assert lua.stdout.startswith("E ") and f"unsupported primitive version: {field}" in lua.stdout
 
 
-@pytest.mark.parametrize("field", ["sandhi_pause", "sandhi_spelling"])
+@pytest.mark.parametrize("field", ["sandhi_pause", "sandhi_spelling", "sandhi_joined"])
 def test_an_interpreter_without_the_condition_refuses_the_ir(field, monkeypatch):
-    doc = layout.encode(build_ir("pt-PT", fragments=(fragment({"pause": True, **FINAL, "left_spelling": "^m"}),)))
+    doc = layout.encode(build_ir("pt-PT", fragments=(fragment(
+        {"pause": True, **FINAL, "left_spelling": "^m", "left_joined_spelling": "^m"}),)))
     monkeypatch.delitem(layout.SEMANTICS, field)
     with pytest.raises(IRVersionError, match=field):
         Interpreter(doc)

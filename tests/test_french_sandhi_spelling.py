@@ -107,7 +107,8 @@ def test_ent_keeps_its_nasal_vowel_elsewhere(text, expected):
 def test_the_loader_keeps_the_spelling_fields():
     rules = {r.id: r for r in o2i.get("fr-FR").sandhi_rules}
     assert rules["FR_NEUF_V_BEFORE_ANS"].right_spelling == "^ans$"
-    assert rules["FR_ENT_MUTE_AFTER_ILS"].left_spelling is not None
+    assert rules["FR_ENT_MUTE_AFTER_ILS"].left_joined_spelling is not None
+    assert rules["FR_VINGT_T_BEFORE_UNIT"].left_spelling == "^vingt$"
 
 
 # The regional specs inherit the rules by id and read the same spelling.
@@ -116,3 +117,23 @@ def test_the_regional_specs_inherit_the_rules(code):
     assert _t("vingt-deux", code).startswith("vɛ̃t ")
     assert not _t("quatre-vingt-deux", code).split()[1].endswith("t")
     assert _t("ils parlent", code).endswith("paʁl")
+
+
+# Martinon (1913: 364, 161): partent-ils has one [t], the t of the stem.
+@pytest.mark.parametrize("text, expected", [
+    ("partent-ils", "paʁt‿ il"), ("sentent-elles", "sɑ̃t‿ ɛl"), ("mettent-elles", "met‿ ɛl"),
+    ("chantent-ils", "ʃɑ̃t‿ il"), ("parlent-ils", "paʁlt‿ il"),
+])
+def test_ent_before_an_inverted_subject_links_with_one_t(text, expected):
+    assert _t(text) == expected
+
+
+# The spellings span at most two words, so a long hyphen chain is read in
+# linear depth (it raised RecursionError when the spelling held the whole
+# compound).
+@pytest.mark.parametrize("code", ["fr-FR", "fr-CA"])
+def test_a_long_hyphen_chain_transcribes(code):
+    chain = "-".join(["ha"] * 700)
+    assert len(chain) > 2000
+    assert _t(chain, code).count("a") == 700
+    assert _t("il dit " + "-".join(["hahaha"] * 60) + " ici", code)

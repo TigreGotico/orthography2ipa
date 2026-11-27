@@ -51,7 +51,8 @@ LAYOUT = O(
     atoms=O(mark=L(S), affricates=L(S)),
     allophony=O(passes=I, atoms=L(S), geminate=I, rules=L(_RULE)),
     sandhi=L(O(left=PAT, right=PAT, obligatory=I, left_out=TPL, right_out=TPL,
-               left_spelling=PAT, right_spelling=PAT, pause=I)),
+               left_spelling=PAT, right_spelling=PAT,
+               left_joined_spelling=PAT, right_joined_spelling=PAT, pause=I)),
     dialect=L(_STEP),
     char_maps=O(casefold=L(("pair", I, S)), plain_lower=L(("pair", I, S)), nfd=L(("pair", I, S)),
                 ccc=L(L(I)), compose=L(L(I)), presentation=L(("pair", I, S)), fold=SSET),
@@ -72,7 +73,7 @@ SEMANTICS = {
     "codepoint_map": 1, "pattern": 1, "trie": 1, "bits": 1, "predicate": 1, "candidates": 1,
     "beam": 1, "splitter": 1, "decision": 1, "sequencer": 1, "segment": 1, "word_has": 1,
     "spell_gate": 1, "positional_rewrite": 1, "gated_map": 1, "aligned_rewrite": 1,
-    "allophony": 1, "mark_placement": 1, "sandhi": 1, "sandhi_spelling": 2, "sandhi_pause": 1, "rewrite": 1, "endings": 1, "inherent": 1, "written_onsets": 1, "vowel_letters": 1, "secondary": 1, "aperture": 1, "prefixes": 1, "coda_liquid": 1, "mutate": 1, "accent2": 1, "fold": 1, "tone_dock": 1, "iambic": 1, "prevocalic_backoff": 1,
+    "allophony": 1, "mark_placement": 1, "sandhi": 1, "sandhi_spelling": 1, "sandhi_joined": 1, "sandhi_pause": 1, "rewrite": 1, "endings": 1, "inherent": 1, "written_onsets": 1, "vowel_letters": 1, "secondary": 1, "aperture": 1, "prefixes": 1, "coda_liquid": 1, "mutate": 1, "accent2": 1, "fold": 1, "tone_dock": 1, "iambic": 1, "prevocalic_backoff": 1,
     "weight": 1, "virama_final": 1, "vowel_signs": 1, "preposed": 1, "ipa_count": 1, "consonant_nuclei": 1, "computed_tone": 1,
     "internal_apostrophe": 1, "apostrophe_elision": 1, "collapse_geminates": 1, "context_beam": 1,
     "clitic_marks": 1, "silent_stress_marks": 1, "overrides": 1, "words": 1, "allophone_map": 1, "hiatus": 2,
@@ -310,6 +311,8 @@ def manifest(ir: dict) -> str:
         used |= {"sandhi", "pattern"}
         if any("left_spelling" in r or "right_spelling" in r for r in ir["sandhi"]):
             used.add("sandhi_spelling")
+        if any("left_joined_spelling" in r or "right_joined_spelling" in r for r in ir["sandhi"]):
+            used.add("sandhi_joined")
         if any("pause" in r for r in ir["sandhi"]):
             used.add("sandhi_pause")
     if ir.get("char_maps", {}).get("fold"):
