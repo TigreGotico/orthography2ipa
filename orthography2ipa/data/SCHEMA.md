@@ -294,6 +294,11 @@ To keep a context from the base file, write it again in the child file.
 | `obligatory`   | bool   | no       | Whether rule is obligatory (default: true) |
 | `notes`        | string | no       | Optional notes                       |
 
+Sandhi rules inherit by id, like allophone rules. A child spec switches off
+an inherited sandhi rule by redeclaring its `id` with the context `(?!)`, a
+pattern that never matches, and `transform` `""`. The language atlas lists
+such a rule as switched off, not as a rule the spec applies.
+
 A sandhi rule applies only within its prosodic domain (Nespor & Vogel 1986,
 *Prosodic Phonology*). Punctuation that writes a pause (a comma, a full stop,
 and their equivalents in every script) closes the intonational phrase (IP),
