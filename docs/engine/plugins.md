@@ -4,7 +4,7 @@
 covers: which extensions run in the Python host around the IR interpreter, the hook each one uses, how a cost crosses the hook, and why none of them goes into a loom export
 source: orthography2ipa/ir/interpreter.py:Hooks, orthography2ipa/g2p.py:G2P._interpreter, orthography2ipa/g2p.py:G2P._transcribe_ir, orthography2ipa/ir/compiler.py:build_ir, orthography2ipa/pipeline.py, orthography2ipa/plugins.py
 generated: no
-verify: .venv/bin/python -m doctest docs/engine/plugins.md
+verify: `PYTHONPATH=$PWD python -m doctest docs/engine/plugins.md && PYTHONPATH=$PWD python -m pytest "tests/test_docs_hint_sources.py::test_hint_sources_exist[docs/engine/plugins.md]"`
 see: docs/engine/ir.md, docs/engine/architecture.md, docs/guide/lexicon.md, docs/guide/loom_export.md
 -->
 

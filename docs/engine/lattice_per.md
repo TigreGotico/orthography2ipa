@@ -4,7 +4,7 @@
 covers: how `lattice_per` scores a phone sequence against every pronunciation that a lect admits
 source: `orthography2ipa/lattice_per.py`
 generated: no
-verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_lattice_per.py`
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_lattice_per.py "tests/test_docs_examples.py::test_example_prints_its_text_block[docs/engine/lattice_per.md]" "tests/test_docs_hint_sources.py::test_hint_sources_exist[docs/engine/lattice_per.md]"`
 see: `docs/engine/lattice.md`, `docs/evaluation/benchmarks.md`
 -->
 
