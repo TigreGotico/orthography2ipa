@@ -163,7 +163,7 @@ def test_g_before_a_vowel_letter_is_not_final(text, expected):
 # zinc should be written zing.
 @pytest.mark.parametrize("text, expected", [
     ("blanc", "blɑ̃"), ("blancs", "blɑ̃"), ("banc", "bɑ̃"), ("franc", "fʁɑ̃"),
-    ("tronc", "tʁɔ̃"), ("vainc", "vɛ̃"), ("donc", "dɔ̃"), ("zinc", "zɛ̃ɡ"),
+    ("tronc", "tʁɔ̃"), ("vainc", "vɛ̃"), ("zinc", "zɛ̃ɡ"),
 ])
 def test_final_c_after_a_nasal_is_mute(text, expected):
     assert _t(text) == expected
@@ -505,4 +505,15 @@ def test_only_the_months_in_zh_keep_the_consonant(text, expected):
     ("six euros", "siz‿ øʁo"), ("dix usines", "diz‿ yzin"),
 ])
 def test_six_and_dix_link_before_a_rounded_front_vowel(text, expected):
+    assert _t(text) == expected
+
+
+# donc is an entry [dɔ̃k] (Lexique 3.83 d§k): Martinon (1913: 213) sounds the
+# ⟨c⟩ when donc opens a clause (je pense, donc je suis), and the rule layer
+# cannot see the clause.
+@pytest.mark.parametrize("text, expected", [
+    ("donc", "dɔ̃k"), ("Donc, la Terre est ronde.", "dɔ̃k la tɛʁ‿ ɛ ʁɔ̃d"),
+    ("blanc", "blɑ̃"),
+])
+def test_donc_keeps_its_c(text, expected):
     assert _t(text) == expected
