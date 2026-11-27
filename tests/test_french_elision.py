@@ -130,10 +130,11 @@ def test_les_keeps_its_vowel():
 
 
 @pytest.mark.parametrize("text", ["est-ce", "peut-être", "rendez-vous",
-                                  "quatre-vingts"])
+                                  "porte-monnaie"])
 def test_a_hyphenated_compound_stays_two_words_and_loses_neither(text):
-    # A hyphen is a word boundary here (liaison is not modelled): both parts
-    # are spoken, and each reads as it does alone.
+    # A hyphen is a word boundary: both parts are spoken, and each reads as it
+    # does alone where no sandhi rule joins them (quatre-vingts keeps the e of
+    # quatre, FR_QUATRE_E_BEFORE_VINGT, tests/test_french_sandhi_spelling.py).
     parts = text.split("-")
     assert o2i.transcribe(text, "fr-FR").split(" ") == [
         o2i.transcribe(p, "fr-FR") for p in parts]

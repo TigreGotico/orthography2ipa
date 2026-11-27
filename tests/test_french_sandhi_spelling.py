@@ -37,9 +37,9 @@ def test_vingt_sounds_its_t_from_21_to_29(text, expected):
 
 @pytest.mark.parametrize("text, expected", [
     ("vingt", "vɛ̃"), ("vingt jours", "vɛ̃ ʒuʁ"), ("vingt mille", "vɛ̃ mil"),
-    ("quatre-vingt-un", "katʁ vɛ̃ œ̃"), ("quatre-vingt-deux", "katʁ vɛ̃ dø"),
-    ("quatre-vingt-neuf", "katʁ vɛ̃ nœf"), ("quatre-vingt-huit", "katʁ vɛ̃ ɥit"),
-    ("quatre-vingt-dix-huit", "katʁ vɛ̃ diz ɥit"),
+    ("quatre-vingt-un", "katʁə vɛ̃ œ̃"), ("quatre-vingt-deux", "katʁə vɛ̃ dø"),
+    ("quatre-vingt-neuf", "katʁə vɛ̃ nœf"), ("quatre-vingt-huit", "katʁə vɛ̃ ɥit"),
+    ("quatre-vingt-dix-huit", "katʁə vɛ̃ diz ɥit"),
 ])
 def test_vingt_keeps_its_t_silent_elsewhere(text, expected):
     assert _t(text) == expected
@@ -146,4 +146,15 @@ def test_a_long_hyphen_chain_transcribes(code):
     ("dix-huit", "diz ɥit"), ("dix-neuf", "diz nœf"),
 ])
 def test_dix_links_in_the_derivatives_of_18_and_19(text, expected):
+    assert _t(text) == expected
+
+
+# Martinon (1913: 161): the e and r of quatre may fall in familiar speech
+# (à la six quat' deux), "on dit aussi uniquement quatre-vingts". Lexique 3.83:
+# quatre-vingt-deux [katR°v5d2].
+@pytest.mark.parametrize("text, expected", [
+    ("quatre-vingts", "katʁə vɛ̃"), ("quatre-vingt-deux", "katʁə vɛ̃ dø"),
+    ("quatre vingts", "katʁə vɛ̃"), ("quatre", "katʁ"), ("quatre enfants", "katʁ‿ ɑ̃fɑ̃"),
+])
+def test_quatre_keeps_its_e_before_vingt(text, expected):
     assert _t(text) == expected

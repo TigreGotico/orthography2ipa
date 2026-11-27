@@ -568,17 +568,12 @@ def test_quatre_vingt_dix_huit_reads_dix_huit():
     assert _t("quatre-vingt-dix-huit").endswith("diz ɥit")
 
 
-# Known gaps, with the correct readings. Each needs a sandhi or word rule
-# that reads the spelling of a neighbouring word, which the spec schema does
-# not have yet (the spelling-aware sandhi follow-up); the fr-FR page lists
-# them as known limits. The engine change is expected to make them pass.
-_SPELLING_SANDHI = "needs spelling-aware sandhi conditions (follow-up)"
-
-
-@pytest.mark.xfail(strict=True, raises=AssertionError, reason=_SPELLING_SANDHI)
+# Readings that need the spelling of a neighbouring word, which the sandhi
+# rules now read (left_spelling, right_spelling and the joined spellings;
+# tests/test_french_sandhi_spelling.py has the counter-cases).
 @pytest.mark.parametrize("text, expected", [
-    # The 3pl ⟨-ent⟩ after a subject clitic is mute (Fouché 1959; Tranel
-    # 1987 §3); bare ⟨-ent⟩ stays ambiguous (ENDING "ent").
+    # The 3pl ⟨-ent⟩ after a subject clitic is mute (Martinon 1913: 161);
+    # bare ⟨-ent⟩ stays ambiguous (ENDING "ent").
     ("ils parlent", "il paʁl"),
     # Martinon (1913: 329): the t of vingt sounds in vingt et un.
     ("vingt et un", "vɛ̃t‿ e œ̃"),
@@ -587,5 +582,5 @@ _SPELLING_SANDHI = "needs spelling-aware sandhi conditions (follow-up)"
     # Martinon (1913: 161): quatre-vingts keeps the e of quatre.
     ("quatre-vingt-dix-huit", "katʁə vɛ̃ diz ɥit"),
 ])
-def test_known_gaps_that_need_the_spelling_of_a_neighbour(text, expected):
+def test_readings_that_need_the_spelling_of_a_neighbour(text, expected):
     assert _t(text) == expected

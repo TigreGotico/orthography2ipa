@@ -25,7 +25,7 @@ def _t(text, code="fr-FR"):
     ("les amis", "lez‿ ami"), ("des enfants", "dez‿ ɑ̃fɑ̃"),
     ("aux armes", "oz‿ aʁm"), ("ces hommes", "sez‿ ɔm"), ("mes amis", "mez‿ ami"),
     ("leurs amis", "lœʁz‿ ami"), ("deux ans", "døz‿ ɑ̃"),
-    ("trois hommes", "tʁwaz‿ ɔm"), ("quatre-vingts ans", "katʁ vɛ̃z‿ ɑ̃"),
+    ("trois hommes", "tʁwaz‿ ɔm"), ("quatre-vingts ans", "katʁə vɛ̃z‿ ɑ̃"),
     ("deux cents ans", "dø sɑ̃z‿ ɑ̃"), ("chez elle", "ʃez‿ ɛl"),
     ("sans amour", "sɑ̃z‿ amuʁ"), ("très utile", "tʁɛz‿ ytil"),
     ("dès à présent", "dɛz‿ a pʁezɑ̃"), ("les yeux", "lez‿ iø"),

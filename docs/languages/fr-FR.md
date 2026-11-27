@@ -189,14 +189,15 @@ Some pairs of words have the same IPA and take different sandhi. ⟨ans⟩ is [�
 
 | Rule | Effect | Spec output | Source |
 |:---|:---|:---|:---|
-| `FR_VINGT_T_BEFORE_UNIT`, `FR_VINGT_T_BEFORE_ET_HUIT` | The ⟨t⟩ of ⟨vingt⟩ sounds from 21 to 29, and not from 81 to 89 | ⟨vingt-deux⟩ `vɛ̃t dø`, ⟨vingt et un⟩ `vɛ̃t‿ e œ̃`, ⟨quatre-vingt-deux⟩ `katʁ vɛ̃ dø` | Martinon 1913: 253, 329-330, 346 |
+| `FR_VINGT_T_BEFORE_UNIT`, `FR_VINGT_T_BEFORE_ET_HUIT` | The ⟨t⟩ of ⟨vingt⟩ sounds from 21 to 29, and not from 81 to 89 | ⟨vingt-deux⟩ `vɛ̃t dø`, ⟨vingt et un⟩ `vɛ̃t‿ e œ̃`, ⟨quatre-vingt-deux⟩ `katʁə vɛ̃ dø` | Martinon 1913: 253, 329-330, 346 |
+| `FR_QUATRE_E_BEFORE_VINGT` | ⟨quatre⟩ keeps its ⟨e⟩ before ⟨vingt⟩ | ⟨quatre-vingts⟩ `katʁə vɛ̃`, ⟨quatre enfants⟩ `katʁ‿ ɑ̃fɑ̃` | Martinon 1913: 161; Lexique 3.83 |
 | `FR_NEUF_V_BEFORE_ANS`, `FR_NEUF_V_BEFORE_HEURES` | ⟨neuf⟩ links with [v] before ⟨ans⟩ and ⟨heures⟩, read by their spelling | ⟨neuf ans⟩ `nœv‿ ɑ̃`, ⟨neuf en tout⟩ `nœf ɑ̃ tu`, ⟨neuf heurts⟩ `nœf œʁ` | Martinon 1913: 234-235, 371 |
 | `FR_EST_NOUN_AFTER_COMPASS`, `FR_EST_NOUN_BEFORE_HYPHEN` | ⟨est⟩ in a compass compound is the noun [ɛst]; entries ⟨sud⟩ and ⟨ouest⟩ | ⟨nord-est⟩ `nɔʁ‿ ɛst`, ⟨sud-est⟩ `syd‿ ɛst`, ⟨est-allemand⟩ `ɛst aləmɑ̃`, ⟨il est là⟩ `il ɛ la` | Martinon 1913: 331, 370; Lexique 3.83 |
 | `FR_ENT_MUTE_AFTER_ILS`, `FR_IENT_MUTE_AFTER_ILS` | After ⟨ils⟩ or ⟨elles⟩, a word in ⟨-ent⟩ is the verb and its ending is mute | ⟨ils parlent⟩ `il paʁl`, ⟨ils couvent⟩ `il kuv`, ⟨le couvent⟩ `lə kuvɑ̃` | Martinon 1913: 161 |
 
 Martinon (1913: 330) adds that the ⟨t⟩ of ⟨vingt-deux⟩ voices to [d] before ⟨deux⟩. The spec writes the phoneme, as Lexique 3.83 does with [v5td2]. In Lexique 3.83, 8742 written forms in ⟨-ent⟩ are third-person plural verbs, and 24 of them are also a noun, an adjective or an adverb, such as ⟨couvent⟩, ⟨président⟩, ⟨parent⟩ and ⟨violent⟩. The ⟨-ent⟩ rule reads only the word before, so a clitic in between leaves the ending nasal: ⟨ils les mangent⟩ and ⟨ils ne parlent⟩ keep [ɑ̃].
 
-No noun or adjective ends in ⟨-aient⟩ or ⟨-oient⟩, so this rule needs no part of speech. Bare ⟨-ent⟩ stays ambiguous, as the section on that ending says. After the prefix ⟨in-⟩ the start of the word is too far back for a rule, so ⟨inexact⟩ keeps [ks]. ⟨Hexagone⟩ keeps [ks] too. The letters ⟨mpt⟩ do not decide the ⟨p⟩: ⟨somptueux⟩, ⟨symptôme⟩ and ⟨présomption⟩ keep it. So `FR_P_MUTE_COMPT` names the family's spelling ⟨compt⟩ with `word_contains_grapheme`. The plural ⟨parkings⟩ is out of reach of the rule conditions and keeps the nasal vowel. The ⟨ch⟩ rule and the final ⟨g⟩ rule describe French words. Some loans keep their own reading as whole-word entries, with the values of Lexique 3.83: ⟨chleuh⟩ `ʃlø`, ⟨chnoque⟩ `ʃnɔk`, ⟨gong⟩ `ɡɔ̃ɡ`, ⟨gang⟩ `ɡɑ̃ɡ`, ⟨ginseng⟩ `ʒinsɛŋ`. Martinon (1913: 238) names ⟨rotang⟩, ⟨ginseng⟩ and ⟨gong⟩ among the foreign words with a pronounced final ⟨g⟩. The numeral sandhi keeps the consonant before the name of a month (⟨le huit mai⟩ `lə ɥit me`, ⟨le six avril⟩ `lə sis avʁil`), before a preposition or an article (⟨six de mes amis⟩ `sis də me ami`) and in ⟨dix-sept⟩ `dis sɛt`, as Martinon (1913: 328, 345-346) says. It drops the consonant before any other word that begins with a consonant, because it cannot see whether that word is a plural.
+No noun or adjective ends in ⟨-aient⟩ or ⟨-oient⟩, so this rule needs no part of speech. Bare ⟨-ent⟩ stays ambiguous, as the section on that ending says. After the prefix ⟨in-⟩ the start of the word is too far back for a rule, so ⟨inexact⟩ keeps [ks]. ⟨Hexagone⟩ keeps [ks] too. The letters ⟨mpt⟩ do not decide the ⟨p⟩: ⟨somptueux⟩, ⟨symptôme⟩ and ⟨présomption⟩ keep it. So `FR_P_MUTE_COMPT` names the family's spelling ⟨compt⟩ with `word_contains_grapheme`. The plural ⟨parkings⟩ is out of reach of the rule conditions and keeps the nasal vowel. The ⟨ch⟩ rule and the final ⟨g⟩ rule describe French words. Some loans keep their own reading, with the values of Lexique 3.83. The German loan families ⟨chleuh⟩, ⟨chlinguer⟩ and ⟨chnoque⟩ keep [ʃ] in every form, so the ⟨ch⟩ rule leaves out the words that contain their spellings: ⟨chleuh⟩ `ʃlø`, ⟨chlingues⟩ `ʃlɛ̃ɡ`. The loans with a final ⟨g⟩ are whole-word entries: ⟨gong⟩ `ɡɔ̃ɡ`, ⟨gang⟩ `ɡɑ̃ɡ`, ⟨ginseng⟩ `ʒinsɛŋ`. Martinon (1913: 238) names ⟨rotang⟩, ⟨ginseng⟩ and ⟨gong⟩ among the foreign words with a pronounced final ⟨g⟩. The numeral sandhi keeps the consonant before the name of a month (⟨le huit mai⟩ `lə ɥit me`, ⟨le six avril⟩ `lə sis avʁil`), before a preposition or an article (⟨six de mes amis⟩ `sis də me ami`) and in ⟨dix-sept⟩ `dis sɛt`, as Martinon (1913: 328, 345-346) says. It drops the consonant before any other word that begins with a consonant, because it cannot see whether that word is a plural.
 
 ## Liaison and elision
 
@@ -258,7 +259,6 @@ Four regional specs inherit this spec and state only what a source states: `fr-C
 |:---|:---|:---|
 | Only the obligatory liaisons are written, and a rule reads two words | ⟨ils ne parlent⟩ `il nə paʁlɑ̃`, ⟨le tout est de savoir⟩ `lə tut‿ ɛ də savwaʁ`, ⟨mon ami⟩ `mɔ̃ ami` | The rules see the left and the right word only, so a clitic in between hides the subject from the verb, and the noun ⟨tout⟩ cannot be told from the pronoun of ⟨tout est fini⟩ (Martinon 1913: 367). The denasalising liaison of ⟨mon⟩ and ⟨bon⟩ has no source newer than Martinon (1913) |
 | No stress marks | ⟨chose⟩ `ʃoz` | Analyses differ on whether French has lexical stress (see [Stress marks](#stress-marks)), so this spec has no `stress` block |
-| ⟨quatre-vingt⟩ drops the schwa of ⟨quatre⟩ | ⟨quatre-vingts⟩ `katʁ vɛ̃` | The hyphen splits the compound, and ⟨quatre⟩ alone ends in a mute ⟨e⟩ |
 | A digit is dropped | ⟨3 minutes⟩ `minyt` | Numbers are not text for this library. The engine drops a character that it cannot map and raises an `UnmappedGraphemeWarning`. Pass `on_unmapped="raise"` to stop instead. Spell the number out first |
 | An aspirate-h word outside the list links | ⟨les hulottes⟩ `lez‿ ylɔt` | The aspirate-h list holds the stems of Martinon (1913: 248-254) and the OQLF list. The spelling does not mark the aspirate h, so a word that no source lists takes the liaison |
 | ⟨e⟩ before a doubled nasal letter reads as schwa | ⟨femme⟩ `fəm`, ⟨ennemi⟩ `ənəmi` | The `FR_NASAL_BLOCK_GEMINATE_*` rules cover only ⟨ain aim ein ien oin⟩ |
@@ -447,7 +447,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 
 The spec declares no stress rule.
 
-Whole-word exceptions (162): ⟨affenpinscher⟩ [afənpinʃəʁ], ⟨afrikander⟩ [afʁikɑ̃dɛʁ], ⟨afrikaner⟩ [afʁikanɛʁ], ⟨amer⟩ [amɛʁ], ⟨amers⟩ [amɛʁ], ⟨angledozer⟩ [ɑ̃ɡlədozœʁ], ⟨aster⟩ [astɛʁ], ⟨atlas⟩ [atlas], ⟨autobus⟩ [otobys], ⟨bang⟩ [bɑ̃ɡ], ⟨bangs⟩ [bɑ̃ɡ], ⟨blazer⟩ [blazœʁ], ⟨bloomer⟩ [blumœʁ], ⟨boomer⟩ [bumœʁ], ⟨boomerang⟩ [buməʁɑ̃ɡ], ⟨bus⟩ [bys], ⟨bécher⟩ [beʃɛʁ], ⟨cactus⟩ [kaktys], ⟨campus⟩ [kɑ̃pys], ⟨cancer⟩ [kɑ̃sɛʁ], ⟨cancers⟩ [kɑ̃sɛʁ], ⟨casher⟩ [kaʃɛʁ], ⟨cathéter⟩ [katetɛʁ], ⟨ce⟩ [sə], ⟨ces⟩ [se], ⟨cet⟩ [sɛt], ⟨charter⟩ [ʃaʁtɛʁ], ⟨cher⟩ [ʃɛʁ], ⟨chers⟩ [ʃɛʁ], ⟨chleuh⟩ [ʃlø], and 132 more in the spec file.
+Whole-word exceptions (156): ⟨affenpinscher⟩ [afənpinʃəʁ], ⟨afrikander⟩ [afʁikɑ̃dɛʁ], ⟨afrikaner⟩ [afʁikanɛʁ], ⟨amer⟩ [amɛʁ], ⟨amers⟩ [amɛʁ], ⟨angledozer⟩ [ɑ̃ɡlədozœʁ], ⟨aster⟩ [astɛʁ], ⟨atlas⟩ [atlas], ⟨autobus⟩ [otobys], ⟨bang⟩ [bɑ̃ɡ], ⟨bangs⟩ [bɑ̃ɡ], ⟨blazer⟩ [blazœʁ], ⟨bloomer⟩ [blumœʁ], ⟨boomer⟩ [bumœʁ], ⟨boomerang⟩ [buməʁɑ̃ɡ], ⟨bus⟩ [bys], ⟨bécher⟩ [beʃɛʁ], ⟨cactus⟩ [kaktys], ⟨campus⟩ [kɑ̃pys], ⟨cancer⟩ [kɑ̃sɛʁ], ⟨cancers⟩ [kɑ̃sɛʁ], ⟨casher⟩ [kaʃɛʁ], ⟨cathéter⟩ [katetɛʁ], ⟨ce⟩ [sə], ⟨ces⟩ [se], ⟨cet⟩ [sɛt], ⟨charter⟩ [ʃaʁtɛʁ], ⟨cher⟩ [ʃɛʁ], ⟨chers⟩ [ʃɛʁ], ⟨container⟩ [kɔ̃tɛnɛʁ], and 126 more in the spec file.
 
 Grammatical endings: ⟨-ent⟩ ∅ ∅, ⟨-er⟩ [e], ⟨-ez⟩ [e], ⟨-stion⟩ [stjɔ̃], ⟨-tial⟩ [sjal], ⟨-tiel⟩ [sjɛl], ⟨-tience⟩ [sjɑ̃s], ⟨-tion⟩ [sjɔ̃].
 <!-- atlas:spelling end -->
@@ -519,10 +519,11 @@ The spec applies 59 allophone rules after the letters are read. The change colum
 | `FR_HUIT_FINAL_T_SOUNDS` | ∅ → [t], spelled ⟨t⟩, in 1 listed words | ⟨huit⟩ [ɥit] | [Martinon 1913](#src-martinon1913) |
 | `FR_X_K_BEFORE_SIBILANT` | /ks/ → [k], before [s], spelled ⟨x⟩ | ⟨not⟩ [ks] | [Martinon 1913](#src-martinon1913) |
 
-The spec applies 36 rules across a word boundary. The contexts are regular expressions on the IPA of the two words. A rule may also read the spelling of a word, or its joined spelling, which adds the word before a hyphen.
+The spec applies 37 rules across a word boundary. The contexts are regular expressions on the IPA of the two words. A rule may also read the spelling of a word, or its joined spelling, which adds the word before a hyphen.
 
 | Rule | End of word | Start of next word | Change | Example | Cited |
 |:--|:--|:--|:--|:--|:--|
+| `FR_QUATRE_E_BEFORE_VINGT` | `(ʁ)$`, spelled `^quatre$` | ``, spelled `^vingts?$` | left [ə] | ⟨quatre-vingts⟩ [katʁə vɛ̃] | [Martinon 1913](#src-martinon1913) |
 | `FR_NEUF_V_BEFORE_HEURES` | `^nœf$` | `^œʁ$`, spelled `^heures?$` | left [nœv‿] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_NEUF_V_BEFORE_ANS` | `^nœf$` | `^ɑ̃$`, spelled `^ans$` | left [nœv‿] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_DIX_Z_BEFORE_HUIT_NEUF` | `^((?:d\|d͡z)[iɪ])s$` | `^(?:ɥit\|nœf\|ɥitjɛm\|nøvjɛm\|nœvjɛm)$` | left [z] | ⟨dix-huitième⟩ [diz ɥitjɛm] | [Martinon 1913](#src-martinon1913) |

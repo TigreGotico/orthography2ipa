@@ -779,6 +779,15 @@
       "transform": "",
       "obligatory": true,
       "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_QUATRE_E_BEFORE_VINGT",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
     }
   ]
 }
