@@ -538,3 +538,22 @@ def test_ressusciter_and_ressuyer_take_close_e(text, expected):
 ])
 def test_ch_before_oeu_is_k(text, expected):
     assert _t(text) == expected
+
+
+# TLFi, s.v. ressuyer: [ʁesɥije], (il) ressuie [-sɥi]; the forms in ⟨ressui-⟩
+# take the close [e] of the verb (Martinon 1913: 171).
+@pytest.mark.parametrize("text, expected", [
+    ("ressuie", "ʁesɥi"), ("ressuies", "ʁesɥi"),
+])
+def test_the_ressui_forms_of_ressuyer_take_close_e(text, expected):
+    assert _t(text) == expected
+
+
+# The German loan chlinguer keeps [ʃ] in every form (Lexique 3.83 chlingues
+# [ʃlɛ̃ɡ]), as chleuh and chnoque do; chlore keeps the learned [k].
+@pytest.mark.parametrize("text, expected", [
+    ("chlinguait", "ʃlɛ̃ɡɛ"), ("chlingues", "ʃlɛ̃ɡ"), ("chlingué", "ʃlɛ̃ɡe"),
+    ("chleuhe", "ʃlø"), ("chnoques", "ʃnɔk"), ("chlore", "klɔʁ"),
+])
+def test_the_german_loan_families_keep_sh(text, expected):
+    assert _t(text) == expected
