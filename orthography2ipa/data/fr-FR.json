@@ -1658,7 +1658,7 @@
       "followed_by_grapheme": [
         "œu"
       ],
-      "notes": "⟨c⟩ before ⟨œu⟩ is hard [k] (cœur [kœʁ], écœurer), although ⟨œ⟩ is a front vowel letter: ⟨œu⟩ is the native ⟨eu⟩ vowel written with an ⟨o⟩ that imitates the Latin spelling, and a ⟨c⟩ before it stays [k]. Before a bare ⟨œ⟩, which is Greek ⟨οι⟩, ⟨c⟩ softens as before ⟨é⟩ (cœlacanthe [selakɑ̃t]). French orthography, Wikipedia: after ⟨c⟩, ⟨œ⟩ gives [k] in some words (cœur) and [s] in others (cœlacanthe), and the [s] reading is the one before ⟨æ⟩ and ⟨œ⟩ in scientific terms of Latin and Greek origin. RESIDUAL: ⟨ch⟩ before ⟨œu⟩ in the Greek loan chœur [kœʁ] stays [ʃ]; ⟨ch⟩ = [k] in Greek loans is lexical and is not modelled. Stated as a rule on ⟨c⟩, not as a ⟨cœu⟩ key: a ⟨cœu⟩ key would pass none of the three key tests, because its value [kœ] is the concatenation of a hard ⟨c⟩ and ⟨œu⟩. Source: TLFi chœur, Prononc. [kœ:ʀ], 'Homon. cœur', so cœur is [kœ:ʀ] too (cnrtl.fr/definition/chœur; saved in Papers/Languages/Romance/French/cnrtl_choeur.html)."
+      "notes": "⟨c⟩ before ⟨œu⟩ is hard [k] (cœur [kœʁ], écœurer), although ⟨œ⟩ is a front vowel letter: ⟨œu⟩ is the native ⟨eu⟩ vowel written with an ⟨o⟩ that imitates the Latin spelling, and a ⟨c⟩ before it stays [k]. Before a bare ⟨œ⟩, which is Greek ⟨οι⟩, ⟨c⟩ softens as before ⟨é⟩ (cœlacanthe [selakɑ̃t]). French orthography, Wikipedia: after ⟨c⟩, ⟨œ⟩ gives [k] in some words (cœur) and [s] in others (cœlacanthe), and the [s] reading is the one before ⟨æ⟩ and ⟨œ⟩ in scientific terms of Latin and Greek origin. ⟨ch⟩ before ⟨œu⟩ in chœur [kœʁ] is FR_CH_HARD_BEFORE_OEU (Martinon 1913: 222). Stated as a rule on ⟨c⟩, not as a ⟨cœu⟩ key: a ⟨cœu⟩ key would pass none of the three key tests, because its value [kœ] is the concatenation of a hard ⟨c⟩ and ⟨œu⟩. Source: TLFi chœur, Prononc. [kœ:ʀ], 'Homon. cœur', so cœur is [kœ:ʀ] too (cnrtl.fr/definition/chœur; saved in Papers/Languages/Romance/French/cnrtl_choeur.html)."
     },
     {
       "id": "FR_AI_FINAL_CLOSE_MID",
@@ -1805,6 +1805,20 @@
         "n"
       ],
       "notes": "⟨ch⟩ before /l ʁ m n/ is [k]: chrétien [kʁetjɛ̃], Christ, chronologie, chrome, chlore [klɔʁ], technique [tɛknik], drachme. Martinon (1913, p. 226: before a consonant ⟨ch⟩ is always learned and keeps the velar sound; the consonants are the liquids and nasals l, m, n, r, and sometimes s and t (chlore, drachme, technique, chrétien)). The rule takes only the four consonants Martinon names without restriction; before ⟨s⟩ and ⟨t⟩ he says only 'parfois', and fichtre keeps [ʃ]."
+    },
+    {
+      "id": "FR_CH_HARD_BEFORE_OEU",
+      "phonemes": [
+        "ʃ"
+      ],
+      "surface": "k",
+      "grapheme": [
+        "ch"
+      ],
+      "followed_by_grapheme": [
+        "œu"
+      ],
+      "notes": "⟨ch⟩ before ⟨œu⟩ is [k]: chœur [kœʁ], chœurs. Martinon (1913, p. 222: co is said in all the words that begin with chol- and chor-, choléra, chorus, choral, 'avec c(h)œur, et leurs dérivés'). The ⟨œu⟩ is the native vowel written with the ⟨o⟩ of the Latin chorus, as in cœur, whose ⟨c⟩ FR_C_HARD_BEFORE_OEU keeps hard. The words in chol- and chor- are not stated: Cholet keeps [ʃ]."
     },
     {
       "id": "FR_P_MUTE_FINAL_MPT",
