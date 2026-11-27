@@ -214,7 +214,7 @@ def test_the_h_aspire_stems_are_written_once():
 # before onze, there is no liaison: the word counts as consonant-initial, so
 # six, dix and huit take the form they have before a consonant (345).
 @pytest.mark.parametrize("text, expected", [
-    ("six yachts", "si iaʃ"), ("dix watts", "di wat"), ("huit whiskies", "ɥi wiski"),
+    ("dix watts", "di wat"), ("huit whiskies", "ɥi wiski"),
     ("six onzièmes", "si ɔ̃zjɛm"), ("huit onzièmes", "ɥi ɔ̃zjɛm"), ("six yeux", "siz‿ iø"),
     # Martinon (1913: 346): six-huit, the musical measure, keeps a hard s.
     ("six-huit", "sis ɥit"),
@@ -242,3 +242,11 @@ def test_grand_links_before_its_noun(text, expected):
 ])
 def test_no_liaison_before_the_numeral_un(text, expected):
     assert _t(text) == expected
+
+
+def test_six_drops_its_consonant_before_a_y_glide():
+    # Martinon (1913: 358): de(s) yachts, de(s) youyous, no liaison before a y
+    # glide. Only the numeral is checked: the letters do not read ⟨yacht⟩
+    # (TLFi [jɔt]), which no entry states.
+    assert _t("six yachts").split()[0] == "si"
+    assert _t("dix youyous").split()[0] == "di"

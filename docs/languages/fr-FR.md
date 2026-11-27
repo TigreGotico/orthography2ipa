@@ -517,9 +517,9 @@ The spec applies 59 allophone rules after the letters are read. The change colum
 | `FR_X_S_AFTER_OI` | /ks/ → [s], before a vowel, spelled ⟨x⟩, after ⟨oi⟩ | ⟨x⟩ [ks] | [Martinon 1913](#src-martinon1913) |
 | `FR_NUMERAL_FINAL_X_SOUNDS` | ∅ → [s], spelled ⟨x⟩, in 2 listed words | ⟨six⟩ [sis] | [Martinon 1913](#src-martinon1913) |
 | `FR_HUIT_FINAL_T_SOUNDS` | ∅ → [t], spelled ⟨t⟩, in 1 listed words | ⟨huit⟩ [ɥit] | [Martinon 1913](#src-martinon1913) |
-| `FR_X_K_BEFORE_SIBILANT` | /ks/ → [k], before [s], spelled ⟨x⟩ | ⟨not⟩ [ks] | [Martinon 1913](#src-martinon1913) |
+| `FR_X_K_BEFORE_SIBILANT` | /ks/ → [k], before [s], spelled ⟨x⟩ | ⟨excellent⟩ [ɛksɛlɑ̃] | [Martinon 1913](#src-martinon1913) |
 
-The spec applies 37 rules across a word boundary. The contexts are regular expressions on the IPA of the two words. A rule may also read the spelling of a word, or its joined spelling, which adds the word before a hyphen.
+The spec applies 38 rules across a word boundary. The contexts are regular expressions on the IPA of the two words. A rule may also read the spelling of a word, or its joined spelling, which adds the word before a hyphen.
 
 | Rule | End of word | Start of next word | Change | Example | Cited |
 |:--|:--|:--|:--|:--|:--|
@@ -534,6 +534,7 @@ The spec applies 37 rules across a word boundary. The contexts are regular expre
 | `FR_ENT_MUTE_AFTER_ILS` | ``, joined `^(?:(?:(?:lors\|puis\|quoi)?qu['’])?(?:ils\|elles)\|s['’]ils)$` | `ɑ̃$`, spelled `ent$` | right ∅ | ⟨ils parlent⟩ [il paʁl] | [Martinon 1913](#src-martinon1913) |
 | `FR_IENT_MUTE_AFTER_ILS` | ``, joined `^(?:(?:(?:lors\|puis\|quoi)?qu['’])?(?:ils\|elles)\|s['’]ils)$` | `jɛ̃$`, spelled `ient$` | right [i] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_ENT_LIAISON_INVERSION` | `t?ɑ̃$`, spelled `ent$` | ``, spelled `^(?:ils\|elles)$`, joined `-` | left [t‿] | ⟨parlent-ils⟩ [paʁlt‿ il] | [Martinon 1913](#src-martinon1913) |
+| `FR_IENT_LIAISON_INVERSION` | `jɛ̃$`, spelled `ient$` | ``, spelled `^(?:ils\|elles)$`, joined `-` | left [it‿] | ⟨lient-ils⟩ [lit‿ il] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_T_INVERSION` | `$`, spelled `[td]$` | ``, spelled `^(?:il\|ils\|elle\|elles\|on\|en)$`, joined `-` | left [t‿] | ⟨dit-il⟩ [dit‿ il] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_Z_BEFORE_Y_EN` | `$`, spelled `[sxz]$` | ``, spelled `^(?:y\|en)$`, joined `-` | left [z‿] | ⟨vas-y⟩ [vaz‿ i] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_T_EST_ONZE` | `$`, joined `^(?:[cn]['’])?est$` | ``, spelled `^onze$` | left [t‿] | ⟨il est onze heures⟩ [il ɛt‿ ɔ̃z‿ œʁ] | [Martinon 1913](#src-martinon1913) |

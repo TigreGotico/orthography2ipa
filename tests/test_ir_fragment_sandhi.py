@@ -161,6 +161,8 @@ def test_an_interpreter_without_the_condition_refuses_the_ir(field, monkeypatch)
     ({"ir_version": 1, "sandhi": [{"left": "a", "left_out": "", "mark": "x"}]}, "mark"),
     ({"ir_version": 1, "sandhi": [{"pause": True, "left": "a", "left_out": "", "right": "b"}]}, "right"),
     ({"ir_version": 1, "sandhi": [{"pause": True, "left": "a", "left_out": "", "right_spelling": "b"}]}, "right_spelling"),
+    ({"ir_version": 1, "sandhi": [{"pause": True, "left": "a", "left_out": "", "right_joined_spelling": "b"}]},
+     "right_joined_spelling"),
     ({"ir_version": 1, "sandhi": [{"pause": 1, "left": "a", "left_out": ""}]}, "pause"),
     ({"ir_version": 1, "sandhi": [{"left": "a"}]}, "left_out"),
     ({"ir_version": 1, "sandhi": [{"pause": True, "left_out": "x"}]}, "needs a left pattern"),

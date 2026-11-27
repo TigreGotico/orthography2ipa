@@ -842,6 +842,15 @@
       "transform": "\\1‿",
       "obligatory": true,
       "notes": "une amie → resyllabification: the final consonant is kept and the link mark follows it (rouge orange → ʁuʒ‿ ɔʁɑ̃ʒ) Kept here with the onset class fr-FR had before it added [y ø œ ə] (Martinon 1913 on French liaison): no source states that wider class for Seselwa, so crs keeps the reading it had."
+    },
+    {
+      "id": "FR_IENT_LIAISON_INVERSION",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
     }
   ]
 }

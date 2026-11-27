@@ -1375,12 +1375,14 @@ class SandhiRule:
     right_context: str
     transform: Optional[str] = None
     right_transform: Optional[str] = None
+    obligatory: bool = True
+    notes: str = ""
+    # The spelling conditions come after ``notes``, so a positional call that
+    # predates them keeps its meaning.
     left_spelling: Optional[str] = None
     right_spelling: Optional[str] = None
     left_joined_spelling: Optional[str] = None
     right_joined_spelling: Optional[str] = None
-    obligatory: bool = True
-    notes: str = ""
 
 
 # ═══════════════════════════════════════════════════════════════════════════

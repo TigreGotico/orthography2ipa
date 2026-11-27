@@ -1,8 +1,11 @@
 """A spec ``SandhiRule`` can condition on the spelling of the left and the right word.
 
-The fields are ``left_spelling`` and ``right_spelling``. They compile to the
-``sandhi_spelling`` primitive (docs/ir/o2i-ir-v1.md, 3.10.1), and a word after a
-hyphen reads from the start of its compound.
+``left_spelling`` and ``right_spelling`` compile to the ``sandhi_spelling``
+primitive and read the word alone: in ⟨casa-mesa⟩ the right word reads ``mesa``.
+``left_joined_spelling`` and ``right_joined_spelling`` compile to the
+``sandhi_joined`` primitive and read the joined spelling, which adds the one word
+before a hyphen: the right word of ⟨casa-mesa⟩ reads ``casa-mesa``
+(docs/ir/o2i-ir-v1.md, 3.10.1).
 """
 import dataclasses
 import json
@@ -72,7 +75,6 @@ def test_a_spec_rule_reads_the_spelling_in_both_interpreters(extra, text, expect
     ({"left_joined_spelling": "^mesa-casa$"}, "mesa-casa mesa", True),
     ({"left_joined_spelling": "^casa$"}, "mesa-casa mesa", False),
     ({"left_joined_spelling": "^casa$"}, "casa-mesa", True),
-    ({"right_joined_spelling": "^mesa-casa$"}, "casa-mesa-casa", True),
     ({"right_joined_spelling": "^casa-mesa-casa$"}, "casa-mesa-casa", False),
 ])
 def test_the_joined_spelling_adds_the_word_before_a_hyphen(extra, text, fires, tmp_path):
@@ -144,3 +146,20 @@ def test_a_spelling_free_rule_runs_without_spellings():
     engine = SandhiEngine((block, link))
     assert engine.apply(["sɛt", "aʃ"]) == ["sɛt‿", "aʃ"]
     assert engine.apply(["sɛt", "aʃ"], spellings=["cette", "hache"]) == ["sɛt", "aʃ"]
+
+
+def test_the_joined_rule_rewrites_the_word_of_its_boundary(tmp_path):
+    # In casa-mesa-casa only the pair mesa-casa has the joined spelling
+    # mesa-casa on its right, so only mesa, the left word of that pair, changes.
+    rule = SandhiRule(**FINAL, right_joined_spelling="^mesa-casa$")
+    plain = both(SandhiRule(**{**FINAL, "transform": "ɐ"}), "casa-mesa-casa", tmp_path)
+    out = both(rule, "casa-mesa-casa", tmp_path)
+    words, plain_words = out.split(" "), plain.split(" ")
+    assert words[0] == plain_words[0] and words[2] == plain_words[2]
+    assert words[1] == plain_words[1][:-1] + "A"
+
+
+def test_existing_positional_arguments_keep_their_meaning():
+    rule = SandhiRule("T", "test", "$", "^a", "t", None, False, "note")
+    assert (rule.obligatory, rule.notes) == (False, "note")
+    assert rule.left_spelling is None and rule.right_joined_spelling is None

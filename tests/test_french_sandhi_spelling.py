@@ -158,3 +158,13 @@ def test_dix_links_in_the_derivatives_of_18_and_19(text, expected):
 ])
 def test_quatre_keeps_its_e_before_vingt(text, expected):
     assert _t(text) == expected
+
+
+# Martinon (1913: 161, 364): the 3pl -ent of a verb in -ier is mute before an
+# inverted subject too, and the written t links: lient-ils [lit‿ il].
+@pytest.mark.parametrize("text, expected", [
+    ("lient-ils", "lit‿ il"), ("oublient-elles", "ublit‿ ɛl"), ("vient-il", "vjɛ̃t‿ il"),
+    ("tient-elle", "tjɛ̃t‿ ɛl"),
+])
+def test_ient_before_an_inverted_subject(text, expected):
+    assert _t(text) == expected
