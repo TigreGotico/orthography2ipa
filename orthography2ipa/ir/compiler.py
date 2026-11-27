@@ -41,6 +41,7 @@ from orthography2ipa.stress import (
     _judge_for, _semivowel_roles, cliticless_keys)
 from orthography2ipa.transforms import (DIALECT_PROFILES, IPAChainShift, IPALexicalRule, IPARule,
                                         PALATAL_SET, VOWEL_SET)
+from orthography2ipa.phonemes import ir_phonemes
 from orthography2ipa.types import GraphemePosition as P
 from orthography2ipa.types import LanguageSpec, ScriptType
 from orthography2ipa.version import VERSION_STR
@@ -780,14 +781,15 @@ def build_ir(code: str, data_ref: Optional[str] = None, *, dialect_profile: Opti
         endings = dict(ir["endings"])
         endings["table"] = [{**e, "alts": [], "costs": e["costs"][:1]} for e in endings["table"]]
         ir["endings"] = endings
-    words, sandhi = merge_fragments(fragments, ir["ir_version"])
+    words, sandhi = merge_fragments(fragments, ir["ir_version"], registry.resolve(code))
     if words:
         ir["word"] = {**ir["word"], "words": sorted(words.items())}
     if sandhi:
         ir["sandhi"] = [*ir.get("sandhi", ()), *sandhi]
-    syllable = merge_syllable_fragments(fragments)
+    syllable = merge_syllable_fragments(fragments, registry.resolve(code))
     if syllable:
         ir["syllable"] = _apply_syllable_fragment(dict(ir.get("syllable", {})), syllable, ir["chars"])
+    ir["phonemes"] = ir_phonemes(ir)
     return ir
 
 
@@ -797,18 +799,24 @@ def fragment_digest(fragment: dict) -> str:
                                      ensure_ascii=False).encode()).hexdigest()
 
 
-_FRAGMENT_PARTS = {"ir_version", "words", "sandhi", "syllable", "unsupported"}
+_FRAGMENT_PARTS = {"ir_version", "langs", "words", "sandhi", "syllable", "unsupported"}
 _SANDHI_PAIR_KEYS = {"left", "right", "left_out", "right_out", "left_spelling", "right_spelling"}
 _SANDHI_PAUSE_KEYS = {"left", "left_out", "left_spelling", "pause"}
 
 
-def merge_fragments(fragments: Sequence[dict], ir_version: int) -> Tuple[Dict[str, str], List[dict]]:
-    """The ``words`` of *fragments* as one table, and their ``sandhi`` rules as
-    IR rules in fragment order. A later fragment wins on a duplicate word.
+def merge_fragments(fragments: Sequence[dict], ir_version: int,
+                    code: str) -> Tuple[Dict[str, str], List[dict]]:
+    """The ``words`` of the *fragments* in scope for the resolved *code* as one
+    table, and their ``sandhi`` rules as IR rules in fragment order. A later
+    fragment wins on a duplicate word. A fragment with ``langs`` is in scope when
+    ``registry.resolve`` of one of its codes equals *code*, the resolved engine
+    code: a fragment for pt-PT does not reach pt-PT-x-lisbon. A fragment without
+    ``langs`` is in scope for every code. Every fragment is checked, in scope or not.
 
     Raises:
         ValueError: a fragment is malformed (an unknown key, a wrong ``ir_version``, a
-            ``words`` key that is not lowercase NFC, a non-string entry) or has a
+            ``words`` key that is not lowercase NFC, a non-string entry, a ``langs`` that is not a non-empty list of strings or names no
+            registered language) or has a
             ``sandhi`` rule that :func:`_sandhi_rule` refuses.
     """
     words: Dict[str, str] = {}
@@ -817,20 +825,37 @@ def merge_fragments(fragments: Sequence[dict], ir_version: int) -> Tuple[Dict[st
         unknown = sorted(set(fragment) - _FRAGMENT_PARTS)
         if unknown:
             raise ValueError(f"fragment part {unknown[0]!r} is not supported; "
-                             f"only 'words', 'sandhi', 'syllable' and 'unsupported' are")
+                             f"only 'langs', 'words', 'sandhi', 'syllable' and 'unsupported' are")
         if fragment.get("ir_version") != ir_version:
             raise ValueError(f"fragment ir_version {fragment.get('ir_version')!r} is not {ir_version}")
+        langs = fragment.get("langs")
+        if langs is not None and (not isinstance(langs, list) or not langs
+                                  or not all(isinstance(lang, str) for lang in langs)):
+            raise ValueError(f"fragment langs {langs!r}: a non-empty list of strings is required")
+        for lang in langs or ():
+            if not registry.resolves_exactly(lang):
+                raise ValueError(f"fragment langs: {lang!r} names no registered language")
         for key, ipa in fragment.get("words", {}).items():
             if not isinstance(key, str) or not isinstance(ipa, str):
                 raise ValueError(f"fragment word {key!r}: the key and the value must be strings")
             if key != unicodedata.normalize("NFC", key).lower():
                 raise ValueError(f"fragment word {key!r}: a key must be lowercase NFC")
-            words[key] = ipa
         for name in fragment.get("unsupported", ()):
             if not isinstance(name, str):
                 raise ValueError(f"fragment unsupported entry {name!r}: a name must be a string")
-        sandhi += [_sandhi_rule(rule) for rule in fragment.get("sandhi", ())]
+        rules = [_sandhi_rule(rule) for rule in fragment.get("sandhi", ())]
+        if not in_scope(fragment, code):
+            continue
+        words.update(fragment.get("words", {}))
+        sandhi += rules
     return words, sandhi
+
+
+def in_scope(fragment: dict, code: str) -> bool:
+    """True when *fragment* applies to the resolved engine *code*: it has no
+    ``langs``, or one of its ``langs`` resolves to *code*."""
+    langs = fragment.get("langs")
+    return langs is None or code in {registry.resolve(lang) for lang in langs}
 
 
 _SYLLABLE_TABLES = {"glides", "heterosyllabic_pairs", "hiatus", "stem_cuts", "prefix_boundaries", "seams",
@@ -865,29 +890,31 @@ def _fragment_pattern(text, where: str) -> list:
         raise ValueError(f"fragment syllable {where}: {err}") from err
 
 
-def merge_syllable_fragments(fragments: Sequence[dict]) -> dict:
-    """The ``syllable`` tables of *fragments*, checked. A later fragment's table
-    replaces an earlier one's.
+def merge_syllable_fragments(fragments: Sequence[dict], code: str) -> dict:
+    """The ``syllable`` tables of the *fragments* in scope for the resolved
+    *code* (:func:`in_scope`), checked. Every fragment is checked, in scope or
+    not. A later fragment's table replaces an earlier one's.
 
     Raises:
         ValueError: an unknown table or key, or a value of the wrong shape.
     """
     out: dict = {}
     for fragment in fragments:
+        tables: dict = {}
         part = _keys(fragment.get("syllable", {}), "part", _SYLLABLE_TABLES)
         if "glides" in part:
             glides = _strings(part["glides"], "glides")
             if any(len(g) != 1 for g in glides):
                 raise ValueError("fragment syllable glides: each glide must be one char")
-            out["glides"] = glides
+            tables["glides"] = glides
         if "heterosyllabic_pairs" in part:
             pairs = _strings(part["heterosyllabic_pairs"], "heterosyllabic_pairs", 2)
             if any(len(p) != 2 for p in pairs):
                 raise ValueError("fragment syllable heterosyllabic_pairs: each pair must have 2 chars")
-            out["heterosyllabic_pairs"] = pairs
+            tables["heterosyllabic_pairs"] = pairs
         if "hiatus" in part:
             h = _keys(part["hiatus"], "hiatus", {"glides", "before", "codas", "diphthong_words"})
-            out["hiatus"] = {k: _strings(h.get(k, []), "hiatus." + k)
+            tables["hiatus"] = {k: _strings(h.get(k, []), "hiatus." + k)
                              for k in ("glides", "before", "codas", "diphthong_words")}
         if "stem_cuts" in part:
             cuts = _keys(part["stem_cuts"], "stem_cuts")
@@ -896,17 +923,17 @@ def merge_syllable_fragments(fragments: Sequence[dict]) -> dict:
                 if not isinstance(offsets, list) or not offsets or not all(
                         type(o) is int and 0 < o < len(stem) for o in offsets):
                     raise ValueError(f"fragment syllable stem_cuts {stem!r}: the cuts must be offsets inside the stem")
-            out["stem_cuts"] = {k: sorted(set(v)) for k, v in cuts.items()}
+            tables["stem_cuts"] = {k: sorted(set(v)) for k, v in cuts.items()}
         if "prefix_boundaries" in part:
             rules = part["prefix_boundaries"]
             if not isinstance(rules, list):
                 raise ValueError("fragment syllable prefix_boundaries: a list is required")
-            out["prefix_boundaries"] = []
+            tables["prefix_boundaries"] = []
             for rule in rules:
                 r = _keys(rule, "prefix_boundaries", {"prefix", "onset", "stems"})
                 prefix = _strings([r.get("prefix")] if isinstance(r.get("prefix"), str) else None,
                                   "prefix_boundaries.prefix")[0]
-                out["prefix_boundaries"].append({"prefix": prefix,
+                tables["prefix_boundaries"].append({"prefix": prefix,
                                                  "onset": _strings(r.get("onset", []), "prefix_boundaries.onset"),
                                                  "stems": _strings(r.get("stems", []), "prefix_boundaries.stems")})
         if "seams" in part:
@@ -920,14 +947,14 @@ def merge_syllable_fragments(fragments: Sequence[dict]) -> dict:
                     raise ValueError("fragment syllable seams.suffixes: cut must be an integer of 0 or more")
                 suffixes.append({"pattern": _fragment_pattern(r.get("pattern"), "seams.suffixes"),
                                  "cut": r.get("cut", 0)})
-            out["seams"] = {"suffixes": suffixes, "stems": _strings(seams.get("stems", []), "seams.stems"),
+            tables["seams"] = {"suffixes": suffixes, "stems": _strings(seams.get("stems", []), "seams.stems"),
                             "next": _strings(seams.get("next", []), "seams.next")}
         if "onsets" in part:
             onsets = _keys(part["onsets"], "onsets", {"complex", "max_onset", "digraphs"})
             cap = onsets.get("max_onset", -1)
             if type(cap) is not int or cap == 0 or cap < -1:
                 raise ValueError("fragment syllable onsets.max_onset: a positive integer or -1 is required")
-            out["onsets"] = {"complex": _strings(onsets.get("complex", []), "onsets.complex", 2),
+            tables["onsets"] = {"complex": _strings(onsets.get("complex", []), "onsets.complex", 2),
                              "max_onset": cap,
                              "digraphs": _strings(onsets.get("digraphs", []), "onsets.digraphs", 2)}
         if "foreign" in part:
@@ -940,10 +967,11 @@ def merge_syllable_fragments(fragments: Sequence[dict]) -> dict:
             nuclei = _strings(foreign.get("nuclei", []), "foreign.nuclei", 2)
             if nuclei and "pattern" not in foreign:
                 raise ValueError("fragment syllable foreign: nuclei need a pattern")
-            out["foreign"] = {"units": _strings(foreign.get("units", []), "foreign.units", 2),
+            tables["foreign"] = {"units": _strings(foreign.get("units", []), "foreign.units", 2),
                               "nuclei": nuclei, "final_nuclei": {k: list(v) for k, v in finals.items()}}
             if "pattern" in foreign:
-                out["foreign"]["pattern"] = _fragment_pattern(foreign["pattern"], "foreign.pattern")
+                tables["foreign"]["pattern"] = _fragment_pattern(foreign["pattern"], "foreign.pattern")
+        out.update(tables)
     return out
 
 

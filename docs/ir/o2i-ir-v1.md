@@ -40,7 +40,7 @@ The canonical document has these top-level fields. `layout.LAYOUT` (`orthography
   "strings": [], "chars": {"ranges": []},
   "entries": [], "fallback": [], "word": {}, "beam": {}, "allophone_map": [],
   "syllable": {}, "stress": {}, "atoms": {}, "allophony": {}, "sandhi": [],
-  "dialect": [], "char_maps": {}, "rewrites": [], "consonant_nuclei": [], "tone": {}, "inherent": {}, "endings": {},
+  "dialect": [], "char_maps": {}, "rewrites": [], "consonant_nuclei": [], "tone": {}, "inherent": {}, "endings": {}, "phonemes": [],
   "primitives": {}, "bits": {}, "debug": {}
 }
 ```
@@ -69,6 +69,7 @@ The canonical document has these top-level fields. `layout.LAYOUT` (`orthography
 | `tone` | The computed-tone system (3.9). |
 | `inherent` | The abugida inherent vowel (3.3.2). |
 | `endings` | Grammatical endings (3.5). |
+| `phonemes` | The phoneme set: every segment that the IR can emit, cut by the segment rule of the PER board (NFD, no stress marks or syllable dots). The compiler computes it from the other runtime fields (`orthography2ipa.phonemes.ir_phonemes`). The set is exact for well-formed words with the default options: no dialect profile, no lexicon and no host hooks. Interpreters do not read it, so it changes no output and has no version in the manifest. It is in the canonical bytes, so it moves the revision with the fields it comes from. |
 | `primitives` | The manifest (8.1) as `{name: version}`. Outside the canonical bytes, because the revision hashes the manifest string itself. |
 | `bits` | The bit names in bit order: `{"char": [...], "entry": [...]}`. The names are fixed (2.4). |
 | `debug` | Readable notes. Interpreters ignore it. Outside the revision hash. |
@@ -257,6 +258,7 @@ endings.vowels[].readings: sset
 endings.sources: list of object
 endings.sources[].surface: s
 endings.sources[].vowels: sset
+phonemes: sset
 ```
 <!-- layout-schema:end -->
 
@@ -654,7 +656,7 @@ So a host lexicon hit on the raw key beats an exception on the stripped key. The
 
 `word.words` is the optional word table of plugin fragments, a list of `[key, ipa]` pairs sorted by key, with the semantics version `words`. A key is lowercase NFC. For each key `k` the order is `word.exceptions`, then the host lexicon, then `word.words`, looked up with `NFC(k)` as the lexicon is. The compiler writes the table only when it is not empty, so an IR with no fragment has no `words` field and the same revision as before. The test for a leading apostrophe that opens a listed word counts a key of `word.words` as listed.
 
-A fragment is a JSON object with an `ir_version` and any of four parts. `syllable` holds the tables of the written splitter (3.7.6). `words` is the table `{key: ipa}`. `sandhi` is a list of rules, each with the pattern and template texts of a spec `SandhiRule` under the keys `left`, `right`, `left_out`, `right_out`, and optionally `left_spelling`, `right_spelling` and `"pause": true` (3.10.1). The compiler compiles the texts as it compiles the spec's rules and appends the rules to `sandhi` after the spec's own; `apply_sandhi=False` removes the spec's rules and keeps these. `unsupported` is a list of names of the rules a plugin keeps as a host hook because no fragment part can express them; the IR does not hold it. `compile_spec(code, fragments=[...])` merges the parts of all fragments, and a later fragment wins on a duplicate word. The compiler raises `ValueError` that names the offender for any other part, an `ir_version` that differs from the document's, a word key that is not lowercase NFC, a key or value that is not a string, a sandhi rule with a key its kind does not allow, with no output, or with a text the IR cannot compile, and an `unsupported` entry that is not a string, and a `syllable` table or key that 3.7.6 does not name or a value of the wrong shape. The revision covers the merged table and the rules, so it covers the fragment bytes. `Pipeline(fragments=...)` passes fragments to the compiler, and `export_to_loom --fragment PATH` does the same for an export, records the sha256 of each fragment in the GGUF field `o2i.fragments` and the sorted names of the `unsupported` lists in `o2i.unsupported`. The table is additive: a new optional table keeps `ir_version` (8.1). Edge punctuation is the char bit `edge_punct` (`_EDGE_PUNCT_RE`).
+A fragment is a JSON object with an `ir_version` and any of five parts. `langs` is a non-empty list of language codes, the scope of the fragment. The compiler merges a fragment into the IR of a code only when `registry.resolve` gives the same registered code for one code of `langs` and for the engine code. The match is exact after resolution: a fragment for `pt-PT` does not reach `pt-PT-x-lisbon`. A fragment without `langs` applies to every code. The IR does not hold `langs`: a fragment out of scope contributes nothing, so the IR of that code is byte-identical to its IR without the fragment. `syllable` holds the tables of the written splitter (3.7.6). `words` is the table `{key: ipa}`. `sandhi` is a list of rules, each with the pattern and template texts of a spec `SandhiRule` under the keys `left`, `right`, `left_out`, `right_out`, and optionally `left_spelling`, `right_spelling` and `"pause": true` (3.10.1). The compiler compiles the texts as it compiles the spec's rules and appends the rules to `sandhi` after the spec's own; `apply_sandhi=False` removes the spec's rules and keeps these. `unsupported` is a list of names of the rules a plugin keeps as a host hook because no fragment part can express them; the IR does not hold it. `compile_spec(code, fragments=[...])` checks every fragment and merges the parts of the fragments in scope for `code`, and a later fragment wins on a duplicate word. The compiler raises `ValueError` that names the offender for any other part, an `ir_version` that differs from the document's, a word key that is not lowercase NFC, a key or value that is not a string, a `langs` that is not a non-empty list of strings or that has a code that names no registered language, a sandhi rule with a key its kind does not allow, with no output, or with a text the IR cannot compile, and an `unsupported` entry that is not a string, and a `syllable` table or key that 3.7.6 does not name or a value of the wrong shape. The revision covers the merged table and the rules, so it covers the fragment bytes. `Pipeline(fragments=...)` passes fragments to the compiler, and `export_to_loom --fragment PATH` does the same for each language of an export, records the sha256 of each fragment in the GGUF field `o2i.fragments` and the sorted names of the `unsupported` lists in `o2i.unsupported`. These two fields are file-level: they list every fragment passed to the export, also a fragment that is out of scope for some of its languages. The table is additive: a new optional table keeps `ir_version` (8.1). Edge punctuation is the char bit `edge_punct` (`_EDGE_PUNCT_RE`).
 
 The elided-clitic path transcribes the clitic with a width-1 beam and joins it to the host's override. The join segments the clitic's IPA with primitive 11 and reads the `ipa_vowel` bit of each segment.
 
@@ -1748,6 +1750,7 @@ These names keep their meaning, because outside code depends on them:
 | `G2P.candidates` | the S8 beam over the S6 slots in run context, without S7 |
 | `Pipeline` with `lexicon`, `syllabifier`, `expand`, `mark`, `rescore`, `sandhi` | the hooks of 3.1 |
 | `registry.get`, `resolve`, `available_codes` | compile-time Python |
+| `phoneme_set(lang)` | `phonemes.py`, package root; the `phonemes` field of the IR that `G2P(lang)` runs, as a frozenset |
 | `phoneme_inventory(spec, lexicon=None)` | `inventory.py`, package root; phonematcher's coverage benchmark (`benchmarks/tasks/coverage.py`) reads it |
 | `packaged_lexicon(lang, patches=)`, `packaged_lexicon_sources(patches=)` | lexicon data for H4 |
 | `spec_revision(lang)` | the IR revision of the spec (8.1): a hash of the manifest and the canonical IR |

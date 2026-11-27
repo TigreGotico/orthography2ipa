@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="218" viewBox="0 0 700 218" role="img" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"><title>Countries per macroarea</title><desc>Eurasia 124, Africa 62, North America 39, Papunesia 39, Several macroareas 32, South America 20, Australia 1, No macroarea 1</desc>
+<text x="20" y="26" font-size="16" text-anchor="start" font-weight="bold" fill="#f0efec">Countries per macroarea</text>
+<text x="20" y="46" font-size="12" text-anchor="start" font-weight="normal" fill="#c3c2b7">Countries with at least one listed spec.</text>
+<text x="148" y="74" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">Eurasia</text>
+<path d="M156 62H632Q636 62 636 66V74Q636 78 632 78H156Z" fill="#3987e5"/>
+<text x="642" y="74" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">124</text>
+<text x="148" y="92" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">Africa</text>
+<path d="M156 80H392Q396 80 396 84V92Q396 96 392 96H156Z" fill="#3987e5"/>
+<text x="402" y="92" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">62</text>
+<text x="148" y="110" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">North America</text>
+<path d="M156 98H302.97Q306.97 98 306.97 102V110Q306.97 114 302.97 114H156Z" fill="#3987e5"/>
+<text x="312.97" y="110" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">39</text>
+<text x="148" y="128" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">Papunesia</text>
+<path d="M156 116H302.97Q306.97 116 306.97 120V128Q306.97 132 302.97 132H156Z" fill="#3987e5"/>
+<text x="312.97" y="128" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">39</text>
+<text x="148" y="146" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">Several macroareas</text>
+<path d="M156 134H275.87Q279.87 134 279.87 138V146Q279.87 150 275.87 150H156Z" fill="#3987e5"/>
+<text x="285.87" y="146" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">32</text>
+<text x="148" y="164" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">South America</text>
+<path d="M156 152H229.42Q233.42 152 233.42 156V164Q233.42 168 229.42 168H156Z" fill="#3987e5"/>
+<text x="239.42" y="164" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">20</text>
+<text x="148" y="182" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">Australia</text>
+<path d="M156 170H155.87Q159.87 170 159.87 174V182Q159.87 186 155.87 186H156Z" fill="#3987e5"/>
+<text x="165.87" y="182" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">1</text>
+<text x="148" y="200" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">No macroarea</text>
+<path d="M156 188H155.87Q159.87 188 159.87 192V200Q159.87 204 155.87 204H156Z" fill="#3987e5"/>
+<text x="165.87" y="200" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">1</text>
+<line x1="156" y1="58" x2="156" y2="206" stroke="#4a5159" stroke-width="1"/>
+</svg>

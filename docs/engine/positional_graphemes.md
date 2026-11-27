@@ -4,7 +4,7 @@
 covers: how `positional_graphemes` give a letter different IPA candidates by its position or its neighbours
 source: `orthography2ipa/phonetok.py`, `orthography2ipa/types.py:GraphemePosition`
 generated: no
-verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_positional_beam.py`
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_positional_beam.py "tests/test_docs_examples.py::test_example_prints_what_its_comment_says[docs/engine/positional_graphemes.md]" "tests/test_docs_hint_sources.py::test_hint_sources_exist[docs/engine/positional_graphemes.md]"`
 see: `docs/engine/allophony.md`, `docs/contributing/spec_authoring.md`
 -->
 
@@ -144,7 +144,6 @@ This Italian-style demo spec has one class entry for ⟨c⟩:
 
 ```python
 from orthography2ipa import G2P
-from orthography2ipa.registry import _cache
 from orthography2ipa.types import LanguageSpec
 
 demo = LanguageSpec(
@@ -155,8 +154,7 @@ demo = LanguageSpec(
     allophones={},
     positional_graphemes={"c": {"before_front_vowel": ["tʃ"]}},
 )
-_cache["x-demo"] = demo
-eng = G2P("x-demo")
+eng = G2P("x-demo", spec=demo)
 
 eng.transcribe_word("ce")   # 'tʃe'
 eng.transcribe_word("cé")   # 'tʃe'
@@ -189,8 +187,7 @@ demo2 = LanguageSpec(
     allophones={},
     positional_graphemes={"e": {"before_palatal": ["ɐ"]}},
 )
-_cache["x-demo2"] = demo2
-eng = G2P("x-demo2")
+eng = G2P("x-demo2", spec=demo2)
 
 eng.transcribe_word("elh")   # 'ɐʎ'
 eng.transcribe_word("enh")   # 'ɐɲ'

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="616" height="182" viewBox="0 0 616 182" role="img" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"><title>Lisbon to Dili substitutions in the Portal gold</title><desc>ɐ to ə 30042, u to ʊ 12075, u to o 7345, ʀ to r 4186, ɐ to a 1858, ɫ to w 1724</desc>
+<text x="20" y="26" font-size="16" text-anchor="start" font-weight="bold" fill="#f0efec">Lisbon to Dili substitutions in the Portal gold</text>
+<text x="20" y="46" font-size="12" text-anchor="start" font-weight="normal" fill="#c3c2b7">Count of each change over 35,800 shared words of equal length (63,189 changes in all).</text>
+<text x="64" y="74" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">ɐ to ə</text>
+<path d="M72 62H548Q552 62 552 66V74Q552 78 548 78H72Z" fill="#3987e5"/>
+<text x="558" y="74" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">30,042</text>
+<text x="64" y="92" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">u to ʊ</text>
+<path d="M72 80H260.93Q264.93 80 264.93 84V92Q264.93 96 260.93 96H72Z" fill="#3987e5"/>
+<text x="270.93" y="92" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">12,075</text>
+<text x="64" y="110" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">u to o</text>
+<path d="M72 98H185.36Q189.36 98 189.36 102V110Q189.36 114 185.36 114H72Z" fill="#3987e5"/>
+<text x="195.36" y="110" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">7,345</text>
+<text x="64" y="128" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">ʀ to r</text>
+<path d="M72 116H134.88Q138.88 116 138.88 120V128Q138.88 132 134.88 132H72Z" fill="#3987e5"/>
+<text x="144.88" y="128" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">4,186</text>
+<text x="64" y="146" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">ɐ to a</text>
+<path d="M72 134H97.69Q101.69 134 101.69 138V146Q101.69 150 97.69 150H72Z" fill="#3987e5"/>
+<text x="107.69" y="146" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">1,858</text>
+<text x="64" y="164" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">ɫ to w</text>
+<path d="M72 152H95.55Q99.55 152 99.55 156V164Q99.55 168 95.55 168H72Z" fill="#3987e5"/>
+<text x="105.55" y="164" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">1,724</text>
+<line x1="72" y1="58" x2="72" y2="170" stroke="#4a5159" stroke-width="1"/>
+</svg>
