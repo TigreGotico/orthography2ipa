@@ -65,6 +65,7 @@
       "ɑu̯"
     ],
     "ɛ̃": [
+      "ɛ̃",
       "ẽ",
       "ɛ̃i̯"
     ],
@@ -1261,7 +1262,8 @@
     "amers": "amai̯ʁ",
     "hier": "jai̯ʁ",
     "ver": "vai̯ʁ",
-    "outremer": "utʁəmai̯ʁ"
+    "outremer": "utʁəmai̯ʁ",
+    "hiers": "jai̯ʁ"
   },
   "sandhi_rules": [
     {
@@ -1295,10 +1297,10 @@
       "id": "FR_NUMERAL_Z_BEFORE_VOWEL",
       "name": "z-liaison of six and dix",
       "left_context": "^((?:s|d|d͡z))[iɪ]s$",
-      "right_context": "^(?!(?:avʁil|au|ut|u|ɔktɔbʁ|e|a|avʁɪl|ɒ)$)[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃ẽɪʏʊɒ]",
+      "right_context": "^(?!(?:avʁil|au|ut|ʊt|u|ɔktɔbʁ|e|a|avʁɪl|ɒ)$)[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃ẽɪʏʊɒ]",
       "transform": "\\1iz‿",
       "obligatory": true,
-      "notes": "fr-FR's FR_NUMERAL_Z_BEFORE_VOWEL (PR #2710), restated by id for Laurentian French: FR_CA_LAX_* makes the high vowel of six, dix and huit lax [ɪ] while their final consonant closes the syllable (Hall 2016: 7; Dumas 1974: 32-33: d͡zɪs, sɪs, ɥɪt), and once the rule drops or resyllabifies that consonant the vowel stands in an open syllable, where it is tense (Hall 2016: 7, ex. (11)): six amis [siz‿ ami]. The right context is fr-FR's (PR #2710): its vowel class with the Laurentian vowels that can open a word added ([ẽ] of insectes, the lax [ɪ ʏ ʊ] of île, [ɒ]), and its date exclusions (avril, août, octobre) with the Laurentian [avʁɪl] and [ɒ] added. The right context is fr-FR's (PR #2710): its vowel class with the Laurentian vowels that can open a word added ([ẽ] of insectes, the lax [ɪ ʏ ʊ] of île, [ɒ]), and its date exclusions (avril, août, octobre) with the Laurentian [avʁɪl] and [ɒ] added. The id overrides fr-FR's rule in place; on a base without that rule the restated rule is the only one and does nothing."
+      "notes": "fr-FR's FR_NUMERAL_Z_BEFORE_VOWEL (PR #2710), restated by id for Laurentian French: FR_CA_LAX_* makes the high vowel of six, dix and huit lax [ɪ] while their final consonant closes the syllable (Hall 2016: 7; Dumas 1974: 32-33: d͡zɪs, sɪs, ɥɪt), and once the rule drops or resyllabifies that consonant the vowel stands in an open syllable, where it is tense (Hall 2016: 7, ex. (11)): six amis [siz‿ ami]. The right context is fr-FR's (PR #2710): its vowel class with the Laurentian vowels that can open a word added ([ẽ] of insectes, the lax [ɪ ʏ ʊ] of île, [ɒ]), and its date exclusions (avril, août, octobre) with the Laurentian [avʁɪl], [ɒ] and the lax [ʊt] of août added. The id overrides fr-FR's rule in place; on a base without that rule the restated rule is the only one and does nothing."
     },
     {
       "id": "FR_NEUF_V_BEFORE_HEURES",
@@ -1366,5 +1368,8 @@
   ],
   "grammatical_endings": {
     "tience": "sjɑ̃u̯s"
-  }
+  },
+  "urls": [
+    "https://www.erudit.org/fr/revues/cl/1974-n4-cl3106/"
+  ]
 }

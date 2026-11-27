@@ -191,6 +191,7 @@ OWN_EXCEPTIONS = {
               "cher": "ʃai̯ʁ", "chers": "ʃai̯ʁ", "hiver": "ivai̯ʁ",
               "hivers": "ivai̯ʁ", "enfer": "ɑ̃fai̯ʁ", "enfers": "ɑ̃fai̯ʁ",
               "amer": "amai̯ʁ", "amers": "amai̯ʁ", "hier": "jai̯ʁ",
+              "hiers": "jai̯ʁ",
               "ver": "vai̯ʁ", "outremer": "utʁəmai̯ʁ"},
     "fr-BE": {"vingt": "vɛ̃t"}, "fr-CH": {"vingt": "vɛ̃t"},
     "fr-FR-x-midi": {"le": "lø", "de": "dø", "que": "kø", "ce": "sø",

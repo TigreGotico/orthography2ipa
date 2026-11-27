@@ -403,3 +403,55 @@ def test_the_uin_unit_takes_the_regional_rules(tag, text, expected):
 ])
 def test_a_numeral_keeps_its_consonant_before_june_and_july(tag, text, expected):
     assert _say(text, tag) == expected
+
+
+# --- nasal candidates, appendix before /f v/, loi de position contexts ------
+
+@pytest.mark.parametrize("text, expected", [
+    ("peine", "pɛn"),              # ⟨ein⟩ before a vowel keeps its [ɛn]
+    ("pain", "pẽ"),                # the close-mid nasal stays reachable
+])
+def test_quebec_expanded_allophones_keep_the_front_nasal(text, expected):
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        g2p = o2i.G2P("fr-CA", expand_allophones=True)
+        assert g2p.transcribe(text) == expected
+
+
+def test_quebec_hiers_reads_like_hier():
+    assert _say("hiers", "fr-CA") == _say("hier", "fr-CA") == "jai̯ʁ"
+
+
+def test_quebec_lists_a_reference_url():
+    assert o2i.get("fr-CA").urls
+
+
+def test_quebec_date_guard_holds_the_lax_aout():
+    rule = [r for r in o2i.get("fr-CA").sandhi_rules
+            if r.id == "FR_NUMERAL_Z_BEFORE_VOWEL"][0]
+    import re
+    assert not re.search(rule.right_context, "ʊt")
+    assert re.search(rule.right_context, "ami")
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("sainfoin", "sɛɱfwɛŋ"),       # the appendix is labiodental before [f]
+    ("pain", "pɛŋ"),               # and velar at the end of a word
+    ("perler", "pɛʁle"),           # [ʁl] closes the syllable (not an onset)
+    ("Moscou", "mɔsku"),           # ⟨sc⟩ [sk] before a back vowel: closed
+    ("escalier", "ɛskalje"),       # ⟨sc⟩ [sk]: closed
+    ("aimer", "eme"),              # ⟨aim⟩ [ɛm] before a full vowel: close
+    ("aime", "ɛmə"),               # before the final schwa: open
+    ("peiner", "pene"),
+])
+def test_midi_appendix_and_loi_de_position_contexts(text, expected):
+    assert _say(text, MIDI) == expected
+
+
+def test_midi_sc_opens_a_syllable_only_where_it_reads_sk():
+    # ⟨sc⟩ before a front vowel is one [s] (osciller, descendre), so the
+    # rules that treat it as a cluster must name a back vowel or a
+    # consonant after it.
+    for rule in o2i.get(MIDI).allophone_rules:
+        if "sc" in rule.followed_by_grapheme:
+            assert rule.followed_by_2 in ("back_vowel", "consonant"), rule.id
