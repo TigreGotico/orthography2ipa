@@ -14,7 +14,7 @@ as an array of codepoints and a 0-based ``lang`` index into
     python -m orthography2ipa.export_to_loom --langs pt-PT,kab --out X.gguf [--rev REF] [--fragment PATH ...]
 
 A fragment is a JSON file of plugin data (docs/ir/o2i-ir-v1.md, 3.5). The export
-merges every ``--fragment`` into the IR of each language and records the sha256
+merges each ``--fragment`` into the IR of each language in its scope and records the sha256
 of each fragment in ``o2i.fragments``. The names that the fragments list as ``unsupported``
 go to ``o2i.unsupported``: the rules the plugin still runs as a host hook.
 
@@ -103,7 +103,7 @@ def export_to_loom(langs: List[str], out_path: Path, *, data_ref: Optional[str] 
     language to its IR revision (``layout.spec_revision``, the value of
     ``o2i.spec_revisions``), not to ``orthography2ipa.spec_revision``. A
     language whose IR revision differs stops the export before any file is
-    written. *fragments* are plugin fragments merged into every language; the
+    written. *fragments* are plugin fragments merged into each language in their scope; the
     metadata lists their sha256 digests and the rules they name as unsupported.
 
     Raises:
@@ -132,6 +132,7 @@ def export_to_loom(langs: List[str], out_path: Path, *, data_ref: Optional[str] 
         "ruleset": ruleset(langs, revs, data_ref),
         "o2i_version": VERSION_STR,
         "spec_revisions": {c: revs[c] for c in langs},
+        "phonemes": {c: layout.decode(irs[c])["phonemes"] for c in langs},
         "phonemizer_identity": {c: phonemizer_identity(c, revs[c]) for c in langs},
         "fragments": [fragment_digest(f) for f in fragments],
         "unsupported": fragment_unsupported(fragments),
@@ -145,6 +146,9 @@ def export_to_loom(langs: List[str], out_path: Path, *, data_ref: Optional[str] 
     writer.add_array("loom.text.languages", langs)
     writer.add_string("o2i.version", VERSION_STR)
     writer.add_array("o2i.spec_revisions", [revs[c] for c in langs])
+    for code in langs:
+        if meta["phonemes"][code]:
+            writer.add_array(f"o2i.phonemes.{code}", meta["phonemes"][code])
     if fragments:
         writer.add_array("o2i.fragments", meta["fragments"])
     if meta["unsupported"]:

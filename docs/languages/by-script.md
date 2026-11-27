@@ -14,6 +14,13 @@ A stub has a name, a code and a place in the family tree, but no phonology yet. 
 
 `scripts/gen_language_atlas.py` writes this page. Do not edit it by hand.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../evaluation/charts/atlas-script.dark.svg">
+  <img alt="Specs per script, 7,404 in all. The largest: Zyyy 6,144, Latin 951, Arabic 78." src="../evaluation/charts/atlas-script.light.svg">
+</picture>
+
+`scripts/gen_doc_charts.py` makes this figure from the table under it.
+
 | Script | Specs |
 |:--|--:|
 | [Arabic](#arabic) | 78 |

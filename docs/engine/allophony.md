@@ -4,7 +4,7 @@
 covers: how `allophone_rules` map a phoneme to its surface form in context, and how that differs from the flat `allophones` table
 source: `orthography2ipa/allophony.py`, `orthography2ipa/types.py:AllophoneRule`
 generated: no
-verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_allophone_rules.py`
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_allophone_rules.py "tests/test_docs_examples.py::test_example_prints_what_its_comment_says[docs/engine/allophony.md]" "tests/test_docs_hint_sources.py::test_hint_sources_exist[docs/engine/allophony.md]"`
 see: `docs/engine/positional_graphemes.md`, `orthography2ipa/data/SCHEMA.md`
 -->
 
