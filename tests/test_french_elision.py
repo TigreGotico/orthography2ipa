@@ -9,8 +9,9 @@ its consonant (⟨d'⟩, ⟨j'⟩, ⟨s'⟩ came out empty) and ⟨qu⟩ before 
 apostrophe lost its mute ⟨u⟩.
 
 The expected IPA below is written in the test, never read back from the
-engine. The cases where only the clitic is pinned (``n'est``, ``c'est``) leave
-the reading of the host ⟨est⟩ out: this spec does not make that claim.
+engine. The host ⟨est⟩ is the verb, a whole-word entry [ɛ] (Martinon 1913:
+331, mute ⟨st⟩; Larousse, s.v. être), so ``c'est`` is [sɛ] and ``n'est``
+[nɛ]; tests/test_french_frequent_words.py pins both.
 """
 import json
 import warnings
@@ -32,9 +33,9 @@ VOWEL_OR_H = set("aàâeéèêëiîïoôuùûüyh")
 #: Every fr-FR entry that can follow an elided clitic.
 VOWEL_INITIAL_EXCEPTIONS = {word: ipa for word, ipa in FR_EXCEPTIONS.items()
                             if word[0] in VOWEL_OR_H and "'" not in word}
-#: Verb forms that cannot follow l' or d'. The verb est has no entry, and
-#: after those clitics est is the noun 'east' (see test_l_est_is_the_noun).
-VERB_FORMS = {"et", "es"}
+#: Verb forms that cannot follow l' or d'. After those clitics est is the noun
+#: 'east', which has entries of its own (see test_l_est_is_the_noun).
+VERB_FORMS = {"et", "es", "est"}
 #: The reading of each elided clitic: its consonant, with the vowel elided.
 CLITICS = {"l'": "l", "d'": "d"}
 
@@ -133,14 +134,16 @@ def test_a_french_region_with_no_sourced_difference_is_the_standard_variety(tag)
 def test_les_keeps_its_vowel():
     assert o2i.transcribe("les", "fr-FR") == "le"
     assert o2i.transcribe("Les", "fr-FR") == "le"
-    assert o2i.transcribe("les amis", "fr-FR").split(" ")[0] == "le"
+    # Before a vowel the liaison adds [z] and keeps the vowel (Martinon 1913: 375).
+    assert o2i.transcribe("les amis", "fr-FR").split(" ")[0] == "lez‿"
 
 
 @pytest.mark.parametrize("text", ["est-ce", "peut-être", "rendez-vous",
-                                  "dix-sept"])
+                                  "porte-monnaie"])
 def test_a_hyphenated_compound_stays_two_words_and_loses_neither(text):
-    # A hyphen is a word boundary here (liaison is not modelled): both parts
-    # are spoken, and each reads as it does alone.
+    # A hyphen is a word boundary: both parts are spoken, and each reads as it
+    # does alone where no sandhi rule joins them (quatre-vingts keeps the e of
+    # quatre, FR_QUATRE_E_BEFORE_VINGT, tests/test_french_sandhi_spelling.py).
     parts = text.split("-")
     assert o2i.transcribe(text, "fr-FR").split(" ") == [
         o2i.transcribe(p, "fr-FR") for p in parts]
@@ -168,8 +171,8 @@ def test_a_stray_apostrophe_does_not_crash(text):
 
 
 def test_every_vowel_initial_exception_is_tested():
-    # 28 entries: 26 content words and the two verb forms.
-    assert len(VOWEL_INITIAL_EXCEPTIONS) == 28
+    # 30 entries: 27 content words and the three verb forms.
+    assert len(VOWEL_INITIAL_EXCEPTIONS) == 30
     assert VERB_FORMS <= set(VOWEL_INITIAL_EXCEPTIONS)
 
 

@@ -185,6 +185,8 @@ sandhi[].left_out: tpl
 sandhi[].right_out: tpl
 sandhi[].left_spelling: pat
 sandhi[].right_spelling: pat
+sandhi[].left_joined_spelling: pat
+sandhi[].right_joined_spelling: pat
 sandhi[].pause: i
 dialect: list of object
 dialect[].gate: gate
@@ -635,7 +637,7 @@ So a host lexicon hit on the raw key beats an exception on the stripped key. The
 
 `word.words` is the optional word table of plugin fragments, a list of `[key, ipa]` pairs sorted by key, with the semantics version `words`. A key is lowercase NFC. For each key `k` the order is `word.exceptions`, then the host lexicon, then `word.words`, looked up with `NFC(k)` as the lexicon is. The compiler writes the table only when it is not empty, so an IR with no fragment has no `words` field and the same revision as before. The test for a leading apostrophe that opens a listed word counts a key of `word.words` as listed.
 
-A fragment is a JSON object with an `ir_version` and any of four parts. `langs` is a non-empty list of language codes, the scope of the fragment. The compiler merges a fragment into the IR of a code only when `registry.resolve` gives the same registered code for one code of `langs` and for the engine code. The match is exact after resolution: a fragment for `pt-PT` does not reach `pt-PT-x-lisbon`. A fragment without `langs` applies to every code. The IR does not hold `langs`: a fragment out of scope contributes nothing, so the IR of that code is byte-identical to its IR without the fragment. `words` is the table `{key: ipa}`. `sandhi` is a list of rules, each with the pattern and template texts of a spec `SandhiRule` under the keys `left`, `right`, `left_out`, `right_out`, and optionally `left_spelling`, `right_spelling` and `"pause": true` (3.10.1). The compiler compiles the texts as it compiles the spec's rules and appends the rules to `sandhi` after the spec's own; `apply_sandhi=False` removes the spec's rules and keeps these. `unsupported` is a list of names of the rules a plugin keeps as a host hook because no fragment part can express them; the IR does not hold it. `compile_spec(code, fragments=[...])` checks every fragment and merges the parts of the fragments in scope for `code`, and a later fragment wins on a duplicate word. The compiler raises `ValueError` that names the offender for any other part, an `ir_version` that differs from the document's, a word key that is not lowercase NFC, a key or value that is not a string, a `langs` that is not a non-empty list of strings or that has a code that names no registered language, a sandhi rule with a key its kind does not allow, with no output, or with a text the IR cannot compile, and an `unsupported` entry that is not a string. The revision covers the merged table and the rules, so it covers the fragment bytes. `Pipeline(fragments=...)` passes fragments to the compiler, and `export_to_loom --fragment PATH` does the same for each language of an export, records the sha256 of each fragment in the GGUF field `o2i.fragments` and the sorted names of the `unsupported` lists in `o2i.unsupported`. These two fields are file-level: they list every fragment passed to the export, also a fragment that is out of scope for some of its languages. The table is additive: a new optional table keeps `ir_version` (8.1). Edge punctuation is the char bit `edge_punct` (`_EDGE_PUNCT_RE`).
+A fragment is a JSON object with an `ir_version` and any of four parts. `langs` is a non-empty list of language codes, the scope of the fragment. The compiler merges a fragment into the IR of a code only when `registry.resolve` gives the same registered code for one code of `langs` and for the engine code. The match is exact after resolution: a fragment for `pt-PT` does not reach `pt-PT-x-lisbon`. A fragment without `langs` applies to every code. The IR does not hold `langs`: a fragment out of scope contributes nothing, so the IR of that code is byte-identical to its IR without the fragment. `words` is the table `{key: ipa}`. `sandhi` is a list of rules, each with the pattern and template texts of a spec `SandhiRule` under the keys `left`, `right`, `left_out`, `right_out`, and optionally `left_spelling`, `right_spelling`, `left_joined_spelling`, `right_joined_spelling` and `"pause": true` (3.10.1). The compiler compiles the texts as it compiles the spec's rules and appends the rules to `sandhi` after the spec's own; `apply_sandhi=False` removes the spec's rules and keeps these. `unsupported` is a list of names of the rules a plugin keeps as a host hook because no fragment part can express them; the IR does not hold it. `compile_spec(code, fragments=[...])` checks every fragment and merges the parts of the fragments in scope for `code`, and a later fragment wins on a duplicate word. The compiler raises `ValueError` that names the offender for any other part, an `ir_version` that differs from the document's, a word key that is not lowercase NFC, a key or value that is not a string, a `langs` that is not a non-empty list of strings or that has a code that names no registered language, a sandhi rule with a key its kind does not allow, with no output, or with a text the IR cannot compile, and an `unsupported` entry that is not a string. The revision covers the merged table and the rules, so it covers the fragment bytes. `Pipeline(fragments=...)` passes fragments to the compiler, and `export_to_loom --fragment PATH` does the same for each language of an export, records the sha256 of each fragment in the GGUF field `o2i.fragments` and the sorted names of the `unsupported` lists in `o2i.unsupported`. These two fields are file-level: they list every fragment passed to the export, also a fragment that is out of scope for some of its languages. The table is additive: a new optional table keeps `ir_version` (8.1). Edge punctuation is the char bit `edge_punct` (`_EDGE_PUNCT_RE`).
 
 The elided-clitic path transcribes the clitic with a width-1 beam and joins it to the host's override. The join segments the clitic's IPA with primitive 11 and reads the `ipa_vowel` bit of each segment.
 
@@ -1128,29 +1130,34 @@ dock(ipa):
 `SandhiEngine.apply`, kept:
 
 ```
-sandhi(words, surfaces, pausal):
+sandhi(words, surfaces, joined, pausal):
   for i in 0 .. len(words)-1:
     if pausal[i]:                                            # a word at a pause
       for rule in sandhi where rule.pause:
-        if search(rule.left, words[i]) and spelling(rule.left_spelling, surfaces[i]):
+        if search(rule.left, words[i]) and spelled(rule, "left", i):
           words[i] = sub(rule.left, words[i], rule.left_out); break
       continue
     L, R = words[i], words[i+1]
     left_done = right_done = false
     for rule in sandhi where not rule.pause:
       if left_done and right_done: break
-      mL = search(rule.left, L) and spelling(rule.left_spelling, surfaces[i])
-      mR = search(rule.right, R) and spelling(rule.right_spelling, surfaces[i+1])
+      mL = search(rule.left, L) and spelled(rule, "left", i)
+      mR = search(rule.right, R) and spelled(rule, "right", i+1)
       if not (mL and mR): continue
-      if rule.left_out and not left_done:  words[i]   = sub(rule.left, L, rule.left_out);   left_done = true
-      if rule.right_out and not right_done: words[i+1] = sub(rule.right, R, rule.right_out); right_done = true
+      if rule has left_out and not left_done:  words[i]   = sub(rule.left, L, rule.left_out);   left_done = true
+      if rule has right_out and not right_done: words[i+1] = sub(rule.right, R, rule.right_out); right_done = true
 
-spelling(p, surface) = p is absent or search(p, surface)
+spelling(p, s) = p is absent or search(p, s)
+spelled(rule, side, k) = spelling(rule[side + "_spelling"], surfaces[k])
+                         and spelling(rule[side + "_joined_spelling"], joined[k])
+
+joined[k] = surfaces[k-1] + "-" + surfaces[k]   if k > 0 and word k is hyphen_joined
+          = surfaces[k]                         otherwise
 ```
 
-Each search reads the two words as they stood before this pair was rewritten. The last word of a text is always at a pause, so `words[i+1]` exists whenever `pausal[i]` is false. The compiler writes `obligatory`, and the v1 interpreter does not read it: `G2P` never passes `obligatory_only`, so every rule applies. `sub` is Python `re.sub` with count 0: it replaces every non-overlapping match from left to right. `left_out` and `right_out` are templates `[["lit", s], ["group", n], ...]`. An unmatched group is empty. 43 rules (46 fields) use a group in a template.
+"Has" tests that the key is present: a rule with no `left_out` leaves the left word alone, and an empty template `[]` still applies and deletes the match. Each search reads the two words as they stood before this pair was rewritten. The last word of a text is always at a pause, so `words[i+1]` exists whenever `pausal[i]` is false. The compiler writes `obligatory`, and the v1 interpreter does not read it: `G2P` never passes `obligatory_only`, so every rule applies. `sub` is Python `re.sub` with count 0: it replaces every non-overlapping match from left to right. `left_out` and `right_out` are templates `[["lit", s], ["group", n], ...]`. An unmatched group is empty. 43 rules (46 fields) use a group in a template.
 
-`left_spelling` and `right_spelling` are optional patterns that must also find a match in the surface of the word: the written text of the word as the word splitter returns it, casefolded, with a shadda written out as a doubled letter, with its other marks, and without the punctuation around it. So `^C` never matches, and a pattern names lowercase letters. They have the semantics version `sandhi_spelling`. A rule with `pause` set to 1 is a pause rule. It has no `right`, `right_out` or `right_spelling`, only the first matching pause rule of a word applies, and it changes the word at a pause only; the pair rules never see that word as the left of a pair. It has the semantics version `sandhi_pause`. Both fields are additive, and an IR with neither has the manifest and the revision it had.
+`left_spelling` and `right_spelling` are optional patterns that must also find a match in the surface of the word: the written text of the word as the word splitter returns it, casefolded, with a shadda written out as a doubled letter, with its other marks, and without the punctuation around it. So `^C` never matches, and a pattern names lowercase letters. They have the semantics version `sandhi_spelling`. `left_joined_spelling` and `right_joined_spelling` are optional patterns that must find a match in the joined spelling of the word: for a word that the splitter marks `hyphen_joined` (3.11), the surface of the word before it, U+002D `-` and its surface, whichever of the three hyphen chars the text wrote; for any other word, its surface. A joined spelling spans at most two words, so a pattern reads strings no longer than two surfaces, however long the hyphenated chain. In ⟨quatre-vingt-deux⟩ the joined spellings are `quatre`, `quatre-vingt` and `vingt-deux`. They have the semantics version `sandhi_joined`. A spec `SandhiRule` sets all four with fields of the same names, and a plugin fragment with keys of the same names (3.5). A pause rule may have `left_joined_spelling`. A rule with `pause` set to 1 is a pause rule. It has no `right`, `right_out`, `right_spelling` or `right_joined_spelling`, only the first matching pause rule of a word applies, and it changes the word at a pause only; the pair rules never see that word as the left of a pair. It has the semantics version `sandhi_pause`. The three are additive, and an IR with none of them has the manifest and the revision it had. The host hook H7 receives the surfaces, not the joined spellings.
 
 The spec's own rules come first in the list. A plugin fragment adds rules after them (3.5). A word whose IPA is empty is a word: a rule reads it as the empty string, and a pair rule does not look past it.
 
@@ -1262,7 +1269,7 @@ The counts come from `DIALECT_PROFILES` at `690611bb2`. Every context that a rul
 
 ### 3.11 Words, punctuation and compounds (S2, S10)
 
-Word grouping follows `Interpreter._group_words`. Whitespace ends a word. Punctuation ends a word, except an apostrophe between letters when `word_internal_apostrophe` holds, and a leading apostrophe that opens a word exception. A hyphen sets `hyphen_joined` on the next word. A punctuation run with a pause char marks the previous word pausal. The last word is pausal. Digit and UNKNOWN tokens stay inside the word surface, and the word path drops them (9.3).
+Word grouping follows `Interpreter._group_words`. Whitespace ends a word. Punctuation ends a word, except an apostrophe between letters when `word_internal_apostrophe` holds, and a leading apostrophe that opens a word exception. A hyphen sets `hyphen_joined` on the next word. Precisely: a punctuation token that is exactly one char with bit `hyphen` (U+002D, U+2010 or U+2011, `_HYPHENS` in `g2p.py`), after a word that has at least one char and before the next word token with nothing between them, marks that next word. Whitespace before the next word, a second punctuation char (⟨a--b⟩, ⟨a-,b⟩, ⟨a-'b⟩) or a hyphen with no word before it leaves the next word unjoined. So ⟨nord-est⟩, ⟨nord‐est⟩ (U+2010) and ⟨nord‑est⟩ (U+2011) join ⟨est⟩ to ⟨nord⟩, and ⟨nord - est⟩ and ⟨nord–est⟩ (U+2013 EN DASH, a punctuation char without bit `hyphen`) do not. A char that the spec does not class as punctuation stays inside the word surface: in fr-FR U+2212 MINUS SIGN, U+FE63 SMALL HYPHEN-MINUS and U+FF0D FULLWIDTH HYPHEN-MINUS keep ⟨nord−est⟩ one word, and the word path drops the unmapped char (9.3). A punctuation run with a pause char marks the previous word pausal. The last word is pausal. Digit and UNKNOWN tokens stay inside the word surface, and the word path drops them (9.3).
 
 Compound stress (S10, `compound_stress == "last"`): in each hyphen-joined run, every primary mark but the last becomes the secondary mark.
 
@@ -1593,6 +1600,7 @@ An optional field that changes output has its own version too. The manifest list
 | `word.exceptions` | `overrides` |
 | `word.words` | `words` |
 | `sandhi[].left_spelling`, `sandhi[].right_spelling` | `sandhi_spelling` |
+| `sandhi[].left_joined_spelling`, `sandhi[].right_joined_spelling` | `sandhi_joined` |
 | `sandhi[].pause` | `sandhi_pause` |
 | `allophone_map` | `allophone_map` |
 | `syllable.closed_hiatus`, `syllable.final_diphthongs` | `hiatus` |

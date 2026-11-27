@@ -924,13 +924,24 @@ def _show(example) -> str:
     return f"⟨{_clean(example[0])}⟩ [{_clean(example[1])}]" if example else ""
 
 
-def _example(notes: str, output: str = "") -> str:
+def _example(notes: str, output: str = "", graphemes=()) -> str:
     """The first example of the note whose transcription holds *output*.
 
     A note that three rules share must not give the labial example to the
     velar rule, so an example that does not show the rule's output is skipped.
+    When the rule names its *graphemes*, the example must also spell one of
+    them inside a longer word: an output that is a substring of another
+    segment ([s] of [ks]) would otherwise accept an unrelated word, and the
+    bare letter cited on its own (⟨x⟩ [ks]) is not a worked example.
     """
-    return _show(next((e for e in _examples(notes) if output in e[1]), None))
+    wanted = [g.lower() for g in graphemes or () if g]
+
+    def spells(example) -> bool:
+        spelled = example[0].lower()
+        return not wanted or any(g in spelled and spelled != g for g in wanted)
+
+    return _show(next((e for e in _examples(notes)
+                       if output in e[1] and spells(e)), None))
 
 
 def _sandhi_example(rule, output: str) -> str:
@@ -962,6 +973,25 @@ def _sandhi_example(rule, output: str) -> str:
         return False
 
     return _show(next((e for e in _examples(rule.notes) if fits(e[1])), None))
+
+
+#: The longest spelling condition that a rules table prints in full.
+_MAX_SPELLING_CELL = 60
+
+
+def _context_cell(context: str, spelling, joined) -> str:
+    """A table cell for one side of a sandhi rule: the IPA context, and the
+    spelling conditions when the rule has them (a long one is named, not printed)."""
+    # GitHub splits a table cell at a pipe, even inside a code span.
+    cell = "`" + context.replace("|", "\\|") + "`"
+    for label, text in (("spelled", spelling), ("joined", joined)):
+        if text is None:
+            continue
+        if len(text) > _MAX_SPELLING_CELL:
+            cell += f", {label} by a long condition"
+        else:
+            cell += f", {label} `" + text.replace("|", "\\|") + "`"
+    return cell
 
 
 def _cites(name: str, year: int, notes: str) -> bool:
@@ -1003,11 +1033,23 @@ def _citations(spec, notes: str) -> str:
     return ", ".join(found[:3])
 
 
+#: The pattern that never matches. A spec switches off an inherited sandhi
+#: rule by redeclaring its id with this context (SCHEMA.md, Sandhi Rule
+#: Schema), as it switches off an allophone rule with empty ``phonemes``.
+_NEVER_MATCHES = "(?!)"
+
+
+def _sandhi_off(rule) -> bool:
+    return _NEVER_MATCHES in (rule.left_context, rule.right_context)
+
+
 def block_rules(atlas: Atlas, spec) -> str:
     rules = list(spec.allophone_rules or ())
     active = [r for r in rules if r.phonemes]
     off = [r for r in rules if not r.phonemes]
-    sandhi = list(spec.sandhi_rules or ())
+    all_sandhi = list(spec.sandhi_rules or ())
+    sandhi = [r for r in all_sandhi if not _sandhi_off(r)]
+    off += [r for r in all_sandhi if _sandhi_off(r)]
     lines = ["## Rules", ""]
     if not active and not sandhi:
         lines.append("The spec has no allophone rule and no cross-word rule.")
@@ -1021,12 +1063,16 @@ def block_rules(atlas: Atlas, spec) -> str:
             "| Rule | Change | Example | Cited |", "|:--|:--|:--|:--|"]
         for rule in active:
             lines.append(f"| `{rule.id}` | {_change(rule)} | "
-                         f"{_example(rule.notes, rule.surface or rule.append) or '-'} | "
+                         f"{_example(rule.notes, rule.surface or rule.append, rule.grapheme) or '-'} | "
                          f"{_citations(spec, rule.notes) or '-'} |")
     if sandhi:
         lines += ["", f"The spec applies {len(sandhi)} rules across a word "
                   "boundary. The contexts are regular expressions on the IPA "
-                  "of the two words.", "",
+                  "of the two words."
+                  + (" A rule may also read the spelling of a word, or its joined spelling, "
+                     "which adds the word before a hyphen."
+                     if any(r.left_spelling or r.right_spelling or r.left_joined_spelling
+                            or r.right_joined_spelling for r in sandhi) else ""), "",
                   "| Rule | End of word | Start of next word | Change | Example | Cited |",
                   "|:--|:--|:--|:--|:--|:--|"]
         for rule in sandhi:
@@ -1039,11 +1085,11 @@ def block_rules(atlas: Atlas, spec) -> str:
                 value = re.sub(r"\\\d|\\g<\w+>", "", value)
                 output = output or value
                 change.append(f"{side} [{value}]" if value else f"{side} ∅")
-            # GitHub splits a table cell at a pipe, even inside a code span.
-            left, right = (c.replace("|", "\\|")
-                           for c in (rule.left_context, rule.right_context))
+            left, right = (_context_cell(c, sp, joined) for c, sp, joined in (
+                (rule.left_context, rule.left_spelling, rule.left_joined_spelling),
+                (rule.right_context, rule.right_spelling, rule.right_joined_spelling)))
             lines.append(
-                f"| `{rule.id}` | `{left}` | `{right}` | "
+                f"| `{rule.id}` | {left} | {right} | "
                 f"{', '.join(change) or 'none'} | {_sandhi_example(rule, output) or '-'} | "
                 f"{_citations(spec, rule.notes) or '-'} |")
     if off:

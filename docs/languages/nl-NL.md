@@ -215,7 +215,7 @@ The spec applies 19 allophone rules after the letters are read. The change colum
 | `NL_CODA_DEVOICE_D` | /d/ → [t], in the coda, before [t] [k] [s] [f] [p] [x] [χ], spelled ⟨d⟩ | ⟨raad-sel⟩ [raːtsəl] | Booij 1995 |
 | `NL_CODA_DEVOICE_VELD` | /d/ → [t], in the coda, before [t] [k] [s] [f] [p] [x] [χ], spelled ⟨veld⟩ | ⟨veldslag⟩ [ˈvɛltslɑχ] | [Gussenhoven 1992](#src-gussenhoven1992) |
 | `NL_CODA_DEVOICE_V` | /v/ → [f], in the coda, before [t] [k] [s] [f] [p] [x] [χ], spelled ⟨v⟩ | - | Booij 1995 |
-| `NL_CODA_DEVOICE_Z` | /z/ → [s], in the coda, before [t] [k] [s] [f] [p] [x] [χ], spelled ⟨z⟩ | ⟨raad-sel⟩ [raːtsəl] | Booij 1995 |
+| `NL_CODA_DEVOICE_Z` | /z/ → [s], in the coda, before [t] [k] [s] [f] [p] [x] [χ], spelled ⟨z⟩ | - | Booij 1995 |
 | `NL_CODA_R_APPROXIMANT` | /r/ → [ɹ], not word-initially, in the coda, with more context in the spec | ⟨door⟩ [doᵊɹ] | [Gussenhoven 1992](#src-gussenhoven1992) |
 | `NL_QU_FRENCH_K` | /ʋ w/ → ∅, after [k], spelled ⟨qu⟩, in 29 listed words | ⟨pubquiz⟩ [ˈpʏpkʋɪs] | [Paardekooper 1987](#src-paardekooper1987) |
 | `NL_LIJK_SCHWA` | /ɛi aːi/ → [ə], unstressed, spelled ⟨ij⟩, after ⟨l⟩, before ⟨k⟩ | - | [Trommelen 1992](#src-trommelen_zonneveld1992) |

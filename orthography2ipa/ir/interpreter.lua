@@ -33,7 +33,7 @@ M.SEMANTICS = {
   codepoint_map = 1, pattern = 1, trie = 1, bits = 1, predicate = 1, candidates = 1,
   beam = 1, splitter = 1, decision = 1, sequencer = 1, segment = 1, word_has = 1,
   spell_gate = 1, positional_rewrite = 1, gated_map = 1, aligned_rewrite = 1,
-  allophony = 1, mark_placement = 1, sandhi = 1, sandhi_spelling = 1, sandhi_pause = 1, rewrite = 1, endings = 1, inherent = 1,
+  allophony = 1, mark_placement = 1, sandhi = 1, sandhi_spelling = 1, sandhi_joined = 1, sandhi_pause = 1, rewrite = 1, endings = 1, inherent = 1,
   written_onsets = 1, vowel_letters = 1, secondary = 1, aperture = 1, prefixes = 1, coda_liquid = 1, mutate = 1, accent2 = 1,
   fold = 1, tone_dock = 1, iambic = 1, prevocalic_backoff = 1,
   ipa_count = 1, consonant_nuclei = 1, computed_tone = 1,
@@ -204,7 +204,7 @@ local function chars(s)
   for i = 0, #s / 3 - 1 do out[i + 1] = ssub(s, 3 * i + 1, 3 * i + 3) end
   return out
 end
-local SPACE, APOS, RSQUO, LENGTH = C(32), C(39), C(0x2019), C(0x2D0)
+local SPACE, APOS, RSQUO, LENGTH, HYPHEN = C(32), C(39), C(0x2019), C(0x2D0), C(0x2D)
 M.C, M.from_cps, M.to_cps = C, from_cps, to_cps
 
 -- ═══ JSON ══════════════════════════════════════════════════════════════════
@@ -329,7 +329,8 @@ local LAYOUT = Ob{
   atoms = Ob{mark = Lt(S_), affricates = Lt(S_)},
   allophony = Ob{passes = I_, atoms = Lt(S_), geminate = I_, rules = Lt(RULE)},
   sandhi = Lt(Ob{left = PAT, right = PAT, obligatory = I_, left_out = TPL, right_out = TPL,
-                 left_spelling = PAT, right_spelling = PAT, pause = I_}),
+                 left_spelling = PAT, right_spelling = PAT,
+                 left_joined_spelling = PAT, right_joined_spelling = PAT, pause = I_}),
   dialect = Lt(STEP),
   char_maps = Ob{casefold = Lt(Pr(I_, S_)), plain_lower = Lt(Pr(I_, S_)), nfd = Lt(Pr(I_, S_)),
                  ccc = Lt(Lt(I_)), compose = Lt(Lt(I_)), presentation = Lt(Pr(I_, S_)), fold = SSET},
@@ -3333,13 +3334,13 @@ function P:_mark_compounds(words, ipa_words)
   return out
 end
 
-function P:_sandhi(words, surfaces, pausal)
+function P:_sandhi(words, surfaces, pausal, joined)
   local result = copy(words)
   for i = 1, #result do
     if pausal[i] then
       local left = to_cps(result[i])
       for _, rule in ipairs(self.ir.sandhi) do
-        if T(rule.pause) and self:_side_holds(rule, "left", left, surfaces[i]) then
+        if T(rule.pause) and self:_side_holds(rule, "left", left, surfaces[i], joined[i]) then
           result[i] = self:_sub(rule.left, rule.left_out, left)
           break
         end
@@ -3349,8 +3350,8 @@ function P:_sandhi(words, surfaces, pausal)
       local left_done, right_done = false, false
       for _, rule in ipairs(self.ir.sandhi) do
         if left_done and right_done then break end
-        if not T(rule.pause) and self:_side_holds(rule, "left", left, surfaces[i])
-            and self:_side_holds(rule, "right", right, surfaces[i + 1]) then
+        if not T(rule.pause) and self:_side_holds(rule, "left", left, surfaces[i], joined[i])
+            and self:_side_holds(rule, "right", right, surfaces[i + 1], joined[i + 1]) then
           if rule.left_out ~= nil and not left_done then
             result[i] = self:_sub(rule.left, rule.left_out, left)
             left_done = true
@@ -3366,13 +3367,18 @@ function P:_sandhi(words, surfaces, pausal)
   return result
 end
 
--- The side pattern finds a match in the IPA and, when the rule has one, the
--- spelling pattern finds a match in the surface of the word.
-function P:_side_holds(rule, side, ipa, surface)
+-- The side pattern finds a match in the IPA and, when the rule has them, the
+-- spelling pattern finds a match in the surface of the word and the joined
+-- spelling pattern in its joined spelling.
+function P:_side_holds(rule, side, ipa, surface, joined)
   local node = rule[side]
   if psearch(node, ipa, 0, group_count(node)) == nil then return false end
   local spelling = rule[side .. "_spelling"]
-  return spelling == nil or psearch(spelling, to_cps(surface), 0, group_count(spelling)) ~= nil
+  if spelling ~= nil and psearch(spelling, to_cps(surface), 0, group_count(spelling)) == nil then
+    return false
+  end
+  local pair = rule[side .. "_joined_spelling"]
+  return pair == nil or psearch(pair, to_cps(joined), 0, group_count(pair)) ~= nil
 end
 
 function P:_sub(node, template, s)
@@ -3401,9 +3407,18 @@ function P:transcribe(text, width)
     ipa_words = self:_mark_compounds(words, ipa_words)
   end
   if T(self.ir.sandhi) then
-    local surfaces, pausal = {}, {}
-    for k, w in ipairs(words) do surfaces[k], pausal[k] = w.surface, w.pausal end
-    ipa_words = self:_sandhi(ipa_words, surfaces, pausal)
+    local surfaces, pausal, joined = {}, {}, {}
+    for k, w in ipairs(words) do
+      surfaces[k], pausal[k] = w.surface, w.pausal
+      -- A word joined to the one before by a hyphen: that word, "-" and its own
+      -- surface (docs/ir/o2i-ir-v1.md, 3.10.1).
+      if k > 1 and w.hyphen_joined then
+        joined[k] = words[k - 1].surface .. HYPHEN .. w.surface
+      else
+        joined[k] = w.surface
+      end
+    end
+    ipa_words = self:_sandhi(ipa_words, surfaces, pausal, joined)
   end
   local kept = {}
   for _, w in ipairs(ipa_words) do if w ~= "" then kept[#kept + 1] = w end end

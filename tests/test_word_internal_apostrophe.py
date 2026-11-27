@@ -219,15 +219,15 @@ def test_the_field_docs_name_no_boundary_example_that_is_one_word(name):
         assert " " in o2i.transcribe(word, lang)
 
 
-def test_the_french_sandhi_paragraph_says_the_enchainement_rule_fires():
+def test_the_french_sandhi_paragraph_matches_the_liaison_rules():
     from pathlib import Path
     page = (Path(__file__).parent.parent / "docs" / "languages" / "fr-FR.md"
             ).read_text(encoding="utf-8")
-    assert "rules for `z t n ʁ p` do not fire" in page
-    assert "none of them fire" not in page
-    assert "`FR_ENCHAÎNEMENT` does fire" in page
+    assert "rules for `z t n ʁ p` do not fire" not in page
+    assert "⟨les amis⟩ `lez‿ ami`" in page
+    assert "This is enchaînement, not liaison" in page
     assert o2i.transcribe("rouge orange", "fr-FR") == "ʁuʒ‿ ɔʁɑ̃ʒ"
-    assert o2i.transcribe("les amis", "fr-FR") == "le ami"
+    assert o2i.transcribe("les amis", "fr-FR") == "lez‿ ami"
 
 
 @pytest.mark.parametrize("text", ["ma'am", "o'er", "o'clock", "doesn't",

@@ -291,8 +291,48 @@ To keep a context from the base file, write it again in the child file.
 | `right_context`| string | yes      | Regex on next-word-initial IPA       |
 | `transform`    | string | no       | Replacement for the `left_context` match in the left word. Absent or `null` leaves the left word unchanged. `""` deletes the match |
 | `right_transform` | string | no    | Replacement for the `right_context` match in the right word. Absent or `null` (default) leaves the right word unchanged. Use it when the next word changes, as in Catalan spirantization of a word-initial /b d ɡ/ after a continuant |
+| `left_spelling` | string | no     | Regex that must also find a match in the spelling of the left word. Absent or `null` (default) sets no spelling condition |
+| `right_spelling` | string | no    | Regex that must also find a match in the spelling of the right word. Absent or `null` (default) sets no spelling condition |
+| `left_joined_spelling` | string | no | Regex that must also find a match in the joined spelling of the left word. Absent or `null` (default) sets no condition |
+| `right_joined_spelling` | string | no | Regex that must also find a match in the joined spelling of the right word. Absent or `null` (default) sets no condition |
 | `obligatory`   | bool   | no       | Whether rule is obligatory (default: true) |
 | `notes`        | string | no       | Optional notes                       |
+
+The IPA contexts cannot tell apart two words that sound the same: French
+⟨cent⟩ and ⟨sang⟩ are both [sɑ̃], and only ⟨cent ans⟩ links with [t]. A rule
+then adds a spelling condition, and it fires only when its IPA contexts and
+its spelling conditions all hold. The spelling of a word is its written form,
+casefolded and without the punctuation around it, so a pattern names
+lowercase letters. A hyphen ends a word: in ⟨vingt-deux⟩ the spellings are
+`vingt` and `deux`. The joined spelling of a word joined to the one before
+by a hyphen is that word, `-` and the word; for any other word it is the
+spelling. It spans at most two words. In ⟨quatre-vingt-deux⟩ the joined
+spellings are `quatre`, `quatre-vingt` and `vingt-deux`, so
+`"left_joined_spelling": "^(?!quatre-vingt$)"` tells ⟨vingt-deux⟩ from
+⟨quatre-vingt-deux⟩. An anchored word list in a joined spelling also says
+that the word is not joined: `"left_joined_spelling": "^(?:les|des)$"` holds
+for ⟨les amis⟩ and not for ⟨donne-les à⟩.
+
+A rule with a spelling condition does not fire when the caller of
+`SandhiEngine.apply` passes no spellings. Keep a rule that must run without
+them free of spelling conditions, and state a spelling exception as a rule of
+its own, ordered before it.
+
+```json
+{
+  "id": "FR_NEUF_V_BEFORE_ANS",
+  "name": "neuf ans",
+  "left_context": "^nœf$",
+  "right_context": "^ɑ̃$",
+  "right_spelling": "^ans$",
+  "transform": "nœv‿"
+}
+```
+
+Sandhi rules inherit by id, like allophone rules. A child spec switches off
+an inherited sandhi rule by redeclaring its `id` with the context `(?!)`, a
+pattern that never matches, and `transform` `""`. The language atlas lists
+such a rule as switched off, not as a rule the spec applies.
 
 A sandhi rule applies only within its prosodic domain (Nespor & Vogel 1986,
 *Prosodic Phonology*). Punctuation that writes a pause (a comma, a full stop,

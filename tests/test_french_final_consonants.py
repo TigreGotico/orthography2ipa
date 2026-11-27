@@ -110,9 +110,10 @@ def test_the_floor_also_covers_a_vowel_first_slot():
 
 def test_the_vowel_case_of_the_transparent_suffix_is_unchanged():
     """COUNTER-CASE — the pre-existing vowel branch (⟨vie⟩/⟨vies⟩, ⟨pied⟩/
-    ⟨pieds⟩) keeps its answers byte-for-byte."""
+    ⟨pieds⟩) gives the singular and the plural the same reading. The ⟨e⟩
+    of pied is close [e] (Martinon 1913: 53; FR_IED_CLOSE_MID)."""
     assert _t("vie") == _t("vies") == "vi"
-    assert _t("pied") == _t("pieds") == "pjɛ"
+    assert _t("pied") == _t("pieds") == "pje"
 
 
 # ── the circumflex/grave vowel digraphs ───────────────────────────────────
