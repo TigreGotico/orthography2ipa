@@ -28,7 +28,7 @@
   4
  ],
  "bits": [
-  "bn.jsonl",
+  "lo.jsonl",
   0
  ],
  "candidates": [
@@ -156,8 +156,8 @@
   3
  ],
  "inherent": [
-  "bn.jsonl",
-  2
+  "lo.jsonl",
+  0
  ],
  "internal_apostrophe": [
   "it-IT.jsonl",
@@ -224,16 +224,16 @@
   0
  ],
  "node.top_seg_in": [
-  "hi.jsonl",
-  12
+  "ml.jsonl",
+  0
  ],
  "node.true": [
   "kab.jsonl",
   0
  ],
  "node.word_final": [
-  "hi.jsonl",
-  0
+  "ml.jsonl",
+  1
  ],
  "node.word_has": [
   "pt-PT-x-braga.jsonl",
