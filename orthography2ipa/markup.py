@@ -7,9 +7,12 @@ spelling, which cross-word rules read. The precedence is::
 
     <phoneme ph="…">  >  spec word_exceptions  >  caller's lexicon  >  the rules
 
+## The inventory is still the law
+
 The engine checks ``ph`` against
 :func:`~orthography2ipa.inventory.phoneme_inventory`, because a TTS frontend
-has no embedding for a symbol outside the declared inventory.
+has no embedding for a symbol outside the declared inventory. The ``ar`` spec
+emits no [ɡ], so ``ar`` refuses English *meeting* forced as [ˈmiːtinɡ].
 """
 
 from __future__ import annotations
