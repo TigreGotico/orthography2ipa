@@ -14,7 +14,7 @@ as an array of codepoints and a 0-based ``lang`` index into
     python -m orthography2ipa.export_to_loom --langs pt-PT,kab --out X.gguf [--rev REF] [--fragment PATH ...]
 
 A fragment is a JSON file of plugin data (docs/ir/o2i-ir-v1.md, 3.5). The export
-merges every ``--fragment`` into the IR of each language and records the sha256
+merges each ``--fragment`` into the IR of each language in its scope and records the sha256
 of each fragment in ``o2i.fragments``. The names that the fragments list as ``unsupported``
 go to ``o2i.unsupported``: the rules the plugin still runs as a host hook.
 
@@ -103,7 +103,7 @@ def export_to_loom(langs: List[str], out_path: Path, *, data_ref: Optional[str] 
     language to its IR revision (``layout.spec_revision``, the value of
     ``o2i.spec_revisions``), not to ``orthography2ipa.spec_revision``. A
     language whose IR revision differs stops the export before any file is
-    written. *fragments* are plugin fragments merged into every language; the
+    written. *fragments* are plugin fragments merged into each language in their scope; the
     metadata lists their sha256 digests and the rules they name as unsupported.
 
     Raises:

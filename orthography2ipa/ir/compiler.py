@@ -780,7 +780,7 @@ def build_ir(code: str, data_ref: Optional[str] = None, *, dialect_profile: Opti
         endings = dict(ir["endings"])
         endings["table"] = [{**e, "alts": [], "costs": e["costs"][:1]} for e in endings["table"]]
         ir["endings"] = endings
-    words, sandhi = merge_fragments(fragments, ir["ir_version"])
+    words, sandhi = merge_fragments(fragments, ir["ir_version"], registry.resolve(code))
     if words:
         ir["word"] = {**ir["word"], "words": sorted(words.items())}
     if sandhi:
@@ -794,18 +794,23 @@ def fragment_digest(fragment: dict) -> str:
                                      ensure_ascii=False).encode()).hexdigest()
 
 
-_FRAGMENT_PARTS = {"ir_version", "words", "sandhi", "unsupported"}
+_FRAGMENT_PARTS = {"ir_version", "langs", "words", "sandhi", "unsupported"}
 _SANDHI_PAIR_KEYS = {"left", "right", "left_out", "right_out", "left_spelling", "right_spelling"}
 _SANDHI_PAUSE_KEYS = {"left", "left_out", "left_spelling", "pause"}
 
 
-def merge_fragments(fragments: Sequence[dict], ir_version: int) -> Tuple[Dict[str, str], List[dict]]:
-    """The ``words`` of *fragments* as one table, and their ``sandhi`` rules as
-    IR rules in fragment order. A later fragment wins on a duplicate word.
+def merge_fragments(fragments: Sequence[dict], ir_version: int,
+                    code: str) -> Tuple[Dict[str, str], List[dict]]:
+    """The ``words`` of the *fragments* in scope for the resolved *code* as one
+    table, and their ``sandhi`` rules as IR rules in fragment order. A later
+    fragment wins on a duplicate word. A fragment with ``langs`` is in scope when
+    one of its codes resolves to *code*, as a plugin's ``language_codes`` are
+    matched; a fragment without ``langs`` is in scope for every code. Every
+    fragment is checked, in scope or not.
 
     Raises:
         ValueError: a fragment is malformed (an unknown key, a wrong ``ir_version``, a
-            ``words`` key that is not lowercase NFC, a non-string entry) or has a
+            ``words`` key that is not lowercase NFC, a non-string entry, a ``langs`` that is not a non-empty list of strings) or has a
             ``sandhi`` rule that :func:`_sandhi_rule` refuses.
     """
     words: Dict[str, str] = {}
@@ -814,19 +819,26 @@ def merge_fragments(fragments: Sequence[dict], ir_version: int) -> Tuple[Dict[st
         unknown = sorted(set(fragment) - _FRAGMENT_PARTS)
         if unknown:
             raise ValueError(f"fragment part {unknown[0]!r} is not supported; "
-                             f"only 'words', 'sandhi' and 'unsupported' are")
+                             f"only 'langs', 'words', 'sandhi' and 'unsupported' are")
         if fragment.get("ir_version") != ir_version:
             raise ValueError(f"fragment ir_version {fragment.get('ir_version')!r} is not {ir_version}")
+        langs = fragment.get("langs")
+        if langs is not None and (not isinstance(langs, list) or not langs
+                                  or not all(isinstance(lang, str) for lang in langs)):
+            raise ValueError(f"fragment langs {langs!r}: a non-empty list of strings is required")
         for key, ipa in fragment.get("words", {}).items():
             if not isinstance(key, str) or not isinstance(ipa, str):
                 raise ValueError(f"fragment word {key!r}: the key and the value must be strings")
             if key != unicodedata.normalize("NFC", key).lower():
                 raise ValueError(f"fragment word {key!r}: a key must be lowercase NFC")
-            words[key] = ipa
         for name in fragment.get("unsupported", ()):
             if not isinstance(name, str):
                 raise ValueError(f"fragment unsupported entry {name!r}: a name must be a string")
-        sandhi += [_sandhi_rule(rule) for rule in fragment.get("sandhi", ())]
+        rules = [_sandhi_rule(rule) for rule in fragment.get("sandhi", ())]
+        if langs is not None and code not in {registry.resolve(lang) for lang in langs}:
+            continue
+        words.update(fragment.get("words", {}))
+        sandhi += rules
     return words, sandhi
 
 
