@@ -51,7 +51,7 @@ def test_vingt_keeps_its_t_silent_elsewhere(text, expected):
 @pytest.mark.parametrize("text, expected", [
     ("neuf ans", "nœv‿ ɑ̃"), ("dix-neuf ans", "diz nœv‿ ɑ̃"),
     ("vingt-neuf ans", "vɛ̃t nœv‿ ɑ̃"), ("neuf heures", "nœv‿ œʁ"),
-    ("il y en a neuf en tout", "il i ɑ̃ a nœf ɑ̃ tu"), ("neuf amis", "nœf ami"),
+    ("il y en a neuf en tout", "il i ɑ̃n‿ a nœf ɑ̃ tu"), ("neuf amis", "nœf ami"),
     ("neuf années", "nœf ane"),
 ])
 def test_neuf_links_with_v_before_ans_and_heures_only(text, expected):

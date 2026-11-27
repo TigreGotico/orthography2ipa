@@ -125,7 +125,8 @@ def test_a_french_region_with_no_sourced_difference_is_the_standard_variety(tag)
 def test_les_keeps_its_vowel():
     assert o2i.transcribe("les", "fr-FR") == "le"
     assert o2i.transcribe("Les", "fr-FR") == "le"
-    assert o2i.transcribe("les amis", "fr-FR").split(" ")[0] == "le"
+    # Before a vowel the liaison adds [z] and keeps the vowel (Martinon 1913: 375).
+    assert o2i.transcribe("les amis", "fr-FR").split(" ")[0] == "lez‿"
 
 
 @pytest.mark.parametrize("text", ["est-ce", "peut-être", "rendez-vous",

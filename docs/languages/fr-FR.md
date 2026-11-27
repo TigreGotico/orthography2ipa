@@ -206,7 +206,26 @@ Tranel (1995) treats liaison and elision in Optimality Theory, with both driven 
 
 Elision needs no rule of its own, but it needs the right unit. Standard spelling writes the elided form with an apostrophe and no space, as in ⟨l'homme⟩. The clitic and its host are one word, so the spec sets `word_internal_apostrophe`. Then ⟨l'homme⟩ gives `lɔm`, ⟨d'accord⟩ gives `dakɔʁ` and ⟨j'ai⟩ gives `ʒe`. The silent-final-letter rules do not apply to the clitic. The tokenizer also reads ⟨qu⟩ before an apostrophe and a vowel as `k`, so ⟨qu'il⟩ gives `kil`. Both ⟨'⟩ and ⟨’⟩ work. A hyphen still separates two words, as in ⟨est-ce⟩ and ⟨rendez-vous⟩. The spec also sets `apostrophe_elision`, so a host that has a `word_exceptions` entry or a lexicon entry keeps it after the clitic: ⟨l'autobus⟩ reads the entry ⟨autobus⟩ `otobys` and gives `lotobys`. The entries ⟨l'est⟩ `lɛst` and ⟨d'est⟩ `dɛst` hold the noun ⟨Est⟩, because the host entry ⟨est⟩ is the verb.
 
-The spec declares sandhi in `sandhi_rules` as the liaison rules `FR_LIAISON_Z`, `FR_LIAISON_T`, `FR_LIAISON_N`, `FR_LIAISON_R`, `FR_LIAISON_P` and the rule `FR_ENCHAÎNEMENT`. These rules match the final IPA of the left word. Where the spec has already silenced that consonant, the liaison rules for `z t n ʁ p` do not fire, so `transcribe("les amis", "fr-FR")` gives `le ami`. Where the left word keeps its consonant, they fire: ⟨huit heures⟩ gives `ɥit‿ œʁ` and ⟨sept amis⟩ gives `sɛt‿ ami`. `FR_ENCHAÎNEMENT` does fire: it matches a final voiced `b d ɡ v z ʒ` that the spec still pronounces and adds the link mark after it, as in ⟨rouge orange⟩ `ʁuʒ‿ ɔʁɑ̃ʒ`.
+The spec writes the obligatory liaisons in `sandhi_rules`, and only those. The spec has already silenced the final consonant of the left word, so these rules read its spelling (`left_spelling`) and add the consonant. The link mark follows the consonant, as in ⟨les amis⟩ `lez‿ ami`. Martinon (1913) is the source for each rule, and the rule notes in the spec quote the page.
+
+| Rule | Liaison | Spec output | Source |
+|:---|:---|:---|:---|
+| `FR_LIAISON_Z_DETERMINER` | [z] after ⟨les des aux ces mes tes ses nos vos leurs⟩, ⟨certains plusieurs quelques⟩, ⟨deux trois quatre-vingts cents⟩, ⟨chez dans dès sans sous⟩ and ⟨très⟩ | ⟨les amis⟩ `lez‿ ami`, ⟨deux ans⟩ `døz‿ ɑ̃`, ⟨chez elle⟩ `ʃez‿ ɛl` | Martinon 1913: 374, 375 |
+| `FR_LIAISON_Z_PRONOUN` | [z] after ⟨nous vous ils elles⟩ before the verb, ⟨en⟩ or ⟨y⟩ | ⟨nous avons⟩ `nuz‿ avɔ̃`, ⟨elles y vont⟩ `ɛlz‿ i vɔ̃` | Martinon 1913: 376, 379 |
+| `FR_LIAISON_T_PROCLITIC` | [t] after ⟨est sont ont tout quand quant dont grand⟩ | ⟨il est allé⟩ `il ɛt‿ ale`, ⟨tout à fait⟩ `tut‿ a fɛ` | Martinon 1913: 363-366 |
+| `FR_LIAISON_T_NUMERAL` | [t] after ⟨vingt⟩ and ⟨cent⟩ before a noun | ⟨cent ans⟩ `sɑ̃t‿ ɑ̃`, ⟨vingt ans⟩ `vɛ̃t‿ ɑ̃`, ⟨cent un⟩ `sɑ̃ œ̃` | Martinon 1913: 253, 358, 365 |
+| `FR_LIAISON_N_PROCLITIC` | [n] after ⟨un aucun en on⟩, with the nasal vowel kept | ⟨un ami⟩ `œ̃n‿ ami`, ⟨on a⟩ `ɔ̃n‿ a` | Martinon 1913: 390-391 |
+| `FR_LIAISON_R_PREMIER` | [ʁ] after ⟨premier dernier⟩ before a noun, with the ⟨e⟩ open | ⟨premier enfant⟩ `pʁəmjɛʁ‿ ɑ̃fɑ̃` | Martinon 1913: 359 |
+| `FR_LIAISON_T_INVERSION`, `FR_ENT_LIAISON_INVERSION` | [t] before an inverted subject after a hyphen | ⟨dit-il⟩ `dit‿ il`, ⟨parlent-ils⟩ `paʁlt‿ il` | Martinon 1913: 161, 364 |
+| `FR_LIAISON_Z_BEFORE_Y_EN` | [z] before a hyphenated ⟨y⟩ or ⟨en⟩ | ⟨vas-y⟩ `vaz‿ i`, ⟨prends-en⟩ `pʁɑ̃z‿ ɑ̃` | Martinon 1913: 373, 379 |
+
+The rules leave out a word joined by a hyphen, where Martinon (1913: 376, 391) has no link: ⟨donne-les à mon père⟩, ⟨ont-ils été⟩ `ɔ̃t‿ il ete`, ⟨a-t-on été⟩. They leave out a right word that a pronoun or a numeral does not lean on: ⟨et⟩ and ⟨ou⟩ (⟨deux et deux⟩, ⟨grand et fort⟩), ⟨à⟩, ⟨aussi⟩ and ⟨avec⟩ after a pronoun (⟨pour vous et pour nous⟩), and the months ⟨avril⟩, ⟨août⟩ and ⟨octobre⟩ after a numeral (Martinon 1913: 345, 376). Nothing links after ⟨et⟩.
+
+No liaison is made before an aspirate-h word. Martinon (1913: 248) calls the ban on elision and liaison before it absolute, and lists the words on pages 251 to 254. The OQLF list of the main aspirate-h words adds others, and Tranel (1995: 1) gives ⟨hibou⟩ and ⟨hache⟩. The rules share one list of stems built from these sources: ⟨les héros⟩ gives `le eʁo` and ⟨les héroïnes⟩ gives `lez‿ eʁɔin`. The same list blocks ⟨oui⟩, ⟨onze⟩, the numeral ⟨huit⟩, ⟨uhlan⟩, a ⟨y⟩ that the next vowel makes a glide, as in ⟨yacht⟩, and a ⟨w⟩ (Martinon 1913: 253, 358). ⟨les yeux⟩ still links. The list also stops the six and ten liaison (⟨six héros⟩ has no [z]) and the link mark after a pronounced consonant (⟨cette hache⟩ `sɛt aʃ`), because Martinon (1913: 249) hears an arrest after the consonant before an aspirate h.
+
+The rules `FR_LIAISON_Z`, `FR_LIAISON_T`, `FR_LIAISON_N`, `FR_LIAISON_R`, `FR_LIAISON_P` and `FR_ENCHAÎNEMENT` match a final consonant that the spec still pronounces, and add the link mark after it. This is enchaînement, not liaison: ⟨cet homme⟩ gives `sɛt‿ ɔm`, and ⟨rouge orange⟩ gives `ʁuʒ‿ ɔʁɑ̃ʒ`.
+
+Martinon (1913) calls many other liaisons optional or a matter of style, and the spec does not write them: after ⟨pas⟩, ⟨plus⟩, ⟨mais⟩ and ⟨jamais⟩ (374), after ⟨trop⟩ and ⟨beaucoup⟩ (360), after the other verb forms (364), between a plural noun and its adjective (377, 380), and after ⟨rien⟩ and ⟨bien⟩, whose link depends on how close the next word is (391). The adjectives in ⟨-ain⟩ and the words ⟨bon⟩, ⟨mon⟩, ⟨ton⟩ and ⟨son⟩ link by denasalising, as in ⟨un vilain enfant⟩ [vilɛnɑ̃fɑ̃] and ⟨mon ami⟩ [mɔnami] (387-388). That reading is from 1913, and the spec has no newer source for it, so these words do not link.
 
 ## Digraphs
 
@@ -233,12 +252,11 @@ Four regional specs inherit this spec and state only what a source states: `fr-C
 
 | Limitation | Spec output | Cause |
 |:---|:---|:---|
-| Liaison does not surface after a silenced consonant | ⟨les amis⟩ `le ami`, ⟨petit ami⟩ `pəti ami` | The sandhi rules match the final IPA of the left word, and the spec has already silenced that consonant. A word that keeps its consonant links (⟨huit heures⟩ `ɥit‿ œʁ`) |
+| Only the obligatory liaisons are written, and a rule reads two words | ⟨ils ne parlent⟩ `il nə paʁlɑ̃`, ⟨mon ami⟩ `mɔ̃ ami` | The rules see the left and the right word only, so a clitic in between hides the subject from the verb. The denasalising liaison of ⟨mon⟩ and ⟨bon⟩ has no source newer than Martinon (1913) |
 | No stress marks | ⟨chose⟩ `ʃoz` | Analyses differ on whether French has lexical stress (see [Stress marks](#stress-marks)), so this spec has no `stress` block |
 | ⟨quatre-vingt⟩ drops the schwa of ⟨quatre⟩ | ⟨quatre-vingts⟩ `katʁ vɛ̃` | The hyphen splits the compound, and ⟨quatre⟩ alone ends in a mute ⟨e⟩ |
-| ⟨cent ans⟩ does not link | ⟨cent ans⟩ `sɑ̃ ɑ̃` | ⟨cent⟩ has the IPA of ⟨sans⟩ and ⟨sang⟩, and the spec has no liaison rule for ⟨cent⟩ yet |
 | A digit is dropped | ⟨3 minutes⟩ `minyt` | Numbers are not text for this library. The engine drops a character that it cannot map and raises an `UnmappedGraphemeWarning`. Pass `on_unmapped="raise"` to stop instead. Spell the number out first |
-| Aspirate-h does not block liaison or elision | ⟨le héros⟩ `lə eʁo`, ⟨six haricots⟩ `siz‿ aʁiko` | ⟨h⟩ maps to nothing for both mute and aspirate h, and the spec has no aspirate-h word list. The numeral rules see a vowel and link |
+| An aspirate-h word outside the list links | ⟨les hulottes⟩ `lez‿ ylɔt` | The aspirate-h list holds the stems of Martinon (1913: 248-254) and the OQLF list. The spelling does not mark the aspirate h, so a word that no source lists takes the liaison |
 | ⟨e⟩ before a doubled nasal letter reads as schwa | ⟨femme⟩ `fəm`, ⟨ennemi⟩ `ənəmi` | The `FR_NASAL_BLOCK_GEMINATE_*` rules cover only ⟨ain aim ein ien oin⟩ |
 
 Foreign names, such as ⟨Amsterdam⟩, and acronyms that are read letter by letter are lexical exceptions. A grapheme rule cannot encode them.

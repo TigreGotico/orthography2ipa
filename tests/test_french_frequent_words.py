@@ -426,7 +426,7 @@ def test_six_and_dix_link_only_before_what_they_multiply(text, expected):
 # Martinon (1913: 328, 345): the consonant falls only before the plural the
 # numeral multiplies, never before a preposition or article.
 @pytest.mark.parametrize("text, expected", [
-    ("six de mes amis", "sis də me ami"), ("huit de plus", "ɥit də ply"),
+    ("six de mes amis", "sis də mez‿ ami"), ("huit de plus", "ɥit də ply"),
     ("ils sont dix pour", "il sɔ̃ dis puʁ"), ("dix sur vingt", "dis syʁ vɛ̃"),
     ("huit mes", "ɥit me"),
 ])
@@ -437,7 +437,7 @@ def test_numeral_keeps_its_consonant_before_a_function_word(text, expected):
 # Martinon (1913: 234-235): neu(f) heures [v]; neuf en tout keeps [f], and
 # neuf ans has a rule of its own that reads the spelling of ans.
 @pytest.mark.parametrize("text, expected", [
-    ("neuf heures", "nœv‿ œʁ"), ("il y en a neuf en tout", "il i ɑ̃ a nœf ɑ̃ tu"),
+    ("neuf heures", "nœv‿ œʁ"), ("il y en a neuf en tout", "il i ɑ̃n‿ a nœf ɑ̃ tu"),
     ("dix-neuf en tout", "diz nœf ɑ̃ tu"),
 ])
 def test_neuf_links_with_v_before_heures_only(text, expected):
