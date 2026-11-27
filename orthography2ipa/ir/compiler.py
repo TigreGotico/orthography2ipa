@@ -787,7 +787,7 @@ def build_ir(code: str, data_ref: Optional[str] = None, *, dialect_profile: Opti
         ir["sandhi"] = [*ir.get("sandhi", ()), *sandhi]
     syllable = merge_syllable_fragments(fragments)
     if syllable:
-        ir["syllable"] = _apply_syllable_fragment(dict(ir.get("syllable", {})), syllable)
+        ir["syllable"] = _apply_syllable_fragment(dict(ir.get("syllable", {})), syllable, ir["chars"])
     return ir
 
 
@@ -833,7 +833,7 @@ def merge_fragments(fragments: Sequence[dict], ir_version: int) -> Tuple[Dict[st
     return words, sandhi
 
 
-_SYLLABLE_TABLES = {"heterosyllabic_pairs", "hiatus", "stem_cuts", "prefix_boundaries", "seams",
+_SYLLABLE_TABLES = {"glides", "heterosyllabic_pairs", "hiatus", "stem_cuts", "prefix_boundaries", "seams",
                     "onsets", "foreign"}
 
 
@@ -875,6 +875,11 @@ def merge_syllable_fragments(fragments: Sequence[dict]) -> dict:
     out: dict = {}
     for fragment in fragments:
         part = _keys(fragment.get("syllable", {}), "part", _SYLLABLE_TABLES)
+        if "glides" in part:
+            glides = _strings(part["glides"], "glides")
+            if any(len(g) != 1 for g in glides):
+                raise ValueError("fragment syllable glides: each glide must be one char")
+            out["glides"] = glides
         if "heterosyllabic_pairs" in part:
             pairs = _strings(part["heterosyllabic_pairs"], "heterosyllabic_pairs", 2)
             if any(len(p) != 2 for p in pairs):
@@ -950,8 +955,16 @@ def _units_of(text: str, units: Sequence[str]) -> List[str]:
     return out
 
 
-def _apply_syllable_fragment(syllable: dict, part: dict) -> dict:
+def _apply_syllable_fragment(syllable: dict, part: dict, chars: Dict[int, int]) -> dict:
     """*syllable* with the merged fragment tables of :func:`merge_syllable_fragments`."""
+    if "glides" in part:
+        # Every lowercase vowel letter of the IR plus a different glide is a falling diphthong.
+        vowels = {chr(cp) for cp, bits in chars.items()
+                  if bits >> CB["orth_vowel"] & 1 and chr(cp) == chr(cp).lower()}
+        diphthongs = list(syllable.get("diphthongs", ()))
+        diphthongs += sorted(v + g for v in vowels for g in part["glides"]
+                             if v != g and v + g not in diphthongs)
+        syllable["diphthongs"] = diphthongs
     foreign = part.get("foreign", {})
     if "onsets" in part:
         onsets = part["onsets"]

@@ -30,6 +30,8 @@ FULL = splitter(FRAGMENT)
 
 # (table, word, split): the split needs the table.
 CASES = [
+    ("glides", "neymar", "ney.mar"),
+    ("glides", "playground", "play.ground"),
     ("hiatus", "ao", "ao"),
     ("hiatus", "aos", "aos"),
     ("stem_cuts", "arruinar", "ar.ru.i.nar"),
@@ -103,6 +105,7 @@ def test_a_later_fragment_replaces_a_table():
 
 @pytest.mark.parametrize("part,message", [
     ({"stress": {}}, "key 'stress' is not allowed"),
+    ({"glides": ["yy"]}, "each glide must be one char"),
     ({"hiatus": {"vowels": []}}, "key 'vowels' is not allowed"),
     ({"heterosyllabic_pairs": ["rrr"]}, "each pair must have 2 chars"),
     ({"heterosyllabic_pairs": ["RR"]}, "must be lowercase NFC"),

@@ -1,6 +1,7 @@
 {
  "ir_version": 1,
  "syllable": {
+  "glides": ["i", "u", "y"],
   "heterosyllabic_pairs": ["rr", "sc", "sç", "ss", "xc"],
   "hiatus": {"glides": ["i", "u", "y"], "before": ["nh"], "codas": ["l", "m", "n", "r", "z"],
              "diphthong_words": ["ao", "aos"]},

@@ -836,6 +836,7 @@ The `syllable` part of a fragment (3.5) holds optional tables for the written sp
 
 | Fragment table | Schema | IR field | Semantics version |
 |---|---|---|---|
+| `glides` | list of 1-letter strings | `syllable.diphthongs` | `splitter` |
 | `heterosyllabic_pairs` | list of 2-letter strings | `syllable.cut_pairs` | `cut_pairs` |
 | `hiatus` | `{glides, before, codas, diphthong_words}`, each a list of strings | `syllable.glide_hiatus` | `glide_hiatus` |
 | `stem_cuts` | `{stem: [offset, ...]}`, each offset inside the stem | `syllable.stem_cuts`, `[stem, offsets]` pairs | `stem_cuts` |
@@ -857,6 +858,7 @@ In the diphthong split, a join that starts at a position is one nucleus, before 
 
 The unit split of the onset table (3.7.2) also defines the **multi-letter units** of the word: the units of `syllable.onsets.units` with two or more letters, matched from the left. The tables read them as follows:
 
+- **`glides`.** The compiler adds to `syllable.diphthongs` each pair of a lowercase `orth_vowel` char and a different glide that the list does not hold, for example ney.mar and play.ground. The table has no IR field of its own.
 - **`heterosyllabic_pairs`.** Each occurrence of a pair cuts between its two letters, for example `rr`, `ss`, `sc`, `sç` and `xc`. A pair that lies inside a multi-letter unit does not cut: the `sc` of `tsch` stays in the unit.
 - **`hiatus`.** A letter of `glides` at offset k cuts at k when the letter before it is a vowel (bit `orth_vowel`) and not the same letter, the letter after it is not a vowel, and one of two conditions holds. Either the rest of the word starts with a string of `before` (`nh`: ra.i.nha), or its first letter is in `codas`, the rest does not start with a multi-letter unit, and its second letter is not a vowel and not the same letter (a.in.da, ju.iz, but bair.ro). The cut does not depend on stress. A word that equals a string of `diphthong_words` makes each of its vowel runs one join (`ao`, `aos`).
 - **`stem_cuts`.** For each stem, the first occurrence in the word adds a cut at the start of the occurrence plus each offset. The offsets are the syllable starts inside the stem, so `ruin` with offset 2 gives ar.ru.i.nar.
@@ -1723,7 +1725,7 @@ A line with `"kind": "syllables"` holds a word and its written syllables (S5) as
 
 The package must generate vectors from the Python reference interpreter into `tests/conformance/ir-v1/`: for each spec a fixed sample of its gold or test data, plus targeted cases for every pattern, beam tie, normalisation rule, predicate node, tokenizer branch, ruled change and unknown version.
 
-`scripts/gen_ir_vectors.py` writes one file for each of 21 specs: the 20 codes of `tests/data/ir_golden_ci.json` and kab. Each file holds the first 200 sorted words of the golden rows (kab: its shipped gold sentences) and an empty input. The pt-PT file also holds ⟨os jogos⟩. `pt-PT-syllable.jsonl` holds the pt-PT IR with the fragment `tests/data/ir_fragment_syllable.json` and, for each of 31 words that exercise the tables of 3.7.6, one transcription case and one `syllables` case. `unknown-version.jsonl` holds the cop IR with one primitive version raised, and one case that expects the error text `unsupported primitive version`. A runner passes an `expect_error` case when the error message contains that text. The `ir` line omits `source`, so a package release does not change the files. Each file embeds its IR, so a spec change does not make the conformance tests fail. A spec PR that changes the output of one of these specs writes its file again with `--lang`. The dialect corpus and the targeted cases are not in the files yet. Commands:
+`scripts/gen_ir_vectors.py` writes one file for each of 21 specs: the 20 codes of `tests/data/ir_golden_ci.json` and kab. Each file holds the first 200 sorted words of the golden rows (kab: its shipped gold sentences) and an empty input. The pt-PT file also holds ⟨os jogos⟩. `pt-PT-syllable.jsonl` holds the pt-PT IR with the fragment `tests/data/ir_fragment_syllable.json` and, for each of 33 words that exercise the tables of 3.7.6, one transcription case and one `syllables` case. `unknown-version.jsonl` holds the cop IR with one primitive version raised, and one case that expects the error text `unsupported primitive version`. A runner passes an `expect_error` case when the error message contains that text. The `ir` line omits `source`, so a package release does not change the files. Each file embeds its IR, so a spec change does not make the conformance tests fail. A spec PR that changes the output of one of these specs writes its file again with `--lang`. The dialect corpus and the targeted cases are not in the files yet. Commands:
 
 ```console
 python -I scripts/gen_ir_vectors.py            # write the files

@@ -22,6 +22,7 @@ def fragment() -> dict:
     return {
         "ir_version": 1,
         "syllable": {
+            "glides": sorted(phonotactics.GLIDE_CAPABLE),
             "heterosyllabic_pairs": ["rr", "ss", "sc", "sç", "xc"],
             "hiatus": {
                 "glides": sorted(phonotactics.GLIDE_CAPABLE),

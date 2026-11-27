@@ -46,7 +46,7 @@ FRAGMENT_VECTORS = {
         "carro", "nascer", "exceto", "desça", "bairro", "rainha", "juiz", "ainda", "ao", "aos", "aorta",
         "arruinar", "adleriano", "sublinhar", "sublocar", "sublime", "distribuidor", "construir",
         "cuidado", "ingenuidade", "contiguidade", "kubitschek", "gourmet", "facebookiano", "bureau",
-        "boxeur", "marathon", "alzheimer", "pacto", "atleta", "abstrair")),
+        "boxeur", "marathon", "alzheimer", "pacto", "atleta", "abstrair", "neymar", "playground")),
 }
 
 
