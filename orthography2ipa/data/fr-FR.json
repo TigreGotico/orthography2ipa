@@ -1104,7 +1104,8 @@
     "boomerang": "buməʁɑ̃ɡ",
     "slang": "slɑ̃ɡ",
     "cresson": "kʁəsɔ̃",
-    "cressonnière": "kʁəsɔnjɛʁ"
+    "cressonnière": "kʁəsɔnjɛʁ",
+    "donc": "dɔ̃k"
   },
   "timespan": {
     "start_year": 1300,
@@ -1912,7 +1913,7 @@
         "oin"
       ],
       "word_final": true,
-      "notes": "Word-final ⟨c⟩ after a nasal spelling is mute, also behind the silent plural ⟨-s⟩: blanc [blɑ̃], blancs, banc, flanc, franc [fʁɑ̃], tronc, jonc, vainc [vɛ̃]. Martinon (1913, p. 213: after a nasal vowel final ⟨c⟩ stayed mute: ban(c), blan(c), flan(c), fran(c), vain(c), convain(c), jon(c), ajon(c), tron(c); in donc it is mute in principle and sounds only when the word opens a clause or is stressed (je pense, donc je suis)). The rule follows Martinon's principle for donc [dɔ̃], the first reading of wikipron fr too; the emphatic [dɔ̃k] is a reading of the sentence, not of the word. zinc keeps [ɡ] (Martinon 1913: 214 n. 1: 'on devrait tout simplement écrire zing') as a whole-word entry."
+      "notes": "Word-final ⟨c⟩ after a nasal spelling is mute, also behind the silent plural ⟨-s⟩: blanc [blɑ̃], blancs, banc, flanc, franc [fʁɑ̃], tronc, jonc, vainc [vɛ̃]. Martinon (1913, p. 213: after a nasal vowel final ⟨c⟩ stayed mute: ban(c), blan(c), flan(c), fran(c), vain(c), convain(c), jon(c), ajon(c), tron(c); in donc it is mute in principle and sounds only when the word opens a clause or is stressed (je pense, donc je suis)). donc is a whole-word entry [dɔ̃k], the reading of Lexique 3.83 (d§k): Martinon sounds its ⟨c⟩ when the word opens a clause (je pense, donc je suis), and a word rule cannot see the clause, so the spec keeps the reading that is right in that position. zinc keeps [ɡ] (Martinon 1913: 214 n. 1: 'on devrait tout simplement écrire zing') as a whole-word entry."
     },
     {
       "id": "FR_X_S_AFTER_OI",
