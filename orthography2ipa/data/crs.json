@@ -554,6 +554,204 @@
       "transform": "",
       "obligatory": true,
       "notes": "Disabled inherited fr-FR rule: the French numeral sandhi (huit, six, dix, neuf; Martinon 1913: 234-235, 328, 345-346) reads the French numerals, and no source states it for Seselwa (sis, dis, wit, nef). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_NEUF_V_BEFORE_ANS",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_VINGT_T_BEFORE_UNIT",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_VINGT_T_BEFORE_ET_HUIT",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_EST_NOUN_AFTER_COMPASS",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_EST_NOUN_BEFORE_HYPHEN",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_ENT_MUTE_AFTER_ILS",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_IENT_MUTE_AFTER_ILS",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_ENT_LIAISON_INVERSION",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_T_INVERSION",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_Z_BEFORE_Y_EN",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_Z_DETERMINER",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_Z_PRONOUN",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_T_PROCLITIC",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_T_NUMERAL",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_N_PROCLITIC",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_R_PREMIER",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_Z",
+      "name": "z-liaison",
+      "left_context": "z$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "z‿",
+      "obligatory": true,
+      "notes": "les amis → lez‿ami Kept as fr-FR had it before the h aspiré condition: the h aspiré stems of fr-FR (Martinon 1913: 248-254) read French spelling, and no source states them for Seselwa (onz is eleven, wi is yes)."
+    },
+    {
+      "id": "FR_LIAISON_T",
+      "name": "t-liaison",
+      "left_context": "t$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "t‿",
+      "obligatory": true,
+      "notes": "petit ami → pətit‿ami Kept as fr-FR had it before the h aspiré condition: the h aspiré stems of fr-FR (Martinon 1913: 248-254) read French spelling, and no source states them for Seselwa (onz is eleven, wi is yes)."
+    },
+    {
+      "id": "FR_LIAISON_N",
+      "name": "n-liaison",
+      "left_context": "n$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "n‿",
+      "obligatory": true,
+      "notes": "un ami → ɛ̃n‿ami Kept as fr-FR had it before the h aspiré condition: the h aspiré stems of fr-FR (Martinon 1913: 248-254) read French spelling, and no source states them for Seselwa (onz is eleven, wi is yes)."
+    },
+    {
+      "id": "FR_LIAISON_R",
+      "name": "r-liaison",
+      "left_context": "ʁ$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "ʁ‿",
+      "obligatory": false,
+      "notes": "premier étage → optional Kept as fr-FR had it before the h aspiré condition: the h aspiré stems of fr-FR (Martinon 1913: 248-254) read French spelling, and no source states them for Seselwa (onz is eleven, wi is yes)."
+    },
+    {
+      "id": "FR_LIAISON_P",
+      "name": "p-liaison",
+      "left_context": "p$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "p‿",
+      "obligatory": false,
+      "notes": "trop aimable → optional Kept as fr-FR had it before the h aspiré condition: the h aspiré stems of fr-FR (Martinon 1913: 248-254) read French spelling, and no source states them for Seselwa (onz is eleven, wi is yes)."
+    },
+    {
+      "id": "FR_ENCHAÎNEMENT",
+      "name": "enchaînement",
+      "left_context": "([bdɡvzʒ])$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "\\1‿",
+      "obligatory": true,
+      "notes": "une amie → resyllabification: the final consonant is kept and the link mark follows it (rouge orange → ʁuʒ‿ ɔʁɑ̃ʒ) Kept as fr-FR had it before the h aspiré condition: the h aspiré stems of fr-FR (Martinon 1913: 248-254) read French spelling, and no source states them for Seselwa (onz is eleven, wi is yes)."
     }
   ]
 }
