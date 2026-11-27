@@ -25,4 +25,5 @@ jobs:
       install_extras: 'test'
       system_deps: 'luajit'
       test_path: 'tests'
-      pytest_args: '-n auto --durations=25'
+      # The language-atlas workflow checks that the committed atlas is current.
+      pytest_args: '-n auto --durations=25 --deselect tests/test_language_atlas.py::test_committed_atlas_is_current'
