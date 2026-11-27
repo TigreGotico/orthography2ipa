@@ -480,7 +480,8 @@
       "right_context": "^œʁ$",
       "transform": "nœv‿",
       "obligatory": true,
-      "notes": "neuf links with [v] before heures: neuf heures [nœv‿œʁ], dix-neuf heures. Martinon (1913: 234-235): the old liaison [v] of neuf survives only in neu(f) ans and neu(f) heures; elsewhere before a vowel the [f] is kept (neuf euros). neuf ans is not stated: the rule reads IPA, and ans has the IPA [ɑ̃] of en and an (neuf en tout), so neuf ans stays [nœf ɑ̃] until a sandhi rule can read the spelling of the next word."
+      "notes": "neuf links with [v] before heures: neuf heures [nœv‿œʁ], dix-neuf heures. Martinon (1913: 234-235): the old liaison [v] of neuf survives only in neu(f) ans and neu(f) heures; elsewhere before a vowel the [f] is kept (neuf euros). neuf ans is FR_NEUF_V_BEFORE_ANS. The right spelling is heure or heures: heurt has the IPA [œʁ] of heure, and neuf heurts keeps [f] (heurt has an h aspiré, OQLF: heurter; Martinon 1913: 248).",
+      "right_spelling": "^heures?$"
     },
     {
       "id": "FR_DIX_Z_BEFORE_HUIT_NEUF",
@@ -508,6 +509,26 @@
       "transform": "\\1",
       "obligatory": true,
       "notes": "huit loses its final [t] before a word that begins with a consonant: huit jours [ɥi ʒuʁ], huit cents. The left context is the whole word [ɥit], so dites [dit], site and cite [sit] are untouched. Martinon (1913: 328, 345) drops the consonant only before the plural that the numeral multiplies (hui(t) sous, di(x) francs, si(x) cents). The rule cannot see the number of the next word, so it names the cases he keeps apart: before the name of a month the consonant stays (le huit mai [ɥit me], le six janvier; Martinon 1913: 345, 'dix et six se prononcent dis et sis devant avril, août, octobre, comme devant mai, juin ou septembre'); dix-sept keeps its hard [s] (dis sɛt, Martinon 1913: 346); and a preposition or article is not a multiplied plural, so de, du, des, pour, par and sur leave the consonant (six de mes amis, ils sont dix pour). [me] is both mai and mes, and both keep the consonant. Juin is matched as [ʒɥɛ̃] and as [ʒɥi], the reading the spec now gives it, and juillet as [ʒɥilɛ] and [ʒɥijɛ]; another word in [ʒɥ] (huit juifs [ɥi ʒɥif]) is a counted plural. The left context also takes the allophones an inheriting variety gives the same word: a lax /i/ (fr-CA huit [ɥɪt])."
+    },
+    {
+      "id": "FR_NUMERAL_MUTE_BEFORE_H_ASPIRE",
+      "name": "six and dix before an h aspiré",
+      "left_context": "^((?:s|d|d͡z)[iɪ])s$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "right_spelling": "^(?:hach|hagard|haies?$|haill|hain|haï(?!t)|hall(?:e|es|s|ebarde|ebardes)?$|halos?$|haltes?$|halet|halurg|hamac|hamburger|hameau|hampe|hamster|hanch|handica|hangar|hant|hanneton|hanses?$|happ|haras|harcel|hard|harem|hareng|harfang|hargn|haricot|harnach|harnais|harp(?!ag)|hasard|hâbl|hât|hauss|haut|hauban|havre|haschisch|henn|hériss|hernie|héron|héros$|héraut|hers(?:e|es|er|age)$|hêtre|heurt|hibou|hic$|hideu|hiérarchies?$|hippie|hiss|hies?$|hobereau|hoch|hockey|holland|homard|hongre|honni|hont|hoquet|hord|hors$|hott|houblon|houes?$|houill|houl|houp|hourra|houri|houss|houx|hospodar|huard|hublot|huch|hu[eé]|huguenot|hum(?:e|er|es|ent|é|ée|ées|és|ons|ez)$|hune|hupp|hurl|huron|husk|hussard|hutt)",
+      "transform": "\\1",
+      "obligatory": true,
+      "notes": "six and dix lose their final [s] before a word with an h aspiré the numeral takes the form it has before a consonant: six haricots [si aʁiko], dix héros [di eʁo]. Martinon (1913: 328, 345): the numeral drops its consonant before the plural it multiplies when that plural begins with a consonant; 248: before an h aspiré there is no liaison and the hiatus is obligatory (des homards, sans liaison). Tranel (1995: 9, (23)): before hibou the latent consonant of petit stays silent, peti ibu, not *petitibu, as it does before a consonant. The h aspiré stems are those of FR_LIAISON_Z_DETERMINER. Ordered before FR_NUMERAL_Z_BEFORE_VOWEL."
+    },
+    {
+      "id": "FR_HUIT_MUTE_BEFORE_H_ASPIRE",
+      "name": "huit before an h aspiré",
+      "left_context": "^(ɥ[iɪ])t$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "right_spelling": "^(?:hach|hagard|haies?$|haill|hain|haï(?!t)|hall(?:e|es|s|ebarde|ebardes)?$|halos?$|haltes?$|halet|halurg|hamac|hamburger|hameau|hampe|hamster|hanch|handica|hangar|hant|hanneton|hanses?$|happ|haras|harcel|hard|harem|hareng|harfang|hargn|haricot|harnach|harnais|harp(?!ag)|hasard|hâbl|hât|hauss|haut|hauban|havre|haschisch|henn|hériss|hernie|héron|héros$|héraut|hers(?:e|es|er|age)$|hêtre|heurt|hibou|hic$|hideu|hiérarchies?$|hippie|hiss|hies?$|hobereau|hoch|hockey|holland|homard|hongre|honni|hont|hoquet|hord|hors$|hott|houblon|houes?$|houill|houl|houp|hourra|houri|houss|houx|hospodar|huard|hublot|huch|hu[eé]|huguenot|hum(?:e|er|es|ent|é|ée|ées|és|ons|ez)$|hune|hupp|hurl|huron|husk|hussard|hutt)",
+      "transform": "\\1",
+      "obligatory": true,
+      "notes": "huit loses its final [t] before a word with an h aspiré the numeral takes the form it has before a consonant: huit haricots [ɥi aʁiko], huit héros [ɥi eʁo]. Martinon (1913: 328, 345): the numeral drops its consonant before the plural it multiplies when that plural begins with a consonant; 248: before an h aspiré there is no liaison and the hiatus is obligatory (des homards, sans liaison). Tranel (1995: 9, (23)): before hibou the latent consonant of petit stays silent, peti ibu, not *petitibu, as it does before a consonant. The h aspiré stems are those of FR_LIAISON_Z_DETERMINER. Ordered before FR_NUMERAL_Z_BEFORE_VOWEL."
     },
     {
       "id": "FR_NUMERAL_Z_BEFORE_VOWEL",
@@ -815,7 +836,7 @@
       "title": "French liaison and elision revisited: A unified account within Optimality Theory",
       "publisher": "Rutgers Optimality Archive (ROA-15)",
       "url": "https://roa.rutgers.edu/files/15-0594/15-0594-TRANEL-0-0.PDF",
-      "pages": "1, 4",
+      "pages": "1, 4, 9",
       "notes": "Formalises liaison (silent word-final consonant surfaces before a vowel-initial word, e.g. les amis [lezami]) and elision (word-final vowel deleted before a vowel-initial word, e.g. l'ami) as ONSET-driven; establishes that h-aspiré words (hibou) block both liaison and elision despite being phonetically vowel-initial (les hiboux *[lezibu], le hibou *[libu])."
     },
     {

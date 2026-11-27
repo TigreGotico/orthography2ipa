@@ -752,6 +752,24 @@
       "transform": "\\1‿",
       "obligatory": true,
       "notes": "une amie → resyllabification: the final consonant is kept and the link mark follows it (rouge orange → ʁuʒ‿ ɔʁɑ̃ʒ) Kept as fr-FR had it before the h aspiré condition: the h aspiré stems of fr-FR (Martinon 1913: 248-254) read French spelling, and no source states them for Seselwa (onz is eleven, wi is yes)."
+    },
+    {
+      "id": "FR_NUMERAL_MUTE_BEFORE_H_ASPIRE",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_HUIT_MUTE_BEFORE_H_ASPIRE",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371) and the obligatory French liaisons (Martinon 1913: 359-391) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann). The pattern (?!) never matches."
     }
   ]
 }

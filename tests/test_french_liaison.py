@@ -63,7 +63,7 @@ def test_no_z_where_the_word_does_not_lean_on_the_next(text, expected):
     ("les héros", "le eʁo"), ("les haricots", "le aʁiko"), ("les hiboux", "le ibu"),
     ("des hasards", "de azaʁ"), ("les hauteurs", "le otœʁ"), ("les haches", "le aʃ"),
     ("les huit", "le ɥit"), ("les onze", "le ɔ̃z"), ("un héros", "œ̃ eʁo"),
-    ("en haut", "ɑ̃ o"), ("c'est honteux", "sɛ ɔ̃tø"), ("six héros", "sis eʁo"),
+    ("en haut", "ɑ̃ o"), ("c'est honteux", "sɛ ɔ̃tø"), ("six héros", "si eʁo"),
     ("cette hache", "sɛt aʃ"), ("une halte", "yn alt"),
 ])
 def test_no_liaison_before_an_h_aspire_word(text, expected):
@@ -143,3 +143,13 @@ def test_the_regional_specs_inherit_the_liaison(code):
     assert "z‿" in _t("les amis", code)
     assert "z‿" not in _t("les héros", code)
     assert "n‿" in _t("un ami", code)
+
+
+# Martinon (1913: 328, 345, 248) and Tranel (1995: 9, (23)): before an h aspiré
+# the numerals take the form they have before a consonant.
+@pytest.mark.parametrize("text, expected", [
+    ("six haricots", "si aʁiko"), ("dix héros", "di eʁo"), ("huit haricots", "ɥi aʁiko"),
+    ("six hommes", "siz‿ ɔm"), ("huit hommes", "ɥit‿ ɔm"), ("six héroïnes", "siz‿ eʁɔin"),
+])
+def test_six_dix_huit_before_an_h_aspire(text, expected):
+    assert _t(text) == expected
