@@ -355,7 +355,7 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | fpe | wikipron | 261 | 0.0301 | - | - | 0.0301 | 0.0301 | 0.8544 | 0.8544 | [0.0208, 0.0397] | 0.8544 | research | crowd-scraped |
 | fr | wikipron | 85500 | 0.0512 | - | - | 0.0407 | 0.0385 | 0.7780 | 0.7846 | [0.0505, 0.0520] | 0.7535 | research | crowd-scraped |
 | fr-FR | ipa_childes | 9446 | 0.0789‡ | - | - | 0.0546 | 0.0512 | 0.8036 | 0.8166 | [0.0756, 0.0823] | 0.7268 | research | espeak-derived |
-| fr-FR | ipadict | 245718 | 0.0585 | - | - | 0.0477 | 0.0452 | 0.7232 | 0.7282 | [0.0581, 0.0589] | 0.7062 | research | machine-generated |
+| fr-FR | ipadict | 245718 | 0.0585 | - | - | 0.0477 | 0.0452 | 0.7232 | 0.7282 | [0.0581, 0.0589] | 0.7061 | research | machine-generated |
 | fro | wikipron | 663 | 0.2363 | - | - | 0.2352 | 0.2352 | 0.2564 | 0.2564 | [0.2200, 0.2527] | 0.2534 | research | crowd-scraped |
 | fy | vox_communis | 10681 | 0.3243‡ | - | - | 0.3036 | 0.3018 | 0.1352 | 0.1369 | [0.3203, 0.3281] | 0.1212 | research | epitran-derived |
 | fy | wikipron | 1091 | 0.2182 | - | - | 0.2043 | 0.2032 | 0.3327 | 0.3355 | [0.2075, 0.2295] | 0.3071 | research | crowd-scraped |
