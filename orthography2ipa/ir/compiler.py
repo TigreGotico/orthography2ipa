@@ -41,6 +41,7 @@ from orthography2ipa.stress import (
     _judge_for, _semivowel_roles, cliticless_keys)
 from orthography2ipa.transforms import (DIALECT_PROFILES, IPAChainShift, IPALexicalRule, IPARule,
                                         PALATAL_SET, VOWEL_SET)
+from orthography2ipa.phonemes import ir_phonemes
 from orthography2ipa.types import GraphemePosition as P
 from orthography2ipa.types import LanguageSpec, ScriptType
 from orthography2ipa.version import VERSION_STR
@@ -785,6 +786,7 @@ def build_ir(code: str, data_ref: Optional[str] = None, *, dialect_profile: Opti
         ir["word"] = {**ir["word"], "words": sorted(words.items())}
     if sandhi:
         ir["sandhi"] = [*ir.get("sandhi", ()), *sandhi]
+    ir["phonemes"] = ir_phonemes(ir)
     return ir
 
 

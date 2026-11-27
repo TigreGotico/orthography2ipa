@@ -63,6 +63,7 @@ LAYOUT = O(
     endings=O(table=L(O(key=S, ipa=S, alts=L(S), costs=L(I))), suffix=SSET,
               vowels=L(O(key=S, reduced=SSET, readings=SSET)),
               sources=L(O(surface=S, vowels=SSET))),
+    phonemes=SSET,
 )
 _FIELDS = LAYOUT[1]
 RUNTIME_FIELDS = tuple(_FIELDS) + ("chars",)

@@ -40,7 +40,7 @@ The canonical document has these top-level fields. `layout.LAYOUT` (`orthography
   "strings": [], "chars": {"ranges": []},
   "entries": [], "fallback": [], "word": {}, "beam": {}, "allophone_map": [],
   "syllable": {}, "stress": {}, "atoms": {}, "allophony": {}, "sandhi": [],
-  "dialect": [], "char_maps": {}, "rewrites": [], "consonant_nuclei": [], "tone": {}, "inherent": {}, "endings": {},
+  "dialect": [], "char_maps": {}, "rewrites": [], "consonant_nuclei": [], "tone": {}, "inherent": {}, "endings": {}, "phonemes": [],
   "primitives": {}, "bits": {}, "debug": {}
 }
 ```
@@ -69,6 +69,7 @@ The canonical document has these top-level fields. `layout.LAYOUT` (`orthography
 | `tone` | The computed-tone system (3.9). |
 | `inherent` | The abugida inherent vowel (3.3.2). |
 | `endings` | Grammatical endings (3.5). |
+| `phonemes` | The phoneme set: every segment that the IR can emit, cut by the segment rule of the PER board (NFD, no stress marks or syllable dots). The compiler computes it from the other runtime fields (`orthography2ipa.phonemes.ir_phonemes`). The set is exact for well-formed words with the default options: no dialect profile, no lexicon and no host hooks. Interpreters do not read it, so it changes no output and has no version in the manifest. It is in the canonical bytes, so it moves the revision with the fields it comes from. |
 | `primitives` | The manifest (8.1) as `{name: version}`. Outside the canonical bytes, because the revision hashes the manifest string itself. |
 | `bits` | The bit names in bit order: `{"char": [...], "entry": [...]}`. The names are fixed (2.4). |
 | `debug` | Readable notes. Interpreters ignore it. Outside the revision hash. |
@@ -236,6 +237,7 @@ endings.vowels[].readings: sset
 endings.sources: list of object
 endings.sources[].surface: s
 endings.sources[].vowels: sset
+phonemes: sset
 ```
 <!-- layout-schema:end -->
 
@@ -1678,6 +1680,7 @@ These names keep their meaning, because outside code depends on them:
 | `G2P.candidates` | the S8 beam over the S6 slots in run context, without S7 |
 | `Pipeline` with `lexicon`, `syllabifier`, `expand`, `mark`, `rescore`, `sandhi` | the hooks of 3.1 |
 | `registry.get`, `resolve`, `available_codes` | compile-time Python |
+| `phoneme_set(lang)` | `phonemes.py`, package root; the `phonemes` field of the IR that `G2P(lang)` runs, as a frozenset |
 | `phoneme_inventory(spec, lexicon=None)` | `inventory.py`, package root; phonematcher's coverage benchmark (`benchmarks/tasks/coverage.py`) reads it |
 | `packaged_lexicon(lang, patches=)`, `packaged_lexicon_sources(patches=)` | lexicon data for H4 |
 | `spec_revision(lang)` | the IR revision of the spec (8.1): a hash of the manifest and the canonical IR |
