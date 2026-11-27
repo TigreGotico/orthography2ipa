@@ -517,3 +517,15 @@ def test_six_and_dix_link_before_a_rounded_front_vowel(text, expected):
 ])
 def test_donc_keeps_its_c(text, expected):
     assert _t(text) == expected
+
+
+# Martinon (1913: 171): ressusciter (from Latin resuscitare) and ressuyer
+# (re + essuyer) have a close [e], against the mute e of re- in ressembler;
+# Lexique 3.83 ressusciter [ʁesysite], ressurgir [ʁəsyʁʒiʁ].
+@pytest.mark.parametrize("text, expected", [
+    ("ressusciter", "ʁesysite"), ("ressuscité", "ʁesysite"),
+    ("ressuyer", "ʁesɥije"), ("ressembler", "ʁəsɑ̃ble"),
+    ("ressurgir", "ʁəsyʁʒiʁ"),
+])
+def test_ressusciter_and_ressuyer_take_close_e(text, expected):
+    assert _t(text) == expected
