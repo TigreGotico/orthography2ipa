@@ -189,7 +189,7 @@ Five regional specs inherit this spec and state only what a source states. Each 
 - `fr-CI` (Ivorian French): ⟨â⟩ as [a].
 - `fr-FR-x-midi` (Southern French): a pronounced final schwa (petite [pøtitə]), [ø] for a schwa in the first syllable, the loi de position of the mid vowels (rose [ʁɔzə], lait [le]) and a nasal vowel as an oral vowel plus a nasal appendix (pain [pɛŋ], lampe [lampə]).
 
-The PFC survey reports that in Tournai and Neuchâtel the contrast of ⟨patte⟩ and ⟨pâte⟩ is one of length, not of quality. huit reads [wi] in `fr-BE`, without its final [t], because `fr-FR` does not yet give huit its [t]. Every other French tag with a region, such as `fr-LU`, `fr-SN`, `fr-US` or `fr-150`, reads `fr-FR`, because the cited sources state no difference for it. `fr-FR-x-midi` is a private-use tag and is reached only by that tag. All of them read an elided clitic and its host as one word.
+The PFC survey reports that in Tournai and Neuchâtel the contrast of ⟨patte⟩ and ⟨pâte⟩ is one of length, not of quality. In `fr-BE` huit takes the `fr-FR` reading with [w] for [ɥ]: [wit] alone and [wi] before a consonant (huit livres [wi livʁ]). Every other French tag with a region, such as `fr-LU`, `fr-SN`, `fr-US` or `fr-150`, reads `fr-FR`, because the cited sources state no difference for it. `fr-FR-x-midi` is a private-use tag and is reached only by that tag. All of them read an elided clitic and its host as one word.
 
 ## Stress marks
 

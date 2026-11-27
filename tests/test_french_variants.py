@@ -208,23 +208,35 @@ OWN_EXCEPTIONS = {
 }
 
 
-#: fr-FR numeral sandhi rules a variant restates by id: fr-CA so that the
-#: high vowel left in an open syllable is tense (Hall 2016: 7), and every
-#: variant so that the words that keep the consonant are written in its own
-#: readings. On a base without them they are the variant's own rules.
+#: The fr-FR sandhi rules each variant restates by id: fr-CA so that the
+#: high vowel left in an open syllable is tense (Hall 2016: 7) and so that
+#: its vowel class holds the Laurentian vowels that open a word ([ẽ ɪ ʏ ʊ
+#: ɒ]); every variant so that the words before which a numeral keeps its
+#: consonant are also written in its own readings. On a base without one of
+#: these fr-FR rules the restated rule stands at the end as the variant's own.
 SANDHI_RESTATED = {
     "fr-CA": {"FR_DIX_Z_BEFORE_HUIT_NEUF", "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
               "FR_HUIT_MUTE_BEFORE_CONSONANT", "FR_NUMERAL_Z_BEFORE_VOWEL",
-              "FR_NEUF_V_BEFORE_HEURES"},
+              "FR_NEUF_V_BEFORE_HEURES", "FR_LIAISON_Z", "FR_LIAISON_T",
+              "FR_LIAISON_N", "FR_LIAISON_R", "FR_LIAISON_P",
+              "FR_ENCHAÎNEMENT"},
     "fr-BE": {"FR_NUMERAL_MUTE_BEFORE_CONSONANT"},
     "fr-FR-x-midi": {"FR_NEUF_V_BEFORE_HEURES", "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
-                     "FR_HUIT_MUTE_BEFORE_CONSONANT"},
+                     "FR_HUIT_MUTE_BEFORE_CONSONANT",
+                     "FR_NUMERAL_Z_BEFORE_VOWEL"},
 }
 #: The sandhi rules a variant adds to those of fr-FR.
 OWN_SANDHI = {
     "fr-BE": {"FR_BE_HUIT_MUTE_BEFORE_CONSONANT", "FR_BE_DIX_Z_BEFORE_HUIT"},
     "fr-FR-x-midi": {"FR_MIDI_SCHWA_ELISION"},
 }
+
+
+def _sandhi_key(rule):
+    get = rule.get if isinstance(rule, dict) else (
+        lambda k: getattr(rule, k))
+    return (get("id"), get("left_context"), get("right_context"),
+            get("transform"))
 
 
 @pytest.mark.parametrize("tag", ["fr-CA", "fr-BE", "fr-CH", "fr-CI",
@@ -236,13 +248,25 @@ def test_a_variant_inherits_fr_fr(tag):
     assert spec.word_internal_apostrophe is True
     assert spec.word_exceptions == {**base.word_exceptions,
                                     **OWN_EXCEPTIONS.get(tag, {})}
-    restated = SANDHI_RESTATED.get(tag, set())
-    own_sandhi = {r.id for r in spec.sandhi_rules} - {
-        r.id for r in base.sandhi_rules} - restated
-    assert own_sandhi == OWN_SANDHI.get(tag, set())
-    assert [r for r in spec.sandhi_rules
-            if r.id not in own_sandhi | restated] == [
-        r for r in base.sandhi_rules if r.id not in restated]
+    # The variant's own sandhi rules, as its file states them.
+    own = json.loads((Path(o2i.__file__).parent / "data" / f"{tag}.json")
+                     .read_text(encoding="utf-8")).get("sandhi_rules", [])
+    own_ids = [r["id"] for r in own]
+    assert set(own_ids) == (SANDHI_RESTATED.get(tag, set())
+                            | OWN_SANDHI.get(tag, set()))
+    # The resolved list is the id-keyed overlay: a restated rule takes its
+    # parent's slot, and a rule the parent lacks follows in file order.
+    by_id = {r["id"]: r for r in own}
+    base_ids = {r.id for r in base.sandhi_rules}
+    expected = [_sandhi_key(by_id.get(r.id, r)) for r in base.sandhi_rules]
+    expected += [_sandhi_key(r) for r in own if r["id"] not in base_ids]
+    assert [_sandhi_key(r) for r in spec.sandhi_rules] == expected
+
+
+def test_quebec_neuf_heures_reads_the_laurentian_heures():
+    neuf = [r for r in o2i.get("fr-CA").sandhi_rules
+            if r.id == "FR_NEUF_V_BEFORE_HEURES"]
+    assert len(neuf) == 1 and "ay̯ʁ" in neuf[0].right_context
 
 
 @pytest.mark.parametrize("tag, words", [
@@ -257,19 +281,26 @@ def test_a_variant_reads_like_fr_fr_where_no_feature_applies(tag, words):
         assert _say(word, tag) == _say(word, "fr-FR"), word
 
 
-def test_the_assistant_sentences_differ_from_fr_fr_only_at_a_cited_feature():
-    diffs = {"fr-BE": set(), "fr-CH": set(), "fr-CI": set()}
-    for tag, found in diffs.items():
-        for text in TEXTS:
-            if _say(text, tag) != _say(text, "fr-FR"):
-                found.add(text)
-    # the sentences hold no ⟨â⟩; fr-BE differs through ⟨ui⟩ [wi] and a long
-    # vowel before a final mute ⟨e⟩, fr-CH through ⟨ê⟩ and that long vowel
-    assert diffs["fr-CI"] == set()
-    for text in diffs["fr-BE"]:
-        assert "ui" in text or "ée " in text or "ê" in text, text
-    for text in diffs["fr-CH"]:
-        assert "ê" in text or "ée " in text, text
+#: Each regional difference in the assistant sentences, as a substitution on
+#: the fr-FR reading: fr-BE [w] for the [ɥ] of ⟨ui⟩ (bruine, puis, huit,
+#: aujourd'hui) and the long vowel of allumée before its final mute ⟨e⟩;
+#: fr-CH that long vowel; fr-CI nothing. The rest of the sentence must read
+#: as fr-FR reads it.
+SENTENCE_SUBSTITUTIONS = {
+    "fr-BE": [("ɥi", "wi"), ("alyme ", "alymeː ")],
+    "fr-CH": [("alyme ", "alymeː ")],
+    "fr-CI": [],
+}
+
+
+@pytest.mark.parametrize("tag", sorted(SENTENCE_SUBSTITUTIONS))
+def test_the_assistant_sentences_differ_from_fr_fr_only_at_a_cited_feature(
+        tag):
+    for text in TEXTS:
+        expected = _say(text, "fr-FR")
+        for plain, regional in SENTENCE_SUBSTITUTIONS[tag]:
+            expected = expected.replace(plain, regional)
+        assert _say(text, tag) == expected, text
 
 
 def _undo_laurentian(ipa):
@@ -291,3 +322,23 @@ def test_a_laurentian_difference_is_always_a_cited_allophone():
     for text in TEXTS:
         ours = _undo_laurentian(_say(text, "fr-CA"))
         assert ours == _undo_laurentian(_say(text, "fr-FR")), text
+
+
+#: The proclitics whose [a] stays front (Dumas 1974: 41, n. 13), by their
+#: fr-FR reading. [a] itself is left out: it is both the proclitic à and the
+#: verb a, whose word-final /a/ is [ɒ] (il y a [il i ɒ]).
+PROCLITIC_A = {"la", "ma", "ta", "sa"}
+
+
+def test_a_laurentian_back_a_never_reaches_a_proclitic():
+    # The normalised comparison above folds [ɒ] into [a]; check the [a]
+    # words one by one. Both readings split into the same words.
+    for text in TEXTS:
+        ours, base = _say(text, "fr-CA").split(), _say(text, "fr-FR").split()
+        assert len(ours) == len(base), text
+        for mine, plain in zip(ours, base):
+            if plain in PROCLITIC_A:
+                assert mine == plain, (text, plain, mine)
+            if "ɒ" in mine:
+                assert plain.endswith(("a", "wa")) and plain not in \
+                    PROCLITIC_A, (text, plain, mine)

@@ -202,7 +202,7 @@ def test_the_midi_spec_is_a_variant_of_fr_fr():
     assert "Gallo-Romance" in spec.family_path
 
 
-# --- review fixes ----------------------------------------------------------
+# --- ⟨ê⟩ length, unit vowels, Laurentian length and proclitics, Midi schwa -------
 
 @pytest.mark.parametrize("tag", ["fr-BE", "fr-CH"])
 @pytest.mark.parametrize("text, expected", [
@@ -251,7 +251,7 @@ def test_the_vowel_of_a_unit_before_a_final_mute_e_is_long(text, be, ch):
     ("pour", "puʁ"),               # leur oncle)
     ("sur", "syʁ"),
 ])
-def test_quebec_review_cases(text, expected):
+def test_quebec_length_proclitics_and_final_back_a(text, expected):
     assert _say(text, "fr-CA") == expected
 
 
@@ -279,7 +279,7 @@ def test_quebec_proclitics_stay_short_inside_a_phrase():
     ("poème", "poɛmə"),            # open syllable in hiatus: close
     ("automne", "otɔnə"),          # the appendix and a following nasal
 ])
-def test_midi_review_cases(text, expected):
+def test_midi_schwa_after_units_and_loi_de_position(text, expected):
     assert _say(text, MIDI) == expected
 
 
@@ -288,7 +288,7 @@ def test_the_midi_final_schwa_links_its_consonant_before_a_vowel():
     assert _say("une école", MIDI) == "yn‿ ekɔlə"
 
 
-# --- combined with the fr-FR numeral rules (PR #2710) ----------------------
+# --- numeral sandhi -------------------------------------------------------
 
 def test_belgian_huit_drops_its_t_before_a_consonant():
     # fr-FR mutes the [t] of huit before a consonant; the Belgian [wit]
@@ -300,3 +300,70 @@ def test_quebec_high_vowel_is_tense_once_the_numeral_consonant_falls():
     # Hall 2016: 7, ex. (11): a high vowel in an open final syllable is tense
     assert _say("dix livres", "fr-CA").split()[0] == "d͡zi"
     assert _say("huit livres", "fr-CA").split()[0] == "ɥi"
+
+
+def _fr_fr_sounds_numeral_consonants():
+    return _say("huit", "fr-FR") == "ɥit" and _say("dix", "fr-FR") == "dis"
+
+
+#: The fr-FR numeral rules sound the final consonant of six, dix and huit
+#: and drop or link it by sandhi. The cases below need those rules in the
+#: parent and are skipped on a base whose fr-FR has none of them.
+needs_numeral_rules = pytest.mark.skipif(
+    not _fr_fr_sounds_numeral_consonants(),
+    reason="fr-FR gives six, dix and huit no final consonant on this base")
+
+
+@needs_numeral_rules
+@pytest.mark.parametrize("tag, text, expected", [
+    ("fr-BE", "huit", "wit"),                 # the consonant is there alone
+    ("fr-BE", "huit livres", "wi livʁ"),      # and falls before a consonant
+    ("fr-BE", "dix-huit", "diz wit"),
+    ("fr-BE", "le six juin", "lə sis ʒwi"),   # kept before a month
+    ("fr-CA", "dix", "d͡zɪs"),                # lax in a closed final syllable
+    ("fr-CA", "six", "sɪs"),
+    ("fr-CA", "huit", "ɥɪt"),
+    ("fr-CA", "dix livres", "d͡zi liːvʁ"),    # tense once the syllable opens
+    ("fr-CA", "huit livres", "ɥi liːvʁ"),
+    ("fr-CA", "six amis", "siz‿ ami"),
+    ("fr-CA", "six insectes", "siz‿ ẽsɛkt"),  # [ẽ] opens a word
+    ("fr-CA", "dix-huit", "d͡ziz ɥɪt"),
+    ("fr-CA", "le dix novembre", "lə d͡zɪs nɔvɑ̃u̯bʁ"),
+    ("fr-FR-x-midi", "le dix novembre", "lø dis nɔvambʁə"),
+    ("fr-FR-x-midi", "dix octobre", "dis ɔktɔbʁə"),
+    ("fr-FR-x-midi", "six enfants", "siz‿ aɱfaŋ"),
+    ("fr-FR-x-midi", "huit chez moi", "ɥit ʃe mwa"),
+    ("fr-FR-x-midi", "huit juifs", "ɥi ʒɥif"),    # juin, juillet: whole words
+])
+def test_numeral_consonant_and_its_sandhi(tag, text, expected):
+    assert _say(text, tag) == expected
+
+
+@pytest.mark.parametrize("tag, expected", [
+    ("fr-CA", "nœv‿ ay̯ʁ"), ("fr-FR-x-midi", "nœv‿ œʁə"),
+])
+def test_neuf_heures_takes_v_before_the_regional_heures(tag, expected):
+    assert _say("neuf heures", tag) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("pointe", "pwɛ̃i̯t"),         # ⟨oin⟩ in a closed final syllable:
+    ("joindre", "ʒwɛ̃i̯dʁ"),       # Dumas 1974: 21-22, Table II
+    ("moins", "mwẽ"),             # open: short [ẽ]
+    ("patience", "pasjɑ̃u̯s"),     # the ending -tience
+])
+def test_quebec_nasal_units_and_endings(text, expected):
+    assert _say(text, "fr-CA") == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("élection", "elɛksjɔŋ"),     # the endings -tion, -stion, -tience
+    ("question", "kɛstjɔŋ"),      # take the appendix (Eychenne 2006: 115)
+    ("patience", "pasjansə"),
+])
+def test_midi_nasal_endings_take_the_appendix(text, expected):
+    assert _say(text, MIDI) == expected
+
+
+def test_the_midi_spec_lists_a_reference_url():
+    assert o2i.get(MIDI).urls
