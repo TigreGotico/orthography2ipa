@@ -10,6 +10,8 @@ see: `docs/index.md`, `docs/guide/getting_started.md`, `AGENTS.md`
 
 `orthography2ipa` (o2i) turns the spelling of a language into the [International Phonetic Alphabet](https://www.internationalphoneticassociation.org/content/full-ipa-chart) (IPA), and it measures how languages relate to each other. Each language is a cited JSON spec in `orthography2ipa/data/`. One engine with no language-specific code turns the specs into transcriptions and ranked pronunciation lattices. The library ships no trained weights and no word lists.
 
+Try it: [huggingface.co/spaces/TigreGotico/orthography2ipa](https://huggingface.co/spaces/TigreGotico/orthography2ipa) runs the package in your browser.
+
 > [!WARNING]
 > Check the quality tier and the benchmark row of a language before you depend on it. Most specs are `stub` or `skeleton`, and few are `production`. Most gold sets are semi-automatic, so read a PER as a direction, not a precise value. [docs/index.md](docs/index.md#honest-limitations-read-this-before-you-trust-a-tier) lists the limits.
 

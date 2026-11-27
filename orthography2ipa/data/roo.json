@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-nort2933",
+ "inherits": "x-clade-nort2933",
  "phonemes": [
   "k",
   "p",

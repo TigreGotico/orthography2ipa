@@ -251,7 +251,7 @@
       "notes": "The letter->IPA table for the two Latin variants (Azerbaijan variant, followed here, vs. the scholarly háček variant) and the Cyrillic alphabet."
     }
   ],
-  "parent": "x-clade-iran1269",
+  "inherits": "x-clade-iran1269",
   "ancestors": [
     {
       "code": "x-clade-iran1269",

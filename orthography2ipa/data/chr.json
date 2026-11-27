@@ -569,7 +569,7 @@
     "start_year": 1821,
     "end_year": null
   },
-  "parent": "x-clade-iroq1247",
+  "inherits": "x-clade-iroq1247",
   "ancestors": [
     {
       "code": "x-clade-iroq1247",

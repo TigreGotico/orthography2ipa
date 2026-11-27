@@ -57,7 +57,7 @@ class TestRegistration:
 
     @pytest.mark.parametrize("code", DIALECTS)
     def test_parent_is_eu(self, code):
-        assert _spec(code).parent == "eu"
+        assert _spec(code).inherits == "eu"
 
     @pytest.mark.parametrize("code", DIALECTS)
     def test_inherits_base_vowels(self, code):
@@ -223,7 +223,7 @@ class TestRoncalese:
     CODE = "eu-x-roncal"
 
     def test_registered_with_parent_eu(self):
-        assert _spec(self.CODE).parent == "eu"
+        assert _spec(self.CODE).inherits == "eu"
 
     def test_marked_extinct(self):
         assert _spec(self.CODE).timespan.end_year == 1991

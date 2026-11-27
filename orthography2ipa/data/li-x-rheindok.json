@@ -335,7 +335,7 @@
       "øː"
     ]
   },
-  "parent": "li",
+  "inherits": "li",
   "ancestors": [
     {
       "code": "li",

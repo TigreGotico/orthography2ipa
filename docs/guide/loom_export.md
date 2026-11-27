@@ -131,6 +131,30 @@ The same text through the Python package gives the same IPA:
 
 ```
 
+## Check loom against Python
+
+`scripts/loom_parity.py` runs two text sets through a loom host and counts the texts where the loom output equals the expected output byte for byte:
+
+- Every case of the conformance vectors in `tests/conformance/ir-v1/`, run on the IR of its file. An output case passes when the output equals its `expect`. An error case passes when loom stops with the message of its `expect_error`.
+- Every sentence of the gold sets in `orthography2ipa/data/gold/`, compared with `orthography2ipa.transcribe` for the lect of the sentence.
+
+The script exports one GGUF for each language and writes `benchmarks/loom_parity.json`. The last run gives:
+
+| Set | Languages | Cases | Pass |
+| :--- | ---: | ---: | ---: |
+| Conformance vectors, output cases | 22 files | 3880 | 3880 |
+| Conformance vectors, error cases | 1 file | 1 | 1 |
+| Gold sentences | 188 lects | 6369 | 6369 |
+
+The run used loom.cpp commit `f58f905` and orthography2ipa 7.133.1a4. To run it again, build loom.cpp and the host, then run the script:
+
+```bash
+git clone https://github.com/loom-ai-org/loom.cpp ../loom.cpp
+cmake -S scripts/loom_host -B build/loom_host -DLOOM_DIR=$PWD/../loom.cpp -DCMAKE_BUILD_TYPE=Release
+cmake --build build/loom_host -j4 --target o2i_loom
+PYTHONPATH=$PWD .venv/bin/python scripts/loom_parity.py build/loom_host/o2i_loom "$(git -C ../loom.cpp rev-parse --short HEAD)"
+```
+
 ## Run the Lua interpreter without loom
 
 `interpreter.lua` also runs under plain LuaJIT. It reads an IR JSON file, then one line of decimal codepoints per text on standard input:

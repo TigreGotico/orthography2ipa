@@ -156,7 +156,7 @@
       "notes": "Isolated Indo-European branch; Armenian alphabet created by Mesrop Mashtots in 405 CE"
     }
   ],
-  "parent": "x-clade-arme1241",
+  "inherits": "x-clade-arme1241",
   "notes": "Eastern Armenian (standard). Armenian alphabet (Aybuben) has 38 letters. Digraph ու = /u/. Letters ե and ո have positional allophones: word-initial ե = /jɛ/, medial = /ɛ/; word-initial ո = /vo/, medial = /o/. Aspirated stops (թ, չ, փ, ք, ց) vs plain voiced (բ, գ, դ) vs plain voiceless (կ, պ, տ).",
   "sources": [
     {

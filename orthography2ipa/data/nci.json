@@ -38,7 +38,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Classical_Nahuatl"
   ],
-  "parent": "x-clade-utoa1244",
+  "inherits": "x-clade-utoa1244",
   "ancestors": [
     {
       "code": "x-clade-utoa1244",

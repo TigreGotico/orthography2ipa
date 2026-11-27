@@ -3,7 +3,7 @@
   "name": "Mozarabic (Andalusi Romance)",
   "script": "Latin",
   "script_type": "alphabet",
-  "parent": "x-clade-roma1334",
+  "inherits": "x-clade-roma1334",
   "ancestors": [
     {
       "code": "la-x-late",

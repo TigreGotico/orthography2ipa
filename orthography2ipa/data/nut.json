@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-taik1256",
+ "inherits": "x-clade-taik1256",
  "phonemes": [
   "b̰",
   "d̪̰|d̰",

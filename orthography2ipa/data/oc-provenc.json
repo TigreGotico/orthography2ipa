@@ -3,7 +3,7 @@
   "name": "Provençal (Occitan)",
   "script": "Latin",
   "script_type": "alphabet",
-  "parent": "oc",
+  "inherits": "oc",
   "graphemes_base": "oc",
   "allophones_base": "oc",
   "positional_graphemes_base": "oc",

@@ -24,7 +24,7 @@ from orthography2ipa.json_loader import load_json_spec
 def test_fa_x_enp_is_registered_and_parented_on_fa():
     spec = load_json_spec("fa-x-enp")
     assert spec.code == "fa-x-enp"
-    assert spec.parent == "fa"
+    assert spec.inherits == "fa"
 
 
 def test_long_a_stays_front_not_backed():

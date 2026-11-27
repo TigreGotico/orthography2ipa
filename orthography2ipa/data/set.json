@@ -85,7 +85,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-sent1261",
+ "inherits": "x-clade-sent1261",
  "phonemes": [
   "f",
   "h",

@@ -123,7 +123,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-narr1279",
+ "inherits": "x-clade-narr1279",
  "phonemes": [
   "j",
   "k",

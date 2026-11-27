@@ -7,7 +7,7 @@
   "allophones_base": "pt-PT",
   "allophones": {},
   "positional_graphemes_base": "pt-PT",
-  "parent": "pt-PT",
+  "inherits": "pt-PT",
   "sandhi_rules": [
     {
       "id": "PT_FINAL_S_PREVOCALIC_VOICE",

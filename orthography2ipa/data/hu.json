@@ -409,7 +409,7 @@
     "stress_mark": "ˈ",
     "notes": "Hungarian has categorical initial stress. Long vowels (á é í ó ő ú ü ű) mark vowel length and quality, not stress. Source: Siptár & Törkenczy (2000), The Phonology of Hungarian; Wikipedia: https://en.wikipedia.org/wiki/Hungarian_phonology"
   },
-  "parent": "urj",
+  "inherits": "urj",
   "ancestors": [
     {
       "code": "urj",

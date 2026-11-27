@@ -20,5 +20,5 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Ibero-Romance_languages"
   ],
-  "parent": "la-x-hispania"
+  "inherits": "la-x-hispania"
 }

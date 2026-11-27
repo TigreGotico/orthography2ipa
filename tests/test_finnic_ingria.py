@@ -163,4 +163,4 @@ def test_ludic_transcribes_via_inherited_karelian_rules():
 
 def test_ludic_ancestry_wired_to_finnic():
     spec = _load("lud")
-    assert spec.parent == "x-clade-finn1317"
+    assert spec.inherits == "x-clade-finn1317"

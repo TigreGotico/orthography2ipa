@@ -499,3 +499,13 @@ def test_midi_sc_opens_a_syllable_only_where_it_reads_sk():
     for rule in o2i.get(MIDI).allophone_rules:
         if "sc" in rule.followed_by_grapheme:
             assert rule.followed_by_2 in ("back_vowel", "consonant"), rule.id
+
+
+# The word exception gives vingt its [t]; the numeral rules must not add a second one.
+@pytest.mark.parametrize("code", ["fr-BE", "fr-CH"])
+@pytest.mark.parametrize("text, expected", [
+    ("vingt-deux", "vɛ̃t dø"), ("vingt et un", "vɛ̃t‿ e œ̃"), ("vingt ans", "vɛ̃t‿ ɑ̃"),
+    ("quatre-vingt-deux", "katʁə vɛ̃ dø"),
+])
+def test_vingt_keeps_one_t(code, text, expected):
+    assert o2i.transcribe(text, code) == expected

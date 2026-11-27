@@ -664,7 +664,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-tuuu1241",
+ "inherits": "x-clade-tuuu1241",
  "phonemes": [
   "b",
   "d",

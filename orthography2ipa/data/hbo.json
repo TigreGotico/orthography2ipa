@@ -6,7 +6,7 @@
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "parent": "sem-x-central",
+  "inherits": "sem-x-central",
   "ancestors": [
     {
       "code": "sem-x-central",

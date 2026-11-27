@@ -5,7 +5,7 @@
   "script_type": "reconstruction",
   "quality": "stub",
   "graphemes": {},
-  "parent": "x-clade-iran1269",
+  "inherits": "x-clade-iran1269",
   "ancestors": [
     {
       "code": "x-clade-iran1269",

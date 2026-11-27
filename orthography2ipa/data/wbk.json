@@ -129,7 +129,7 @@
       "dʒ"
     ]
   },
-  "parent": "x-clade-indo1320",
+  "inherits": "x-clade-indo1320",
   "ancestors": [
     {
       "code": "x-clade-indo1320",

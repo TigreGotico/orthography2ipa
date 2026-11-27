@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-marr1257",
+ "inherits": "x-clade-marr1257",
  "phonemes": [
   "j",
   "k",

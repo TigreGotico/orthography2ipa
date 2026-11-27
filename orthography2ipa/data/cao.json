@@ -58,7 +58,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-pano1259",
+ "inherits": "x-clade-pano1259",
  "phonemes": [
   "h",
   "j",

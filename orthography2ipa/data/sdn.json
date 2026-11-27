@@ -19,7 +19,7 @@
     ]
   },
   "allophones_base": "co",
-  "parent": "co",
+  "inherits": "co",
   "ancestors": [
     {
       "code": "co",

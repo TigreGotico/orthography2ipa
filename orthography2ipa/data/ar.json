@@ -308,7 +308,7 @@
       "notes": "The wāw counterpart of AR_GLIDE_YA_CONSONANTAL: the ⟨ُو⟩ digraph is long /uː/ only when the wāw is quiescent. Before its own geminate copy or a consonantal wāw it keeps its consonantal power — أُبُوَّة /ʔubuwwa/ (Wright I §4, §14)."
     }
   ],
-  "parent": "xpa",
+  "inherits": "xpa",
   "ancestors": [
     {
       "code": "xpa",

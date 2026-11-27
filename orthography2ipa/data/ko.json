@@ -508,7 +508,7 @@
     "end_year": null
   },
   "iso639_3": "kor",
-  "parent": "pko",
+  "inherits": "pko",
   "ancestors": [
     {
       "code": "pko",

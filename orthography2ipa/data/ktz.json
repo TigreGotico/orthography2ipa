@@ -249,7 +249,7 @@
       "n"
     ]
   },
-  "parent": "x-clade-kxaa1236",
+  "inherits": "x-clade-kxaa1236",
   "ancestors": [
     {
       "code": "x-clade-kxaa1236",

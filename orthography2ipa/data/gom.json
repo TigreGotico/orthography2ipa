@@ -40,7 +40,7 @@
     "https://en.wikipedia.org/wiki/Goan_Konkani",
     "https://en.wikipedia.org/wiki/Konkani_language"
   ],
-  "parent": "x-clade-indo1321",
+  "inherits": "x-clade-indo1321",
   "ancestors": [
     {
       "code": "x-clade-indo1321",

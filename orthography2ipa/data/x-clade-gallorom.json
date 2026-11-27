@@ -20,5 +20,5 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Gallo-Romance_languages"
   ],
-  "parent": "la-x-gallia"
+  "inherits": "la-x-gallia"
 }

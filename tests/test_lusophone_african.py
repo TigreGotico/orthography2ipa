@@ -39,7 +39,7 @@ def test_cape_verdean_kept_at_skeleton_no_read_cv_source():
 def test_inherits_european_portuguese(code):
     """Each variety is built on pt-PT and resolves to usable data."""
     spec = get(code)
-    assert spec.parent == "pt-PT"
+    assert spec.inherits == "pt-PT"
     assert spec.graphemes  # resolved via graphemes_base = pt-PT
     assert spec.allophones
 

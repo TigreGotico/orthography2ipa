@@ -1,7 +1,7 @@
 {
   "code": "dra",
   "name": "Proto-Dravidian (family node)",
-  "parent": "x-clade-drav1251",
+  "inherits": "x-clade-drav1251",
   "script": "IPA-reconstruction",
   "graphemes": {},
   "allophones": {},

@@ -33,6 +33,7 @@ from orthography2ipa.types import (
     ValidCeiling,
 )
 from orthography2ipa.positional import normalize_ending_value
+from orthography2ipa.version import VERSION_MAJOR
 from orthography2ipa.weights import split_weighted_graphemes
 
 _BASE_SCALAR_FIELDS: tuple = tuple(
@@ -45,21 +46,21 @@ _BASE_MERGE_FIELDS: tuple = tuple(
 )
 
 # Id-keyed fields have no ``*_base`` key: they follow ``graphemes_base``,
-# else the nearest data ancestor on ``parent``.
+# else the nearest data ancestor on ``inherits``.
 _OVERLAY_BY_ID_FIELDS: tuple = tuple(
     f for f, mode in FIELD_INHERITANCE.items() if mode is InheritanceMode.OVERLAY_BY_ID
 )
 
 
 def _nearest_data_ancestor(code: Optional[str]) -> Optional[str]:
-    """The nearest non-clade spec on the ``parent`` chain of *code*, itself included."""
+    """The nearest non-clade spec on the ``inherits`` chain of *code*, itself included."""
     seen = set()
     while code and code in _specs and code not in seen:
         seen.add(code)
         spec = _specs[code]
         if not spec.clade:
             return code
-        code = spec.parent
+        code = spec.inherits
     return None
 
 
@@ -132,7 +133,18 @@ def load_json_spec(code: str) -> LanguageSpec:
     )
     raw["graphemes"] = own_graphemes_plain
 
-    parent_lang = raw.get("parent")
+    if "parent" in raw:
+        if "inherits" in raw:
+            raise ValueError(f"spec '{code}' sets both 'parent' and 'inherits'; keep 'inherits'")
+        warnings.warn(
+            f"the 'parent' key of spec '{code}' is deprecated and will be removed in "
+            f"{VERSION_MAJOR + 1}.0.0; rename it to 'inherits'.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        raw["inherits"] = raw.pop("parent")
+
+    parent_lang = raw.get("inherits")
     base_field_langs: Dict[str, Optional[str]] = {
         field: raw.get(f"{field}_base") for field in _BASE_MERGE_FIELDS
     }
@@ -455,7 +467,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         if stress_base and stress_base in _specs:
             stress = _specs[stress_base].stress
 
-    # With no ``parent``, the PARENT-role ancestor classifies the spec.
+    # With no ``inherits``, the PARENT-role ancestor classifies the spec.
     classification_parent = parent_lang
     if not classification_parent:
         for ancestor in ancestors:
@@ -483,7 +495,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         orthography_kind=OrthographyKind(raw.get("orthography_kind") or "native"),
         allophones=allophones,
         positional_graphemes=positional_graphemes or {},
-        parent=parent_lang,
+        inherits=parent_lang,
         ancestors=ancestors,
         notes=raw.get("notes", ""),
         quality=raw.get("quality", QualityTier.RESEARCH),
