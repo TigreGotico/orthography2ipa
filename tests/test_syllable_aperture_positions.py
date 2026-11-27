@@ -122,8 +122,8 @@ def test_french_final_r(word, expected):
 @pytest.mark.parametrize("word,expected", [
     # A mute word-final ⟨h⟩ does not close the syllable: [ø], not [œ].
     ("beuh", "bø"),
-    # euh, not chleuh: FR_CH_HARD_BEFORE_SONORANT reads the German loan
-    # chleuh with [k] (tests/test_french_frequent_words.py pins that residual).
+    # euh, not chleuh: chleuh is now a whole-word entry [ʃlø] (Lexique 3.83),
+    # which bypasses the grapheme rules, so it no longer tests the aperture.
     ("euh", "ø"),
     # …while a mute ⟨s⟩ over a PRONOUNCED ⟨r⟩ leaves it closed.
     ("chanteurs", "ʃɑ̃tœʁ"),
