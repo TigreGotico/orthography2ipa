@@ -1002,11 +1002,23 @@ def _citations(spec, notes: str) -> str:
     return ", ".join(found[:3])
 
 
+#: The pattern that never matches. A spec switches off an inherited sandhi
+#: rule by redeclaring its id with this context (SCHEMA.md, Sandhi Rule
+#: Schema), as it switches off an allophone rule with empty ``phonemes``.
+_NEVER_MATCHES = "(?!)"
+
+
+def _sandhi_off(rule) -> bool:
+    return _NEVER_MATCHES in (rule.left_context, rule.right_context)
+
+
 def block_rules(atlas: Atlas, spec) -> str:
     rules = list(spec.allophone_rules or ())
     active = [r for r in rules if r.phonemes]
     off = [r for r in rules if not r.phonemes]
-    sandhi = list(spec.sandhi_rules or ())
+    all_sandhi = list(spec.sandhi_rules or ())
+    sandhi = [r for r in all_sandhi if not _sandhi_off(r)]
+    off += [r for r in all_sandhi if _sandhi_off(r)]
     lines = ["## Rules", ""]
     if not active and not sandhi:
         lines.append("The spec has no allophone rule and no cross-word rule.")
