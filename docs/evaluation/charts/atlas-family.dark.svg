@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="742" height="344" viewBox="0 0 742 344" role="img" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"><title>Specs per family (7,405 specs)</title><desc>Atlantic-Congo 1364, Austronesian 1240, Indo-European 746, Sino-Tibetan 445, Afro-Asiatic 393, Nuclear Trans New Guinea 311, Otomanguean 177, Austroasiatic 157, Sign Language 156, Isolate 113, Pama-Nyungan 108, Tai-Kadai 89, Bookkeeping 88, Dravidian 81, Other (224) 1937</desc>
-<text x="20" y="26" font-size="16" text-anchor="start" font-weight="bold" fill="#f0efec">Specs per family (7,405 specs)</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="742" height="344" viewBox="0 0 742 344" role="img" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"><title>Specs per family (7,404 specs)</title><desc>Atlantic-Congo 1364, Austronesian 1240, Indo-European 746, Sino-Tibetan 445, Afro-Asiatic 392, Nuclear Trans New Guinea 311, Otomanguean 177, Austroasiatic 157, Sign Language 156, Isolate 113, Pama-Nyungan 108, Tai-Kadai 89, Bookkeeping 88, Dravidian 81, Other (224) 1937</desc>
+<text x="20" y="26" font-size="16" text-anchor="start" font-weight="bold" fill="#f0efec">Specs per family (7,404 specs)</text>
 <text x="20" y="46" font-size="12" text-anchor="start" font-weight="normal" fill="#c3c2b7">Top-level family of each listed spec.</text>
 <text x="190" y="74" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">Atlantic-Congo</text>
 <path d="M198 62H532.01Q536.01 62 536.01 66V74Q536.01 78 532.01 78H198Z" fill="#3987e5"/>
@@ -14,8 +14,8 @@
 <path d="M198 116H304.27Q308.27 116 308.27 120V128Q308.27 132 304.27 132H198Z" fill="#3987e5"/>
 <text x="314.27" y="128" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">445</text>
 <text x="190" y="146" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">Afro-Asiatic</text>
-<path d="M198 134H291.39Q295.39 134 295.39 138V146Q295.39 150 291.39 150H198Z" fill="#3987e5"/>
-<text x="301.39" y="146" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">393</text>
+<path d="M198 134H291.14Q295.14 134 295.14 138V146Q295.14 150 291.14 150H198Z" fill="#3987e5"/>
+<text x="301.14" y="146" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">392</text>
 <text x="190" y="164" font-size="12" text-anchor="end" font-weight="normal" fill="#f0efec">Nuclear Trans New Guinea</text>
 <path d="M198 152H271.07Q275.07 152 275.07 156V164Q275.07 168 271.07 168H198Z" fill="#3987e5"/>
 <text x="281.07" y="164" font-size="11" text-anchor="start" font-weight="normal" fill="#c3c2b7">311</text>
