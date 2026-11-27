@@ -11,8 +11,10 @@ def test_the_parity_table_matches_the_result_file():
     page = (REPO / "docs" / "guide" / "loom_export.md").read_text(encoding="utf-8")
     vectors = result["vectors"]
     gold = result["gold"]
-    assert (f"| Conformance vectors | {vectors['files']} files | {vectors['cases']} | {vectors['identical']} |"
+    assert (f"| Conformance vectors, output cases | {vectors['files']} files | {vectors['cases']} | {vectors['identical']} |"
             in page)
+    assert (f"| Conformance vectors, error cases | {vectors['files']} files | {vectors['error_cases']} "
+            f"| {vectors['error_cases_refused']} |" in page)
     assert f"| Gold sentences | {gold['lects']} lects | {gold['sentences']} | {gold['identical']} |" in page
     assert re.search(rf"loom\.cpp commit `{result['loom_commit']}` and orthography2ipa {re.escape(result['orthography2ipa'])}\.",
                      page)

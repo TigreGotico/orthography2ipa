@@ -135,14 +135,15 @@ The same text through the Python package gives the same IPA:
 
 `scripts/loom_parity.py` runs two text sets through a loom host and counts the texts where the loom output equals the expected output byte for byte:
 
-- Every case of the conformance vectors in `tests/conformance/ir-v1/`, compared with the `expect` of the case.
+- Every case of the conformance vectors in `tests/conformance/ir-v1/`, run on the IR of its file. An output case passes when the output equals its `expect`. An error case passes when loom stops with the message of its `expect_error`.
 - Every sentence of the gold sets in `orthography2ipa/data/gold/`, compared with `orthography2ipa.transcribe` for the lect of the sentence.
 
 The script exports one GGUF for each language and writes `benchmarks/loom_parity.json`. The last run gives:
 
-| Set | Languages | Texts | Identical |
+| Set | Languages | Cases | Pass |
 | :--- | ---: | ---: | ---: |
-| Conformance vectors | 22 files | 3880 | 3880 |
+| Conformance vectors, output cases | 22 files | 3880 | 3880 |
+| Conformance vectors, error cases | 22 files | 1 | 1 |
 | Gold sentences | 188 lects | 6369 | 6369 |
 
 The run used loom.cpp commit `f58f905` and orthography2ipa 7.133.1a4. To run it again, build loom.cpp and the host, then run the script:

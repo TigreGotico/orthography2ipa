@@ -4,7 +4,9 @@
  "vectors": {
   "files": 22,
   "cases": 3880,
-  "identical": 3880
+  "identical": 3880,
+  "error_cases": 1,
+  "error_cases_refused": 1
  },
  "gold": {
   "lects": 188,

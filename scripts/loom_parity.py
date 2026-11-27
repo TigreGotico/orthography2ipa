@@ -14,27 +14,49 @@ import tempfile
 from pathlib import Path
 
 import orthography2ipa as o2i
-from orthography2ipa.export_to_loom import export_to_loom
+from orthography2ipa import export_to_loom as loom
 
 
-def run_host(host: str, lang: str, texts: list, tmp: str) -> list:
+def run_host(host: str, lang: str, texts: list, tmp: str, ir: dict = None) -> subprocess.CompletedProcess:
+    """Export *lang* and run *texts* through *host*. *ir* replaces the compiled IR."""
     gguf = Path(tempfile.mkdtemp(dir=tmp)) / f"{lang}.gguf"
-    export_to_loom([lang], gguf)
-    out = subprocess.run([host, str(gguf), "0"], input="\n".join(texts) + "\n",
-                         capture_output=True, text=True, check=True).stdout
-    return out.split("\n")[:len(texts)]
+    compile_irs = loom.compile_irs
+    if ir is not None:
+        loom.compile_irs = lambda langs, rev=None, fragments=(): {lang: ir}
+    try:
+        loom.export_to_loom([lang], gguf)
+    finally:
+        loom.compile_irs = compile_irs
+    return subprocess.run([host, str(gguf), "0"], input="\n".join(texts) + "\n",
+                          capture_output=True, text=True)
+
+
+def outputs(proc: subprocess.CompletedProcess, n: int) -> list:
+    if proc.returncode != 0:
+        raise RuntimeError(f"host exited {proc.returncode}: {proc.stderr[-300:]}")
+    return proc.stdout.split("\n")[:n]
 
 
 def vectors(host: str, tmp: str) -> dict:
-    cases = same = 0
-    for path in sorted(glob.glob("tests/conformance/ir-v1/*.jsonl")):
+    """Run each vector file on its own IR. An error case passes when the host
+    stops with the expected message."""
+    paths = sorted(glob.glob("tests/conformance/ir-v1/*.jsonl"))
+    cases = same = errors = errors_same = 0
+    for path in paths:
         records = [json.loads(line) for line in open(path, encoding="utf-8")]
-        rows = [r for r in records[1:] if "expect" in r]
-        texts = ["".join(map(chr, r["input"])) for r in rows]
-        got = run_host(host, records[0]["lang"], texts, tmp)
-        cases += len(rows)
-        same += sum(g == "".join(map(chr, r["expect"])) for g, r in zip(got, rows))
-    return {"files": len(glob.glob("tests/conformance/ir-v1/*.jsonl")), "cases": cases, "identical": same}
+        head, rows = records[0], records[1:]
+        runs = [r for r in rows if "expect" in r]
+        if runs:
+            texts = ["".join(map(chr, r["input"])) for r in runs]
+            got = outputs(run_host(host, head["lang"], texts, tmp, head["ir"]), len(texts))
+            cases += len(runs)
+            same += sum(g == "".join(map(chr, r["expect"])) for g, r in zip(got, runs))
+        for row in (r for r in rows if "expect_error" in r):
+            proc = run_host(host, head["lang"], ["".join(map(chr, row["input"]))], tmp, head["ir"])
+            errors += 1
+            errors_same += proc.returncode != 0 and row["expect_error"] in proc.stderr
+    return {"files": len(paths), "cases": cases, "identical": same,
+            "error_cases": errors, "error_cases_refused": errors_same}
 
 
 def gold(host: str, tmp: str) -> dict:
@@ -48,7 +70,7 @@ def gold(host: str, tmp: str) -> dict:
     texts_n = same = 0
     for lect, texts in sorted(by_lect.items()):
         texts = sorted(texts)
-        got = run_host(host, lect, texts, tmp)
+        got = outputs(run_host(host, lect, texts, tmp), len(texts))
         texts_n += len(texts)
         same += sum(g == o2i.transcribe(t, lect) for g, t in zip(got, texts))
     return {"lects": len(by_lect), "sentences": texts_n, "identical": same}
