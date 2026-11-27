@@ -89,3 +89,12 @@ def test_a_bad_langs_is_refused(langs):
 def test_an_out_of_scope_fragment_is_still_checked():
     with pytest.raises(ValueError, match="lowercase NFC"):
         build_ir("kab", fragments=({**PT_CASA, "words": {"Casa": "x"}},))
+
+
+def test_an_unregistered_code_in_langs_is_refused():
+    with pytest.raises(ValueError, match="fragment langs: 'zz-QQ' names no registered language"):
+        build_ir("kab", fragments=({**PT_CASA, "langs": ["zz-QQ"]},))
+
+
+def test_a_fragment_for_pt_pt_does_not_reach_a_lect():
+    assert build_ir("pt-PT-x-lisbon", fragments=(PT_CASA,)) == build_ir("pt-PT-x-lisbon")

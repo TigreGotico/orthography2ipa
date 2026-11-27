@@ -804,13 +804,14 @@ def merge_fragments(fragments: Sequence[dict], ir_version: int,
     """The ``words`` of the *fragments* in scope for the resolved *code* as one
     table, and their ``sandhi`` rules as IR rules in fragment order. A later
     fragment wins on a duplicate word. A fragment with ``langs`` is in scope when
-    one of its codes resolves to *code*, as a plugin's ``language_codes`` are
-    matched; a fragment without ``langs`` is in scope for every code. Every
-    fragment is checked, in scope or not.
+    ``registry.resolve`` of one of its codes equals *code*, the resolved engine
+    code: a fragment for pt-PT does not reach pt-PT-x-lisbon. A fragment without
+    ``langs`` is in scope for every code. Every fragment is checked, in scope or not.
 
     Raises:
         ValueError: a fragment is malformed (an unknown key, a wrong ``ir_version``, a
-            ``words`` key that is not lowercase NFC, a non-string entry, a ``langs`` that is not a non-empty list of strings) or has a
+            ``words`` key that is not lowercase NFC, a non-string entry, a ``langs`` that is not a non-empty list of strings or names no
+            registered language) or has a
             ``sandhi`` rule that :func:`_sandhi_rule` refuses.
     """
     words: Dict[str, str] = {}
@@ -826,6 +827,9 @@ def merge_fragments(fragments: Sequence[dict], ir_version: int,
         if langs is not None and (not isinstance(langs, list) or not langs
                                   or not all(isinstance(lang, str) for lang in langs)):
             raise ValueError(f"fragment langs {langs!r}: a non-empty list of strings is required")
+        for lang in langs or ():
+            if not registry.resolves_exactly(lang):
+                raise ValueError(f"fragment langs: {lang!r} names no registered language")
         for key, ipa in fragment.get("words", {}).items():
             if not isinstance(key, str) or not isinstance(ipa, str):
                 raise ValueError(f"fragment word {key!r}: the key and the value must be strings")
