@@ -52,7 +52,7 @@ def test_e_after_soft_g_before_a_back_vowel_is_mute(text, expected):
 @pytest.mark.parametrize("text, expected", [
     ("gelé", "ʒəle"),      # before a consonant the ⟨e⟩ is a vowel
     ("je", "ʒə"),          # the whole-word entry
-    ("geai", "ʒe"),        # Martinon (1913: 164): g(e)ai
+    ("geais", "ʒɛ"),       # Martinon (1913: 164): g(e)ai; geai is an entry
 ])
 def test_e_after_soft_g_counter_cases(text, expected):
     assert _t(text) == expected
@@ -642,3 +642,8 @@ def test_ui_before_a_coda_nasal_or_ll(text, expected):
 def test_numeral_keeps_its_consonant_before_juin_and_juillet(text, expected):
     assert _t(text) == expected
 
+
+
+# TLFi and Lexique 3.83 (ZE): geai [ʒɛ].
+def test_geai_is_open_e():
+    assert _t("geai") == "ʒɛ"
