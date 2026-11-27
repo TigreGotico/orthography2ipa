@@ -1140,6 +1140,24 @@
   },
   "sandhi_rules": [
     {
+      "id": "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
+      "name": "final consonant of six and dix before a consonant",
+      "left_context": "^((?:s|d|d͡z)[iɪ])s$",
+      "right_context": "^(?!(?:ʒaɱvje|fevʁi?je|maʁs|me|sɛptambʁə|nɔvambʁə|desambʁə|sɛt|dø|dy|de|puʁ|paʁ|syʁ)$|ʒɥ)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "transform": "\\1",
+      "obligatory": true,
+      "notes": "fr-FR's FR_NUMERAL_MUTE_BEFORE_CONSONANT (PR #2710), restated by id: The right context is fr-FR's list of the words before which the consonant is kept (months, sept, de, du, des, pour, par, sur, juin, juillet), written in this spec's own readings of those words: the months in ⟨-embre⟩ end in the Midi final schwa and carry the nasal appendix (novembre [nɔvambʁə]), janvier is [ʒaɱvje] and de is [dø] (le dix novembre [lø dis nɔvambʁə]). On a base without the fr-FR rule it is this spec's own rule and matches nothing, since six, dix and huit then have no final consonant."
+    },
+    {
+      "id": "FR_HUIT_MUTE_BEFORE_CONSONANT",
+      "name": "final consonant of huit before a consonant",
+      "left_context": "^(ɥ[iɪ])t$",
+      "right_context": "^(?!(?:ʒaɱvje|fevʁi?je|maʁs|me|sɛptambʁə|nɔvambʁə|desambʁə|sɛt|dø|dy|de|puʁ|paʁ|syʁ)$|ʒɥ)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "transform": "\\1",
+      "obligatory": true,
+      "notes": "fr-FR's FR_HUIT_MUTE_BEFORE_CONSONANT (PR #2710), restated by id: The right context is fr-FR's list of the words before which the consonant is kept (months, sept, de, du, des, pour, par, sur, juin, juillet), written in this spec's own readings of those words: the months in ⟨-embre⟩ end in the Midi final schwa and carry the nasal appendix (novembre [nɔvambʁə]), janvier is [ʒaɱvje] and de is [dø] (le dix novembre [lø dis nɔvambʁə]). On a base without the fr-FR rule it is this spec's own rule and matches nothing, since six, dix and huit then have no final consonant."
+    },
+    {
       "id": "FR_NEUF_V_BEFORE_HEURES",
       "name": "neuf before heures",
       "left_context": "^nœf$",
