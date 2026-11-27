@@ -4,7 +4,7 @@
 covers: the rules for a change to the engine code and the review gate that each such change passes
 source: orthography2ipa/*.py, orthography2ipa/ir/, orthography2ipa/revision.py:ENGINE_MODULES, scripts/check_engine_agnostic.py
 generated: no
-verify: PYTHONPATH=$PWD .venv/bin/python -m pytest tests/test_docs_prose.py
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py "tests/test_docs_hint_sources.py::test_hint_sources_exist[docs/contributing/engine.md]"`
 see: docs/engine/architecture.md, docs/contributing/behaviour_is_data.md, docs/reference/api_stability.md
 -->
 
