@@ -32,6 +32,8 @@ on:
       - "scripts/benchmark.py"
       - "scripts/build_en_lexicon.py"
       - "scripts/espeak_agreement.py"
+      # Writes benchmarks/gold_defects.json, the data behind docs/evaluation/gold_defects.md.
+      - "scripts/measure_gold_defects.py"
       # The navigation footers and the generated reference pages: api.md
       # reads every exported docstring, cli.md the real --help output.
       - "scripts/docs_nav.py"

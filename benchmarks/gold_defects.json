@@ -1,0 +1,50 @@
+{
+ "pt_tl": {
+  "shared_words": 53147,
+  "identical_words": 3076,
+  "equal_length_words": 35800,
+  "character_differences": 63189,
+  "substitutions": [
+   {
+    "lisboa": "ɐ",
+    "dili": "ə",
+    "count": 30042
+   },
+   {
+    "lisboa": "u",
+    "dili": "ʊ",
+    "count": 12075
+   },
+   {
+    "lisboa": "u",
+    "dili": "o",
+    "count": 7345
+   },
+   {
+    "lisboa": "ʀ",
+    "dili": "r",
+    "count": 4186
+   },
+   {
+    "lisboa": "ɐ",
+    "dili": "a",
+    "count": 1858
+   },
+   {
+    "lisboa": "ɫ",
+    "dili": "w",
+    "count": 1724
+   }
+  ]
+ },
+ "fa": {
+  "aː": 5654,
+  "ɒː": 142,
+  "r": 4078,
+  "ɾ": 154,
+  "w": 1130,
+  "v": 24,
+  "q": 880,
+  "ɣ": 332
+ }
+}

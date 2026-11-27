@@ -46,10 +46,7 @@ _DOCS_DIR = os.path.join(_ROOT, "docs")
 #: comparison.md and spec_diagnostics.md are generated; their prose is fixed
 #: in scripts/compare_systems.py and scripts/spec_diagnostics.py respectively,
 #: then the page is regenerated.
-_DOCS_PROSE_RATCHET = frozenset({
-    "docs/evaluation/generated/comparison.md",
-    "docs/evaluation/generated/spec_diagnostics.md",
-})
+_DOCS_PROSE_RATCHET = frozenset()
 
 
 def _load_linter():
