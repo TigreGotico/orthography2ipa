@@ -279,6 +279,10 @@
   "ar+arbtok.jsonl",
   5
  ],
+ "sandhi_joined": [
+  "fr-FR.jsonl",
+  35
+ ],
  "sandhi_pause": [
   "ar+arbtok.jsonl",
   6
