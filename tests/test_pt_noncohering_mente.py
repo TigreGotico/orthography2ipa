@@ -42,6 +42,14 @@ JOINED = [
     ("felizmente", "fɨliʒmẽtɨ"),
 ]
 
+# The subjunctive of -mentar verbs with a vowel before ⟨ment⟩: one stress
+# domain, so the pretonic vowels reduce.
+VERB_FORMS = [
+    ("testamente", "tɨʃtɐˈmẽtɨ"),
+    ("recomente", "ʁɨkuˈmẽtɨ"),
+    ("casamente", "kɐzɐˈmẽtɨ"),
+]
+
 
 def _plain(ipa):
     return ipa.replace("ˈ", "").replace("ˌ", "")
@@ -62,6 +70,11 @@ def test_a_word_that_is_not_base_plus_mente_stays_one_domain(g2p, word, gold):
     ipa = g2p.transcribe_word(word)
     assert _plain(ipa) == gold
     assert "ˌ" not in ipa
+
+
+@pytest.mark.parametrize("word,gold", VERB_FORMS)
+def test_a_mentar_verb_form_stays_one_domain(g2p, word, gold):
+    assert g2p.transcribe_word(word) == gold
 
 
 def test_the_base_takes_the_secondary_mark_and_the_suffix_the_main_mark(g2p):
