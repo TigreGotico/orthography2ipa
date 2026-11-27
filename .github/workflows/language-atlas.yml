@@ -84,7 +84,7 @@ jobs:
       # A pull request that GITHUB_TOKEN opens starts no workflow run. Close
       # and reopen it, or push to its branch, to run the checks.
       - name: Open the regenerate pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           branch: chore/regenerate-language-atlas
           base: dev
