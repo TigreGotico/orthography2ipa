@@ -584,3 +584,37 @@ def test_quatre_vingt_dix_huit_reads_dix_huit():
 ])
 def test_readings_that_need_the_spelling_of_a_neighbour(text, expected):
     assert _t(text) == expected
+
+
+# Martinon (1913: 328, 345) drops the consonant of huit, six and dix only
+# before the plural noun they multiply. A preposition, an article or
+# determiner, a conjunction or a pronoun cannot be that noun, so the
+# consonant stays. dans, sans, vers, sous and car are left out of the list:
+# they have the IPA of the plural nouns dents, cents, vers, sous and cars.
+@pytest.mark.parametrize("text, expected", [
+    ("six contre un", "sis kɔ̃tʁ‿ œ̃"), ("huit chez moi", "ɥit ʃe mwa"),
+    ("dix pendant", "dis pɑ̃dɑ̃"), ("six selon", "sis səlɔ̃"),
+    ("huit depuis", "ɥit dəpɥi"), ("dix moins", "dis mwɛ̃"),
+    ("six plus", "sis ply"), ("huit le", "ɥit lə"), ("dix la", "dis la"),
+    ("six mais", "sis mɛ"), ("huit nous", "ɥit nu"), ("dix vous", "dis vu"),
+])
+def test_numeral_keeps_its_consonant_before_any_function_word(text, expected):
+    assert _t(text) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("six cents", "si sɑ̃"), ("six dents", "si dɑ̃"), ("six sous", "si su"),
+])
+def test_numeral_drops_its_consonant_before_a_plural_noun_with_the_same_ipa(
+        text, expected):
+    assert _t(text) == expected
+
+
+# Liaison and enchaînement onset classes take every French vowel, front
+# rounded and schwa included. Glides stay out of the class.
+@pytest.mark.parametrize("text, expected", [
+    ("huit unités", "ɥit‿ ynite"), ("sept usines", "sɛt‿ yzin"),
+    ("sept euros", "sɛt‿ øʁo"), ("rouge usine", "ʁuʒ‿ yzin"),
+])
+def test_liaison_onsets_include_y_and_front_rounded_vowels(text, expected):
+    assert _t(text) == expected
