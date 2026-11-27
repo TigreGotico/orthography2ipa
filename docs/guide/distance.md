@@ -294,10 +294,10 @@ full = w_phonological × phonological_distance.combined + w_ancestry × (1 - anc
 ```python
 from orthography2ipa.distance import full_distance
 
-round(full_distance(orthography2ipa.get("es"), orthography2ipa.get("pt")), 4)   # 0.3178
+round(full_distance(orthography2ipa.get("es"), orthography2ipa.get("pt")), 4)   # 0.3647
 ```
 
-A lower value means a closer pair. The result does not include the orthography.
+A lower value means a closer pair. The result does not include the orthography. The ancestry term comes from `linguatag.ancestry_similarity` with its default temporal decay, so it is lower than the undecayed `ancestry_similarity` above: 0.4131 against 0.5304 for `es` and `pt`. `weighted_full_distance` and the `"ancestry"` metric of `pairwise_distances` use the same term.
 
 ## `weighted_full_distance`
 
@@ -313,7 +313,7 @@ weighted_full_distance(spec_a, spec_b, *, w_inventory=0.25, w_grapheme=0.20,
 from orthography2ipa.distance import weighted_full_distance
 
 result = weighted_full_distance(es, pt)
-round(result.combined, 3)   # 0.32
+round(result.combined, 3)   # 0.367
 result.weights              # (0.25, 0.2, 0.15, 0.4, 0.0)
 
 only_inventory = weighted_full_distance(es, pt, w_inventory=1.0, w_grapheme=0.0,
