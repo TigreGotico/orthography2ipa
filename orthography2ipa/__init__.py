@@ -120,6 +120,7 @@ from orthography2ipa.registry import get_rescorers, who_answers
 from orthography2ipa.plugins import SandhiPlugin
 from orthography2ipa.registry import MissingPlugin, UnknownVariantWarning
 from orthography2ipa.registry import get_stress_plugin
+from orthography2ipa.phonemes import phoneme_set
 from orthography2ipa.inventory import (
     STRESS_MARKS,
     dead_allophone_rules,
@@ -218,6 +219,7 @@ __all__ = [
     "get_stress_plugin",
     "emission_inventory",
     "phoneme_inventory",
+    "phoneme_set",
     "tokenize",
     "dead_allophone_rules",
     "STRESS_MARKS",
