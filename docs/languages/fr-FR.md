@@ -9,7 +9,7 @@ see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/da
 -->
 
 <!-- atlas:summary begin -->
-French is a Gallo-Romance language, written in the Latin script. Its code names France. The `fr-FR` spec is at the research tier. It cites 11 sources and has 3 scored datasets.
+French is a Gallo-Romance language, written in the Latin script. Its code names France. The `fr-FR` spec is at the research tier. It cites 12 sources and has 3 scored datasets.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -276,19 +276,20 @@ These specs name `fr-FR` as their parent. They are sorted by country, and a lect
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 11 works. 6 of them have a DOI or a URL. The spec file holds a note on what 8 of them support.
+The spec cites 12 works. 7 of them have a DOI or a URL. The spec file holds a note on what 9 of them support.
 
 1. <a id="src-fouche1959"></a>Fouché, P. (1959). *Traité de prononciation française*. Klincksieck.
 2. <a id="src-divay_vitale1997"></a>Divay, M. & Vitale, A.J. (1997). *Algorithms for grapheme-phoneme translation for English and French: applications for database searches and speech synthesis*. Computational Linguistics 23(4), 495-523. Cited: 495-523.
 3. <a id="src-tranel1987"></a>Tranel, B. (1987). *The Sounds of French*. Cambridge University Press.
 4. <a id="src-ladefoged_maddieson1996"></a>Ladefoged, P. & Maddieson, I. (1996). *The Sounds of the World's Languages*. Blackwell.
 5. <a id="src-fougeron_smith1993"></a>Fougeron, C. & Smith, C.L. (1993). *Illustrations of the IPA: French*. Journal of the International Phonetic Association, 23(2). Cited: 73-76. [cambridge.org](https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/french/E2BC8B1DD975FE4B272B088B8345B933)
-6. <a id="src-tranel1995"></a>Tranel, B. (1995). *French liaison and elision revisited: A unified account within Optimality Theory*. Rutgers Optimality Archive (ROA-15). Cited: 1, 4. [roa.rutgers.edu](https://roa.rutgers.edu/files/15-0594/15-0594-TRANEL-0-0.PDF)
+6. <a id="src-tranel1995"></a>Tranel, B. (1995). *French liaison and elision revisited: A unified account within Optimality Theory*. Rutgers Optimality Archive (ROA-15). Cited: 1, 4, 9. [roa.rutgers.edu](https://roa.rutgers.edu/files/15-0594/15-0594-TRANEL-0-0.PDF)
 7. <a id="src-walker2001"></a>Walker, D.C. (2001). *French Sound Structure*. University of Calgary Press.
 8. <a id="src-new2004"></a>New, B., Pallier, C., Brysbaert, M. & Ferrand, L. (2004). *Lexique 2: A new French lexical database*. Behavior Research Methods, Instruments, & Computers 36(3), 516-524. [lexique.org](http://www.lexique.org)
 9. <a id="src-fery2001"></a>Féry, C. (2001). *Markedness, Faithfulness, Vowel Quality and Syllable Structure in French*. Linguistics in Potsdam 15, Rutgers Optimality Archive ROA-474. Cited: 7-8. [roa.rutgers.edu](https://roa.rutgers.edu/files/474-1101/474-1101-FERY-0-0.PDF)
-10. <a id="src-martinon1913"></a>Martinon, P. (1913). *Comment on prononce le français : traité complet de prononciation pratique avec les noms propres et les mots étrangers*. Larousse, Paris. Cited: 53, 59, 62, 93, 123, 129, 130, 131, 145, 151, 161, 164, 171, 213, 214, 226, 234, 235, 236, 239, 240, 241, 284, 285, 328, 331, 345, 346, 347, 348, 349. [archive.org](https://archive.org/details/commentonprononc00martuoft)
+10. <a id="src-martinon1913"></a>Martinon, P. (1913). *Comment on prononce le français : traité complet de prononciation pratique avec les noms propres et les mots étrangers*. Larousse, Paris. Cited: 53, 59, 62, 93, 123, 129, 130, 131, 145, 151, 161, 164, 171, 213, 214, 226, 234, 235, 236, 239, 240, 241, 248, 249, 250, 251, 252, 253, 254, 284, 285, 328, 329, 330, 331, 345, 346, 347, 348, 349, 358, 359, 363, 364, 365, 366, 367, 370, 371, 373, 374, 375, 376, 379, 387, 388, 390, 391. [archive.org](https://archive.org/details/commentonprononc00martuoft)
 11. <a id="src-larousse_etre"></a>Éditions Larousse (2026). *Dictionnaire de français, s.v. être (Homonymes des variantes de être)*. Larousse, online edition, read 2026-11-26. [larousse.fr](https://www.larousse.fr/dictionnaires/francais/%C3%AAtre/31549)
+12. <a id="src-oqlf_h_aspire"></a>Office québécois de la langue française (2026). *La prononciation du h aspiré (Banque de dépannage linguistique)*. OQLF, Vitrine linguistique, online edition, read 2026-11-26. [vitrinelinguistique.oqlf.gouv.qc.ca](https://vitrinelinguistique.oqlf.gouv.qc.ca/22203/la-prononciation/prononciation-de-certaines-lettres/la-prononciation-du-h-aspire)
 <!-- atlas:sources end -->
 
 ### Notes on the sources
@@ -302,7 +303,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `fr` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 85500 | 0.0513 | yes |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `fr` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 85500 | 0.0512 | yes |
 | `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `fr-FR` | generated | machine-generated | MIT, each file its own | 245718 | 0.0585 | yes |
 | `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `fr-FR` | generated | espeak-derived | CC BY 4.0 | 9446 | 0.0789 | no |
 <!-- atlas:datasets end -->
@@ -442,7 +443,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 
 The spec declares no stress rule.
 
-Whole-word exceptions (154): ⟨affenpinscher⟩ [afənpinʃəʁ], ⟨afrikander⟩ [afʁikɑ̃dɛʁ], ⟨afrikaner⟩ [afʁikanɛʁ], ⟨amer⟩ [amɛʁ], ⟨amers⟩ [amɛʁ], ⟨angledozer⟩ [ɑ̃ɡlədozœʁ], ⟨aster⟩ [astɛʁ], ⟨atlas⟩ [atlas], ⟨autobus⟩ [otobys], ⟨bang⟩ [bɑ̃ɡ], ⟨bangs⟩ [bɑ̃ɡ], ⟨blazer⟩ [blazœʁ], ⟨bloomer⟩ [blumœʁ], ⟨boomer⟩ [bumœʁ], ⟨boomerang⟩ [buməʁɑ̃ɡ], ⟨bus⟩ [bys], ⟨bécher⟩ [beʃɛʁ], ⟨cactus⟩ [kaktys], ⟨campus⟩ [kɑ̃pys], ⟨cancer⟩ [kɑ̃sɛʁ], ⟨cancers⟩ [kɑ̃sɛʁ], ⟨casher⟩ [kaʃɛʁ], ⟨cathéter⟩ [katetɛʁ], ⟨ce⟩ [sə], ⟨ces⟩ [se], ⟨cet⟩ [sɛt], ⟨charter⟩ [ʃaʁtɛʁ], ⟨cher⟩ [ʃɛʁ], ⟨chers⟩ [ʃɛʁ], ⟨container⟩ [kɔ̃tɛnɛʁ], and 124 more in the spec file.
+Whole-word exceptions (162): ⟨affenpinscher⟩ [afənpinʃəʁ], ⟨afrikander⟩ [afʁikɑ̃dɛʁ], ⟨afrikaner⟩ [afʁikanɛʁ], ⟨amer⟩ [amɛʁ], ⟨amers⟩ [amɛʁ], ⟨angledozer⟩ [ɑ̃ɡlədozœʁ], ⟨aster⟩ [astɛʁ], ⟨atlas⟩ [atlas], ⟨autobus⟩ [otobys], ⟨bang⟩ [bɑ̃ɡ], ⟨bangs⟩ [bɑ̃ɡ], ⟨blazer⟩ [blazœʁ], ⟨bloomer⟩ [blumœʁ], ⟨boomer⟩ [bumœʁ], ⟨boomerang⟩ [buməʁɑ̃ɡ], ⟨bus⟩ [bys], ⟨bécher⟩ [beʃɛʁ], ⟨cactus⟩ [kaktys], ⟨campus⟩ [kɑ̃pys], ⟨cancer⟩ [kɑ̃sɛʁ], ⟨cancers⟩ [kɑ̃sɛʁ], ⟨casher⟩ [kaʃɛʁ], ⟨cathéter⟩ [katetɛʁ], ⟨ce⟩ [sə], ⟨ces⟩ [se], ⟨cet⟩ [sɛt], ⟨charter⟩ [ʃaʁtɛʁ], ⟨cher⟩ [ʃɛʁ], ⟨chers⟩ [ʃɛʁ], ⟨chleuh⟩ [ʃlø], and 132 more in the spec file.
 
 Grammatical endings: ⟨-ent⟩ ∅ ∅, ⟨-er⟩ [e], ⟨-ez⟩ [e], ⟨-stion⟩ [stjɔ̃], ⟨-tial⟩ [sjal], ⟨-tiel⟩ [sjɛl], ⟨-tience⟩ [sjɑ̃s], ⟨-tion⟩ [sjɔ̃].
 <!-- atlas:spelling end -->
@@ -514,21 +515,39 @@ The spec applies 59 allophone rules after the letters are read. The change colum
 | `FR_HUIT_FINAL_T_SOUNDS` | ∅ → [t], spelled ⟨t⟩, in 1 listed words | ⟨huit⟩ [ɥit] | [Martinon 1913](#src-martinon1913) |
 | `FR_X_K_BEFORE_SIBILANT` | /ks/ → [k], before [s], spelled ⟨x⟩ | ⟨not⟩ [ks] | [Martinon 1913](#src-martinon1913) |
 
-The spec applies 11 rules across a word boundary. The contexts are regular expressions on the IPA of the two words.
+The spec applies 29 rules across a word boundary. The contexts are regular expressions on the IPA of the two words. A rule may also read the spelling of a word.
 
 | Rule | End of word | Start of next word | Change | Example | Cited |
 |:--|:--|:--|:--|:--|:--|
-| `FR_NEUF_V_BEFORE_HEURES` | `^nœf$` | `^œʁ$` | left [nœv‿] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_NEUF_V_BEFORE_HEURES` | `^nœf$` | `^œʁ$`, spelled `^heures?$` | left [nœv‿] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_DIX_Z_BEFORE_HUIT_NEUF` | `^((?:d\|d͡z)[iɪ])s$` | `^(?:ɥit\|nœf)$` | left [z] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_NUMERAL_MUTE_BEFORE_CONSONANT` | `^((?:s\|d\|d͡z)[iɪ])s$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|ʒɥ(?:i\|ɛ̃\|ilɛ\|ijɛ)\|sɛt\|də\|dy\|de\|puʁ\|paʁ\|syʁ)$)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | [Martinon 1913](#src-martinon1913) |
 | `FR_HUIT_MUTE_BEFORE_CONSONANT` | `^(ɥ[iɪ])t$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|ʒɥ(?:i\|ɛ̃\|ilɛ\|ijɛ)\|sɛt\|də\|dy\|de\|puʁ\|paʁ\|syʁ)$)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | [Martinon 1913](#src-martinon1913) |
-| `FR_NUMERAL_Z_BEFORE_VOWEL` | `^((?:s\|d\|d͡z)[iɪ])s$` | `^(?!(?:avʁil\|au\|ut\|u\|ɔktɔbʁ\|e\|a)$)[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | [Martinon 1913](#src-martinon1913) |
-| `FR_LIAISON_Z` | `z$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | - |
-| `FR_LIAISON_T` | `t$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [t‿] | - | - |
-| `FR_LIAISON_N` | `n$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [n‿] | - | - |
-| `FR_LIAISON_R` | `ʁ$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [ʁ‿] | - | - |
-| `FR_LIAISON_P` | `p$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [p‿] | - | - |
-| `FR_ENCHAÎNEMENT` | `([bdɡvzʒ])$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [‿] | - | - |
+| `FR_NUMERAL_MUTE_BEFORE_H_ASPIRE` | `^((?:s\|d\|d͡z)[iɪ])s$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, and a condition on the spelling | left ∅ | - | [Tranel 1995](#src-tranel1995), [Martinon 1913](#src-martinon1913) |
+| `FR_HUIT_MUTE_BEFORE_H_ASPIRE` | `^(ɥ[iɪ])t$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, and a condition on the spelling | left ∅ | - | [Tranel 1995](#src-tranel1995), [Martinon 1913](#src-martinon1913) |
+| `FR_NUMERAL_Z_BEFORE_VOWEL` | `^((?:s\|d\|d͡z)[iɪ])s$` | `^(?!(?:avʁil\|au\|ut\|u\|ɔktɔbʁ\|e\|a)$)[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]`, and a condition on the spelling | left [z‿] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_NEUF_V_BEFORE_ANS` | `^nœf$` | `^ɑ̃$`, spelled `^ans$` | left [nœv‿] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_VINGT_T_BEFORE_UNIT` | `$`, spelled `^(?!(?:.*-)?quatre-vingt$)(?:.*-)?vingt$` | ``, and a condition on the spelling | left [t] | ⟨vingt-deux⟩ [vɛ̃t dø] | [Martinon 1913](#src-martinon1913) |
+| `FR_VINGT_T_BEFORE_ET_HUIT` | `$`, spelled `^(?!(?:.*-)?quatre-vingt$)(?:.*-)?vingt$` | ``, spelled `(?:^\|-)(?:et\|huit\|huitième\|huitièmes)$` | left [t‿] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_EST_NOUN_AFTER_COMPASS` | `` | `^ɛ$`, spelled `^(?:nord\|sud)-est$` | right [ɛst] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_EST_NOUN_BEFORE_HYPHEN` | `^ɛ$`, spelled `^est$` | ``, spelled `^est-(?!(?:ce\|il\|elle\|on\|ils\|elles)$)` | left [ɛst] | ⟨est-allemand⟩ [ɛst aləmɑ̃] | [Martinon 1913](#src-martinon1913) |
+| `FR_ENT_MUTE_AFTER_ILS` | ``, spelled `^(?:(?:(?:lors\|puis\|quoi)?qu['’])?(?:ils\|elles)\|s['’]ils)$` | `ɑ̃$`, spelled `ent$` | right ∅ | ⟨ils parlent⟩ [il paʁl] | [Martinon 1913](#src-martinon1913) |
+| `FR_IENT_MUTE_AFTER_ILS` | ``, spelled `^(?:(?:(?:lors\|puis\|quoi)?qu['’])?(?:ils\|elles)\|s['’]ils)$` | `jɛ̃$`, spelled `ient$` | right [i] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_ENT_LIAISON_INVERSION` | `ɑ̃$`, spelled `ent$` | ``, spelled `-(?:ils\|elles)$` | left [t‿] | ⟨parlent-ils⟩ [paʁlt‿ il] | [Martinon 1913](#src-martinon1913) |
+| `FR_LIAISON_T_INVERSION` | `$`, spelled `[td]$` | ``, spelled `-(?:il\|ils\|elle\|elles\|on)$` | left [t‿] | ⟨dit-il⟩ [dit‿ il] | [Martinon 1913](#src-martinon1913) |
+| `FR_LIAISON_Z_BEFORE_Y_EN` | `$`, spelled `[sxz]$` | ``, spelled `-(?:y\|en)$` | left [z‿] | ⟨vas-y⟩ [vaz‿ i] | [Martinon 1913](#src-martinon1913) |
+| `FR_LIAISON_Z_DETERMINER` | `$`, and a condition on the spelling | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, and a condition on the spelling | left [z‿] | ⟨les amis⟩ [lez‿ ami] | [Tranel 1995](#src-tranel1995), [Martinon 1913](#src-martinon1913), [La prononciation 2026](#src-oqlf_h_aspire) |
+| `FR_LIAISON_Z_PRONOUN` | `$`, and a condition on the spelling | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, and a condition on the spelling | left [z‿] | ⟨nous avons⟩ [nuz‿ avɔ̃] | [Martinon 1913](#src-martinon1913) |
+| `FR_LIAISON_T_PROCLITIC` | `$`, spelled `^(?:(?:[cn]['’])?est\|sont\|ont\|tout\|quand\|quant\|dont\|grand)$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, and a condition on the spelling | left [t‿] | ⟨il est allé⟩ [il ɛt‿ ale] | [Martinon 1913](#src-martinon1913) |
+| `FR_LIAISON_T_NUMERAL` | `$`, spelled `^(?!(?:.*-)?quatre-vingt$)(?:.*-)?(?:vingt\|cent)$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, and a condition on the spelling | left [t‿] | ⟨vingt ans⟩ [vɛ̃t‿ ɑ̃] | [Martinon 1913](#src-martinon1913) |
+| `FR_LIAISON_N_PROCLITIC` | `$`, and a condition on the spelling | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, and a condition on the spelling | left [n‿] | ⟨un ami⟩ [œ̃n‿ ami] | [Martinon 1913](#src-martinon1913) |
+| `FR_LIAISON_R_PREMIER` | `je$`, spelled `^(?:premier\|dernier)$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, and a condition on the spelling | left [jɛʁ‿] | ⟨premier enfant⟩ [pʁəmjɛʁ‿ ɑ̃fɑ̃] | [Martinon 1913](#src-martinon1913) |
+| `FR_LIAISON_Z` | `z$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]`, and a condition on the spelling | left [z‿] | ⟨douze ans⟩ [duz‿ ɑ̃] | [Martinon 1913](#src-martinon1913) |
+| `FR_LIAISON_T` | `t$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]`, and a condition on the spelling | left [t‿] | ⟨cet homme⟩ [sɛt‿ ɔm] | [Martinon 1913](#src-martinon1913) |
+| `FR_LIAISON_N` | `n$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]`, and a condition on the spelling | left [n‿] | ⟨une amie⟩ [yn‿ ami] | [Martinon 1913](#src-martinon1913) |
+| `FR_LIAISON_R` | `ʁ$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]`, and a condition on the spelling | left [ʁ‿] | ⟨pour elle⟩ [puʁ‿ ɛl] | [Martinon 1913](#src-martinon1913) |
+| `FR_LIAISON_P` | `p$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]`, and a condition on the spelling | left [p‿] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_ENCHAÎNEMENT` | `([bdɡvzʒ])$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]`, and a condition on the spelling | left [‿] | - | [Martinon 1913](#src-martinon1913) |
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin words="Abel|Algérie|amateur|bon|botte|boulanger|brun|chienne|Deleuze|dinosaure|été|parlent|ennemi|cœur" -->

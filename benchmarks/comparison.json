@@ -2576,7 +2576,7 @@
     "lang": "fr",
     "dataset": "wikipron",
     "n": 85516,
-    "o2i_per": 0.0513,
+    "o2i_per": 0.0512,
     "o2i_n": 85500,
     "o2i_same_source": false,
     "o2i_lex_per": null,
