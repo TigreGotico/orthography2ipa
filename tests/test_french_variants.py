@@ -229,7 +229,8 @@ SANDHI_RESTATED = {
 #: The sandhi rules a variant adds to those of fr-FR.
 OWN_SANDHI = {
     "fr-BE": {"FR_BE_HUIT_MUTE_BEFORE_CONSONANT", "FR_BE_DIX_Z_BEFORE_HUIT"},
-    "fr-FR-x-midi": {"FR_MIDI_SCHWA_ELISION"},
+    "fr-FR-x-midi": {"FR_MIDI_APPENDIX_LABIAL_ACROSS_WORDS", "FR_MIDI_APPENDIX_LABIODENTAL_ACROSS_WORDS",
+                     "FR_MIDI_APPENDIX_CORONAL_ACROSS_WORDS", "FR_MIDI_SCHWA_ELISION"},
 }
 
 

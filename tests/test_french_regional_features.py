@@ -175,6 +175,10 @@ def test_the_midi_final_schwa_falls_before_a_vowel():
     ("bêtise", "betizə"),          # p. 124: bêtise [betiz]
     ("fleuri", "fløʁi"),           # p. 124: fleuri [fløri]
     ("poser", "poze"),             # before a full vowel: close
+    ("cobra", "kobʁa"),            # an obstruent-liquid onset leaves it open
+    ("problème", "pʁoblɛmə"),
+    ("propre", "pʁɔpʁə"),          # the onset before a schwa: open
+    ("perler", "pɛʁle"),           # [ʁl] is no onset: closed
 ])
 def test_the_midi_follows_the_loi_de_position(text, expected):
     assert _say(text, MIDI) == expected
@@ -192,6 +196,17 @@ def test_the_midi_follows_the_loi_de_position(text, expected):
     ("enfant", "aɱfaŋ"),
 ])
 def test_the_midi_nasal_vowel_is_a_vowel_plus_an_appendix(text, expected):
+    assert _say(text, MIDI) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    ("en patois", "am patwa"),     # Durand 1988: 167, en patois [ampatwa]
+    ("un vin", "œɱ vɛŋ"),
+    ("en tout", "an tu"),
+    ("en cas", "aŋ ka"),           # velar before a velar
+    ("en avion", "aŋ avjɔŋ"),      # no consonant follows
+])
+def test_the_midi_appendix_takes_the_place_of_the_next_word(text, expected):
     assert _say(text, MIDI) == expected
 
 
