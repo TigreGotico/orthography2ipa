@@ -1247,7 +1247,8 @@
         "œ",
         "w",
         "ɥ",
-        "ɛ̃"
+        "ɛ̃",
+        "wɛ̃"
       ],
       "followed_by_nucleus": true,
       "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel before one consonant and a full vowel is in an open syllable and is close (maison [mezɔŋ], bêtise [betizə], aimer [eme])."
@@ -1286,7 +1287,8 @@
         "œ",
         "w",
         "ɥ",
-        "ɛ̃"
+        "ɛ̃",
+        "wɛ̃"
       ],
       "followed_by_nucleus": true,
       "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel before an obstruent-liquid onset and a full vowel is in an open syllable and is close (cobra [kobʁa], problème [pʁoblɛmə]); before the onset and a schwa it stays open (propre [pʁɔpʁə]), as FR_MIDI_LDP_OPEN_CLOSED_* leaves an obstruent-liquid onset out of the closed syllables. The full vowels are those of FR_MIDI_LDP_CLOSE_OPEN_*, read as the underlying phoneme three slots ahead."
@@ -1342,7 +1344,8 @@
         "œ",
         "w",
         "ɥ",
-        "ɛ̃"
+        "ɛ̃",
+        "wɛ̃"
       ],
       "followed_by_nucleus": true,
       "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel before one consonant and a full vowel is in an open syllable and is close (maison [mezɔŋ], bêtise [betizə], aimer [eme])."
@@ -1381,7 +1384,8 @@
         "œ",
         "w",
         "ɥ",
-        "ɛ̃"
+        "ɛ̃",
+        "wɛ̃"
       ],
       "followed_by_nucleus": true,
       "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel before an obstruent-liquid onset and a full vowel is in an open syllable and is close (cobra [kobʁa], problème [pʁoblɛmə]); before the onset and a schwa it stays open (propre [pʁɔpʁə]), as FR_MIDI_LDP_OPEN_CLOSED_* leaves an obstruent-liquid onset out of the closed syllables. The full vowels are those of FR_MIDI_LDP_CLOSE_OPEN_*, read as the underlying phoneme three slots ahead."
@@ -1437,7 +1441,8 @@
         "œ",
         "w",
         "ɥ",
-        "ɛ̃"
+        "ɛ̃",
+        "wɛ̃"
       ],
       "followed_by_nucleus": true,
       "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel before one consonant and a full vowel is in an open syllable and is close (maison [mezɔŋ], bêtise [betizə], aimer [eme])."
@@ -1476,7 +1481,8 @@
         "œ",
         "w",
         "ɥ",
-        "ɛ̃"
+        "ɛ̃",
+        "wɛ̃"
       ],
       "followed_by_nucleus": true,
       "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel before an obstruent-liquid onset and a full vowel is in an open syllable and is close (cobra [kobʁa], problème [pʁoblɛmə]); before the onset and a schwa it stays open (propre [pʁɔpʁə]), as FR_MIDI_LDP_OPEN_CLOSED_* leaves an obstruent-liquid onset out of the closed syllables. The full vowels are those of FR_MIDI_LDP_CLOSE_OPEN_*, read as the underlying phoneme three slots ahead."
@@ -1512,26 +1518,27 @@
     "chnoque": "ʃnɔkə",
     "chnoques": "ʃnɔkə",
     "chlingue": "ʃlɛŋɡə",
-    "chlinguer": "ʃlɛŋɡe"
+    "chlinguer": "ʃlɛŋɡe",
+    "donc": "dɔŋk"
   },
   "sandhi_rules": [
     {
       "id": "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
       "name": "final consonant of six and dix before a consonant",
       "left_context": "^((?:s|d|d͡z)[iɪ])s$",
-      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:ɛ̃|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|ʒaɱvje|sɛptambʁə|nɔvambʁə|desambʁə|ʒɥɛŋ|ʒɥije|dø|kɔntʁə|pandaŋ|sølɔŋ|døvaŋ|deʁjɛʁə|døpɥi|dyʁaŋ|mwɛŋ|lø|sø|ʒø|kø|nø)$)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:ɛ̃|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|ʒaɱvje|sɛptambʁə|nɔvambʁə|desambʁə|ʒɥɛŋ|ʒɥije|dø|kɔntʁə|pandaŋ|sølɔŋ|døvaŋ|deʁjɛʁə|døpɥi|dyʁaŋ|mwɛŋ|lø|sø|ʒø|kø|nø|dɔŋk)$)[pbtdkɡfvszʃʒmnɲlʁ]",
       "transform": "\\1",
       "obligatory": true,
-      "notes": "fr-FR's FR_NUMERAL_MUTE_BEFORE_CONSONANT (PR #2710), restated by id. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [ʒaɱvje], [sɛptambʁə], [nɔvambʁə], [desambʁə], [ʒɥɛŋ], [ʒɥije], [dø], [kɔntʁə], [pandaŋ], [sølɔŋ], [døvaŋ], [deʁjɛʁə], [døpɥi], [dyʁaŋ], [mwɛŋ], [lø], [sø], [ʒø], [kø], [nø] (the months in ⟨-embre⟩ end in the Midi final schwa and carry the nasal appendix, de is [dø]): le dix novembre [lø dis nɔvambʁə]. On a base without the fr-FR rule it is this spec's own rule and matches nothing, since six, dix and huit then have no final consonant."
+      "notes": "fr-FR's FR_NUMERAL_MUTE_BEFORE_CONSONANT (PR #2710), restated by id. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [ʒaɱvje], [sɛptambʁə], [nɔvambʁə], [desambʁə], [ʒɥɛŋ], [ʒɥije], [dø], [kɔntʁə], [pandaŋ], [sølɔŋ], [døvaŋ], [deʁjɛʁə], [døpɥi], [dyʁaŋ], [mwɛŋ], [lø], [sø], [ʒø], [kø], [nø], [dɔŋk] (the months in ⟨-embre⟩ end in the Midi final schwa and carry the nasal appendix, de is [dø], donc is [dɔŋk]): le dix novembre [lø dis nɔvambʁə]. On a base without the fr-FR rule it is this spec's own rule and matches nothing, since six, dix and huit then have no final consonant."
     },
     {
       "id": "FR_HUIT_MUTE_BEFORE_CONSONANT",
       "name": "final consonant of huit before a consonant",
       "left_context": "^(ɥ[iɪ])t$",
-      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:ɛ̃|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|ʒaɱvje|sɛptambʁə|nɔvambʁə|desambʁə|ʒɥɛŋ|ʒɥije|dø|kɔntʁə|pandaŋ|sølɔŋ|døvaŋ|deʁjɛʁə|døpɥi|dyʁaŋ|mwɛŋ|lø|sø|ʒø|kø|nø)$)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:ɛ̃|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|ʒaɱvje|sɛptambʁə|nɔvambʁə|desambʁə|ʒɥɛŋ|ʒɥije|dø|kɔntʁə|pandaŋ|sølɔŋ|døvaŋ|deʁjɛʁə|døpɥi|dyʁaŋ|mwɛŋ|lø|sø|ʒø|kø|nø|dɔŋk)$)[pbtdkɡfvszʃʒmnɲlʁ]",
       "transform": "\\1",
       "obligatory": true,
-      "notes": "fr-FR's FR_HUIT_MUTE_BEFORE_CONSONANT (PR #2710), restated by id. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [ʒaɱvje], [sɛptambʁə], [nɔvambʁə], [desambʁə], [ʒɥɛŋ], [ʒɥije], [dø], [kɔntʁə], [pandaŋ], [sølɔŋ], [døvaŋ], [deʁjɛʁə], [døpɥi], [dyʁaŋ], [mwɛŋ], [lø], [sø], [ʒø], [kø], [nø] (the months in ⟨-embre⟩ end in the Midi final schwa and carry the nasal appendix, de is [dø]): le dix novembre [lø dis nɔvambʁə]. On a base without the fr-FR rule it is this spec's own rule and matches nothing, since six, dix and huit then have no final consonant."
+      "notes": "fr-FR's FR_HUIT_MUTE_BEFORE_CONSONANT (PR #2710), restated by id. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [ʒaɱvje], [sɛptambʁə], [nɔvambʁə], [desambʁə], [ʒɥɛŋ], [ʒɥije], [dø], [kɔntʁə], [pandaŋ], [sølɔŋ], [døvaŋ], [deʁjɛʁə], [døpɥi], [dyʁaŋ], [mwɛŋ], [lø], [sø], [ʒø], [kø], [nø], [dɔŋk] (the months in ⟨-embre⟩ end in the Midi final schwa and carry the nasal appendix, de is [dø], donc is [dɔŋk]): le dix novembre [lø dis nɔvambʁə]. On a base without the fr-FR rule it is this spec's own rule and matches nothing, since six, dix and huit then have no final consonant."
     },
     {
       "id": "FR_NUMERAL_Z_BEFORE_VOWEL",
@@ -1554,29 +1561,29 @@
     {
       "id": "FR_MIDI_APPENDIX_LABIAL_ACROSS_WORDS",
       "name": "word-final nasal appendix before a labial consonant",
-      "left_context": "([aɛɔœe])ŋ$",
+      "left_context": "^(?!ʒinsɛŋ$)(.*[aɛɔœe])ŋ$",
       "right_context": "^[pbm]",
       "transform": "\\1m",
       "obligatory": true,
-      "notes": "Eychenne (2006: 115-116, §5.1.1), quoting Durand (1988: 167): the nasal appendix is homorganic with a following consonant within words and across word boundaries (en patois [ampatwa]); before a pause it is velar. The within-word rules are FR_MIDI_APPENDIX_*; these sandhi rules give the same places across a word boundary, so the word-final velar appendix of en, un, bien takes the place of the next word's first consonant (en patois [am patwa], un vin [œɱ vɛŋ], en tout [an tu]) and stays velar before a pause, a vowel or a velar."
+      "notes": "Eychenne (2006: 115-116, §5.1.1), quoting Durand (1988: 167): the nasal appendix is homorganic with a following consonant within words and across word boundaries (en patois [ampatwa]); before a pause it is velar. The within-word rules are FR_MIDI_APPENDIX_*; these sandhi rules give the same places across a word boundary, so the word-final velar appendix of en, un, bien takes the place of the next word's first consonant (en patois [am patwa], un vin [œɱ vɛŋ], en tout [an tu]) and stays velar before a pause, a vowel or a velar. The [ŋ] of ginseng [ʒinsɛŋ], a word exception of fr-FR, is the consonant of the word, not an appendix, so the left context leaves that word out."
     },
     {
       "id": "FR_MIDI_APPENDIX_LABIODENTAL_ACROSS_WORDS",
       "name": "word-final nasal appendix before a labiodental consonant",
-      "left_context": "([aɛɔœe])ŋ$",
+      "left_context": "^(?!ʒinsɛŋ$)(.*[aɛɔœe])ŋ$",
       "right_context": "^[fv]",
       "transform": "\\1ɱ",
       "obligatory": true,
-      "notes": "Eychenne (2006: 115-116, §5.1.1), quoting Durand (1988: 167): the nasal appendix is homorganic with a following consonant within words and across word boundaries (en patois [ampatwa]); before a pause it is velar. The within-word rules are FR_MIDI_APPENDIX_*; these sandhi rules give the same places across a word boundary, so the word-final velar appendix of en, un, bien takes the place of the next word's first consonant (en patois [am patwa], un vin [œɱ vɛŋ], en tout [an tu]) and stays velar before a pause, a vowel or a velar."
+      "notes": "Eychenne (2006: 115-116, §5.1.1), quoting Durand (1988: 167): the nasal appendix is homorganic with a following consonant within words and across word boundaries (en patois [ampatwa]); before a pause it is velar. The within-word rules are FR_MIDI_APPENDIX_*; these sandhi rules give the same places across a word boundary, so the word-final velar appendix of en, un, bien takes the place of the next word's first consonant (en patois [am patwa], un vin [œɱ vɛŋ], en tout [an tu]) and stays velar before a pause, a vowel or a velar. The [ŋ] of ginseng [ʒinsɛŋ], a word exception of fr-FR, is the consonant of the word, not an appendix, so the left context leaves that word out."
     },
     {
       "id": "FR_MIDI_APPENDIX_CORONAL_ACROSS_WORDS",
       "name": "word-final nasal appendix before a coronal consonant",
-      "left_context": "([aɛɔœe])ŋ$",
+      "left_context": "^(?!ʒinsɛŋ$)(.*[aɛɔœe])ŋ$",
       "right_context": "^[tdszʃʒln]",
       "transform": "\\1n",
       "obligatory": true,
-      "notes": "Eychenne (2006: 115-116, §5.1.1), quoting Durand (1988: 167): the nasal appendix is homorganic with a following consonant within words and across word boundaries (en patois [ampatwa]); before a pause it is velar. The within-word rules are FR_MIDI_APPENDIX_*; these sandhi rules give the same places across a word boundary, so the word-final velar appendix of en, un, bien takes the place of the next word's first consonant (en patois [am patwa], un vin [œɱ vɛŋ], en tout [an tu]) and stays velar before a pause, a vowel or a velar."
+      "notes": "Eychenne (2006: 115-116, §5.1.1), quoting Durand (1988: 167): the nasal appendix is homorganic with a following consonant within words and across word boundaries (en patois [ampatwa]); before a pause it is velar. The within-word rules are FR_MIDI_APPENDIX_*; these sandhi rules give the same places across a word boundary, so the word-final velar appendix of en, un, bien takes the place of the next word's first consonant (en patois [am patwa], un vin [œɱ vɛŋ], en tout [an tu]) and stays velar before a pause, a vowel or a velar. The [ŋ] of ginseng [ʒinsɛŋ], a word exception of fr-FR, is the consonant of the word, not an appendix, so the left context leaves that word out."
     },
     {
       "id": "FR_MIDI_SCHWA_ELISION",

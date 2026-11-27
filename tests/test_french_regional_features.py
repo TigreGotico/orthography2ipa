@@ -303,6 +303,28 @@ def test_the_midi_final_schwa_links_its_consonant_before_a_vowel():
     assert _say("une école", MIDI) == "yn‿ ekɔlə"
 
 
+def test_the_midi_donc_is_an_oral_vowel_plus_an_appendix():
+    # the appendix takes the place of the [k] after it (Durand 1988: 167)
+    assert _say("donc", MIDI) == "dɔŋk"
+
+
+#: fr-FR (PR #2710) reads donc and ginseng as word exceptions and keeps the
+#: numeral consonant before donc; these cases need that parent.
+needs_2710_words = pytest.mark.skipif(
+    not {"donc", "ginseng"} <= set(o2i.get("fr-FR").word_exceptions),
+    reason="fr-FR has no donc and ginseng exceptions on this base")
+
+
+@needs_2710_words
+@pytest.mark.parametrize("text, expected", [
+    ("huit donc", "ɥit dɔŋk"),         # donc keeps the [t] of huit, as in fr-FR
+    ("dix donc", "dis dɔŋk"),
+    ("ginseng bio", "ʒinsɛŋ bjo"),     # a lexical [ŋ] is no appendix
+])
+def test_the_midi_reads_the_fr_fr_word_exceptions(text, expected):
+    assert _say(text, MIDI) == expected
+
+
 # --- numeral sandhi -------------------------------------------------------
 
 def test_belgian_huit_drops_its_t_before_a_consonant():
@@ -387,11 +409,17 @@ def test_the_midi_spec_lists_a_reference_url():
 # --- the ⟨uin⟩ unit ---------------------------------------------------------
 
 #: fr-FR reads ⟨uin⟩ as one unit, [ɥɛ̃], or [ɥin] before a vowel (juin,
-#: ruine). The cases below need that unit and are skipped on a base where
-#: fr-FR still reads ⟨u⟩, ⟨in⟩ apart.
+#: ruine). The cases below need that unit and are skipped on a base whose
+#: fr-FR table has no ⟨uin⟩ entry; where it has one, they run, and
+#: test_the_parent_reads_uin_as_one_unit checks the parent's reading.
 needs_uin_unit = pytest.mark.skipif(
-    _say("juin", "fr-FR") != "ʒɥɛ̃",
+    "uin" not in o2i.get("fr-FR").graphemes,
     reason="fr-FR has no ⟨uin⟩ unit on this base")
+
+
+@needs_uin_unit
+def test_the_parent_reads_uin_as_one_unit():
+    assert _say("juin", "fr-FR") == "ʒɥɛ̃"
 
 
 @needs_uin_unit

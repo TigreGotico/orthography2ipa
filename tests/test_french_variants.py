@@ -205,7 +205,8 @@ OWN_EXCEPTIONS = {
                      "dessous": "døsu", "parfum": "paʁfœŋ",
                      "parfums": "paʁfœŋ", "zinc": "zɛŋɡ",
                      "chnoque": "ʃnɔkə", "chnoques": "ʃnɔkə",
-                     "chlingue": "ʃlɛŋɡə", "chlinguer": "ʃlɛŋɡe"},
+                     "chlingue": "ʃlɛŋɡə", "chlinguer": "ʃlɛŋɡe",
+                     "donc": "dɔŋk"},
 }
 
 
