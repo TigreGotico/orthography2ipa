@@ -487,3 +487,22 @@ def test_x_before_soft_c_is_k(text, expected):
 ])
 def test_x_before_hard_c_or_p_stays_ks(text, expected):
     assert _t(text) == expected
+
+
+# Only the month names juin and juillet keep the consonant; another word in
+# [ʒɥ] is a counted plural (Martinon 1913: 328, 345).
+@pytest.mark.parametrize("text, expected", [
+    ("huit juifs", "ɥi ʒɥif"), ("six juifs", "si ʒɥif"),
+    ("le six juillet", "lə sis ʒɥilɛ"), ("le huit juin", "lə ɥit ʒɥi"),
+])
+def test_only_the_months_in_zh_keep_the_consonant(text, expected):
+    assert _t(text) == expected
+
+
+# Martinon (1913: 345): [z] before a vowel-initial plural; ⟨eu⟩ and ⟨u⟩ open
+# the word with [ø] and [y].
+@pytest.mark.parametrize("text, expected", [
+    ("six euros", "siz‿ øʁo"), ("dix usines", "diz‿ yzin"),
+])
+def test_six_and_dix_link_before_a_rounded_front_vowel(text, expected):
+    assert _t(text) == expected
