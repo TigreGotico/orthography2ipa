@@ -23,7 +23,7 @@ A stub has a name, a code and a place in the family tree, but no phonology yet. 
 
 | Script | Specs |
 |:--|--:|
-| [Arabic](#arabic) | 78 |
+| [Arabic](#arabic) | 77 |
 | [Armenian](#armenian) | 2 |
 | [Batak](#batak) | 2 |
 | [Bengali](#bengali) | 3 |
@@ -160,7 +160,7 @@ A stub has a name, a code and a place in the family tree, but no phonology yet. 
 | [Urdu](ur.md) (page) | `ur` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Andalusi Arabic](https://tigregotico.github.io/orthography2ipa/#xaa) | `xaa` | research | Afro-Asiatic > Semitic > Central Semitic |
 
-Stubs (11): Dawāsir Arabic (Dammam, Eastern Province) `afb-SA-x-dawasir`, Çukurova Arabic (Cilician) `apc-TR-x-cukurova`, Janūbi Arabic (southern Saudi) `ar-SA-x-janubi`, Babalia Creole Arabic `ar-TD-x-babalia`, Kinderib Arabic (Anatolian qəltu) `ar-TR-x-kinderib`, Eastern Fayyum Arabic `arz-EG-x-fayyum`, Central Highland Yemeni Arabic `ayn-YE-x-highland`, Manākhi Arabic `ayn-YE-x-manakha`, South Azerbaijani `azb`, Lahnda (Western Punjabi macrolanguage) `lah`, Siculo Arabic `sqr`.
+Stubs (10): Dawāsir Arabic (Dammam, Eastern Province) `afb-SA-x-dawasir`, Çukurova Arabic (Cilician) `apc-TR-x-cukurova`, Janūbi Arabic (southern Saudi) `ar-SA-x-janubi`, Kinderib Arabic (Anatolian qəltu) `ar-TR-x-kinderib`, Eastern Fayyum Arabic `arz-EG-x-fayyum`, Central Highland Yemeni Arabic `ayn-YE-x-highland`, Manākhi Arabic `ayn-YE-x-manakha`, South Azerbaijani `azb`, Lahnda (Western Punjabi macrolanguage) `lah`, Siculo Arabic `sqr`.
 
 ## Armenian
 
