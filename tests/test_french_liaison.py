@@ -250,3 +250,18 @@ def test_six_drops_its_consonant_before_a_y_glide():
     # (TLFi [jɔt]), which no entry states.
     assert _t("six yachts").split()[0] == "si"
     assert _t("dix youyous").split()[0] == "di"
+
+
+# OQLF, Prononciation de six et dix: as pronouns six and dix are [sis] [dis]
+# (il lui en reste six à faire [sisa]); as determiners before a vowel [siz]
+# [diz] (six hommes, trente-six enfants). Martinon (1913: 345): the [z] is a
+# liaison with the plural the numeral multiplies. A function word after the
+# numeral is no noun it multiplies.
+@pytest.mark.parametrize("text, expected", [
+    ("six en tout", "sis ɑ̃ tu"), ("dix en tout", "dis ɑ̃ tu"), ("six ou sept", "sis u sɛt"),
+    ("six avec moi", "sis avɛk mwa"), ("dix après", "dis apʁɛ"), ("six entre eux", "sis ɑ̃tʁ‿ ø"),
+    ("six ans", "siz‿ ɑ̃"), ("six enfants", "siz‿ ɑ̃fɑ̃"), ("dix orteils", "diz‿ ɔʁtɛj"),
+    ("trente-six enfants", "tʁɑ̃t siz‿ ɑ̃fɑ̃"),
+])
+def test_six_and_dix_keep_their_s_before_a_function_word(text, expected):
+    assert _t(text) == expected
