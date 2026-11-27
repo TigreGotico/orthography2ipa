@@ -26,5 +26,5 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-kamu1264"
+ "inherits": "x-clade-kamu1264"
 }

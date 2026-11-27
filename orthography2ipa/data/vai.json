@@ -117,7 +117,7 @@
     "source": "glottolog",
     "notes": "Grand Cape Mount County, Liberia / Sierra Leone border area — Glottolog's representative point for Vai."
   },
-  "parent": "x-clade-mand1469",
+  "inherits": "x-clade-mand1469",
   "ancestors": [
     {
       "code": "x-clade-mand1469",

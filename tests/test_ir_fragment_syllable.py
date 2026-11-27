@@ -45,8 +45,6 @@ CASES = [
     ("prefix_boundaries", "sublocar", "sub.lo.car"),
     ("seams", "distribuidor", "dis.tri.bu.i.dor"),
     ("seams", "ingenuidade", "in.ge.nu.i.da.de"),
-    ("onsets", "pacto", "pac.to"),
-    ("onsets", "abstrair", "abs.tra.ir"),
     ("foreign", "kubitschek", "ku.bi.tschek"),
     ("foreign", "facebookiano", "fa.ce.boo.ki.a.no"),
     ("foreign", "bureau", "bu.reau"),
@@ -68,11 +66,20 @@ def test_the_tables_leave_these_splits(word, split):
     assert ".".join(FULL.syllables(word)) == split
 
 
-def test_a_pair_cuts_without_an_onset_table():
+# constrain_onsets gives pt-PT the written onsets that the onsets table states.
+@pytest.mark.parametrize("word,split", [("pacto", "pac.to"), ("abstrair", "abs.tra.ir")])
+def test_the_spec_onsets_give_the_split(word, split):
+    assert ".".join(FULL.syllables(word)) == split
+    assert ".".join(splitter().syllables(word)) == split
+
+
+# The pt-PT onsets hold rr as a unit, and a pair inside a unit does not cut.
+def test_a_pair_inside_a_spec_unit_does_not_cut():
     pairs = {"ir_version": 1, "syllable": {"heterosyllabic_pairs": FRAGMENT["syllable"]["heterosyllabic_pairs"]}}
     assert splitter().syllables("carro") == ["ca", "rro"]
-    assert splitter(pairs).syllables("carro") == ["car", "ro"]
+    assert splitter(pairs).syllables("carro") == ["ca", "rro"]
     assert splitter(pairs).syllables("nascer") == ["nas", "cer"]
+    assert FULL.syllables("carro") == ["car", "ro"]
 
 
 def test_a_pair_inside_a_unit_does_not_cut():

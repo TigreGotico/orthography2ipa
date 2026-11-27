@@ -7,7 +7,7 @@
   "iso639_3": "yej",
   "graphemes": {},
   "allophones": {},
-  "parent": "el",
+  "inherits": "el",
   "ancestors": [
     {
       "code": "el",

@@ -1,7 +1,7 @@
 {
   "code": "su",
   "name": "Sundanese",
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "sun",

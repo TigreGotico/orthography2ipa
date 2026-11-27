@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-choc1280",
+ "inherits": "x-clade-choc1280",
  "phonemes": [
   "b",
   "d",

@@ -84,7 +84,7 @@
       "i"
     ]
   },
-  "parent": "x-clade-pama1250",
+  "inherits": "x-clade-pama1250",
   "ancestors": [
     {
       "code": "x-clade-pama1250",

@@ -300,7 +300,7 @@
     "start_year": 1800,
     "end_year": null
   },
-  "parent": "nic",
+  "inherits": "nic",
   "ancestors": [
     {
       "code": "nic",

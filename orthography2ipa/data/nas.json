@@ -56,7 +56,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-sout2948",
+ "inherits": "x-clade-sout2948",
  "phonemes": [
   "b",
   "k",

@@ -408,7 +408,7 @@
       "ɲ"
     ]
   },
-  "parent": "non",
+  "inherits": "non",
   "ancestors": [
     {
       "code": "non",

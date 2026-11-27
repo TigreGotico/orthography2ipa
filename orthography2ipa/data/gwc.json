@@ -218,7 +218,7 @@
       ""
     ]
   },
-  "parent": "x-clade-indo1321",
+  "inherits": "x-clade-indo1321",
   "ancestors": [
     {
       "code": "x-clade-indo1321",

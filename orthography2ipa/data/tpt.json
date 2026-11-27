@@ -52,7 +52,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-toto1251",
+ "inherits": "x-clade-toto1251",
  "phonemes": [
   "h",
   "j",

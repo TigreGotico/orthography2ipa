@@ -2,7 +2,7 @@
   "code": "nn",
   "name": "Norwegian Nynorsk",
   "script": "Latin",
-  "parent": "no",
+  "inherits": "no",
   "ancestors": [
     {
       "code": "no",

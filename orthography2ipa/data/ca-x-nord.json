@@ -2,7 +2,7 @@
   "code": "ca-x-nord",
   "name": "Northern Catalan (Rossellonès)",
   "script": "Latin",
-  "parent": "ca-x-medieval",
+  "inherits": "ca-x-medieval",
   "graphemes_base": "ca-x-medieval",
   "graphemes": {
     "v": [

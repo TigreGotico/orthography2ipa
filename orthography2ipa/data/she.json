@@ -150,7 +150,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-dizo1235",
+ "inherits": "x-clade-dizo1235",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Sheko_language"

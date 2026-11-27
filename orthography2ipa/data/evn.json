@@ -123,7 +123,7 @@
       "ja"
     ]
   },
-  "parent": "x-clade-tung1282",
+  "inherits": "x-clade-tung1282",
   "ancestors": [
     {
       "code": "x-clade-tung1282",

@@ -41,7 +41,7 @@ class TestSpecShape:
 
     def test_it_is_a_child_of_lengadocian(self):
         spec = get(PROV)
-        assert spec.parent == "oc"
+        assert spec.inherits == "oc"
         assert spec.name == "Provençal (Occitan)"
 
     def test_it_inherits_the_whole_grapheme_table(self):

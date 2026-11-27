@@ -122,7 +122,7 @@ def test_lects_block_lists_every_child(atlas):
         if name.endswith(".json"):
             with open(os.path.join(data, name), encoding="utf-8") as fh:
                 spec = json.load(fh)
-            if spec.get("parent") == "es-ES" and not spec.get("clade"):
+            if spec.get("inherits") == "es-ES" and not spec.get("clade"):
                 children.add(spec["code"])
     lects = atlas_gen.block_lects(atlas, orthography2ipa.get("es-ES"))
     listed = set(re.findall(r"^- \[.*\]\(.*\) `([^`]+)`", lects, re.M))

@@ -472,7 +472,7 @@
       "notes": null
     }
   ],
-  "parent": "tai",
+  "inherits": "tai",
   "ancestors": [
     {
       "code": "tai",

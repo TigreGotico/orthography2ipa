@@ -228,7 +228,7 @@
       "u"
     ]
   },
-  "parent": "x-clade-east2714",
+  "inherits": "x-clade-east2714",
   "ancestors": [
     {
       "code": "la-x-balkans",

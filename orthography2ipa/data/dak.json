@@ -90,7 +90,7 @@
     "https://en.wikipedia.org/wiki/Dakota_language",
     "https://en.wikipedia.org/wiki/Sioux_language"
   ],
-  "parent": "x-clade-siou1252",
+  "inherits": "x-clade-siou1252",
   "ancestors": [
     {
       "code": "x-clade-siou1252",

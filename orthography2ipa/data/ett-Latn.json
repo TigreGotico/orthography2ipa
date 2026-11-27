@@ -1,7 +1,7 @@
 {
   "code": "ett-Latn",
   "name": "Etruscan",
-  "parent": "x-clade-tyrsen",
+  "inherits": "x-clade-tyrsen",
   "script": "Latin",
   "graphemes": {
     "a": [

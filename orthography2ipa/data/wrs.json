@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-bord1247",
+ "inherits": "x-clade-bord1247",
  "phonemes": [
   "r̪|r",
   "j",

@@ -73,7 +73,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-otom1299",
+ "inherits": "x-clade-otom1299",
  "phonemes": [
   "b",
   "d",

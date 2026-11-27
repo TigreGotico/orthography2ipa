@@ -306,7 +306,7 @@
       "ju"
     ]
   },
-  "parent": "ang",
+  "inherits": "ang",
   "ancestors": [
     {
       "code": "ang",

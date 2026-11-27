@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-nimb1257",
+ "inherits": "x-clade-nimb1257",
  "phonemes": [
   "r̪",
   "b",

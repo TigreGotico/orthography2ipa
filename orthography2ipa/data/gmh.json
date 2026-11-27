@@ -148,7 +148,7 @@
       ]
     }
   },
-  "parent": "goh",
+  "inherits": "goh",
   "ancestors": [
     {
       "code": "goh",

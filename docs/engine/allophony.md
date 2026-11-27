@@ -61,6 +61,7 @@ The conditions on the neighbours:
 | `preceded_by_3`, `followed_by_3` | a neighbour class | the grapheme three away belongs to the class |
 | `preceded_by_phoneme`, `followed_by_phoneme` | list of IPA strings | the chosen phoneme of the previous or next slot is one of them |
 | `preceded_by_phoneme_2`, `followed_by_phoneme_2` | list of IPA strings | the first declared candidate of the grapheme two away is one of them |
+| `followed_by_phoneme_3` | list of IPA strings | the first segment of the first declared candidate of the grapheme three ahead is one of them: a candidate `ka` matches `["k"]` |
 | `preceded_by_surface_phoneme_2` | list of IPA strings | the resolved candidate of the slot two back is one of them |
 | `preceded_by_grapheme`, `followed_by_grapheme` | list of graphemes | the previous or next source grapheme is one of them |
 | `followed_by_grapheme_not` | list of graphemes | the next source grapheme is none of them |

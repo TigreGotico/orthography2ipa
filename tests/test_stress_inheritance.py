@@ -75,7 +75,7 @@ class TestStressInheritance:
                 "stress": {"default_position": -2, "stress_mark": "ˈ",
                            "final_stress_endings": ["r"]}}
         child = {"code": "zx-BASE-x-kid", "name": "Kid", "script": "Latn",
-                 "parent": "zx-BASE", "graphemes_base": "zx-BASE",
+                 "inherits": "zx-BASE", "graphemes_base": "zx-BASE",
                  "graphemes": {}, "stress": None}
         for d in (base, child):
             (tmp_path / f"{d['code']}.json").write_text(
@@ -154,7 +154,7 @@ class TestSameLanguageParent:
     def test_other_language_does_not_take_the_parent_block(self, code):
         raw = json.loads((DATA / f"{code}.json").read_text())
         assert not raw.get("stress") and not raw.get("graphemes_base")
-        assert raw["iso639_3"] != get(raw["parent"]).iso639_3
+        assert raw["iso639_3"] != get(raw["inherits"]).iso639_3
         assert get(code).stress is None
 
 
@@ -205,7 +205,7 @@ class TestSyntheticParentEdge:
     @pytest.mark.parametrize("iso", [None, "zqp"])
     def test_same_language_child_takes_the_block(self, tmp_path, monkeypatch, iso):
         child = {"code": "zq-PAR-x-kid", "name": "Kid", "script": "Latn",
-                 "parent": "zq-PAR", "iso639_3": iso, "graphemes": {"a": ["a"]}}
+                 "inherits": "zq-PAR", "iso639_3": iso, "graphemes": {"a": ["a"]}}
         spec = _load_synthetic(tmp_path, monkeypatch, [_PARENT, child], child["code"])
         assert spec.stress is not None
         assert spec.stress.default_position == 1
@@ -213,16 +213,16 @@ class TestSyntheticParentEdge:
 
     def test_other_language_child_takes_nothing(self, tmp_path, monkeypatch):
         child = {"code": "zqk", "name": "Other", "script": "Latn",
-                 "parent": "zq-PAR", "iso639_3": "zqk", "graphemes": {"a": ["a"]}}
+                 "inherits": "zq-PAR", "iso639_3": "zqk", "graphemes": {"a": ["a"]}}
         spec = _load_synthetic(tmp_path, monkeypatch, [_PARENT, child], "zqk")
         assert spec.stress is None
 
     def test_edge_passes_through_a_clade(self, tmp_path, monkeypatch):
         clade = {"code": "x-clade-zq", "name": "Zq branch", "script": "Zyyy",
                  "clade": True, "quality": "stub", "graphemes": {},
-                 "allophones": {}, "parent": "zq-PAR"}
+                 "allophones": {}, "inherits": "zq-PAR"}
         child = {"code": "zq-PAR-x-far", "name": "Far", "script": "Latn",
-                 "parent": "x-clade-zq", "graphemes": {"a": ["a"]}}
+                 "inherits": "x-clade-zq", "graphemes": {"a": ["a"]}}
         spec = _load_synthetic(tmp_path, monkeypatch, [_PARENT, clade, child],
                                child["code"])
         assert spec.stress is not None
@@ -230,7 +230,7 @@ class TestSyntheticParentEdge:
 
     def test_own_block_is_kept_whole(self, tmp_path, monkeypatch):
         child = {"code": "zq-PAR-x-own", "name": "Own", "script": "Latn",
-                 "parent": "zq-PAR", "graphemes": {"a": ["a"]},
+                 "inherits": "zq-PAR", "graphemes": {"a": ["a"]},
                  "stress": {"default_position": -1}}
         spec = _load_synthetic(tmp_path, monkeypatch, [_PARENT, child], child["code"])
         assert spec.stress.default_position == -1
@@ -240,10 +240,10 @@ class TestSyntheticParentEdge:
 class TestOptOut:
     """``"stress": false`` takes no block; ``{}`` and ``null`` inherit."""
 
-    @pytest.mark.parametrize("edge", ["graphemes_base", "parent"])
+    @pytest.mark.parametrize("edge", ["graphemes_base", "inherits"])
     def test_false_takes_no_block(self, tmp_path, monkeypatch, edge):
         child = {"code": "zq-PAR-x-out", "name": "Out", "script": "Latn",
-                 "parent": "zq-PAR", "graphemes": {"a": ["a"]}, "stress": False}
+                 "inherits": "zq-PAR", "graphemes": {"a": ["a"]}, "stress": False}
         if edge == "graphemes_base":
             child["graphemes_base"] = "zq-PAR"
         spec = _load_synthetic(tmp_path, monkeypatch, [_PARENT, child], child["code"])
@@ -252,7 +252,7 @@ class TestOptOut:
     @pytest.mark.parametrize("value", [{}, None])
     def test_empty_or_null_still_inherits(self, tmp_path, monkeypatch, value):
         child = {"code": "zq-PAR-x-in", "name": "In", "script": "Latn",
-                 "parent": "zq-PAR", "graphemes": {"a": ["a"]}, "stress": value}
+                 "inherits": "zq-PAR", "graphemes": {"a": ["a"]}, "stress": value}
         spec = _load_synthetic(tmp_path, monkeypatch, [_PARENT, child], child["code"])
         assert spec.stress is not None
         assert spec.stress.default_position == 1

@@ -21,7 +21,7 @@
       "nː"
     ]
   },
-  "parent": "an",
+  "inherits": "an",
   "ancestors": [
     {
       "code": "an",

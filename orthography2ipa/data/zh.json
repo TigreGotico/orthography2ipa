@@ -1313,7 +1313,7 @@
     "end_year": null
   },
   "iso639_3": "zho",
-  "parent": "ltc",
+  "inherits": "ltc",
   "ancestors": [
     {
       "code": "ltc",

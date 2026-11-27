@@ -181,7 +181,7 @@
       "notes": "Cypriot dialect of Modern Greek; retains archaic features and has Turkish loanwords"
     }
   ],
-  "parent": "el",
+  "inherits": "el",
   "notes": "Cypriot Greek (Κυπριακή διάλεκτος), dialect of Modern Greek spoken in Cyprus. Preserves features of medieval Greek. Notable features: geminate consonants preserved (e.g., γράμμα /ˈɡramːa/), distinct treatment of palatalization. Turkish loanwords. Uses standard Greek orthography. Cypriot Greek is written in the standard monotonic orthography. An accented vowel (ά έ ή ί ό ύ ώ, and αί εί οί ού αύ εύ) has the value of the plain vowel, because the tonos only marks the stressed syllable; ϊ ϋ ΐ ΰ write a vowel that is not part of a digraph. The polytonic circumflex and grave forms that the el stress block lists as marked vowels (ᾶ ὰ and the others) take the plain value in the same way. The spec takes the stress block of el.",
   "sources": [
     {

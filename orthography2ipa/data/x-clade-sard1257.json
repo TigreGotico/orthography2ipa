@@ -20,7 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Southern_Romance_languages"
   ],
-  "parent": "x-clade-roma1334",
+  "inherits": "x-clade-roma1334",
   "urls": [
     "https://glottolog.org/resource/languoid/id/sard1257"
   ],

@@ -142,7 +142,7 @@
       "ŋɡ"
     ]
   },
-  "parent": "enm",
+  "inherits": "enm",
   "ancestors": [
     {
       "code": "enm",

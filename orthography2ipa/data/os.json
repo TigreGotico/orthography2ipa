@@ -298,7 +298,7 @@
     "start_year": 1798,
     "end_year": null
   },
-  "parent": "x-clade-iran1269",
+  "inherits": "x-clade-iran1269",
   "ancestors": [
     {
       "code": "x-clade-iran1269",

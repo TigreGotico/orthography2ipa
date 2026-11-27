@@ -141,7 +141,7 @@
       "ts"
     ]
   },
-  "parent": "xgn",
+  "inherits": "xgn",
   "ancestors": [
     {
       "code": "xgn",

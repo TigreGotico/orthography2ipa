@@ -226,7 +226,7 @@
       "notes": null
     }
   ],
-  "parent": "nic",
+  "inherits": "nic",
   "ancestors": [
     {
       "code": "nic",

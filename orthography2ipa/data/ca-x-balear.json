@@ -2,7 +2,7 @@
   "code": "ca-x-balear",
   "name": "Balearic Catalan",
   "script": "Latin",
-  "parent": "ca-x-medieval",
+  "inherits": "ca-x-medieval",
   "graphemes_base": "ca-x-medieval",
   "graphemes": {
     "ix": [

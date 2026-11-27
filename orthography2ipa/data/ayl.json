@@ -705,7 +705,7 @@
       "ajijj"
     ]
   },
-  "parent": "ar-x-maghrebi",
+  "inherits": "ar-x-maghrebi",
   "ancestors": [
     {
       "code": "ar-x-maghrebi",

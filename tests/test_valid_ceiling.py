@@ -199,7 +199,7 @@ class TestInheritance:
             "name": "Test Child",
             "family": "Test",
             "script": "Latin",
-            "parent": "zzparent",
+            "inherits": "zzparent",
             "graphemes_base": "zzparent",
         }
         parent_file = tmp_path / "zzparent.json"

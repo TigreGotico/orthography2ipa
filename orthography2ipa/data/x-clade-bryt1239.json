@@ -20,7 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Brittonic_languages"
   ],
-  "parent": "cel",
+  "inherits": "cel",
   "urls": [
     "https://glottolog.org/resource/languoid/id/bryt1239"
   ],

@@ -37,6 +37,25 @@ requiring a neighbouring segment in its own pattern (a capture group, or a
 lookahead). Contexts are matched against the ORIGINAL words, so a rewrite
 cannot feed another rule at the same boundary.
 
+Spelling conditions
+───────────────────
+A rule may also name ``left_spelling`` and ``right_spelling``, regexes on the
+written form of each word, for words whose IPA is the same and whose sandhi
+differs: French ⟨cent⟩ and ⟨sang⟩ are both [sɑ̃], and only ⟨cent ans⟩ links
+with [t]. The caller passes the spellings to :meth:`SandhiEngine.apply`:
+
+    >>> rule = SandhiRule(id="FR_CENT_T", name="cent ans", left_context=r"$",
+    ...                   right_context=r"^ɑ̃$", transform="t‿", left_spelling=r"^cent$")
+    >>> SandhiEngine((rule,)).apply(["sɑ̃", "ɑ̃"], spellings=["cent", "ans"])
+    ['sɑ̃t‿', 'ɑ̃']
+    >>> SandhiEngine((rule,)).apply(["sɑ̃", "ɑ̃"], spellings=["sang", "ans"])
+    ['sɑ̃', 'ɑ̃']
+
+``left_joined_spelling`` and ``right_joined_spelling`` read the joined
+spelling, which adds the word before and a hyphen when a hyphen joins the two
+(``quatre-vingt`` for the ⟨vingt⟩ of ⟨quatre-vingt-deux⟩). A rule with a
+spelling condition does not fire when the caller passes no spellings.
+
 Domain: the prosodic constituent, not the word pair
 ───────────────────────────────────────────────────
 A sandhi rule is defined on a prosodic domain, and no rule reaches outside it
@@ -70,11 +89,14 @@ class SandhiEngine:
     def __init__(self, rules: Tuple[SandhiRule, ...]) -> None:
         self.rules = rules
         # Pre-compile regexes
-        self._compiled: List[Tuple[SandhiRule, re.Pattern, re.Pattern]] = []
+        self._compiled: List[Tuple[SandhiRule, re.Pattern, re.Pattern, Tuple[Optional[re.Pattern], ...]]] = []
         for rule in rules:
             left_re = re.compile(rule.left_context)
             right_re = re.compile(rule.right_context)
-            self._compiled.append((rule, left_re, right_re))
+            spelled = tuple(None if text is None else re.compile(text) for text in (
+                rule.left_spelling, rule.left_joined_spelling,
+                rule.right_spelling, rule.right_joined_spelling))
+            self._compiled.append((rule, left_re, right_re, spelled))
 
     def apply(
         self,
@@ -82,6 +104,8 @@ class SandhiEngine:
         *,
         obligatory_only: bool = False,
         pausal: Optional[Sequence[bool]] = None,
+        spellings: Optional[Sequence[str]] = None,
+        joined_spellings: Optional[Sequence[str]] = None,
     ) -> List[str]:
         """Apply sandhi rules between adjacent words.
 
@@ -96,6 +120,20 @@ class SandhiEngine:
             phrase break the tokenizer already read off the punctuation. No
             rule fires at such a boundary. Omitting it treats the word list
             as a single phrase.
+        spellings : sequence of str, optional
+            ``spellings[i]`` is the casefolded spelling of word *i*, which the
+            ``left_spelling`` and ``right_spelling`` conditions read.
+        joined_spellings : sequence of str, optional
+            ``joined_spellings[i]`` is the joined spelling of word *i*, which
+            the ``*_joined_spelling`` conditions read: the word before, ``-``
+            and the word, when a hyphen joins them, else the spelling alone.
+            Omitted, it is *spellings*, as for a text with no hyphen.
+
+            A rule with a spelling condition never fires when the spelling it
+            reads is not passed. A spec whose spelling-free rules must still
+            run then keeps its spelling conditions in rules of their own, as
+            fr-FR keeps its enchaînement rules spelling-free and states the
+            h aspiré block in one rule ordered before them.
 
         Returns
         -------
@@ -108,6 +146,13 @@ class SandhiEngine:
             raise ValueError(
                 f"pausal has {len(pausal)} flags for {len(words_ipa)} words"
             )
+        for name, values in (("spellings", spellings), ("joined_spellings", joined_spellings)):
+            if values is not None and len(values) != len(words_ipa):
+                raise ValueError(
+                    f"{name} has {len(values)} entries for {len(words_ipa)} words"
+                )
+        if joined_spellings is None:
+            joined_spellings = spellings
         if len(words_ipa) <= 1:
             return list(words_ipa)
 
@@ -129,12 +174,17 @@ class SandhiEngine:
             # Contexts are always matched against the ORIGINAL words, so the
             # side that fires first cannot mask the other's trigger.
             left_done = right_done = False
-            for rule, left_re, right_re in self._compiled:
+            for rule, left_re, right_re, spelled in self._compiled:
                 if left_done and right_done:
                     break
                 if obligatory_only and not rule.obligatory:
                     continue
                 if not (left_re.search(left) and right_re.search(right)):
+                    continue
+                left_sp, left_joined, right_sp, right_joined = spelled
+                if not (_spelled(left_sp, spellings, i) and _spelled(left_joined, joined_spellings, i)
+                        and _spelled(right_sp, spellings, i + 1)
+                        and _spelled(right_joined, joined_spellings, i + 1)):
                     continue
                 if rule.transform is not None and not left_done:
                     result[i] = left_re.sub(rule.transform, left)
@@ -143,3 +193,11 @@ class SandhiEngine:
                     result[i + 1] = right_re.sub(rule.right_transform, right)
                     right_done = True
         return result
+
+
+def _spelled(pattern: Optional[re.Pattern], spellings: Optional[Sequence[str]], i: int) -> bool:
+    """A rule's spelling condition on word *i* holds: it has none, or the
+    pattern finds a match in the spelling of the word."""
+    if pattern is None:
+        return True
+    return spellings is not None and pattern.search(spellings[i]) is not None

@@ -215,7 +215,7 @@
       "notes": "The standing phonetic and tonal description of Kikuyu. Not consulted; no copy could be retrieved. Listed so the bibliography names the primary literature rather than leaving the sketch grammar as the only description on record."
     }
   ],
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

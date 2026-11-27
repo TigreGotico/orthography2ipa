@@ -97,7 +97,7 @@ def test_interdentals_retained():
 
 def test_omani_is_peninsular_not_gulf():
     om = get("ar-OM")
-    assert om.parent == "ar-x-peninsul"
+    assert om.inherits == "ar-x-peninsul"
     ids = [r.id for r in om.allophone_rules]
     # Omani carries only /k/-affrication, NOT the Gulf *q→[ɡ] g-affrication.
     assert "OM_K_AFFRICATION" in ids
