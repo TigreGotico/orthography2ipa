@@ -26,7 +26,7 @@
     "t": ["t"],
     "v": ["v"]
   },
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",

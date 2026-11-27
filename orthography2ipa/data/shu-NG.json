@@ -130,7 +130,7 @@
       "uː"
     ]
   },
-  "parent": "shu-TD",
+  "inherits": "shu-TD",
   "ancestors": [
     {
       "code": "shu-TD",

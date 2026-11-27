@@ -104,7 +104,7 @@
       "aj"
     ]
   },
-  "parent": "fa",
+  "inherits": "fa",
   "ancestors": [
     {
       "code": "fa",

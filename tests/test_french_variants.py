@@ -179,7 +179,7 @@ def test_an_extension_or_variant_keeps_the_region(tag, code):
 def test_a_variant_inherits_fr_fr(tag):
     spec, base = o2i.get(tag), o2i.get("fr-FR")
     assert spec.code == tag
-    assert spec.parent == "fr-FR"
+    assert spec.inherits == "fr-FR"
     assert spec.word_internal_apostrophe is True
     assert spec.word_exceptions == base.word_exceptions
     assert spec.sandhi_rules == base.sandhi_rules

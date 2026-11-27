@@ -3,7 +3,7 @@
  "name": "Janūbi Arabic (southern Saudi)",
  "script": "Arabic",
  "script_type": "abjad",
- "parent": "ar-x-peninsul",
+ "inherits": "ar-x-peninsul",
  "graphemes_base": "ar-x-peninsul",
  "graphemes": {},
  "allophones_base": "ar-x-peninsul",

@@ -32,7 +32,7 @@
       "notes": "Wikipedia (Istro-Romanian language): a 2005 analysis puts 50% of Istro-Romanian vocabulary as Serbo-Croatian in origin, 16% Serbo-Croatian-or-Slovene, 3% Slovene, 3.5% Old Church Slavonic, vs. only 25% Latin. Wikipedia (Istro-Romanian alphabet): the mixed orthography is based on Kovačec's 1998 version, and the separate Croatian-based orthography (Vrzić, 2009) uses Croatian consonant letters/digraphs č/š/ć/đ/nj/lj in place of Romanian ț/ș, chosen because speakers are already literate in Croatian."
     }
   ],
-  "parent": "x-clade-east2714",
+  "inherits": "x-clade-east2714",
   "notes": "STUB: Istro-Romanian has no single standardized orthography — up to three competing systems exist (Romanian-based, Croatian-based, and Pușcariu's 1920s hybrid), and no reliable, sourced letter-by-letter table for any one of them was fetched this session (a 2025 Sociolinguistica paper on 'Orthographic practices... writing Istro-Romanian' documents the disagreement but was not accessible for the concrete mapping). Per AGENTS.md, the inventory is left unspecified (graphemes: {}) rather than guessed. Phonology is documented independently of orthography: Wikipedia (Istro-Romanian language) gives consonants /m n ɲ/ (nasals), stops, affricates /ts tʃ/, fricatives, with /ɡ, x/ sometimes [ɣ, h] dialectally, and vowels /i e ə o u a ɛ ɔ/ (with /ɛ, ɔ/ sometimes lowered to [æ, ɒ]). Spoken by a few hundred people in villages of the Istrian peninsula, Croatia.",
   "sources": [
     {

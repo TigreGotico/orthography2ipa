@@ -492,7 +492,7 @@
       "notes": "Standard reference grammar; edition not consulted for this spec."
     }
   ],
-  "parent": "bnt",
+  "inherits": "bnt",
   "ancestors": [
     {
       "code": "bnt",

@@ -26,5 +26,5 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-mixe1287"
+ "inherits": "x-clade-mixe1287"
 }

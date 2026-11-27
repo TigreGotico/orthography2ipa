@@ -375,10 +375,10 @@ def main():
         spec = orthography2ipa.get(code)
         chain = []
         cur = spec
-        while getattr(cur, "parent", None):
-            chain.append(cur.parent)
+        while cur.inherits:
+            chain.append(cur.inherits)
             try:
-                cur = orthography2ipa.get(cur.parent)
+                cur = orthography2ipa.get(cur.inherits)
             except Exception:
                 break
         return chain

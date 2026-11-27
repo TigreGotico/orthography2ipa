@@ -326,7 +326,7 @@
       "ɑ"
     ]
   },
-  "parent": "sa",
+  "inherits": "sa",
   "ancestors": [
     {
       "code": "sa",

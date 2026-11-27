@@ -30,7 +30,7 @@
     "w": ["w"],
     "y": ["j"]
   },
-  "parent": "x-clade-araw1281",
+  "inherits": "x-clade-araw1281",
   "ancestors": [
     {
       "code": "x-clade-araw1281",

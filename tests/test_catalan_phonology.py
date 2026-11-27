@@ -713,8 +713,8 @@ def test_every_modern_variety_descends_from_old_catalan():
     ca-x-medieval.
     """
     for code in _MODERN:
-        assert get(code).parent == "ca-x-medieval", code
-    assert get("ca-x-medieval").parent == "x-clade-roma1334"
+        assert get(code).inherits == "ca-x-medieval", code
+    assert get("ca-x-medieval").inherits == "x-clade-roma1334"
 
 
 def test_old_catalan_is_data_bearing_not_a_clade():

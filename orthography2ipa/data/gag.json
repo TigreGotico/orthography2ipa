@@ -240,7 +240,7 @@
     "start_year": 1957,
     "end_year": null
   },
-  "parent": "x-clade-turk1311",
+  "inherits": "x-clade-turk1311",
   "ancestors": [
     {
       "code": "x-clade-turk1311",

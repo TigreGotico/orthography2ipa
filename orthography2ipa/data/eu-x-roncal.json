@@ -23,7 +23,7 @@
       ""
     ]
   },
-  "parent": "eu",
+  "inherits": "eu",
   "ancestors": [
     {
       "code": "eu",

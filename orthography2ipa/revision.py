@@ -187,14 +187,15 @@ def _canonical_spec(code: str) -> bytes:
 
 
 def _data_parent(raw: dict) -> Optional[str]:
-    """The ``parent`` that the loader walks through when it resolves a child.
+    """The ``inherits`` spec that the loader walks through when it resolves a child.
 
-    The loader drops a ``parent`` that names a code with no spec file. A clade
-    with no ``parent``, or with a dropped one, then takes its first
+    The loader drops an ``inherits`` that names a code with no spec file. A clade
+    with no ``inherits``, or with a dropped one, then takes its first
     ``parent``-role ancestor, as :class:`~orthography2ipa.types.LanguageSpec`
     sets it, and the loader walks through a clade to the nearest spec with data.
+    A spec file that still names it ``parent`` counts the same.
     """
-    parent = raw.get("parent")
+    parent = raw.get("inherits", raw.get("parent"))
     if parent in _index or not raw.get("clade"):
         return parent
     return next((a.get("code") for a in raw.get("ancestors") or ()
@@ -204,7 +205,7 @@ def _data_parent(raw: dict) -> Optional[str]:
 def _spec_dependencies(code: str) -> List[str]:
     """*code*, then every spec the loader merges into it, sorted.
 
-    The loader merges data along ``parent`` (inherited rules and stress) and
+    The loader merges data along ``inherits`` (inherited rules and stress) and
     each ``<field>_base`` key, and so does this walk, to the end of each chain.
     Other ``ancestors`` codes are left out: the loader reads those specs but
     merges none of their data. A code with no spec file is skipped, as the

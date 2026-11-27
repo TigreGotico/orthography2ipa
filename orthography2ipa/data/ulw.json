@@ -66,7 +66,7 @@
    "j"
   ]
  },
- "parent": "x-clade-misu1242",
+ "inherits": "x-clade-misu1242",
  "ancestors": [
   {
    "code": "x-clade-misu1242",

@@ -1,7 +1,7 @@
 {
   "code": "ff",
   "name": "Fula (Fulah / Fulfulde / Pular)",
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",

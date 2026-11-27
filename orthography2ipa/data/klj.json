@@ -105,7 +105,7 @@
       "z"
     ]
   },
-  "parent": "x-clade-turk1311",
+  "inherits": "x-clade-turk1311",
   "ancestors": [
     {
       "code": "x-clade-turk1311",

@@ -20,7 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Eastern_Romance_languages"
   ],
-  "parent": "la-x-balkans",
+  "inherits": "la-x-balkans",
   "urls": [
     "https://glottolog.org/resource/languoid/id/east2714"
   ],

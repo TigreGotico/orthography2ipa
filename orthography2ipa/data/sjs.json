@@ -108,7 +108,7 @@
       "ʕ"
     ]
   },
-  "parent": "ber",
+  "inherits": "ber",
   "ancestors": [
     {
       "code": "ber",

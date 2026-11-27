@@ -57,7 +57,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-sout3418",
+ "inherits": "x-clade-sout3418",
  "phonemes": [
   "b",
   "d",

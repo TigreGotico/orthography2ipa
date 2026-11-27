@@ -20,7 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Eastern_Baltic_languages"
   ],
-  "parent": "x-clade-balt1263",
+  "inherits": "x-clade-balt1263",
   "urls": [
     "https://glottolog.org/resource/languoid/id/east2280"
   ],

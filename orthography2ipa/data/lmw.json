@@ -93,7 +93,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-miwo1274",
+ "inherits": "x-clade-miwo1274",
  "phonemes": [
   "b",
   "d",

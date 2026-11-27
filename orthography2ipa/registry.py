@@ -601,19 +601,19 @@ def _available_codes(include_clades: bool) -> tuple:
 
 
 def ancestry_chain(code: str) -> List[str]:
-    """Return the ``parent`` chain above *code*, nearest ancestor first.
+    """Return the ``inherits`` chain above *code*, nearest ancestor first.
 
     Includes the classification-only clade nodes the chain passes through
     (``["ber", "x-clade-berb1260", "afa", "x-clade-afro1255"]``).
     """
     chain: List[str] = []
     seen = {resolve(code)}
-    parent = get(code).parent
+    parent = get(code).inherits
     while parent and parent not in seen:
         chain.append(parent)
         seen.add(parent)
         try:
-            parent = get(parent).parent
+            parent = get(parent).inherits
         except KeyError:
             break
     return chain

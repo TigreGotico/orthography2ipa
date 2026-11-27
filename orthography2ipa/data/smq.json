@@ -44,7 +44,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-east2433",
+ "inherits": "x-clade-east2433",
  "phonemes": [
   "b",
   "d",

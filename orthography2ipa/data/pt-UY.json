@@ -2,7 +2,7 @@
   "code": "pt-UY",
   "name": "Uruguayan Portuguese (Riverense / DPU)",
   "script": "Latin",
-  "parent": "pt-BR",
+  "inherits": "pt-BR",
   "graphemes_base": "pt-BR",
   "allophones_base": "pt-BR",
   "positional_graphemes_base": "pt-BR",

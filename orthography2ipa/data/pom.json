@@ -78,7 +78,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-pomo1273",
+ "inherits": "x-clade-pomo1273",
  "phonemes": [
   "b",
   "d",

@@ -310,7 +310,7 @@ def main() -> int:
 
         wanted = location_for(spec, glottolog, places)
         current = spec.get("location")
-        parents[spec["code"]] = spec.get("parent")
+        parents[spec["code"]] = spec.get("inherits")
 
         if wanted is None:
             unlocated.append(spec["code"])

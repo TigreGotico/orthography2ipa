@@ -57,7 +57,7 @@ class TestWordExceptionsInheritance:
                 "graphemes": {"a": ["a"]},
                 "word_exceptions": {"foo": "fu", "bar": "ba"}}
         child = {"code": "zz-BASE-x-kid", "name": "Kid", "script": "Latn",
-                 "parent": "zz-BASE",
+                 "inherits": "zz-BASE",
                  "graphemes_base": "zz-BASE",
                  "word_exceptions_base": "zz-BASE",
                  "graphemes": {},
@@ -80,7 +80,7 @@ class TestWordExceptionsInheritance:
                 "graphemes": {"a": ["a"]},
                 "word_exceptions": {"foo": "fu"}}
         child = {"code": "zy-BASE-x-kid", "name": "Kid", "script": "Latn",
-                 "parent": "zy-BASE",
+                 "inherits": "zy-BASE",
                  "graphemes_base": "zy-BASE",
                  "graphemes": {}}
         for d in (base, child):

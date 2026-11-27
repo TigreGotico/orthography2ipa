@@ -287,7 +287,7 @@
       "notes": "Romagnol orthography->IPA table; documents the different (Romagnol) letter values NOT covered by this Bolognese/OLM spec."
     }
   ],
-  "parent": "x-clade-roma1334",
+  "inherits": "x-clade-roma1334",
   "ancestors": [
     {
       "code": "x-clade-roma1334",

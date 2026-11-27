@@ -3,7 +3,7 @@
  "name": "Çukurova Arabic (Cilician)",
  "script": "Arabic",
  "script_type": "abjad",
- "parent": "apc-SY",
+ "inherits": "apc-SY",
  "graphemes_base": "apc-SY",
  "graphemes": {},
  "allophones_base": "apc-SY",

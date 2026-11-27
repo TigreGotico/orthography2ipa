@@ -36,7 +36,7 @@
     "https://en.wikipedia.org/wiki/Twi",
     "https://en.wikipedia.org/wiki/Akan_language"
   ],
-  "parent": "ak",
+  "inherits": "ak",
   "ancestors": [
     {
       "code": "ak",

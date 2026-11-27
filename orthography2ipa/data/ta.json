@@ -288,7 +288,7 @@
       "au"
     ]
   },
-  "parent": "ta-x-proto-dravidia",
+  "inherits": "ta-x-proto-dravidia",
   "ancestors": [
     {
       "code": "ta-x-proto-dravidia",

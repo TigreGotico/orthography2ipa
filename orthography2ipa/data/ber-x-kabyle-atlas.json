@@ -2,7 +2,7 @@
   "code": "ber-x-kabyle-atlas",
   "name": "Kabyle-Atlas Berber",
   "script": "Latin",
-  "parent": "ber",
+  "inherits": "ber",
   "ancestors": [
     {
       "code": "ber",

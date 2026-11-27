@@ -73,7 +73,7 @@
     "stress_mark": "ˈ",
     "notes": "Malay default stress is penultimate (-2). Penult schwa in native Malay roots may shift stress to antepenult; this variation is lexical and not modeled. Source: Clynes & Deterding (2011), Adelaar & Himmelmann (2005)."
   },
-  "parent": "poz",
+  "inherits": "poz",
   "ancestors": [
     {
       "code": "poz",

@@ -225,7 +225,7 @@
       ]
     }
   },
-  "parent": "pt-PT-x-medieval",
+  "inherits": "pt-PT-x-medieval",
   "allophone_rules": [
     {
       "id": "PT_EX_CONSONANT_GLIDE",

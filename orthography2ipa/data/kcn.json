@@ -6,7 +6,7 @@
   "orthography_kind": "native",
   "quality": "research",
   "iso639_3": "kcn",
-  "parent": "x-clade-sudanic-creole",
+  "inherits": "x-clade-sudanic-creole",
   "graphemes": {
     "a": [
       "a"

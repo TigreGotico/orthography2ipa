@@ -30,7 +30,7 @@ def test_has_cited_sources_and_wikipedia(code):
 def test_parents_into_bantu_clade(code):
     """Every batch spec resolves its ancestry to the Bantu clade node."""
     spec = get(code)
-    assert spec.parent in ("x-clade-narr1281", "lu")
+    assert spec.inherits in ("x-clade-narr1281", "lu")
     assert "Bantu" in spec.family
 
 
