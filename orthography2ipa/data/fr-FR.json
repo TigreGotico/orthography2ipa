@@ -519,6 +519,81 @@
       "notes": "six and dix take the liaison [z] before a vowel-initial word they multiply: six hommes [siz‿ɔm], six enfants, dix ans [diz‿ɑ̃]. Martinon (1913: 345): six hommes (si-zom) against six avril (si-savril), because the name of the month is not multiplied, so dix and six are [dis] [sis] before avril, août and octobre; si zavril and si zet huit are abuses of liaison. The rule therefore leaves the vowel-initial months and the words et, ou and à alone (le six avril [sis avʁil], six et huit [sis e ɥit]). août is matched both as [u] and as [ut] and as [au], the reading the spec now gives it. The left context also takes the allophones an inheriting variety gives the same word: an affricated /d/ and a lax /i/ (fr-CA dix [d͡zis] or [d͡zɪs]). The vowel class adds [y ø œ ə] to the class of FR_LIAISON_Z, so six euros [siz‿øʁo] and dix usines [diz‿yzin] link too."
     },
     {
+      "id": "FR_NEUF_V_BEFORE_ANS",
+      "name": "neuf before ans",
+      "left_context": "^nœf$",
+      "right_context": "^ɑ̃$",
+      "right_spelling": "^ans$",
+      "transform": "nœv‿",
+      "obligatory": true,
+      "notes": "neuf links with [v] before ans: neuf ans [nœv‿ɑ̃], dix-neuf ans, vingt-neuf ans. Martinon (1913: 371): the old liaison of f with a change to v survives in two very frequent expressions, neu(f) vans, dix-neu(f) vans, and neu(f) vheures; before the other plurals that begin with a vowel neuf keeps [f] (neuf amis, et même neuf années, à côté de neu(f) vans); 234-235 give the same two words. ans has the IPA [ɑ̃] of en and an, so the rule reads the spelling of the right word: neuf en tout keeps [f]."
+    },
+    {
+      "id": "FR_VINGT_T_BEFORE_UNIT",
+      "name": "vingt in 22 to 29",
+      "left_context": "$",
+      "right_context": "",
+      "left_spelling": "^(?!(?:.*-)?quatre-vingt$)(?:.*-)?vingt$",
+      "right_spelling": "(?:^|-)(?:deux|trois|quatre|cinq|six|sept|neuf|deuxième|troisième|quatrième|cinquième|sixième|septième|neuvième)s?$",
+      "transform": "t",
+      "obligatory": true,
+      "notes": "The t of vingt sounds in 22 to 29: vingt-deux [vɛ̃t dø], vingt-neuf [vɛ̃t nœf], vingt-deuxième. Martinon (1913: 329-330): le t de vingt sonne encore dans vingt et un, par liaison, et aussi dans vingt-deux, vingt-trois, etc., malgré la consonne qui suit, mais il ne sonne pas dans quatre-vingt-un, -deux, -trois, etc. (quatre-vingt-trois would else be quatre fois vingt-trois); 346: le t dans vingt-quatre ou vingt-neuf. Lexique 3.83 gives vingt-deux [v5td2] and quatre-vingt-deux [katR°v5d2]. Martinon adds that the t becomes [d] before deux (vind deux); the spec writes the phoneme /t/, as Lexique does. The left spelling reads the hyphenated compound, so ⟨vingt⟩ of ⟨quatre-vingt-deux⟩ reads quatre-vingt and the rule does not fire."
+    },
+    {
+      "id": "FR_VINGT_T_BEFORE_ET_HUIT",
+      "name": "vingt in 21 and 28",
+      "left_context": "$",
+      "right_context": "",
+      "left_spelling": "^(?!(?:.*-)?quatre-vingt$)(?:.*-)?vingt$",
+      "right_spelling": "(?:^|-)(?:et|huit|huitième|huitièmes)$",
+      "transform": "t‿",
+      "obligatory": true,
+      "notes": "The t of vingt sounds and links in vingt et un and vingt-huit: [vɛ̃t‿ e œ̃], [vɛ̃t‿ ɥit]. Martinon (1913: 329): vingt et un, par liaison; 253 note 2: l'on prononce vingt-(h)uit comme quarant(e)-(h)uit, and quatre-vingt-huit comme quatre-vingt-deux, without it. Lexique 3.83 gives vingt-huit [v5t8it]. The rule writes the link mark, as the other liaison rules do. quatre-vingt-un has no et and is left alone by the left spelling."
+    },
+    {
+      "id": "FR_EST_NOUN_AFTER_COMPASS",
+      "name": "est in nord-est and sud-est",
+      "left_context": "",
+      "right_context": "^ɛ$",
+      "right_spelling": "^(?:nord|sud)-est$",
+      "right_transform": "ɛst",
+      "obligatory": true,
+      "notes": "est after a hyphen in nord-est and sud-est is the noun, with its st: [nɔʁ‿ ɛst], [syd‿ ɛst]. Martinon (1913: 331): the final group st sounds in est and ouest, and is mute in the verb e(st); 370: the d of sud always sounds and that of nord never, il vaut mieux prononcer nor(d)-ouest, ce qui entraîne à peu près nécessairement nor(d)-est. Lexique 3.83 gives nord-est [nOREst] and sud-est [sydEst]. The right spelling reads the compound, so the verb in le nord est froid keeps [ɛ]."
+    },
+    {
+      "id": "FR_EST_NOUN_BEFORE_HYPHEN",
+      "name": "est at the head of a compound",
+      "left_context": "^ɛ$",
+      "right_context": "",
+      "left_spelling": "^est$",
+      "right_spelling": "^est-(?!(?:ce|il|elle|on|ils|elles)$)",
+      "transform": "ɛst",
+      "obligatory": true,
+      "notes": "est at the head of a hyphenated compound is the noun: est-allemand [ɛst aləmɑ̃], est-européen. Martinon (1913: 331): st sounds in est the noun and is mute in the verb e(st). Lexique 3.83 gives est-allemand [Estal°m@]. A verb in front of a hyphen takes a subject clitic or ce (est-ce, est-il, est-elle, est-on), and those keep the verb's [ɛ]; il est allemand has no hyphen."
+    },
+    {
+      "id": "FR_ENT_MUTE_AFTER_ILS",
+      "name": "verbal -ent after ils and elles",
+      "left_context": "",
+      "right_context": "ɑ̃$",
+      "left_spelling": "^(?:(?:(?:lors|puis|quoi)?qu['’])?(?:ils|elles)|s['’]ils)$",
+      "right_spelling": "ent$",
+      "right_transform": "",
+      "obligatory": true,
+      "notes": "After the subject clitics ils and elles (also qu'ils, lorsqu'elles, puisqu'ils, quoiqu'ils, s'ils) a word in -ent is the verb, and its -ent is mute: ils parlent [il paʁl], elles mangent [ɛl mɑ̃ʒ], ils couvent [il kuv], ils président [il pʁezid]. Martinon (1913: 161): the nt of the third-person plural changes nothing (ils aime(nt) bien sounds as j'aime bien), and this mute -ent keeps a series of verb forms spelled like the nouns and adjectives in tonic -ent: expédient, affluent, résident et président, négligent, divergent, équivalent, excellent, violent, content et couvent. The spelling alone cannot tell them apart, which is why the ending ent keeps the nasal reading first (the ambiguous ending); the clitic before the word decides. A clitic between (ils les mangent, ils ne parlent) is out of reach of a rule on two words. In Lexique 3.83, 8742 written forms in -ent are third-person plural verbs, and 24 of them are also a noun, an adjective or an adverb (couvent, président, parent, talent, violent, content)."
+    },
+    {
+      "id": "FR_IENT_MUTE_AFTER_ILS",
+      "name": "verbal -ient after ils and elles",
+      "left_context": "",
+      "right_context": "jɛ̃$",
+      "left_spelling": "^(?:(?:(?:lors|puis|quoi)?qu['’])?(?:ils|elles)|s['’]ils)$",
+      "right_spelling": "ient$",
+      "right_transform": "i",
+      "obligatory": true,
+      "notes": "The same mute -ent after a stem in i: ils lient [il li], elles oublient. The letters ien read [jɛ̃] first, so the rule writes the stem vowel back. Martinon (1913: 161), as FR_ENT_MUTE_AFTER_ILS: the nt of the third-person plural changes nothing."
+    },
+    {
       "id": "FR_LIAISON_Z",
       "name": "z-liaison",
       "left_context": "z$",
@@ -674,7 +749,7 @@
       "title": "Comment on prononce le français : traité complet de prononciation pratique avec les noms propres et les mots étrangers",
       "publisher": "Larousse, Paris",
       "url": "https://archive.org/details/commentonprononc00martuoft",
-      "pages": "53, 59, 62, 93, 123, 129, 130, 131, 145, 151, 161, 164, 171, 213, 214, 226, 234, 235, 236, 239, 240, 241, 284, 285, 328, 331, 345, 346, 347, 348, 349",
+      "pages": "53, 59, 62, 93, 123, 129, 130, 131, 145, 151, 161, 164, 171, 213, 214, 226, 234, 235, 236, 239, 240, 241, 253, 284, 285, 328, 329, 330, 331, 345, 346, 347, 348, 349, 370, 371",
       "notes": "READ (archive.org full scan of the University of Toronto copy; each cited page read in the scan's text). The Paris orthoepic norm of 1913; the allophone rules that cite it give the page and the passage."
     },
     {
@@ -1099,7 +1174,9 @@
     "slang": "slɑ̃ɡ",
     "cresson": "kʁəsɔ̃",
     "cressonnière": "kʁəsɔnjɛʁ",
-    "donc": "dɔ̃k"
+    "donc": "dɔ̃k",
+    "sud": "syd",
+    "ouest": "wɛst"
   },
   "timespan": {
     "start_year": 1300,

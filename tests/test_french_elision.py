@@ -160,8 +160,8 @@ def test_a_stray_apostrophe_does_not_crash(text):
 
 
 def test_every_vowel_initial_exception_is_tested():
-    # 29 entries: 26 content words and the three verb forms.
-    assert len(VOWEL_INITIAL_EXCEPTIONS) == 29
+    # 30 entries: 27 content words and the three verb forms.
+    assert len(VOWEL_INITIAL_EXCEPTIONS) == 30
     assert VERB_FORMS <= set(VOWEL_INITIAL_EXCEPTIONS)
 
 

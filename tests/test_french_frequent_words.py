@@ -29,7 +29,7 @@ def test_ent_after_ai_and_oi_is_mute(text, expected):
 
 @pytest.mark.parametrize("text, expected", [
     # Bare ⟨-ent⟩ keeps its deferred nasal reading (ENDING "ent").
-    ("vent", "vɑ̃"), ("moment", "mɔmɑ̃"),
+    ("vent", "vɑ̃"), ("moment", "mɔmɑ̃"), ("le couvent", "lə kuvɑ̃"),
     # ⟨-ient⟩ is not ⟨ai⟩ or ⟨oi⟩: client keeps its nasal vowel.
     ("client", "kljɛ̃"),
 ])
@@ -134,7 +134,7 @@ def test_g_before_t_is_mute(text, expected):
 
 
 @pytest.mark.parametrize("text, expected", [
-    ("langue", "lɑ̃ɡ"), ("gare", "ɡaʁ"),
+    ("langue", "lɑ̃ɡ"), ("vingt et un", "vɛ̃t‿ e œ̃"), ("gare", "ɡaʁ"),
 ])
 def test_g_elsewhere_is_untouched(text, expected):
     assert _t(text) == expected
@@ -386,6 +386,8 @@ def test_numeral_sandhi_counter_cases(text, expected):
     ("le huit mai", "lə ɥit me"), ("le six mai", "lə sis me"),
     ("le dix janvier", "lə dis ʒɑ̃vje"),
     ("neuf heures", "nœv‿ œʁ"), ("dix-neuf heures", "diz nœv‿ œʁ"),
+    # neuf ans reads the spelling of ans (tests/test_french_sandhi_spelling.py).
+    ("neuf ans", "nœv‿ ɑ̃"),
 ])
 def test_numeral_compounds_months_and_neuf(text, expected):
     assert _t(text) == expected
@@ -432,8 +434,8 @@ def test_numeral_keeps_its_consonant_before_a_function_word(text, expected):
     assert _t(text) == expected
 
 
-# Martinon (1913: 234-235): neu(f) heures [v]. The rule reads IPA, and ans
-# has the IPA of en and an, so neuf ans is left as [nœf ɑ̃].
+# Martinon (1913: 234-235): neu(f) heures [v]; neuf en tout keeps [f], and
+# neuf ans has a rule of its own that reads the spelling of ans.
 @pytest.mark.parametrize("text, expected", [
     ("neuf heures", "nœv‿ œʁ"), ("il y en a neuf en tout", "il i ɑ̃ a nœf ɑ̃ tu"),
     ("dix-neuf en tout", "diz nœf ɑ̃ tu"),
