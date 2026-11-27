@@ -187,7 +187,7 @@ def test_ch_before_l_m_n_r_is_k(text, expected):
 
 
 @pytest.mark.parametrize("text, expected", [
-    ("chat", "ʃa"), ("chef", "ʃɛf"), ("chœur", "ʃœʁ"),
+    ("chat", "ʃa"), ("chef", "ʃɛf"),
 ])
 def test_ch_before_a_vowel_stays_sh(text, expected):
     assert _t(text) == expected
@@ -528,4 +528,13 @@ def test_donc_keeps_its_c(text, expected):
     ("ressurgir", "ʁəsyʁʒiʁ"),
 ])
 def test_ressusciter_and_ressuyer_take_close_e(text, expected):
+    assert _t(text) == expected
+
+
+# Martinon (1913: 222): ⟨ch⟩ is [k] in c(h)œur and its derivatives, as in
+# the words in chol- and chor-; ⟨c⟩ before ⟨œu⟩ is already [k] (cœur).
+@pytest.mark.parametrize("text, expected", [
+    ("chœur", "kœʁ"), ("chœurs", "kœʁ"), ("cœur", "kœʁ"),
+])
+def test_ch_before_oeu_is_k(text, expected):
     assert _t(text) == expected
