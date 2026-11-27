@@ -29,7 +29,7 @@ def test_ent_after_ai_and_oi_is_mute(text, expected):
 
 @pytest.mark.parametrize("text, expected", [
     # Bare ⟨-ent⟩ keeps its deferred nasal reading (ENDING "ent").
-    ("vent", "vɑ̃"), ("moment", "mɔmɑ̃"), ("ils parlent", "il paʁlɑ̃"),
+    ("vent", "vɑ̃"), ("moment", "mɔmɑ̃"),
     # ⟨-ient⟩ is not ⟨ai⟩ or ⟨oi⟩: client keeps its nasal vowel.
     ("client", "kljɛ̃"),
 ])
@@ -134,10 +134,15 @@ def test_g_before_t_is_mute(text, expected):
 
 
 @pytest.mark.parametrize("text, expected", [
-    ("langue", "lɑ̃ɡ"), ("vingt et un", "vɛ̃ e œ̃"), ("gare", "ɡaʁ"),
+    ("langue", "lɑ̃ɡ"), ("gare", "ɡaʁ"),
 ])
 def test_g_elsewhere_is_untouched(text, expected):
     assert _t(text) == expected
+
+
+def test_vingt_et_un_has_no_g():
+    # The property under test here: the ⟨g⟩ of vingt is mute in 21 too.
+    assert "ɡ" not in _t("vingt et un")
 
 
 # Martinon (1913: 236): word-final ⟨g⟩ is not pronounced in French words;
@@ -377,13 +382,10 @@ def test_numeral_sandhi_counter_cases(text, expected):
 @pytest.mark.parametrize("text, expected", [
     ("dix-sept", "dis sɛt"), ("dix-huit", "diz ɥit"), ("dix-neuf", "diz nœf"),
     ("soixante-dix-sept", "swasɑ̃t dis sɛt"),
-    ("quatre-vingt-dix-huit", "katʁ vɛ̃ diz ɥit"),
+    ("dix-huit", "diz ɥit"),
     ("le huit mai", "lə ɥit me"), ("le six mai", "lə sis me"),
     ("le dix janvier", "lə dis ʒɑ̃vje"),
     ("neuf heures", "nœv‿ œʁ"), ("dix-neuf heures", "diz nœv‿ œʁ"),
-    # neuf ans is [nœv‿ɑ̃] in Martinon; the IPA of ans is that of en, so the
-    # rule leaves it (see test_neuf_links_with_v_before_heures_only).
-    ("neuf ans", "nœf ɑ̃"),
 ])
 def test_numeral_compounds_months_and_neuf(text, expected):
     assert _t(text) == expected
@@ -556,4 +558,32 @@ def test_the_ressui_forms_of_ressuyer_take_close_e(text, expected):
     ("chleuhe", "ʃlø"), ("chnoques", "ʃnɔk"), ("chlore", "klɔʁ"),
 ])
 def test_the_german_loan_families_keep_sh(text, expected):
+    assert _t(text) == expected
+
+
+def test_quatre_vingt_dix_huit_reads_dix_huit():
+    # The property under test: dix-huit inside 98 is [diz ɥit].
+    assert _t("quatre-vingt-dix-huit").endswith("diz ɥit")
+
+
+# Known gaps, with the correct readings. Each needs a sandhi or word rule
+# that reads the spelling of a neighbouring word, which the spec schema does
+# not have yet (the spelling-aware sandhi follow-up); the fr-FR page lists
+# them as known limits. The engine change is expected to make them pass.
+_SPELLING_SANDHI = "needs spelling-aware sandhi conditions (follow-up)"
+
+
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason=_SPELLING_SANDHI)
+@pytest.mark.parametrize("text, expected", [
+    # The 3pl ⟨-ent⟩ after a subject clitic is mute (Fouché 1959; Tranel
+    # 1987 §3); bare ⟨-ent⟩ stays ambiguous (ENDING "ent").
+    ("ils parlent", "il paʁl"),
+    # Martinon (1913: 329): the t of vingt sounds in vingt et un.
+    ("vingt et un", "vɛ̃t‿ e œ̃"),
+    # Martinon (1913: 234-235): neu(f) ans [v].
+    ("neuf ans", "nœv‿ ɑ̃"),
+    # Martinon (1913: 161): quatre-vingts keeps the e of quatre.
+    ("quatre-vingt-dix-huit", "katʁə vɛ̃ diz ɥit"),
+])
+def test_known_gaps_that_need_the_spelling_of_a_neighbour(text, expected):
     assert _t(text) == expected
