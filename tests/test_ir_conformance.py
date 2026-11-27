@@ -1,21 +1,28 @@
 """The IR conformance vectors of section 8.4 hold for the Python interpreter and Lua.
 
 Each vector file embeds its IR, so a spec change does not make these tests
-fail. ``scripts/gen_ir_vectors.py --lang X`` writes the file of one spec again.
+fail. ``scripts/gen_ir_vectors.py`` writes the files again.
 """
 import json
+import os
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 import pytest
 
+from orthography2ipa.ir import layout
 from orthography2ipa.ir.interpreter import Interpreter
 
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+import gen_ir_vectors  # noqa: E402
+from ir_features import ablate, feature_names  # noqa: E402
+
 REPO = Path(__file__).resolve().parent.parent
-VECTORS = sorted((REPO / "tests" / "conformance" / "ir-v1").glob("*.jsonl"))
+DIR = REPO / "tests" / "conformance" / "ir-v1"
+VECTORS = sorted(DIR.glob("*.jsonl"))
 RUNNER = REPO / "scripts" / "ir_lua_conformance.lua"
-CODES = [*json.loads((REPO / "tests" / "data" / "ir_golden_ci.json").read_text(encoding="utf-8")), "kab"]
 
 
 def load(path):
@@ -30,9 +37,37 @@ def text(cps):
 
 
 def test_the_vector_set_covers_every_spec():
-    assert sorted(p.stem for p in VECTORS) == sorted([*CODES, "unknown-version"])
+    assert sorted(p.stem for p in VECTORS) == sorted(gen_ir_vectors.stems())
     for path in VECTORS:
-        assert len(load(path)[1]) >= (1 if path.stem == "unknown-version" else 20), path.stem
+        assert len(load(path)[1]) >= 1, path.stem
+
+
+@pytest.mark.parametrize("path", VECTORS, ids=lambda p: p.stem)
+def test_every_file_keeps_the_size_budget(path):
+    head, *cases = path.read_text(encoding="utf-8").splitlines(keepends=True)
+    assert len(head.encode()) <= gen_ir_vectors.IR_BUDGET
+    if path.stem not in gen_ir_vectors.GOLDEN_SPECS:
+        assert sum(len(c.encode()) for c in cases) <= gen_ir_vectors.CASE_BUDGET
+
+
+def test_every_ir_feature_has_a_case_that_needs_it():
+    found = json.loads((DIR / gen_ir_vectors.FEATURES).read_text(encoding="utf-8"))
+    uncovered = [name for name in feature_names() if name not in found and name not in gen_ir_vectors.UNREACHABLE]
+    weak = []
+    for name, (file, index) in sorted(found.items()):
+        head, cases = load(DIR / file)
+        ir = layout.decode(head["ir"])
+        case = cases[index]
+        ablated = ablate(ir, name)
+        if ablated is None or Interpreter(ablated).transcribe(text(case["input"]), width=1) == text(case["expect"]):
+            weak.append(name)
+    assert not uncovered and not weak, f"uncovered: {uncovered}; the case does not need: {weak}"
+
+
+@pytest.mark.xfail(strict=True, reason="no case can show these features: see gen_ir_vectors.UNREACHABLE")
+def test_every_unreachable_feature_has_a_case():
+    found = json.loads((DIR / gen_ir_vectors.FEATURES).read_text(encoding="utf-8"))
+    assert [name for name in gen_ir_vectors.UNREACHABLE if name not in found] == []
 
 
 @pytest.mark.parametrize("path", VECTORS, ids=lambda p: p.stem)
