@@ -63,8 +63,10 @@ class Pipeline:
             ``sandhi_rules``, and it returns one IPA string per word.
             ``apply_sandhi=False`` turns off the spec's rules, not this field.
         fragments: plugin fragments for this engine: JSON objects with the
-            ``ir_version`` of the IR and any of ``words``, ``sandhi`` and
-            ``unsupported``. ``words`` is a table ``{word: ipa}`` with
+            ``ir_version`` of the IR and any of ``langs``, ``words``,
+            ``sandhi`` and ``unsupported``. ``langs`` is a list of codes: the
+            fragment applies only to a language that one of them resolves to.
+            A fragment without ``langs`` applies to every language. ``words`` is a table ``{word: ipa}`` with
             lowercase NFC keys. The compiler merges the tables into the IR of
             the engine, and a later fragment wins on a duplicate key. The
             precedence is ``spec.word_exceptions``, then ``lexicon``, then
