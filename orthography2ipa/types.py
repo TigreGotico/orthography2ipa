@@ -1649,7 +1649,6 @@ class AllophoneRule:
     followed_by_3: Optional[str] = None
     preceded_by_phoneme_2: Tuple[str, ...] = ()
     followed_by_phoneme_2: Tuple[str, ...] = ()
-    followed_by_phoneme_3: Tuple[str, ...] = ()
     preceded_by_surface_phoneme_2: Tuple[str, ...] = ()
     requires_other_nucleus: Optional[bool] = None
     followed_by_nucleus: Optional[bool] = None
@@ -1665,6 +1664,8 @@ class AllophoneRule:
     notes: str = ""
     mutates_neighbor: Optional[str] = None
     mutates_neighbor_side: Optional[str] = None
+    # last, so that a positional argument keeps the field it had before
+    followed_by_phoneme_3: Tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
         if isinstance(self.phonemes, str):
