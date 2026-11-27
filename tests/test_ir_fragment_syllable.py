@@ -136,3 +136,17 @@ def test_the_silabificador_fragment_compiles():
     fragment = silabificador_fragment.fragment()
     assert "ruin" in fragment["syllable"]["stem_cuts"]
     assert splitter(fragment).syllables("neymar") == ["ney", "mar"]
+
+
+SCOPED = {**FRAGMENT, "langs": ["pt-PT"]}
+
+
+@pytest.mark.parametrize("code", ["pt-BR", "es"])
+def test_scoped_fragment_leaves_other_languages_unchanged(code):
+    assert build_ir(code, fragments=[SCOPED]) == build_ir(code)
+
+
+def test_scoped_fragment_reaches_its_language():
+    scoped = build_ir("pt-PT", fragments=[SCOPED])
+    assert scoped["syllable"] == build_ir("pt-PT", fragments=[FRAGMENT])["syllable"]
+    assert scoped["syllable"] != build_ir("pt-PT")["syllable"]

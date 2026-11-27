@@ -971,7 +971,8 @@ def merge_syllable_fragments(fragments: Sequence[dict], code: str) -> dict:
                               "nuclei": nuclei, "final_nuclei": {k: list(v) for k, v in finals.items()}}
             if "pattern" in foreign:
                 tables["foreign"]["pattern"] = _fragment_pattern(foreign["pattern"], "foreign.pattern")
-        out.update(tables)
+        if in_scope(fragment, code):
+            out.update(tables)
     return out
 
 
