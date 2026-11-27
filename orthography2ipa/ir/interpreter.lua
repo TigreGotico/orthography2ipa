@@ -2450,7 +2450,8 @@ function P:hiatus_positions(word)
           if startswith(rest, o) then hit = true; break end
         end
         if not hit and inset(rule.codas, sl(rest, 0, 1))
-            and not (slen(rest) > 1 and self:_c(at(rest, 1), "orth_vowel")) then
+            and not (slen(rest) > 1 and (self:_c(at(rest, 1), "orth_vowel")
+                                         or at(rest, 1) == at(rest, 0))) then
           hit = true
           for _, g in ipairs(rule.multi_keys) do
             if startswith(rest, g) then hit = false; break end

@@ -1506,7 +1506,7 @@ class Interpreter:
                 rest = lowered[k + 1:]
                 if any(rest.startswith(o) for o in rule["onsets"]) or (
                         rest[:1] in rule["codas"]
-                        and not (len(rest) > 1 and self._c(rest[1], "orth_vowel"))
+                        and not (len(rest) > 1 and (self._c(rest[1], "orth_vowel") or rest[1] == rest[0]))
                         and not any(rest.startswith(g) for g in rule["multi_keys"])):
                     found.append(k)
                 elif any(rest.startswith(o) for o in rule.get("atonic_onsets", ())):
