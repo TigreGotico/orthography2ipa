@@ -341,6 +341,7 @@ local LAYOUT = Ob{
   endings = Ob{table = Lt(Ob{key = S_, ipa = S_, alts = Lt(S_), costs = Lt(I_)}), suffix = SSET,
                vowels = Lt(Ob{key = S_, reduced = SSET, readings = SSET}),
                sources = Lt(Ob{surface = S_, vowels = SSET})},
+  phonemes = SSET,
 }
 
 local SLOT_ARGS = {

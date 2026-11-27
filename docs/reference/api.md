@@ -109,6 +109,12 @@ These are the names `import orthography2ipa` exports, from `orthography2ipa.__al
 | `MarkupError` | class | The markup is malformed. The message says what, and where. |
 | `parse_markup` | function | Split *text* into plain runs and forced-pronunciation words. |
 
+## `orthography2ipa.phonemes`
+
+| Name | Kind | Summary |
+| --- | --- | --- |
+| `phoneme_set` | function | Every segment that `G2P(lang)` can emit, from the compiled IR. |
+
 ## `orthography2ipa.phonetok`
 
 | Name | Kind | Summary |

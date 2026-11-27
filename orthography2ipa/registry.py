@@ -9,6 +9,7 @@ from functools import lru_cache
 from importlib.metadata import entry_points
 from typing import Dict, List, Optional
 
+import langcodes as _langcodes
 from linguatag import (LanguageTag, LanguageTagError, closest_lang, likely_script, parse_tag,
                        standardize_lang, with_default_region)
 
@@ -334,14 +335,10 @@ _RENAMED: Dict[str, str] = {
 }
 _ALIASES.update(_RENAMED)
 
-# Default variety for a region tag whose specs are all sub-regional, so a bare
-# region has no exact spec and langcodes' nearest match would pick whichever
-# private-use sibling sorts first. This is an explicit editorial convention,
-# not a claim in the spec data: Saudi Arabia has several documented varieties
-# (Najdi, Hejazi, ...) and no single standard spoken form, so ``ar-SA`` is
-# steered to Najdi — the variety of the capital region (Riyadh) and the most
-# widely spoken (Ingham, Najdi Arabic, 1994) — rather than asserting that
-# Saudi Arabic *is* Najdi anywhere in the data.
+# Editorial default variety for a region tag whose specs are all sub-regional;
+# without it the nearest match picks the sibling that sorts first. ``ar-SA`` is
+# Najdi, the variety of Riyadh and the most widely spoken (Ingham, Najdi
+# Arabic, 1994).
 _REGION_DEFAULTS: Dict[str, str] = {
     "ar-SA": "ars-SA",
 }
@@ -368,11 +365,6 @@ def _region_subtag(code: str) -> Optional[str]:
             return subtag.upper()
     return None
 
-try:
-    import langcodes as _langcodes
-    _HAS_LANGCODES = True
-except ImportError:
-    _HAS_LANGCODES = False
 
 
 def _casefold_lookup(folded: str) -> Optional[str]:
@@ -395,8 +387,8 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
        that ``langcodes`` may not round-trip cleanly).
     2. Exact match against the alias keys and registered spec codes, without
        regard to case (``MNK`` → ``mnk``), then
-       ``langcodes.standardize_tag()`` when the library is available and the
-       code is not a private-use subtag (``x-`` extension).
+       ``langcodes.standardize_tag()`` when the
+       code is not a private-use tag.
     3. Exact match of the standardized code, also with a script subtag
        dropped when it is the likely script of the rest of the tag and the
        language subtag is unchanged (``apc-Arab-SY`` → ``apc-SY``). A
@@ -417,7 +409,6 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     """
     if code in _ALIASES:
         return _ALIASES[code]
-    # Membership reads the index dict; available_json_codes() sorts every code.
     available = json_loader._index
     # A registered code names its own spec. ``macro=True`` below folds an
     # individual language into its macrolanguage (``tl`` → ``fil``,
@@ -429,8 +420,7 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     # ``mnk`` before macrolanguage folding can turn it into ``man``.
     if (known := _casefold_lookup(code.lower())) is not None:
         return known
-    if (_HAS_LANGCODES and not _PRIVATE_USE.search(code)
-            and not code.startswith("x-")):
+    if not _PRIVATE_USE.search(code) and not code.startswith("x-"):
         try:
             code = _langcodes.standardize_tag(code, macro=True)
         except Exception:
@@ -571,12 +561,8 @@ def get(code: str, strict: bool = False) -> LanguageSpec:
             ``closest_lang``, which answers an unregistered code with the
             nearest thing it can find.
 
-    The default is the guess, because callers depend on it. It is worth knowing
-    what it costs: before ``ar-BH-x-baharna`` had a spec, ``get`` answered it with
-    a 261-grapheme table and plausible Arabic output — the Bahraini Sunni one —
-    with nothing in the result saying a substitution had happened. A reviewer
-    reading a baseline that way got a complete, confident column from the wrong
-    spec. ``strict=True`` is for any caller that would rather be told.
+    The default guesses, and the result does not say that it is a substitute
+    spec. ``strict=True`` is for a caller that must know.
 
     Raises:
         KeyError: If the language is not registered, or — under *strict* — if it
@@ -784,12 +770,7 @@ def _get_stress_plugin(code: str) -> Optional["StressPlugin"]:
 class MissingStressPlugin(RuntimeError):
     """A spec asked for a stress plugin and none is registered.
 
-    Deliberately fatal. A spec that sets ``stress.source = "plugin"`` is saying its
-    stress cannot be expressed by the declarative rules — so falling back to them
-    would not be a graceful degradation, it would be a DIFFERENT ANSWER, silently.
-    The transcription must be a function of the spec and the input; quietly
-    substituting a different stress model makes it a function of what happens to
-    be installed, which is the bug this rule exists to prevent.
+    Fatal, because the declarative rules give a different answer.
     """
 
 
@@ -800,10 +781,7 @@ class MissingStressPlugin(RuntimeError):
 class MissingPlugin(RuntimeError):
     """A spec named a plugin and it is not installed.
 
-    Deliberately fatal. The spec asked for this plugin because the built-in answer
-    is not the answer it wants — so falling back to the built-in would not be a
-    graceful degradation, it would be a DIFFERENT TRANSCRIPTION, silently, with no
-    way for the caller to know which one they got.
+    Fatal, because the built-in stage gives a different transcription.
     """
 
 
@@ -811,12 +789,7 @@ _declared: Dict[str, Dict[str, object]] = {}
 
 
 def _discover_stage(stage: str) -> Dict[str, object]:
-    """Every plugin registered for *stage*, keyed by its ENTRY-POINT NAME.
-
-    The name is the plugin's identity, and it is what a spec names. That makes the
-    declaration readable and greppable — and it means two packages cannot fight
-    over a language, because the spec already said which one it wanted.
-    """
+    """Every plugin registered for *stage*, keyed by the entry-point name a spec uses."""
     from orthography2ipa.plugins import _ENTRY_POINT_GROUPS
 
     found: Dict[str, object] = {}

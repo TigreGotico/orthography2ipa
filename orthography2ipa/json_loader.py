@@ -1,18 +1,6 @@
-"""JSON-based language data loader for orthography2ipa.
+"""Load ``LanguageSpec`` objects from the JSON files in ``data/``.
 
-Reads LanguageSpec definitions from JSON files, resolving inheritance
-chains (``graphemes_base``, ``allophones_base``, ``positional_graphemes_base``)
-and converting plain JSON values into typed Python objects (``Ancestor``,
-``AncestorRole``, ``GraphemePosition``, ``LanguageSpec``).
-
-Usage
------
->>> from orthography2ipa.json_loader import load_json_spec, load_all_json_specs
->>> spec = load_json_spec("es-ES")
->>> specs = load_all_json_specs()
-
-The JSON files live under ``orthography2ipa/data/`` organised by family.
-See ``data/SCHEMA.md`` for the JSON schema reference.
+Resolves the ``*_base`` inheritance edges. ``data/SCHEMA.md`` is the schema.
 """
 from __future__ import annotations
 
@@ -30,7 +18,6 @@ from orthography2ipa.types import (
     ClosedHiatus,
     FinalDiphthongs,
     FIELD_INHERITANCE,
-    GraphemePosition,
     InheritanceMode,
     LanguageSpec,
     LinguisticSource,
@@ -49,8 +36,6 @@ from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.version import VERSION_MAJOR
 from orthography2ipa.weights import split_weighted_graphemes
 
-# Fields resolved via the ``{field}_base`` JSON key + ``{**base, **own}``
-# dict merge (graphemes, allophones, positional_graphemes).
 _BASE_SCALAR_FIELDS: tuple = tuple(
     f for f, mode in FIELD_INHERITANCE.items()
     if mode is InheritanceMode.BASE_SCALAR
@@ -60,29 +45,15 @@ _BASE_MERGE_FIELDS: tuple = tuple(
     f for f, mode in FIELD_INHERITANCE.items() if mode is InheritanceMode.BASE_MERGE
 )
 
-# Fields resolved via id-keyed overlay (sandhi_rules). These have no
-# dedicated ``{field}_base`` JSON key of their own — the schema doesn't
-# declare one per rule-bearing field — so they inherit through the same
-# structural base edge as ``graphemes`` (the primary data-inheritance
-# pointer), falling back to ``inherits`` when no explicit
-# ``graphemes_base`` is set (e.g. Arabic dialects that only set
-# ``graphemes_base`` and leave ``inherits`` empty).
+# Id-keyed fields have no ``*_base`` key: they follow ``graphemes_base``,
+# else the nearest data ancestor on ``inherits``.
 _OVERLAY_BY_ID_FIELDS: tuple = tuple(
     f for f, mode in FIELD_INHERITANCE.items() if mode is InheritanceMode.OVERLAY_BY_ID
 )
 
 
 def _nearest_data_ancestor(code: Optional[str]) -> Optional[str]:
-    """Return the nearest ancestor of *code* (itself included) that can carry
-    data, skipping classification-only clade nodes.
-
-    A clade (``Romance``, ``West Germanic``) has no phonology and must never
-    act as a data-inheritance source. Splicing one into the ancestry chain
-    between a spec and its data-bearing parent would otherwise silently strip
-    the spec's inherited ``sandhi_rules`` / ``allophone_rules``; walking
-    through clades keeps the inheritance edge pointing at the same language it
-    pointed at before the clade existed.
-    """
+    """The nearest non-clade spec on the ``inherits`` chain of *code*, itself included."""
     seen = set()
     while code and code in _specs and code not in seen:
         seen.add(code)
@@ -109,15 +80,8 @@ def _derive_family_path(parent_code: Optional[str]) -> Tuple[str, ...]:
 
 
 def _overlay_by_id(base_items: tuple, own_items: tuple) -> tuple:
-    """Merge two sequences of id-keyed objects (``.id`` attribute).
-
-    The base sequence's order and members are inherited in full; any own
-    item whose ``id`` matches a base item replaces it in-place (same
-    position), and any own item with a new ``id`` is appended. This avoids
-    both silently dropping the base's rules (a blind own-only read) and
-    silently duplicating a rule the leaf re-declares to override it (a
-    blind concatenation).
-    """
+    """*base_items* with each own item replacing the base item of its ``id`` in
+    place, and own items with a new ``id`` appended."""
     merged: List = list(base_items)
     index = {item.id: i for i, item in enumerate(merged)}
     for item in own_items:
@@ -128,22 +92,8 @@ def _overlay_by_id(base_items: tuple, own_items: tuple) -> tuple:
             merged.append(item)
     return tuple(merged)
 
-# ═══════════════════════════════════════════════════════════════════════════
-# Constants
-# ═══════════════════════════════════════════════════════════════════════════
 
 _DATA_DIR = Path(__file__).parent / "data"
-
-# Map JSON string keys → GraphemePosition enum values
-_POSITION_MAP: Dict[str, GraphemePosition] = {
-    pos.value: pos for pos in GraphemePosition
-}
-
-# Map JSON string keys → AncestorRole enum values
-_ROLE_MAP: Dict[str, AncestorRole] = {
-    role.value: role for role in AncestorRole
-}
-
 _index: Dict[str, Path] = {}
 _specs: Dict[str, LanguageSpec] = {}
 
@@ -154,18 +104,8 @@ def _index_files():
         _index[lang_code] = lang_file
 
 
-# ═══════════════════════════════════════════════════════════════════════════
-# Helpers
-# ═══════════════════════════════════════════════════════════════════════════
-
 def _parse_wikipedia(raw: object) -> Tuple[str, ...]:
-    """Normalise the JSON ``wikipedia`` field to a tuple of strings.
-
-    Accepts:
-    - ``None`` / missing → ``()``
-    - ``"https://…"`` (legacy single string) → ``("https://…",)``
-    - ``["https://…", …]`` (list) → tuple of those strings
-    """
+    """The ``wikipedia`` field, a string or a list, as a tuple."""
     if raw is None:
         return ()
     if isinstance(raw, str):
@@ -173,49 +113,21 @@ def _parse_wikipedia(raw: object) -> Tuple[str, ...]:
     return tuple(raw)
 
 
-# ═══════════════════════════════════════════════════════════════════════════
-# Public API
-# ═══════════════════════════════════════════════════════════════════════════
-
 def load_json_spec(code: str) -> LanguageSpec:
-    """Load a single ``LanguageSpec`` from JSON, resolving inheritance.
+    """Load the spec of the file key *code*, resolving inheritance.
 
-    Parameters
-    ----------
-    code : str
-        BCP-47 or ISO 639 language code.
-
-    Returns
-    -------
-    LanguageSpec
-        Fully resolved, immutable language specification.
-
-    Raises
-    ------
-    KeyError
-        If the code is not found in any JSON file.
-    ValueError
-        If the JSON is malformed or contains invalid enum values.
+    Raises ``KeyError`` for an unknown key and ``ValueError`` for bad data.
     """
-    # retrieve from cache
     if code in _specs:
         return _specs[code]
 
-    # load json
     if code not in _index:
         raise KeyError(f"unsupported language: '{code}.json' not found. Available: {set(_index.keys())}")
     lang_file: Path = _index[code]
     with lang_file.open() as f:
         raw = json.load(f)
 
-    # Normalise the two accepted grapheme JSON shapes (plain list and the
-    # weighted-object ``{"ipa": [...], "weights": [...]}`` form) into one
-    # internal representation: plain IPA lists in ``raw["graphemes"]`` (so
-    # the base-merge below and every downstream consumer keep seeing plain
-    # ``list[str]``) plus a sparse own-only weights table. Weights are NOT
-    # inherited (FIELD_INHERITANCE) — they come from this spec's own file
-    # only — so a child pulling graphemes via ``graphemes_base`` keeps the
-    # parent's IPA lists but its own (absent) weights, i.e. rank ordering.
+    # Weights are not inherited: a child keeps the base IPA lists in rank order.
     own_graphemes_plain, own_grapheme_weights = split_weighted_graphemes(
         raw.get("graphemes", {}) or {}
     )
@@ -232,72 +144,48 @@ def load_json_spec(code: str) -> LanguageSpec:
         )
         raw["inherits"] = raw.pop("parent")
 
-    # ensure all related languages also loaded
     parent_lang = raw.get("inherits")
-    # base_field_langs[field] = the code declared in the JSON's
-    # "{field}_base" key, driven by FIELD_INHERITANCE's BASE_MERGE fields
-    # rather than a hand-listed set of 3 — a new BASE_MERGE field picked up
-    # automatically here.
     base_field_langs: Dict[str, Optional[str]] = {
         field: raw.get(f"{field}_base") for field in _BASE_MERGE_FIELDS
     }
-    # ``positional_graphemes`` refine the grapheme table they belong to: a
-    # positional entry keys the *same* grapheme, narrowing its reading by
-    # position (word-final ي as /iː/ rather than /j/). Inheriting a grapheme
-    # table without its positional refinements yields half a table — the
-    # graphemes read, but every position-conditioned reading silently
-    # reverts to the default. So when a spec declares no
-    # ``positional_graphemes_base`` of its own, it follows ``graphemes_base``.
-    # Phonological layers (``allophones_base``) are a different stratum and
-    # keep requiring their own explicit edge.
+    # Positional graphemes refine the grapheme table, so they follow
+    # ``graphemes_base`` by default. ``allophones_base`` has no default.
     if base_field_langs.get("positional_graphemes") is None:
         base_field_langs["positional_graphemes"] = base_field_langs.get("graphemes")
 
     ancestors = raw.get("ancestors", [])
     ancestor_langs = [ancestor["code"] for ancestor in ancestors]
-    # Base specs (graphemes_base etc.) MUST be loadable — they provide data.
-    # Ancestor-only references are best-effort (ancestors may be proto-languages
-    # that exist only as stubs or not at all).
+    # A base spec must load; an ancestor-only reference may be missing.
     _base_parents = {v for v in base_field_langs.values() if v}
 
     for parent in (parent_lang, *base_field_langs.values(), *ancestor_langs):
         if parent == code:
-            continue  # Skip self-reference cycles (parent == code); invalid per schema
+            continue
         if parent and parent not in _specs:
             try:
                 _specs[parent] = load_json_spec(parent)
             except (KeyError, ValueError) as e:
-                is_base_dep = parent in _base_parents
-                if is_base_dep:
-                    # Base dependency is required for data inheritance — clear it
+                if parent in _base_parents:
                     warnings.warn(f"Could not load base '{parent}' (requested by '{code}'): {e}")
                     for field, lang in list(base_field_langs.items()):
                         if lang == parent:
                             base_field_langs[field] = None
                             raw[f"{field}_base"] = None
                 elif parent == parent_lang:
-                    # Parent language is needed for ancestry but not data — tolerate
                     parent_lang = None
-                # else: ancestor-only reference — silently skip
 
-    # merge base_merge fields (graphemes, allophones, positional_graphemes)
     merged_base_fields: Dict[str, dict] = {}
     for field in _BASE_MERGE_FIELDS:
         own_value = raw.get(field, {}) or {}
         base_lang = base_field_langs.get(field)
         if base_lang and base_lang in _specs:
             merged_base_fields[field] = {
-                # a base spec may hold None for an optional dict field
-                # (word_exceptions) — treat that as empty, not an error
                 **(getattr(_specs[base_lang], field) or {}),
                 **own_value,
             }
         else:
             merged_base_fields[field] = own_value
-    # BASE_SCALAR fields follow the graphemes_base edge: a spec that does not
-    # state one takes the value of the spec whose grapheme table it pulls in.
-    # Resolution is transitive because the base spec was itself resolved when
-    # it was loaded (bar-AT → de-AT → de-DE).
+    # BASE_SCALAR fields follow graphemes_base, transitively.
     base_scalars: Dict[str, object] = {}
     _grapheme_base_lang = base_field_langs.get("graphemes")
     for field in _BASE_SCALAR_FIELDS:
@@ -310,9 +198,7 @@ def load_json_spec(code: str) -> LanguageSpec:
     allophones = merged_base_fields["allophones"]
     positional_graphemes = merged_base_fields["positional_graphemes"]
 
-    # Ending values are normalised on every match, so a malformed one
-    # would otherwise surface as a transcription-time error on whichever
-    # word happens to end that way. Fail at load, where the spec is.
+    # Fail at load, not on the first word that ends that way.
     for ending, value in (merged_base_fields["grammatical_endings"] or {}).items():
         try:
             normalize_ending_value(value)
@@ -320,17 +206,15 @@ def load_json_spec(code: str) -> LanguageSpec:
             raise ValueError(
                 f"'{code}': grammatical_endings[{ending!r}]: {e}") from e
 
-    # parse ancestors
     try:
         ancestors = tuple(Ancestor(code=ancestor["code"],
-                                   role=ancestor["role"],  # will auto cast to enum
+                                   role=ancestor["role"],
                                    weight=ancestor.get("weight", 0.0),
                                    notes=ancestor.get("notes", ""))
                           for ancestor in ancestors)
     except Exception as e:
         raise ValueError(f"Failed to load ancestors for '{code}'") from e
 
-    # Parse sandhi rules (OVERLAY_BY_ID — see _overlay_by_id / FIELD_INHERITANCE)
     own_sandhi_rules = ()
     raw_sandhi = raw.get("sandhi_rules", [])
     if raw_sandhi:
@@ -348,10 +232,7 @@ def load_json_spec(code: str) -> LanguageSpec:
             for sr in raw_sandhi
         )
 
-    # Parse allophone rules (OVERLAY_BY_ID, like sandhi_rules — see
-    # AllophoneRule / FIELD_INHERITANCE). Each entry is a declarative
-    # phoneme→surface rewrite; unknown keys are ignored so the schema can
-    # grow without breaking older data.
+    # Unknown keys are ignored.
     own_allophone_rules: tuple = ()
     raw_allophone = raw.get("allophone_rules", [])
     if raw_allophone:
@@ -400,9 +281,6 @@ def load_json_spec(code: str) -> LanguageSpec:
             for ar in raw_allophone
         )
 
-    # Resolve every OVERLAY_BY_ID field through the same structural base edge
-    # (graphemes_base, else ancestry parent), id-keyed so a child overrides a
-    # single inherited rule by id and appends new ones.
     _own_overlay = {
         "sandhi_rules": own_sandhi_rules,
         "allophone_rules": own_allophone_rules,
@@ -419,7 +297,6 @@ def load_json_spec(code: str) -> LanguageSpec:
     sandhi_rules = _resolved_overlay["sandhi_rules"]
     allophone_rules = _resolved_overlay["allophone_rules"]
 
-    # Parse sources
     sources_raw = raw.get("sources", [])
     sources = tuple(
         LinguisticSource(
@@ -437,7 +314,6 @@ def load_json_spec(code: str) -> LanguageSpec:
         for s in sources_raw
     )
 
-    # Parse timespan
     timespan: Optional[TimeSpan] = None
     raw_timespan = raw.get("timespan")
     if raw_timespan and isinstance(raw_timespan, dict):
@@ -446,7 +322,6 @@ def load_json_spec(code: str) -> LanguageSpec:
             end_year=int(raw_timespan["end_year"]) if raw_timespan.get("end_year") is not None else None,
         )
 
-    # Parse the representative point for where the language is spoken
     location: Optional[Location] = None
     raw_loc = raw.get("location")
     if raw_loc and isinstance(raw_loc, dict):
@@ -457,7 +332,6 @@ def load_json_spec(code: str) -> LanguageSpec:
             notes=raw_loc.get("notes", "") or "",
         )
 
-    # Parse the official orthography standard, when the language has one
     orthography_standard: Optional[OrthographyStandard] = None
     raw_ortho = raw.get("orthography_standard")
     if raw_ortho and isinstance(raw_ortho, dict):
@@ -469,13 +343,7 @@ def load_json_spec(code: str) -> LanguageSpec:
             notes=raw_ortho.get("notes", "") or "",
         )
 
-    # Parse the measured valid-ceilings, keyed by the gold dataset each was
-    # folded against — a fold is defined relative to one gold's notation
-    # conventions, so the measurement is scoped to (language, dataset), never
-    # to the language alone (issue #1350). The pre-#1350 shape was a single
-    # {per, folded, citation} object hung directly off the language; that
-    # shape spread one gold's measurement across every row of the language
-    # and is rejected here rather than silently reinterpreted.
+    # A fold is measured against one gold, so ceilings are keyed by dataset.
     valid_ceiling: Optional[Dict[str, ValidCeiling]] = None
     raw_ceiling = raw.get("valid_ceiling")
     if raw_ceiling:
@@ -499,9 +367,6 @@ def load_json_spec(code: str) -> LanguageSpec:
             for dataset_name, raw_c in raw_ceiling.items()
         }
 
-    # Parse the machine-readable audit conclusions, keyed by gold dataset —
-    # mirrors valid_ceiling's shape exactly (issue #1369): a row's audit
-    # verdict is only ever meaningful against the gold it was reached about.
     audit: Optional[Dict[str, AuditRecord]] = None
     raw_audit = raw.get("audit")
     if raw_audit:
@@ -518,17 +383,10 @@ def load_json_spec(code: str) -> LanguageSpec:
             for dataset_name, raw_a in raw_audit.items()
         }
 
-    # Parse stress rules (InheritanceMode.BASE_BLOCK). A spec's own ``stress``
-    # block wins whole. A spec that declares none takes the resolved block of
-    # its ``graphemes_base``, else of the nearest data ancestor on ``inherits``
-    # when that ancestor is the same language: the child's ``iso639_3`` is
-    # unset or equal to the ancestor's. Stress placement and the accent marks
-    # that override it belong to one language and its orthography, so a
-    # variety with no code of its own (``el-CY`` under ``el``) shares them,
-    # while a language with its own code that keeps ``inherits`` for its
-    # genealogy (a creole such as Angolar ``aoa`` under ``pt-PT``, A Fala
-    # ``fax`` under ``gl-ES``) declares its own block or has none. A spec that
-    # states ``"stress": false`` takes no block at all.
+    # Stress (BASE_BLOCK): the own block wins whole. Else the block of
+    # graphemes_base, else of the nearest data ancestor when the child's
+    # iso639_3 is unset or the same (el-CY under el, not aoa under pt-PT).
+    # ``"stress": false`` takes no block.
     stress: Optional[StressRules] = None
     raw_tone = raw.get("tone_rules")
     tone_rules = None
@@ -604,10 +462,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         if stress_base and stress_base in _specs:
             stress = _specs[stress_base].stress
 
-    # Derive the classification path from the ancestry chain. The chain is
-    # walked through ``inherits``; a spec that declares its genetic parent only
-    # in ``ancestors`` (PARENT role) is classified through that instead, so a
-    # spec never has to be re-parented just to be classifiable.
+    # With no ``inherits``, the PARENT-role ancestor classifies the spec.
     classification_parent = parent_lang
     if not classification_parent:
         for ancestor in ancestors:
@@ -620,9 +475,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         except (KeyError, ValueError):
             classification_parent = None
     family_path = _derive_family_path(classification_parent)
-    # An explicit ``family`` string wins over the derived path: it is the
-    # escape hatch for groupings that are not genetic clades (creoles,
-    # constructed languages, isolates, unclassified languages).
+    # An explicit ``family`` names a grouping that is not a clade.
     family = raw.get("family") or " > ".join(family_path)
 
     spec = LanguageSpec(
@@ -636,7 +489,7 @@ def load_json_spec(code: str) -> LanguageSpec:
         phonemes=tuple(raw.get("phonemes") or ()),
         orthography_kind=OrthographyKind(raw.get("orthography_kind") or "native"),
         allophones=allophones,
-        positional_graphemes=positional_graphemes or {},  # will auto cast to enum
+        positional_graphemes=positional_graphemes or {},
         inherits=parent_lang,
         ancestors=ancestors,
         notes=raw.get("notes", ""),
@@ -694,24 +547,16 @@ def load_json_spec(code: str) -> LanguageSpec:
     )
 
     _specs[code] = spec
-
     return spec
 
 
 def load_all_json_specs() -> Dict[str, LanguageSpec]:
-    """Load all LanguageSpecs from the data directory.
-
-    Returns
-    -------
-    Dict[str, LanguageSpec]
-        Mapping of language codes to their specs.
-    """
+    """Load every spec in the data directory; a bad file only warns."""
     for code in _index:
         if code not in _specs:
             try:
                 _specs[code] = load_json_spec(code)
             except (KeyError, ValueError) as e:
-                # Log but don't crash — allows partial loading
                 warnings.warn(f"Failed to load '{code}': {e}")
     return _specs
 
