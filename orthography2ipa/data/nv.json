@@ -454,7 +454,7 @@
     "start_year": 1930,
     "end_year": null
   },
-  "parent": "x-clade-atha1245",
+  "inherits": "x-clade-atha1245",
   "ancestors": [
     {
       "code": "x-clade-atha1245",

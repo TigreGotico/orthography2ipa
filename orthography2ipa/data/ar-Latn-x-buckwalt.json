@@ -5,7 +5,7 @@
   "script_type": "alphabet",
   "orthography_kind": "transliteration",
   "quality": "research",
-  "parent": "ar",
+  "inherits": "ar",
   "allophones_base": "ar",
   "graphemes": {
     "$": [

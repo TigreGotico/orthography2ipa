@@ -27,7 +27,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Old_Japanese"
     }
   ],
-  "parent": "jpx",
+  "inherits": "jpx",
   "ancestors": [
     {
       "code": "jpx",

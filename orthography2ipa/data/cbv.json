@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-kaku1242",
+ "inherits": "x-clade-kaku1242",
  "phonemes": [
   "b",
   "b̰",

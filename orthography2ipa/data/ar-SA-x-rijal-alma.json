@@ -75,7 +75,7 @@
       "ɮˤ"
     ]
   },
-  "parent": "ar-x-peninsul",
+  "inherits": "ar-x-peninsul",
   "ancestors": [
     {
       "code": "ar-x-peninsul",

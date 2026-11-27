@@ -29,14 +29,14 @@ def test_sudanic_creole_clade_groups_juba_and_nubi():
     southern-Sudanese pidgin (Owens 1997; Manfredi 2017), so both hang from a
     single clade node whose derived family names that group."""
     for code in ("pga", "kcn"):
-        assert get(code).parent == "x-clade-sudanic-creole"
+        assert get(code).inherits == "x-clade-sudanic-creole"
         assert "Sudanic Creole Arabic" in get(code).family
     clade = get("x-clade-sudanic-creole")
     assert clade.clade is True
     # Hung under the Semitic clade (Glottolog gives the group no single code);
     # the Arabic lexifier link lives on each member's ancestors[], not by
     # inheritance, so the creoles do not pick up mainstream-Arabic allophony.
-    assert clade.parent == "x-clade-semi1276"
+    assert clade.inherits == "x-clade-semi1276"
     for code in ("pga", "kcn"):
         lexifiers = {a.code for a in get(code).ancestors if a.role.value == "lexifier"}
         assert "apd-SD" in lexifiers

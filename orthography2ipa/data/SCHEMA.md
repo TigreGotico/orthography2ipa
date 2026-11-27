@@ -46,7 +46,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
       ]
     }
   },
-  "parent": "la-x-hispania",
+  "inherits": "la-x-hispania",
   "ancestors": [
     {
       "code": "la-x-hispania",
@@ -73,7 +73,8 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `phonemes`                  | array  | see note | The phoneme inventory, stated directly and independently of `graphemes` (`["p", "t", "k", ...]`). **A spec must declare `graphemes` or `phonemes`; it may not be silent about both.** See [The inventory](#phonemes-the-inventory-stated-directly). |
 | `orthography_kind`          | string | no       | What kind of writing the graphemes are: `"native"` (default), `"romanization"`, `"transliteration"`. See [Orthography kind](#orthography-kind). |
 | `positional_graphemes`      | object | no       | Position-dependent grapheme mappings         |
-| `parent`                    | string | no       | Primary parent language code                 |
+| `inherits`                  | string | no       | Code of the spec whose rules this spec starts from |
+| `parent`                    | string | no       | Deprecated spelling of `inherits`; a spec that sets both is refused |
 | `ancestors`                 | array  | no       | Full ancestry specification                  |
 | `notes`                     | string | no       | Free-form notes and sources                  |
 | `graphemes_base`            | string | no       | Code to inherit graphemes from               |
@@ -129,7 +130,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 
 A language family is a **clade node**: a spec file whose JSON sets
 `"clade": true` and carries classification and nothing else: a `name`, a
-`parent` pointing at the next clade up, and (optionally) sources, identifiers and
+`inherits` pointing at the next clade up, and (optionally) sources, identifiers and
 a centroid `location`. It has no graphemes and no allophones, is never inherited
 from, is never a data source, and is excluded from `available_codes()` unless
 `include_clades=True` is passed.
@@ -143,17 +144,17 @@ from, is never a data source, and is excluded from `available_codes()` unless
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "parent": "la-x-hispania",
+  "inherits": "la-x-hispania",
   "notes": "Classification-only clade node for the Ibero-Romance branch."
 }
 ```
 
 Clade files are named `x-clade-{slug}.json`, use `Zyyy` (undetermined) as their
-script, and sit at `quality: "stub"` with empty maps. A clade's `parent` is
+script, and sit at `quality: "stub"` with empty maps. A clade's `inherits` is
 whatever comes next up the chain: another clade, or the ancestral language the
 branch descends from (`la-x-hispania` here).
 
-The loader derives each spec's `family_path` by walking `parent` upwards and
+The loader derives each spec's `family_path` by walking `inherits` upwards and
 collecting the clade names it passes, broadest first; `family` is that path joined
 with `" > "`:
 
@@ -162,7 +163,7 @@ get("pt-BR").family_path   # ('Indo-European', 'Italic', 'Romance', 'Ibero-Roman
 get("pt-BR").family        # 'Indo-European > Italic > Romance > Ibero-Romance'
 ```
 
-So a language is classified by pointing its `parent` at the right node, never by
+So a language is classified by pointing its `inherits` at the right node, never by
 authoring a `family` string. If the clade does not exist yet, add the node. The
 CLI filter matches any single step of the path, so `--family Romance` and
 `--family Ibero-Romance` both return `pt-BR`.
@@ -428,7 +429,7 @@ from one base, in this order:
 
 1. The resolved block of its `graphemes_base`.
 2. Without a `graphemes_base`, the resolved block of the nearest data ancestor
-   on `parent` (clade nodes are skipped). The loader takes it only when that
+   on `inherits` (clade nodes are skipped). The loader takes it only when that
    ancestor is the same language: the spec's `iso639_3` is unset, or it is
    equal to the ancestor's `iso639_3`.
 
@@ -444,7 +445,7 @@ language, and the accent marks that override it (`marked_vowels`) are graphemes
 of its orthography. A regional variety that has no ISO 639-3 code of its own
 shares them with its language: `el-CY` takes the block of `el`, and
 `it-IT-x-toscana` (`iso639_3` `ita`) takes the block of `it-IT`. A language
-with its own code that keeps `parent` only for its genealogy has its own stress
+with its own code that sets `inherits` only for its genealogy has its own stress
 system. Angolar (`aoa`, under `pt-PT`) and A Fala (`fax`, under `gl-ES`) do not
 take their parent's block. Such a spec states its own block, with a citation,
 or has none.
@@ -952,8 +953,8 @@ its first 8 characters (`ext-PT-x-barranco`). A transliteration or
 romanization after the script subtag is a variant that IANA registers
 (`nan-Latn-pehoeji`), or it goes after the `x` (`ar-Latn-x-buckwalt`). The
 prefix is not a label of convenience: it must agree with the spec's
-own `parent` and with the heaviest-weighted entry in `ancestors`. A spec whose
-`parent` is `pt-PT` cannot be keyed under a Castilic prefix, and a mismatch
+own `inherits` and with the heaviest-weighted entry in `ancestors`. A spec whose
+`inherits` is `pt-PT` cannot be keyed under a Castilic prefix, and a mismatch
 between the code and those two fields is a defect in the code, not in the
 fields. A parentless mixed language is the one exception: its private-use key
 takes its prefix from its documented external classification and need not

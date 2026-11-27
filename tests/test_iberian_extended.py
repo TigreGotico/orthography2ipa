@@ -197,7 +197,7 @@ class TestSpanishWesternAndalusian:
 
     def test_parent_is_es_es(self):
         """Parent language is es-ES."""
-        assert self.spec.parent == "es-ES"
+        assert self.spec.inherits == "es-ES"
 
 
 @pytest.mark.iberian
@@ -256,7 +256,7 @@ class TestSpanishCanarian:
 
     def test_parent_is_es_es(self):
         """Parent language is es-ES."""
-        assert self.spec.parent == "es-ES"
+        assert self.spec.inherits == "es-ES"
 
 
 @pytest.mark.iberian
@@ -314,7 +314,7 @@ class TestSpanishMurcian:
         assert vals[0] == "ʝ", f"es-ES-x-murcia: expected ll first=ʝ, got {vals[0]}"
 
     def test_parent_is_es_es(self):
-        assert self.spec.parent == "es-ES"
+        assert self.spec.inherits == "es-ES"
 
 
 @pytest.mark.iberian
@@ -358,7 +358,7 @@ class TestSpanishMexican:
         _assert_contains(_allophone(self.spec, "o"), "o̥", label="o allophone")
 
     def test_parent_is_es_es(self):
-        assert self.spec.parent == "es-ES"
+        assert self.spec.inherits == "es-ES"
 
 
 @pytest.mark.iberian
@@ -402,7 +402,7 @@ class TestSpanishChilean:
         _assert_contains(coda, "h", label="s/BEFORE_CONSONANT")
 
     def test_parent_is_es_es(self):
-        assert self.spec.parent == "es-ES"
+        assert self.spec.inherits == "es-ES"
 
 
 @pytest.mark.iberian
@@ -442,7 +442,7 @@ class TestSpanishVenezuelan:
         _assert_contains(_allophone(self.spec, "s"), "h", label="s allophone")
 
     def test_parent_is_es_es(self):
-        assert self.spec.parent == "es-ES"
+        assert self.spec.inherits == "es-ES"
 
 
 @pytest.mark.iberian
@@ -474,7 +474,7 @@ class TestSpanishLatinAmerican:
         _assert_contains(_allophone(self.spec, "s"), "h", label="s allophone")
 
     def test_parent_is_es_es(self):
-        assert self.spec.parent == "es-ES"
+        assert self.spec.inherits == "es-ES"
 
 
 @pytest.mark.iberian
@@ -590,7 +590,7 @@ class TestPortugueseLisbon:
         _assert_first(vals, "ɨ", label="ə allophone")
 
     def test_parent_is_pt_pt(self):
-        assert self.spec.parent == "pt-PT"
+        assert self.spec.inherits == "pt-PT"
 
 
 @pytest.mark.iberian
@@ -630,7 +630,7 @@ class TestPortuguesePorto:
         _assert_contains(_allophone(self.spec, "ə"), "ə", "ɨ", label="ə allophone")
 
     def test_parent_is_pt_pt(self):
-        assert self.spec.parent == "pt-PT"
+        assert self.spec.inherits == "pt-PT"
 
 
 @pytest.mark.iberian
@@ -663,7 +663,7 @@ class TestPortugueseAngolan:
         assert vals == ["s"], f"Angolan s should be [s] only, got {vals}"
 
     def test_parent_is_pt_pt(self):
-        assert self.spec.parent == "pt-PT"
+        assert self.spec.inherits == "pt-PT"
 
 
 @pytest.mark.iberian
@@ -707,7 +707,7 @@ class TestPortugueseRioDeJaneiro:
         _assert_contains(_grapheme(self.spec, "a"), "ɐ", label="a grapheme")
 
     def test_parent_is_pt_br(self):
-        assert self.spec.parent == "pt-BR"
+        assert self.spec.inherits == "pt-BR"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -761,7 +761,7 @@ class TestCatalanNord:
     def test_parent_is_old_catalan(self):
         """The dialects descend from Old Catalan, not from modern Central
         Catalan — nothing Central innovates can leak into them."""
-        assert self.spec.parent == "ca-x-medieval"
+        assert self.spec.inherits == "ca-x-medieval"
 
 
 @pytest.mark.iberian
@@ -798,7 +798,7 @@ class TestCatalanOccidental:
     def test_parent_is_old_catalan(self):
         """The dialects descend from Old Catalan, not from modern Central
         Catalan — nothing Central innovates can leak into them."""
-        assert self.spec.parent == "ca-x-medieval"
+        assert self.spec.inherits == "ca-x-medieval"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -924,7 +924,7 @@ class TestGalicianOriental:
         _assert_first(_allophone(self.spec, "tʃ"), "tʃ", label="tʃ allophone")
 
     def test_parent_is_gl(self):
-        assert self.spec.parent == "gl-ES"
+        assert self.spec.inherits == "gl-ES"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -983,7 +983,7 @@ class TestBasqueBizkaiera:
         _assert_contains(_allophone(self.spec, "s̺"), "ʃ", label="s̺ allophone")
 
     def test_parent_is_eu(self):
-        assert self.spec.parent == "eu"
+        assert self.spec.inherits == "eu"
 
 
 @pytest.mark.iberian
@@ -1008,7 +1008,7 @@ class TestBasqueGipuzkera:
         _assert_first(vals, "", label="h allophone")
 
     def test_parent_is_eu(self):
-        assert self.spec.parent == "eu"
+        assert self.spec.inherits == "eu"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1063,7 +1063,7 @@ class TestAsturianOccidental:
         assert wi is None or "f" in wi, f"ast-x-occident f/WORD_INITIAL should be [f] or absent, got {wi}"
 
     def test_parent_is_ast(self):
-        assert self.spec.parent == "ast"
+        assert self.spec.inherits == "ast"
 
 
 @pytest.mark.iberian
@@ -1087,7 +1087,7 @@ class TestAsturianOriental:
         _assert_contains(vals, "ʝ", label="ʎ allophone includes ʝ")
 
     def test_parent_is_ast(self):
-        assert self.spec.parent == "ast"
+        assert self.spec.inherits == "ast"
 
 
 @pytest.mark.iberian
@@ -1123,7 +1123,7 @@ class TestAsturianCantabrian:
         _assert_contains(_allophone(self.spec, "ʝ"), "j", "ʝ", label="ʝ allophone")
 
     def test_parent_is_ast(self):
-        assert self.spec.parent == "ast"
+        assert self.spec.inherits == "ast"
 
 
 @pytest.mark.iberian
@@ -1185,7 +1185,7 @@ class TestLeonese:
         _assert_first(_allophone(self.spec, "ʎ"), "ʎ", label="ʎ allophone")
 
     def test_parent_is_ast(self):
-        assert self.spec.parent == "ast"
+        assert self.spec.inherits == "ast"
 
 
 @pytest.mark.iberian
@@ -1261,7 +1261,7 @@ class TestAsturianPortugueseMedieval:
         _assert_first(_allophone(self.spec, "ɐ̃"), "ɐ̃", label="ɐ̃ allophone")
 
     def test_parent_is_ast_x_leon(self):
-        assert self.spec.parent == "ast-x-leon"
+        assert self.spec.inherits == "ast-x-leon"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1299,7 +1299,7 @@ class TestMirandeseSendim:
         _assert_first(_grapheme(self.spec, "uo"), "u", label="uo")
 
     def test_parent_is_mwl(self):
-        assert self.spec.parent == "mwl"
+        assert self.spec.inherits == "mwl"
 
 
 @pytest.mark.iberian
@@ -1325,7 +1325,7 @@ class TestMiraneseIfanes:
         _assert_first(_grapheme(self.spec, "iê"), "jɪ", label="iê")
 
     def test_parent_is_mwl(self):
-        assert self.spec.parent == "mwl"
+        assert self.spec.inherits == "mwl"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1352,7 +1352,7 @@ class TestAragonesOccidental:
         assert self.spec is not None
 
     def test_parent_is_an(self):
-        assert self.spec.parent == "an"
+        assert self.spec.inherits == "an"
 
     def test_inherits_graphemes(self):
         """Some graphemes should be inherited from Aragonese."""
@@ -1412,7 +1412,7 @@ class TestAragonesOriental:
         _assert_contains(_allophone(self.spec, "ʎ"), "j", label="ʎ allophone")
 
     def test_parent_is_an(self):
-        assert self.spec.parent == "an"
+        assert self.spec.inherits == "an"
 
 
 # ═══════════════════════════════════════════════════════════════════════════

@@ -439,7 +439,7 @@
     "end_year": null
   },
   "iso639_3": "mal",
-  "parent": "ta",
+  "inherits": "ta",
   "phoible_id": "mala1464",
   "wals_code": "mym",
   "location": {

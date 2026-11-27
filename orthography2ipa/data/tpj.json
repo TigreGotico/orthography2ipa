@@ -68,7 +68,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-tupi1275",
+ "inherits": "x-clade-tupi1275",
  "phonemes": [
   "d̠ʒ",
   "h",

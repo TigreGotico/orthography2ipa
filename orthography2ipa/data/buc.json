@@ -117,7 +117,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-aust1307",
+ "inherits": "x-clade-aust1307",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Bushi_language"

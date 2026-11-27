@@ -4,7 +4,7 @@
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "research",
-  "parent": "trk",
+  "inherits": "trk",
   "ancestors": [
     {
       "code": "trk",

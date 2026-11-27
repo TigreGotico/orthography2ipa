@@ -253,7 +253,7 @@
       "ŋ̊"
     ]
   },
-  "parent": "xbr",
+  "inherits": "xbr",
   "ancestors": [
     {
       "code": "xbr",

@@ -29,7 +29,7 @@ def test_is_a_maghrebi_leaf_at_research_tier():
     """`ar-TN` hangs under the Proto-Maghrebi grouping node and is now a
     research-tier spec, with the Tunis primary literature cited."""
     spec = get("ar-TN")
-    assert spec.parent == "ar-x-maghrebi"
+    assert spec.inherits == "ar-x-maghrebi"
     assert spec.quality.value == "research"
     ids = {s.id for s in spec.sources}
     assert {"singer1984", "gibson2009", "talmoudi1980"} <= ids

@@ -364,7 +364,7 @@
     "start_year": 1900,
     "end_year": null
   },
-  "parent": "cdc",
+  "inherits": "cdc",
   "ancestors": [
     {
       "code": "cdc",

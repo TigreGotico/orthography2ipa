@@ -85,7 +85,7 @@ def test_another_languages_code_is_not_an_alias(old):
 @pytest.mark.parametrize("child", ["cbk-PH-x-cavite", "cbk-PH-x-ternate"])
 def test_chavacano_children_take_the_canonical_parent(child):
     spec = get(child)
-    assert spec.parent == "cbk-PH"
+    assert spec.inherits == "cbk-PH"
     parent = get("cbk-PH").graphemes
     assert {k: spec.graphemes.get(k) for k in parent} == dict(parent)
 

@@ -21,7 +21,7 @@
     ]
   },
   "positional_graphemes_base": "eu",
-  "parent": "eu",
+  "inherits": "eu",
   "ancestors": [
     {
       "code": "eu",

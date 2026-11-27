@@ -20,7 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Chadic_languages"
   ],
-  "parent": "afa",
+  "inherits": "afa",
   "urls": [
     "https://glottolog.org/resource/languoid/id/chad1250"
   ],

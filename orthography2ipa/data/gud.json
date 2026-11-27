@@ -141,7 +141,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-krua1234",
+ "inherits": "x-clade-krua1234",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Yocobou%C3%A9_Dida_language"

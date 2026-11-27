@@ -2,7 +2,7 @@
   "code": "ast-PT-x-guadrami",
   "name": "Guadramilese",
   "script": "Latin",
-  "parent": "ast-PT-x-medieval",
+  "inherits": "ast-PT-x-medieval",
   "graphemes_base": "ast-PT-x-rionor",
   "allophones_base": "ast-PT-x-rionor",
   "positional_graphemes_base": "ast-PT-x-rionor",

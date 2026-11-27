@@ -1,7 +1,7 @@
 {
   "code": "tcy",
   "name": "Tulu",
-  "parent": "x-clade-drav1251",
+  "inherits": "x-clade-drav1251",
   "script": "Latin",
   "graphemes": {
     "a": [

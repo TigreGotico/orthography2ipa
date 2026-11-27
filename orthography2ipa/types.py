@@ -1,7 +1,7 @@
 """Type definitions for orthography2ipa.
 
 The core data model supports:
-- Single-parent inheritance (simple dialect trees)
+- Single-spec rule inheritance (simple dialect trees)
 - Multi-ancestor relationships (contact languages, creoles, transitional dialects)
 - Weighted ancestry for distance calculations
 - Positional grapheme-to-IPA mappings for context-sensitive G2P
@@ -34,6 +34,8 @@ import copy as _copy
 import warnings
 
 from linguatag import catalog_ids
+
+from orthography2ipa.version import VERSION_MAJOR
 
 
 class FrozenDict(dict):
@@ -1823,7 +1825,7 @@ class Ancestor:
 class InheritanceMode(str, Enum):
     """How a ``LanguageSpec`` field is resolved when a spec declares a base
     (``graphemes_base`` / ``allophones_base`` / ``positional_graphemes_base``)
-    or an ancestry ``parent``.
+    or an ``inherits`` spec.
     """
 
     BASE_MERGE = "base_merge"
@@ -1891,7 +1893,7 @@ class InheritanceMode(str, Enum):
     that states the field keeps its own block whole; nothing is merged key by
     key. A spec that does not state it takes the resolved block of its
     ``graphemes_base``. Without a ``graphemes_base``, it takes the block of
-    the nearest data ancestor on ``parent``, but only when that ancestor is
+    the nearest data ancestor on ``inherits``, but only when that ancestor is
     the same language: the spec's ``iso639_3`` is unset or equal to the
     ancestor's.
 
@@ -1899,8 +1901,8 @@ class InheritanceMode(str, Enum):
     accent marks that override it (``marked_vowels``) are graphemes of its
     orthography. A regional variety with no ISO 639-3 code of its own
     (``el-CY`` under ``el``, ``it-IT-x-toscana`` under ``it-IT``) shares both
-    with the language it belongs to. A language with its own code that keeps
-    ``parent`` for its genealogy (Angolar ``aoa`` under ``pt-PT``, A Fala
+    with the language it belongs to. A language with its own code that sets
+    ``inherits`` (Angolar ``aoa`` under ``pt-PT``, A Fala
     ``fax`` under ``gl-ES``) has its own stress system and its own
     orthography, so it declares its own block or has none.
 
@@ -1921,7 +1923,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "script": InheritanceMode.OWN_ONLY,
     "graphemes": InheritanceMode.BASE_MERGE,
     "allophones": InheritanceMode.BASE_MERGE,
-    "parent": InheritanceMode.OWN_ONLY,
+    "inherits": InheritanceMode.OWN_ONLY,
     "ancestors": InheritanceMode.OWN_ONLY,
     "positional_graphemes": InheritanceMode.BASE_MERGE,
     "notes": InheritanceMode.OWN_ONLY,
@@ -2074,14 +2076,14 @@ class LanguageSpec:
     """Whether ``graphemes`` encodes the language's own script, a romanization
     people actually use, or a machine transliteration of another script."""
 
-    parent: Optional[str] = None
-    """Primary parent code (backward-compatible shorthand).
+    inherits: Optional[str] = None
+    """The code of the spec whose rules this spec starts from.
     If ancestors is also set, should match the PARENT-role ancestor."""
 
     ancestors: Tuple[Ancestor, ...] = ()
     """Full ancestry specification.  Encodes multiple parents,
     substrates, superstrates, contact languages, creole origins.
-    If empty but parent is set, a default PARENT ancestor is inferred."""
+    If empty but inherits is set, a default PARENT ancestor is inferred."""
 
     positional_graphemes: Optional[PositionalGrapheme2IPA] = None
     """Optional positional grapheme→IPA overrides.
@@ -2638,8 +2640,8 @@ class LanguageSpec:
     language has no (encoded) predictable stress system.
 
     A spec with no block of its own takes its ``graphemes_base``'s block,
-    else the block of a ``parent`` that is the same language, unless it
-    states ``"stress": false`` (see :attr:`InheritanceMode.BASE_BLOCK`);
+    else the block of the ``inherits`` spec when that is the same language,
+    unless it states ``"stress": false`` (see :attr:`InheritanceMode.BASE_BLOCK`);
     consumed by
     :func:`orthography2ipa.stress.detect_stress`."""
 
@@ -2674,7 +2676,7 @@ class LanguageSpec:
     """Derived classification path — the names of the clade nodes on this
     spec's ancestry chain, broadest first (``("Indo-European", "Italic",
     "Romance", "Ibero-Romance")``). Computed by the loader by walking
-    ``parent``; never hand-written in JSON."""
+    ``inherits``; never hand-written in JSON."""
 
     word_exceptions: Optional[Dict[str, str]] = None
     """Whole-word IPA overrides for a closed set of irregular words that
@@ -2825,15 +2827,15 @@ class LanguageSpec:
                     self.positional_graphemes[grapheme][new_pos] = self.positional_graphemes[grapheme].pop(pos)
 
         # ensure main parent is set
-        if not self.ancestors and self.parent:
-            object.__setattr__(self, "ancestors", [Ancestor(code=self.parent, role=AncestorRole.PARENT, weight=1.0,
+        if not self.ancestors and self.inherits:
+            object.__setattr__(self, "ancestors", [Ancestor(code=self.inherits, role=AncestorRole.PARENT, weight=1.0,
                                                             notes="primary parent")])
-        # if "parent" is not set, check if it is defined in "ancestors"
+        # if "inherits" is not set, check if it is defined in "ancestors"
         #  this is technically incomplete json, but handle it
-        elif not self.parent and self.ancestors:
+        elif not self.inherits and self.ancestors:
             for a in self.ancestors:
                 if a.role == AncestorRole.PARENT:
-                    object.__setattr__(self, "parent", a.code)
+                    object.__setattr__(self, "inherits", a.code)
                     break
 
         # Deep-freeze every field. All construction-time mutation above is now
@@ -2912,11 +2914,22 @@ class LanguageSpec:
         """Return ancestors, optionally filtered by role.
         Synthesises from parent field if ancestors tuple is empty."""
         anc = self.ancestors
-        if not anc and self.parent:
-            anc = (Ancestor(self.parent, AncestorRole.PARENT, 1.0),)
+        if not anc and self.inherits:
+            anc = (Ancestor(self.inherits, AncestorRole.PARENT, 1.0),)
         if role is not None:
             anc = tuple(a for a in anc if a.role == role)
         return anc
+
+    @property
+    def parent(self) -> Optional[str]:
+        """Deprecated alias of :attr:`inherits`."""
+        warnings.warn(
+            f"LanguageSpec.parent is deprecated and will be removed in "
+            f"{VERSION_MAJOR + 1}.0.0; use LanguageSpec.inherits.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.inherits
 
     @property
     def glottolog_code(self) -> Optional[str]:
@@ -2935,8 +2948,8 @@ class LanguageSpec:
     @property
     def primary_parent(self) -> Optional[str]:
         """The primary parent code."""
-        if self.parent:
-            return self.parent
+        if self.inherits:
+            return self.inherits
         parents = self.get_ancestors(AncestorRole.PARENT)
         return parents[0].code if parents else None
 

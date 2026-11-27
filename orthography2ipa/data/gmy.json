@@ -7,7 +7,7 @@
   "iso639_3": "gmy",
   "graphemes": {},
   "allophones": {},
-  "parent": "x-clade-gree1276",
+  "inherits": "x-clade-gree1276",
   "ancestors": [
     {
       "code": "x-clade-gree1276",

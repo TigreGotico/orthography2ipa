@@ -159,7 +159,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-pidg1258",
+ "inherits": "x-clade-pidg1258",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Fanagalo_language"

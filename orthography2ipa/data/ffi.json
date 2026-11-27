@@ -20,5 +20,5 @@
  "urls": [
   "https://glottolog.org/resource/languoid/id/foia1236"
  ],
- "parent": "x-clade-book1242"
+ "inherits": "x-clade-book1242"
 }

@@ -53,7 +53,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-indo1319",
+ "inherits": "x-clade-indo1319",
  "phonemes": [
   "b",
   "d̠ʒ",

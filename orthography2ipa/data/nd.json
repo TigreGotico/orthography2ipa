@@ -350,7 +350,7 @@
       "notes": "Chapter 1 inventory tables (3a-3c) and the word lists (4)-(6) on pp. 4-7, read on the page image (the eScholarship scan has no text layer). Table 3b gives the three click places (dental ⟨c⟩, post-alveolar ⟨q⟩, alveolar lateral ⟨x⟩) in five series each: plain, aspirated ⟨ch qh xh⟩, voiced depressor ⟨gc gq gx⟩, voiced nasalised ⟨nc nq nx⟩ and voiced nasalised depressor ⟨ngc ngq ngx⟩. Table 3c gives the affricates: ⟨j⟩ = dʒ, ⟨tsh⟩ = both tʃʰ and the ejective tʃʼ (spelled alike), ⟨ts⟩ = tsʼ, ⟨kl⟩ = kx, prenasalised ⟨nts ntsh nkl⟩. Against this map: the depressor nasal clicks ⟨ngc ngq ngx⟩ have no key; the map's ⟨tj tjh⟩ keys are not in Sibanda's spelling, where the palatal affricates are both ⟨tsh⟩; and ⟨kl⟩ is given as kx rather than kxʼ. He also notes the velar ⟨k⟩ is a weakly voiced fricative [ɣ] in the non-depressor series. Recorded here, not changed."
     }
   ],
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "x-clade-narr1281",

@@ -117,7 +117,7 @@
       "uː"
     ]
   },
-  "parent": "x-clade-aust1305",
+  "inherits": "x-clade-aust1305",
   "ancestors": [
     {
       "code": "x-clade-aust1305",

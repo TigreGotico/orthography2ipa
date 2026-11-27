@@ -47,7 +47,7 @@
       "ʒ"
     ]
   },
-  "parent": "x-clade-doric-greek",
+  "inherits": "x-clade-doric-greek",
   "ancestors": [
     {
       "code": "x-clade-doric-greek",

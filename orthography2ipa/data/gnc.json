@@ -6,7 +6,7 @@
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "parent": "ber",
+  "inherits": "ber",
   "ancestors": [
     {
       "code": "ber",

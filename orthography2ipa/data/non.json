@@ -278,7 +278,7 @@
       "œː"
     ]
   },
-  "parent": "gem-x-north",
+  "inherits": "gem-x-north",
   "ancestors": [
     {
       "code": "gem-x-north",

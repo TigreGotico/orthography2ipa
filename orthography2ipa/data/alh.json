@@ -109,7 +109,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-mang1423",
+ "inherits": "x-clade-mang1423",
  "phonemes": [
   "c̟",
   "j",

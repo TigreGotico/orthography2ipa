@@ -226,7 +226,7 @@ class Atlas:
         self.codes = sorted(registry.available_codes())
         self.children: Dict[str, List[str]] = defaultdict(list)
         for code in self.codes:
-            parent = self.raw.get(code, {}).get("parent")
+            parent = self.raw.get(code, {}).get("inherits")
             if parent:
                 self.children[parent].append(code)
         self.aliases: Dict[str, List[str]] = defaultdict(list)
@@ -463,12 +463,12 @@ def block_header(atlas: Atlas, spec) -> str:
         end = spec.timespan.end_year
         rows.append(("Attested", f"from {spec.timespan.start_year}"
                      + (f" to {end}" if end is not None else ", living")))
-    if spec.parent and spec.parent in atlas.raw:
-        parent = atlas.raw[spec.parent]
+    if spec.inherits and spec.inherits in atlas.raw:
+        parent = atlas.raw[spec.inherits]
         historical = (parent.get("timespan") or {}).get("end_year") is not None
         rows.append(("Ancestor" if historical else "Parent",
-                     f"[{parent['name']}]({atlas.link(spec.parent)})"
-                     f" `{spec.parent}`"))
+                     f"[{parent['name']}]({atlas.link(spec.inherits)})"
+                     f" `{spec.inherits}`"))
     children = _child_lects(atlas, spec.code)
     if children:
         rows.append(("Child lects",
@@ -1241,7 +1241,7 @@ def page_hint(atlas: Atlas, code: str) -> str:
     """The ``agent-hint`` comment of the page of *code*."""
     see = ["`docs/languages/a-z.md`", "`docs/specs/quality_tiers.md`",
            "`orthography2ipa/data/SCHEMA.md`"]
-    parent = atlas.raw[code].get("parent")
+    parent = atlas.raw[code].get("inherits")
     if parent in atlas.pages:
         see.insert(0, f"`docs/languages/{parent}.md`")
     return _docs_nav().agent_hint(
