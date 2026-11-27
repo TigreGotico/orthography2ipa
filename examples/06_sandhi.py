@@ -54,6 +54,13 @@ for words_ipa, note in examples:
     print(f"    input:  {words_ipa}")
     print(f"    output: {result}")
 
+# The liaison rules read the spelling of each word, because the spec has
+# already silenced the final consonant of "les": pass the spellings too.
+result = engine.apply(["le", "ami"], spellings=["les", "amis"])
+print(f"\n  les amis, with the spellings")
+print(f"    input:  ['le', 'ami']")
+print(f"    output: {result}")
+
 
 # ── 3. obligatory_only mode ───────────────────────────────────────────────
 
