@@ -17,7 +17,6 @@ Iraqi Arabic (Northern / qəltu) is a Central Semitic variety, written in the Ar
 |:--|:--|
 | Code | `ar-IQ-x-qeltu` |
 | ISO 639-3 | [ayp](https://iso639-3.sil.org/code/ayp), North Mesopotamian Arabic |
-| Glottolog | [nort3142](https://glottolog.org/resource/languoid/id/nort3142), North Mesopotamian Arabic |
 | Wikidata | [Q56577](https://www.wikidata.org/wiki/Q56577) |
 | Wikipedia | [North Mesopotamian Arabic](https://en.wikipedia.org/wiki/North_Mesopotamian_Arabic) |
 | Family | [Afro-Asiatic](by-family.md#afro-asiatic) > [Semitic > Central Semitic](by-family.md#afro-asiatic--semitic--central-semitic) |
