@@ -4,7 +4,7 @@
 covers: how the engine ranks the readings of a word, how a rescorer changes the ranking and how to export the lattice as features
 source: `orthography2ipa/phonetok.py`, `orthography2ipa/g2p.py`, `orthography2ipa/sentence.py`
 generated: no
-verify: `PYTHONPATH=$PWD python examples/07_lattice_and_rescorer.py`
+verify: `PYTHONPATH=$PWD python -m pytest "tests/test_docs_examples.py::test_example_prints_its_text_block[docs/engine/lattice.md]" "tests/test_docs_hint_sources.py::test_hint_sources_exist[docs/engine/lattice.md]"`
 see: `docs/engine/lattice_per.md`, `docs/engine/allophony.md`
 -->
 

@@ -2569,7 +2569,7 @@ class TestRobustnessSection:
         ]
         lines = cs._robustness_section(rows)
         text = "\n".join(lines)
-        assert "**`xx`** (MIXED — wins on some golds, loses on others)" in text
+        assert "**`xx`** (MIXED: wins on some golds and loses on others)" in text
         assert "gold_a" in text and "o2i wins" in text
         assert "gold_b" in text and "o2i loses" in text
 
@@ -3062,7 +3062,7 @@ class TestLeaderboardLexiconFreeRanking:
         monkeypatch.setitem(cs.LANGS, "es", {"dataset": ("wikipron", "es")})
         lines = cs._leaderboard_summary([row])
         bullet = next(l for l in lines if l.startswith("- **es"))
-        assert bullet == "- **es (Spanish)** — epitran #1, o2i #2"
+        assert bullet == "- **es (Spanish)**: epitran #1, o2i #2"
 
     def test_epitran_still_wins_ro(self, monkeypatch):
         row = {"lang": "ro", "dataset": "wikipron", "n": 10,
@@ -3071,7 +3071,7 @@ class TestLeaderboardLexiconFreeRanking:
         monkeypatch.setitem(cs.LANGS, "ro", {"dataset": ("wikipron", "ro")})
         lines = cs._leaderboard_summary([row])
         bullet = next(l for l in lines if l.startswith("- **ro"))
-        assert bullet == "- **ro (Romanian)** — epitran #1, o2i #2"
+        assert bullet == "- **ro (Romanian)**: epitran #1, o2i #2"
 
     def test_tie_under_rules_substitution(self, monkeypatch):
         # ca-x-valencia/4catac: o2i=0.0759, espeak_rules=0.0762 (within
@@ -3093,9 +3093,9 @@ class TestLeaderboardLexiconFreeRanking:
         bullet = next(l for l in text.splitlines()
                        if l.startswith("- **ca-x-valencia"))
         assert bullet == (
-            "- **ca-x-valencia (Valencian)** — "
+            "- **ca-x-valencia (Valencian)**: "
             "tie (espeak rules-only, o2i) #1 "
-            "(espeak with its lexicon scores 0.0439 — informational)"
+            "(espeak with its lexicon scores 0.0439, informational)"
         )
         # The Winner column (_winner) and this leaderboard line must
         # agree on tie-ness for the identical row.
@@ -3163,7 +3163,7 @@ class TestLeaderboardSummary:
         ]
         monkeypatch.setitem(cs.LANGS, "it", {"dataset": ("wikipron", "it")})
         text = "\n".join(cs._leaderboard_summary(rows))
-        assert "**it (Italian)** — o2i #1 (beats epitran)" in text
+        assert "**it (Italian)**: o2i #1 (beats epitran)" in text
 
     def test_o2i_number_one_alone_when_no_lexicon_free_rival(
             self, monkeypatch):
@@ -3176,7 +3176,7 @@ class TestLeaderboardSummary:
         ]
         monkeypatch.setitem(cs.LANGS, "it", {"dataset": ("wikipron", "it")})
         text = "\n".join(cs._leaderboard_summary(rows))
-        assert "**it (Italian)** — o2i #1" in text
+        assert "**it (Italian)**: o2i #1" in text
         assert "beats" not in text.split("it (Italian)", 1)[1].split("\n", 1)[0]
 
     def test_o2i_not_first_names_the_winner_and_o2i_rank(self, monkeypatch):
@@ -3188,7 +3188,7 @@ class TestLeaderboardSummary:
         monkeypatch.setitem(
             cs.LANGS, "en-US", {"dataset": ("cmudict", "en-US")})
         text = "\n".join(cs._leaderboard_summary(rows))
-        assert ("**en-US (American English (General American))** — "
+        assert ("**en-US (American English (General American))**: "
                 "espeak rules-only #1, o2i #2") in text
         # espeak's stock (lexicon-backed) 0.30 beats both o2i (0.50) AND
         # espeak_rules (0.35) — it must surface as a named informational
@@ -3814,7 +3814,7 @@ class TestLexiconTierRendering:
         lines = cs._lexicon_backed_tier_lines(self._rows())
         text = "\n".join(lines)
 
-        assert ("## Lexicon-backed tier — gold filtered against all "
+        assert ("## Lexicon-backed tier, gold filtered against all "
                 "compared lexicons") in text
         assert "| 100 | 70 |" in text
         assert "tugaphone (stock)" in text
@@ -4155,12 +4155,12 @@ class TestFamilySectionLinksOnlyPublicRepos:
     def test_private_repo_is_named_without_a_link(self):
         text = "\n".join(cs._o2i_family_section([]))
         assert "github.com/TigreGotico/udarnik" not in text
-        assert "- **udarnik** — adds " in text
+        assert "- **udarnik**: adds " in text
 
     @pytest.mark.parametrize("repo", ["arbtok", "tugaphone"])
     def test_public_repo_keeps_its_link(self, repo):
         text = "\n".join(cs._o2i_family_section([]))
-        assert f"- **[{repo}](https://github.com/TigreGotico/{repo})** — adds " in text
+        assert f"- **[{repo}](https://github.com/TigreGotico/{repo})**: adds " in text
 
     @pytest.mark.parametrize("repo, project", [
         ("g2p_barranquenho", "g2p-barranquenho"),
@@ -4168,5 +4168,5 @@ class TestFamilySectionLinksOnlyPublicRepos:
     ])
     def test_pypi_only_engine_links_to_pypi(self, repo, project):
         text = "\n".join(cs._o2i_family_section([]))
-        assert f"- **[{repo}](https://pypi.org/project/{project}/)** — adds " in text
+        assert f"- **[{repo}](https://pypi.org/project/{project}/)**: adds " in text
         assert f"github.com/TigreGotico/{repo}" not in text
