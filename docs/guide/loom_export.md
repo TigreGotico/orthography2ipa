@@ -61,11 +61,15 @@ o2i.spec_revisions = ['sha256:3cc0986e71aa4de4166e748163949a0ff9d415b23b981a2861
 
 The key `o2i.phonemizer_identity` holds a JSON object with one identity per language. Each identity has the keys of the `PhonemizerIdentity` of scriptconv, which a phoonnx voice records as `phonemizer_identity`: `backend`, `distribution`, `version`, `lang`, `revision` and `frontend`. Its `revision` is the IR revision.
 
+For each language, the key `o2i.phonemes.<code>` holds the phoneme set of its IR as an array of strings: every segment that the language can emit, equal to `orthography2ipa.phoneme_set(code)`. The segments are NFD and hold no stress marks or syllable dots. A voice reads the key at load time and checks that its symbol table holds each segment. A language with an empty set, such as a stub, has no key. The set is exact for well-formed words with the default options: no dialect profile, no lexicon and no host hooks.
+
+The set holds no stress marks (ˈ ˌ), syllable dots or tie bars. A voice adds ˈ and ˌ to its symbol table itself. A tied segment such as `t͡ʃ` is one entry of the set, so a voice that reads one code point per symbol splits each segment into its code points. Any language code that `orthography2ipa.registry.resolve` accepts works, lect codes included.
+
 Record `o2i.spec_revisions` with the voice. [revisions.md](revisions.md) says what moves a revision, and how to compare two of them.
 
-A plugin that ships a word table gives it to the export with `--fragment PATH`. Repeat the flag for more than one file. A fragment is a JSON file `{"ir_version": 1, "words": {"word": "ipa"}}`. The export merges the word tables into every language, and a later file wins on a duplicate word. The key `o2i.fragments` lists the sha256 of each fragment, and the revision of each language covers the words.
+A plugin that ships a word table gives it to the export with `--fragment PATH`. Repeat the flag for more than one file. A fragment is a JSON file `{"ir_version": 1, "words": {"word": "ipa"}}`. A fragment may carry `langs`, a list of language codes: `{"ir_version": 1, "langs": ["pt-PT"], "words": {"casa": "ˈkazɐ"}}`. The export merges the word tables into each language in the fragment's scope, and a later file wins on a duplicate word. A fragment without `langs` applies to every language. A code of `langs` matches a language when both resolve to the same registered code, so a fragment for `pt-PT` does not reach `pt-PT-x-lisbon`. A code that names no registered language is an error. The key `o2i.fragments` lists the sha256 of each fragment, and the revision of each language covers the words.
 
-A fragment may also carry `sandhi`, a list of rules between words, and `unsupported`, a list of the names of the plugin's rules that a fragment cannot express. A sandhi rule has the keys `left`, `right`, `left_out` and `right_out` of a spec sandhi rule, and may add `left_spelling` and `right_spelling`, patterns on the written word, or `"pause": true` for a rule on a word at a pause. The export adds the rules after the rules of each spec. The key `o2i.unsupported` lists the names from `unsupported`: the loom file does not run those rules, so the plugin keeps them as a host hook.
+A fragment may also carry `sandhi`, a list of rules between words, and `unsupported`, a list of the names of the plugin's rules that a fragment cannot express. A sandhi rule has the keys `left`, `right`, `left_out` and `right_out` of a spec sandhi rule, and may add `left_spelling` and `right_spelling`, patterns on the written word, or `"pause": true` for a rule on a word at a pause. The export adds the rules after the rules of each spec in scope. The key `o2i.unsupported` lists the names from `unsupported`: the loom file does not run those rules, so the plugin keeps them as a host hook.
 
 ## Step 3: pin the spec data of the training run
 
@@ -160,7 +164,7 @@ The codepoints `712 112 603 100 638 592` spell `ˈpɛdɾɐ`.
 >>> out = Path(tempfile.mkdtemp()) / "voice.gguf"
 >>> meta = export_to_loom(["pt-PT", "kab"], out)
 >>> sorted(meta)
-['o2i_version', 'phonemizer_identity', 'ruleset', 'spec_revisions']
+['fragments', 'o2i_version', 'phonemes', 'phonemizer_identity', 'ruleset', 'spec_revisions', 'unsupported']
 >>> GGUFReader(str(out)).fields["o2i.spec_revisions"].contents() == list(meta["spec_revisions"].values())
 True
 >>> export_to_loom(["kab"], out, expect_revisions={"kab": "sha256:0"})  # doctest: +ELLIPSIS

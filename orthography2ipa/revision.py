@@ -52,6 +52,7 @@ ENGINE_MODULES: Tuple[str, ...] = (
     "lexicon",
     "lm",
     "markup",
+    "phonemes",
     "phonetok",
     "pipeline",
     "plugins",

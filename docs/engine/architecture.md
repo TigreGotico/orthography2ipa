@@ -4,7 +4,7 @@
 covers: the stages from text to IPA, the module of each stage and the design choices behind them
 source: orthography2ipa/g2p.py, orthography2ipa/phonetok.py, orthography2ipa/stress.py, orthography2ipa/sandhi.py, orthography2ipa/sentence.py, orthography2ipa/ir/compiler.py, orthography2ipa/ir/interpreter.py
 generated: no
-verify: PYTHONPATH=$PWD .venv/bin/python -m pytest tests/test_docs_prose.py tests/test_g2p_engine.py
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_g2p_engine.py "tests/test_docs_hint_sources.py::test_hint_sources_exist[docs/engine/architecture.md]"`
 see: docs/engine/ir.md, docs/engine/plugins.md, docs/engine/tokenizer.md, docs/engine/lattice.md, docs/contributing/engine.md
 -->
 

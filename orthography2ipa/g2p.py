@@ -148,10 +148,7 @@ class WordTranscription:
 
     unmapped: Tuple[str, ...] = ()
     """Characters in :attr:`word` with no grapheme mapping in the spec's
-    table (i.e. the tokenizer emitted an ``UNKNOWN`` token for them).
-    Empty when every character mapped, including for words that are
-    genuinely silent (pure punctuation) — those never reach this stage
-    since punctuation is stripped during word splitting."""
+    table."""
 
     coverage: float = 1.0
     """Fraction of :attr:`word`'s characters that mapped to a grapheme,
@@ -159,20 +156,8 @@ class WordTranscription:
 
     confidence: float = 1.0
     """Per-word confidence that :attr:`ipa` is the right pronunciation, in
-    ``[0.0, 1.0]`` — a pure, deterministic read off the pronunciation
-    lattice (Workstream B5). It is the ``[0, 1]``-normalised weakest-link
-    of three lattice signals: the top-1 vs top-2 ``cost`` **margin** per
-    slot (small margin = ambiguous), the **rarity** of each slot's winning
-    candidate (a high-cost winner is a rare mapping), and this word's
-    :attr:`coverage` (any unmapped grapheme sharply lowers it). An
-    unambiguous, fully-mapped word scores near ``1.0``; a known-ambiguous
-    word (e.g. English ⟨th⟩) scores clearly lower; a word with an OOV
-    character scores low. It exists so a downstream specialized phonemizer
-    can spend its expensive lexicon/rules only where the base engine is
-    unsure and trust the fallback elsewhere. See :meth:`G2P.word_confidence`
-    and ``docs/engine/lattice.md`` for the exact formula. ``1.0`` is the neutral
-    default for a word built without the lattice (e.g. a plain
-    :class:`WordTranscription` constructed by a caller)."""
+    ``[0.0, 1.0]``: see :meth:`G2P.word_confidence`. ``1.0`` for a word
+    built without the lattice."""
 
 
 @dataclass(frozen=True)
@@ -255,12 +240,7 @@ def _field_stages(pipeline: Pipeline, named: dict, normalizer, rescorer,
 
 
 class _StagePlugins:
-    """The plugins this engine runs, resolved once, per stage.
-
-    Resolution is lazy per stage and cached: a spec that names nothing pays
-    nothing, and a spec that names something missing fails the first time that
-    stage runs — loudly, with the name it wanted and the names it found.
-    """
+    """The plugins this engine runs, resolved lazily and once per stage."""
 
     def __init__(self, spec, declared: dict) -> None:
         self._spec = spec
@@ -404,11 +384,7 @@ class G2P:
         field_stages = _field_stages(
             self.pipeline, named, normalizer, rescorer, sentence_rescorer)
         #: Whether a list-valued ``grammatical_endings`` entry adds its
-        #: lower-ranked readings to the beam. The scoreboard turns it off: the
-        #: board defines ``PER - Oracle@k`` as ranking error, and an injected
-        #: alternative lowers an oracle by construction (see
-        #: docs/evaluation/benchmarks.md, "Injected alternatives do not count
-        #: as ranking error"). 1-best is unaffected.
+        #: lower-ranked readings to the beam. 1-best is unaffected.
         self.expose_ambiguous_endings = expose_ambiguous_endings
         if on_unmapped not in ("warn", "ignore", "log", "raise"):
             raise ValueError(
@@ -645,18 +621,8 @@ class G2P:
     ) -> SentenceLattice:
         """The whole utterance as an ordered :class:`~orthography2ipa.sentence.SentenceLattice`.
 
-        Unlike :meth:`transcribe_detailed` (which flattens to strings), this
-        exposes every word's per-grapheme lattice
-        (:meth:`ipa_lattice`) **in order**, with word boundaries and each
-        word's phrase / utterance :class:`~orthography2ipa.sentence.Position`,
-        so a downstream cross-word rule can see the entire utterance's ranked
-        candidates and positional context — the object a
-        :class:`~orthography2ipa.sentence.SentenceRescorer` consumes.
-
-        This is a **read** method: it never applies sentence rescorers or the
-        spec's sandhi pass, and never affects :meth:`transcribe`. Its
-        :attr:`~orthography2ipa.sentence.SentenceLattice.ipa` is the
-        per-word (post-stress, pre-cross-word) reading.
+        It applies no sentence rescorer and no sandhi: its ``ipa`` is the
+        per-word reading after stress.
         """
         width = self._width(search, beam_width)
         it = self._interpreter
@@ -694,14 +660,9 @@ class G2P:
     def _word_positions(
         words: List[ir_kinds._Word],
     ) -> Tuple[List[Position], List[Position]]:
-        """Compute each word's (phrase_position, utterance_position).
-
-        Phrases are the punctuation-bounded runs the tokenizer already marks:
-        a word with ``pausal=True`` is phrase-final, and the word after it
-        opens the next phrase. The utterance span is the whole word list.
-        """
+        """Each word's (phrase_position, utterance_position). A pausal word
+        ends a phrase."""
         n = len(words)
-        # Phrase spans: split after every pausal word.
         phrase: List[Position] = [Position.MEDIAL] * n
         start = 0
         for i, w in enumerate(words):
@@ -764,28 +725,16 @@ class G2P:
     ) -> List[SegmentSlot]:
         """Structured pronunciation lattice for a single *word*.
 
-        Returns one :class:`~orthography2ipa.phonetok.SegmentSlot` per
-        GRAPHEME token, in surface order, with ranked ``-log P``
-        candidates. Unlike
-        :meth:`PhonetokTokenizer.ipa_lattice`, the engine additionally
-        supplies **stress/syllable context**, so the stress-conditioned
-        nucleus positions fire — the slots reflect the same positional +
-        weight scoring the engine uses to pick a pronunciation.
-
-        The lattice is the *pre-lexical* phoneme lattice: it is built
-        before stress-mark insertion and cross-word sandhi (which act on
-        the whole utterance), and before any word-level override —
-        ``word_exceptions`` or the ``grammatical_endings`` tail rewrite.
-        Concatenating each slot's top candidate therefore matches the
-        engine's chosen pronunciation up to those later stages — it is the
-        object a downstream rescorer (B4) or confidence signal (B5) reads.
+        One :class:`~orthography2ipa.phonetok.SegmentSlot` per grapheme
+        token, in surface order, with ranked ``-log P`` candidates under
+        stress context. It is built before stress marks, sandhi,
+        ``word_exceptions`` and the ``grammatical_endings`` rewrite.
         """
         keep = 2 ** 31 if beam_width < 0 else beam_width
         cache_key = (word, keep)
         cached = self._lattice_cache.get(cache_key)
         if cached is not None:
-            # SegmentSlot is frozen, so sharing the elements is safe; a fresh
-            # list guards the cache against a caller that mutates the sequence.
+            # A fresh list, so a caller that mutates it cannot change the cache.
             return list(cached)
         it = self._interpreter
         result = [
@@ -799,14 +748,8 @@ class G2P:
     def word_confidence(self, word: str, *, beam_width: int = 8) -> float:
         """Per-word confidence for *word*, in ``[0.0, 1.0]`` (Workstream B5).
 
-        A pure, deterministic read off the pronunciation lattice: the
-        weakest-link (minimum) per-slot confidence — combining each slot's
-        top-1 vs top-2 ``cost`` margin (ambiguity) and its winner's absolute
-        ``cost`` (rarity) — multiplied by the word's grapheme ``coverage``
-        (OOV signal). ``1.0`` for an unambiguous, fully-mapped word; clearly
-        lower for a known-ambiguous word; low when a character is OOV. This
-        is the number surfaced as :attr:`WordTranscription.confidence`; a
-        downstream engine uses it to decide where to spend effort. See
+        The minimum per-slot confidence (top-1 vs top-2 margin and winner
+        cost) times the grapheme ``coverage``. See
         :func:`orthography2ipa.phonetok.slot_confidence` and
         ``docs/engine/lattice.md``.
         """
@@ -817,12 +760,7 @@ class G2P:
     ) -> ConfidenceBreakdown:
         """Full :class:`ConfidenceBreakdown` behind :meth:`word_confidence`.
 
-        Exposes the per-slot confidences, the pre-coverage lattice
-        confidence, and the coverage/unmapped OOV signal separately, for a
-        downstream engine that wants to localise *which* position the base
-        engine was unsure about. A lexicon-``word_exceptions`` override is a
-        certain answer, so its lattice confidence is ``1.0`` (only coverage
-        can lower it).
+        A word with an override has lattice confidence ``1.0``.
         """
         override = self._interpreter._override_for(word, self._ir_lexicon())
         unmapped, coverage = self._unmapped_chars(word)
@@ -845,22 +783,9 @@ class G2P:
     def features(self, text: str) -> List[WordFeatures]:
         """Per-word linguistic **feature view** for downstream ML / CRF G2P.
 
-        A PURE READ over the shared pronunciation lattice and grapheme
-        context — it never affects :meth:`transcribe`. Returns one
-        :class:`~orthography2ipa.features.WordFeatures` per word (using the
-        same normalizer + word split as :meth:`transcribe`), each holding a
-        :class:`~orthography2ipa.features.GraphemeFeatures` per grapheme with
-        phonological-class predicates, word-local neighbours, the ranked
-        ``(ipa, cost)`` candidate lattice, top-1 / margin, and the per-word
-        confidence signal (Workstream B5).
-
-        It reuses :meth:`ipa_lattice` (candidates + stress context),
-        :meth:`confidence_breakdown` (the confidence value) and
-        :func:`~orthography2ipa.phonetok.flat_contexts` (predicates +
-        neighbours) — no vowel logic is recomputed. Every record's
-        :meth:`~orthography2ipa.features.GraphemeFeatures.as_dict` is a flat,
-        JSON-able, CRF-consumable feature dict. See ``docs/engine/lattice.md#feature-export-for-a-learned-model`` for
-        the CRF-as-rescorer pattern and a worked example.
+        One :class:`~orthography2ipa.features.WordFeatures` per word of the
+        :meth:`transcribe` word split. See
+        ``docs/engine/lattice.md#feature-export-for-a-learned-model``.
         """
         out: List[WordFeatures] = []
         it = self._interpreter
@@ -913,13 +838,7 @@ class G2P:
         return phoneme_inventory(self.spec, self.pipeline.lexicon)
 
     def _check_forced(self, ipa: str) -> str:
-        """Hold forced IPA to the spec's declared inventory.
-
-        A symbol the spec never declares has no vector in a TTS frontend's
-        embedding table — it is built from the declared inventory before training
-        — so a word carrying it is mispronounced permanently, and silently. Better
-        to say so here, at the call site that asked for it.
-        """
+        """Hold forced IPA to the spec's declared inventory."""
         ipa = ipa.strip()
         if self.allow_undeclared_phonemes:
             return ipa
@@ -948,43 +867,16 @@ class G2P:
                         beam_width: Optional[int] = None) -> List[str]:
         """The top-*k* full transcriptions of *word*, best first.
 
-        Unlike :meth:`candidates`, which exposes the RAW beam paths (no
-        stress marks, no geminate collapse, no grammatical-ending
-        rewrite, no lexicon override), every string returned here has
-        been through the same word-final pipeline as
-        :meth:`transcribe_word` — geminate collapse, grammatical-ending
-        rewrite, stress marking, and the lexicon/``word_exceptions``
-        override.
+        Each string has been through the word-final steps of
+        :meth:`transcribe_word`, unlike the raw paths of :meth:`candidates`.
+        The beam is ``max(k, 8)`` wide by default, so element 0 can be a
+        cheaper path than the greedy :meth:`transcribe_word`; pass
+        ``beam_width=1`` for the greedy path.
 
-        Element 0 is normally ``transcribe_word(word)``, but that is an
-        EMPIRICAL property, not a guarantee. :meth:`transcribe_word`
-        defaults to ``search="greedy"``, which prunes to a single
-        hypothesis at every step; this method runs a real beam of
-        ``max(k, 8)``. A wider beam may reach a cheaper path that greedy
-        pruning discarded, in which case element 0 is the BETTER reading
-        and differs from :meth:`transcribe_word`. Pass
-        ``beam_width=1`` to force the greedy path and make the identity
-        hold by construction, at the cost of getting one candidate.
-
-        The benchmark harness relies on the identity to make oracle@k
-        comparable to the 1-best PER, so it re-checks it on every run
-        and aborts on a mismatch rather than trusting it.
-
-        Duplicates are collapsed (two beam paths often finalize to the
-        same string once stress and geminate collapse have run), so the
-        result may be shorter than *k*. A word with a lexicon or
-        ``word_exceptions`` override has exactly ONE reading — the
-        override — and the list has length 1: no beam is consulted. A
-        hyphen-joined compound (``compound_stress="last"``) and a word that
-        ends in a ``noncohering_suffixes`` entry also have one reading, the
-        one :meth:`transcribe_word` returns.
-
-        *beam_width* defaults to ``max(k, 8)``; a beam narrower than *k*
-        cannot produce *k* readings.
-
-        Returns an EMPTY list for a word with no pronounceable output
-        (every path finalized to an empty string) — the caller decides
-        what that means rather than receiving a fabricated reading.
+        Duplicates collapse, so the list can be shorter than *k*. An
+        override, a hyphen-joined compound or a word that ends in a
+        ``noncohering_suffixes`` entry gives one reading. A word with no
+        pronounceable output gives an empty list.
         """
         if k < 1:
             raise ValueError(f"k must be >= 1, got {k}")
@@ -1009,16 +901,8 @@ class G2P:
 
 
     def _unmapped_chars(self, word: str) -> Tuple[Tuple[str, ...], float]:
-        """Return (unmapped_chars, coverage) for *word*.
-
-        ``unmapped_chars`` are the surface characters of any ``UNKNOWN``
-        or ``DIGIT`` token the tokenizer produced for *word* — characters the
-        spec's grapheme table does not cover, so the transcription drops them.
-        ``coverage`` is the fraction of ``GRAPHEME``/``UNKNOWN``/``DIGIT``
-        characters that mapped successfully.
-        Punctuation/whitespace never reach this method (already stripped
-        by the word split), so it is not part of the calculation.
-        """
+        """The characters of the ``UNKNOWN`` and ``DIGIT`` tokens of *word*,
+        and the fraction of its characters that mapped."""
         it = self._interpreter
         unmapped: List[str] = []
         total_chars = 0

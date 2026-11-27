@@ -20,7 +20,7 @@ import benchmark  # noqa: E402
 
 def _row(lang, dataset, per=0.1):
     return {"lang": lang, "dataset": dataset, "n": 50, "per": per,
-            "quality_tier": "research", "provenance": "crowd-scraped",
+            "quality_tier": "research", "provenance": "crowd-scraped", "gating": False,
             "harness_version": benchmark.HARNESS_VERSION, "limit": None}
 
 
@@ -38,6 +38,8 @@ def board(tmp_path, monkeypatch):
     monkeypatch.setattr(benchmark, "ENVIRONMENT_JSON",
                         str(tmp_path / "results_environment.json"),
                         raising=False)
+    monkeypatch.setattr(benchmark, "RESULTS_SUMMARY_JSON",
+                        str(tmp_path / "results_summary.json"))
     return results, committed
 
 
