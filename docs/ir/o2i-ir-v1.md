@@ -69,7 +69,7 @@ The canonical document has these top-level fields. `layout.LAYOUT` (`orthography
 | `tone` | The computed-tone system (3.9). |
 | `inherent` | The abugida inherent vowel (3.3.2). |
 | `endings` | Grammatical endings (3.5). |
-| `phonemes` | The phoneme set: every segment that the IR can emit, cut by the segment rule of the PER board (NFD, no stress marks or syllable dots). The compiler computes it from the other runtime fields (`orthography2ipa.phonemes.ir_phonemes`). Interpreters do not read it, so it changes no output and has no version in the manifest. It is in the canonical bytes, so it moves the revision with the fields it comes from. |
+| `phonemes` | The phoneme set: every segment that the IR can emit, cut by the segment rule of the PER board (NFD, no stress marks or syllable dots). The compiler computes it from the other runtime fields (`orthography2ipa.phonemes.ir_phonemes`). The set is exact for well-formed words with the default options: no dialect profile, no lexicon and no host hooks. Interpreters do not read it, so it changes no output and has no version in the manifest. It is in the canonical bytes, so it moves the revision with the fields it comes from. |
 | `primitives` | The manifest (8.1) as `{name: version}`. Outside the canonical bytes, because the revision hashes the manifest string itself. |
 | `bits` | The bit names in bit order: `{"char": [...], "entry": [...]}`. The names are fixed (2.4). |
 | `debug` | Readable notes. Interpreters ignore it. Outside the revision hash. |

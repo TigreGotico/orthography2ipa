@@ -61,7 +61,9 @@ o2i.spec_revisions = ['sha256:3cc0986e71aa4de4166e748163949a0ff9d415b23b981a2861
 
 The key `o2i.phonemizer_identity` holds a JSON object with one identity per language. Each identity has the keys of the `PhonemizerIdentity` of scriptconv, which a phoonnx voice records as `phonemizer_identity`: `backend`, `distribution`, `version`, `lang`, `revision` and `frontend`. Its `revision` is the IR revision.
 
-For each language, the key `o2i.phonemes.<code>` holds the phoneme set of its IR as an array of strings: every segment that the language can emit, equal to `orthography2ipa.phoneme_set(code)`. The segments are NFD and hold no stress marks or syllable dots. A voice reads the key at load time and checks that its symbol table holds each segment. A language with an empty set, such as a stub, has no key.
+For each language, the key `o2i.phonemes.<code>` holds the phoneme set of its IR as an array of strings: every segment that the language can emit, equal to `orthography2ipa.phoneme_set(code)`. The segments are NFD and hold no stress marks or syllable dots. A voice reads the key at load time and checks that its symbol table holds each segment. A language with an empty set, such as a stub, has no key. The set is exact for well-formed words with the default options: no dialect profile, no lexicon and no host hooks.
+
+The set holds no stress marks (ˈ ˌ), syllable dots or tie bars. A voice adds ˈ and ˌ to its symbol table itself. A tied segment such as `t͡ʃ` is one entry of the set, so a voice that reads one code point per symbol splits each segment into its code points. Any language code that `orthography2ipa.registry.resolve` accepts works, lect codes included.
 
 Record `o2i.spec_revisions` with the voice. [revisions.md](revisions.md) says what moves a revision, and how to compare two of them.
 
@@ -162,7 +164,7 @@ The codepoints `712 112 603 100 638 592` spell `ˈpɛdɾɐ`.
 >>> out = Path(tempfile.mkdtemp()) / "voice.gguf"
 >>> meta = export_to_loom(["pt-PT", "kab"], out)
 >>> sorted(meta)
-['o2i_version', 'phonemes', 'phonemizer_identity', 'ruleset', 'spec_revisions']
+['fragments', 'o2i_version', 'phonemes', 'phonemizer_identity', 'ruleset', 'spec_revisions', 'unsupported']
 >>> GGUFReader(str(out)).fields["o2i.spec_revisions"].contents() == list(meta["spec_revisions"].values())
 True
 >>> export_to_loom(["kab"], out, expect_revisions={"kab": "sha256:0"})  # doctest: +ELLIPSIS

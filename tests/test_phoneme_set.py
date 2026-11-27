@@ -9,7 +9,8 @@ from orthography2ipa.ir import cache, compiler
 from orthography2ipa.phonemes import ir_phonemes, segments
 from orthography2ipa.registry import resolve
 
-LEADERS = ["pt-PT", "pt-BR", "es-CO", "fr-FR", "it-IT", "de-DE", "nl-NL", "da-DK", "kab", "hi-IN", "bn-IN"]
+LEADERS = ["pt-PT", "pt-BR", "es-CO", "fr-FR", "it-IT", "de-DE", "nl-NL", "da-DK", "kab", "hi-IN", "bn-IN",
+           "car", "gv", "ro-RO", "sms"]
 
 
 def _words(keys, n, seed):

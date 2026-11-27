@@ -128,6 +128,9 @@ def ir_phonemes(ir: dict) -> List[str]:
     splices it onto a segment that is not a carrier (3.3.6). A positional
     reading of the nasal mark alone does not count: its predicate places it
     after a vowel, and the exactness test holds this.
+
+    The set is exact for well-formed words with the default options: no
+    dialect profile, no lexicon and no host hooks.
     """
     has = _char_test(ir)
     texts = {t for t in _outputs(ir) if t}
@@ -166,8 +169,6 @@ def ir_phonemes(ir: dict) -> List[str]:
         found.update(segs)
     if "iambic" in ir.get("stress", {}):
         found.update([seg + _LENGTH for seg in found if has(seg[0], "ipa_vowel")])
-    if "tone_dock" in ir.get("word", {}):
-        marks.update(chr(cp) for cp in ir["chars"] if has(chr(cp), "tone_mark") and _attaches(chr(cp)))
     base = list(found)
     for mark in marks:
         found.update(segments(seg + mark)[-1] for seg in base)
@@ -182,7 +183,10 @@ def phoneme_set(lang: str) -> FrozenSet[str]:
     The segments follow :func:`segments`: NFD, without stress marks or
     syllable dots, so a consumer cuts a transcription with :func:`segments`
     and checks each piece against this set. A lexicon is outside the IR, so
-    the set does not cover a lexicon or a host hook.
+    the set does not cover a lexicon or a host hook. The set is exact for
+    well-formed words with the default options: no dialect profile, no
+    lexicon and no host hooks. Any code that ``resolve`` accepts works,
+    lect codes included.
 
     >>> "ʎ" in phoneme_set("pt-PT")
     True
