@@ -1,6 +1,6 @@
 {
- "o2i_version": "7.133.1a1",
- "o2i_git_sha": "69ee32c371f989023199adbf0e9f411b176d5820",
+ "o2i_version": "7.133.1a4",
+ "o2i_git_sha": "fe4191c8124e0543fe9935cf4b6bf9ad58ab2404",
  "harness_version": "1.1",
  "min_n": 1000,
  "rows": [
@@ -4056,7 +4056,7 @@
    "gating": true,
    "headline": true,
    "n": 85500,
-   "strict_per": 0.0512,
+   "strict_per": 0.0508,
    "folded_per": null,
    "folds": []
   },
@@ -4069,7 +4069,7 @@
    "gating": false,
    "headline": false,
    "n": 9446,
-   "strict_per": 0.0788,
+   "strict_per": 0.0782,
    "folded_per": null,
    "folds": []
   },
@@ -4082,7 +4082,7 @@
    "gating": true,
    "headline": true,
    "n": 245718,
-   "strict_per": 0.0583,
+   "strict_per": 0.0574,
    "folded_per": null,
    "folds": []
   },
