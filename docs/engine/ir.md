@@ -4,7 +4,7 @@
 covers: how the compiler, the versioned IR and the interpreters work, and what each stage does to one word
 source: orthography2ipa/ir/compiler.py, orthography2ipa/ir/interpreter.py, orthography2ipa/ir/interpreter.lua, orthography2ipa/ir/layout.py
 generated: no
-verify: .venv/bin/python -m doctest docs/engine/ir.md
+verify: `PYTHONPATH=$PWD python -m doctest docs/engine/ir.md && PYTHONPATH=$PWD python -m pytest "tests/test_docs_hint_sources.py::test_hint_sources_exist[docs/engine/ir.md]"`
 see: docs/ir/o2i-ir-v1.md, docs/guide/loom_export.md, docs/guide/revisions.md, docs/contributing/behaviour_is_data.md
 -->
 
