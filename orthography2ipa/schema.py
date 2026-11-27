@@ -374,6 +374,8 @@ class StressRulesModel(_Strict):
     coda_liquid_capture: bool = False
     secondary_stress: Literal["", "alternating"] = ""
     compound_stress: Literal["", "last"] = ""
+    noncohering_suffixes: Optional[List[str]] = None
+    noncohering_exceptions: Optional[List[str]] = None
     iambic_length: bool = False
     source: Literal["rules", "plugin"] = "rules"
     notes: Optional[str] = None
@@ -391,7 +393,8 @@ class StressRulesModel(_Strict):
 
     @field_validator("final_stress_endings", "penult_stress_endings",
                      "antepenult_stress_endings", "unstressed_prefixes", "schwa_rimes",
-                     "marked_vowels", "cliticless_words")
+                     "marked_vowels", "cliticless_words", "noncohering_suffixes",
+                     "noncohering_exceptions")
     @classmethod
     def _non_empty_entries(cls, v: Optional[List[str]]) -> Optional[List[str]]:
         if v is not None and any(not entry for entry in v):

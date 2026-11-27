@@ -193,6 +193,7 @@ class Interpreter:
         self.hooks = Hooks()
         if self.stress:
             self._cliticless = frozenset(self.stress["cliticless"])
+            self._noncohering = self.stress.get("noncohering")
             onsets = self.stress.get("mark_onsets")
             self._mark_table = {tuple(t) for t in onsets["table"]} if onsets else None
         self._hiatus_on = bool(self.syll.get("closed_hiatus") or self.syll.get("final_diphthongs"))
@@ -725,6 +726,22 @@ class Interpreter:
             return ""
         count = sum(1 for t in self.grapheme_tokens(word) if t.position < apostrophe)
         return "".join(paths[0][0][:count])
+
+    def noncohering_split(self, word: str) -> Optional[Tuple[str, str]]:
+        """*word* as (base, suffix) when it ends in a suffix that starts a
+        stress domain of its own, or ``None``."""
+        if not self.stress or self._noncohering is None:
+            return None
+        key = self.nfc(self.casefold(word))
+        if key in self._noncohering["exceptions"]:
+            return None
+        for suffix in self._noncohering["suffixes"]:
+            # A base-final consonant is left joined: read alone, it loses the
+            # assimilation to the suffix onset (feliz-mente [ʒm]).
+            if key.endswith(suffix) and len(key) > len(suffix) and self._c(key[-len(suffix) - 1], "orth_vowel"):
+                cut = len(word) - len(suffix)
+                return word[:cut], word[cut:]
+        return None
 
     def _is_cliticless(self, word: str, elided: bool = True) -> bool:
         if not self.stress or not self._cliticless:
@@ -2242,7 +2259,12 @@ class Interpreter:
                          key: Optional[str] = None) -> WordResult:
         override = forced if forced is not None else self._override_for(key or word, lexicon)
         paths = []
-        if override is not None:
+        split = None if override is not None or key is not None else self.noncohering_split(word)
+        if split is not None:
+            base = self.transcribe_word(split[0], width, lexicon).ipa
+            ipa = (base.replace(self.stress["mark"], self.stress["secondary_mark"])
+                   + self.transcribe_word(split[1], width, lexicon).ipa)
+        elif override is not None:
             ipa = self._finalize(word, override, None, collapse=False, forced=forced is not None)
         else:
             paths = self._apply_ending(word, self._word_paths(word, width))

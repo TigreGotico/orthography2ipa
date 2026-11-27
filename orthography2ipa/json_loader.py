@@ -578,6 +578,8 @@ def load_json_spec(code: str) -> LanguageSpec:
                 raw_stress.get("coda_liquid_capture", False)),
             secondary_stress=str(raw_stress.get("secondary_stress", "") or ""),
             compound_stress=str(raw_stress.get("compound_stress", "") or ""),
+            noncohering_suffixes=tuple(raw_stress.get("noncohering_suffixes", ())),
+            noncohering_exceptions=tuple(raw_stress.get("noncohering_exceptions", ())),
             iambic_length=bool(raw_stress.get("iambic_length", False)),
             source=str(raw_stress.get("source", "rules")),
             notes=raw_stress.get("notes", "") or "",

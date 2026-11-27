@@ -975,8 +975,9 @@ class G2P:
         result may be shorter than *k*. A word with a lexicon or
         ``word_exceptions`` override has exactly ONE reading — the
         override — and the list has length 1: no beam is consulted. A
-        hyphen-joined compound (``compound_stress="last"``) also has one
-        reading, the one :meth:`transcribe_word` returns.
+        hyphen-joined compound (``compound_stress="last"``) and a word that
+        ends in a ``noncohering_suffixes`` entry also have one reading, the
+        one :meth:`transcribe_word` returns.
 
         *beam_width* defaults to ``max(k, 8)``; a beam narrower than *k*
         cannot produce *k* readings.
@@ -994,7 +995,8 @@ class G2P:
         override = it._override_for(word, lexicon)
         if override is not None:
             return [unicodedata.normalize("NFC", it._finalize(word, override, None, collapse=False))]
-        if self._ir_compound_elements(it, word, lexicon) is not None:
+        if (self._ir_compound_elements(it, word, lexicon) is not None
+                or it.noncohering_split(word) is not None):
             compound = self.transcribe_word(word)
             return [compound] if compound else []
         paths = it._apply_ending(word, it._word_paths(word, width))

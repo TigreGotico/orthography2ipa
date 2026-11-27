@@ -39,7 +39,7 @@ M.SEMANTICS = {
   ipa_count = 1, consonant_nuclei = 1, computed_tone = 1,
   internal_apostrophe = 1, apostrophe_elision = 1, collapse_geminates = 1, context_beam = 1,
   clitic_marks = 1, silent_stress_marks = 1, overrides = 1, words = 1, allophone_map = 1, hiatus = 2,
-  semivowels = 1, cliticless = 1, compound_last = 1, tonic_after_diphthong = 1,
+  semivowels = 1, cliticless = 1, compound_last = 1, noncohering = 1, tonic_after_diphthong = 1,
   ipa_diphthongs = 1, mark_onsets = 1, allophony_geminate = 1,
   weight = 1, virama_final = 1, vowel_signs = 1, preposed = 1,
   ["node.and"] = 1, ["node.or"] = 1, ["node.not"] = 1, ["node.true"] = 1, ["node.false"] = 1,
@@ -325,7 +325,8 @@ local LAYOUT = Ob{
               mark_diphthongs = Lt(S_), tonic_after_diphthong = Lt(S_), stand_in = S_, apply = I_,
               contact_units = Lt(S_), silent_units = SSET, ipa_diphthongs = Lt(S_), ipa_count = I_,
               mark_onsets = Ob{max = I_, velar = S_, table = Lt(Lt(S_))},
-              weight = Ob{max_onset = I_, superheavy_final = I_}},
+              weight = Ob{max_onset = I_, superheavy_final = I_},
+              noncohering = Ob{suffixes = Lt(S_), exceptions = SSET}},
   atoms = Ob{mark = Lt(S_), affricates = Lt(S_)},
   allophony = Ob{passes = I_, atoms = Lt(S_), geminate = I_, rules = Lt(RULE)},
   sandhi = Lt(Ob{left = PAT, right = PAT, obligatory = I_, left_out = TPL, right_out = TPL,
@@ -3305,9 +3306,29 @@ function P:_ending_vowels_follow_stress(path, tail, ipa)
   return concat(out)
 end
 
+function P:noncohering_split(word)
+  local nc = T(self.stress) and self.stress.noncohering or nil
+  if not T(nc) then return nil end
+  local key = self:nfc(self:casefold(word))
+  if setof(nc.exceptions)[key] then return nil end
+  for _, suffix in ipairs(nc.suffixes) do
+    local n = slen(suffix)
+    if slen(key) > n and endswith(key, suffix) and self:_c(at(key, -n - 1), "orth_vowel") then
+      local cut = slen(word) - n
+      return sl(word, 0, cut), sl(word, cut)
+    end
+  end
+  return nil
+end
+
 function P:transcribe_word(word, width)
   local override = self:_override_for(word)
   if override ~= nil then return self:_finalize(word, override, nil, false) end
+  local base, suffix = self:noncohering_split(word)
+  if base ~= nil then
+    return sreplace(self:transcribe_word(base, width), self.stress.mark, self.stress.secondary_mark)
+      .. self:transcribe_word(suffix, width)
+  end
   local paths = self:_apply_ending(word, self:_word_paths(word, width))
   local best = paths[1]
   return self:_finalize(word, best == nil and word or concat(best[1]), best, true)
