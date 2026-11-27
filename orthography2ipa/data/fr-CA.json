@@ -1194,19 +1194,19 @@
       "id": "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
       "name": "final consonant of six and dix before a consonant",
       "left_context": "^((?:s|d|d͡z))[iɪ]s$",
-      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|sɛt|də|dy|de|puʁ|paʁ|syʁ)$|ʒɥ)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃(?:u̯)?bʁ|nɔvɑ̃(?:u̯)?bʁ|desɑ̃(?:u̯)?bʁ|sɛt|də|d(?:͡z)?y|de|puʁ|paʁ|syʁ)$|ʒɥ)[pbtdkɡfvszʃʒmnɲlʁ]",
       "transform": "\\1i",
       "obligatory": true,
-      "notes": "fr-FR's FR_NUMERAL_MUTE_BEFORE_CONSONANT (PR #2710), restated by id for Laurentian French: FR_CA_LAX_* makes the high vowel of six, dix and huit lax [ɪ] while their final consonant closes the syllable (Hall 2016: 7; Dumas 1974: 32-33: d͡zɪs, sɪs, ɥɪt), and once the rule drops or resyllabifies that consonant the vowel stands in an open syllable, where it is tense (Hall 2016: 7, ex. (11)): dix livres [d͡zi liːvʁ]. The id overrides fr-FR's rule in place; on a base without that rule the restated rule is the only one and does nothing, since six, dix and huit then have no final consonant."
+      "notes": "fr-FR's FR_NUMERAL_MUTE_BEFORE_CONSONANT (PR #2710), restated by id for Laurentian French: FR_CA_LAX_* makes the high vowel of six, dix and huit lax [ɪ] while their final consonant closes the syllable (Hall 2016: 7; Dumas 1974: 32-33: d͡zɪs, sɪs, ɥɪt), and once the rule drops or resyllabifies that consonant the vowel stands in an open syllable, where it is tense (Hall 2016: 7, ex. (11)): dix livres [d͡zi liːvʁ]. The right context is fr-FR's list of the words before which the consonant is kept (months, sept, de, du, des, pour, par, sur, juin, juillet), written in this spec's own readings of those words: the months in [ɑ̃bʁ] carry the Laurentian diphthong [ɑ̃u̯] and du is [d͡zy] (le dix novembre [lə d͡zɪs nɔvɑ̃u̯bʁ]). The id overrides fr-FR's rule in place; on a base without that rule the restated rule is the only one and does nothing, since six, dix and huit then have no final consonant."
     },
     {
       "id": "FR_HUIT_MUTE_BEFORE_CONSONANT",
       "name": "final consonant of huit before a consonant",
       "left_context": "^(ɥ)[iɪ]t$",
-      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|sɛt|də|dy|de|puʁ|paʁ|syʁ)$|ʒɥ)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃(?:u̯)?bʁ|nɔvɑ̃(?:u̯)?bʁ|desɑ̃(?:u̯)?bʁ|sɛt|də|d(?:͡z)?y|de|puʁ|paʁ|syʁ)$|ʒɥ)[pbtdkɡfvszʃʒmnɲlʁ]",
       "transform": "\\1i",
       "obligatory": true,
-      "notes": "fr-FR's FR_HUIT_MUTE_BEFORE_CONSONANT (PR #2710), restated by id for Laurentian French: FR_CA_LAX_* makes the high vowel of six, dix and huit lax [ɪ] while their final consonant closes the syllable (Hall 2016: 7; Dumas 1974: 32-33: d͡zɪs, sɪs, ɥɪt), and once the rule drops or resyllabifies that consonant the vowel stands in an open syllable, where it is tense (Hall 2016: 7, ex. (11)): huit livres [ɥi liːvʁ]. The id overrides fr-FR's rule in place; on a base without that rule the restated rule is the only one and does nothing, since six, dix and huit then have no final consonant."
+      "notes": "fr-FR's FR_HUIT_MUTE_BEFORE_CONSONANT (PR #2710), restated by id for Laurentian French: FR_CA_LAX_* makes the high vowel of six, dix and huit lax [ɪ] while their final consonant closes the syllable (Hall 2016: 7; Dumas 1974: 32-33: d͡zɪs, sɪs, ɥɪt), and once the rule drops or resyllabifies that consonant the vowel stands in an open syllable, where it is tense (Hall 2016: 7, ex. (11)): huit livres [ɥi liːvʁ]. The right context is fr-FR's list of the words before which the consonant is kept (months, sept, de, du, des, pour, par, sur, juin, juillet), written in this spec's own readings of those words: the months in [ɑ̃bʁ] carry the Laurentian diphthong [ɑ̃u̯] and du is [d͡zy] (le dix novembre [lə d͡zɪs nɔvɑ̃u̯bʁ]). The id overrides fr-FR's rule in place; on a base without that rule the restated rule is the only one and does nothing, since six, dix and huit then have no final consonant."
     },
     {
       "id": "FR_NUMERAL_Z_BEFORE_VOWEL",
