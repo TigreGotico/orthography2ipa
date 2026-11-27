@@ -319,7 +319,7 @@ needs_numeral_rules = pytest.mark.skipif(
     ("fr-BE", "huit", "wit"),                 # the consonant is there alone
     ("fr-BE", "huit livres", "wi livʁ"),      # and falls before a consonant
     ("fr-BE", "dix-huit", "diz wit"),
-    ("fr-BE", "le six juin", "lə sis ʒwi"),   # kept before a month
+    ("fr-BE", "le huit juillet", "lə wit ʒwijɛ"),  # kept before a month
     ("fr-CA", "dix", "d͡zɪs"),                # lax in a closed final syllable
     ("fr-CA", "six", "sɪs"),
     ("fr-CA", "huit", "ɥɪt"),
@@ -367,3 +367,39 @@ def test_midi_nasal_endings_take_the_appendix(text, expected):
 
 def test_the_midi_spec_lists_a_reference_url():
     assert o2i.get(MIDI).urls
+
+
+# --- the ⟨uin⟩ unit ---------------------------------------------------------
+
+#: fr-FR reads ⟨uin⟩ as one unit, [ɥɛ̃], or [ɥin] before a vowel (juin,
+#: ruine). The cases below need that unit and are skipped on a base where
+#: fr-FR still reads ⟨u⟩, ⟨in⟩ apart.
+needs_uin_unit = pytest.mark.skipif(
+    _say("juin", "fr-FR") != "ʒɥɛ̃",
+    reason="fr-FR has no ⟨uin⟩ unit on this base")
+
+
+@needs_uin_unit
+@pytest.mark.parametrize("tag, text, expected", [
+    ("fr-BE", "ruine", "ʁwin"),        # [w] for [ɥ] before [i]
+    ("fr-BE", "juin", "ʒɥɛ̃"),         # not before [i]: [ɥ] kept
+    ("fr-CA", "ruine", "ʁɥɪn"),        # lax in a closed final syllable
+    ("fr-CA", "juin", "ʒɥẽ"),          # the close-mid front nasal
+    ("fr-FR-x-midi", "ruine", "ʁɥinə"),  # final schwa after [n]
+    ("fr-FR-x-midi", "juin", "ʒɥɛŋ"),    # oral vowel + appendix
+])
+def test_the_uin_unit_takes_the_regional_rules(tag, text, expected):
+    assert _say(text, tag) == expected
+
+
+@needs_uin_unit
+@pytest.mark.parametrize("tag, text, expected", [
+    ("fr-BE", "le huit juillet", "lə wit ʒwijɛ"),
+    ("fr-BE", "le six juin", "lə sis ʒɥɛ̃"),
+    ("fr-CA", "le six juin", "lə sɪs ʒɥẽ"),
+    ("fr-CA", "le huit juillet", "lə ɥɪt ʒɥijɛ"),
+    ("fr-FR-x-midi", "le huit juillet", "lø ɥit ʒɥije"),
+    ("fr-FR-x-midi", "le six juin", "lø sis ʒɥɛŋ"),
+])
+def test_a_numeral_keeps_its_consonant_before_june_and_july(tag, text, expected):
+    assert _say(text, tag) == expected

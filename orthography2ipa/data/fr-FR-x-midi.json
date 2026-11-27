@@ -305,7 +305,7 @@
         "b",
         "m"
       ],
-      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩) before /p b m/ is [ɛm] (plainte [plɛntə], maintenant)."
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /p b m/ is [ɛm] (plainte [plɛntə], maintenant)."
     },
     {
       "id": "FR_MIDI_UNIT_E_CORONAL",
@@ -323,7 +323,7 @@
         "l",
         "n"
       ],
-      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩) before /t d s z ʃ ʒ l n/ is [ɛn] (plainte [plɛntə], maintenant)."
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /t d s z ʃ ʒ l n/ is [ɛn] (plainte [plɛntə], maintenant)."
     },
     {
       "id": "FR_MIDI_UNIT_E_VELAR",
@@ -331,7 +331,7 @@
         "ɛ̃"
       ],
       "surface": "ɛŋ",
-      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit is [ɛŋ] elsewhere (pain [pɛŋ], loin [lwɛŋ], bien [bjɛŋ])."
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit is [ɛŋ] elsewhere (pain [pɛŋ], loin [lwɛŋ], bien [bjɛŋ], juin [ʒɥɛŋ])."
     },
     {
       "id": "FR_MIDI_UNIT_WE_LABIAL",
@@ -344,7 +344,7 @@
         "b",
         "m"
       ],
-      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩) before /p b m/ is [wɛm] (plainte [plɛntə], maintenant)."
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /p b m/ is [wɛm] (plainte [plɛntə], maintenant)."
     },
     {
       "id": "FR_MIDI_UNIT_WE_CORONAL",
@@ -362,7 +362,7 @@
         "l",
         "n"
       ],
-      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩) before /t d s z ʃ ʒ l n/ is [wɛn] (plainte [plɛntə], maintenant)."
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /t d s z ʃ ʒ l n/ is [wɛn] (plainte [plɛntə], maintenant)."
     },
     {
       "id": "FR_MIDI_UNIT_WE_VELAR",
@@ -370,7 +370,7 @@
         "wɛ̃"
       ],
       "surface": "wɛŋ",
-      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit is [wɛŋ] elsewhere (pain [pɛŋ], loin [lwɛŋ], bien [bjɛŋ])."
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit is [wɛŋ] elsewhere (pain [pɛŋ], loin [lwɛŋ], bien [bjɛŋ], juin [ʒɥɛŋ])."
     },
     {
       "id": "FR_MIDI_UNIT_JE_LABIAL",
@@ -383,7 +383,7 @@
         "b",
         "m"
       ],
-      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩) before /p b m/ is [jɛm] (plainte [plɛntə], maintenant)."
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /p b m/ is [jɛm] (plainte [plɛntə], maintenant)."
     },
     {
       "id": "FR_MIDI_UNIT_JE_CORONAL",
@@ -401,7 +401,7 @@
         "l",
         "n"
       ],
-      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩) before /t d s z ʃ ʒ l n/ is [jɛn] (plainte [plɛntə], maintenant)."
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /t d s z ʃ ʒ l n/ is [jɛn] (plainte [plɛntə], maintenant)."
     },
     {
       "id": "FR_MIDI_UNIT_JE_VELAR",
@@ -409,7 +409,46 @@
         "jɛ̃"
       ],
       "surface": "jɛŋ",
-      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit is [jɛŋ] elsewhere (pain [pɛŋ], loin [lwɛŋ], bien [bjɛŋ])."
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit is [jɛŋ] elsewhere (pain [pɛŋ], loin [lwɛŋ], bien [bjɛŋ], juin [ʒɥɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_UE_LABIAL",
+      "phonemes": [
+        "ɥɛ̃"
+      ],
+      "surface": "ɥɛm",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "m"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /p b m/ is [ɥɛm] (plainte [plɛntə], maintenant)."
+    },
+    {
+      "id": "FR_MIDI_UNIT_UE_CORONAL",
+      "phonemes": [
+        "ɥɛ̃"
+      ],
+      "surface": "ɥɛn",
+      "followed_by_phoneme": [
+        "t",
+        "d",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "l",
+        "n"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /t d s z ʃ ʒ l n/ is [ɥɛn] (plainte [plɛntə], maintenant)."
+    },
+    {
+      "id": "FR_MIDI_UNIT_UE_VELAR",
+      "phonemes": [
+        "ɥɛ̃"
+      ],
+      "surface": "ɥɛŋ",
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit is [ɥɛŋ] elsewhere (pain [pɛŋ], loin [lwɛŋ], bien [bjɛŋ], juin [ʒɥɛŋ])."
     },
     {
       "id": "FR_MIDI_FINAL_SCHWA",
@@ -446,6 +485,7 @@
         "ɛm",
         "jɛn",
         "wɛn",
+        "ɥin",
         "ɛj",
         "œj",
         "aj",
@@ -453,7 +493,7 @@
         "ij"
       ],
       "requires_other_nucleus": true,
-      "notes": "The mute final ⟨e⟩ of a polysyllable is pronounced after a consonant (PFC, Le e caduc : variation géographique, section 'Français méridional': 'le e caduc est normalement prononcé en fin de polysyllabe (sauf s'il est suivi d'une voyelle) : le mot patte est ainsi prononcé [patə] avec une voyelle finale'; seul vs seule, Michel vs Michèle). The page gives a vowel close to [ø] or [œ] and a true neutral [ə] as its usual values; the spec writes [ə]. The condition is the pronounced consonant before the ⟨e⟩, whatever letters spell it, so a unit that starts with a vowel letter and ends in a consonant counts too (fille [fijə], ville, Marseille [maʁsɛjə], aime [ɛmə], semaine [sømɛnə]; the units fr-FR denasalises before a vowel, ⟨ain⟩ [ɛn], ⟨aim⟩ [ɛm], ⟨ien⟩ [jɛn], ⟨oin⟩ [wɛn], are listed whole because the engine reads them as one segment, as are the units in [j] of ⟨eill⟩, ⟨euill⟩, ⟨aill⟩, ⟨ouill⟩ and ⟨ill⟩ once a rule names them). A silent plural ⟨-s⟩ after the ⟨e⟩ leaves it final (pattes [patə]). Its deletion before a vowel-initial word is a matter of the phrase."
+      "notes": "The mute final ⟨e⟩ of a polysyllable is pronounced after a consonant (PFC, Le e caduc : variation géographique, section 'Français méridional': 'le e caduc est normalement prononcé en fin de polysyllabe (sauf s'il est suivi d'une voyelle) : le mot patte est ainsi prononcé [patə] avec une voyelle finale'; seul vs seule, Michel vs Michèle). The page gives a vowel close to [ø] or [œ] and a true neutral [ə] as its usual values; the spec writes [ə]. The condition is the pronounced consonant before the ⟨e⟩, whatever letters spell it, so a unit that starts with a vowel letter and ends in a consonant counts too (fille [fijə], ville, Marseille [maʁsɛjə], aime [ɛmə], semaine [sømɛnə]; the units fr-FR denasalises before a vowel, ⟨ain⟩ [ɛn], ⟨aim⟩ [ɛm], ⟨ien⟩ [jɛn], ⟨oin⟩ [wɛn], ⟨uin⟩ [ɥin] (ruine [ʁɥinə]), are listed whole because the engine reads them as one segment, as are the units in [j] of ⟨eill⟩, ⟨euill⟩, ⟨aill⟩, ⟨ouill⟩ and ⟨ill⟩ once a rule names them). A silent plural ⟨-s⟩ after the ⟨e⟩ leaves it final (pattes [patə]). Its deletion before a vowel-initial word is a matter of the phrase."
     },
     {
       "id": "FR_MIDI_SCHWA_INITIAL",
@@ -1143,19 +1183,19 @@
       "id": "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
       "name": "final consonant of six and dix before a consonant",
       "left_context": "^((?:s|d|d͡z)[iɪ])s$",
-      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:i|ɛ̃|ilɛ|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|ʒaɱvje|sɛptambʁə|nɔvambʁə|desambʁə|ʒɥiŋ|ʒɥile|dø|kɔntʁə|pandaŋ|sølɔŋ|døvaŋ|deʁjɛʁə|døpɥi|dyʁaŋ|mwɛŋ|lø|sø|ʒø|kø|nø)$)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:ɛ̃|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|ʒaɱvje|sɛptambʁə|nɔvambʁə|desambʁə|ʒɥɛŋ|ʒɥije|dø|kɔntʁə|pandaŋ|sølɔŋ|døvaŋ|deʁjɛʁə|døpɥi|dyʁaŋ|mwɛŋ|lø|sø|ʒø|kø|nø)$)[pbtdkɡfvszʃʒmnɲlʁ]",
       "transform": "\\1",
       "obligatory": true,
-      "notes": "fr-FR's FR_NUMERAL_MUTE_BEFORE_CONSONANT (PR #2710), restated by id. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [ʒaɱvje], [sɛptambʁə], [nɔvambʁə], [desambʁə], [ʒɥiŋ], [ʒɥile], [dø], [kɔntʁə], [pandaŋ], [sølɔŋ], [døvaŋ], [deʁjɛʁə], [døpɥi], [dyʁaŋ], [mwɛŋ], [lø], [sø], [ʒø], [kø], [nø] (the months in ⟨-embre⟩ end in the Midi final schwa and carry the nasal appendix, de is [dø]): le dix novembre [lø dis nɔvambʁə]. On a base without the fr-FR rule it is this spec's own rule and matches nothing, since six, dix and huit then have no final consonant."
+      "notes": "fr-FR's FR_NUMERAL_MUTE_BEFORE_CONSONANT (PR #2710), restated by id. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [ʒaɱvje], [sɛptambʁə], [nɔvambʁə], [desambʁə], [ʒɥɛŋ], [ʒɥije], [dø], [kɔntʁə], [pandaŋ], [sølɔŋ], [døvaŋ], [deʁjɛʁə], [døpɥi], [dyʁaŋ], [mwɛŋ], [lø], [sø], [ʒø], [kø], [nø] (the months in ⟨-embre⟩ end in the Midi final schwa and carry the nasal appendix, de is [dø]): le dix novembre [lø dis nɔvambʁə]. On a base without the fr-FR rule it is this spec's own rule and matches nothing, since six, dix and huit then have no final consonant."
     },
     {
       "id": "FR_HUIT_MUTE_BEFORE_CONSONANT",
       "name": "final consonant of huit before a consonant",
       "left_context": "^(ɥ[iɪ])t$",
-      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:i|ɛ̃|ilɛ|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|ʒaɱvje|sɛptambʁə|nɔvambʁə|desambʁə|ʒɥiŋ|ʒɥile|dø|kɔntʁə|pandaŋ|sølɔŋ|døvaŋ|deʁjɛʁə|døpɥi|dyʁaŋ|mwɛŋ|lø|sø|ʒø|kø|nø)$)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:ɛ̃|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|ʒaɱvje|sɛptambʁə|nɔvambʁə|desambʁə|ʒɥɛŋ|ʒɥije|dø|kɔntʁə|pandaŋ|sølɔŋ|døvaŋ|deʁjɛʁə|døpɥi|dyʁaŋ|mwɛŋ|lø|sø|ʒø|kø|nø)$)[pbtdkɡfvszʃʒmnɲlʁ]",
       "transform": "\\1",
       "obligatory": true,
-      "notes": "fr-FR's FR_HUIT_MUTE_BEFORE_CONSONANT (PR #2710), restated by id. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [ʒaɱvje], [sɛptambʁə], [nɔvambʁə], [desambʁə], [ʒɥiŋ], [ʒɥile], [dø], [kɔntʁə], [pandaŋ], [sølɔŋ], [døvaŋ], [deʁjɛʁə], [døpɥi], [dyʁaŋ], [mwɛŋ], [lø], [sø], [ʒø], [kø], [nø] (the months in ⟨-embre⟩ end in the Midi final schwa and carry the nasal appendix, de is [dø]): le dix novembre [lø dis nɔvambʁə]. On a base without the fr-FR rule it is this spec's own rule and matches nothing, since six, dix and huit then have no final consonant."
+      "notes": "fr-FR's FR_HUIT_MUTE_BEFORE_CONSONANT (PR #2710), restated by id. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [ʒaɱvje], [sɛptambʁə], [nɔvambʁə], [desambʁə], [ʒɥɛŋ], [ʒɥije], [dø], [kɔntʁə], [pandaŋ], [sølɔŋ], [døvaŋ], [deʁjɛʁə], [døpɥi], [dyʁaŋ], [mwɛŋ], [lø], [sø], [ʒø], [kø], [nø] (the months in ⟨-embre⟩ end in the Midi final schwa and carry the nasal appendix, de is [dø]): le dix novembre [lø dis nɔvambʁə]. On a base without the fr-FR rule it is this spec's own rule and matches nothing, since six, dix and huit then have no final consonant."
     },
     {
       "id": "FR_NUMERAL_Z_BEFORE_VOWEL",

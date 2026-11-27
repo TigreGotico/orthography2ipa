@@ -162,6 +162,14 @@ _RU_OKANJE_DEAD = {
 }
 
 KNOWN_DEAD_RULES = {
+    # The regional French rules for the ⟨uin⟩ unit target its fr-FR readings
+    # [ɥɛ̃] and [ɥin] (juin, ruine). They are dead while fr-FR still reads
+    # ⟨u⟩ and ⟨in⟩ apart, and live once fr-FR reads ⟨uin⟩ as one unit
+    # (TigreGotico/orthography2ipa PR #2710), when these entries can go.
+    "fr-BE": {"FR_NASAL_BLOCK_PREVOCALIC_UIN"},
+    "fr-CA": {"FR_CA_LAX_UIN", "FR_CA_NASAL_E_CLOSE_U"},
+    "fr-FR-x-midi": {"FR_MIDI_UNIT_UE_CORONAL", "FR_MIDI_UNIT_UE_LABIAL",
+                     "FR_MIDI_UNIT_UE_VELAR"},
     # Maltese inherits the Arabic allophone rules wholesale but emits neither
     # the long vowels they target (/aː/, /iː/, /uː/) nor their environments, so
     # the whole inherited family is unreachable there.

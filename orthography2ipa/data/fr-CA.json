@@ -106,9 +106,11 @@
         "y",
         "j",
         "ɥ",
-        "jɛ̃"
+        "jɛ̃",
+        "ɥɛ̃",
+        "ɥin"
       ],
-      "notes": "Affrication of /t/ before a high front vocoid (Dow 2019: 1-2; Hall 2016: 2, ex. (2)): petit [pət͡si], têtu [tɛt͡sy]."
+      "notes": "Affrication of /t/ before a high front vocoid (Dow 2019: 1-2; Hall 2016: 2, ex. (2)): petit [pət͡si], têtu [tɛt͡sy]. The triggers include the glide-initial units [ɥɛ̃] and [ɥin] of ⟨uin⟩, whose [ɥ] is the vocoid Dow (2019: 1) names."
     },
     {
       "id": "FR_CA_AFFRICATE_D",
@@ -121,9 +123,11 @@
         "y",
         "j",
         "ɥ",
-        "jɛ̃"
+        "jɛ̃",
+        "ɥɛ̃",
+        "ɥin"
       ],
-      "notes": "Affrication of /d/ before a high front vocoid (Dow 2019: 1-2; Hall 2016: 2, ex. (2)): dit [d͡zi], du [d͡zy]."
+      "notes": "Affrication of /d/ before a high front vocoid (Dow 2019: 1-2; Hall 2016: 2, ex. (2)): dit [d͡zi], du [d͡zy]. The triggers include the glide-initial units [ɥɛ̃] and [ɥin] of ⟨uin⟩, whose [ɥ] is the vocoid Dow (2019: 1) names."
     },
     {
       "id": "FR_CA_LAX_i",
@@ -199,6 +203,15 @@
         "l"
       ],
       "notes": "Closed-syllable laxing of /u/ in the final syllable: the coda holds a consonant other than the voiced fricatives /v z ʒ ʁ/ (Hall 2016: 7, ex. (12); Burness et al. 2022: 1-2)."
+    },
+    {
+      "id": "FR_CA_LAX_UIN",
+      "phonemes": [
+        "ɥin"
+      ],
+      "surface": "ɥɪn",
+      "followed_by_nucleus": false,
+      "notes": "FR_CA_LAX_i for the unit ⟨uin⟩ read [ɥin] before a vowel letter: when that vowel is a mute final ⟨e⟩, the [n] closes the final syllable and the [i] is lax (Hall 2016: 7, ex. (11)-(12); Dumas 1974: 32-33): ruine [ʁɥɪn]. A following pronounced vowel (ruiner) leaves it tense."
     },
     {
       "id": "FR_CA_CIRC_E",
@@ -1152,6 +1165,14 @@
       ],
       "surface": "jẽ",
       "notes": "FR_CA_NASAL_E_CLOSE for the nasal vowel of the unit ⟨ien⟩ [jɛ̃] (Dumas 1974: 26): bien [bjẽ], chien [ʃjẽ]."
+    },
+    {
+      "id": "FR_CA_NASAL_E_CLOSE_U",
+      "phonemes": [
+        "ɥɛ̃"
+      ],
+      "surface": "ɥẽ",
+      "notes": "FR_CA_NASAL_E_CLOSE for the nasal vowel of the unit ⟨uin⟩ [ɥɛ̃] (Dumas 1974: 26): juin [ʒɥẽ]."
     }
   ],
   "parent": "fr-FR",
@@ -1256,19 +1277,19 @@
       "id": "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
       "name": "final consonant of six and dix before a consonant",
       "left_context": "^((?:s|d|d͡z))[iɪ]s$",
-      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:i|ɛ̃|ilɛ|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|sɛptɑ̃u̯bʁ|nɔvɑ̃u̯bʁ|desɑ̃u̯bʁ|ʒɥɪ|d͡zy|kɔ̃u̯tʁ|pɑ̃dã|dəvã|deʁjai̯ʁ|d͡zyʁã|mwẽ)$)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:ɛ̃|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|sɛptɑ̃u̯bʁ|nɔvɑ̃u̯bʁ|desɑ̃u̯bʁ|ʒɥẽ|d͡zy|kɔ̃u̯tʁ|pɑ̃dã|dəvã|deʁjai̯ʁ|d͡zyʁã|mwẽ)$)[pbtdkɡfvszʃʒmnɲlʁ]",
       "transform": "\\1i",
       "obligatory": true,
-      "notes": "fr-FR's FR_NUMERAL_MUTE_BEFORE_CONSONANT (PR #2710), restated by id for Laurentian French: FR_CA_LAX_* makes the high vowel of six, dix and huit lax [ɪ] while their final consonant closes the syllable (Hall 2016: 7; Dumas 1974: 32-33: d͡zɪs, sɪs, ɥɪt), and once the rule drops or resyllabifies that consonant the vowel stands in an open syllable, where it is tense (Hall 2016: 7, ex. (11)): dix livres [d͡zi liːvʁ]. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [sɛptɑ̃u̯bʁ], [nɔvɑ̃u̯bʁ], [desɑ̃u̯bʁ], [ʒɥɪ], [d͡zy], [kɔ̃u̯tʁ], [pɑ̃dã], [dəvã], [deʁjai̯ʁ], [d͡zyʁã], [mwẽ]. The id overrides fr-FR's rule in place; on a base without that rule the restated rule is the only one and does nothing, since six, dix and huit then have no final consonant."
+      "notes": "fr-FR's FR_NUMERAL_MUTE_BEFORE_CONSONANT (PR #2710), restated by id for Laurentian French: FR_CA_LAX_* makes the high vowel of six, dix and huit lax [ɪ] while their final consonant closes the syllable (Hall 2016: 7; Dumas 1974: 32-33: d͡zɪs, sɪs, ɥɪt), and once the rule drops or resyllabifies that consonant the vowel stands in an open syllable, where it is tense (Hall 2016: 7, ex. (11)): dix livres [d͡zi liːvʁ]. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [sɛptɑ̃u̯bʁ], [nɔvɑ̃u̯bʁ], [desɑ̃u̯bʁ], [ʒɥẽ], [d͡zy], [kɔ̃u̯tʁ], [pɑ̃dã], [dəvã], [deʁjai̯ʁ], [d͡zyʁã], [mwẽ]. The id overrides fr-FR's rule in place; on a base without that rule the restated rule is the only one and does nothing, since six, dix and huit then have no final consonant."
     },
     {
       "id": "FR_HUIT_MUTE_BEFORE_CONSONANT",
       "name": "final consonant of huit before a consonant",
       "left_context": "^(ɥ)[iɪ]t$",
-      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:i|ɛ̃|ilɛ|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|sɛptɑ̃u̯bʁ|nɔvɑ̃u̯bʁ|desɑ̃u̯bʁ|ʒɥɪ|d͡zy|kɔ̃u̯tʁ|pɑ̃dã|dəvã|deʁjai̯ʁ|d͡zyʁã|mwẽ)$)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:ɛ̃|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|sɛptɑ̃u̯bʁ|nɔvɑ̃u̯bʁ|desɑ̃u̯bʁ|ʒɥẽ|d͡zy|kɔ̃u̯tʁ|pɑ̃dã|dəvã|deʁjai̯ʁ|d͡zyʁã|mwẽ)$)[pbtdkɡfvszʃʒmnɲlʁ]",
       "transform": "\\1i",
       "obligatory": true,
-      "notes": "fr-FR's FR_HUIT_MUTE_BEFORE_CONSONANT (PR #2710), restated by id for Laurentian French: FR_CA_LAX_* makes the high vowel of six, dix and huit lax [ɪ] while their final consonant closes the syllable (Hall 2016: 7; Dumas 1974: 32-33: d͡zɪs, sɪs, ɥɪt), and once the rule drops or resyllabifies that consonant the vowel stands in an open syllable, where it is tense (Hall 2016: 7, ex. (11)): huit livres [ɥi liːvʁ]. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [sɛptɑ̃u̯bʁ], [nɔvɑ̃u̯bʁ], [desɑ̃u̯bʁ], [ʒɥɪ], [d͡zy], [kɔ̃u̯tʁ], [pɑ̃dã], [dəvã], [deʁjai̯ʁ], [d͡zyʁã], [mwẽ]. The id overrides fr-FR's rule in place; on a base without that rule the restated rule is the only one and does nothing, since six, dix and huit then have no final consonant."
+      "notes": "fr-FR's FR_HUIT_MUTE_BEFORE_CONSONANT (PR #2710), restated by id for Laurentian French: FR_CA_LAX_* makes the high vowel of six, dix and huit lax [ɪ] while their final consonant closes the syllable (Hall 2016: 7; Dumas 1974: 32-33: d͡zɪs, sɪs, ɥɪt), and once the rule drops or resyllabifies that consonant the vowel stands in an open syllable, where it is tense (Hall 2016: 7, ex. (11)): huit livres [ɥi liːvʁ]. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [sɛptɑ̃u̯bʁ], [nɔvɑ̃u̯bʁ], [desɑ̃u̯bʁ], [ʒɥẽ], [d͡zy], [kɔ̃u̯tʁ], [pɑ̃dã], [dəvã], [deʁjai̯ʁ], [d͡zyʁã], [mwẽ]. The id overrides fr-FR's rule in place; on a base without that rule the restated rule is the only one and does nothing, since six, dix and huit then have no final consonant."
     },
     {
       "id": "FR_NUMERAL_Z_BEFORE_VOWEL",
@@ -1277,7 +1298,7 @@
       "right_context": "^(?!(?:avʁil|au|ut|u|ɔktɔbʁ|e|a|avʁɪl|ɒ)$)[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃ẽɪʏʊɒ]",
       "transform": "\\1iz‿",
       "obligatory": true,
-      "notes": "fr-FR's FR_NUMERAL_Z_BEFORE_VOWEL (PR #2710), restated by id for Laurentian French: FR_CA_LAX_* makes the high vowel of six, dix and huit lax [ɪ] while their final consonant closes the syllable (Hall 2016: 7; Dumas 1974: 32-33: d͡zɪs, sɪs, ɥɪt), and once the rule drops or resyllabifies that consonant the vowel stands in an open syllable, where it is tense (Hall 2016: 7, ex. (11)): six amis [siz‿ ami]. The right context is fr-FR's (PR #2710): its vowel class with the Laurentian vowels that can open a word added ([ẽ] of insectes, the lax [ɪ ʏ ʊ] of île, [ɒ]), and its date exclusions (avril, août, octobre) with the Laurentian [avʁɪl] and [ɒ] added. The id overrides fr-FR's rule in place; on a base without that rule the restated rule is the only one and does nothing."
+      "notes": "fr-FR's FR_NUMERAL_Z_BEFORE_VOWEL (PR #2710), restated by id for Laurentian French: FR_CA_LAX_* makes the high vowel of six, dix and huit lax [ɪ] while their final consonant closes the syllable (Hall 2016: 7; Dumas 1974: 32-33: d͡zɪs, sɪs, ɥɪt), and once the rule drops or resyllabifies that consonant the vowel stands in an open syllable, where it is tense (Hall 2016: 7, ex. (11)): six amis [siz‿ ami]. The right context is fr-FR's (PR #2710): its vowel class with the Laurentian vowels that can open a word added ([ẽ] of insectes, the lax [ɪ ʏ ʊ] of île, [ɒ]), and its date exclusions (avril, août, octobre) with the Laurentian [avʁɪl] and [ɒ] added. The right context is fr-FR's (PR #2710): its vowel class with the Laurentian vowels that can open a word added ([ẽ] of insectes, the lax [ɪ ʏ ʊ] of île, [ɒ]), and its date exclusions (avril, août, octobre) with the Laurentian [avʁɪl] and [ɒ] added. The id overrides fr-FR's rule in place; on a base without that rule the restated rule is the only one and does nothing."
     },
     {
       "id": "FR_NEUF_V_BEFORE_HEURES",
