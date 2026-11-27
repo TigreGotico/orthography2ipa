@@ -16,7 +16,7 @@ A stub has a name, a code and a place in the family tree, but no phonology yet. 
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../evaluation/charts/atlas-family.dark.svg">
-  <img alt="Specs per top-level family, 7,404 in all. The largest: Atlantic-Congo 1,364, Austronesian 1,240, Indo-European 745." src="../evaluation/charts/atlas-family.light.svg">
+  <img alt="Specs per top-level family, 7,405 in all. The largest: Atlantic-Congo 1,364, Austronesian 1,240, Indo-European 746." src="../evaluation/charts/atlas-family.light.svg">
 </picture>
 
 `scripts/gen_doc_charts.py` makes this figure from the table under it.

@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="700" height="344" viewBox="0 0 700 344" role="img" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"><title>Specs per script (7,404 specs)</title><desc>Zyyy 6144, Latin 951, Arabic 78, Cyrillic 69, IPA-reconstruction 24, Devanagari 21, Han 14, Greek 10, Hebrew 8, Cyrl 6, Myanmar 5, Thai 4, Bengali 3, Ethiopic 3, Other (50) 64</desc>
-<text x="20" y="26" font-size="16" text-anchor="start" font-weight="bold" fill="#0b0b0b">Specs per script (7,404 specs)</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="344" viewBox="0 0 700 344" role="img" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"><title>Specs per script (7,405 specs)</title><desc>Zyyy 6144, Latin 952, Arabic 78, Cyrillic 69, IPA-reconstruction 24, Devanagari 21, Han 14, Greek 10, Hebrew 8, Cyrl 6, Myanmar 5, Thai 4, Bengali 3, Ethiopic 3, Other (50) 64</desc>
+<text x="20" y="26" font-size="16" text-anchor="start" font-weight="bold" fill="#0b0b0b">Specs per script (7,405 specs)</text>
 <text x="20" y="46" font-size="12" text-anchor="start" font-weight="normal" fill="#52514e">The script that each listed spec reads.</text>
 <text x="148" y="74" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Zyyy</text>
 <path d="M156 62H632Q636 62 636 66V74Q636 78 632 78H156Z" fill="#2a78d6"/>
 <text x="642" y="74" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">6,144</text>
 <text x="148" y="92" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Latin</text>
-<path d="M156 80H226.3Q230.3 80 230.3 84V92Q230.3 96 226.3 96H156Z" fill="#2a78d6"/>
-<text x="236.3" y="92" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">951</text>
+<path d="M156 80H226.38Q230.38 80 230.38 84V92Q230.38 96 226.38 96H156Z" fill="#2a78d6"/>
+<text x="236.38" y="92" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">952</text>
 <text x="148" y="110" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Arabic</text>
 <path d="M156 98H158.09Q162.09 98 162.09 102V110Q162.09 114 158.09 114H156Z" fill="#2a78d6"/>
 <text x="168.09" y="110" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">78</text>
