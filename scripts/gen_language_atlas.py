@@ -1233,6 +1233,20 @@ def _entry(atlas: Atlas, code: str) -> str:
     return f"[{_clean(name)}]({atlas.link(code)})"
 
 
+def _figure(name: str, alt: str) -> List[str]:
+    return ["<picture>",
+            f'  <source media="(prefers-color-scheme: dark)" '
+            f'srcset="../evaluation/charts/{name}.dark.svg">',
+            f'  <img alt="{alt}" src="../evaluation/charts/{name}.light.svg">',
+            "</picture>", "",
+            "`scripts/gen_doc_charts.py` makes this figure from the table under it.", ""]
+
+
+def _ranked(counts: Dict[str, int], n: int) -> str:
+    top = sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))[:n]
+    return ", ".join(f"{name} {count:,}" for name, count in top)
+
+
 def _index_head(title: str, intro: str) -> List[str]:
     others = [f"`docs/languages/{name}`" for name, other in INDEXES.items()
               if other != title]
@@ -1290,6 +1304,10 @@ def index_family(atlas: Atlas) -> str:
         "the page, and every other spec links to its entry in the data "
         "explorer. Each family path has its own heading, so a page can link "
         "the exact branch.")
+    counts = {top: sum(len(v) for v in groups[top].values()) for top in groups}
+    lines += _figure("atlas-family",
+                     f"Specs per top-level family, {sum(counts.values()):,} in all. "
+                     f"The largest: {_ranked(counts, 3)}.")
     lines += ["| Family | Specs |", "|:--|--:|"]
     for top in sorted(groups):
         count = sum(len(v) for v in groups[top].values())
@@ -1320,6 +1338,9 @@ def index_region(atlas: Atlas) -> str:
         "spec spoken in several countries appears under each of them. A "
         "dialect with no languoid and no region subtag sits under its "
         "macroarea, with no country.")
+    lines += _figure("atlas-region",
+                     "Countries per macroarea. The most: "
+                     f"{_ranked({a: len(groups[a]) for a in groups}, 3)}.")
     lines += ["| Macroarea | Countries |", "|:--|--:|"]
     for area in sorted(groups):
         lines.append(f"| [{area}](#{_slug(area)}) | {len(groups[area])} |")
@@ -1339,6 +1360,9 @@ def index_script(atlas: Atlas) -> str:
     lines = _index_head(
         INDEXES["by-script.md"],
         "Every spec, grouped by the script it reads.")
+    lines += _figure("atlas-script",
+                     f"Specs per script, {sum(len(v) for v in groups.values()):,} in all. "
+                     f"The largest: {_ranked({k: len(v) for k, v in groups.items()}, 3)}.")
     lines += ["| Script | Specs |", "|:--|--:|"]
     for script in sorted(groups):
         lines.append(f"| [{script}](#{_slug(script)}) | {len(groups[script])} |")

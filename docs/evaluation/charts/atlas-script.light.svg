@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="344" viewBox="0 0 700 344" role="img" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"><title>Specs per script (7,404 specs)</title><desc>Zyyy 6144, Latin 951, Arabic 78, Cyrillic 69, IPA-reconstruction 24, Devanagari 21, Han 14, Greek 10, Hebrew 8, Cyrl 6, Myanmar 5, Thai 4, Bengali 3, Ethiopic 3, Other (50) 64</desc>
+<text x="20" y="26" font-size="16" text-anchor="start" font-weight="bold" fill="#0b0b0b">Specs per script (7,404 specs)</text>
+<text x="20" y="46" font-size="12" text-anchor="start" font-weight="normal" fill="#52514e">The script that each listed spec reads.</text>
+<text x="148" y="74" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Zyyy</text>
+<path d="M156 62H632Q636 62 636 66V74Q636 78 632 78H156Z" fill="#2a78d6"/>
+<text x="642" y="74" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">6,144</text>
+<text x="148" y="92" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Latin</text>
+<path d="M156 80H226.3Q230.3 80 230.3 84V92Q230.3 96 226.3 96H156Z" fill="#2a78d6"/>
+<text x="236.3" y="92" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">951</text>
+<text x="148" y="110" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Arabic</text>
+<path d="M156 98H158.09Q162.09 98 162.09 102V110Q162.09 114 158.09 114H156Z" fill="#2a78d6"/>
+<text x="168.09" y="110" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">78</text>
+<text x="148" y="128" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Cyrillic</text>
+<path d="M156 116H157.39Q161.39 116 161.39 120V128Q161.39 132 157.39 132H156Z" fill="#2a78d6"/>
+<text x="167.39" y="128" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">69</text>
+<text x="148" y="146" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">IPA-reconstruction</text>
+<path d="M156 134H153.88Q157.88 134 157.88 138V146Q157.88 150 153.88 150H156Z" fill="#2a78d6"/>
+<text x="163.88" y="146" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">24</text>
+<text x="148" y="164" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Devanagari</text>
+<path d="M156 152H153.64Q157.64 152 157.64 156V164Q157.64 168 153.64 168H156Z" fill="#2a78d6"/>
+<text x="163.64" y="164" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">21</text>
+<text x="148" y="182" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Han</text>
+<path d="M156 170H153.09Q157.09 170 157.09 174V182Q157.09 186 153.09 186H156Z" fill="#2a78d6"/>
+<text x="163.09" y="182" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">14</text>
+<text x="148" y="200" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Greek</text>
+<path d="M156 188H152.78Q156.78 188 156.78 192V200Q156.78 204 152.78 204H156Z" fill="#2a78d6"/>
+<text x="162.78" y="200" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">10</text>
+<text x="148" y="218" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Hebrew</text>
+<path d="M156 206H152.62Q156.62 206 156.62 210V218Q156.62 222 152.62 222H156Z" fill="#2a78d6"/>
+<text x="162.62" y="218" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">8</text>
+<text x="148" y="236" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Cyrl</text>
+<path d="M156 224H152.47Q156.47 224 156.47 228V236Q156.47 240 152.47 240H156Z" fill="#2a78d6"/>
+<text x="162.47" y="236" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">6</text>
+<text x="148" y="254" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Myanmar</text>
+<path d="M156 242H152.39Q156.39 242 156.39 246V254Q156.39 258 152.39 258H156Z" fill="#2a78d6"/>
+<text x="162.39" y="254" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">5</text>
+<text x="148" y="272" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Thai</text>
+<path d="M156 260H152.31Q156.31 260 156.31 264V272Q156.31 276 152.31 276H156Z" fill="#2a78d6"/>
+<text x="162.31" y="272" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">4</text>
+<text x="148" y="290" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Bengali</text>
+<path d="M156 278H152.23Q156.23 278 156.23 282V290Q156.23 294 152.23 294H156Z" fill="#2a78d6"/>
+<text x="162.23" y="290" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">3</text>
+<text x="148" y="308" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Ethiopic</text>
+<path d="M156 296H152.23Q156.23 296 156.23 300V308Q156.23 312 152.23 312H156Z" fill="#2a78d6"/>
+<text x="162.23" y="308" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">3</text>
+<text x="148" y="326" font-size="12" text-anchor="end" font-weight="normal" fill="#0b0b0b">Other (50)</text>
+<path d="M156 314H157Q161 314 161 318V326Q161 330 157 330H156Z" fill="#2a78d6"/>
+<text x="167" y="326" font-size="11" text-anchor="start" font-weight="normal" fill="#52514e">64</text>
+<line x1="156" y1="58" x2="156" y2="332" stroke="#b4bac1" stroke-width="1"/>
+</svg>

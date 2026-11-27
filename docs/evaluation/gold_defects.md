@@ -2,9 +2,9 @@
 
 <!-- agent-hint
 covers: the measured defects in individual gold rows and what they mean for a score
-source: `scripts/benchmark.py`, `tests/test_gold_composition.py`
+source: `scripts/benchmark.py`, `tests/test_gold_composition.py`, `scripts/measure_gold_defects.py`, `benchmarks/gold_defects.json`
 generated: no
-verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_gold_composition.py`
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_gold_composition.py tests/test_gold_defects_doc.py`
 see: `docs/evaluation/benchmarks.md`, `docs/evaluation/datasets.md`
 -->
 
@@ -100,6 +100,13 @@ The fix belongs to espeak-ng and G2P+, not to this project. The tier is `espeak-
 The `pt-TL` row reads the `pt-TL-x-dili` region of the [Portal da Língua Portuguesa](http://www.portaldalinguaportuguesa.org/) Dicionário Fonético, through [TigreGotico/portuguese-unified-pronunciation-lexicon](https://huggingface.co/datasets/TigreGotico/portuguese-unified-pronunciation-lexicon) (CC BY-SA 4.0). The LUPo generator writes that region from the same mother lexicon as every other region ([`portal_lupo`](datasets.md#portal-da-língua-portuguesa-dicionário-fonético-portal_lupo)), so it is not independent Timorese lexicography. A word-by-word diff against `pt-PT-x-lisboa` finds 53,147 shared words, and 3,076 of them are byte-identical in the two regions.
 
 The diff then keeps the 35,800 shared entries whose transcriptions have the same length, where a positional diff means something. Six substitutions account for 90.6% of the 63,189 character differences:
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="charts/pt-tl-substitutions.dark.svg">
+  <img alt="Lisbon to Dili substitutions: ɐ to ə 30,042, more than the other five together. u to ʊ 12,075 is second." src="charts/pt-tl-substitutions.light.svg">
+</picture>
+
+`scripts/gen_doc_charts.py` makes this figure from `benchmarks/gold_defects.json`, which `scripts/measure_gold_defects.py` measures from the gold cache.
 
 | Substitution | Count |
 |---|---:|

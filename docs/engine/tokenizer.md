@@ -4,7 +4,7 @@
 covers: how `PhonetokTokenizer` splits text into graphemes and expands each one into its IPA candidates
 source: `orthography2ipa/phonetok.py`
 generated: no
-verify: `PYTHONPATH=$PWD python examples/03_tokenizer.py`
+verify: `PYTHONPATH=$PWD python -m pytest "tests/test_docs_examples.py::test_example_prints_its_text_block[docs/engine/tokenizer.md]" "tests/test_docs_hint_sources.py::test_hint_sources_exist[docs/engine/tokenizer.md]"`
 see: `docs/engine/lattice.md`, `docs/engine/positional_graphemes.md`
 -->
 
@@ -357,7 +357,7 @@ Neighbours are word-local. They never cross a whitespace, punctuation, digit or 
 
 `span` gives the `(start, end)` character offsets of the grapheme. The offsets index the string that `PhonetokTokenizer.prepare(text)` returns, and `grapheme` is lower-cased. The slice can also hold a virama that the grapheme consumed (hi ⟨भक्त⟩ gives the slice `क्` for the grapheme `क`). The contract is:
 
-```python
+```text
 tokenizer.prepare(text)[start:end].lower().startswith(grapheme)
 ```
 

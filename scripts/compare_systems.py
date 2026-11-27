@@ -2909,7 +2909,7 @@ def _robustness_section(rows: List[dict]) -> List[str]:
         losses = [r["dataset"] for r in rs if r["o2i_per"] >= r["espeak_per"]]
         verdict = ("wins on all golds" if not losses else
                     "loses on all golds" if not wins else
-                    "MIXED — wins on some golds, loses on others")
+                    "MIXED, wins on some golds, loses on others")
         lines.append(f"- **`{lang}`** ({verdict}):")
         for r in rs:
             outcome = "o2i wins" if r["dataset"] in wins else "o2i loses"
@@ -2917,7 +2917,7 @@ def _robustness_section(rows: List[dict]) -> List[str]:
                 f"  - `{r['dataset']}` (n={r['n']}, tier="
                 f"{r.get('provenance_tier') or '?'}): o2i "
                 f"{_fmt(r['o2i_per'])} vs espeak {_fmt(r['espeak_per'])} "
-                f"— {outcome}"
+                f"({outcome})"
             )
     lines.append("")
     return lines
@@ -2944,7 +2944,7 @@ def _scoreboard_staleness_note(rows: List[dict]) -> str:
             scoreboard_rows = json.load(fh)
     except (OSError, json.JSONDecodeError):
         return (
-            "`benchmarks/results.json` could not be read in this run — "
+            "`benchmarks/results.json` could not be read in this run, "
             "the match claim below is unverified."
         )
     scoreboard_by_key = {(r["lang"], r["dataset"]): r for r in scoreboard_rows}
@@ -3004,7 +3004,7 @@ def _scoreboard_staleness_note(rows: List[dict]) -> str:
             f"The `o2i PER` column here matches "
             f"[`benchmarks/results.json`](../../../benchmarks/results.json)'s "
             f"`per` for most shared language/dataset pairs, EXCEPT the "
-            f"{len(stale)} listed below — those `benchmarks/results.json` "
+            f"{len(stale)} listed below, those `benchmarks/results.json` "
             f"rows are stale (a prior PR changed the engine but did not "
             f"regenerate every affected row there; see e.g. PR #802's "
             f"`ca`/`4catac`-only regeneration). The numbers in THIS table "
@@ -3021,7 +3021,7 @@ def _scoreboard_staleness_note(rows: List[dict]) -> str:
         )
         parts.append(
             f"{len(sampled_diff)} more row(s) differ for a DIFFERENT "
-            f"reason — not staleness: this board's `sample_n` config "
+            f"reason, not staleness: this board's `sample_n` config "
             f"scores a fixed-seed SUBSET of the gold, while "
             f"`benchmarks/results.json` scores the FULL gold. Same seed, "
             f"different sample size, so a different PER is expected and "
@@ -3065,7 +3065,7 @@ def _espeak_rules_coverage_note(rows: List[dict]) -> str:
     )
     return (
         f"{len(missing)} row(s) have a stock `espeak` number but no "
-        f"`espeak-rules-only` one yet in this run — deferred, not "
+        f"`espeak-rules-only` one yet in this run, deferred, not "
         f"fabricated (see `scripts/build_espeak_rules_only.sh`): "
         f"{listed}."
     )
@@ -3377,7 +3377,7 @@ def _lexicon_backed_informational_note(row: dict, ranked_best: float) -> str:
     if not candidates:
         return ""
     v, label = min(candidates)
-    return f" ({label} with its lexicon scores {v:.4f} — informational)"
+    return f" ({label} with its lexicon scores {v:.4f}, informational)"
 
 
 def _ranked_winners(values: Dict[str, float]) -> List[str]:
@@ -3453,10 +3453,10 @@ def _leaderboard_line(lang: str, primary_row: dict,
         if other_rows and any(
                 _rules_only_values(r) for r in other_rows
                 if r is not primary_row):
-            return (f"**{disp}** — primary gold has no comparable "
+            return (f"**{disp}**: primary gold has no comparable "
                     f"systems (same-source); see the per-language table "
                     f"below for a comparison on a secondary gold")
-        return f"**{disp}** — no comparable systems for this gold"
+        return f"**{disp}**: no comparable systems for this gold"
     labeled = {_lexicon_free_label(k): v for k, v in values.items()}
     ranked = sorted(values.items(), key=lambda kv: kv[1])
     winner_val = ranked[0][1]
@@ -3465,23 +3465,23 @@ def _leaderboard_line(lang: str, primary_row: dict,
     if "o2i" not in values:
         winner_str = _winner_label_str(tie_winners)
         if primary_row.get("o2i_same_source"):
-            return (f"**{disp}** — o2i not scored: this gold was drafted "
-                     f"by o2i's own lineage — see same-source "
+            return (f"**{disp}**: o2i not scored: this gold was drafted "
+                     f"by o2i's own lineage, see same-source "
                      f"({winner_str} #1 among the rest){aside}")
-        return (f"**{disp}** — {winner_str} #1 "
+        return (f"**{disp}**: {winner_str} #1 "
                 f"(o2i not scored on this gold){aside}")
     if min(values.values()) > _NO_SYSTEM_USABLE_THRESHOLD:
-        return f"**{disp}** — no system is usable on this gold"
+        return f"**{disp}**: no system is usable on this gold"
     if "o2i" in tie_winners:
         if len(tie_winners) == 1:
             if len(ranked) > 1:
                 runner_up = _lexicon_free_label(ranked[1][0])
-                return f"**{disp}** — o2i #1 (beats {runner_up}){aside}"
-            return f"**{disp}** — o2i #1{aside}"
-        return f"**{disp}** — {_winner_label_str(tie_winners)} #1{aside}"
+                return f"**{disp}**: o2i #1 (beats {runner_up}){aside}"
+            return f"**{disp}**: o2i #1{aside}"
+        return f"**{disp}**: {_winner_label_str(tie_winners)} #1{aside}"
     winner_str = _winner_label_str(tie_winners)
     o2i_rank = next(i for i, (k, _v) in enumerate(ranked, 1) if k == "o2i")
-    return f"**{disp}** — {winner_str} #1, o2i #{o2i_rank}{aside}"
+    return f"**{disp}**: {winner_str} #1, o2i #{o2i_rank}{aside}"
 
 
 def _leaderboard_summary(rows: List[dict]) -> List[str]:
@@ -3495,38 +3495,38 @@ def _leaderboard_summary(rows: List[dict]) -> List[str]:
         all_rows_by_lang.setdefault(r["lang"], []).append(r)
     lines = ["## Leaderboard", "", (
         "One line per language: the best system on its primary gold, "
-        "and where o2i lands. **Ranking policy: lexicon-free only** — "
+        "and where o2i lands. **Ranking policy: lexicon-free only**: "
         "a system's bundled per-word exception dictionary/lexicon never "
         "counts toward \"winner\", on the fair-comparison principle that "
         "o2i, by hard rule, ships no such lexicon of its own (see "
         "\"How to read this\" below for the full rationale and the "
         "per-engine disposition)."
     ), "", (
-        "- **same-source** — the gold IS that system's own output; "
+        "- **same-source**: the gold IS that system's own output; "
         "excluded from ranking, never a \"winner\"."
     ), (
-        "- **n/a** — the system has no mapping, or isn't installed, for "
+        "- **n/a**: the system has no mapping, or isn't installed, for "
         "this language."
     ), (
-        "- **(lexicon)** — a lexicon-backed stock value: shown on the "
+        "- **(lexicon)**: a lexicon-backed stock value: shown on the "
         "board for information, never ranked. Its rules-only sibling "
         "column (or the engine's own audited-lexicon-free stock value) "
         "is what actually competes for \"winner\"."
     ), (
-        "- **tie** — two or more systems within "
+        "- **tie**: two or more systems within "
         f"{_WINNER_TIE_TOLERANCE} PER of the best; named, never a bare "
         "\"tie\"."
     ), (
-        "- **rules-only** — the system with its bundled dictionary/"
+        "- **rules-only**: the system with its bundled dictionary/"
         "lexicon disabled, scored on rules alone (see \"How to read "
         "this\" below)."
     ), (
-        "- **#N** — N-th place by PER on that row, RANKED OVER THE "
+        "- **#N**: N-th place by PER on that row, RANKED OVER THE "
         "LEXICON-FREE WORLD; `#1` is the winner."
     ), (
-        "- **\"... with its lexicon scores N — informational\"** — a "
+        "- **\"... with its lexicon scores N, informational\"**: a "
         "lexicon-backed stock value that would have scored lowest of "
-        "all systems on this row, named so it is never hidden — just "
+        "all systems on this row, named so it is never hidden, just "
         "not counted as the winner."
     ), ""]
     for lang in sorted(by_lang):
@@ -3544,7 +3544,7 @@ _O2I_FAMILY_REPOS: List[Tuple[str, str, str]] = [
      "Arabic diacritization, dialect lexicons, nativized loanwords, and "
      "code-switch handling on top of the shared `ar`/`arb` lattice "
      "(the RANKED `arbtok` column below runs with both bundled "
-     "lexicons off for a fair lexicon-free comparison — see `arbtok "
+     "lexicons off for a fair lexicon-free comparison, see `arbtok "
      "(lexicon)` for the full-featured stock number)"),
     ("tugaphone", "tugaphone",
      "the curated `tugalex` pronunciation lexicon, sense-based homograph "
@@ -3557,14 +3557,14 @@ _O2I_FAMILY_REPOS: List[Tuple[str, str, str]] = [
      "Mirandese dialect selection, an optional native-speaker lexicon "
      "overlay, and CRF correction on top of the `mwl` lattice"),
     ("udarnik", "udarnik",
-     "a stressonnx-placed lexical accent on top of the `ru` lattice — "
+     "a stressonnx-placed lexical accent on top of the `ru` lattice, "
      "Russian stress is free and unwritten, and the spec's own notes name "
      "its positional guess as the main source of its error, so supplying "
      "the real stress is what conditions akanje and ikanje correctly "
      "(no word->IPA lexicon: udarnik defaults to none. Its stressonnx "
      "`ruaccent` backend does consult a 110,826-entry accent dictionary "
-     "and a 19,740-entry omograph dictionary before its models — 11.21% "
-     "and 4.89% of unique `alphacep_ru_book` words respectively — but "
+     "and a 19,740-entry omograph dictionary before its models, 11.21% "
+     "and 4.89% of unique `alphacep_ru_book` words respectively, but "
      "those hold STRESS POSITIONS, not pronunciations, so the column is "
      "ranked as effectively lexicon-free with the exception documented, "
      "the same treatment ahotts-g2p gets)"),
@@ -3624,7 +3624,7 @@ def _family_versions_note(rows: List[dict]) -> str:
                        for _field, label in _FAMILY_VERSION_FIELDS
                        if label in versions)
     return (f"*Versions pinned: the family rows above were produced with "
-            f"{parts} — every one of these exact versions is published "
+            f"{parts}, every one of these exact versions is published "
             f"on PyPI as a pre-release alpha (verified with `pip index "
             f"versions <pkg> --pre`), so the number is reproducible from "
             f"a plain `pip install --pre <pkg>==<version>` even on "
@@ -3649,12 +3649,12 @@ def _o2i_family_section(rows: List[dict]) -> List[str]:
     lines = [
         "## The o2i family",
         "",
-        "orthography2ipa is a shared lattice — a grapheme table plus "
-        "allophone/sandhi rules per language variety — that several "
+        "orthography2ipa is a shared lattice, a grapheme table plus "
+        "allophone/sandhi rules per language variety, that several "
         "TigreGotico projects build directly on top of, adding what the "
         "shared lattice deliberately leaves to the caller (lexicons, "
         "diacritization, dialect selection, normalization). These are "
-        "FIRST-CLASS to this board, not \"other G2P systems\" being "
+        "part of this board, not \"other G2P systems\" being "
         "compared against o2i as competitors:",
         "",
     ]
@@ -3663,17 +3663,17 @@ def _o2i_family_section(rows: List[dict]) -> List[str]:
         lines.extend([version_note, ""])
     for key, repo, delta in _O2I_FAMILY_REPOS:
         lines.append(
-            f"- **{_family_repo_name(repo)}** — adds "
+            f"- **{_family_repo_name(repo)}**: adds "
             f"{delta}.")
     lines.extend([
         "",
         "**Reading a family row: headroom, not a loss.** Where a family "
         "system's PER beats bare o2i's on a row that is NOT `same-source` "
-        "(see below — same-source rows are refused as a comparison "
+        "(see below, same-source rows are refused as a comparison "
         "point, exactly like every other system on this board), that gap "
         "is a concrete demonstration of what the shared `orthography2ipa` "
-        "specs could still absorb into the base lattice — a diacritizer "
-        "pass, a closed-class lexicon, a dialect rule — not evidence o2i "
+        "specs could still absorb into the base lattice, a diacritizer "
+        "pass, a closed-class lexicon, a dialect rule, not evidence o2i "
         "\"lost\" to a competitor. Where a family row instead ties o2i "
         "exactly, that is equally informative: it means the family "
         "member's extra stages are not (yet, or not on this gold) adding "
@@ -3683,7 +3683,7 @@ def _o2i_family_section(rows: List[dict]) -> List[str]:
         "case.** \"Headroom\" above says a family gap shows what the base "
         "lattice *could* absorb. For the two independent Arabic rows "
         "(`ipadict`, raw `wikipron`) that reading has been tested "
-        "directly and it does NOT hold — the entire arbtok margin is its "
+        "directly and it does NOT hold, the entire arbtok margin is its "
         "neural diacritizer, which is a model, not a rule, and therefore "
         "not portable into a grapheme lattice at all. The ablation, run "
         "over the same word sets and the same scorer as the board rows "
@@ -3707,7 +3707,7 @@ def _o2i_family_section(rows: List[dict]) -> List[str]:
         "diacritizer-off arbtok and o2i emit byte-identical output on "
         "98.1% (ipadict) and 94.4% (wikipron) of words, and on the "
         "remainder arbtok is net even (10 better / 10 worse) and net "
-        "worse (4 better / 63 worse) respectively — i.e. the shared "
+        "worse (4 better / 63 worse) respectively, i.e. the shared "
         "lattice has no residual rule-shaped deficit for a port to "
         "recover. The gap is a vocalization gap and nothing else: neither "
         "gold's headwords carry any harakat (0 of 2319 and 0 of 2735), "
@@ -3720,7 +3720,7 @@ def _o2i_family_section(rows: List[dict]) -> List[str]:
         "input contract rather than pretending to guess: the "
         "`wikipron_ar_diacritized` row, where harakat are restored on the "
         "INPUT before scoring, is where the two systems are compared with "
-        "that ceiling lifted — and there they tie. That row carries its "
+        "that ceiling lifted, and there they tie. That row carries its "
         "own caveat: the diacritized input is restored by "
         "`text2tashkeel`, the same diacritizer arbtok's default pipeline "
         "uses internally, so a diacritization error the two systems "
@@ -3730,9 +3730,9 @@ def _o2i_family_section(rows: List[dict]) -> List[str]:
         "under the exact same discipline as every other system on this "
         "board: the SAME `same-source` refusal when a family engine "
         "would be scored against gold drawn from o2i's own lineage (see "
-        "\"How to read this\" below — all five family engines are built "
+        "\"How to read this\" below, all five family engines are built "
         "on o2i's lattice, so they inherit o2i's own same-source exposure "
-        "1:1); the SAME lexicon-vs-rules-only discipline — g2p_barranquenho "
+        "1:1); the SAME lexicon-vs-rules-only discipline, g2p_barranquenho "
         "and mwl_phonemizer's lexicon-free DEFAULT configuration are "
         "ranked normally; arbtok's DEFAULT is lexicon-backed (a "
         "145,890-entry stem lexicon plus a per-lect dialect lexicon, "
@@ -3744,7 +3744,7 @@ def _o2i_family_section(rows: List[dict]) -> List[str]:
         "separately as the informational `arbtok (lexicon)` column; "
         "tugaphone's always-on `tugalex` lexicon has no public disable "
         "switch at all, so it is excluded from the lexicon-free "
-        "Winner/leaderboard ranking the same way — and the SAME honest "
+        "Winner/leaderboard ranking the same way, and the SAME honest "
         "reporting either way, a family engine beating o2i is reported "
         "as loudly as a tie.",
         "",
@@ -3824,18 +3824,18 @@ def _lexicon_backed_tier_lines(rows: List[dict]) -> List[str]:
         if any(s.key in r["lexicon_tier"]["engines"] for r in tier_rows)
     ]
     lines = [
-        "## Lexicon-backed tier — gold filtered against all compared lexicons",
+        "## Lexicon-backed tier, gold filtered against all compared lexicons",
         "",
         "This is a SECOND, separate ranking, and it never feeds the "
         "leaderboard or the Winner column above. Here every engine runs "
-        "in its STOCK configuration — lexicons ON, exactly as a caller "
-        "gets it with no arguments — and o2i takes part on the same "
+        "in its STOCK configuration, lexicons ON, exactly as a caller "
+        "gets it with no arguments, and o2i takes part on the same "
         "terms, as `o2i_lex` (o2i plus espeak-ng's own word list). "
         "Ranking stock engines on the raw gold would measure nothing but "
         "dictionary size: a gold word that sits in an engine's lexicon "
-        "is a lookup, not a prediction. So the gold is FILTERED first — "
+        "is a lookup, not a prediction. So the gold is FILTERED first, "
         "every entry present in ANY compared engine's lexicon for that "
-        "language is removed, the same words removed for every engine — "
+        "language is removed, the same words removed for every engine, "
         "and what remains is scored. The tier therefore measures how "
         "well each stock system GENERALIZES beyond the lexicons it "
         "ships, not how much of this particular test set it already "
@@ -3889,7 +3889,7 @@ def _lexicon_backed_tier_lines(rows: List[dict]) -> List[str]:
     seen: Dict[str, dict] = {}
     for row in tier_rows:
         for key, prov in row["lexicon_tier"]["provenance"].items():
-            seen.setdefault(f"{_lexicon_tier_label(key)} — {prov.get('source')}",
+            seen.setdefault(f"{_lexicon_tier_label(key)}, {prov.get('source')}",
                             prov)
     for label in sorted(seen):
         prov = seen[label]
@@ -3897,7 +3897,7 @@ def _lexicon_backed_tier_lines(rows: List[dict]) -> List[str]:
         if prov.get("revision"):
             bits.append(f"revision `{prov['revision']}`")
         bits.append(f"matched as {prov.get('normalization')}")
-        lines.append(f"- **{label}** — {', '.join(bits)}.")
+        lines.append(f"- **{label}**: {', '.join(bits)}.")
     lines.append("")
     return lines
 
@@ -3922,25 +3922,25 @@ def _fair_comparison_2x2_lines(rows: List[dict]) -> List[str]:
         "its hand-curated word-EXCEPTION list (o2i, by hard rule, ships no "
         "such list). This 2x2 isolates the dictionary's contribution on "
         "the same gold rows, for the languages where both extra columns "
-        "are wired up (the `DICTSOURCE_LANG`-mapped subset — see the "
+        "are wired up (the `DICTSOURCE_LANG`-mapped subset, see the "
         "script's module docstring for how to enable `espeak_rules` via "
         "`scripts/build_espeak_rules_only.sh` and `o2i_lex` via "
         "`$ESPEAK_DICTSOURCE_PATH`). The dictionary is not a one-way "
         f"upgrade: across every row with both numbers, espeak-ng's "
         f"rules-only column actually BEATS stock (dictionary-included) "
-        f"espeak-ng on {n_rules_wins} of {len(rules_beats_stock)} rows — "
+        f"espeak-ng on {n_rules_wins} of {len(rules_beats_stock)} rows, "
         f"the word-exception list sometimes makes espeak-ng WORSE (e.g. "
         f"letter-spelling acronyms getting a dictionary hit that is "
         f"wrong for the gold's convention), not always better.",
         "",
-        "- `o2i` — orthography2ipa, rules only (unchanged from the main "
+        "- `o2i`, orthography2ipa, rules only (unchanged from the main "
         "table).",
-        "- `o2i_lex` — orthography2ipa + a runtime lexicon built from "
+        "- `o2i_lex`, orthography2ipa + a runtime lexicon built from "
         "espeak-ng's OWN word-exception list, each word's IPA obtained "
         "from espeak-ng itself (o2i rules + espeak's dictionary).",
-        "- `espeak` — espeak-ng, rules + its own word-exception dictionary "
+        "- `espeak`, espeak-ng, rules + its own word-exception dictionary "
         "(unchanged from the main table).",
-        "- `espeak_rules` — espeak-ng with the word-exception dictionary "
+        "- `espeak_rules`, espeak-ng with the word-exception dictionary "
         "emptied before compiling (rules only).",
         "",
         "| Lang | Dataset | N | o2i | o2i_lex | espeak | espeak_rules |",
@@ -3968,7 +3968,7 @@ def _fair_comparison_2x2_lines(rows: List[dict]) -> List[str]:
     lines.append(
         "**Licensing**: espeak-ng's dictsource word lists and the IPA "
         "derived from them are GPL. They are used here ONLY at comparison "
-        "runtime — fetched/built into a local scratch cache "
+        "runtime, fetched/built into a local scratch cache "
         "(`$ESPEAK_RULES_DATA_PATH`, `.o2i_lex_cache/`), never committed "
         "to this repository and never shipped in orthography2ipa's own "
         "package or lexicons."
@@ -4027,7 +4027,7 @@ def _details_block_lines(rows: List[dict], scoreboard_note: str,
         "than orthography2ipa's 493 language codes. "
         "`epitran`/`gruut`/`pycotovia`/`ahotts-g2p` are only installed "
         "via the dev-only `[compare]` extra; a committed run generated "
-        "without them shows `n/a` in those columns for every row — that "
+        "without them shows `n/a` in those columns for every row, that "
         "reflects the generating environment, not a claim those systems "
         "don't support the language.",
         "",
@@ -4035,7 +4035,7 @@ def _details_block_lines(rows: List[dict], scoreboard_note: str,
         "spec as `eu`, registered as a separate board entry only so its "
         "independent `wikipron` gold can be the language's PRIMARY row "
         "for the leaderboard, instead of `eu`'s primary "
-        "`hitz_basque_ipa` — which comes from HiTZ/Aholab, the same lab "
+        "`hitz_basque_ipa`, which comes from HiTZ/Aholab, the same lab "
         "behind `ahotts-g2p`, and is close to same-source for that "
         "system (see the ahotts-g2p note below). Both entries score the "
         "identical set of gold datasets; only which one is PRIMARY "
@@ -4055,28 +4055,28 @@ def _details_block_lines(rows: List[dict], scoreboard_note: str,
         "`classic` (see the `ahotts_version` field in "
         "`benchmarks/comparison.json`). The `eu` `hitz_basque_ipa` gold "
         "is authored by HiTZ/Aholab, the same lab behind AhoTTS, so "
-        "ahotts-g2p's very low PER there is close to same-source — the "
+        "ahotts-g2p's very low PER there is close to same-source, the "
         "independent `eu` `wikipron` (Wiktionary) row is the fairer "
         "comparison. The audio-only `pyahotts` package is NOT a "
         "comparison system here (no phoneme output).",
         "",
         "**africa-g2p coverage.** `africa-g2p` (AfriSpeech; rule-based "
         "G2P for ~400 African-language ISO 639-3 codes) is published on "
-        "PyPI but is not part of the `[compare]` extra — install it into "
+        "PyPI but is not part of the `[compare]` extra, install it into "
         "the run environment before regenerating this table (see the "
         "script's module docstring). "
         "**`ghana-g2p` shares those rule tables and is still its own "
         "system,** so it is ranked normally: it adds Unicode "
         "normalisation, a per-letter patch table, donor rule sets and its "
         "own word handling on top. Measured against africa-g2p 0.2.4 on "
-        "the same words, it diverges where those layers bite — Ninkare "
+        "the same words, it diverges where those layers bite, Ninkare "
         "(`gur`) vowel length (`naawuni` reads `naːwũi`, not `naːwũiː`) "
-        "and word boundaries (`kɔ ekyi`) — and on the 111-word WikiPron "
+        "and word boundaries (`kɔ ekyi`), and on the 111-word WikiPron "
         "`gur` set it scores PER 0.3297 against africa-g2p's 0.4903. "
         "Where a row shows the same number for both, the patch layer does "
         "not reach that language's gold, and the Winner names the tie. "
         "Rows only appear for gold languages BOTH orthography2ipa and "
-        "africa-g2p's own `registry()` cover — 10 languages as of this "
+        "africa-g2p's own `registry()` cover, 10 languages as of this "
         "run: `arb`, `cop`, `hts`, `kab`, `ktz`, `lad`, `mfe`, `ngh`, "
         "`nup`, `tzm`. None of these ten has a matching espeak-ng voice, "
         "epitran code, or gruut language on this machine either, so "
@@ -4092,13 +4092,13 @@ def _details_block_lines(rows: List[dict], scoreboard_note: str,
         "`espeak_rules_per` field) is a permanent column on this board: "
         "espeak-ng compiled from its own letter-to-sound rules with "
         "every per-language word-exception list "
-        "(`_list`/`_listx`/`_extra`) emptied first — see "
+        "(`_list`/`_listx`/`_extra`) emptied first, see "
         "`scripts/build_espeak_rules_only.sh`. " + espeak_rules_note,
         "",
         "### Win tallies",
         "",
         "Counted over distinct LANGUAGES (one row per language: its "
-        "configured primary gold dataset — see `_primary_rows`), never "
+        "configured primary gold dataset, see `_primary_rows`), never "
         "over table rows, split by whether the primary gold is an "
         "independent reference or another tool's/LLM's output:",
         "",
@@ -4117,7 +4117,7 @@ def _details_block_lines(rows: List[dict], scoreboard_note: str,
     if agreement_comparable:
         lines.append(
             f"- **Agreement-tier** (machine-generated / espeak-derived / "
-            f"epitran-derived / llm-generated primary gold — measures "
+            f"epitran-derived / llm-generated primary gold, measures "
             f"agreement with the generating tool, not accuracy): o2i "
             f"beats espeak on {agreement_wins} of "
             f"{len(agreement_comparable)} comparable languages."
@@ -4133,7 +4133,7 @@ def _details_block_lines(rows: List[dict], scoreboard_note: str,
         "",
         "```bash",
         "pip install '.[compare]'  # epitran, gruut, pycotovia, "
-        "ahotts-g2p — dev-only extra",
+        "ahotts-g2p, dev-only extra",
         "PYTHONPATH=$PWD python scripts/compare_systems.py --scoreboard",
         "```",
         "",
@@ -4260,55 +4260,55 @@ def write_comparison(
         "(Basque & Spanish), "
         f"**africa-g2p** ({_africa_rows} rows) and **ghana-g2p** "
         f"({_ghana_rows} rows, africa-g2p's tables plus a donor tier and a "
-        "patch table) — eight systems, two "
+        "patch table), eight systems, two "
         "of which (espeak-ng, gruut) also get a rules-only column. Each "
         "count is the number of BOARD ROWS on which that system produced a "
         "score, not a number of languages: a language with two golds "
         "contributes two rows. Each "
         "system covers a different subset of languages. A missing "
         "mapping, or a system not installed in the generating "
-        "environment, shows as `n/a` — never skipped, never faked.",
+        "environment, shows as `n/a`, never skipped, never faked.",
         "",
         "**Rules-only columns, and why only two engines have one.** A "
         "\"rules-only\" column runs the SAME engine with its bundled "
         "dictionary/lexicon disabled, so it can only fall back on its "
-        "own letter-to-sound rules or g2p model — the fair comparison "
+        "own letter-to-sound rules or g2p model, the fair comparison "
         "against o2i, which by hard rule ships no word-exception list "
         "of its own. Disposition per engine:",
         "",
-        "- **espeak-ng** — `espeak_rules`: its dictsource "
+        "- **espeak-ng**: `espeak_rules`: its dictsource "
         "`_list`/`_listx`/`_extra` word-exception files emptied before "
         "compiling (`scripts/build_espeak_rules_only.sh`, espeak-ng "
         "1.52.0 pinned). Every number is verified before publishing: the "
         "build's manifest must list the language AND the compiled "
         "dictionary must differ from the stock one by md5 "
-        "(`assert_espeak_rules_built_for`) — an earlier version of this "
+        "(`assert_espeak_rules_built_for`), an earlier version of this "
         "board published a stock-vs-stock \"comparison\" for `es` "
         "because that check did not exist yet.",
-        "- **gruut** — `gruut_rules`: its bundled lexicon lookup "
+        "- **gruut**: `gruut_rules`: its bundled lexicon lookup "
         "(`TextProcessorSettings.lookup_phonemes`) disabled at runtime "
         "so every word falls through to gruut's own g2p fallback model "
         "instead of a dictionary hit. This exists because gruut's "
         "`en-US` lexicon (124,392 words) turned out to be CMUdict-"
         "derived and covers 98.2% of both the `cmudict` and `ipadict` "
-        "gold sets — see the same-source note below for those two rows.",
+        "gold sets, see the same-source note below for those two rows.",
         "- **epitran** is a rule/mapping-based transliterator for the "
         "languages this board scores, not a lexicon lookup, so there is "
         "no dictionary to strip; the `es`/`gl-ES` gold it is scored against "
         "uses a BROAD transcription convention (no ð/β/ɣ/θ allophone "
         "diacritics, glide notation folded) rather than the narrow one "
-        "o2i and espeak-ng target — see the note on that below.",
-        "- **pycotovia** — audited: its lexicon is closed to function-"
+        "o2i and espeak-ng target, see the note on that below.",
+        "- **pycotovia**: audited: its lexicon is closed to function-"
         "word stress tables (a small, fixed, rule-grade set, not a "
         "general word dictionary), so there is no general-purpose "
         "lexicon to disable and no rules-only column is needed.",
-        "- **ahotts-g2p** — audited: it ships an HDIC dictionary "
+        "- **ahotts-g2p**: audited: it ships an HDIC dictionary "
         "(1,990 expansion entries; 103 TF_MRK words whose phonetic "
         "transcription is supplied directly by the dictionary; 1,065 "
         "per-word allophone-exception and 293 stress-marked entries), "
         "but those entries hit only 1.5% of the `eu` wikipron gold "
         "and 2.6% of `hitz_basque_ipa`, so a rules-only column would "
-        "move the number by a fraction of a percent — recorded here "
+        "move the number by a fraction of a percent, recorded here "
         "rather than given a column.",
         "",
         "**Ranking policy: lexicon-free only.** Anything with a "
@@ -4318,31 +4318,31 @@ def write_comparison(
         "`gruut_rules`), its stock value where the engine is audited "
         "lexicon-free (epitran's rule/mapping tables, pycotovia's "
         "closed function-word stress table, africa-g2p's rule-based "
-        "G2P), and ahotts-g2p's stock value — its HDIC dictionary hits "
+        "G2P), and ahotts-g2p's stock value, its HDIC dictionary hits "
         "only 1.5%/2.6% of the `eu`/`hitz_basque_ipa` gold, an explicit "
         "documented exception, not an oversight (see the per-engine "
-        "disposition above). A lexicon-BACKED stock value — plain "
+        "disposition above). A lexicon-BACKED stock value, plain "
         "`espeak`, plain `gruut`, and (once it lands) a "
-        "`transphone`-style tokenizer column — is EXCLUDED from ranking "
+        "`transphone`-style tokenizer column, is EXCLUDED from ranking "
         "entirely, on the fair-comparison principle that o2i, by hard "
         "rule, ships no bundled word-exception lexicon of its own: "
         "ranking o2i's rules against another system's rules-plus-"
         "dictionary is not a fair fight (see the module docstring's "
         "\"Fair-comparison 2x2\" section, which this policy generalizes "
         "from a side table into the primary ranking). This is a "
-        "deliberate ranking policy, not hidden data — the lexicon-"
+        "deliberate ranking policy, not hidden data, the lexicon-"
         "backed columns stay right there on the board, marked "
         "`(lexicon)`, for anyone who wants the dictionary-included "
         "picture; the leaderboard just also names, as an informational "
         "aside, whenever a lexicon-backed value would have scored "
-        "lowest of all (`espeak with its lexicon scores N — "
-        "informational`) — visible, never counted.",
+        "lowest of all (`espeak with its lexicon scores N, "
+        "informational`), visible, never counted.",
         "",
         "**Symmetric alternative: the lexicon-backed tier.** The fair-"
         "comparison principle cuts both ways, so the board also carries "
         "a SECOND ranking where every engine keeps its lexicon on and "
         "o2i takes part on the same terms (as `o2i_lex`, o2i plus "
-        "espeak-ng's own word list) — see \"Lexicon-backed tier\" below. "
+        "espeak-ng's own word list), see \"Lexicon-backed tier\" below. "
         "It is scored on gold FILTERED against the union of every "
         "compared engine's lexicon, so it measures generalization beyond "
         "those lexicons rather than test-set lookup. It is a separate "
@@ -4353,7 +4353,7 @@ def write_comparison(
         "FREE WORLD (see \"Ranking policy\" above), by name; ties "
         f"(within {_WINNER_TIE_TOLERANCE} PER) name every system tied "
         "for best rather than a bare `tie`. `same-source` cells never "
-        "win — they are not real comparisons. When even the best PER on "
+        "win, they are not real comparisons. When even the best PER on "
         "a row exceeds "
         f"{_NO_SYSTEM_USABLE_THRESHOLD}, the cell says "
         "\"no system is usable on this gold\" instead of naming a "
@@ -4361,28 +4361,28 @@ def write_comparison(
         "failing it.",
         "",
         "**`same-source` cells.** A cell reads `same-source` (never "
-        "`n/a`) when the gold dataset IS that system's own output — "
+        "`n/a`) when the gold dataset IS that system's own output, "
         "e.g. scoring `espeak` against `ipa_babylm` (espeak-derived), "
         "`ahotts-g2p` against `hitz_basque_ipa` (HiTZ's own phonemizer "
         "output, same lab as AhoTTS), or `gruut` (dictionary lookup, "
         "not `gruut_rules`) against `cmudict`/`ipadict` (gruut's `en-US` "
-        "lexicon is CMUdict-derived — see above). Scoring a system "
+        "lexicon is CMUdict-derived, see above). Scoring a system "
         "against its own generator would score near-zero by "
         "construction, not because it is accurate, so that comparison "
         "is refused. The same rule applies to o2i itself on "
-        "`arabic_tts`, `portuguese_tts`, and `gold20_arabic` — gold "
+        "`arabic_tts`, `portuguese_tts`, and `gold20_arabic`, gold "
         "drafted by the same Claude lineage that wrote orthography2ipa's "
         "own Arabic/Portuguese specs.",
         "",
         "**epitran's `es`/`gl-ES` gold uses a broad transcription "
         "convention.** The wikipron gold rows for `es` and `gl-ES` (and "
-        "epitran's own output) are scored in the BROAD IPA convention — "
+        "epitran's own output) are scored in the BROAD IPA convention, "
         "no allophonic diacritics (`ð β ɣ θ` etc.) and glide notation "
-        "folded (`j w i̯ u̯` → `i u`) — rather than the narrower "
+        "folded (`j w i̯ u̯` → `i u`), rather than the narrower "
         "transcription o2i and espeak-ng aim for. #867 measured this "
         "directly: folding tier symbols out of both sides on `es`/"
         "`wikipron` moved o2i's PER from 0.0172 to 0.0090, and folding "
-        "glide notation too moved it from 0.0099 to 0.0086 — most of a "
+        "glide notation too moved it from 0.0099 to 0.0086, most of a "
         "PER change on this row is notation converging, not an audible "
         "accuracy change. Read a narrow-vs-broad PER gap here as a "
         "convention difference, not a correctness gap.",
@@ -4392,7 +4392,7 @@ def write_comparison(
         "LLM's output (see each dataset's `provenance_tier` in "
         "`benchmarks/comparison.json`). A win on one of those rows shows "
         "how much a system agrees with the tool that generated the gold "
-        "— it is not a correctness claim.",
+        "it is not a correctness claim.",
         "",
         "**Normalization.** Every system is scored with the identical "
         "normalization and PER metric orthography2ipa's own scoreboard "
@@ -4404,21 +4404,21 @@ def write_comparison(
         "",
         "**Honesty.** This table includes languages where o2i **loses** "
         "to espeak-ng. Cherry-picking would make the comparison "
-        "worthless. Every gold dataset a language has gets its own row — "
-        "not just the flattering one — so a system winning on one gold "
+        "worthless. Every gold dataset a language has gets its own row, "
+        "not just the flattering one, so a system winning on one gold "
         "and losing on another for the SAME language is visible here.",
         "",
         "**N** is the number of unique gold words for that "
         "language/dataset pair. A system's own scored count can be "
-        "slightly lower — a word it failed to transcribe is excluded "
-        "from its PER, not counted as an error — see the `*_n` fields in "
+        "slightly lower, a word it failed to transcribe is excluded "
+        "from its PER, not counted as an error, see the `*_n` fields in "
         "`benchmarks/comparison.json` for the exact per-system count. "
         "`N` can also differ from a PREVIOUS run of this same row for "
         "two unrelated reasons: `wikipron` gold is fetched live from its "
-        "upstream GitHub repository and cached — a re-run against an "
+        "upstream GitHub repository and cached, a re-run against an "
         "empty cache picks up whatever Wiktionary-derived content is "
         "current upstream at fetch time, which drifts over time "
-        "independent of any change here — `cy`/`wikipron`'s `N` in this "
+        "independent of any change here, `cy`/`wikipron`'s `N` in this "
         "regen (see the table above) differs from the previously "
         "committed board for exactly this reason, not an o2i or harness "
         "change; and a `sampled` row (below) "

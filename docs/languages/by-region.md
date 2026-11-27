@@ -14,6 +14,13 @@ A stub has a name, a code and a place in the family tree, but no phonology yet. 
 
 `scripts/gen_language_atlas.py` writes this page. Do not edit it by hand.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../evaluation/charts/atlas-region.dark.svg">
+  <img alt="Countries per macroarea. The most: Eurasia 124, Africa 62, North America 39." src="../evaluation/charts/atlas-region.light.svg">
+</picture>
+
+`scripts/gen_doc_charts.py` makes this figure from the table under it.
+
 | Macroarea | Countries |
 |:--|--:|
 | [Africa](#africa) | 62 |
