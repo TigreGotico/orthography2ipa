@@ -497,10 +497,10 @@
       "id": "FR_DIX_Z_BEFORE_HUIT_NEUF",
       "name": "dix in dix-huit and dix-neuf",
       "left_context": "^((?:d|d͡z)[iɪ])s$",
-      "right_context": "^(?:ɥit|nœf)$",
+      "right_context": "^(?:ɥit|nœf|ɥitjɛm|nøvjɛm|nœvjɛm)$",
       "transform": "\\1z",
       "obligatory": true,
-      "notes": "dix takes [z] before huit and neuf in the numerals 18 and 19: dix-huit [dizɥit], dix-neuf [diznœf], quatre-vingt-dix-huit. Martinon (1913: 346): dix-huit (dizuite) by analogy with the liaison, and the soft s of dix-neuf by analogy with dix-huit; in dix-sept the [s] stays hard (dis-sète), which FR_NUMERAL_MUTE_BEFORE_CONSONANT leaves alone. The left context also takes the allophones an inheriting variety gives the same word: an affricated /d/ and a lax /i/ (fr-CA dix [d͡zis] or [d͡zɪs])."
+      "notes": "dix takes [z] before huit and neuf in the numerals 18 and 19: dix-huit [dizɥit], dix-neuf [diznœf], quatre-vingt-dix-huit. Martinon (1913: 346): dix-huit (dizuite) by analogy with the liaison, and the soft s of dix-neuf by analogy with dix-huit; in dix-sept the [s] stays hard (dis-sète), which FR_NUMERAL_MUTE_BEFORE_CONSONANT leaves alone. The left context also takes the allophones an inheriting variety gives the same word: an affricated /d/ and a lax /i/ (fr-CA dix [d͡zis] or [d͡zɪs]). The derivatives take it too: dix-huitième [diz ɥitjɛm], dix-neuvième [diz nøvjɛm] (Martinon 1913: 346: dans dix-huit (dizuite) et ses dérivés, and dix-neuf by analogy with dix-huit)."
     },
     {
       "id": "FR_VINGT_T_BEFORE_UNIT",
@@ -524,7 +524,7 @@
       "right_spelling": "^(?:et|huit|huitième|huitièmes)$",
       "transform": "t‿",
       "obligatory": true,
-      "notes": "The t of vingt sounds and links in vingt et un and vingt-huit: [vɛ̃t‿ e œ̃], [vɛ̃t‿ ɥit]. Martinon (1913: 329): vingt et un, par liaison; 253 note 2: l'on prononce vingt-(h)uit comme quarant(e)-(h)uit, and quatre-vingt-huit comme quatre-vingt-deux, without it. Lexique 3.83 gives vingt-huit [v5t8it]. Ordered before FR_LINK_BLOCKED_BEFORE_ONZE_OUI, which keeps the numeral huit from linking elsewhere."
+      "notes": "The t of vingt sounds and links in vingt et un and vingt-huit: [vɛ̃t‿ e œ̃], [vɛ̃t‿ ɥit]. Martinon (1913: 329): vingt et un, par liaison; 253 note 2: l'on prononce vingt-(h)uit comme quarant(e)-(h)uit, and quatre-vingt-huit comme quatre-vingt-deux, without it. Lexique 3.83 gives vingt-huit [v5t8it]. Ordered before FR_LINK_BLOCKED_BEFORE_HUIT_OUI, which keeps the numeral huit from linking elsewhere."
     },
     {
       "id": "FR_EST_NOUN_AFTER_COMPASS",
@@ -587,11 +587,11 @@
       "left_context": "$",
       "right_context": "",
       "left_spelling": "[td]$",
-      "right_spelling": "^(?:il|ils|elle|elles|on)$",
+      "right_spelling": "^(?:il|ils|elle|elles|on|en)$",
       "right_joined_spelling": "-",
       "transform": "t‿",
       "obligatory": true,
-      "notes": "A verb in t or d before an inverted subject links with [t]: dit-il [dit‿ il], est-il, vient-il, que perd-on, and the written -t- of a-t-il and va-t-on. Martinon (1913: 364): on lie également, et plus nécessairement encore, quand il y a inversion du verbe et du sujet: di(t)-il, que per(d)-on?; 363 note 2: the d links with the sound of t. The right joined spelling holds the hyphen, so only a subject joined by a hyphen counts."
+      "notes": "A verb in t or d before an inverted subject links with [t]: dit-il [dit‿ il], est-il, vient-il, que perd-on, and the written -t- of a-t-il and va-t-on. Martinon (1913: 364): on lie également, et plus nécessairement encore, quand il y a inversion du verbe et du sujet: di(t)-il, que per(d)-on?; 363 note 2: the d links with the sound of t. The right joined spelling holds the hyphen, so only a subject joined by a hyphen counts. Before en only the written t of va-t-en links: Martinon (1913: 364 note 3): va-t-en, a-t-il, aime-t-il ne sont pas autre chose qu'une liaison faite, par analogie, là où il n'y a pas de t."
     },
     {
       "id": "FR_LIAISON_Z_BEFORE_Y_EN",
@@ -614,7 +614,7 @@
       "right_spelling": "^onze$",
       "transform": "t‿",
       "obligatory": true,
-      "notes": "est links with [t] before onze: il est onze heures [il ɛt‿ ɔ̃z œʁ]. Martinon (1913: 358): no liaison before the numerals un and onze, et, quoiqu'on dise régulièrement il es(t) tonze heures, avec liaison, cas spécial, on dira pourtant ils étai(ent) onze ou ils son(t) onze. Ordered before FR_LINK_BLOCKED_BEFORE_ONZE_OUI."
+      "notes": "est links with [t] before onze: il est onze heures [il ɛt‿ ɔ̃z‿ œʁ]. Martinon (1913: 358): no liaison before the numerals un and onze, et, quoiqu'on dise régulièrement il es(t) tonze heures, avec liaison, cas spécial, on dira pourtant ils étai(ent) onze ou ils son(t) onze. Ordered before FR_LINK_BLOCKED_BEFORE_ONZE_OUI."
     },
     {
       "id": "FR_H_ASPIRE_BLOCKS_LINK",
@@ -628,13 +628,23 @@
     },
     {
       "id": "FR_LINK_BLOCKED_BEFORE_ONZE_OUI",
-      "name": "no link before onze, oui, huit and a glide",
+      "name": "no link before onze, uhlan and a glide",
+      "left_context": "^((?:s|d|d͡z)[iɪ])s$|^(ɥ[iɪ])t$|$",
+      "right_context": "",
+      "right_spelling": "^(?:onz|uhlan|y(?!eux$)[aeiouéèêëàâîïôû]|w)",
+      "transform": "\\1\\2",
+      "obligatory": true,
+      "notes": "Before onze and onzième, before uhlan, before a y that the next vowel makes a glide and before a w, the word is treated as consonant-initial: no liaison, no link mark, and six, dix and huit take the form they have before a consonant. les onze [le ɔ̃z], six onzièmes [si ɔ̃zjɛm], des yachts, six yachts [si iaʃ], dix watts [di wat]; but les yeux [lez‿ iø]. Martinon (1913: 358): no liaison before un and onze (no(s) onze enfants, aprè(s) onze heures), before uhlan, and before a y grec suivi d'une voyelle, parce que cet y fait alors fonction de semi-voyelle (de(s) yachts, de(s) youyous); 375: les yeux, with the [z] of zyeux; 328, 345: the numerals drop their consonant before a word that begins with a consonant. A w at the start of a word is an English loan (week-end, whisky). The left context is the one of FR_H_ASPIRE_BLOCKS_LINK. est onze heures links by FR_LIAISON_T_EST_ONZE, ordered before this rule."
+    },
+    {
+      "id": "FR_LINK_BLOCKED_BEFORE_HUIT_OUI",
+      "name": "no link before huit and oui",
       "left_context": "$",
       "right_context": "",
-      "right_spelling": "^(?:onz|oui$|ouistitis?$|uhlan|huit(?:s|ième|ièmes|aine|aines|ante|antes|antième|antièmes)?$|y(?!eux$)[aeiouéèêëàâîïôû]|w)",
+      "right_spelling": "^(?:oui$|ouistitis?$|huit(?:s|ième|ièmes|aine|aines|ante|antes|antième|antièmes)?$)",
       "transform": "",
       "obligatory": true,
-      "notes": "No liaison before the numerals onze and huit, before oui and uhlan, or before a y that the next vowel makes a glide: les onze [le ɔ̃z], les huit [le ɥit], trois-huit, cent-huit, des yachts; but les yeux [lez‿ iø]. Martinon (1913: 358): no liaison before un and onze (aprè(s) onze heures), before oui (je di(s) oui), before uhlan, or before a y grec suivi d'une voyelle (de(s) yachts, de(s) youyous), and ouistiti takes none; 253: huit as a numeral has an h aspiré of its own (trois huit sans liaison, cent-huit sans liaison, and quatre-vingt-huit like quatre-vingt-deux); 375: les yeux, with the [z] of zyeux. The Swiss huitante is the same numeral. A w at the start of a word is an English loan (week-end, whisky) and takes no link. The numeral un is left to the rules that read it (cent un, vingt et un avril). est onze heures, vingt-huit and dix-huit link by rules ordered before this one."
+      "notes": "No liaison before the numeral huit and before oui: les huit [le ɥit], trois-huit, cent-huit, je dis oui. Martinon (1913: 253): huit as a numeral has an h aspiré of its own (trois huit sans liaison, cent-huit sans liaison, quatre-vingt-huit like quatre-vingt-deux); 358: je di(s) oui, pour un oui, pour un non, and ouistiti takes none. The Swiss huitante is the same numeral. Unlike FR_LINK_BLOCKED_BEFORE_ONZE_OUI, the left word keeps its consonant: six-huit, the musical measure, keeps a hard s (Martinon 1913: 346). vingt-huit and dix-huit link by rules ordered before this one."
     },
     {
       "id": "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
@@ -665,14 +675,25 @@
     },
     {
       "id": "FR_LIAISON_Z_DETERMINER",
-      "name": "z after a determiner or a preposition",
+      "name": "z after a determiner",
       "left_context": "$",
       "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
-      "left_joined_spelling": "^(?:les|des|mes|tes|ses|ces|nos|vos|leurs|aux|quelques|chez|dans|dès|sans|sous|très)$",
+      "left_joined_spelling": "^(?:les|des|mes|tes|ses|ces|nos|vos|leurs|aux|quelques)$",
+      "right_spelling": "^(?!(?:et|ou|un|une)$)",
+      "transform": "z‿",
+      "obligatory": true,
+      "notes": "The obligatory [z] liaisons after a determiner: les amis [lez‿ ami], des enfants, aux armes, quelques amis, les uns. Martinon (1913: 375): the plural articles les, des, aux, and ces, the possessive or indefinite adjectives mes, tes, ses, nos, vos, leurs, certains, plusieurs, etc. se lient encore sans exception devant un substantif, even with an adjective in between; 376: les is also the object pronoun before a verb (je les attends); quelques stands with certains and plusieurs as an indefinite plural adjective, and is never a pronoun. The joined spelling is anchored at both ends, so a word joined by a hyphen does not link (donne-les à mon père: 376, no link). Not before et or ou, nor before the numeral un or une (Martinon 1913: 358: les numéro(s) un et deux, sur le(s) une heure); the pronoun les uns links. The h aspiré, onze, huit and oui are stopped by FR_H_ASPIRE_BLOCKS_LINK and the two FR_LINK_BLOCKED_BEFORE_* rules, ordered before this rule."
+    },
+    {
+      "id": "FR_LIAISON_Z_PREPOSITION",
+      "name": "z after a preposition and très",
+      "left_context": "$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "left_joined_spelling": "^(?:chez|dans|dès|sans|sous|très)$",
       "right_spelling": "^(?!(?:et|ou)$)",
       "transform": "z‿",
       "obligatory": true,
-      "notes": "The obligatory [z] liaisons after a determiner, a preposition and très: les amis [lez‿ ami], des enfants, aux armes, quelques amis, chez elle, dans un jour, sans amour, sous un arbre, dès à présent, très utile. Martinon (1913: 375): the plural articles les, des, aux, and ces, the possessive or indefinite adjectives mes, tes, ses, nos, vos, leurs, certains, plusieurs, etc. se lient encore sans exception devant un substantif, even with an adjective in between; 376: les is also the object pronoun before a verb (je les attends); 374: the liaison is necessary after the monosyllabic prepositions dans, dès, sans, chez, sous, and after très before the word it modifies. quelques stands with certains and plusieurs as an indefinite plural adjective, and is never a pronoun. The joined spelling is anchored at both ends, so a word joined by a hyphen does not link (donne-les à mon père: 376, no link). Not before et or ou. The h aspiré and the numeral onze are stopped by FR_H_ASPIRE_BLOCKS_LINK and FR_LINK_BLOCKED_BEFORE_ONZE_OUI, ordered before this rule."
+      "notes": "The obligatory [z] liaisons after the monosyllabic prepositions and très: chez elle [ʃez‿ ɛl], dans un jour, sans amour, sous un arbre, dès à présent, très utile. Martinon (1913: 374): la liaison est encore nécessaire avec les prépositions monosyllabiques dans, dès, sans, chez, sous, devant leurs régimes (dan(s) zun jour, san(s) zamour, che(z) zelle, sou(s) zun arbre), and with très before the word it modifies. The joined spelling is anchored at both ends, so the second word of Très-Haut does not link (the h aspiré block also stops it). Not before et or ou."
     },
     {
       "id": "FR_LIAISON_Z_INDEFINITE",
@@ -716,7 +737,18 @@
       "right_spelling": "^(?!(?:et|ou)$)",
       "transform": "t‿",
       "obligatory": true,
-      "notes": "The obligatory [t] liaisons: il est allé [il ɛt‿ ale], c'est un, ils sont arrivés, ils ont eu, tout à fait, tout homme, tout est fini, quand il viendra, quant à, dont il est. Martinon (1913: 363): forms like est or sont, avait or ont, without liaison are certainly incorrect, surtout si ce sont des auxiliaires (ils on(t) taimé); 364: il e(st) ta Paris is indispensable; 365: cet and tout se lient toujours, being always before the noun (tou(t) thomme); 366: the adverb tout before an adjective (il est tou(t) tautre, tout à fai(t)), quan(t) ta, the relative dont and the conjunction quand (quan(d) til viendra, don(t) til est); 367: le pronom indéfini sujet se lie toujours: tou(t) test fini. Not before et or ou (367: the noun tout does not link, le tou(t) et la partie). The noun tout before a verb (le tout est de savoir, 367, no link) cannot be told from the pronoun (tout est fini) by two words, and takes the link. grand is left out: Martinon (1913: 365-366) links it before its noun only (gran(d) thomme, but il est gran(d) et fort), and two words cannot show the noun."
+      "notes": "The obligatory [t] liaisons: il est allé [il ɛt‿ ale], c'est un, ils sont arrivés, ils ont eu, tout à fait, tout homme, tout est fini, quand il viendra, quant à, dont il est. Martinon (1913: 363): forms like est or sont, avait or ont, without liaison are certainly incorrect, surtout si ce sont des auxiliaires (ils on(t) taimé); 364: il e(st) ta Paris is indispensable; 365: cet and tout se lient toujours, being always before the noun (tou(t) thomme); 366: the adverb tout before an adjective (il est tou(t) tautre, tout à fai(t)), quan(t) ta, the relative dont and the conjunction quand (quan(d) til viendra, don(t) til est); 367: le pronom indéfini sujet se lie toujours: tou(t) test fini. Not before et or ou (367: the noun tout does not link, le tou(t) et la partie). The noun tout before a verb (le tout est de savoir, 367, no link) cannot be told from the pronoun (tout est fini) by two words, and takes the link. grand has a rule of its own, FR_LIAISON_T_GRAND."
+    },
+    {
+      "id": "FR_LIAISON_T_GRAND",
+      "name": "t after grand before its noun",
+      "left_context": "$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "left_joined_spelling": "^grand$",
+      "right_spelling": "^(?!(?:et|ou|à|au|aux|en|avec|aussi|il|elle|on|ils|elles|y|encore|alors|ici|après|avant|assez|entre|envers|ou|un|une)$)",
+      "transform": "t‿",
+      "obligatory": true,
+      "notes": "grand links with [t] before its noun: grand homme [ɡʁɑ̃t‿ ɔm], grand ami, grand hôtel, grand-oncle. Martinon (1913: 365): l'adjectif se lie à peu près uniquement, mais obligatoirement, avec le substantif qui le suit (gran(d) thomme); 366: when the adjective is not before its noun it does not link (il est gran(d) et fort). A rule on two words cannot see the noun, so it leaves out a right word that is never a noun: the conjunctions, the prepositions, the adverbs that follow a predicative adjective (il est grand aussi) and the pronouns. Another word after a predicative grand (il est grand ici, il est grand ami de) is out of its reach; the h aspiré block keeps grand héros unlinked."
     },
     {
       "id": "FR_LIAISON_T_NUMERAL",
@@ -728,7 +760,7 @@
       "right_spelling": "^(?!(?:et|ou|un|une|avril|août|octobre)$)",
       "transform": "t‿",
       "obligatory": true,
-      "notes": "vingt and cent link with [t] before the noun they count: vingt ans [vɛ̃t‿ ɑ̃], cent ans [sɑ̃t‿ ɑ̃], cent hommes. Martinon (1913: 365): ving(t) thommes ou cen(t) thommes, like the adjectives placed before their noun. cent has the IPA of sans and sang, so the rule reads the spelling of the left word. Not in cent un or cent-un (358 note 1: cent un is cent et un, without the link of cent fois un), nor before cent huit and cent onze (253 note 2, cent-huit sans liaison; FR_LINK_BLOCKED_BEFORE_ONZE_OUI), nor before the months (345). The right spelling is the word alone, so the hyphenated forms of 1990 behave as the spaced ones. quatre-vingt is left to the plural quatre-vingts, which links with [z] (FR_LIAISON_Z_NUMERAL)."
+      "notes": "vingt and cent link with [t] before the noun they count: vingt ans [vɛ̃t‿ ɑ̃], cent ans [sɑ̃t‿ ɑ̃], cent hommes. Martinon (1913: 365): ving(t) thommes ou cen(t) thommes, like the adjectives placed before their noun. cent has the IPA of sans and sang, so the rule reads the spelling of the left word. Not in cent un or cent-un (358 note 1: cent un is cent et un, without the link of cent fois un), nor before cent huit and cent onze (253 note 2, cent-huit sans liaison; FR_LINK_BLOCKED_BEFORE_HUIT_OUI and FR_LINK_BLOCKED_BEFORE_ONZE_OUI), nor before the months (345). The right spelling is the word alone, so the hyphenated forms of 1990 behave as the spaced ones. quatre-vingt is left to the plural quatre-vingts, which links with [z] (FR_LIAISON_Z_NUMERAL)."
     },
     {
       "id": "FR_LIAISON_N_ARTICLE",

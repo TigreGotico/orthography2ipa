@@ -137,3 +137,13 @@ def test_a_long_hyphen_chain_transcribes(code):
     assert len(chain) > 2000
     assert _t(chain, code).count("a") == 700
     assert _t("il dit " + "-".join(["hahaha"] * 60) + " ici", code)
+
+
+# Martinon (1913: 346): the soft s of dix-huit, "et ses dérivés", and of
+# dix-neuf by analogy.
+@pytest.mark.parametrize("text, expected", [
+    ("dix-huitième", "diz ɥitjɛm"), ("dix-neuvième", "diz nøvjɛm"),
+    ("dix-huit", "diz ɥit"), ("dix-neuf", "diz nœf"),
+])
+def test_dix_links_in_the_derivatives_of_18_and_19(text, expected):
+    assert _t(text) == expected

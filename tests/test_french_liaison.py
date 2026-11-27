@@ -208,3 +208,37 @@ def test_the_enchainement_rules_run_without_spellings():
 def test_the_h_aspire_stems_are_written_once():
     rules = o2i.get("fr-FR").sandhi_rules
     assert sum("haricot" in (r.right_spelling or "") for r in rules) == 1
+
+
+# Martinon (1913: 358): before a y that the next vowel makes a glide, and
+# before onze, there is no liaison: the word counts as consonant-initial, so
+# six, dix and huit take the form they have before a consonant (345).
+@pytest.mark.parametrize("text, expected", [
+    ("six yachts", "si iaʃ"), ("dix watts", "di wat"), ("huit whiskies", "ɥi wiski"),
+    ("six onzièmes", "si ɔ̃zjɛm"), ("huit onzièmes", "ɥi ɔ̃zjɛm"), ("six yeux", "siz‿ iø"),
+    # Martinon (1913: 346): six-huit, the musical measure, keeps a hard s.
+    ("six-huit", "sis ɥit"),
+])
+def test_six_dix_huit_before_a_glide_or_onze(text, expected):
+    assert _t(text) == expected
+
+
+# Martinon (1913: 365): gran(d) thomme, the adjective before its noun links;
+# 366: il est gran(d) et fort, no link when it is not before its noun.
+@pytest.mark.parametrize("text, expected", [
+    ("grand homme", "ɡʁɑ̃t‿ ɔm"), ("grand hôtel", "ɡʁɑ̃t‿ otɛl"), ("grand ami", "ɡʁɑ̃t‿ ami"),
+    ("grand arbre", "ɡʁɑ̃t‿ aʁbʁ"), ("il est grand aussi", "il ɛ ɡʁɑ̃ osi"),
+    ("grand et fort", "ɡʁɑ̃ e fɔʁ"), ("il est grand à Paris", "il ɛ ɡʁɑ̃ a paʁi"),
+    ("le plus grand en France", "lə ply ɡʁɑ̃ ɑ̃ fʁɑ̃s"), ("grand héros", "ɡʁɑ̃ eʁo"),
+])
+def test_grand_links_before_its_noun(text, expected):
+    assert _t(text) == expected
+
+
+# Martinon (1913: 358): no liaison before the numeral un (les numéro(s) un et
+# deux); the article un after les links as a pronoun (les uns).
+@pytest.mark.parametrize("text, expected", [
+    ("les numéros un et deux", "le nymeʁo œ̃ e dø"), ("les un", "le œ̃"), ("les uns", "lez‿ œ̃"),
+])
+def test_no_liaison_before_the_numeral_un(text, expected):
+    assert _t(text) == expected
