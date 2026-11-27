@@ -71,6 +71,7 @@ def test_no_z_where_the_word_does_not_lean_on_the_next(text, expected):
     # huer (Académie française, « huer »: le h est aspiré): its forms in hu-
     # that do not start hue- or hué- block too
     ("nous huons", "nu yɔ̃"), ("ils huaient", "il yɛ"), ("en huant", "ɑ̃ yɑ̃"),
+    ("ils huèrent", "il yɛʁ"),
 ])
 def test_no_liaison_before_an_h_aspire_word(text, expected):
     assert _t(text) == expected
