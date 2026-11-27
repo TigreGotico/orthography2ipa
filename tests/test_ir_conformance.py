@@ -21,7 +21,7 @@ CODES = [*json.loads((REPO / "tests" / "data" / "ir_golden_ci.json").read_text(e
 def load(path):
     with path.open(encoding="utf-8") as f:
         head, *cases = [json.loads(line) for line in f]
-    assert head["kind"] == "ir" and all(c["kind"] == "case" for c in cases)
+    assert head["kind"] == "ir" and all(c["kind"] in ("case", "syllables") for c in cases)
     return head, cases
 
 
@@ -30,7 +30,7 @@ def text(cps):
 
 
 def test_the_vector_set_covers_every_spec():
-    assert sorted(p.stem for p in VECTORS) == sorted([*CODES, "unknown-version"])
+    assert sorted(p.stem for p in VECTORS) == sorted([*CODES, "unknown-version", "pt-PT-syllable"])
     for path in VECTORS:
         assert len(load(path)[1]) >= (1 if path.stem == "unknown-version" else 20), path.stem
 
@@ -44,7 +44,8 @@ def test_python_interpreter_gives_every_expect(path):
         assert [c["expect_error"] for c in cases] == ["unsupported primitive version"]
         assert str(exc).startswith(cases[0]["expect_error"])
         return
-    got = [[ord(c) for c in it.transcribe(text(case["input"]), width=1)] for case in cases]
+    got = [[[ord(c) for c in s] for s in it.syllables(text(case["input"]))] if case["kind"] == "syllables"
+           else [ord(c) for c in it.transcribe(text(case["input"]), width=1)] for case in cases]
     assert got == [case["expect"] for case in cases]
 
 

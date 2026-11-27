@@ -7,6 +7,9 @@ through the Python reference interpreter, and writes ``<lang>.jsonl``: one
 SAMPLE sorted distinct words of ``tests/data/ir_golden_ci.json``, or the
 first SAMPLE sentences of the shipped gold TSV for a code with no golden
 rows. Every file also holds an empty input. pt-PT also holds ⟨os jogos⟩.
+``pt-PT-syllable.jsonl`` holds the pt-PT IR with the fragment
+``tests/data/ir_fragment_syllable.json``, and for each word of its list one
+``case`` line and one ``syllables`` line, the written syllables of S5.
 ``unknown-version.jsonl`` holds the smallest IR of the set with one
 primitive version raised, and one case that expects the version error.
 
@@ -37,6 +40,14 @@ SPECS = tuple(sorted([*json.loads(GOLDEN.read_text(encoding="utf-8")), "kab"]))
 SAMPLE = 200
 EXTRA = {"pt-PT": ["os jogos"]}
 VERSION_ERROR = "unsupported primitive version"
+#: Vector files of an IR with a fragment: name -> (code, fragment, words).
+FRAGMENT_VECTORS = {
+    "pt-PT-syllable": ("pt-PT", REPO / "tests" / "data" / "ir_fragment_syllable.json", (
+        "carro", "nascer", "exceto", "desça", "bairro", "rainha", "juiz", "ainda", "ao", "aos", "aorta",
+        "arruinar", "adleriano", "sublinhar", "sublocar", "sublime", "distribuidor", "construir",
+        "cuidado", "ingenuidade", "contiguidade", "kubitschek", "gourmet", "facebookiano", "bureau",
+        "boxeur", "marathon", "alzheimer", "pacto", "atleta", "abstrair")),
+}
 
 
 def _line(obj: dict) -> str:
@@ -58,8 +69,8 @@ def encoded(ir: dict) -> dict:
     return doc
 
 
-def vector_file(code: str, texts: List[str]) -> str:
-    ir = build_ir(code, None)
+def vector_file(code: str, texts: List[str], fragments: List[dict] = (), words: List[str] = ()) -> str:
+    ir = build_ir(code, None, fragments=fragments)
     doc = encoded(ir)
     it = Interpreter(doc)
     lines = [_line({"kind": "ir", "lang": code, "revision": layout.spec_revision(ir), "ir": doc})]
@@ -67,6 +78,9 @@ def vector_file(code: str, texts: List[str]) -> str:
         cps = [ord(c) for c in text]
         lines.append(_line({"kind": "case", "input": cps,
                             "expect": [ord(c) for c in it.transcribe(text, width=1)]}))
+    for word in words:
+        lines.append(_line({"kind": "syllables", "input": [ord(c) for c in word],
+                            "expect": [[ord(c) for c in s] for s in it.syllables(word)]}))
     return "".join(lines)
 
 
@@ -94,6 +108,10 @@ def generate(codes) -> Dict[str, str]:
         print(f"{code}: N in {len(texts)}, N out {files[f'{code}.jsonl'].count(chr(10)) - 1}", flush=True)
     if codes == SPECS:
         files["unknown-version.jsonl"] = version_file("cop")
+        for name, (code, path, words) in FRAGMENT_VECTORS.items():
+            fragment = json.loads(path.read_text(encoding="utf-8"))
+            files[f"{name}.jsonl"] = vector_file(code, list(words), [fragment], list(words))
+            print(f"{name}: N in {len(words)}, N out {files[f'{name}.jsonl'].count(chr(10)) - 1}", flush=True)
     return files
 
 
