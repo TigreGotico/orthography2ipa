@@ -100,6 +100,12 @@ def _sandhi_spelling(ir: dict) -> None:
         rule.pop("right_spelling", None)
 
 
+def _sandhi_joined(ir: dict) -> None:
+    for rule in ir.get("sandhi", ()):
+        rule.pop("left_joined_spelling", None)
+        rule.pop("right_joined_spelling", None)
+
+
 def _mutate(ir: dict) -> None:
     for rule in (ir.get("allophony") or {}).get("rules", ()):
         rule.pop("mutate", None)
@@ -177,6 +183,7 @@ ABLATIONS: Dict[str, Callable[[dict], None]] = {
     "mark_placement": lambda ir: _clear(ir, "stress", "apply"),
     "sandhi": lambda ir: _clear(ir, "sandhi"),
     "sandhi_spelling": _sandhi_spelling,
+    "sandhi_joined": _sandhi_joined,
     "sandhi_pause": _sandhi_pause,
     "rewrite": lambda ir: _clear(ir, "rewrites"),
     "endings": lambda ir: ir.pop("endings", None),

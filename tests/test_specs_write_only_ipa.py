@@ -31,7 +31,8 @@ WITHDRAWN = set("ʣʤʥʦʧʨʩʪʫʬʭʮʯɩɷʇʖʗʞɼʅɿʆʓʚʠ")
 TONE_MARKS = set("˥˦˧˨˩ꜛꜜ↗↘ˀˤ")
 WORD_ACCENT = {"¹", "²"}
 RULE_FIELDS = {"phonemes", "surface", "append", "preceded_by_phoneme", "followed_by_phoneme",
-               "preceded_by_phoneme_2", "followed_by_phoneme_2", "preceded_by_surface_phoneme_2",
+               "preceded_by_phoneme_2", "followed_by_phoneme_2", "followed_by_phoneme_3",
+               "preceded_by_surface_phoneme_2",
                "mutates_neighbor"}
 
 

@@ -399,6 +399,7 @@ stress/sandhi. Empty by default → no-op: the rules alone decide the output. Se
 | `followed_by_3` | string | no | The `followed_by` class, tested three slots ahead. Portuguese ⟨homens⟩ uses it to find a word-final ⟨-ens⟩ |
 | `preceded_by_phoneme_2` | array | no | The underlying phoneme two slots back must be one of these. The engine reads the first declared candidate of that grapheme, before any rule runs |
 | `followed_by_phoneme_2` | array | no | The underlying phoneme two slots ahead must be one of these. Russian ⟨гости⟩ softens ⟨с⟩ because the ⟨т⟩ after it stands before a soft vowel |
+| `followed_by_phoneme_3` | array | no | The underlying phoneme three slots ahead must be one of these, read like `followed_by_phoneme_2`: the first segment of the grapheme's first declared candidate. fr-FR-x-midi closes ⟨o⟩ in ⟨cobra⟩ [kobʁa] because a full vowel, not a schwa, follows the onset [bʁ] |
 | `preceded_by_surface_phoneme_2` | array | no | The surface candidate two slots back must be one of these. The engine reads the lattice slot as earlier passes left it, not the declared order |
 | `preceded_by_grapheme` | array | no | Previous slot's source grapheme must be one of these (case-insensitive). The backward twin of `followed_by_grapheme`, for a trigger letter that spells nothing |
 | `followed_by_grapheme` | array | no | Next slot's source grapheme must be one of these (case-insensitive). For processes a letter group triggers while its phoneme hides the cluster (Swedish short vowel before ⟨ng⟩ ⟨nk⟩ ⟨sk⟩) |

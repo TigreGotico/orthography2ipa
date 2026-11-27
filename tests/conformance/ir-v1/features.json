@@ -20,8 +20,8 @@
   13
  ],
  "apostrophe_elision": [
-  "pt-PT-x-terceira.jsonl",
-  14
+  "fr-FR.jsonl",
+  62
  ],
  "beam": [
   "ml.jsonl",
@@ -278,6 +278,10 @@
  "sandhi": [
   "ar+arbtok.jsonl",
   5
+ ],
+ "sandhi_joined": [
+  "fr-FR.jsonl",
+  35
  ],
  "sandhi_pause": [
   "ar+arbtok.jsonl",
