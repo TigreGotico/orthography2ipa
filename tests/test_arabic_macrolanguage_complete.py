@@ -5,8 +5,7 @@ nothing in the registry records that the language was ever considered. That is w
 than a stub, which at least says what it does not know.
 
 This was found by enumerating the macrolanguage rather than by reading the file list:
-of the codes below, `bbz` (Babalia Creole) and `sqr` (Siculo) had no spec declaring
-them and the others did. No existing test could see it, because every one of them
+of the codes below, `sqr` (Siculo) had no spec declaring it and the others did. No existing test could see it, because every one of them
 starts from the specs that exist.
 """
 import glob
@@ -30,8 +29,8 @@ DATA = os.path.join(os.path.dirname(orthography2ipa.__file__), "data")
 # 29 codes: 27 members of [ara] proper, plus arb Standard Arabic and sqr Siculo, which
 # carry their own codes. ajp (South Levantine) is not listed: SIL retired it into apc,
 # so the specs for it declare apc, and the code ajp resolves to apc-JO. bbz (Babalia
-# Creole) is not listed: the SIL macrolanguage table gives it status R, retired on
-# 2020-01-23 as non-existent, so its spec ar-TD-x-babalia declares no code. The
+# Creole) is not listed and has no spec: ISO 639-3 change request 2019-013 retired it
+# on 2020-01-23 as non-existent. The
 # Judeo-Arabic varieties (jrb and its members ajt, aju, jye, yhd, yud) sit under their
 # own macrolanguage and are covered by the inheritance test instead.
 ARA_MEMBERS = [
@@ -63,8 +62,8 @@ def test_every_arabic_macrolanguage_member_has_an_entry():
           "minimum.")
 
 
-@pytest.mark.parametrize("code", ["ar-TD-x-babalia", "sqr"])
-def test_the_two_added_here_reach_a_table_and_claim_nothing(code):
+@pytest.mark.parametrize("code", ["sqr"])
+def test_the_stub_added_here_reaches_a_table_and_claim_nothing(code):
     spec = get(code)
     assert spec.code == code
     assert len(spec.graphemes) > 100, "resolves to a spec with no phonology"
@@ -76,14 +75,8 @@ def test_the_two_added_here_reach_a_table_and_claim_nothing(code):
     assert "NOT DESCRIBED HERE" in raw["notes"]
 
 
-def test_each_states_why_its_parent_is_weak():
-    """Both parents are chosen on grounds weaker than description, and the notes say
+def test_siculo_states_why_its_parent_is_weak():
+    """The parent is chosen on grounds weaker than description, and the note says
     so rather than letting a reader infer agreement from the inheritance."""
-    with open(os.path.join(DATA, "ar-TD-x-babalia.json"), encoding="utf-8") as fh:
-        _bbz = json.load(fh)
-    assert "CREOLE" in _bbz["notes"]
-    assert _bbz["inherits"] != _bbz["graphemes_base"], (
-        "bbz's note disclaims the descent its parent would assert; the classification "
-        "must stay off the graphemes base")
     with open(os.path.join(DATA, "sqr.json"), encoding="utf-8") as fh:
         assert "A GROUPING, NOT A DESCRIPTION" in json.load(fh)["notes"]
