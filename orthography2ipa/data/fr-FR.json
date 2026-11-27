@@ -677,7 +677,7 @@
       "title": "Comment on prononce le français : traité complet de prononciation pratique avec les noms propres et les mots étrangers",
       "publisher": "Larousse, Paris",
       "url": "https://archive.org/details/commentonprononc00martuoft",
-      "pages": "53, 59, 62, 93, 123, 129, 130, 131, 145, 151, 161, 164, 171, 196, 213, 214, 222, 226, 234, 235, 236, 238, 239, 240, 241, 269, 284, 285, 328, 331, 345, 346, 347, 348, 349",
+      "pages": "53, 59, 62, 93, 123, 129, 130, 131, 145, 151, 156, 161, 164, 171, 196, 213, 214, 222, 226, 234, 235, 236, 238, 239, 240, 241, 269, 284, 285, 328, 331, 345, 346, 347, 348, 349",
       "notes": "READ (archive.org full scan of the University of Toronto copy; each cited page read in the scan's text). The Paris orthoepic norm of 1913; the allophone rules that cite it give the page and the passage."
     },
     {
@@ -1578,6 +1578,40 @@
       ],
       "followed_by_nucleus": false,
       "notes": "FR_E_BEFORE_DOUBLED_CONSONANT for ⟨ss ff pp cc⟩: in the last syllable the ⟨e⟩ before them is open [ɛ], messe [mɛs], presse, jeunesse [ʒœnɛs], greffe [ɡʁɛf], steppe. Martinon (1913, p. 59: the open e of -esse in nièce, vieillesse, noblesse, allégresse, and of -effe in greffe)."
+    },
+    {
+      "id": "FR_E_SCHWA_BEFORE_OBSTRUENT_LIQUID",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "ə",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v"
+      ],
+      "followed_by_phoneme_2": [
+        "l",
+        "ʁ"
+      ],
+      "followed_by_grapheme_not": [
+        "pp",
+        "bb",
+        "tt",
+        "dd",
+        "cc",
+        "gg",
+        "ff"
+      ],
+      "notes": "An obstruent (p b t d k g f v) followed by l or r is an onset, so the ⟨e⟩ before it stands in an open syllable and stays schwa; FR_E_CLOSED_CLUSTER, which opens ⟨e⟩ before two consonants, must not see such a pair as a closing cluster. Martinon (1913, p. 156): a group whose second consonant is an obstruent (b, c, d, g, t, p) or a fricative (f, v) followed by a liquid, l or r, is 'presque aussi faciles à prononcer qu'une consonne seule'. Wiktionnaire: secret \\sə.kʁɛ\\, degré \\də.ɡʁe\\, regret \\ʁə.ɡʁɛ\\, repli \\ʁə.pli\\. A doubled consonant closes the syllable before the liquid, so ⟨ff pp tt cc bb dd gg⟩ are left out: effroi \\e.fʁwɑ\\ ou \\ɛ.fʁwa\\ (Wiktionnaire)."
     },
     {
       "id": "FR_E_CLOSED_MULTIGRAPH",
