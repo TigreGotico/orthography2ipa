@@ -247,7 +247,7 @@ def _sandhi_key(rule):
 def test_a_variant_inherits_fr_fr(tag):
     spec, base = o2i.get(tag), o2i.get("fr-FR")
     assert spec.code == tag
-    assert spec.parent == "fr-FR"
+    assert spec.inherits == "fr-FR"
     assert spec.word_internal_apostrophe is True
     assert spec.word_exceptions == {**base.word_exceptions,
                                     **OWN_EXCEPTIONS.get(tag, {})}

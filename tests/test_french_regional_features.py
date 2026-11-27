@@ -212,7 +212,7 @@ def test_the_midi_appendix_takes_the_place_of_the_next_word(text, expected):
 
 def test_the_midi_spec_is_a_variant_of_fr_fr():
     spec = o2i.get(MIDI)
-    assert spec.parent == "fr-FR"
+    assert spec.inherits == "fr-FR"
     assert o2i.resolve(MIDI) == MIDI
     assert "Gallo-Romance" in spec.family_path
 
