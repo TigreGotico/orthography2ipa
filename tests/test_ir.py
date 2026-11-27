@@ -182,6 +182,14 @@ class TestPatterns:
                 if m:
                     assert (m.start(), m.end()) == got[:2], (text, s)
 
+    def test_the_never_match_pattern_compiles_the_same_on_every_python(self):
+        # crs.json switches off inherited sandhi rules with "(?!)", which
+        # Python 3.13 parses to FAILURE and 3.12 to an empty negative lookahead
+        node = compile_pattern("(?!)")
+        assert node == ["ahead", 1, ["seq"]]
+        for s in ("", "a", "ˈʒɔɡuʃ"):
+            assert pattern.search(node, [ord(c) for c in s], 0, pattern.group_count(node)) is None
+
     def test_sub_with_groups_like_re(self):
         text, template = r"([aeiouəɛɔɐ])[sʃ]$", r"\1z"
         node, tpl = compile_pattern(text), compile_template(template)
