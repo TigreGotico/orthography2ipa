@@ -1,6 +1,6 @@
 {
- "o2i_version": "7.131.10a2",
- "o2i_git_sha": "babebfde5be4962e7b8c90ecf32df22c2013765f",
+ "o2i_version": "7.133.1a4",
+ "o2i_git_sha": "de3511a188580046a9c5aca9d6653c9881f1ef5b",
  "harness_version": "1.1",
  "min_n": 1000,
  "rows": [
@@ -3887,7 +3887,7 @@
    "gating": false,
    "headline": true,
    "n": 1508,
-   "strict_per": 0.0565,
+   "strict_per": 0.0566,
    "folded_per": null,
    "folds": []
   },
@@ -6954,8 +6954,8 @@
    "reliability_tier": "lupo-derived",
    "gating": false,
    "headline": true,
-   "n": 53144,
-   "strict_per": 0.2307,
+   "n": 53148,
+   "strict_per": 0.2302,
    "folded_per": null,
    "folds": []
   },
@@ -7339,8 +7339,8 @@
    "reliability_tier": "lupo-derived",
    "gating": false,
    "headline": true,
-   "n": 53143,
-   "strict_per": 0.1668,
+   "n": 53147,
+   "strict_per": 0.167,
    "folded_per": null,
    "folds": []
   },
@@ -7379,7 +7379,7 @@
    "gating": false,
    "headline": false,
    "n": 3846,
-   "strict_per": 0.2288,
+   "strict_per": 0.2284,
    "folded_per": null,
    "folds": []
   },
@@ -7405,7 +7405,7 @@
    "gating": true,
    "headline": true,
    "n": 105553,
-   "strict_per": 0.1866,
+   "strict_per": 0.1862,
    "folded_per": null,
    "folds": []
   },
@@ -7418,7 +7418,7 @@
    "gating": false,
    "headline": false,
    "n": 105534,
-   "strict_per": 0.1866,
+   "strict_per": 0.1861,
    "folded_per": null,
    "folds": []
   },
@@ -7431,7 +7431,7 @@
    "gating": true,
    "headline": false,
    "n": 56979,
-   "strict_per": 0.0578,
+   "strict_per": 0.0572,
    "folded_per": null,
    "folds": []
   },
@@ -7600,7 +7600,7 @@
    "gating": false,
    "headline": true,
    "n": 6,
-   "strict_per": 0.2739,
+   "strict_per": 0.2733,
    "folded_per": null,
    "folds": []
   },
@@ -7626,7 +7626,7 @@
    "gating": false,
    "headline": true,
    "n": 8,
-   "strict_per": 0.2986,
+   "strict_per": 0.2979,
    "folded_per": null,
    "folds": []
   },
@@ -7716,8 +7716,8 @@
    "reliability_tier": "lupo-derived",
    "gating": false,
    "headline": false,
-   "n": 53145,
-   "strict_per": 0.0709,
+   "n": 53150,
+   "strict_per": 0.0704,
    "folded_per": null,
    "folds": []
   },
@@ -7808,7 +7808,7 @@
    "gating": false,
    "headline": true,
    "n": 9,
-   "strict_per": 0.283,
+   "strict_per": 0.2828,
    "folded_per": null,
    "folds": []
   },
@@ -7834,7 +7834,7 @@
    "gating": false,
    "headline": false,
    "n": 17,
-   "strict_per": 0.3936,
+   "strict_per": 0.3934,
    "folded_per": null,
    "folds": []
   },
@@ -7860,7 +7860,7 @@
    "gating": false,
    "headline": false,
    "n": 20,
-   "strict_per": 0.0502,
+   "strict_per": 0.0491,
    "folded_per": null,
    "folds": []
   },
@@ -7938,7 +7938,7 @@
    "gating": false,
    "headline": true,
    "n": 6,
-   "strict_per": 0.2985,
+   "strict_per": 0.2977,
    "folded_per": null,
    "folds": []
   },
@@ -8002,8 +8002,8 @@
    "reliability_tier": "lupo-derived",
    "gating": false,
    "headline": true,
-   "n": 53142,
-   "strict_per": 0.3632,
+   "n": 53147,
+   "strict_per": 0.3626,
    "folded_per": null,
    "folds": []
   },
