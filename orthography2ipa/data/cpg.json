@@ -9,7 +9,7 @@
   "graphemes": {},
   "allophones_base": "el",
   "allophones": {},
-  "parent": "el",
+  "inherits": "el",
   "ancestors": [
     {
       "code": "el",

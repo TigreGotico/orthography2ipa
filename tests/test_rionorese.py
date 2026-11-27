@@ -51,7 +51,7 @@ class TestRegistryLoad:
         assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(rionor.family_path)
 
     def test_parent(self, rionor):
-        assert rionor.parent == "ast-PT-x-medieval"
+        assert rionor.inherits == "ast-PT-x-medieval"
 
     def test_has_graphemes(self, rionor):
         assert len(rionor.graphemes) > 0

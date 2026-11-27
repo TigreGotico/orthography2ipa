@@ -194,7 +194,7 @@
       "uː"
     ]
   },
-  "parent": "mni-x-proto-kuki-chin",
+  "inherits": "mni-x-proto-kuki-chin",
   "ancestors": [
     {
       "code": "mni-x-proto-kuki-chin",

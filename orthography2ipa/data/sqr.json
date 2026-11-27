@@ -3,7 +3,7 @@
  "name": "Siculo Arabic",
  "script": "Arabic",
  "script_type": "abjad",
- "parent": "ar-x-maghrebi",
+ "inherits": "ar-x-maghrebi",
  "graphemes_base": "ar-x-maghrebi",
  "graphemes": {},
  "allophones_base": "ar-x-maghrebi",

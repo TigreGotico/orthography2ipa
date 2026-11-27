@@ -415,7 +415,7 @@ class TestTehranPersian:
 
     def test_parent_is_fa(self):
         """Tehran Persian inherits from fa."""
-        assert self.spec.parent == "fa"
+        assert self.spec.inherits == "fa"
 
 
 @pytest.mark.linguistic
@@ -449,11 +449,11 @@ class TestDariPersian:
             (vals is not None and any("ɑː" in v for v in vals)) or
             aa is not None
         )
-        assert has_dari or self.spec.parent == "fa", "Dari should preserve ɑː or inherit from fa"
+        assert has_dari or self.spec.inherits == "fa", "Dari should preserve ɑː or inherit from fa"
 
     def test_parent_is_fa(self):
         """Dari inherits from fa."""
-        assert self.spec.parent == "fa"
+        assert self.spec.inherits == "fa"
 
 
 # ═══════════════════════════════════════════════════════════════════════════

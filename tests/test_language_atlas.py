@@ -122,7 +122,7 @@ def test_lects_block_lists_every_child(atlas):
         if name.endswith(".json"):
             with open(os.path.join(data, name), encoding="utf-8") as fh:
                 spec = json.load(fh)
-            if spec.get("parent") == "es-ES" and not spec.get("clade"):
+            if spec.get("inherits") == "es-ES" and not spec.get("clade"):
                 children.add(spec["code"])
     lects = atlas_gen.block_lects(atlas, orthography2ipa.get("es-ES"))
     listed = set(re.findall(r"^- \[.*\]\(.*\) `([^`]+)`", lects, re.M))
@@ -404,3 +404,17 @@ def test_ranked_names_every_tied_count():
     assert atlas_gen._ranked(counts, 3) == (
         "Eurasia 124, Africa 62, North America and Papunesia 39")
     assert atlas_gen._ranked({"a": 2, "b": 2, "c": 2}, 1) == "a, b and c 2"
+
+
+@pytest.mark.parametrize("rule_id, expected", [
+    ("FR_X_S_AFTER_OI", "⟨soixante⟩ [swasɑ̃t]"),
+    ("FR_X_K_BEFORE_SIBILANT", "⟨excès⟩ [ɛksɛ]"),
+])
+def test_a_rule_example_spells_the_rule_grapheme(rule_id, expected):
+    # The output [s] or [k] is a substring of [ks], so an output match alone
+    # gave ⟨x⟩ [ks] and ⟨not⟩ [ks]. The example must spell the grapheme in a
+    # longer word than the bare grapheme.
+    rule = next(r for r in orthography2ipa.get("fr-FR").allophone_rules
+                if r.id == rule_id)
+    assert atlas_gen._example(rule.notes, rule.surface,
+                              rule.grapheme) == expected

@@ -312,7 +312,7 @@ KNOWN_DEAD_RULES = {
     # grapheme table this spec is deliberately missing; revisit once yej gains
     # a sourced Hebrew-abjad grapheme table.
     "yej": {"EL_S_VOICING", "EL_GAMMA_FRONTING"},
-    # vls (West Flemish) declares parent="nl-NL" with its own "graphemes": {} to
+    # vls (West Flemish) declares inherits="nl-NL" with its own "graphemes": {} to
     # inherit nl-NL's table wholesale, but (pre-existing, unrelated to the
     # Germanic beat-espeak campaign that added these rules) that inheritance
     # does not actually populate the plain vowel letters a/e/i/o/u for this

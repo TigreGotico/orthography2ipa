@@ -264,7 +264,7 @@
     "start_year": 200,
     "end_year": 1400
   },
-  "parent": "egy",
+  "inherits": "egy",
   "ancestors": [
     {
       "code": "egy",

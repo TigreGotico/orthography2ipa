@@ -83,7 +83,7 @@
     "https://en.wikipedia.org/wiki/Fante_dialect",
     "https://en.wikipedia.org/wiki/Akan_language"
   ],
-  "parent": "ak",
+  "inherits": "ak",
   "ancestors": [
     {
       "code": "ak",

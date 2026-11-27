@@ -255,7 +255,7 @@
     "ʒ",
     "χ"
   ],
-  "parent": "x-clade-mong1349",
+  "inherits": "x-clade-mong1349",
   "ancestors": [
     {
       "code": "x-clade-mong1349",

@@ -323,7 +323,7 @@ def test_groningen_resolves_to_its_own_spec():
 def test_groningen_is_regional_standard_dutch_not_gronings(groningen):
     # Gronings has an ISO 639-3 code of its own, so it is keyed `gos`; this
     # spec descends from the standard and inherits its ISO code.
-    assert groningen.spec.parent == "nl-NL"
+    assert groningen.spec.inherits == "nl-NL"
     assert groningen.spec.iso639_3 == "nld"
 
 

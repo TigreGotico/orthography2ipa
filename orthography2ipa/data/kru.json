@@ -192,7 +192,7 @@
       "x"
     ]
   },
-  "parent": "x-clade-drav1251",
+  "inherits": "x-clade-drav1251",
   "ancestors": [
     {
       "code": "x-clade-drav1251",

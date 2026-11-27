@@ -45,8 +45,8 @@ def test_nigerian_is_a_delta_on_chadian():
     """shu-NG inherits from shu-TD (the coupled inheritance chain), and shu-TD from
     the Mashriqi (eastern Bedouin) base — the migration path out of Upper Egypt
     (Owens & Hassan 2009, via Procházka 2026 p.325)."""
-    assert get("shu-NG").parent == "shu-TD"
-    assert get("shu-TD").parent == "ar-x-mashriqi"
+    assert get("shu-NG").inherits == "shu-TD"
+    assert get("shu-TD").inherits == "ar-x-mashriqi"
 
 
 # ─── qāf: the Bedouin-type voiced reflex ────────────────────────────────────

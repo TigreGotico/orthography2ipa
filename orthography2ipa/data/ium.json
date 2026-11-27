@@ -128,7 +128,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-hmon1336",
+ "inherits": "x-clade-hmon1336",
  "phonemes": [
   "b",
   "c",

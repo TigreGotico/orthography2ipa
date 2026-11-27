@@ -273,7 +273,7 @@
     "https://www.omniglot.com/writing/redjang.htm"
   ],
   "iso639_3": "rej",
-  "parent": "poz",
+  "inherits": "poz",
   "ancestors": [
     {
       "code": "poz",

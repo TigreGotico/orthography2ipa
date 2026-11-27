@@ -206,10 +206,10 @@ The spec applies 11 allophone rules after the letters are read. The change colum
 |:--|:--|:--|:--|
 | `EL_S_VOICING` | /s/ → [z], before [m] [n] [l] [ɾ] [r] [v] [ð] [ɣ] and 5 more | ⟨Άρκανσας⟩ [aɾkanzas] | Arvaniti 2007 |
 | `EL_GAMMA_FRONTING` | /ɣ/ → [ʝ], before a front vowel, spelled ⟨γ⟩ | - | - |
-| `PNT_K_PALATAL` | /k/ → [c], before [e] [i], spelled ⟨κ⟩ ⟨γ⟩ ⟨χ⟩ ⟨γκ⟩ ⟨γγ⟩ ⟨νγκ⟩ | ⟨vs.⟩ [ˈlice] | [Armostis 2020](#src-armostis_etal2020), [Oeconomides 1908](#src-oeconomides1908) |
+| `PNT_K_PALATAL` | /k/ → [c], before [e] [i], spelled ⟨κ⟩ ⟨γ⟩ ⟨χ⟩ ⟨γκ⟩ ⟨γγ⟩ ⟨νγκ⟩ | - | [Armostis 2020](#src-armostis_etal2020), [Oeconomides 1908](#src-oeconomides1908) |
 | `PNT_G_PALATAL` | /ɡ/ → [ɟ], before [e] [i], spelled ⟨κ⟩ ⟨γ⟩ ⟨χ⟩ ⟨γκ⟩ ⟨γγ⟩ ⟨νγκ⟩ | - | [Armostis 2020](#src-armostis_etal2020) |
-| `PNT_NG_PALATAL` | /ŋɡ/ → [ɲɟ], before [e] [i], spelled ⟨κ⟩ ⟨γ⟩ ⟨χ⟩ ⟨γκ⟩ ⟨γγ⟩ ⟨νγκ⟩ | ⟨but⟩ [ˈeɲɟen] | [Armostis 2020](#src-armostis_etal2020) |
-| `PNT_X_PALATAL` | /x/ → [ç], before [e] [i], spelled ⟨κ⟩ ⟨γ⟩ ⟨χ⟩ ⟨γκ⟩ ⟨γγ⟩ ⟨νγκ⟩ | ⟨e.g.⟩ [ˈçile] | [Armostis 2020](#src-armostis_etal2020) |
+| `PNT_NG_PALATAL` | /ŋɡ/ → [ɲɟ], before [e] [i], spelled ⟨κ⟩ ⟨γ⟩ ⟨χ⟩ ⟨γκ⟩ ⟨γγ⟩ ⟨νγκ⟩ | - | [Armostis 2020](#src-armostis_etal2020) |
+| `PNT_X_PALATAL` | /x/ → [ç], before [e] [i], spelled ⟨κ⟩ ⟨γ⟩ ⟨χ⟩ ⟨γκ⟩ ⟨γγ⟩ ⟨νγκ⟩ | - | [Armostis 2020](#src-armostis_etal2020) |
 | `PNT_GAMMA_PALATAL` | /ɣ/ → [ʝ], before [e] [i], spelled ⟨κ⟩ ⟨γ⟩ ⟨χ⟩ ⟨γκ⟩ ⟨γγ⟩ ⟨νγκ⟩ | - | [Armostis 2020](#src-armostis_etal2020) |
 | `PNT_AU_VOICELESS` | /av/ → [af], before a consonant, with more context in the spec | - | [Oeconomides 1908](#src-oeconomides1908) |
 | `PNT_AU_FINAL` | /av/ → [af], word-finally | - | [Oeconomides 1908](#src-oeconomides1908) |

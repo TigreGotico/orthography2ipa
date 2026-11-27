@@ -162,7 +162,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-koma1264",
+ "inherits": "x-clade-koma1264",
  "phonemes": [
   "b",
   "d",

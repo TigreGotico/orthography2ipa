@@ -179,7 +179,7 @@
       "notes": "§1.2 The standard orthography and Table 1 (pp. 20-22), read on the page image. The table sets the Barrow and Kobuk consonant phonemes against the standard spelling: p t k q with ⟨'⟩ for the glottal stop, ⟨ch⟩ (and ⟨t⟩ before i) for the palatal affricate, ⟨kh k⟩ for x and ⟨qh q h⟩ for χ by position, ⟨g⟩ = ɣ, ⟨ġ⟩ = ʁ and also the uvular nasal, ⟨ł⟩ = ɬ, ⟨ḷ⟩ = ʎ, ⟨ł̣⟩ = the voiceless palatal lateral, ⟨sr⟩ = the voiced retroflex fricative and ⟨r⟩ = the retroflex approximant. Against this map: ⟨sr⟩ is voiced ʐ there, not ʂ; ⟨r⟩ is a retroflex, not the alveolar ɹ; and the dotted ⟨ḷ̣⟩ key is given as ɬ where the source has the voiceless palatal lateral, ɬ belonging to plain ⟨ł⟩. The source also notes that ⟨kh qh⟩ and ⟨h⟩ spell one fricative each by environment, which the map does not condition. Recorded here, not changed."
     }
   ],
-  "parent": "x-clade-eski1264",
+  "inherits": "x-clade-eski1264",
   "ancestors": [
     {
       "code": "x-clade-eski1264",

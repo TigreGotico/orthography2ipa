@@ -27,7 +27,7 @@
       "ʀd"
     ]
   },
-  "parent": "sv",
+  "inherits": "sv",
   "ancestors": [
     {
       "code": "sv",

@@ -983,7 +983,7 @@
       "notes": "Consonant chart for the Addis Ababa standard: one /h/ (no pharyngeal or velar fricative), one ejective sibilant, and a labialised set including /pʼʷ/, described there together with /p/ and /pʼ/ as extremely rare and confined to words of foreign origin, and /hʷ/ (hʷala 'after', written ሗላ)."
     }
   ],
-  "parent": "sem-x-ethiopic",
+  "inherits": "sem-x-ethiopic",
   "ancestors": [
     {
       "code": "sem-x-ethiopic",

@@ -90,7 +90,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-nyim1244",
+ "inherits": "x-clade-nyim1244",
  "phonemes": [
   "b",
   "c",

@@ -7,7 +7,7 @@
   "allophones_base": "pt-PT",
   "allophones": {},
   "positional_graphemes_base": "pt-PT",
-  "parent": "pt-PT",
+  "inherits": "pt-PT",
   "allophone_rules": [
     {
       "id": "PT_EX_CONSONANT_GLIDE",

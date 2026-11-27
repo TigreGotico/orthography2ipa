@@ -144,7 +144,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-algi1248",
+ "inherits": "x-clade-algi1248",
  "phonemes": [
   "k",
   "k͈ː",

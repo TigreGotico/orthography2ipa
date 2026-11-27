@@ -207,4 +207,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Zou](zom.md) · [Home](../index.md) · [Comparative phonology →](comparative.md)
+[← Zou](zom.md) · [Home](../index.md) · [Leader languages →](leaders.md)

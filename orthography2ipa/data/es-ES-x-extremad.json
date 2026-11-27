@@ -86,7 +86,7 @@
       "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. This spec aspirates or deletes its coda /s/, and the voicing rule of es-ES would take the segment first, so it is switched off here and the coda keeps the reading of this spec."
     }
   ],
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "ancestors": [
     {
       "code": "es-ES",

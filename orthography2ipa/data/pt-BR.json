@@ -22,7 +22,7 @@
   "code": "pt-BR",
   "name": "Brazilian Portuguese",
   "script": "Latin",
-  "parent": "pt-PT-x-medieval",
+  "inherits": "pt-PT-x-medieval",
   "graphemes_base": "pt-PT-x-medieval",
   "allophones_base": "pt-PT-x-medieval",
   "positional_graphemes_base": "pt-PT-x-medieval",

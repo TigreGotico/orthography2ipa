@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-iwai1246",
+ "inherits": "x-clade-iwai1246",
  "phonemes": [
   "j",
   "k",

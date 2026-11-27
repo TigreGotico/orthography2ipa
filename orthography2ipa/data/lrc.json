@@ -77,7 +77,7 @@
       "notes": "Dialectology and phoneme inventory of the Luri cluster, including Northern Luri."
     }
   ],
-  "parent": "ira",
+  "inherits": "ira",
   "location": {
     "latitude": 32.5438,
     "longitude": 47.916,

@@ -44,7 +44,7 @@ def test_antwerp_resolves_to_its_own_spec():
 
 
 def test_antwerp_is_regional_standard_dutch(antwerp):
-    assert antwerp.spec.parent == "nl-BE"
+    assert antwerp.spec.inherits == "nl-BE"
     assert antwerp.spec.iso639_3 == "nld"
 
 

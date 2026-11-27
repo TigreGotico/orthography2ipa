@@ -1,0 +1,390 @@
+{
+ "accent2": [
+  "sv.jsonl",
+  3
+ ],
+ "aligned_rewrite": [
+  "pt-PT@rionorese.jsonl",
+  4
+ ],
+ "allophony": [
+  "lo.jsonl",
+  2
+ ],
+ "allophony_geminate": [
+  "pt-PT.jsonl",
+  21
+ ],
+ "aperture": [
+  "nl-NL.jsonl",
+  13
+ ],
+ "apostrophe_elision": [
+  "fr-FR.jsonl",
+  62
+ ],
+ "beam": [
+  "ml.jsonl",
+  4
+ ],
+ "bits": [
+  "lo.jsonl",
+  0
+ ],
+ "candidates": [
+  "en-GB.jsonl",
+  49
+ ],
+ "clitic_marks": [
+  "pt-PT+words.jsonl",
+  200
+ ],
+ "cliticless": [
+  "es-CO.jsonl",
+  35
+ ],
+ "coda_liquid": [
+  "oc.jsonl",
+  56
+ ],
+ "codepoint_map": [
+  "cop.jsonl",
+  145
+ ],
+ "collapse_geminates": [
+  "gv.jsonl",
+  1
+ ],
+ "compound_last": [
+  "pt-PT-x-medieval.jsonl",
+  21
+ ],
+ "computed_tone": [
+  "th.jsonl",
+  0
+ ],
+ "consonant_nuclei": [
+  "lo.jsonl",
+  0
+ ],
+ "context_beam": [
+  "ru.jsonl",
+  0
+ ],
+ "decision": [
+  "el.jsonl",
+  1
+ ],
+ "dnode.ahead_match": [
+  "pt-PT@porto.jsonl",
+  1
+ ],
+ "dnode.and": [
+  "pt-PT@lisbon.jsonl",
+  2
+ ],
+ "dnode.at_end_or_in": [
+  "pt-PT@transmontano.jsonl",
+  5
+ ],
+ "dnode.at_in": [
+  "pt-PT@lisbon.jsonl",
+  0
+ ],
+ "dnode.back_reach": [
+  "pt-PT@galician.jsonl",
+  0
+ ],
+ "dnode.covered_by": [
+  "pt-PT@beira_baixa.jsonl",
+  0
+ ],
+ "dnode.later_has": [
+  "pt-PT@lisbon.jsonl",
+  2
+ ],
+ "dnode.not": [
+  "pt-PT@galician.jsonl",
+  0
+ ],
+ "dnode.or": [
+  "pt-PT@beira_baixa.jsonl",
+  0
+ ],
+ "dnode.spell": [
+  "pt-PT@baixo_minhoto.jsonl",
+  3
+ ],
+ "endings": [
+  "ru.jsonl",
+  10
+ ],
+ "fold": [
+  "el.jsonl",
+  15
+ ],
+ "gate.not": [
+  "pt-PT@baixo_minhoto.jsonl",
+  3
+ ],
+ "gate.or": [
+  "pt-PT@transmontano.jsonl",
+  0
+ ],
+ "gate.spell_empty": [
+  "pt-PT@baixo_minhoto.jsonl",
+  3
+ ],
+ "gate.spell_search": [
+  "pt-PT@baixo_minhoto.jsonl",
+  3
+ ],
+ "gate.true": [
+  "pt-PT@baixo_minhoto.jsonl",
+  0
+ ],
+ "gated_map": [
+  "pt-PT@algarve_barlavento.jsonl",
+  0
+ ],
+ "hiatus": [
+  "pt-PT.jsonl",
+  32
+ ],
+ "iambic": [
+  "car.jsonl",
+  3
+ ],
+ "inherent": [
+  "lo.jsonl",
+  0
+ ],
+ "internal_apostrophe": [
+  "it-IT.jsonl",
+  50
+ ],
+ "ipa_count": [
+  "km.jsonl",
+  0
+ ],
+ "ipa_diphthongs": [
+  "it-IT.jsonl",
+  54
+ ],
+ "mark_onsets": [
+  "ru.jsonl",
+  10
+ ],
+ "mark_placement": [
+  "el.jsonl",
+  0
+ ],
+ "mutate": [
+  "gv.jsonl",
+  0
+ ],
+ "node.and": [
+  "lo.jsonl",
+  0
+ ],
+ "node.ebit": [
+  "lo.jsonl",
+  0
+ ],
+ "node.entry_in": [
+  "ru.jsonl",
+  5
+ ],
+ "node.exists": [
+  "lo.jsonl",
+  0
+ ],
+ "node.not": [
+  "lo.jsonl",
+  0
+ ],
+ "node.or": [
+  "ru.jsonl",
+  0
+ ],
+ "node.reading_vowel": [
+  "th.jsonl",
+  2
+ ],
+ "node.syll": [
+  "ru.jsonl",
+  0
+ ],
+ "node.syllpos": [
+  "lo.jsonl",
+  0
+ ],
+ "node.top_nucleus": [
+  "km.jsonl",
+  0
+ ],
+ "node.top_seg_in": [
+  "ml.jsonl",
+  0
+ ],
+ "node.true": [
+  "kab.jsonl",
+  0
+ ],
+ "node.word_final": [
+  "ml.jsonl",
+  1
+ ],
+ "node.word_has": [
+  "pt-PT-x-braga.jsonl",
+  15
+ ],
+ "node.word_in": [
+  "da.jsonl",
+  0
+ ],
+ "overrides": [
+  "ru.jsonl",
+  12
+ ],
+ "pattern": [
+  "ar.jsonl",
+  3
+ ],
+ "positional_rewrite": [
+  "pt-PT@baixo_minhoto.jsonl",
+  3
+ ],
+ "predicate": [
+  "lo.jsonl",
+  2
+ ],
+ "prefixes": [
+  "li.jsonl",
+  35
+ ],
+ "preposed": [
+  "lo.jsonl",
+  0
+ ],
+ "prevocalic_backoff": [
+  "li.jsonl",
+  136
+ ],
+ "rewrite": [
+  "ar.jsonl",
+  3
+ ],
+ "sandhi": [
+  "ar+arbtok.jsonl",
+  5
+ ],
+ "sandhi_pause": [
+  "ar+arbtok.jsonl",
+  6
+ ],
+ "sandhi_spelling": [
+  "ar+arbtok.jsonl",
+  6
+ ],
+ "secondary": [
+  "en-GB.jsonl",
+  89
+ ],
+ "segment": [
+  "hi.jsonl",
+  0
+ ],
+ "semivowels": [
+  "klj.jsonl",
+  18
+ ],
+ "sequencer": [
+  "el.jsonl",
+  0
+ ],
+ "silent_stress_marks": [
+  "ru.jsonl",
+  10
+ ],
+ "spell_gate": [
+  "pt-PT@baixo_minhoto.jsonl",
+  0
+ ],
+ "splitter": [
+  "fy.jsonl",
+  20
+ ],
+ "syll.closed": [
+  "en-GB.jsonl",
+  9
+ ],
+ "syll.has_stress": [
+  "ru.jsonl",
+  0
+ ],
+ "syll.idx_eq_stressed": [
+  "ru.jsonl",
+  0
+ ],
+ "syll.idx_eq_stressed_minus_1": [
+  "ru.jsonl",
+  0
+ ],
+ "syll.idx_gt_stressed": [
+  "pt-PT-x-braga.jsonl",
+  0
+ ],
+ "syll.idx_in_secondary": [
+  "fy.jsonl",
+  0
+ ],
+ "syll.idx_lt_stressed": [
+  "oc.jsonl",
+  1
+ ],
+ "syll.open": [
+  "nl-NL.jsonl",
+  8
+ ],
+ "tone_dock": [
+  "li.jsonl",
+  200
+ ],
+ "tonic_after_diphthong": [
+  "pt-BR-x-fluminen.jsonl",
+  7
+ ],
+ "trie": [
+  "cop.jsonl",
+  0
+ ],
+ "virama_final": [
+  "ml.jsonl",
+  0
+ ],
+ "vowel_letters": [
+  "zu.jsonl",
+  29
+ ],
+ "vowel_signs": [
+  "my.jsonl",
+  0
+ ],
+ "weight": [
+  "ar.jsonl",
+  0
+ ],
+ "word_has": [
+  "pt-PT-x-braga.jsonl",
+  15
+ ],
+ "words": [
+  "pt-PT+words.jsonl",
+  200
+ ],
+ "written_onsets": [
+  "li.jsonl",
+  36
+ ]
+}

@@ -137,7 +137,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-otom1299",
+ "inherits": "x-clade-otom1299",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Copala_Triqui_language"

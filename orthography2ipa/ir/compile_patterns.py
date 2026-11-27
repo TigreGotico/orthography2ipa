@@ -85,6 +85,11 @@ def _node(op, av, text: str) -> list:
             return ["star", inner]
         if (lo, hi) == (1, C.MAXREPEAT):
             return ["plus", inner]
+    if op is C.FAILURE:
+        # Python 3.13 and later parse "(?!)" to FAILURE; 3.12 and earlier to an
+        # empty negative lookahead. Both mean "never matches": emit the
+        # lookahead so the IR is the same on every Python version.
+        return ["ahead", 1, ["seq"]]
     if op in (C.ASSERT, C.ASSERT_NOT):
         direction, sub = av
         neg = int(op is C.ASSERT_NOT)

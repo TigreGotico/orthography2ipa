@@ -18,79 +18,79 @@ A language scored on several gold datasets is reported here **per dataset**, not
 
 - **ja** (Japanese) / `vox_communis`: 1268 of 1419 gold characters unmapped, hitting 67.5% of 5000 scanned words. Own table 305 graphemes, resolved 305, worst per 0.4273, n 158050.
   - unmapped: `一 丁 七 万 丈 三 上 下 不 与 世 両 並 中 丸 丹 主 久 之 乗 九 乱 乳 乾 亀 了 予 争 事 二 互 五 井 亡 交 京 亭 人 今 介 仏 仕 他 付 代 令 以 仰 件 任 企 伊 伏 休 会 伝 伸 位 低 住`
-  - chain: parent=jpx [Japonic]
+  - chain: inherits=jpx [Japonic]
   - no stress block reachable
 - **ja** (Japanese) / `ipadict`: 1120 of 1269 gold characters unmapped, hitting 73.2% of 5000 scanned words. Own table 305 graphemes, resolved 305, worst per 0.4273, n 158050.
   - unmapped: `× α ※ ← ↑ → ↓ △ ○ ◎ 〃 々 〆 〇 〒 ゝ ヵ ヶ ・ 一 丁 七 万 三 上 下 不 世 両 並 中 丸 主 丼 久 乍 乗 乱 乳 亀 了 事 二 互 五 井 亡 交 人 仁 介 仏 仕 他 付 仝 代 令 以 仲`
-  - chain: parent=jpx [Japonic]
+  - chain: inherits=jpx [Japonic]
   - no stress block reachable
 - **en-GB** (British English (RP)) / `wikipron`: 31 of 57 gold characters unmapped, hitting 2.9% of 5000 scanned words. Own table 84 graphemes, resolved 84, worst per 0.2959, n 158101.
   - unmapped: `' á â ã ä å æ ç é ê ë í ñ ó ö ú ü ā ă č ē ę ě ī ł œ ś ş ș ț ʼ`
-  - chain: parent=enm [Indo-European > Germanic > Northwest Germanic > West Germanic]
+  - chain: inherits=enm [Indo-European > Germanic > Northwest Germanic > West Germanic]
 - **ab** (Abkhaz) / `wikipron`: 20 of 59 gold characters unmapped, hitting 25.2% of 206 scanned words. Own table 67 graphemes, resolved 67, worst per 0.2311, n 32345.
   - unmapped: `' ь ҙ ә ԡ ԣ ԫ ԭ ꚁ ꚃ ꚅ ꚇ ꚉ ꚋ ꚍ ꚏ ꚑ ꚓ ꚕ ꚗ`
-  - chain: parent=x-clade-abkh1242 [?]
+  - chain: inherits=x-clade-abkh1242 [?]
   - no stress block reachable
 - **cy** (Welsh) / `wikipron`: 16 of 44 gold characters unmapped, hitting 1.5% of 5000 scanned words. Own table 40 graphemes, resolved 40, worst per 0.2985, n 38123.
   - unmapped: `' k v x z à á é ë ï ò ö ü ý ẃ ỳ`
-  - chain: parent=xbr [Indo-European > Celtic > Brythonic]
+  - chain: inherits=xbr [Indo-European > Celtic > Brythonic]
   - no stress block reachable
 - **wbk** (Waigali) / `wikipron`: 15 of 48 gold characters unmapped, hitting 46.1% of 154 scanned words. Own table 41 graphemes, resolved 41, worst per 0.2022, n 153.
   - unmapped: `v ã ä ë ö ü ć ň ř ũ ǖ ̃ ̣ ṅ ẽ`
-  - chain: parent=x-clade-indo1320 [Indo-European]
+  - chain: inherits=x-clade-indo1320 [Indo-European]
   - no stress block reachable
 - **cy** (Welsh) / `vox_communis`: 13 of 41 gold characters unmapped, hitting 5.0% of 5000 scanned words. Own table 40 graphemes, resolved 40, worst per 0.2985, n 38123.
   - unmapped: `' k q v x z ¬ á ä é ï ñ ö`
-  - chain: parent=xbr [Indo-European > Celtic > Brythonic]
+  - chain: inherits=xbr [Indo-European > Celtic > Brythonic]
   - no stress block reachable
 - **yo** (Yoruba) / `wikipron`: 13 of 38 gold characters unmapped, hitting 3.0% of 4937 scanned words. Own table 56 graphemes, resolved 56, worst per 0.6392, n 9328.
   - unmapped: `c z ɔ ɛ ̀ ́ ̂ ̄ ̌ ḿ ị ộ ụ`
-  - chain: parent=nic [Atlantic-Congo]
+  - chain: inherits=nic [Atlantic-Congo]
   - no stress block reachable
 - **ess** (Central Siberian Yupik) / `northeuralex`: 12 of 36 gold characters unmapped, hitting 27.4% of 814 scanned words. Own table 29 graphemes, resolved 29, worst per 0.1074, n 814.
   - unmapped: `̌ б д е ж о ц ч ш щ ь ӽ`
-  - chain: parent=x-clade-eski1264 [?]
+  - chain: inherits=x-clade-eski1264 [?]
   - no stress block reachable
 - **fi** (Finnish) / `wikipron`: 12 of 38 gold characters unmapped, hitting 1.1% of 5000 scanned words. Own table 62 graphemes, resolved 62, worst per 0.0609, n 274968.
   - unmapped: `' q x á å é ú ü ă š ž ș`
-  - chain: parent=x-clade-finn1317 [Uralic]
+  - chain: inherits=x-clade-finn1317 [Uralic]
 - **kok** (Konkani) / `kaikki`: 12 of 65 gold characters unmapped, hitting 0.4% of 835 scanned words. Own table 76 graphemes, resolved 76, worst per 0.2241, n 830.
   - unmapped: `g y õ ಂ ಜ ಣ ನ ಪ ರ ು ೆ ೊ`
-  - chain: parent=sa [Indo-European > Indo-Iranian > Indo-Aryan]
+  - chain: inherits=sa [Indo-European > Indo-Iranian > Indo-Aryan]
   - no stress block reachable
 - **kw** (Cornish) / `wikipron`: 12 of 35 gold characters unmapped, hitting 4.2% of 648 scanned words. Own table 31 graphemes, resolved 31, worst per 0.2521, n 602.
   - unmapped: `c à â è ë ò ÿ ɐ ᵹ ꝺ ꝿ ꞇ`
-  - chain: parent=xbr [Indo-European > Celtic > Brythonic]
+  - chain: inherits=xbr [Indo-European > Celtic > Brythonic]
   - no stress block reachable
 - **li** (Limburgish) / `wikipron`: 12 of 41 gold characters unmapped, hitting 33.6% of 1128 scanned words. Own table 120 graphemes, resolved 120, worst per 0.3099, n 987.
   - unmapped: `' ä é ë ï ü ą ǫ ̈ ̩ ͜ ṣ`
-  - chain: parent=x-clade-germ1287 [Indo-European]
+  - chain: inherits=x-clade-germ1287 [Indo-European]
 - **my** (Burmese) / `wikipron`: 11 of 59 gold characters unmapped, hitting 2.9% of 5000 scanned words. Own table 231 graphemes, resolved 231, worst per 0.1926, n 7941.
   - unmapped: `့ း ္ ် ျ ြ ှ ၍ ၏ ၐ ၑ`
-  - chain: parent=sit [Sino-Tibetan]
+  - chain: inherits=sit [Sino-Tibetan]
   - no stress block reachable
 - **eu** (Basque (Euskara)) / `ipa_childes`: 10 of 32 gold characters unmapped, hitting 5.0% of 3969 scanned words. Own table 35 graphemes, resolved 35, worst per 0.0984, n 82531.
   - unmapped: `c q v w y á é í ó ú`
-  - chain: parent=xaq [Vasconic]
+  - chain: inherits=xaq [Vasconic]
 - **lad** (Ladino (Judeo-Spanish)) / `wikipron`: 10 of 33 gold characters unmapped, hitting 15.2% of 145 scanned words. Own table 35 graphemes, resolved 35, worst per 0.1397, n 151.
   - unmapped: `c q á é í ó ú ü ĵ ḥ`
-  - chain: parent=es-ES-x-medieval [Indo-European > Italic > Romance > Ibero-Romance]
+  - chain: inherits=es-ES-x-medieval [Indo-European > Italic > Romance > Ibero-Romance]
   - no stress block reachable
 - **smn** (Inari Sami) / `northeuralex`: 10 of 41 gold characters unmapped, hitting 27.5% of 1055 scanned words. Own table 31 graphemes, resolved 31, worst per 0.16, n 1055.
   - unmapped: `' ñ ̣ ḋ ḥ ḷ ṃ ṇ ṛ ṿ`
-  - chain: parent=urj [Uralic]
+  - chain: inherits=urj [Uralic]
   - no stress block reachable
 - **chb** (Chibcha) / `wikipron`: 9 of 28 gold characters unmapped, hitting 19.0% of 121 scanned words. Own table 22 graphemes, resolved 22, worst per 0.1313, n 99.
   - unmapped: `d k l r v â ç ȩ ɣ`
-  - chain: parent=x-clade-chib1249 [?]
+  - chain: inherits=x-clade-chib1249 [?]
   - no stress block reachable
 - **gwd** (Gawwada) / `wold`: 9 of 34 gold characters unmapped, hitting 9.9% of 976 scanned words. Own table 33 graphemes, resolved 33, worst per 0.0385, n 976.
   - unmapped: `c x z á í ú ħ ɲ ʤ`
-  - chain: parent=x-clade-afro1255 [?]
+  - chain: inherits=x-clade-afro1255 [?]
   - no stress block reachable
 - **lou** (Louisiana Creole) / `wikipron`: 9 of 37 gold characters unmapped, hitting 12.2% of 262 scanned words. Own table 36 graphemes, resolved 36, worst per 0.1953, n 262.
   - unmapped: `' á æ ç ê ì ñ ô œ`
-  - chain: parent=x-clade-roma1334 [Indo-European > Italic]
+  - chain: inherits=x-clade-roma1334 [Indo-European > Italic]
   - no stress block reachable
 
 ## Ranked by share of gold words that lose a character (per dataset)
@@ -122,54 +122,54 @@ The character count above treats a rare loan letter and a missing nasal vowel se
 
 A spec's closest table twin among the specs it does not declare as a base. A ratio near 1 means the table was taken from that language rather than written for this one. The notes then describe a language the data never encodes.
 
-- **koi** (Komi-Permyak, Uralic): graphemes kv 1.0, allophones none. Declares parent=x-clade-ural1272 [?], worst per 0.092.
-- **kv** (Komi, Uralic): graphemes koi 1.0, allophones none. Declares parent=x-clade-ural1272 [?], worst per 0.157.
-- **mqs** (West Makian, North Halmahera): graphemes tft 1.0, allophones none. Declares parent=x-clade-nort2923 [?], worst per 0.0495.
-- **nap** (Neapolitan, Indo-European > Italic > Romance > Italo-Romance): graphemes it-IT-x-abruzzo 0.854, allophones it-IT-x-abruzzo 1.0. Declares parent=x-clade-italorom [Indo-European > Italic > Romance], worst per 0.2792.
-- **tft** (Ternate, North Halmahera): graphemes mqs 1.0, allophones none. Declares parent=x-clade-nort2923 [?], worst per 0.1041.
-- **it-IT** (Italian, Indo-European > Italic > Romance > Italo-Romance): graphemes co 0.634, allophones nap 0.979. Declares parent=x-clade-italorom [Indo-European > Italic > Romance], worst per 0.2353.
-- **sa** (Sanskrit, Indo-European > Indo-Iranian > Indo-Aryan): graphemes vsn 0.859, allophones vsn 0.979. Declares parent=x-clade-indo1321 [Indo-European > Indo-Iranian], worst per 0.0161.
-- **tzm** (Central Atlas Tamazight, Afro-Asiatic > Berber): graphemes zgh 0.971, allophones none. Declares parent=ber-x-kabyle-atlas [Afro-Asiatic > Berber], worst per 0.016.
-- **es-ES-x-medieval** (Castilian, Indo-European > Italic > Romance > Ibero-Romance): graphemes an 0.81, allophones lad 0.968. Declares parent=x-clade-iberrom [Indo-European > Italic > Romance], worst per 0.0438.
-- **ban** (Balinese, Austronesian): graphemes min 0.871, allophones su 0.963. Declares parent=x-clade-aust1307 [?], worst per 0.163.
-- **rw** (Kinyarwanda, Atlantic-Congo > Bantu): graphemes lua 0.8, allophones lua 0.963. Declares parent=x-clade-narr1281 [Atlantic-Congo], worst per 0.1388.
-- **su** (Sundanese, Austronesian > Malayo-Polynesian): graphemes kge 0.893, allophones ban 0.963. Declares parent=x-clade-mala1545 [Austronesian], worst per 0.0978.
-- **mak** (Makasar, Austronesian): graphemes gor 0.962, allophones none. Declares parent=poz [Austronesian], worst per 0.0194.
-- **iba** (Iban, Austronesian > Malayo-Polynesian): graphemes lmy 0.957, allophones ban 0.889. Declares parent=x-clade-mala1545 [Austronesian], worst per 0.1655.
-- **lmy** (Lamboya, Austronesian > Malayo-Polynesian): graphemes iba 0.957, allophones none. Declares parent=x-clade-mala1545 [Austronesian], worst per 0.1695.
-- **ceb** (Cebuano, Austronesian > Malayo-Polynesian): graphemes ilo 0.913, allophones pam 0.955. Declares parent=x-clade-mala1545 [Austronesian], worst per 0.1058.
-- **pam** (Kapampangan, Austronesian > Malayo-Polynesian): graphemes hil 0.952, allophones ceb 0.955. Declares parent=x-clade-mala1545 [Austronesian], worst per 0.2861.
-- **de-DE** (German, Indo-European > Germanic > Northwest Germanic > West Germanic): graphemes nds 0.736, allophones nds 0.953. Declares parent=x-clade-west2793 [Indo-European > Germanic > Northwest Germanic], worst per 0.3948.
-- **nds** (Low German (Plattdeutsch), Indo-European > Germanic > Northwest Germanic > West Germanic): graphemes de-DE 0.736, allophones de-DE 0.953. Declares parent=osx [Indo-European > Germanic > Northwest Germanic > West Germanic], worst per 0.2231.
-- **hil** (Hiligaynon, Austronesian > Malayo-Polynesian): graphemes pam 0.952, allophones none. Declares parent=x-clade-mala1545 [Austronesian], worst per 0.0966.
+- **koi** (Komi-Permyak, Uralic): graphemes kv 1.0, allophones none. Declares inherits=x-clade-ural1272 [?], worst per 0.092.
+- **kv** (Komi, Uralic): graphemes koi 1.0, allophones none. Declares inherits=x-clade-ural1272 [?], worst per 0.157.
+- **mqs** (West Makian, North Halmahera): graphemes tft 1.0, allophones none. Declares inherits=x-clade-nort2923 [?], worst per 0.0495.
+- **nap** (Neapolitan, Indo-European > Italic > Romance > Italo-Romance): graphemes it-IT-x-abruzzo 0.854, allophones it-IT-x-abruzzo 1.0. Declares inherits=x-clade-italorom [Indo-European > Italic > Romance], worst per 0.2792.
+- **tft** (Ternate, North Halmahera): graphemes mqs 1.0, allophones none. Declares inherits=x-clade-nort2923 [?], worst per 0.1041.
+- **it-IT** (Italian, Indo-European > Italic > Romance > Italo-Romance): graphemes co 0.634, allophones nap 0.979. Declares inherits=x-clade-italorom [Indo-European > Italic > Romance], worst per 0.2353.
+- **sa** (Sanskrit, Indo-European > Indo-Iranian > Indo-Aryan): graphemes vsn 0.859, allophones vsn 0.979. Declares inherits=x-clade-indo1321 [Indo-European > Indo-Iranian], worst per 0.0161.
+- **tzm** (Central Atlas Tamazight, Afro-Asiatic > Berber): graphemes zgh 0.971, allophones none. Declares inherits=ber-x-kabyle-atlas [Afro-Asiatic > Berber], worst per 0.016.
+- **es-ES-x-medieval** (Castilian, Indo-European > Italic > Romance > Ibero-Romance): graphemes an 0.81, allophones lad 0.968. Declares inherits=x-clade-iberrom [Indo-European > Italic > Romance], worst per 0.0438.
+- **ban** (Balinese, Austronesian): graphemes min 0.871, allophones su 0.963. Declares inherits=x-clade-aust1307 [?], worst per 0.163.
+- **rw** (Kinyarwanda, Atlantic-Congo > Bantu): graphemes lua 0.8, allophones lua 0.963. Declares inherits=x-clade-narr1281 [Atlantic-Congo], worst per 0.1388.
+- **su** (Sundanese, Austronesian > Malayo-Polynesian): graphemes kge 0.893, allophones ban 0.963. Declares inherits=x-clade-mala1545 [Austronesian], worst per 0.0978.
+- **mak** (Makasar, Austronesian): graphemes gor 0.962, allophones none. Declares inherits=poz [Austronesian], worst per 0.0194.
+- **iba** (Iban, Austronesian > Malayo-Polynesian): graphemes lmy 0.957, allophones ban 0.889. Declares inherits=x-clade-mala1545 [Austronesian], worst per 0.1655.
+- **lmy** (Lamboya, Austronesian > Malayo-Polynesian): graphemes iba 0.957, allophones none. Declares inherits=x-clade-mala1545 [Austronesian], worst per 0.1695.
+- **ceb** (Cebuano, Austronesian > Malayo-Polynesian): graphemes ilo 0.913, allophones pam 0.955. Declares inherits=x-clade-mala1545 [Austronesian], worst per 0.1058.
+- **pam** (Kapampangan, Austronesian > Malayo-Polynesian): graphemes hil 0.952, allophones ceb 0.955. Declares inherits=x-clade-mala1545 [Austronesian], worst per 0.2861.
+- **de-DE** (German, Indo-European > Germanic > Northwest Germanic > West Germanic): graphemes nds 0.736, allophones nds 0.953. Declares inherits=x-clade-west2793 [Indo-European > Germanic > Northwest Germanic], worst per 0.3948.
+- **nds** (Low German (Plattdeutsch), Indo-European > Germanic > Northwest Germanic > West Germanic): graphemes de-DE 0.736, allophones de-DE 0.953. Declares inherits=osx [Indo-European > Germanic > Northwest Germanic > West Germanic], worst per 0.2231.
+- **hil** (Hiligaynon, Austronesian > Malayo-Polynesian): graphemes pam 0.952, allophones none. Declares inherits=x-clade-mala1545 [Austronesian], worst per 0.0966.
 
 ## Ranked by cross-family inheritance
 
 - **ext-PT-x-barranco** (Barranquenho, Mixed Language): graphemes_base=pt-PT [Indo-European > Italic > Romance > Ibero-Romance] CROSS-FAMILY, allophones_base=pt-PT [Indo-European > Italic > Romance > Ibero-Romance] CROSS-FAMILY, positional_graphemes_base=pt-PT [Indo-European > Italic > Romance > Ibero-Romance] CROSS-FAMILY, word_exceptions_base=pt-PT [Indo-European > Italic > Romance > Ibero-Romance] CROSS-FAMILY. Per 0.2912, 0 unmapped gold chars (union across datasets).
-- **new** (Newar, Sino-Tibetan): parent=x-clade-sino1245 [?], graphemes_base=hi [Indo-European > Indo-Iranian > Indo-Aryan] CROSS-FAMILY. Per 0.0282, 0 unmapped gold chars (union across datasets).
+- **new** (Newar, Sino-Tibetan): inherits=x-clade-sino1245 [?], graphemes_base=hi [Indo-European > Indo-Iranian > Indo-Aryan] CROSS-FAMILY. Per 0.0282, 0 unmapped gold chars (union across datasets).
 
 ## Declared inventory contradicting emitted output
 
-- **ii** (Nuosu): declares 74 phonemes it never emits and emits 1165 it never declares. Chain: parent=x-clade-sino1245 [?].
-- **nmn** (ǃXóõ): declares 94 phonemes it never emits and emits 154 it never declares. Chain: parent=x-clade-tuuu1241 [?].
-- **bax** (Bamun): declares 7 phonemes it never emits and emits 118 it never declares. Chain: parent=x-clade-atla1278 [?].
-- **mag** (Magahi): declares 30 phonemes it never emits and emits 89 it never declares. Chain: parent=x-clade-indo1321 [Indo-European > Indo-Iranian], graphemes_base=hi [Indo-European > Indo-Iranian > Indo-Aryan], allophones_base=hi [Indo-European > Indo-Iranian > Indo-Aryan].
-- **lbe** (Lak): declares 94 phonemes it never emits and emits 23 it never declares. Chain: parent=x-clade-nakh1245 [?].
-- **kbd** (Kabardian): declares 85 phonemes it never emits and emits 18 it never declares. Chain: parent=x-clade-abkh1242 [?].
-- **bfj** (Bafanji): declares 30 phonemes it never emits and emits 70 it never declares. Chain: parent=x-clade-atla1278 [?].
-- **udm** (Udmurt): declares 37 phonemes it never emits and emits 58 it never declares. Chain: parent=x-clade-ural1272 [?].
-- **lez** (Lezgian): declares 80 phonemes it never emits and emits 14 it never declares. Chain: parent=x-clade-nakh1245 [?].
-- **new** (Newar): declares 20 phonemes it never emits and emits 73 it never declares. Chain: parent=x-clade-sino1245 [?], graphemes_base=hi [Indo-European > Indo-Iranian > Indo-Aryan] CROSS-FAMILY.
+- **ii** (Nuosu): declares 74 phonemes it never emits and emits 1165 it never declares. Chain: inherits=x-clade-sino1245 [?].
+- **nmn** (ǃXóõ): declares 94 phonemes it never emits and emits 154 it never declares. Chain: inherits=x-clade-tuuu1241 [?].
+- **bax** (Bamun): declares 7 phonemes it never emits and emits 118 it never declares. Chain: inherits=x-clade-atla1278 [?].
+- **mag** (Magahi): declares 30 phonemes it never emits and emits 89 it never declares. Chain: inherits=x-clade-indo1321 [Indo-European > Indo-Iranian], graphemes_base=hi [Indo-European > Indo-Iranian > Indo-Aryan], allophones_base=hi [Indo-European > Indo-Iranian > Indo-Aryan].
+- **lbe** (Lak): declares 94 phonemes it never emits and emits 23 it never declares. Chain: inherits=x-clade-nakh1245 [?].
+- **kbd** (Kabardian): declares 85 phonemes it never emits and emits 18 it never declares. Chain: inherits=x-clade-abkh1242 [?].
+- **bfj** (Bafanji): declares 30 phonemes it never emits and emits 70 it never declares. Chain: inherits=x-clade-atla1278 [?].
+- **udm** (Udmurt): declares 37 phonemes it never emits and emits 58 it never declares. Chain: inherits=x-clade-ural1272 [?].
+- **lez** (Lezgian): declares 80 phonemes it never emits and emits 14 it never declares. Chain: inherits=x-clade-nakh1245 [?].
+- **new** (Newar): declares 20 phonemes it never emits and emits 73 it never declares. Chain: inherits=x-clade-sino1245 [?], graphemes_base=hi [Indo-European > Indo-Iranian > Indo-Aryan] CROSS-FAMILY.
 - **yuc** (Yuchi): declares 34 phonemes it never emits and emits 46 it never declares. Chain: (standalone).
-- **skr** (Saraiki): declares 56 phonemes it never emits and emits 22 it never declares. Chain: parent=x-clade-indo1321 [Indo-European > Indo-Iranian].
-- **nb** (Norwegian Bokmål): declares 22 phonemes it never emits and emits 54 it never declares. Chain: parent=no [Indo-European > Germanic > Northwest Germanic > North Germanic], graphemes_base=no [Indo-European > Germanic > Northwest Germanic > North Germanic], allophones_base=no [Indo-European > Germanic > Northwest Germanic > North Germanic].
-- **inh** (Ingush): declares 53 phonemes it never emits and emits 22 it never declares. Chain: parent=x-clade-nakh1245 [?].
-- **tsb** (Tsamai): declares 47 phonemes it never emits and emits 27 it never declares. Chain: parent=x-clade-afro1255 [?].
-- **sje** (Pite Sami): declares 15 phonemes it never emits and emits 58 it never declares. Chain: parent=x-clade-ural1272 [?].
-- **bot** (Bongo): declares 6 phonemes it never emits and emits 66 it never declares. Chain: parent=x-clade-cent2225 [?].
-- **dsq** (Tadaksahak): declares 64 phonemes it never emits and emits 7 it never declares. Chain: parent=x-clade-song1307 [?].
-- **hig** (Kamwe): declares 7 phonemes it never emits and emits 64 it never declares. Chain: parent=x-clade-afro1255 [?].
-- **dim** (Dime): declares 64 phonemes it never emits and emits 6 it never declares. Chain: parent=x-clade-sout2845 [?].
+- **skr** (Saraiki): declares 56 phonemes it never emits and emits 22 it never declares. Chain: inherits=x-clade-indo1321 [Indo-European > Indo-Iranian].
+- **nb** (Norwegian Bokmål): declares 22 phonemes it never emits and emits 54 it never declares. Chain: inherits=no [Indo-European > Germanic > Northwest Germanic > North Germanic], graphemes_base=no [Indo-European > Germanic > Northwest Germanic > North Germanic], allophones_base=no [Indo-European > Germanic > Northwest Germanic > North Germanic].
+- **inh** (Ingush): declares 53 phonemes it never emits and emits 22 it never declares. Chain: inherits=x-clade-nakh1245 [?].
+- **tsb** (Tsamai): declares 47 phonemes it never emits and emits 27 it never declares. Chain: inherits=x-clade-afro1255 [?].
+- **sje** (Pite Sami): declares 15 phonemes it never emits and emits 58 it never declares. Chain: inherits=x-clade-ural1272 [?].
+- **bot** (Bongo): declares 6 phonemes it never emits and emits 66 it never declares. Chain: inherits=x-clade-cent2225 [?].
+- **dsq** (Tadaksahak): declares 64 phonemes it never emits and emits 7 it never declares. Chain: inherits=x-clade-song1307 [?].
+- **hig** (Kamwe): declares 7 phonemes it never emits and emits 64 it never declares. Chain: inherits=x-clade-afro1255 [?].
+- **dim** (Dime): declares 64 phonemes it never emits and emits 6 it never declares. Chain: inherits=x-clade-sout2845 [?].
 
 ## Full table
 

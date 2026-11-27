@@ -1091,7 +1091,7 @@
     "end_year": null
   },
   "iso639_3": "jpn",
-  "parent": "jpx",
+  "inherits": "jpx",
   "ancestors": [
     {
       "code": "jpx",

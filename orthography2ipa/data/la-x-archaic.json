@@ -2,7 +2,7 @@
   "code": "la-x-archaic",
   "name": "Old Latin",
   "script": "Latin",
-  "parent": "ine-x-italic",
+  "inherits": "ine-x-italic",
   "graphemes": {
     "a": [
       "a",

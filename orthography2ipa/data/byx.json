@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-bain1263",
+ "inherits": "x-clade-bain1263",
  "phonemes": [
   "k",
   "l",

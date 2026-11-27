@@ -236,7 +236,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-gumu1250",
+ "inherits": "x-clade-gumu1250",
  "phonemes": [
   "b",
   "cç",

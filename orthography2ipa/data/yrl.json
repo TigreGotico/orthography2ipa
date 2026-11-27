@@ -128,7 +128,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Nheengatu_language"
   ],
-  "parent": "x-clade-tupi1275",
+  "inherits": "x-clade-tupi1275",
   "ancestors": [
     {
       "code": "x-clade-tupi1275",

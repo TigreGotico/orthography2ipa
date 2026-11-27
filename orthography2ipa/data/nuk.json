@@ -72,7 +72,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-waka1280",
+ "inherits": "x-clade-waka1280",
  "phonemes": [
   "h",
   "j",
