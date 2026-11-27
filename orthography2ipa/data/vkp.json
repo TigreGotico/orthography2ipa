@@ -5,7 +5,7 @@
   "quality": "research",
   "script_type": "alphabet",
   "orthography_kind": "transliteration",
-  "parent": "pt-PT",
+  "inherits": "pt-PT",
   "graphemes": {
     "a": [
       "a"

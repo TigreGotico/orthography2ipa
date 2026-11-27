@@ -11,7 +11,7 @@
       "ɒː"
     ]
   },
-  "parent": "fa-x-khorasan",
+  "inherits": "fa-x-khorasan",
   "ancestors": [
     {
       "code": "fa-x-khorasan",

@@ -74,7 +74,7 @@
       "t"
     ]
   },
-  "parent": "x-clade-cent2236",
+  "inherits": "x-clade-cent2236",
   "ancestors": [
     {
       "code": "x-clade-cent2236",

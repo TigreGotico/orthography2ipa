@@ -39,7 +39,7 @@ def test_the_spec_carries_only_the_delta():
     with open(path, encoding="utf-8") as fh:
         raw = json.load(fh)
     assert raw["graphemes"] == {} and raw["allophones"] == {}
-    assert raw["graphemes_base"] == PARENT and raw["parent"] == PARENT
+    assert raw["graphemes_base"] == PARENT and raw["inherits"] == PARENT
     assert [r["id"] for r in raw["allophone_rules"]] == [
         "SHAMALI_AFFRIC_K_BEFORE_CENTRAL_A",
         "SHAMALI_AFFRIC_K_BEFORE_CENTRAL_AA",

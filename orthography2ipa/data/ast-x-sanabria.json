@@ -2,7 +2,7 @@
   "code": "ast-x-sanabria",
   "name": "Sanabrese",
   "script": "Latin",
-  "parent": "ast-x-leon",
+  "inherits": "ast-x-leon",
   "graphemes_base": "ast-x-leon",
   "allophones_base": "ast-x-leon",
   "positional_graphemes_base": "ast-x-leon",

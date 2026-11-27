@@ -121,7 +121,7 @@ class TestLanguageSpecNewFields:
             script="Latin",
             graphemes={"a": ["a"], "lh": ["ʎ"]},
             allophones={"a": ["a"], "ʎ": ["ʎ", "lj"]},
-            parent="pt-PT",
+            inherits="pt-PT",
         )
         assert spec.quality == QualityTier.RESEARCH
         assert spec.script_type == ScriptType.ALPHABET

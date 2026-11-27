@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-kart1248",
+ "inherits": "x-clade-kart1248",
  "phonemes": [
   "b",
   "dz",

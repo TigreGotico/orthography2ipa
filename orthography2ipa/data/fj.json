@@ -169,7 +169,7 @@
       "notes": "The account of the orthography (pp. 31-32) gives b = [mb], d = [nd], q = [ŋɡ], g = [ŋ] and c = [ð]; section 44.9 (p. 647) gives /v/ = [β]."
     }
   ],
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",

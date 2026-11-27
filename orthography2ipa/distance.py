@@ -592,7 +592,7 @@ def _data_ancestors(spec: LanguageSpec) -> Tuple[Ancestor, ...]:
                 break
             if not candidate.clade:
                 break
-            code = candidate.parent
+            code = candidate.inherits
         if code and code != ancestor.code:
             resolved.append(replace(ancestor, code=code))
         elif code:

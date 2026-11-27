@@ -268,7 +268,7 @@
       "u"
     ]
   },
-  "parent": "x-clade-east1426",
+  "inherits": "x-clade-east1426",
   "notes": "Standard Ukrainian. Key differences from Russian: ⟨г⟩ = [ɦ] (not [ɡ]), ⟨ґ⟩ = [ɡ] as separate letter, ⟨в⟩ = [ʋ] approximant, no vowel reduction (no аканье).",
   "quality": "research",
   "script_type": "alphabet",

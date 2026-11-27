@@ -2,7 +2,7 @@
   "code": "ca-x-occident",
   "name": "North-Western Catalan",
   "script": "Latin",
-  "parent": "ca-x-medieval",
+  "inherits": "ca-x-medieval",
   "graphemes_base": "ca-x-medieval",
   "graphemes": {
     "v": [

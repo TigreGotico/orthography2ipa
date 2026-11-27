@@ -51,7 +51,7 @@ def test_spec_registers(code):
 
 @pytest.mark.parametrize("code", VALLEYS)
 def test_parent_is_aragonese(code):
-    assert get(code).parent == "an"
+    assert get(code).inherits == "an"
 
 
 @pytest.mark.parametrize("code", VALLEYS)

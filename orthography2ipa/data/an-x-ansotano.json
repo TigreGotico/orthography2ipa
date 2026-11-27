@@ -5,7 +5,7 @@
   "graphemes_base": "an",
   "allophones_base": "an",
   "positional_graphemes_base": "an",
-  "parent": "an",
+  "inherits": "an",
   "positional_graphemes": {
     "r": {
       "word_initial": [

@@ -40,7 +40,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-drav1251",
+ "inherits": "x-clade-drav1251",
  "phonemes": [
   "b",
   "dz",

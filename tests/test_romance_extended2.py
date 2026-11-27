@@ -116,8 +116,8 @@ class TestTuscanItalian:
 
     def test_parent_is_it_IT(self) -> None:
         """Parent of Tuscan must be standard Italian (it-IT)."""
-        assert self.spec.parent == "it-IT", (
-            f"Expected parent 'it-IT', got {self.spec.parent!r}"
+        assert self.spec.inherits == "it-IT", (
+            f"Expected parent 'it-IT', got {self.spec.inherits!r}"
         )
 
     # --- Gorgia toscana: /p/ ---
@@ -207,8 +207,8 @@ class TestRomanItalian:
 
     def test_parent_is_it_IT(self) -> None:
         """Roman Italian parent must be standard Italian (it-IT)."""
-        assert self.spec.parent == "it-IT", (
-            f"Expected parent 'it-IT', got {self.spec.parent!r}"
+        assert self.spec.inherits == "it-IT", (
+            f"Expected parent 'it-IT', got {self.spec.inherits!r}"
         )
 
     def test_family_is_romance(self) -> None:
@@ -595,7 +595,7 @@ class TestLogudoreseSardinian:
 
     def test_parent_is_sc(self) -> None:
         """Logudorese parent must be Standard Sardinian (sc)."""
-        assert self.spec.parent == "sc"
+        assert self.spec.inherits == "sc"
 
     def test_t_allophone_has_theta(self) -> None:
         """Allophone of /t/ includes [θ] — partial gorgia-like lenition in Logudorese."""
@@ -637,7 +637,7 @@ class TestCampidaneseSardinian:
 
     def test_parent_is_sc(self) -> None:
         """Campidanese parent must be Standard Sardinian (sc)."""
-        assert self.spec.parent == "sc"
+        assert self.spec.inherits == "sc"
 
     def test_p_allophone_has_beta(self) -> None:
         """Allophone of /p/ includes [β] — labial fricative from Campidanese lenition."""
@@ -699,7 +699,7 @@ class TestLogudoreseISOCode:
 
     def test_parent_is_sc(self) -> None:
         """src parent must be Standard Sardinian (sc)."""
-        assert self.spec.parent == "sc"
+        assert self.spec.inherits == "sc"
 
     def test_iso639_3_is_src(self) -> None:
         """Declared iso639_3 must match the filename/code."""
@@ -727,7 +727,7 @@ class TestCampidaneseISOCode:
 
     def test_parent_is_sc(self) -> None:
         """sro parent must be Standard Sardinian (sc)."""
-        assert self.spec.parent == "sc"
+        assert self.spec.inherits == "sc"
 
     def test_iso639_3_is_sro(self) -> None:
         """Declared iso639_3 must match the filename/code."""
@@ -764,7 +764,7 @@ class TestGallurese:
 
     def test_parent_is_corsican(self) -> None:
         """Gallurese descends from Corsican (co), not Sardinian (sc)."""
-        assert self.spec.parent == "co"
+        assert self.spec.inherits == "co"
 
     def test_iso639_3_is_sdn(self) -> None:
         """Declared iso639_3 must match the filename/code."""
@@ -821,7 +821,7 @@ class TestAranese:
 
     def test_parent_is_oc(self) -> None:
         """Aranese parent must be Occitan (oc)."""
-        assert self.spec.parent == "oc"
+        assert self.spec.inherits == "oc"
 
     # --- Front rounded vowel ---
 
@@ -1151,7 +1151,7 @@ class TestCantabrianSpanish:
 
     def test_parent_is_es_ES(self) -> None:
         """Cantabrian parent must be standard Castilian (es-ES)."""
-        assert self.spec.parent == "es-ES"
+        assert self.spec.inherits == "es-ES"
 
     def test_s_is_apical(self) -> None:
         """Allophone of /s/ is [s̺] — apical sibilant linking Cantabrian to Asturian."""
@@ -1185,7 +1185,7 @@ class TestCaipiraBrazilian:
 
     def test_parent_is_pt_BR(self) -> None:
         """Caipira parent must be Brazilian Portuguese (pt-BR)."""
-        assert self.spec.parent == "pt-BR"
+        assert self.spec.inherits == "pt-BR"
 
     # --- Palatalisation of /t d/ (shared with Rio) ---
 
@@ -1254,7 +1254,7 @@ class TestBahianBrazilian:
 
     def test_parent_is_pt_BR(self) -> None:
         """Bahian parent must be Brazilian Portuguese (pt-BR)."""
-        assert self.spec.parent == "pt-BR"
+        assert self.spec.inherits == "pt-BR"
 
     # --- NO palatalisation of /t d/ (distinguishing feature!) ---
 
@@ -1314,7 +1314,7 @@ class TestAzoreanPortuguese:
 
     def test_parent_is_pt_PT(self) -> None:
         """Azorean parent must be European Portuguese (pt-PT)."""
-        assert self.spec.parent == "pt-PT"
+        assert self.spec.inherits == "pt-PT"
 
     def test_stressed_u_fronting_rule(self) -> None:
         """São Miguel-class stressed open /u/ → [y] is a declared rule."""
@@ -1359,7 +1359,7 @@ class TestAlentejoPortuguese:
 
     def test_parent_is_pt_PT(self) -> None:
         """Alentejo parent must be European Portuguese (pt-PT)."""
-        assert self.spec.parent == "pt-PT"
+        assert self.spec.inherits == "pt-PT"
 
     def test_open_e_has_diphthong_allophone(self) -> None:
         """Allophone of /ɛ/ includes [ɛɐ] — diphthongisation unique to Alentejo."""
@@ -1409,7 +1409,7 @@ class TestMinhoPortuguese:
 
     def test_parent_is_pt_PT(self) -> None:
         """Minho parent must be European Portuguese (pt-PT)."""
-        assert self.spec.parent == "pt-PT"
+        assert self.spec.inherits == "pt-PT"
 
     # --- Aspirated t ---
 

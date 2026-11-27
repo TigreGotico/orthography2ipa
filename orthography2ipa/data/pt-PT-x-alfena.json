@@ -32,7 +32,7 @@
     ]
   },
   "positional_graphemes_base": "pt-PT",
-  "parent": "pt-PT",
+  "inherits": "pt-PT",
   "allophone_rules": [
     {
       "id": "PT_FINAL_EM_NUCLEUS",

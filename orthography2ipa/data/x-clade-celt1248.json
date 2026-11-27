@@ -20,7 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Celtic_languages"
   ],
-  "parent": "ine",
+  "inherits": "ine",
   "urls": [
     "https://glottolog.org/resource/languoid/id/celt1248"
   ],

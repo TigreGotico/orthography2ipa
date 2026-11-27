@@ -150,7 +150,7 @@
       "notes": "Turkic adstrate: Ottoman-era loanwords."
     }
   ],
-  "parent": "ccs",
+  "inherits": "ccs",
   "notes": "Georgian (Kartuli), official language of Georgia. Written in Mkhedruli script. Three-way consonant distinction: voiced (ბ,გ,დ,ვ,ზ,ჟ,ჯ,ძ), aspirated (თ,ფ,ქ,ჩ,ც,ხ,ჰ), ejective (კ,პ,ტ,ყ,წ,ჭ). Complex consonant clusters. Kartvelian language family unrelated to Indo-European.",
   "sources": [
     {

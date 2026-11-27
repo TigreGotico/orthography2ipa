@@ -120,7 +120,7 @@
       "dz"
     ]
   },
-  "parent": "sla",
+  "inherits": "sla",
   "ancestors": [
     {
       "code": "sla",

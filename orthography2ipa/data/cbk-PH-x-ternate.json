@@ -5,7 +5,7 @@
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
-  "parent": "cbk-PH",
+  "inherits": "cbk-PH",
   "ancestors": [
     {
       "code": "es-ES",

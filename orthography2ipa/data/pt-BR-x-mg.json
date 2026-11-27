@@ -316,7 +316,7 @@
       "ũ"
     ]
   },
-  "parent": "pt-BR",
+  "inherits": "pt-BR",
   "notes": "Mineiro (Belo Horizonte, Minas Gerais). Pretonic raising is variable (Viegas & Veado 1982: 54). The spec raises /e/ where that study finds a majority: before a high vowel in the next syllable (66.6 %) and word-initially (90.7 %). /o/ raising depends on the adjacent consonants (Viegas 2001: 229) and is not encoded, so /o/ follows the base. Coda /R/ is glottal [h]: in Minas Gerais ALiB counts '77% (1068) do /r/ glotal', 22 % retroflex and 1 % tap (Silva 2023: 68); the retroflex belongs to the Triângulo and the south of the state (p. 70). Coda /S/ is alveolar and /t d/ affricate before [i] (categorical in Belo Horizonte, Battisti & Dornelles Filho 2015: 226).",
   "quality": "research",
   "script_type": "alphabet",

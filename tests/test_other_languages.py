@@ -211,7 +211,7 @@ class TestModernGreek:
 
     def test_parent_is_grc(self):
         """Modern Greek inherits from Ancient Greek."""
-        assert self.spec.parent == "grc"
+        assert self.spec.inherits == "grc"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -959,7 +959,7 @@ class TestYola:
         from pathlib import Path
         raw = json.loads((Path(orthography2ipa.__file__).parent / "data"
                           / "enm-x-yola.json").read_text())
-        assert raw["parent"] == "enm"
+        assert raw["inherits"] == "enm"
         assert raw.get("graphemes_base") is None
         assert "ā" in _load("enm").graphemes
         assert "ā" not in self.spec.graphemes

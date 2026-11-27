@@ -1,7 +1,7 @@
 {
   "code": "tet",
   "name": "Tetum (Tetun Dili / Tetun Prasa)",
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",

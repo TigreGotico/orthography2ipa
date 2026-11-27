@@ -20,5 +20,5 @@
  "urls": [
   "https://glottolog.org/resource/languoid/id/mala1549"
  ],
- "parent": "x-clade-sign1238"
+ "inherits": "x-clade-sign1238"
 }

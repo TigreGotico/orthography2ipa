@@ -20,5 +20,5 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Italo-Romance_languages"
   ],
-  "parent": "la-x-italia"
+  "inherits": "la-x-italia"
 }

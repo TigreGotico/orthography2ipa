@@ -3,7 +3,7 @@
  "name": "Kinderib Arabic (Anatolian qəltu)",
  "script": "Arabic",
  "script_type": "abjad",
- "parent": "ar-IQ-x-qeltu",
+ "inherits": "ar-IQ-x-qeltu",
  "graphemes_base": "ar-IQ-x-qeltu",
  "graphemes": {},
  "allophones_base": "ar-IQ-x-qeltu",

@@ -433,7 +433,7 @@
     "end_year": null
   },
   "iso639_3": "kan",
-  "parent": "ta-x-proto-dravidia",
+  "inherits": "ta-x-proto-dravidia",
   "phoible_id": "nucl1305",
   "wals_code": "knd",
   "location": {

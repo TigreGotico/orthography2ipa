@@ -6,7 +6,7 @@
  "quality": "stub",
  "graphemes": {},
  "allophones": {},
- "parent": "aeb-TN",
+ "inherits": "aeb-TN",
  "ancestors": [
   {
    "code": "jrb",

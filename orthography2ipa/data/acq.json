@@ -72,7 +72,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "ayn-YE",
+ "inherits": "ayn-YE",
  "graphemes_base": "ayn-YE",
  "allophones_base": "ayn-YE",
  "wikipedia": [

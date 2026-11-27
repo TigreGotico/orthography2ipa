@@ -126,7 +126,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-kadu1256",
+ "inherits": "x-clade-kadu1256",
  "phonemes": [
   "b",
   "bː",

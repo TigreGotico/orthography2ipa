@@ -104,7 +104,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-atla1278",
+ "inherits": "x-clade-atla1278",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Southern_Toussian_language"

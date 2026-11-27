@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-fura1235",
+ "inherits": "x-clade-fura1235",
  "phonemes": [
   "b",
   "d",

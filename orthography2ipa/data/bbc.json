@@ -6,7 +6,7 @@
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "parent": "poz",
+  "inherits": "poz",
   "ancestors": [
     {
       "code": "poz",

@@ -36,7 +36,7 @@
     "ỳ": ["ɨʔ"],
     "f": ["f"]
   },
-  "parent": "x-clade-cari1283",
+  "inherits": "x-clade-cari1283",
   "ancestors": [
     {
       "code": "x-clade-cari1283",

@@ -226,7 +226,7 @@ class Atlas:
         self.codes = sorted(registry.available_codes())
         self.children: Dict[str, List[str]] = defaultdict(list)
         for code in self.codes:
-            parent = self.raw.get(code, {}).get("parent")
+            parent = self.raw.get(code, {}).get("inherits")
             if parent:
                 self.children[parent].append(code)
         self.aliases: Dict[str, List[str]] = defaultdict(list)
@@ -463,12 +463,12 @@ def block_header(atlas: Atlas, spec) -> str:
         end = spec.timespan.end_year
         rows.append(("Attested", f"from {spec.timespan.start_year}"
                      + (f" to {end}" if end is not None else ", living")))
-    if spec.parent and spec.parent in atlas.raw:
-        parent = atlas.raw[spec.parent]
+    if spec.inherits and spec.inherits in atlas.raw:
+        parent = atlas.raw[spec.inherits]
         historical = (parent.get("timespan") or {}).get("end_year") is not None
         rows.append(("Ancestor" if historical else "Parent",
-                     f"[{parent['name']}]({atlas.link(spec.parent)})"
-                     f" `{spec.parent}`"))
+                     f"[{parent['name']}]({atlas.link(spec.inherits)})"
+                     f" `{spec.inherits}`"))
     children = _child_lects(atlas, spec.code)
     if children:
         rows.append(("Child lects",
@@ -924,13 +924,24 @@ def _show(example) -> str:
     return f"⟨{_clean(example[0])}⟩ [{_clean(example[1])}]" if example else ""
 
 
-def _example(notes: str, output: str = "") -> str:
+def _example(notes: str, output: str = "", graphemes=()) -> str:
     """The first example of the note whose transcription holds *output*.
 
     A note that three rules share must not give the labial example to the
     velar rule, so an example that does not show the rule's output is skipped.
+    When the rule names its *graphemes*, the example must also spell one of
+    them inside a longer word: an output that is a substring of another
+    segment ([s] of [ks]) would otherwise accept an unrelated word, and the
+    bare letter cited on its own (⟨x⟩ [ks]) is not a worked example.
     """
-    return _show(next((e for e in _examples(notes) if output in e[1]), None))
+    wanted = [g.lower() for g in graphemes or () if g]
+
+    def spells(example) -> bool:
+        spelled = example[0].lower()
+        return not wanted or any(g in spelled and spelled != g for g in wanted)
+
+    return _show(next((e for e in _examples(notes)
+                       if output in e[1] and spells(e)), None))
 
 
 def _sandhi_example(rule, output: str) -> str:
@@ -1003,11 +1014,23 @@ def _citations(spec, notes: str) -> str:
     return ", ".join(found[:3])
 
 
+#: The pattern that never matches. A spec switches off an inherited sandhi
+#: rule by redeclaring its id with this context (SCHEMA.md, Sandhi Rule
+#: Schema), as it switches off an allophone rule with empty ``phonemes``.
+_NEVER_MATCHES = "(?!)"
+
+
+def _sandhi_off(rule) -> bool:
+    return _NEVER_MATCHES in (rule.left_context, rule.right_context)
+
+
 def block_rules(atlas: Atlas, spec) -> str:
     rules = list(spec.allophone_rules or ())
     active = [r for r in rules if r.phonemes]
     off = [r for r in rules if not r.phonemes]
-    sandhi = list(spec.sandhi_rules or ())
+    all_sandhi = list(spec.sandhi_rules or ())
+    sandhi = [r for r in all_sandhi if not _sandhi_off(r)]
+    off += [r for r in all_sandhi if _sandhi_off(r)]
     lines = ["## Rules", ""]
     if not active and not sandhi:
         lines.append("The spec has no allophone rule and no cross-word rule.")
@@ -1021,7 +1044,7 @@ def block_rules(atlas: Atlas, spec) -> str:
             "| Rule | Change | Example | Cited |", "|:--|:--|:--|:--|"]
         for rule in active:
             lines.append(f"| `{rule.id}` | {_change(rule)} | "
-                         f"{_example(rule.notes, rule.surface or rule.append) or '-'} | "
+                         f"{_example(rule.notes, rule.surface or rule.append, rule.grapheme) or '-'} | "
                          f"{_citations(spec, rule.notes) or '-'} |")
     if sandhi:
         lines += ["", f"The spec applies {len(sandhi)} rules across a word "
@@ -1196,7 +1219,7 @@ def page_hint(atlas: Atlas, code: str) -> str:
     """The ``agent-hint`` comment of the page of *code*."""
     see = ["`docs/languages/a-z.md`", "`docs/specs/quality_tiers.md`",
            "`orthography2ipa/data/SCHEMA.md`"]
-    parent = atlas.raw[code].get("parent")
+    parent = atlas.raw[code].get("inherits")
     if parent in atlas.pages:
         see.insert(0, f"`docs/languages/{parent}.md`")
     return _docs_nav().agent_hint(

@@ -43,7 +43,7 @@ class TestGuadramilRegistry:
         assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(guadramil.family_path)
 
     def test_parent(self, guadramil):
-        assert guadramil.parent == "ast-PT-x-medieval"
+        assert guadramil.inherits == "ast-PT-x-medieval"
 
     def test_in_available_codes(self):
         assert "ast-PT-x-guadrami" in orthography2ipa.available_codes()
@@ -166,7 +166,7 @@ class TestBarrancosRegistry:
 
     def test_parent(self, barrancos):
         """Its own language, modelled like a creole: no parent, weighted contributors."""
-        assert barrancos.parent is None
+        assert barrancos.inherits is None
         assert not barrancos.get_ancestors(AncestorRole.PARENT)
         weights = {a.code: (a.role, a.weight) for a in barrancos.ancestors}
         assert weights["pt-PT"] == (AncestorRole.LEXIFIER, 0.6)

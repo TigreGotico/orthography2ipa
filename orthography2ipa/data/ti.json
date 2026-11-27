@@ -696,7 +696,7 @@
       "notes": null
     }
   ],
-  "parent": "sem-x-ethiopic",
+  "inherits": "sem-x-ethiopic",
   "ancestors": [
     {
       "code": "sem-x-ethiopic",

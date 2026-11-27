@@ -22,7 +22,7 @@ grep and a bit more:
   (``br``, ``an``, ``ka``, ``is``, ``it``) matches inside unrelated words and
   drowns the real hits in noise;
 * by default it also includes every spec that **inherits from** the given
-  language (``parent`` or a ``*_base`` table reference, transitively), because
+  language (``inherits`` or a ``*_base`` table reference, transitively), because
   editing a parent's table can move a child's output through inheritance even
   when no test names the parent directly. This can only add files, so
   ``--no-children`` is there for the rare case where a caller wants the exact
@@ -79,7 +79,7 @@ def spec_descendants(lang, repo=_ROOT):
                 spec = json.load(fh)
         except (OSError, ValueError):
             continue
-        refs = {spec.get("parent")}
+        refs = {spec.get("inherits")}
         refs |= {v for k, v in spec.items() if k.endswith("_base") and isinstance(v, str)}
         for ref in refs:
             if ref:

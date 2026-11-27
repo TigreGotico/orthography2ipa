@@ -322,7 +322,7 @@
       "dʒ"
     ]
   },
-  "parent": "pt-BR",
+  "inherits": "pt-BR",
   "notes": "Baiano (Salvador). Pretonic /e o/ open to [ɛ ɔ] before an open, nasal or low stressed vowel; ALiB groups Bahia with the Northeast for this feature (Mota & Lopes 2018: 215, 217). /t d/ affricate before [i]: 'Em Salvador, o processo mostra-se variável, mas a proporção é alta, 85%' (Battisti & Dornelles Filho 2015: 225). Coda /S/ is alveolar: ALiB gives 49 % alveolar in Salvador, and the alveolar is the form of younger and university-educated speakers (Marins & Margotti 2012: 256, reporting Jesus & Mota 2006); the NURC data give an even split (p. 254). Coda /R/ is the aspirate [h] and is deleted word-finally (Callou, Serra & Cunha 2015: 197, 207).",
   "quality": "research",
   "script_type": "alphabet",

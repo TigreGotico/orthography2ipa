@@ -158,7 +158,7 @@ The spec applies 28 allophone rules after the letters are read. The change colum
 | `FR_O_BEFORE_Z` | /ɔ/ → [o], before [z], spelled ⟨o⟩ | ⟨mot⟩ [mo] | Tranel 1987 |
 | `FR_AU_BEFORE_R` | /o/ → [ɔ], before [ʁ], spelled ⟨au⟩ | ⟨Laure⟩ [lɔʁ] | Fouché 1959, Tranel 1987, Walker 2001 |
 | `FR_EU_BEFORE_Z` | /œ/ → [ø], before [z], spelled ⟨eu⟩ | ⟨Deleuze⟩ [dəløz] | Fouché 1959, Tranel 1987, Walker 2001 |
-| `FR_C_HARD_BEFORE_OEU` | /s/ → [k], spelled ⟨c⟩, before ⟨œu⟩ | ⟨cœur⟩ [kœʁ] | - |
+| `FR_C_HARD_BEFORE_OEU` | /s/ → [k], spelled ⟨c⟩, before ⟨œu⟩ | ⟨cœur⟩ [kœʁ] | Martinon 1913 |
 | `FR_AI_FINAL_CLOSE_MID` | /ɛ/ → [e], before a word boundary, spelled ⟨ai⟩ | ⟨j'ai⟩ [ʒe] | Walker 2001, Fouché 1959 |
 | `FR_E_BEFORE_DOUBLED_CONSONANT` | /ə/ → [ɛ], spelled ⟨e⟩, before ⟨ll⟩ ⟨tt⟩ ⟨rr⟩, with more context in the spec | ⟨elle⟩ [ɛl] | Féry 2001, New et al. 2004 |
 | `CRS_NASAL_a` | /a/ → [ã], before a coda nasal | - | - |
@@ -170,14 +170,14 @@ The spec applies 6 rules across a word boundary. The contexts are regular expres
 
 | Rule | End of word | Start of next word | Change | Example | Cited |
 |:--|:--|:--|:--|:--|:--|
-| `FR_LIAISON_Z` | `z$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | - |
-| `FR_LIAISON_T` | `t$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [t‿] | - | - |
-| `FR_LIAISON_N` | `n$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [n‿] | - | - |
-| `FR_LIAISON_R` | `ʁ$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [ʁ‿] | - | - |
-| `FR_LIAISON_P` | `p$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [p‿] | - | - |
-| `FR_ENCHAÎNEMENT` | `([bdɡvzʒ])$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [‿] | - | - |
+| `FR_LIAISON_Z` | `z$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | Martinon 1913 |
+| `FR_LIAISON_T` | `t$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [t‿] | - | Martinon 1913 |
+| `FR_LIAISON_N` | `n$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [n‿] | - | Martinon 1913 |
+| `FR_LIAISON_R` | `ʁ$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [ʁ‿] | - | Martinon 1913 |
+| `FR_LIAISON_P` | `p$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [p‿] | - | Martinon 1913 |
+| `FR_ENCHAÎNEMENT` | `([bdɡvzʒ])$` | `^[aeiouɛɔɑãɛ̃ɔ̃œ̃]` | left [‿] | - | Martinon 1913 |
 
-The spec switches off 2 inherited rules: `FR_E_CLOSED_CLUSTER`, `FR_E_CLOSED_FINAL`.
+The spec switches off 43 inherited rules: `FR_NASAL_BLOCK_PREVOCALIC_UIN`, `FR_ENT_MUTE_AFTER_AI_OI`, `FR_UM_FINAL_LATIN`, `FR_UM_FINAL_LATIN_PLURAL`, `FR_ING_FINAL_ORAL_I`, `FR_LL_YOD_AFTER_UI`, `FR_UM_FINAL_M`, `FR_ING_FINAL_VELAR_NASAL`, `FR_E_MUTE_AFTER_SOFT_G`, `FR_IED_CLOSE_MID`, `FR_IED_CLOSE_MID_PLURAL`, `FR_E_RESSUSCITER_RESSUYER`, `FR_E_MUTE_PREFIX_RE_SS`, `FR_E_BEFORE_DOUBLED_NONFINAL`, `FR_E_BEFORE_DOUBLED_FINAL`, `FR_E_SCHWA_BEFORE_OBSTRUENT_LIQUID`, `FR_E_CLOSED_CLUSTER`, `FR_E_CLOSED_FINAL`, `FR_X_VOICED_INITIAL_EX`, `FR_X_VOICED_INITIAL_EX_H`, `FR_X_VOICED_PREFIXED_EX`, `FR_X_Z_ORDINAL`, `FR_G_MUTE_BEFORE_T`, `FR_G_MUTE_FINAL_AFTER_NASAL`, `FR_CH_HARD_BEFORE_SONORANT`, `FR_CH_HARD_BEFORE_OEU`, `FR_P_MUTE_FINAL_MPT`, `FR_P_MUTE_COMPT`, `FR_ING_FINAL_G_MUTE`, `FR_EIL_AFTER_GU`, `FR_GU_BEFORE_TREMA_E`, `FR_TREMA_E_MUTE_AFTER_GU`, `FR_G_HARD_BEFORE_TREMA_U`, `FR_C_MUTE_FINAL_AFTER_NASAL`, `FR_X_S_AFTER_OI`, `FR_NUMERAL_FINAL_X_SOUNDS`, `FR_HUIT_FINAL_T_SOUNDS`, `FR_X_K_BEFORE_SIBILANT`, `FR_NEUF_V_BEFORE_HEURES`, `FR_DIX_Z_BEFORE_HUIT_NEUF`, `FR_NUMERAL_MUTE_BEFORE_CONSONANT`, `FR_HUIT_MUTE_BEFORE_CONSONANT`, `FR_NUMERAL_Z_BEFORE_VOWEL`.
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin -->

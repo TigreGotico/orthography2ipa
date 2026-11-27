@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-teme1251",
+ "inherits": "x-clade-teme1251",
  "phonemes": [
   "b",
   "d",

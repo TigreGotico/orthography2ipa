@@ -105,7 +105,7 @@ def test_pt_tl_coda_s_is_alveolar():
 
 def test_pt_tl_inherits_pt_pt_base():
     spec = get("pt-TL")
-    assert spec.parent == "pt-PT"
+    assert spec.inherits == "pt-PT"
     # coda-l darkening rule is inherited unchanged (not sourced to alter).
     assert "PT_CODA_L_DARK" in [r.id for r in spec.allophone_rules]
 

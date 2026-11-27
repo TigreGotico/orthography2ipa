@@ -78,7 +78,7 @@
     }
   ],
   "notes": "STUB (deliberate): the grapheme inventory of Kölsch is NOT specified. Kölsch (Ripoarisch) is the Ripuarian (Central Franconian) dialect of Cologne. There is no fetchable, citable letter->IPA norm: the Wikipedia article on Colognian phonology states that 'spelling of Colognian can follow several standards' and gives IPA only, with no orthography table. The Akademie för uns kölsche Sproch's rules exist only in print (Christa Bhatt, 'Kölsche Schreibregeln: Vorschläge für eine Rechtschreibung des Kölschen' — 'Vorschläge' = proposals, not a norm) and could not be consulted; the Rheinische Dokumenta is a phonetic notation system, not the orthography Kölsch is actually written in. Kölsch also carries a phonemic tone accent (Rhenish Accent 1 / Accent 2) that no spelling marks. The phoneme inventory IS documented (consonants incl. /ɕ ɧ ʝ ʁ/; a large long/short vowel system; diphthongs /aɪ aːʊ aʊ eɪ iɐ̯ oʊ ɔʏ øʏ/), but an inventory is not a grapheme map. INPUT CONTRACT (for any future spec): Latin-script, German-convention Kölsch text, after ONE written norm is obtained and cited.",
-  "parent": "x-clade-germ1287",
+  "inherits": "x-clade-germ1287",
   "ancestors": [
     {
       "code": "x-clade-germ1287",

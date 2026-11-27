@@ -83,7 +83,7 @@
     "https://www.wikidata.org/wiki/Q36613"
   ],
   "iso639_3": "tem",
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",
