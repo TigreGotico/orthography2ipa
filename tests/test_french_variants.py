@@ -208,14 +208,17 @@ OWN_EXCEPTIONS = {
 }
 
 
-#: fr-FR numeral sandhi rules that fr-CA restates by id, so that the high
-#: vowel left in an open syllable is tense (Hall 2016: 7). On a base
-#: without them they are fr-CA's own, inert rules.
+#: fr-FR numeral sandhi rules a variant restates by id: fr-CA so that the
+#: high vowel left in an open syllable is tense (Hall 2016: 7), and every
+#: variant so that the words that keep the consonant are written in its own
+#: readings. On a base without them they are the variant's own rules.
 SANDHI_RESTATED = {
     "fr-CA": {"FR_DIX_Z_BEFORE_HUIT_NEUF", "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
               "FR_HUIT_MUTE_BEFORE_CONSONANT", "FR_NUMERAL_Z_BEFORE_VOWEL",
               "FR_NEUF_V_BEFORE_HEURES"},
-    "fr-FR-x-midi": {"FR_NEUF_V_BEFORE_HEURES"},
+    "fr-BE": {"FR_NUMERAL_MUTE_BEFORE_CONSONANT"},
+    "fr-FR-x-midi": {"FR_NEUF_V_BEFORE_HEURES", "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
+                     "FR_HUIT_MUTE_BEFORE_CONSONANT"},
 }
 #: The sandhi rules a variant adds to those of fr-FR.
 OWN_SANDHI = {

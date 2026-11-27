@@ -221,10 +221,10 @@
       "id": "FR_BE_HUIT_MUTE_BEFORE_CONSONANT",
       "name": "final consonant of Belgian huit before a consonant",
       "left_context": "^(w[iɪ])t$",
-      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|sɛt|də|dy|de|puʁ|paʁ|syʁ)$|ʒɥ)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|sɛt|də|dy|de|puʁ|paʁ|syʁ)$|ʒɥ|ʒw)[pbtdkɡfvszʃʒmnɲlʁ]",
       "transform": "\\1",
       "obligatory": true,
-      "notes": "fr-FR's FR_HUIT_MUTE_BEFORE_CONSONANT for the Belgian [wit] of huit (FR_BE_UI_W; Bardiaux et al. 2016: 41): the fr-FR rule matches [ɥit] only. The right context is fr-FR's own, so huit livres reads [wi livʁ] as fr-FR reads [ɥi livʁ]. Inert until fr-FR sounds the [t] of huit."
+      "notes": "fr-FR's FR_HUIT_MUTE_BEFORE_CONSONANT for the Belgian [wit] of huit (FR_BE_UI_W; Bardiaux et al. 2016: 41): the fr-FR rule matches [ɥit] only. The right context is fr-FR's own, with the Belgian [ʒw] of juin and juillet beside [ʒɥ], so huit livres reads [wi livʁ] as fr-FR reads [ɥi livʁ]. Inert until fr-FR sounds the [t] of huit."
     },
     {
       "id": "FR_BE_DIX_Z_BEFORE_HUIT",
@@ -234,6 +234,15 @@
       "transform": "\\1z",
       "obligatory": true,
       "notes": "fr-FR's FR_DIX_Z_BEFORE_HUIT_NEUF for the Belgian [wit]: dix-huit [diz wit]. Inert until fr-FR sounds the final consonants of dix and huit."
+    },
+    {
+      "id": "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
+      "name": "final consonant of six and dix before a consonant",
+      "left_context": "^((?:s|d|d͡z)[iɪ])s$",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|sɛt|də|dy|de|puʁ|paʁ|syʁ)$|ʒɥ|ʒw)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "transform": "\\1",
+      "obligatory": true,
+      "notes": "fr-FR's FR_NUMERAL_MUTE_BEFORE_CONSONANT (PR #2710), restated by id: The right context is fr-FR's list of the words before which the consonant is kept (months, sept, de, du, des, pour, par, sur, juin, juillet), written in this spec's own readings of those words; here juin and juillet begin with the Belgian [ʒw] (FR_BE_UI_W), so le six juin keeps [sis]. On a base without the fr-FR rule it is this spec's own rule and matches nothing, since six and dix then have no final consonant."
     }
   ]
 }
