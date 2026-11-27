@@ -1,6 +1,6 @@
 {
  "o2i_version": "7.133.1a4",
- "o2i_git_sha": "7d299603760f9c145e671c28f0b88eea365ecc85",
+ "o2i_git_sha": "fe4191c8124e0543fe9935cf4b6bf9ad58ab2404",
  "harness_version": "1.1",
  "min_n": 1000,
  "rows": [
@@ -4082,7 +4082,7 @@
    "gating": true,
    "headline": true,
    "n": 245718,
-   "strict_per": 0.0575,
+   "strict_per": 0.0574,
    "folded_per": null,
    "folds": []
   },
