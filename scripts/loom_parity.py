@@ -42,6 +42,7 @@ def vectors(host: str, tmp: str) -> dict:
     stops with the expected message."""
     paths = sorted(glob.glob("tests/conformance/ir-v1/*.jsonl"))
     cases = same = errors = errors_same = 0
+    error_files = set()
     for path in paths:
         records = [json.loads(line) for line in open(path, encoding="utf-8")]
         head, rows = records[0], records[1:]
@@ -54,9 +55,10 @@ def vectors(host: str, tmp: str) -> dict:
         for row in (r for r in rows if "expect_error" in r):
             proc = run_host(host, head["lang"], ["".join(map(chr, row["input"]))], tmp, head["ir"])
             errors += 1
+            error_files.add(path)
             errors_same += proc.returncode != 0 and row["expect_error"] in proc.stderr
     return {"files": len(paths), "cases": cases, "identical": same,
-            "error_cases": errors, "error_cases_refused": errors_same}
+            "error_files": len(error_files), "error_cases": errors, "error_cases_refused": errors_same}
 
 
 def gold(host: str, tmp: str) -> dict:

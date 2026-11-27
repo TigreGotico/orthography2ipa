@@ -143,7 +143,7 @@ The script exports one GGUF for each language and writes `benchmarks/loom_parity
 | Set | Languages | Cases | Pass |
 | :--- | ---: | ---: | ---: |
 | Conformance vectors, output cases | 22 files | 3880 | 3880 |
-| Conformance vectors, error cases | 22 files | 1 | 1 |
+| Conformance vectors, error cases | 1 file | 1 | 1 |
 | Gold sentences | 188 lects | 6369 | 6369 |
 
 The run used loom.cpp commit `f58f905` and orthography2ipa 7.133.1a4. To run it again, build loom.cpp and the host, then run the script:
