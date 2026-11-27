@@ -963,6 +963,22 @@ def _sandhi_example(rule, output: str) -> str:
     return _show(next((e for e in _examples(rule.notes) if fits(e[1])), None))
 
 
+#: The longest spelling condition that a rules table prints in full.
+_MAX_SPELLING_CELL = 60
+
+
+def _context_cell(context: str, spelling) -> str:
+    """A table cell for one side of a sandhi rule: the IPA context, and the
+    spelling condition when the rule has one (a long one is named, not printed)."""
+    # GitHub splits a table cell at a pipe, even inside a code span.
+    cell = "`" + context.replace("|", "\\|") + "`"
+    if spelling is None:
+        return cell
+    if len(spelling) > _MAX_SPELLING_CELL:
+        return cell + ", and a condition on the spelling"
+    return cell + ", spelled `" + spelling.replace("|", "\\|") + "`"
+
+
 def _cites(name: str, year: int, notes: str) -> bool:
     """Whether *notes* cites *name* with *year* in the same breath."""
     return bool(re.search(re.escape(name) + r"[^;\[]{0,40}?\b" + str(year) + r"\b",
@@ -1037,7 +1053,9 @@ def block_rules(atlas: Atlas, spec) -> str:
     if sandhi:
         lines += ["", f"The spec applies {len(sandhi)} rules across a word "
                   "boundary. The contexts are regular expressions on the IPA "
-                  "of the two words.", "",
+                  "of the two words."
+                  + (" A rule may also read the spelling of a word."
+                     if any(r.left_spelling or r.right_spelling for r in sandhi) else ""), "",
                   "| Rule | End of word | Start of next word | Change | Example | Cited |",
                   "|:--|:--|:--|:--|:--|:--|"]
         for rule in sandhi:
@@ -1050,11 +1068,10 @@ def block_rules(atlas: Atlas, spec) -> str:
                 value = re.sub(r"\\\d|\\g<\w+>", "", value)
                 output = output or value
                 change.append(f"{side} [{value}]" if value else f"{side} ∅")
-            # GitHub splits a table cell at a pipe, even inside a code span.
-            left, right = (c.replace("|", "\\|")
-                           for c in (rule.left_context, rule.right_context))
+            left, right = (_context_cell(c, sp) for c, sp in (
+                (rule.left_context, rule.left_spelling), (rule.right_context, rule.right_spelling)))
             lines.append(
-                f"| `{rule.id}` | `{left}` | `{right}` | "
+                f"| `{rule.id}` | {left} | {right} | "
                 f"{', '.join(change) or 'none'} | {_sandhi_example(rule, output) or '-'} | "
                 f"{_citations(spec, rule.notes) or '-'} |")
     if off:
