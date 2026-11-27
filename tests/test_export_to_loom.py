@@ -102,3 +102,11 @@ def test_wheel_mode_exports_the_installed_data(tmp_path, monkeypatch):
     monkeypatch.setattr(compiler, "_checkout", lambda: None)
     meta = module.export_to_loom(["kab"], tmp_path / "kab.gguf")
     assert meta["spec_revisions"]["kab"] == checkout_rev
+
+
+def test_phoneme_set_of_each_language_is_in_the_metadata(exported):
+    from orthography2ipa import phoneme_set
+    for code in ("kab", "pt-PT"):
+        got = _field(exported, f"o2i.phonemes.{code}")
+        assert got == sorted(phoneme_set(code))
+    assert "ʎ" in _field(exported, "o2i.phonemes.pt-PT")
