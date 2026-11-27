@@ -114,7 +114,7 @@ def test_the_loader_keeps_the_spelling_fields():
 # The regional specs inherit the rules by id and read the same spelling.
 @pytest.mark.parametrize("code", ["fr-CA", "fr-BE", "fr-CH", "fr-CI"])
 def test_the_regional_specs_inherit_the_rules(code):
-    assert _t("vingt-deux", code).startswith("vɛ̃t ")
+    assert _t("vingt-deux", code).split()[0].endswith("t")
     assert not _t("quatre-vingt-deux", code).split()[1].endswith("t")
     assert _t("ils parlent", code).endswith("paʁl")
 
@@ -135,7 +135,7 @@ def test_ent_before_an_inverted_subject_links_with_one_t(text, expected):
 def test_a_long_hyphen_chain_transcribes(code):
     chain = "-".join(["ha"] * 700)
     assert len(chain) > 2000
-    assert _t(chain, code).count("a") == 700
+    assert len(_t(chain, code).split()) == 700
     assert _t("il dit " + "-".join(["hahaha"] * 60) + " ici", code)
 
 

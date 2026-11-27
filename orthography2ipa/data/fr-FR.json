@@ -519,7 +519,7 @@
     {
       "id": "FR_VINGT_T_BEFORE_UNIT",
       "name": "vingt in 22 to 29",
-      "left_context": "$",
+      "left_context": "t$|(?<!t)$",
       "right_context": "",
       "left_spelling": "^vingt$",
       "left_joined_spelling": "^(?!quatre-vingt$)",
@@ -531,7 +531,7 @@
     {
       "id": "FR_VINGT_T_BEFORE_ET_HUIT",
       "name": "vingt in 21 and 28",
-      "left_context": "$",
+      "left_context": "t$|(?<!t)$",
       "right_context": "",
       "left_spelling": "^vingt$",
       "left_joined_spelling": "^(?!quatre-vingt$)",
@@ -565,7 +565,7 @@
       "id": "FR_ENT_MUTE_AFTER_ILS",
       "name": "verbal -ent after ils and elles",
       "left_context": "",
-      "right_context": "ɑ̃$",
+      "right_context": "(?:ɑ̃|ã|ã)$",
       "left_joined_spelling": "^(?:(?:(?:lors|puis|quoi)?qu['’])?(?:ils|elles)|s['’]ils)$",
       "right_spelling": "ent$",
       "right_transform": "",
@@ -576,7 +576,7 @@
       "id": "FR_IENT_MUTE_AFTER_ILS",
       "name": "verbal -ient after ils and elles",
       "left_context": "",
-      "right_context": "jɛ̃$",
+      "right_context": "j(?:ɛ̃|ẽ|ẽ)$",
       "left_joined_spelling": "^(?:(?:(?:lors|puis|quoi)?qu['’])?(?:ils|elles)|s['’]ils)$",
       "right_spelling": "ient$",
       "right_transform": "i",
@@ -586,7 +586,7 @@
     {
       "id": "FR_ENT_LIAISON_INVERSION",
       "name": "verbal -ent before an inverted subject",
-      "left_context": "t?ɑ̃$",
+      "left_context": "t?(?:ɑ̃|ã|ã)$",
       "right_context": "",
       "left_spelling": "ent$",
       "right_spelling": "^(?:ils|elles)$",
@@ -598,7 +598,7 @@
     {
       "id": "FR_IENT_LIAISON_INVERSION",
       "name": "verbal -ient before an inverted subject",
-      "left_context": "jɛ̃$",
+      "left_context": "j(?:ɛ̃|ẽ|ẽ)$",
       "right_context": "",
       "left_spelling": "ient$",
       "right_spelling": "^(?:ils|elles)$",
@@ -780,7 +780,7 @@
     {
       "id": "FR_LIAISON_T_NUMERAL",
       "name": "t after vingt and cent before a noun",
-      "left_context": "$",
+      "left_context": "t$|(?<!t)$",
       "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
       "left_spelling": "^(?:vingt|cent)$",
       "left_joined_spelling": "^(?!quatre-vingt$)",

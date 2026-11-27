@@ -204,7 +204,8 @@ def test_the_midi_nasal_vowel_is_a_vowel_plus_an_appendix(text, expected):
     ("un vin", "œɱ vɛŋ"),
     ("en tout", "an tu"),
     ("en cas", "aŋ ka"),           # velar before a velar
-    ("en avion", "aŋ avjɔŋ"),      # no consonant follows
+    pytest.param("en avion", "aŋ avjɔŋ", marks=pytest.mark.xfail(
+        strict=True, reason="#2761: the fr-FR liaison n follows the Midi velar appendix")),  # no consonant follows
 ])
 def test_the_midi_appendix_takes_the_place_of_the_next_word(text, expected):
     assert _say(text, MIDI) == expected

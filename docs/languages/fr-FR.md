@@ -541,14 +541,14 @@ The spec applies 38 rules across a word boundary. The contexts are regular expre
 | `FR_NEUF_V_BEFORE_HEURES` | `^nœf$` | `^œʁ$`, spelled `^heures?$` | left [nœv‿] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_NEUF_V_BEFORE_ANS` | `^nœf$` | `^ɑ̃$`, spelled `^ans$` | left [nœv‿] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_DIX_Z_BEFORE_HUIT_NEUF` | `^((?:d\|d͡z)[iɪ])s$` | `^(?:ɥit\|nœf\|ɥitjɛm\|nøvjɛm\|nœvjɛm)$` | left [z] | ⟨dix-huitième⟩ [diz ɥitjɛm] | [Martinon 1913](#src-martinon1913) |
-| `FR_VINGT_T_BEFORE_UNIT` | `$`, spelled `^vingt$`, joined `^(?!quatre-vingt$)` | ``, spelled by a long condition | left [t] | ⟨vingt-deux⟩ [vɛ̃t dø] | [Martinon 1913](#src-martinon1913) |
-| `FR_VINGT_T_BEFORE_ET_HUIT` | `$`, spelled `^vingt$`, joined `^(?!quatre-vingt$)` | ``, spelled `^(?:et\|huit\|huitième\|huitièmes)$` | left [t‿] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_VINGT_T_BEFORE_UNIT` | `t$\|(?<!t)$`, spelled `^vingt$`, joined `^(?!quatre-vingt$)` | ``, spelled by a long condition | left [t] | ⟨vingt-deux⟩ [vɛ̃t dø] | [Martinon 1913](#src-martinon1913) |
+| `FR_VINGT_T_BEFORE_ET_HUIT` | `t$\|(?<!t)$`, spelled `^vingt$`, joined `^(?!quatre-vingt$)` | ``, spelled `^(?:et\|huit\|huitième\|huitièmes)$` | left [t‿] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_EST_NOUN_AFTER_COMPASS` | `` | `^ɛ$`, joined `^(?:nord\|sud)-est$` | right [ɛst] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_EST_NOUN_BEFORE_HYPHEN` | `^ɛ$`, joined `^est$` | ``, joined `^est-(?!(?:ce\|il\|elle\|on\|ils\|elles)$)` | left [ɛst] | ⟨est-allemand⟩ [ɛst aləmɑ̃] | [Martinon 1913](#src-martinon1913) |
-| `FR_ENT_MUTE_AFTER_ILS` | ``, joined `^(?:(?:(?:lors\|puis\|quoi)?qu['’])?(?:ils\|elles)\|s['’]ils)$` | `ɑ̃$`, spelled `ent$` | right ∅ | ⟨ils parlent⟩ [il paʁl] | [Martinon 1913](#src-martinon1913) |
-| `FR_IENT_MUTE_AFTER_ILS` | ``, joined `^(?:(?:(?:lors\|puis\|quoi)?qu['’])?(?:ils\|elles)\|s['’]ils)$` | `jɛ̃$`, spelled `ient$` | right [i] | - | [Martinon 1913](#src-martinon1913) |
-| `FR_ENT_LIAISON_INVERSION` | `t?ɑ̃$`, spelled `ent$` | ``, spelled `^(?:ils\|elles)$`, joined `-` | left [t‿] | ⟨parlent-ils⟩ [paʁlt‿ il] | [Martinon 1913](#src-martinon1913) |
-| `FR_IENT_LIAISON_INVERSION` | `jɛ̃$`, spelled `ient$` | ``, spelled `^(?:ils\|elles)$`, joined `-` | left [it‿] | ⟨lient-ils⟩ [lit‿ il] | [Martinon 1913](#src-martinon1913) |
+| `FR_ENT_MUTE_AFTER_ILS` | ``, joined `^(?:(?:(?:lors\|puis\|quoi)?qu['’])?(?:ils\|elles)\|s['’]ils)$` | `(?:ɑ̃\|ã\|ã)$`, spelled `ent$` | right ∅ | ⟨ils parlent⟩ [il paʁl] | [Martinon 1913](#src-martinon1913) |
+| `FR_IENT_MUTE_AFTER_ILS` | ``, joined `^(?:(?:(?:lors\|puis\|quoi)?qu['’])?(?:ils\|elles)\|s['’]ils)$` | `j(?:ɛ̃\|ẽ\|ẽ)$`, spelled `ient$` | right [i] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_ENT_LIAISON_INVERSION` | `t?(?:ɑ̃\|ã\|ã)$`, spelled `ent$` | ``, spelled `^(?:ils\|elles)$`, joined `-` | left [t‿] | ⟨parlent-ils⟩ [paʁlt‿ il] | [Martinon 1913](#src-martinon1913) |
+| `FR_IENT_LIAISON_INVERSION` | `j(?:ɛ̃\|ẽ\|ẽ)$`, spelled `ient$` | ``, spelled `^(?:ils\|elles)$`, joined `-` | left [it‿] | ⟨lient-ils⟩ [lit‿ il] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_T_INVERSION` | `$`, spelled `[td]$` | ``, spelled `^(?:il\|ils\|elle\|elles\|on\|en)$`, joined `-` | left [t‿] | ⟨dit-il⟩ [dit‿ il] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_Z_BEFORE_Y_EN` | `$`, spelled `[sxz]$` | ``, spelled `^(?:y\|en)$`, joined `-` | left [z‿] | ⟨vas-y⟩ [vaz‿ i] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_T_EST_ONZE` | `$`, joined `^(?:[cn]['’])?est$` | ``, spelled `^onze$` | left [t‿] | ⟨il est onze heures⟩ [il ɛt‿ ɔ̃z‿ œʁ] | [Martinon 1913](#src-martinon1913) |
@@ -565,7 +565,7 @@ The spec applies 38 rules across a word boundary. The contexts are regular expre
 | `FR_LIAISON_Z_PRONOUN` | `$`, joined by a long condition | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled `^(?!(?:et\|ou\|à\|aussi\|avec\|il\|elle\|on\|ils\|elles)$)` | left [z‿] | ⟨nous avons⟩ [nuz‿ avɔ̃] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_T_PROCLITIC` | `$`, joined `^(?:(?:[cn]['’])?est\|sont\|ont\|tout\|quand\|quant\|dont)$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled `^(?!(?:et\|ou)$)` | left [t‿] | ⟨il est allé⟩ [il ɛt‿ ale] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_T_GRAND` | `$`, joined `^grand$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled by a long condition | left [t‿] | ⟨grand homme⟩ [ɡʁɑ̃t‿ ɔm] | [Martinon 1913](#src-martinon1913) |
-| `FR_LIAISON_T_NUMERAL` | `$`, spelled `^(?:vingt\|cent)$`, joined `^(?!quatre-vingt$)` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled `^(?!(?:et\|ou\|un\|une\|avril\|août\|octobre)$)` | left [t‿] | ⟨vingt ans⟩ [vɛ̃t‿ ɑ̃] | [Martinon 1913](#src-martinon1913) |
+| `FR_LIAISON_T_NUMERAL` | `t$\|(?<!t)$`, spelled `^(?:vingt\|cent)$`, joined `^(?!quatre-vingt$)` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled `^(?!(?:et\|ou\|un\|une\|avril\|août\|octobre)$)` | left [t‿] | ⟨vingt ans⟩ [vɛ̃t‿ ɑ̃] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_N_ARTICLE` | `$`, spelled `^(?:(?:d['’]\|qu['’])?(?:un\|aucun))$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled `^(?!(?:et\|ou\|avril\|août\|octobre)$)` | left [n‿] | ⟨un ami⟩ [œ̃n‿ ami] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_N_PRONOUN` | `$`, joined `^(?:(?:[jmtsnl]['’]\|qu['’])?(?:en\|on))$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled `^(?!(?:et\|ou)$)` | left [n‿] | ⟨en effet⟩ [ɑ̃n‿ efɛ] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_R_PREMIER` | `je$`, spelled `^(?:premier\|dernier)$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled `^(?!(?:et\|ou\|à\|en\|avril\|août\|octobre)$)` | left [jɛʁ‿] | ⟨premier enfant⟩ [pʁəmjɛʁ‿ ɑ̃fɑ̃] | [Martinon 1913](#src-martinon1913) |

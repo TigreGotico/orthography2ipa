@@ -186,5 +186,18 @@
   ],
   "word_exceptions": {
     "vingt": "vɛ̃t"
-  }
+  },
+  "sandhi_rules": [
+    {
+      "id": "FR_CH_QUATRE_VINGT_MUTE_T",
+      "name": "the t of vingt in quatre-vingt",
+      "left_context": "",
+      "right_context": "t$",
+      "left_spelling": "^quatre$",
+      "right_spelling": "^vingts?$",
+      "right_transform": "",
+      "obligatory": true,
+      "notes": "The word exception gives vingt its final [t] when it stands alone. In the compound quatre-vingt the [t] is mute, as in fr-FR: quatre-vingt-deux [katʁə vɛ̃ dø]. Martinon (1913: 346) gives the mute t of quatre-vingt before a consonant."
+    }
+  ]
 }
