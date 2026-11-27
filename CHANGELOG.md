@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.132.0a4](https://github.com/TigreGotico/orthography2ipa/tree/7.132.0a4) (2026-11-27)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.132.0a3...7.132.0a4)
+
+**Merged pull requests:**
+
+- refactor: trim g2p and markup docstrings [\#2729](https://github.com/TigreGotico/orthography2ipa/pull/2729) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat: carry each language's phoneme set in the IR [\#2720](https://github.com/TigreGotico/orthography2ipa/pull/2720) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.132.0a3](https://github.com/TigreGotico/orthography2ipa/tree/7.132.0a3) (2026-11-27)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.132.0a2...7.132.0a3)
