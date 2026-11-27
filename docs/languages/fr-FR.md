@@ -193,7 +193,7 @@ Tranel (1995) treats liaison and elision in Optimality Theory, with both driven 
 
 Elision needs no rule of its own, but it needs the right unit. Standard spelling writes the elided form with an apostrophe and no space, as in ⟨l'homme⟩. The clitic and its host are one word, so the spec sets `word_internal_apostrophe`. Then ⟨l'homme⟩ gives `lɔm`, ⟨d'accord⟩ gives `dakɔʁ` and ⟨j'ai⟩ gives `ʒe`. The silent-final-letter rules do not apply to the clitic. The tokenizer also reads ⟨qu⟩ before an apostrophe and a vowel as `k`, so ⟨qu'il⟩ gives `kil`. Both ⟨'⟩ and ⟨’⟩ work. A hyphen still separates two words, as in ⟨est-ce⟩ and ⟨rendez-vous⟩. The spec also sets `apostrophe_elision`, so a host that has a `word_exceptions` entry or a lexicon entry keeps it after the clitic: ⟨l'autobus⟩ reads the entry ⟨autobus⟩ `otobys` and gives `lotobys`. The entries ⟨l'est⟩ `lɛst` and ⟨d'est⟩ `dɛst` hold the noun ⟨Est⟩, because the host entry ⟨est⟩ is the verb.
 
-The spec declares sandhi in `sandhi_rules` as the liaison rules `FR_LIAISON_Z`, `FR_LIAISON_T`, `FR_LIAISON_N`, `FR_LIAISON_R`, `FR_LIAISON_P` and the rule `FR_ENCHAÎNEMENT`. These rules match the final IPA of the left word, and the spec has already silenced that consonant. So the liaison rules for `z t n ʁ p` do not fire, and `transcribe("les amis", "fr-FR")` gives `le ami`. `FR_ENCHAÎNEMENT` does fire: it matches a final voiced `b d ɡ v z ʒ` that the spec still pronounces and adds the link mark after it, as in ⟨rouge orange⟩ `ʁuʒ‿ ɔʁɑ̃ʒ`.
+The spec declares sandhi in `sandhi_rules` as the liaison rules `FR_LIAISON_Z`, `FR_LIAISON_T`, `FR_LIAISON_N`, `FR_LIAISON_R`, `FR_LIAISON_P` and the rule `FR_ENCHAÎNEMENT`. These rules match the final IPA of the left word. Where the spec has already silenced that consonant, the liaison rules for `z t n ʁ p` do not fire, so `transcribe("les amis", "fr-FR")` gives `le ami`. Where the left word keeps its consonant, they fire: ⟨huit heures⟩ gives `ɥit‿ œʁ` and ⟨sept amis⟩ gives `sɛt‿ ami`. `FR_ENCHAÎNEMENT` does fire: it matches a final voiced `b d ɡ v z ʒ` that the spec still pronounces and adds the link mark after it, as in ⟨rouge orange⟩ `ʁuʒ‿ ɔʁɑ̃ʒ`.
 
 ## Digraphs
 
@@ -220,7 +220,7 @@ Four regional specs inherit this spec and state only what a source states: `fr-C
 
 | Limitation | Spec output | Cause |
 |:---|:---|:---|
-| Liaison does not surface | ⟨les amis⟩ `le ami` | The sandhi rules match a final consonant that the spec has already silenced |
+| Liaison does not surface after a silenced consonant | ⟨les amis⟩ `le ami`, ⟨petit ami⟩ `pəti ami` | The sandhi rules match the final IPA of the left word, and the spec has already silenced that consonant. A word that keeps its consonant links (⟨huit heures⟩ `ɥit‿ œʁ`) |
 | No stress marks | ⟨chose⟩ `ʃoz` | Analyses differ on whether French has lexical stress (see [Stress marks](#stress-marks)), so this spec has no `stress` block |
 | The ⟨t⟩ of ⟨vingt⟩ in 21 to 29 does not sound | ⟨vingt-deux⟩ `vɛ̃ dø`, ⟨vingt et un⟩ `vɛ̃ e œ̃` | Martinon (1913: 329-330, 346) gives [t] in 21 to 29 and none in 81 to 99. A sandhi rule reads the IPA of two words: ⟨vingt⟩ has the IPA of ⟨vin⟩, and only the word before it tells ⟨vingt-deux⟩ from ⟨quatre-vingt-deux⟩ |
 | ⟨quatre-vingt⟩ drops the schwa of ⟨quatre⟩ | ⟨quatre-vingts⟩ `katʁ vɛ̃` | The hyphen splits the compound, and ⟨quatre⟩ alone ends in a mute ⟨e⟩ |
