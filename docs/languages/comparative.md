@@ -329,4 +329,4 @@ For the details of the Russian spec, see [Russian](ru.md).
 - Short, D. (1993). Czech. In: *The Slavonic Languages*, Routledge.
 
 ---
-[← Zulu](zu.md) · [Home](../index.md) · [Regional Standard Dutch of the Netherlands →](nl-NL-regional.md)
+[← Leader languages](leaders.md) · [Home](../index.md) · [Regional Standard Dutch of the Netherlands →](nl-NL-regional.md)
