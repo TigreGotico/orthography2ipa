@@ -4,20 +4,8 @@
 A fold applies only to a gold reading from a source whose own rows show no
 contrast for it. It changes the hypothesis into the notation of that source,
 so the score counts the engine's errors and not the notation of the gold.
-Counts are over the pt-BR Michaelis rows of the dataset, ``ipa_narrow``:
-
-- ``michaelis_ã``: 0 of 20,774 Michaelis readings write [ɐ̃], also 0 of the
-  4,878 words spelled with ⟨an am en em⟩ and no ⟨ã⟩. [ã] occurs in 2,798.
-  [ɐ̃] → [ã] in every spelling.
-- ``michaelis_no_palatal``: 1 of 1,378 ⟨ti⟩ words and 0 of 982 ⟨di⟩ words
-  write a palatal. [t͡ʃ d͡ʒ] → [t d] before [i ĩ ɪ j].
-- ``michaelis_final_r``: 3,865 of 3,868 words in -ar, -er, -ir write the
-  final r. In a verb, the final rhotic of the gold is not counted where the
-  hypothesis ends without one. This fold accepts a cited optional deletion,
-  not a notation: Callou, Moraes & Leite 1998 (DELTA 14, p. 66), "A perda do
-  R é mais freqüente nos verbos ... Nos não-verbos, em que o R não carreia
-  informação morfológica, o peso relativo é baixo". A reading from a row
-  without the POS VERB keeps its r.
+The counts are over the pt-BR Michaelis rows of the dataset, ``ipa_narrow``.
+``benchmarks/fold_labels.json`` names and describes each fold.
 
 A word read by several sources takes the folds of the source of each reading.
 The script prints the code-point PER of the board and the segment PER, each
@@ -36,6 +24,7 @@ from typing import Dict, List, Set, Tuple
 
 from benchmark import (  # noqa: E402
     DATASETS,
+    FOLD_LABELS_JSON,
     _PT_UNIFIED_REGIONS,
     _PT_UNIFIED_URL,
     _fetch,
@@ -46,13 +35,19 @@ from benchmark import (  # noqa: E402
     pt_unified_source,
     read_pt_unified_corrections,
     segments,
+    write_results_summary,
+    read_scoreboard_rows,
 )
 
 _NFD = lambda s: unicodedata.normalize("NFD", s)  # noqa: E731
 _PALATAL = re.compile(_NFD("(t͡ʃ|tʃ|ʧ|d͡ʒ|dʒ|ʤ)(?=[iɪj]|ĩ)"))
 _RHOTIC_END = re.compile("[ɾrʁhχɹxɻ]$")
 
-SOURCE_FOLDS = {"michaelis": ("michaelis_ã", "michaelis_no_palatal", "michaelis_final_r")}
+with open(FOLD_LABELS_JSON, encoding="utf-8") as _fh:
+    FOLD_LABELS = json.load(_fh)
+SOURCE_FOLDS: Dict[str, Tuple[str, ...]] = {}
+for _name, _label in FOLD_LABELS.items():
+    SOURCE_FOLDS[_label["source"]] = SOURCE_FOLDS.get(_label["source"], ()) + (_name,)
 
 
 def fold(hyp: str, gold: str, folds: Set[str]) -> Tuple[str, str]:
@@ -114,7 +109,7 @@ def score(pairs, lang: str, sources, folded: bool) -> Tuple[float, float]:
             if folded:
                 for src, pos in sources.get((word, gold), ()):
                     folds.update(f for f in SOURCE_FOLDS.get(src, ())
-                                 if f != "michaelis_final_r" or pos == "VERB")
+                                 if FOLD_LABELS[f].get("pos", pos) == pos)
             h, g = fold(raw, gold, folds)
             hn, gn = (normalize(x, True, True, extra_strip=extra) for x in (h, g))
             cp.append(levenshtein(hn, gn) / max(len(gn), 1))
@@ -155,6 +150,7 @@ def main() -> None:
             json.dump(rows, fh, ensure_ascii=False, indent=2)
             fh.write("\n")
         print(f"wrote {len(rows)} rows to benchmarks/notation_folds.json")
+        write_results_summary(read_scoreboard_rows())
 
 
 if __name__ == "__main__":

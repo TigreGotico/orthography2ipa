@@ -111,7 +111,7 @@ The segment PER applies no notation fold, and it reads the raw transcriptions of
 
 ### Per-source notation folds
 
-`scripts/source_notation_per.py` scores the pt-BR `portuguese_unified` rows with per-source notation folds. It prints the code-point PER and the segment PER, each unfolded and folded. A fold applies only to a gold reading from a source whose own rows show no contrast for it, and it changes the hypothesis into the notation of that source. The Michaelis rows have three folds, and each one carries its count in the script:
+`scripts/source_notation_per.py` scores the pt-BR `portuguese_unified` rows with per-source notation folds. It prints the code-point PER and the segment PER, each unfolded and folded. A fold applies only to a gold reading from a source whose own rows show no contrast for it, and it changes the hypothesis into the notation of that source. The Michaelis rows have three folds. The file `benchmarks/fold_labels.json` names each fold, its source and its count, and the script reads the fold names from it:
 
 | Fold | Change | Michaelis usage |
 | :--- | :--- | :--- |
@@ -168,15 +168,51 @@ The next chart sets the lexicon-free o2i PER against the rules-only espeak-ng PE
 
 `--limit N` exists for fast ad-hoc runs. It applies the same cap to every language, never a different cap per language. One loader stays bounded in a full run: [`hitz_basque_ipa`](datasets.md#hitz-basque-wikipedia-ipa-corpus-hitz_basque_ipa) stops after `_HITZ_BASQUE_MAX_PARAGRAPHS` paragraphs. That is a paging bound that applies to every language alike, not a sampling limit.
 
-A `--scoreboard` run with `--lang` or `--dataset` rescores only those rows. It merges them into the committed board and keeps every other row as it was. [contributing/board.md](../contributing/board.md) gives the procedure for a change that writes board files, including such a scoped run.
+A `--scoreboard` run with `--lang` or `--dataset` rescores only those rows. It merges them into the committed board and keeps every other row as it was. Each run prints the rows in and the rows out, and one diff line for each changed field of each changed row:
+
+```text
+rows in: 743 committed, 1 rescored; rows out: 743
+rows changed: 1
+  ~ wikipron/pt-PT: per 0.2 -> 0.19
+``` [contributing/board.md](../contributing/board.md) gives the procedure for a change that writes board files, including such a scoped run.
 
 ### The CI regression sample
 
 A pull-request job cannot rerun the full scoreboard. A sampled run compared against the full baseline would compare two different slices and report false regressions. The gate therefore never mixes slices. The script `scripts/check_benchmark_regression.py` rescores every row at one uniform sample, `benchmark.CI_SAMPLE_LIMIT` (1000 rows). It compares the result with a separate baseline committed at the same cap, `benchmarks/results_ci_sample.json`, which `python scripts/benchmark.py --ci-sample` writes. Both sides are sliced the same way, so a flagged regression is a real change in PER.
 
+`--ci-sample --lang L --dataset D` rescores only the sample rows of that language and dataset, and keeps every other row byte for byte. It prints the same summary as a `--scoreboard` run: rows in, rows out, and a diff of each changed row. A run without `--lang` and `--dataset` rescores the whole sample and prints the same summary.
+
 In a pull request, the baseline is the sample committed on the base branch, which the script reads with `--base-ref origin/dev`. A pull request that regenerates the board commits its own sample, and a comparison with that copy would compare the change with itself. When the change makes a row worse on purpose, name the row on a `Board-Rows:` line in the pull request body, for example `Board-Rows: pt-PT/wikipron`. The row then reports as `declared` and does not block. `Board-Rows: all` declares no row for this gate. When the base sample was scored with a different harness version or sample cap, no row can be compared with it. The gate then uses the sample in the checkout and prints why.
 
 A row fails the gate when its PER worsens by more than the epsilon, which defaults to 0.005 and which `--epsilon` changes. It also fails when its `stress_acc` drops by more than that epsilon. A row that cannot gate reports its worsening as `drifted`, not `regressed`, and does not block. The gate also fails closed when fewer than 20 rows score at all (`MIN_SCORED_ROWS`), so a failure to load the datasets cannot pass as green.
+
+### The results summary
+
+`benchmarks/results_summary.json` is the file to copy board numbers from. It holds one row for each dataset and language of `benchmarks/results.json`, with these fields:
+
+| Field | Value |
+| :--- | :--- |
+| `dataset`, `lang` | The identity of the row. |
+| `gold_source` | Where the gold comes from. |
+| `gold_provenance` | How the gold was made. |
+| `reliability_tier` | The reliability tier of the row. |
+| `gating` | Whether the row may qualify or block a language. |
+| `headline` | Whether the row stands for its language (see below). |
+| `n` | The number of scored words. |
+| `strict_per` | The board PER, with no notation fold. |
+| `folded_per`, `folds` | The PER with the per-source notation folds, and the fold names. `null` and `[]` when no fold applies. |
+
+The top level gives `o2i_version`, `o2i_git_sha` (the `HEAD` commit of the tree that wrote the file), `harness_version` and `min_n`. The file `benchmarks/gold_sources.json` defines the gold source, the provenance and the dataset-wide tier of each dataset. `scripts/benchmark.py` reads the tiers from that file.
+
+The function `benchmark.headline_row` picks the headline row of a language. It takes the gating rows, or all rows when no row gates. Of those, it keeps the rows with `n` of at least `MIN_N` (1000), or all of them when no row reaches it. Then the row on the most trusted reliability tier wins, then the row with the largest `n`, then the first dataset name.
+
+A `--scoreboard` run writes the summary. This command writes it from the committed board, with no scoring:
+
+```bash
+python scripts/benchmark.py --results-summary
+```
+
+`tests/test_results_summary.py` fails when the committed summary does not match the committed board.
 
 ### Stale board rows
 
