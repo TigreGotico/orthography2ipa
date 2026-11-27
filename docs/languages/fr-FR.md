@@ -9,7 +9,7 @@ see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/da
 -->
 
 <!-- atlas:summary begin -->
-French is a Gallo-Romance language, written in the Latin script. Its code names France. The `fr-FR` spec is at the research tier. It cites 12 sources and has 3 scored datasets.
+French is a Gallo-Romance language, written in the Latin script. Its code names France. The `fr-FR` spec is at the research tier. It cites 13 sources and has 3 scored datasets.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -280,7 +280,7 @@ These specs name `fr-FR` as their parent. They are sorted by country, and a lect
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 12 works. 7 of them have a DOI or a URL. The spec file holds a note on what 9 of them support.
+The spec cites 13 works. 8 of them have a DOI or a URL. The spec file holds a note on what 10 of them support.
 
 1. <a id="src-fouche1959"></a>Fouché, P. (1959). *Traité de prononciation française*. Klincksieck.
 2. <a id="src-divay_vitale1997"></a>Divay, M. & Vitale, A.J. (1997). *Algorithms for grapheme-phoneme translation for English and French: applications for database searches and speech synthesis*. Computational Linguistics 23(4), 495-523. Cited: 495-523.
@@ -294,6 +294,7 @@ The spec cites 12 works. 7 of them have a DOI or a URL. The spec file holds a no
 10. <a id="src-martinon1913"></a>Martinon, P. (1913). *Comment on prononce le français : traité complet de prononciation pratique avec les noms propres et les mots étrangers*. Larousse, Paris. Cited: 53, 59, 62, 93, 123, 129, 130, 131, 145, 151, 161, 164, 171, 213, 214, 226, 234, 235, 236, 239, 240, 241, 248, 249, 250, 251, 252, 253, 254, 284, 285, 328, 329, 330, 331, 345, 346, 347, 348, 349, 358, 359, 363, 364, 365, 366, 367, 370, 371, 373, 374, 375, 376, 379, 387, 388, 390, 391. [archive.org](https://archive.org/details/commentonprononc00martuoft)
 11. <a id="src-larousse_etre"></a>Éditions Larousse (2026). *Dictionnaire de français, s.v. être (Homonymes des variantes de être)*. Larousse, online edition, read 2026-11-26. [larousse.fr](https://www.larousse.fr/dictionnaires/francais/%C3%AAtre/31549)
 12. <a id="src-oqlf_h_aspire"></a>Office québécois de la langue française (2026). *La prononciation du h aspiré (Banque de dépannage linguistique)*. OQLF, Vitrine linguistique, online edition, read 2026-11-26. [vitrinelinguistique.oqlf.gouv.qc.ca](https://vitrinelinguistique.oqlf.gouv.qc.ca/22203/la-prononciation/prononciation-de-certaines-lettres/la-prononciation-du-h-aspire)
+13. <a id="src-oqlf_six_dix"></a>Office québécois de la langue française (2026). *Prononciation de six et dix (Banque de dépannage linguistique)*. OQLF, Vitrine linguistique, online edition, read 2026-11-27. [vitrinelinguistique.oqlf.gouv.qc.ca](https://vitrinelinguistique.oqlf.gouv.qc.ca/23137/la-prononciation/prononciation-des-nombres/prononciation-de-six-et-dix)
 <!-- atlas:sources end -->
 
 ### Notes on the sources
@@ -546,7 +547,7 @@ The spec applies 38 rules across a word boundary. The contexts are regular expre
 | `FR_LINK_BLOCKED_BEFORE_HUIT_OUI` | `$` | ``, spelled by a long condition | left ∅ | ⟨les huit⟩ [le ɥit] | [Martinon 1913](#src-martinon1913) |
 | `FR_NUMERAL_MUTE_BEFORE_CONSONANT` | `^((?:s\|d\|d͡z)[iɪ])s$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|ʒɥ(?:ɛ̃\|ijɛ)\|sɛt\|də\|dy\|de\|puʁ\|paʁ\|syʁ\|kɔ̃tʁ\|ʃe\|pɑ̃dɑ̃\|səlɔ̃\|dəvɑ̃\|deʁjɛʁ\|dɛʁjɛʁ\|dəpɥi\|paʁmi\|dyʁɑ̃\|malɡʁe\|mwɛ̃\|plys?\|lə\|la\|le\|sə\|se\|te\|mɛ\|ni\|dɔ̃k\|nu\|vu\|ʒə\|kə\|ki\|nə)$)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | [Martinon 1913](#src-martinon1913) |
 | `FR_HUIT_MUTE_BEFORE_CONSONANT` | `^(ɥ[iɪ])t$` | `^(?!(?:ʒɑ̃vje\|fevʁi?je\|maʁs\|me\|sɛptɑ̃bʁ\|nɔvɑ̃bʁ\|desɑ̃bʁ\|ʒɥ(?:ɛ̃\|ijɛ)\|sɛt\|də\|dy\|de\|puʁ\|paʁ\|syʁ\|kɔ̃tʁ\|ʃe\|pɑ̃dɑ̃\|səlɔ̃\|dəvɑ̃\|deʁjɛʁ\|dɛʁjɛʁ\|dəpɥi\|paʁmi\|dyʁɑ̃\|malɡʁe\|mwɛ̃\|plys?\|lə\|la\|le\|sə\|se\|te\|mɛ\|ni\|dɔ̃k\|nu\|vu\|ʒə\|kə\|ki\|nə)$)[pbtdkɡfvszʃʒmnɲlʁ]` | left ∅ | - | [Martinon 1913](#src-martinon1913) |
-| `FR_NUMERAL_Z_BEFORE_VOWEL` | `^((?:s\|d\|d͡z)[iɪ])s$` | `^(?!(?:avʁil\|au\|ut\|u\|ɔktɔbʁ\|e\|a)$)[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]` | left [z‿] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_NUMERAL_Z_BEFORE_VOWEL` | `^((?:s\|d\|d͡z)[iɪ])s$` | `^(?!(?:avʁil\|au\|ut\|u\|ɔktɔbʁ\|e\|a)$)[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]`, spelled `^(?!(?:en\|ou\|au\|aux\|avec\|après\|entre\|envers\|y\|à\|et)$)` | left [z‿] | - | [Martinon 1913](#src-martinon1913), [Prononciation de 2026](#src-oqlf_six_dix) |
 | `FR_LIAISON_Z_DETERMINER` | `$`, joined `^(?:les\|des\|mes\|tes\|ses\|ces\|nos\|vos\|leurs\|aux\|quelques)$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled `^(?!(?:et\|ou\|un\|une)$)` | left [z‿] | ⟨les amis⟩ [lez‿ ami] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_Z_PREPOSITION` | `$`, joined `^(?:chez\|dans\|dès\|sans\|sous\|très)$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled `^(?!(?:et\|ou)$)` | left [z‿] | ⟨chez elle⟩ [ʃez‿ ɛl] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_Z_INDEFINITE` | `$`, joined `^(?:plusieurs\|certains\|certaines)$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled by a long condition | left [z‿] | ⟨certains auteurs⟩ [sɛʁtɛ̃z‿ otœʁ] | [Martinon 1913](#src-martinon1913) |
