@@ -21,6 +21,16 @@ The charts:
 ``espeak-agreement``
     Segmental agreement of o2i with espeak-ng per language, from
     ``benchmarks/espeak_agreement.json``.
+``pt-tl-substitutions``
+    The commonest character substitutions from ``pt-PT-x-lisboa`` to
+    ``pt-TL-x-dili`` in the Portal gold, from ``benchmarks/gold_defects.json``.
+``atlas-family``, ``atlas-region``, ``atlas-script``
+    Specs per top-level family, countries per macroarea and specs per script,
+    from the summary table of each atlas index in ``docs/languages/``.
+
+Each of the last four charts also writes ``<name>.json``, the values that it
+plots. ``--check`` compares that file with a fresh read of the data, not the
+SVG bytes.
 
 Usage::
 
@@ -249,6 +259,68 @@ def espeak_agreement(rows: list, c: Dict[str, str]) -> str:
     return svg(width, height, "Segmental agreement with espeak-ng", desc, body)
 
 
+def ranked_bars(title: str, note: str, items: List[Tuple[str, int]],
+                c: Dict[str, str]) -> str:
+    """Horizontal bars in the given order, each labelled with its value."""
+    left = 30 + 7 * max(len(name) for name, _ in items)
+    right, top, step, bh, pw = 64, 62, 18, 16, 480
+    width, height = left + pw + right, top + step * len(items) + 12
+    peak = max(n for _, n in items)
+    body = [text(20, 26, title, c, 16, weight="bold"), text(20, 46, note, c, 12, muted=True)]
+    for i, (name, n) in enumerate(items):
+        y = top + i * step
+        w = pw * n / peak
+        body.append(text(left - 8, y + 12, name, c, 12, "end"))
+        body.append(bar(left, y, w, bh, c["series"], "right"))
+        body.append(text(left + w + 6, y + 12, f"{n:,}", c, 11, muted=True))
+    body.append(line(left, top - 4, left, top + step * len(items), c["axis"]))
+    desc = ", ".join(f"{name} {n}" for name, n in items)
+    return svg(width, height, title, desc, body)
+
+
+def summary_table(page: str) -> List[Tuple[str, int]]:
+    """The ``| [name](#anchor) | count |`` rows of an atlas index."""
+    with open(os.path.join(REPO_ROOT, "docs", "languages", page), encoding="utf-8") as fh:
+        rows = [ln for ln in fh.read().split("\n\n## ")[0].splitlines()
+                if ln.startswith("| [")]
+    return [(r.split("](")[0][3:], int(r.rstrip(" |").rsplit("| ", 1)[1])) for r in rows]
+
+
+def top_with_other(items: List[Tuple[str, int]], keep: int) -> List[Tuple[str, int]]:
+    ranked = sorted(items, key=lambda kv: (-kv[1], kv[0]))
+    rest = sum(n for _, n in ranked[keep:])
+    return ranked[:keep] + ([(f"Other ({len(ranked) - keep})", rest)] if rest else [])
+
+
+def data_charts() -> Dict[str, Tuple[dict, object]]:
+    """The charts checked by data: name -> (plotted values, draw)."""
+    subs = load("gold_defects.json")["pt_tl"]
+    pt = [(f"{s['lisboa']} to {s['dili']}", s["count"]) for s in subs["substitutions"]]
+    family = top_with_other(summary_table("by-family.md"), 14)
+    region = sorted(summary_table("by-region.md"), key=lambda kv: (-kv[1], kv[0]))
+    script = top_with_other(summary_table("by-script.md"), 14)
+    return {
+        "pt-tl-substitutions": (
+            {"character_differences": subs["character_differences"], "bars": pt},
+            lambda c: ranked_bars(
+                "Lisbon to Dili substitutions in the Portal gold",
+                f"Count of each change over {subs['equal_length_words']:,} shared words "
+                f"of equal length ({subs['character_differences']:,} changes in all).", pt, c)),
+        "atlas-family": (
+            {"bars": family},
+            lambda c: ranked_bars(f"Specs per family ({sum(n for _, n in family):,} specs)",
+                                  "Top-level family of each listed spec.", family, c)),
+        "atlas-region": (
+            {"bars": region},
+            lambda c: ranked_bars("Countries per macroarea",
+                                  "Countries with at least one listed spec.", region, c)),
+        "atlas-script": (
+            {"bars": script},
+            lambda c: ranked_bars(f"Specs per script ({sum(n for _, n in script):,} specs)",
+                                  "The script that each listed spec reads.", script, c)),
+    }
+
+
 def outputs() -> Dict[str, str]:
     results, comparison = load("results.json"), load("comparison.json")
     agreement = load("espeak_agreement.json")
@@ -260,6 +332,12 @@ def outputs() -> Dict[str, str]:
             for name, draw in charts.items() for mode, colors in MODES.items()}
 
 
+def data_files() -> Dict[str, str]:
+    return {os.path.join(CHART_DIR, f"{name}.json"):
+            json.dumps(data, ensure_ascii=False, indent=1) + "\n"
+            for name, (data, _) in data_charts().items()}
+
+
 def main(argv: Optional[Sequence[str]] = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     mode = ap.add_mutually_exclusive_group(required=True)
@@ -269,7 +347,12 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     args = ap.parse_args(argv)
 
     wanted = outputs()
-    stale = []
+    wanted.update(data_files())
+    drawn = {os.path.join(CHART_DIR, f"{name}.{mode}.svg"): draw(colors)
+             for name, (_, draw) in data_charts().items() for mode, colors in MODES.items()}
+    if args.write:
+        wanted.update(drawn)
+    stale = [rel for rel in drawn if args.check and not os.path.exists(os.path.join(REPO_ROOT, rel))]
     for rel, svg_text in wanted.items():
         path = os.path.join(REPO_ROOT, rel)
         current = None
@@ -285,6 +368,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 fh.write(svg_text)
     chart_dir = os.path.join(REPO_ROOT, CHART_DIR)
     known = {os.path.basename(rel) for rel in wanted}
+    known |= {os.path.basename(rel) for rel in drawn}
     extra = sorted(f for f in os.listdir(chart_dir) if f.endswith(".svg") and f not in known) \
         if os.path.isdir(chart_dir) else []
     stale += [os.path.join(CHART_DIR, f) for f in extra if args.check]
