@@ -68,6 +68,9 @@ def test_no_z_where_the_word_does_not_lean_on_the_next(text, expected):
     # humer (OQLF, the main aspirate-h words): every regular form blocks
     ("ils humaient", "il ymɛ"), ("ils humèrent", "il ymɛʁ"),
     ("nous humons", "nu ymɔ̃"), ("en humant", "ɑ̃ ymɑ̃"),
+    # huer (Académie française, « huer »: le h est aspiré): its forms in hu-
+    # that do not start hue- or hué- block too
+    ("nous huons", "nu yɔ̃"), ("ils huaient", "il yɛ"), ("en huant", "ɑ̃ yɑ̃"),
 ])
 def test_no_liaison_before_an_h_aspire_word(text, expected):
     assert _t(text) == expected
@@ -76,6 +79,7 @@ def test_no_liaison_before_an_h_aspire_word(text, expected):
 @pytest.mark.parametrize("text, expected", [
     # the stem hum- also opens words whose h is mute: they still link
     ("les humains", "lez‿ ymɛ̃"), ("des humoristes", "dez‿ ymɔʁist"),
+    ("les huiles", "lez‿ ɥil"),
 ])
 def test_a_mute_h_after_the_humer_stem_still_links(text, expected):
     assert _t(text) == expected
