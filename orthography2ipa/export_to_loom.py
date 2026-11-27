@@ -132,6 +132,7 @@ def export_to_loom(langs: List[str], out_path: Path, *, data_ref: Optional[str] 
         "ruleset": ruleset(langs, revs, data_ref),
         "o2i_version": VERSION_STR,
         "spec_revisions": {c: revs[c] for c in langs},
+        "phonemes": {c: layout.decode(irs[c])["phonemes"] for c in langs},
         "phonemizer_identity": {c: phonemizer_identity(c, revs[c]) for c in langs},
         "fragments": [fragment_digest(f) for f in fragments],
         "unsupported": fragment_unsupported(fragments),
@@ -145,6 +146,9 @@ def export_to_loom(langs: List[str], out_path: Path, *, data_ref: Optional[str] 
     writer.add_array("loom.text.languages", langs)
     writer.add_string("o2i.version", VERSION_STR)
     writer.add_array("o2i.spec_revisions", [revs[c] for c in langs])
+    for code in langs:
+        if meta["phonemes"][code]:
+            writer.add_array(f"o2i.phonemes.{code}", meta["phonemes"][code])
     if fragments:
         writer.add_array("o2i.fragments", meta["fragments"])
     if meta["unsupported"]:

@@ -61,6 +61,8 @@ o2i.spec_revisions = ['sha256:3cc0986e71aa4de4166e748163949a0ff9d415b23b981a2861
 
 The key `o2i.phonemizer_identity` holds a JSON object with one identity per language. Each identity has the keys of the `PhonemizerIdentity` of scriptconv, which a phoonnx voice records as `phonemizer_identity`: `backend`, `distribution`, `version`, `lang`, `revision` and `frontend`. Its `revision` is the IR revision.
 
+For each language, the key `o2i.phonemes.<code>` holds the phoneme set of its IR as an array of strings: every segment that the language can emit, equal to `orthography2ipa.phoneme_set(code)`. The segments are NFD and hold no stress marks or syllable dots. A voice reads the key at load time and checks that its symbol table holds each segment. A language with an empty set, such as a stub, has no key.
+
 Record `o2i.spec_revisions` with the voice. [revisions.md](revisions.md) says what moves a revision, and how to compare two of them.
 
 A plugin that ships a word table gives it to the export with `--fragment PATH`. Repeat the flag for more than one file. A fragment is a JSON file `{"ir_version": 1, "words": {"word": "ipa"}}`. The export merges the word tables into every language, and a later file wins on a duplicate word. The key `o2i.fragments` lists the sha256 of each fragment, and the revision of each language covers the words.
@@ -160,7 +162,7 @@ The codepoints `712 112 603 100 638 592` spell `ˈpɛdɾɐ`.
 >>> out = Path(tempfile.mkdtemp()) / "voice.gguf"
 >>> meta = export_to_loom(["pt-PT", "kab"], out)
 >>> sorted(meta)
-['o2i_version', 'phonemizer_identity', 'ruleset', 'spec_revisions']
+['o2i_version', 'phonemes', 'phonemizer_identity', 'ruleset', 'spec_revisions']
 >>> GGUFReader(str(out)).fields["o2i.spec_revisions"].contents() == list(meta["spec_revisions"].values())
 True
 >>> export_to_loom(["kab"], out, expect_revisions={"kab": "sha256:0"})  # doctest: +ELLIPSIS
