@@ -41,12 +41,14 @@ def vectors(host: str, tmp: str) -> dict:
     """Run each vector file on its own IR. An error case passes when the host
     stops with the expected message."""
     paths = sorted(glob.glob("tests/conformance/ir-v1/*.jsonl"))
-    cases = same = errors = errors_same = 0
+    cases = same = errors = errors_same = skipped = 0
     error_files = set()
     for path in paths:
         records = [json.loads(line) for line in open(path, encoding="utf-8")]
         head, rows = records[0], records[1:]
-        runs = [r for r in rows if "expect" in r]
+        # A loom host runs only transcription; the syllables cases test the splitter.
+        runs = [r for r in rows if "expect" in r and r.get("kind") != "syllables"]
+        skipped += sum(r.get("kind") == "syllables" for r in rows)
         if runs:
             texts = ["".join(map(chr, r["input"])) for r in runs]
             got = outputs(run_host(host, head["lang"], texts, tmp, head["ir"]), len(texts))
@@ -57,7 +59,7 @@ def vectors(host: str, tmp: str) -> dict:
             errors += 1
             error_files.add(path)
             errors_same += proc.returncode != 0 and row["expect_error"] in proc.stderr
-    return {"files": len(paths), "cases": cases, "identical": same,
+    return {"files": len(paths), "cases": cases, "identical": same, "syllables_cases_skipped": skipped,
             "error_files": len(error_files), "error_cases": errors, "error_cases_refused": errors_same}
 
 

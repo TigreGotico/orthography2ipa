@@ -38,14 +38,14 @@ The file is about 370 KB for these two languages. The compiler has already resol
 
 ## Step 2: check what the file holds
 
-The GGUF records the package version, the languages, the revision of each IR and the phonemizer identity of each language. This script reads them:
+The GGUF is a loom phonemizer of kind `lua`. It records the languages, the revision of each IR, the phonemizer identity of each language, the IR of each language and the script that runs them. This script reads the main keys:
 
 ```python
 import sys
 from gguf import GGUFReader
 
 reader = GGUFReader(sys.argv[1])
-for key in ("loom.task", "loom.phonemizer.ruleset", "loom.text.languages", "o2i.version", "o2i.spec_revisions"):
+for key in ("loom.task", "loom.phonemizer.kind", "loom.phonemizer.ruleset", "loom.text.languages"):
     print(key, "=", reader.fields[key].contents())
 ```
 
@@ -53,23 +53,31 @@ Its output for `voice.gguf`:
 
 ```text
 loom.task = text2phonemes
-loom.phonemizer.ruleset = orthography2ipa 7.124.49a1; pt-PT=sha256:3cc0986e71aa4de4166e748163949a0ff9d415b23b981a2861e5f245b2ca88ce; kab=sha256:b9222eb6085eeb68fffa3a433016a3122253cf3157290e1008939ce76341f110
+loom.phonemizer.kind = lua
+loom.phonemizer.ruleset = orthography2ipa 7.136.3a3; pt-PT=sha256:2e15325db2cc166ad7ce1fea4819858f89ca4af97761a9c4283a6dc645f2e033; kab=sha256:95d07b558acd360ba50ce8670d4affafd5916f54557fe071f9f25fbf41855001
 loom.text.languages = ['pt-PT', 'kab']
-o2i.version = 7.124.49a1
-o2i.spec_revisions = ['sha256:3cc0986e71aa4de4166e748163949a0ff9d415b23b981a2861e5f245b2ca88ce', 'sha256:b9222eb6085eeb68fffa3a433016a3122253cf3157290e1008939ce76341f110']
 ```
 
-The key `o2i.phonemizer_identity` holds a JSON object with one identity per language. Each identity has the keys of the `PhonemizerIdentity` of scriptconv, which a phoonnx voice records as `phonemizer_identity`: `backend`, `distribution`, `version`, `lang`, `revision` and `frontend`. Its `revision` is the IR revision.
+| Key | Value |
+| :--- | :--- |
+| `loom.phonemizer.ruleset` | The package version, the data ref, and the IR revision of each language |
+| `loom.phonemizer.script` | The Lua interpreter and its entry points (Step 4) |
+| `loom.phonemizer.data.<code>` | The IR of the language, as JSON |
+| `loom.phonemizer.phonemes.<code>` | The phoneme set of the language |
+| `loom.phonemizer.identity` | One phonemizer identity for each language, as JSON |
+| `loom.phonemizer.unsupported` | The fragment rules that the file does not run |
 
-For each language, the key `o2i.phonemes.<code>` holds the phoneme set of its IR as an array of strings: every segment that the language can emit, equal to `orthography2ipa.phoneme_set(code)`. The segments are NFD and hold no stress marks or syllable dots. A voice reads the key at load time and checks that its symbol table holds each segment. A language with an empty set, such as a stub, has no key. The set is exact for well-formed words with the default options: no dialect profile, no lexicon and no host hooks.
+Each identity has the keys of the `PhonemizerIdentity` of scriptconv, which a phoonnx voice records as `phonemizer_identity`: `backend`, `distribution`, `version`, `lang`, `revision` and `frontend`. Its `revision` is the IR revision.
+
+For each language, the key `loom.phonemizer.phonemes.<code>` holds the phoneme set of its IR as an array of strings: every segment that the language can emit, equal to `orthography2ipa.phoneme_set(code)`. The segments are NFD and hold no stress marks or syllable dots. A voice reads the key at load time and checks that its symbol table holds each segment. A language with an empty set, such as a stub, has no key. The set is exact for well-formed words with the default options: no dialect profile, no lexicon and no host hooks.
 
 The set holds no stress marks (ˈ ˌ), syllable dots or tie bars. A voice adds ˈ and ˌ to its symbol table itself. A tied segment such as `t͡ʃ` is one entry of the set, so a voice that reads one code point per symbol splits each segment into its code points. Any language code that `orthography2ipa.registry.resolve` accepts works, lect codes included.
 
-Record `o2i.spec_revisions` with the voice. [revisions.md](revisions.md) says what moves a revision, and how to compare two of them.
+Record the ruleset with the voice. [revisions.md](revisions.md) says what moves a revision, and how to compare two of them.
 
-A plugin that ships a word table gives it to the export with `--fragment PATH`. Repeat the flag for more than one file. A fragment is a JSON file `{"ir_version": 1, "words": {"word": "ipa"}}`. A fragment may carry `langs`, a list of language codes: `{"ir_version": 1, "langs": ["pt-PT"], "words": {"casa": "ˈkazɐ"}}`. The export merges the word tables into each language in the fragment's scope, and a later file wins on a duplicate word. A fragment without `langs` applies to every language. A code of `langs` matches a language when both resolve to the same registered code, so a fragment for `pt-PT` does not reach `pt-PT-x-lisbon`. A code that names no registered language is an error. The key `o2i.fragments` lists the sha256 of each fragment, and the revision of each language covers the words.
+A plugin that ships a word table gives it to the export with `--fragment PATH`. Repeat the flag for more than one file. A fragment is a JSON file `{"ir_version": 1, "words": {"word": "ipa"}}`. A fragment may carry `langs`, a list of language codes: `{"ir_version": 1, "langs": ["pt-PT"], "words": {"casa": "ˈkazɐ"}}`. The export merges the word tables into each language in the fragment's scope, and a later file wins on a duplicate word. A fragment without `langs` applies to every language. A code of `langs` matches a language when both resolve to the same registered code, so a fragment for `pt-PT` does not reach `pt-PT-x-lisbon`. A code that names no registered language is an error. The revision of each language in the ruleset covers the words.
 
-A fragment may also carry `sandhi`, a list of rules between words, and `unsupported`, a list of the names of the plugin's rules that a fragment cannot express. A sandhi rule has the keys `left`, `right`, `left_out` and `right_out` of a spec sandhi rule, and may add `left_spelling` and `right_spelling`, patterns on the written word, `left_joined_spelling` and `right_joined_spelling`, patterns on the word joined to the word before it by a hyphen, or `"pause": true` for a rule on a word at a pause. The export adds the rules after the rules of each spec in scope. The key `o2i.unsupported` lists the names from `unsupported`: the loom file does not run those rules, so the plugin keeps them as a host hook.
+A fragment may also carry `sandhi`, a list of rules between words, and `unsupported`, a list of the names of the plugin's rules that a fragment cannot express. A sandhi rule has the keys `left`, `right`, `left_out` and `right_out` of a spec sandhi rule, and may add `left_spelling` and `right_spelling`, patterns on the written word, `left_joined_spelling` and `right_joined_spelling`, patterns on the word joined to the word before it by a hyphen, or `"pause": true` for a rule on a word at a pause. The export adds the rules after the rules of each spec in scope. The key `loom.phonemizer.unsupported` lists the names from `unsupported`: the loom file does not run those rules, so the plugin keeps them as a host hook.
 
 ## Step 3: pin the spec data of the training run
 
@@ -98,31 +106,19 @@ voice.gguf        Iwacu i ɣ-tugiḍ ad nruḥ?   ->   iwæʃu i ʁ θuʝiðˤ �
 
 ## Step 4: run it in loom
 
-loom passes only numbers between the host and the Lua driver. The driver defines two functions:
+loom passes only numbers between the host and the script. `lang` is the 0-based index into `loom.text.languages`. The script runs in its own Lua state, without `io` and `os`, and it defines no global names except its two entry points:
 
-| Function | Input | Output |
-| :--- | :--- | :--- |
-| `infer` | `text`: the text as an array of codepoints. `lang`: the 0-based index into `loom.text.languages` | The IPA as an array of codepoints |
-| `info` | `lang` | The recorded revision of that language, as an array of byte values |
+| Function | Defined by | Input | Output |
+| :--- | :--- | :--- | :--- |
+| `phonemizer_data` | the host | `lang` | The string value of `loom.phonemizer.data.<code>`, or `nil` |
+| `phonemize` | the script | `codepoints`, `lang` | The IPA as an array of codepoints, then the codepoints that the transcription drops |
+| `set_lexicon` | the script | `lang`, an array of `{word codepoints, ipa codepoints}` pairs | nothing |
 
-A host calls `infer` through the session bridge of loom:
+The script calls `phonemizer_data` the first time it needs a language, and keeps the decoded IR for later calls. The second result of `phonemize` holds the codepoints of the unknown and digit tokens, in text order: the characters that the Python package reports with `UnmappedGraphemeWarning`. The text "Azul 2024! ε" in Kabyle gives `æzul`, and the second result holds the codepoints of `2024ε`. Digits are unreadable for a phonemizer: number normalisation comes before it.
 
-```cpp
-std::unordered_map<std::string, loom::LoomLuaBridge::Value> inputs;
-inputs["text"] = utf8_to_codepoints(line);
-inputs["lang"] = 0.0;
-const auto result = session.bridge().call("infer", inputs);
-```
+`set_lexicon` merges the pairs into the run-time lexicon of the language, and a later pair wins. The keys are lowercase NFC. The lexicon comes after the spec exceptions and before the fragment words, as the `lexicon` argument of the Python interpreter does. The ruleset does not cover the run-time lexicon, so the host records it.
 
-A small host that reads one line per text and prints the IPA gives this for `voice.gguf`, language 0 (`pt-PT`):
-
-```text
-$ printf 'pedra\nos jogos\n' | o2i_loom voice.gguf 0
-ˈpɛdɾɐ
-u ˈʒɔɡuʃ
-```
-
-The same text through the Python package gives the same IPA:
+The Python package gives the same IPA as the script for the same text:
 
 ```python
 >>> import orthography2ipa
@@ -142,14 +138,14 @@ The script exports one GGUF for each language and writes `benchmarks/loom_parity
 
 | Set | Languages | Cases | Pass |
 | :--- | ---: | ---: | ---: |
-| Conformance vectors, output cases | 22 files | 3880 | 3880 |
+| Conformance vectors, output cases | 150 files | 6305 | 6305 |
 | Conformance vectors, error cases | 1 file | 1 | 1 |
 | Gold sentences | 188 lects | 6369 | 6369 |
 
-The run used loom.cpp commit `f58f905` and orthography2ipa 7.133.1a4. To run it again, build loom.cpp and the host, then run the script:
+The run used loom.cpp commit `5dfc399` (branch `feat/rule-based-phonemizer`) and orthography2ipa 7.136.3a3. The 33 `syllables` cases of the vector files test the splitter, which a loom host does not call, so the script skips them. To run it again, build loom.cpp and the host, then run the script:
 
 ```bash
-git clone https://github.com/loom-ai-org/loom.cpp ../loom.cpp
+git clone --branch feat/rule-based-phonemizer https://github.com/loom-ai-org/loom.cpp ../loom.cpp
 cmake -S scripts/loom_host -B build/loom_host -DLOOM_DIR=$PWD/../loom.cpp -DCMAKE_BUILD_TYPE=Release
 cmake --build build/loom_host -j4 --target o2i_loom
 PYTHONPATH=$PWD .venv/bin/python scripts/loom_parity.py build/loom_host/o2i_loom "$(git -C ../loom.cpp rev-parse --short HEAD)"
@@ -178,7 +174,7 @@ The codepoints `712 112 603 100 638 592` spell `ˈpɛdɾɐ`.
 
 ## Check an export from Python
 
-`export_to_loom` writes the GGUF and returns the metadata that it wrote. With `expect_revisions`, it refuses to write a file when the revision of a language differs from the one you expect. `expect_revisions` takes the values of `o2i.spec_revisions`, which equal `orthography2ipa.spec_revision(code)` ([revisions.md](revisions.md)):
+`export_to_loom` writes the GGUF and returns the metadata that it wrote. With `expect_revisions`, it refuses to write a file when the revision of a language differs from the one you expect. `expect_revisions` takes the IR revisions of the ruleset, which equal `orthography2ipa.spec_revision(code)` ([revisions.md](revisions.md)):
 
 ```python
 >>> import tempfile
@@ -189,7 +185,8 @@ The codepoints `712 112 603 100 638 592` spell `ˈpɛdɾɐ`.
 >>> meta = export_to_loom(["pt-PT", "kab"], out)
 >>> sorted(meta)
 ['fragments', 'o2i_version', 'phonemes', 'phonemizer_identity', 'ruleset', 'spec_revisions', 'unsupported']
->>> GGUFReader(str(out)).fields["o2i.spec_revisions"].contents() == list(meta["spec_revisions"].values())
+>>> ruleset = GGUFReader(str(out)).fields["loom.phonemizer.ruleset"].contents()
+>>> all(f"{code}={rev}" in ruleset for code, rev in meta["spec_revisions"].items())
 True
 >>> export_to_loom(["kab"], out, expect_revisions={"kab": "sha256:0"})  # doctest: +ELLIPSIS
 Traceback (most recent call last):

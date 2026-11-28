@@ -24,7 +24,7 @@ from pydantic import ValidationError
 from orthography2ipa.schema import SandhiRuleModel
 from orthography2ipa.types import SandhiRule
 
-LUA = Path(__file__).resolve().parent.parent / "orthography2ipa" / "ir" / "interpreter.lua"
+LUA = Path(__file__).resolve().parent.parent / "scripts" / "ir_lua_cli.lua"
 
 #: Rewrites a final [ɐ] to A, the marker the tests look for.
 FINAL = dict(id="T_FINAL", name="test", left_context="ɐ$", right_context="", transform="A")

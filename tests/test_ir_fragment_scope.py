@@ -1,10 +1,9 @@
 """A plugin fragment with ``langs`` enters only the IR of the languages it names."""
 import json
-import re
-import subprocess
 
 import pytest
 from gguf import GGUFReader
+from tests.lua_host import field, phonemize
 
 from orthography2ipa import G2P, Pipeline
 from orthography2ipa.export_to_loom import export_to_loom
@@ -17,18 +16,11 @@ PT_CASA = {"ir_version": 1, "langs": ["pt-PT"], "words": {"casa": "ˈwx"},
 
 
 def _driver_ir(reader, code):
-    driver = reader.fields["model.driver_script"].contents()
-    body = re.search(r'^  \["%s"\] = \[(=*)\[(.*?)\]\1\]' % re.escape(code), driver, flags=re.M | re.S)
-    return body.group(2)
+    return field(reader, f"loom.phonemizer.data.{code}")
 
 
 def _lua(reader, text, lang, tmp_path):
-    driver = tmp_path / "driver.lua"
-    driver.write_text(reader.fields["model.driver_script"].contents(), encoding="utf-8")
-    call = "dofile(%r); io.write(table.concat(infer{text = {%s}, lang = %d}, ' '))" % (
-        str(driver), ", ".join(str(ord(c)) for c in text), lang)
-    proc = subprocess.run(["luajit", "-e", call], capture_output=True, text=True, check=True)
-    return "".join(chr(int(x)) for x in proc.stdout.split())
+    return phonemize(reader, text, lang, tmp_path)[0]
 
 
 def _python(code, text):

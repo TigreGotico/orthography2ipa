@@ -7,16 +7,25 @@ language is its whole closure. A voice exports the languages it was trained
 with, and ``rev`` compiles them from the spec data of that git ref, so the
 file keeps the rules that produced its training phonemes.
 
-loom passes only numbers between host and driver: ``infer`` takes the text
-as an array of codepoints and a 0-based ``lang`` index into
-``loom.text.languages``, and returns the IPA as an array of codepoints.
+The file is a loom phonemizer of kind ``lua``. ``loom.phonemizer.script`` is
+the interpreter, and ``loom.phonemizer.data.<lang>`` is the IR JSON of each
+language. loom passes only numbers between host and script; ``lang`` is a
+0-based index into ``loom.text.languages``:
+
+* the host defines ``phonemizer_data(lang) -> string``, and the script calls it
+  the first time it needs a language;
+* ``phonemize(codepoints, lang) -> ipa, unmapped`` returns the IPA and the
+  codepoints that the transcription drops (``Interpreter.unmapped``);
+* ``set_lexicon(lang, entries)`` merges ``{word codepoints, ipa codepoints}``
+  pairs into the run-time lexicon of the language. The ruleset does not cover
+  it, so the host records it.
 
     python -m orthography2ipa.export_to_loom --langs pt-PT,kab --out X.gguf [--rev REF] [--fragment PATH ...]
 
 A fragment is a JSON file of plugin data (docs/ir/o2i-ir-v1.md, 3.5). The export
 merges each ``--fragment`` into the IR of each language in its scope and records the sha256
-of each fragment in ``o2i.fragments``. The names that the fragments list as ``unsupported``
-go to ``o2i.unsupported``: the rules the plugin still runs as a host hook.
+of each fragment in the ruleset through each IR revision. The names that the fragments list as
+``unsupported`` go to ``loom.phonemizer.unsupported``: the rules the plugin still runs as a host hook.
 
 Python callers use :func:`export_to_loom`, which returns the metadata it writes.
 """
@@ -55,30 +64,39 @@ def revisions(irs: Dict[str, dict]) -> Dict[str, str]:
     return {code: layout.spec_revision(layout.decode(doc)) for code, doc in irs.items()}
 
 
-def _lua_long_string(text: str) -> str:
-    level = 0
-    while f"]{'=' * level}]" in text:
-        level += 1
-    eq = "=" * level
-    return f"[{eq}[{text}]{eq}]"
+_DRIVER = """
+local M = (function()
+%s
+end)()
+local engines = {}
+local function engine(lang)
+  local it = engines[lang]
+  if not it then
+    local doc = phonemizer_data(lang)
+    if doc == nil then error("no IR for language index " .. tostring(lang)) end
+    it = M.new(M.json_decode(doc))
+    engines[lang] = it
+  end
+  return it
+end
+function phonemize(cps, lang)
+  local it = engine(lang)
+  return it:transcribe_cps(cps, 1), it:unmapped_cps(cps)
+end
+function set_lexicon(lang, entries)
+  engine(lang):set_lexicon(entries)
+end
+"""
 
 
-def _lua_table(items: Dict[str, str]) -> str:
-    rows = ",\n".join(f"  [{json.dumps(k)}] = {v}" for k, v in sorted(items.items()))
-    return f"{{\n{rows}\n}}"
-
-
-def driver_script(codes: List[str], irs: Dict[str, dict], revs: Dict[str, str]) -> str:
-    """The interpreter with the language list and the IR JSON as its prelude."""
-    docs = {c: _lua_long_string(json.dumps(irs[c], ensure_ascii=False, separators=(",", ":"))) for c in codes}
-    prelude = (
-        f"O2I_VERSION = {json.dumps(VERSION_STR)}\n"
-        f"O2I_LANGUAGES = {{{', '.join(json.dumps(c) for c in codes)}}}\n"
-        f"O2I_REVISION = {_lua_table({c: json.dumps(revs[c]) for c in codes})}\n"
-        f"O2I_IRS = {_lua_table(docs)}\n"
-    )
+def driver_script() -> str:
+    """The interpreter in a closure, with the entry points of a loom ``lua`` phonemizer."""
     lua = resources.files("orthography2ipa.ir").joinpath(INTERPRETER).read_text(encoding="utf-8")
-    return prelude + lua
+    return _DRIVER % lua
+
+
+def ir_json(doc: dict) -> str:
+    return json.dumps(doc, ensure_ascii=False, separators=(",", ":"))
 
 
 def ruleset(codes: List[str], revs: Dict[str, str], rev: Optional[str]) -> str:
@@ -101,7 +119,7 @@ def export_to_loom(langs: List[str], out_path: Path, *, data_ref: Optional[str] 
     Without a git checkout of orthography2ipa, the export compiles the
     installed data, and *data_ref* must be ``None``. *expect_revisions* maps a
     language to its IR revision (``layout.spec_revision``, the value of
-    ``o2i.spec_revisions``), not to ``orthography2ipa.spec_revision``. A
+    the ruleset), not to ``orthography2ipa.spec_revision``. A
     language whose IR revision differs stops the export before any file is
     written. *fragments* are plugin fragments merged into each language in their scope; the
     metadata lists their sha256 digests and the rules they name as unsupported.
@@ -142,19 +160,17 @@ def export_to_loom(langs: List[str], out_path: Path, *, data_ref: Optional[str] 
     writer.add_string("loom.input.kind", "text")
     writer.add_string("loom.output.kind", "phonemes")
     writer.add_string("loom.text.phoneme_alphabet", "ipa")
-    writer.add_string("loom.phonemizer.ruleset", meta["ruleset"])
     writer.add_array("loom.text.languages", langs)
-    writer.add_string("o2i.version", VERSION_STR)
-    writer.add_array("o2i.spec_revisions", [revs[c] for c in langs])
+    writer.add_string("loom.phonemizer.kind", "lua")
+    writer.add_string("loom.phonemizer.ruleset", meta["ruleset"])
+    writer.add_string("loom.phonemizer.script", driver_script())
     for code in langs:
+        writer.add_string(f"loom.phonemizer.data.{code}", ir_json(irs[code]))
         if meta["phonemes"][code]:
-            writer.add_array(f"o2i.phonemes.{code}", meta["phonemes"][code])
-    if fragments:
-        writer.add_array("o2i.fragments", meta["fragments"])
+            writer.add_array(f"loom.phonemizer.phonemes.{code}", meta["phonemes"][code])
     if meta["unsupported"]:
-        writer.add_array("o2i.unsupported", meta["unsupported"])
-    writer.add_string("o2i.phonemizer_identity", json.dumps(meta["phonemizer_identity"], sort_keys=True))
-    writer.add_string("model.driver_script", driver_script(langs, irs, revs))
+        writer.add_array("loom.phonemizer.unsupported", meta["unsupported"])
+    writer.add_string("loom.phonemizer.identity", json.dumps(meta["phonemizer_identity"], sort_keys=True))
     writer.add_string("model.graph_topology", json.dumps(_INERT_TOPOLOGY))
     writer.add_tensor("o2i.ruleset", np.zeros(1, dtype=np.float32))
     writer.write_header_to_file()

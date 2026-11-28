@@ -9,7 +9,7 @@ from orthography2ipa.ir import layout
 from orthography2ipa.ir.compiler import build_ir
 from orthography2ipa.ir.interpreter import Interpreter
 
-LUA = Path(__file__).resolve().parent.parent / "orthography2ipa" / "ir" / "interpreter.lua"
+LUA = Path(__file__).resolve().parent.parent / "scripts" / "ir_lua_cli.lua"
 
 
 @pytest.fixture(scope="module")

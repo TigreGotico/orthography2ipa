@@ -1,6 +1,5 @@
 """A plugin fragment's ``words`` table is IR data that ranks after the exceptions and the lexicon."""
 import dataclasses
-import hashlib
 import json
 import subprocess
 from pathlib import Path
@@ -15,7 +14,7 @@ from orthography2ipa.ir import layout
 from orthography2ipa.ir.compiler import build_ir
 from orthography2ipa.ir.interpreter import Interpreter
 
-LUA = Path(__file__).resolve().parent.parent / "orthography2ipa" / "ir" / "interpreter.lua"
+LUA = Path(__file__).resolve().parent.parent / "scripts" / "ir_lua_cli.lua"
 
 
 def fragment(**words):
@@ -106,19 +105,13 @@ def test_the_exception_beats_the_fragment_in_both_interpreters(tmp_path):
     assert _lua(doc, "casa", tmp_path) == "ˈeks"
 
 
-def test_the_export_lists_the_fragment_digests(tmp_path):
+def test_the_ruleset_names_the_revision_with_the_fragment(tmp_path):
     frag = fragment(casa="ˈwx")
     path = tmp_path / "frag.json"
     path.write_text(json.dumps(frag), encoding="utf-8")
     out = tmp_path / "frag.gguf"
     export_main(["--langs", "pt-PT", "--out", str(out), "--fragment", str(path)])
-    expected = hashlib.sha256(json.dumps(frag, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()).hexdigest()
-    reader = GGUFReader(str(out))
-    assert reader.fields["o2i.fragments"].contents() == [expected]
-    assert layout.spec_revision(build_ir("pt-PT", fragments=(frag,))) in reader.fields["o2i.spec_revisions"].contents()
-
-
-def test_an_export_without_a_fragment_has_no_fragment_field(tmp_path):
-    out = tmp_path / "plain.gguf"
-    export_to_loom(["kab"], out)
-    assert "o2i.fragments" not in GGUFReader(str(out)).fields
+    ruleset = GGUFReader(str(out)).fields["loom.phonemizer.ruleset"].contents()
+    with_fragment = layout.spec_revision(build_ir("pt-PT", fragments=(frag,)))
+    assert ruleset.endswith(f"; pt-PT={with_fragment}")
+    assert with_fragment != layout.spec_revision(build_ir("pt-PT"))

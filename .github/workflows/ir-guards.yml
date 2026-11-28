@@ -28,6 +28,7 @@ on:
       - "scripts/gen_ir_vectors.py"
       - "scripts/ir_features.py"
       - "scripts/ir_lua_conformance.lua"
+      - "scripts/ir_lua_cli.lua"
       - ".github/workflows/ir-guards.yml"
   workflow_dispatch: {}
 
@@ -155,3 +156,19 @@ jobs:
 
       - name: Python and Lua give every expect, and every IR feature has a case
         run: .venv/bin/python -m pytest -q tests/test_ir_conformance.py
+
+  # The web build of loom runs PUC Lua 5.1. The interpreter uses no LuaJIT-only
+  # construct, so every vector file passes there too.
+  conformance-puc-lua:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install PUC Lua 5.1
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends lua5.1
+
+      - name: The PUC Lua 5.1 interpreter gives every expect
+        run: lua5.1 scripts/ir_lua_conformance.lua tests/conformance/ir-v1/*.jsonl

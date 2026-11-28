@@ -113,7 +113,7 @@ The cache key of a stored IR document hashes the source of the modules in `ENGIN
 Keep the revisions with the voice. Before you run the voice on another install, compute the same revisions there and compare:
 
 - On the Python path, compare `spec_revision(code)`, and `lexicon_revision(code)` when the voice read a lexicon.
-- On loom, read `o2i.spec_revisions` from the GGUF ([loom_export.md](loom_export.md#step-2-check-what-the-file-holds)). The value travels with the file, so the phonemizer cannot drift from it.
+- On loom, read `loom.phonemizer.ruleset` from the GGUF ([loom_export.md](loom_export.md#step-2-check-what-the-file-holds)). The value travels with the file, so the phonemizer cannot drift from it.
 
 When a value differs, the phonemes can differ. Compile the spec data of the training run with `--rev`, or with `build_ir(code, data_ref)`, to get the old rules back.
 
