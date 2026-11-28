@@ -9,3 +9,6 @@ see: `docs/evaluation/generated/scoreboard.md`
 -->
 
 The scoreboard is in [evaluation/generated/scoreboard.md](evaluation/generated/scoreboard.md).
+
+---
+[Home](index.md)
