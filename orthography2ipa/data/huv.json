@@ -48,7 +48,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-huav1256",
+ "inherits": "x-clade-huav1256",
  "phonemes": [
   "b",
   "d",

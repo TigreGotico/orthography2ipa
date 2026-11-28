@@ -75,7 +75,7 @@
     "https://en.wikipedia.org/wiki/Gilaki_language",
     "https://glk.wikipedia.org/wiki/%DA%AF%D9%8A%D9%84%DA%A9%D9%8A_%D8%B2%D9%88%D8%A4%D9%86"
   ],
-  "parent": "x-clade-iran1269",
+  "inherits": "x-clade-iran1269",
   "ancestors": [
     {
       "code": "x-clade-iran1269",

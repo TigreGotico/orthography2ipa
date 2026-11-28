@@ -12,7 +12,7 @@
       "a"
     ]
   },
-  "parent": "fr-FR",
+  "inherits": "fr-FR",
   "notes": "Ivorian French (Abidjan) as a thin variant of Metropolitan French (fr-FR). One feature is stated, from the PFC survey of Abidjan (PFC page, d) 1)): patte = pâte, so ⟨â⟩ is [a] here and [ɑ] in fr-FR. The same page records brin ≠ brun with a very marked timbre difference at Abidjan, and fr-FR already keeps /ɛ̃/ and /œ̃/ apart. NOT MODELLED: everything else about Ivorian French (vowel quality, the mid vowels of épée ~ épais, which the page says vary a great deal at Abidjan, consonants, rhythm). The page is a survey summary at one point and not a description of every Ivorian variety.",
   "quality": "skeleton",
   "script_type": "alphabet",

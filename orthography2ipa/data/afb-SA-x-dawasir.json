@@ -11,7 +11,7 @@
   },
   "allophones_base": "afb-SA-x-sharqiya",
   "allophones": {},
-  "parent": "afb-SA-x-sharqiya",
+  "inherits": "afb-SA-x-sharqiya",
   "ancestors": [
     {
       "code": "afb-SA-x-sharqiya",

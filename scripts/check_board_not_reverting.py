@@ -307,7 +307,7 @@ def spec_code(lang, repo="."):
 def spec_ancestors(lang, repo="."):
     """*lang*'s spec and every spec it inherits its tables from.
 
-    Follows ``parent`` and the ``*_base`` table references, so editing
+    Follows ``inherits`` and the ``*_base`` table references, so editing
     ``pt-PT.json`` accounts for the movement it causes in ``pt-PT-x-lisbon``.
     """
     seen, queue = set(), [spec_code(lang, repo=repo)]
@@ -321,7 +321,7 @@ def spec_ancestors(lang, repo="."):
                 spec = json.load(fh)
         except (OSError, ValueError):
             continue
-        refs = [spec.get("parent")]
+        refs = [spec.get("inherits")]
         refs += [v for k, v in spec.items() if k.endswith("_base") and isinstance(v, str)]
         queue += [r for r in refs if r]
     return seen

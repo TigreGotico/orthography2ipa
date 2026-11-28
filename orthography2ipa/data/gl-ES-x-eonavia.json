@@ -2,7 +2,7 @@
   "code": "gl-ES-x-eonavia",
   "name": "Eonavian (Galician-Asturian, gallego-asturiano)",
   "script": "Latin",
-  "parent": "gl-ES",
+  "inherits": "gl-ES",
   "graphemes_base": "gl-ES",
   "allophones_base": "gl-ES",
   "positional_graphemes_base": "gl-ES",

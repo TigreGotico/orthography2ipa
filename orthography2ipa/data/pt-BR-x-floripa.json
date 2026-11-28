@@ -2,7 +2,7 @@
   "code": "pt-BR-x-floripa",
   "name": "Florianópolis Portuguese (manezinho)",
   "script": "Latin",
-  "parent": "pt-BR",
+  "inherits": "pt-BR",
   "quality": "research",
   "script_type": "alphabet",
   "iso639_3": "por",

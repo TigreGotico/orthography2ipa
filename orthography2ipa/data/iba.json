@@ -173,7 +173,7 @@
     "https://en.wikipedia.org/wiki/Iban_language",
     "https://iba.wikipedia.org/wiki/Jaku_Iban"
   ],
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",

@@ -69,7 +69,7 @@ Record `o2i.spec_revisions` with the voice. [revisions.md](revisions.md) says wh
 
 A plugin that ships a word table gives it to the export with `--fragment PATH`. Repeat the flag for more than one file. A fragment is a JSON file `{"ir_version": 1, "words": {"word": "ipa"}}`. A fragment may carry `langs`, a list of language codes: `{"ir_version": 1, "langs": ["pt-PT"], "words": {"casa": "ˈkazɐ"}}`. The export merges the word tables into each language in the fragment's scope, and a later file wins on a duplicate word. A fragment without `langs` applies to every language. A code of `langs` matches a language when both resolve to the same registered code, so a fragment for `pt-PT` does not reach `pt-PT-x-lisbon`. A code that names no registered language is an error. The key `o2i.fragments` lists the sha256 of each fragment, and the revision of each language covers the words.
 
-A fragment may also carry `sandhi`, a list of rules between words, and `unsupported`, a list of the names of the plugin's rules that a fragment cannot express. A sandhi rule has the keys `left`, `right`, `left_out` and `right_out` of a spec sandhi rule, and may add `left_spelling` and `right_spelling`, patterns on the written word, or `"pause": true` for a rule on a word at a pause. The export adds the rules after the rules of each spec in scope. The key `o2i.unsupported` lists the names from `unsupported`: the loom file does not run those rules, so the plugin keeps them as a host hook.
+A fragment may also carry `sandhi`, a list of rules between words, and `unsupported`, a list of the names of the plugin's rules that a fragment cannot express. A sandhi rule has the keys `left`, `right`, `left_out` and `right_out` of a spec sandhi rule, and may add `left_spelling` and `right_spelling`, patterns on the written word, `left_joined_spelling` and `right_joined_spelling`, patterns on the word joined to the word before it by a hyphen, or `"pause": true` for a rule on a word at a pause. The export adds the rules after the rules of each spec in scope. The key `o2i.unsupported` lists the names from `unsupported`: the loom file does not run those rules, so the plugin keeps them as a host hook.
 
 ## Step 3: pin the spec data of the training run
 
@@ -129,6 +129,30 @@ The same text through the Python package gives the same IPA:
 >>> orthography2ipa.transcribe("pedra", "pt-PT"), orthography2ipa.transcribe("os jogos", "pt-PT")
 ('ˈpɛdɾɐ', 'u ˈʒɔɡuʃ')
 
+```
+
+## Check loom against Python
+
+`scripts/loom_parity.py` runs two text sets through a loom host and counts the texts where the loom output equals the expected output byte for byte:
+
+- Every case of the conformance vectors in `tests/conformance/ir-v1/`, run on the IR of its file. An output case passes when the output equals its `expect`. An error case passes when loom stops with the message of its `expect_error`.
+- Every sentence of the gold sets in `orthography2ipa/data/gold/`, compared with `orthography2ipa.transcribe` for the lect of the sentence.
+
+The script exports one GGUF for each language and writes `benchmarks/loom_parity.json`. The last run gives:
+
+| Set | Languages | Cases | Pass |
+| :--- | ---: | ---: | ---: |
+| Conformance vectors, output cases | 22 files | 3880 | 3880 |
+| Conformance vectors, error cases | 1 file | 1 | 1 |
+| Gold sentences | 188 lects | 6369 | 6369 |
+
+The run used loom.cpp commit `f58f905` and orthography2ipa 7.133.1a4. To run it again, build loom.cpp and the host, then run the script:
+
+```bash
+git clone https://github.com/loom-ai-org/loom.cpp ../loom.cpp
+cmake -S scripts/loom_host -B build/loom_host -DLOOM_DIR=$PWD/../loom.cpp -DCMAKE_BUILD_TYPE=Release
+cmake --build build/loom_host -j4 --target o2i_loom
+PYTHONPATH=$PWD .venv/bin/python scripts/loom_parity.py build/loom_host/o2i_loom "$(git -C ../loom.cpp rev-parse --short HEAD)"
 ```
 
 ## Run the Lua interpreter without loom

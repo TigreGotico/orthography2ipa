@@ -3,7 +3,7 @@
   "name": "Proto-Italic",
   "script": "IPA-reconstruction",
   "script_type": "reconstruction",
-  "parent": "x-clade-ital1284",
+  "inherits": "x-clade-ital1284",
   "graphemes": {
     "p": [
       "p"

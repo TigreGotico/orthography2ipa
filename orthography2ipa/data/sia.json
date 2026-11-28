@@ -165,7 +165,7 @@
       "ɪ"
     ]
   },
-  "parent": "x-clade-saam1281",
+  "inherits": "x-clade-saam1281",
   "ancestors": [
     {
       "code": "x-clade-saam1281",

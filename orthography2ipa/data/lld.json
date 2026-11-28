@@ -206,7 +206,7 @@
       "ʒ"
     ]
   },
-  "parent": "x-clade-gallorom",
+  "inherits": "x-clade-gallorom",
   "ancestors": [
     {
       "code": "la-x-gallia",

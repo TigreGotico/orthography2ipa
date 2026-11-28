@@ -52,7 +52,7 @@
     "start_year": 1000,
     "end_year": null
   },
-  "parent": "x-clade-roma1334",
+  "inherits": "x-clade-roma1334",
   "ancestors": [
     {
       "code": "x-clade-roma1334",

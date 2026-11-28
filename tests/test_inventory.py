@@ -162,6 +162,14 @@ _RU_OKANJE_DEAD = {
 }
 
 KNOWN_DEAD_RULES = {
+    # The regional French rules for the ⟨uin⟩ unit target its fr-FR readings
+    # [ɥɛ̃] and [ɥin] (juin, ruine). They are dead while fr-FR still reads
+    # ⟨u⟩ and ⟨in⟩ apart, and live once fr-FR reads ⟨uin⟩ as one unit
+    # (TigreGotico/orthography2ipa PR #2710), when these entries can go.
+    "fr-BE": {"FR_NASAL_BLOCK_PREVOCALIC_UIN"},
+    "fr-CA": {"FR_CA_LAX_UIN", "FR_CA_NASAL_E_CLOSE_U"},
+    "fr-FR-x-midi": {"FR_MIDI_UNIT_UE_CORONAL", "FR_MIDI_UNIT_UE_LABIAL",
+                     "FR_MIDI_UNIT_UE_LABIODENTAL", "FR_MIDI_UNIT_UE_VELAR"},
     # Maltese inherits the Arabic allophone rules wholesale but emits neither
     # the long vowels they target (/aː/, /iː/, /uː/) nor their environments, so
     # the whole inherited family is unreachable there.
@@ -312,7 +320,7 @@ KNOWN_DEAD_RULES = {
     # grapheme table this spec is deliberately missing; revisit once yej gains
     # a sourced Hebrew-abjad grapheme table.
     "yej": {"EL_S_VOICING", "EL_GAMMA_FRONTING"},
-    # vls (West Flemish) declares parent="nl-NL" with its own "graphemes": {} to
+    # vls (West Flemish) declares inherits="nl-NL" with its own "graphemes": {} to
     # inherit nl-NL's table wholesale, but (pre-existing, unrelated to the
     # Germanic beat-espeak campaign that added these rules) that inheritance
     # does not actually populate the plain vowel letters a/e/i/o/u for this

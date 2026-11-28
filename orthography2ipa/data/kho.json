@@ -51,7 +51,7 @@
     "end_year": 1000
   },
   "iso639_3": "kho",
-  "parent": "ira",
+  "inherits": "ira",
   "ancestors": [
     {
       "code": "ira",

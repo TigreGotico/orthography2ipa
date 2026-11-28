@@ -79,6 +79,6 @@ def test_janubi_claims_a_label_rather_than_a_languoid():
     raw = _raw("ar-SA-x-janubi")
     assert raw["sources"] == []
     assert "NOT AS A LANGUOID" in raw["notes"]
-    assert raw["parent"] == "ar-x-peninsul", (
+    assert raw["inherits"] == "ar-x-peninsul", (
         "parenting it to rijal-alma or tihama-qahtan would assert a grouping no "
         "source supports")

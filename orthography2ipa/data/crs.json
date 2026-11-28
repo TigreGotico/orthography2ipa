@@ -288,9 +288,225 @@
       "phonemes": [],
       "surface": "",
       "notes": "Disabled inherited French closed-syllable e-rule: no /ə/ in Seselwa (Corne 1977)."
+    },
+    {
+      "id": "FR_E_SCHWA_BEFORE_OBSTRUENT_LIQUID",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited French e-rule: it keeps the schwa of ⟨e⟩ before an obstruent-liquid onset, and Seselwa has no /ə/ (Corne 1977)."
+    },
+    {
+      "id": "FR_ENT_MUTE_AFTER_AI_OI",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_UM_FINAL_LATIN",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_UM_FINAL_LATIN_PLURAL",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_ING_FINAL_ORAL_I",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_UM_FINAL_M",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_ING_FINAL_VELAR_NASAL",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_E_MUTE_AFTER_SOFT_G",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_IED_CLOSE_MID",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_IED_CLOSE_MID_PLURAL",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_E_MUTE_PREFIX_RE_SS",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_E_BEFORE_DOUBLED_NONFINAL",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_E_BEFORE_DOUBLED_FINAL",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_X_VOICED_INITIAL_EX",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_X_VOICED_INITIAL_EX_H",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_X_VOICED_PREFIXED_EX",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_X_Z_ORDINAL",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_G_MUTE_BEFORE_T",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_G_MUTE_FINAL_AFTER_NASAL",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_CH_HARD_BEFORE_SONORANT",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_P_MUTE_FINAL_MPT",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_P_MUTE_COMPT",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_ING_FINAL_G_MUTE",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_EIL_AFTER_GU",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_GU_BEFORE_TREMA_E",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_TREMA_E_MUTE_AFTER_GU",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_G_HARD_BEFORE_TREMA_U",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_C_MUTE_FINAL_AFTER_NASAL",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_X_S_AFTER_OI",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_NUMERAL_FINAL_X_SOUNDS",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_HUIT_FINAL_T_SOUNDS",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_X_K_BEFORE_SIBILANT",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_E_RESSUSCITER_RESSUYER",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_CH_HARD_BEFORE_OEU",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_LL_YOD_AFTER_UI",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
+    },
+    {
+      "id": "FR_NASAL_BLOCK_PREVOCALIC_UIN",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled inherited fr-FR rule. The fr-FR rules for frequent French spellings (⟨-aient⟩, ⟨ex⟩, ⟨-um⟩, ⟨-ing⟩, ⟨ch⟩ before a consonant, mute final ⟨g c p⟩, the doubled consonants, the numerals) cite Martinon (1913) on French orthography. Seselwa has its own phonemic orthography (Corne 1977), and no source states these rules for it, so the spec does not inherit them."
     }
   ],
-  "parent": "fr-FR",
+  "inherits": "fr-FR",
   "ancestors": [
     {
       "code": "fr-FR",
@@ -309,6 +525,350 @@
       "role": "substrate",
       "weight": 0.05,
       "notes": "Malagasy substrate carried over from Mauritius, where Malagasy-speaking slaves were the majority of the enslaved population through the early-to-mid 18th century before Seychelles was settled from Mauritius in 1770; APiCS ch. 56 lists c. 25 Malagasy-origin loanwords (e.g. 'kelkel' 'armpit', 'kalou' 'pestle')."
+    }
+  ],
+  "sandhi_rules": [
+    {
+      "id": "FR_NEUF_V_BEFORE_HEURES",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French numeral sandhi (huit, six, dix, neuf; Martinon 1913: 234-235, 328, 345-346) reads the French numerals, and no source states it for Seselwa (sis, dis, wit, nef). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_DIX_Z_BEFORE_HUIT_NEUF",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French numeral sandhi (huit, six, dix, neuf; Martinon 1913: 234-235, 328, 345-346) reads the French numerals, and no source states it for Seselwa (sis, dis, wit, nef). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French numeral sandhi (huit, six, dix, neuf; Martinon 1913: 234-235, 328, 345-346) reads the French numerals, and no source states it for Seselwa (sis, dis, wit, nef). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_HUIT_MUTE_BEFORE_CONSONANT",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French numeral sandhi (huit, six, dix, neuf; Martinon 1913: 234-235, 328, 345-346) reads the French numerals, and no source states it for Seselwa (sis, dis, wit, nef). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_NUMERAL_Z_BEFORE_VOWEL",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French numeral sandhi (huit, six, dix, neuf; Martinon 1913: 234-235, 328, 345-346) reads the French numerals, and no source states it for Seselwa (sis, dis, wit, nef). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_NEUF_V_BEFORE_ANS",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_VINGT_T_BEFORE_UNIT",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_VINGT_T_BEFORE_ET_HUIT",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_EST_NOUN_AFTER_COMPASS",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_EST_NOUN_BEFORE_HYPHEN",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_ENT_MUTE_AFTER_ILS",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_IENT_MUTE_AFTER_ILS",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_ENT_LIAISON_INVERSION",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_T_INVERSION",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_Z_BEFORE_Y_EN",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_T_EST_ONZE",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_H_ASPIRE_BLOCKS_LINK",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LINK_BLOCKED_BEFORE_ONZE_OUI",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_Z_DETERMINER",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_Z_INDEFINITE",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_Z_NUMERAL",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_Z_PRONOUN",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_T_PROCLITIC",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_T_NUMERAL",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_N_ARTICLE",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_N_PRONOUN",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_R_PREMIER",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LINK_BLOCKED_BEFORE_HUIT_OUI",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_Z_PREPOSITION",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_T_GRAND",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_QUATRE_E_BEFORE_VINGT",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
+    },
+    {
+      "id": "FR_LIAISON_Z",
+      "name": "z-liaison",
+      "left_context": "z$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "z‿",
+      "obligatory": true,
+      "notes": "les amis → lez‿ami Kept here with the onset class fr-FR had before it added [y ø œ ə] (Martinon 1913 on French liaison): no source states that wider class for Seselwa, so crs keeps the reading it had."
+    },
+    {
+      "id": "FR_LIAISON_T",
+      "name": "t-liaison",
+      "left_context": "t$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "t‿",
+      "obligatory": true,
+      "notes": "petit ami → pətit‿ami Kept here with the onset class fr-FR had before it added [y ø œ ə] (Martinon 1913 on French liaison): no source states that wider class for Seselwa, so crs keeps the reading it had."
+    },
+    {
+      "id": "FR_LIAISON_N",
+      "name": "n-liaison",
+      "left_context": "n$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "n‿",
+      "obligatory": true,
+      "notes": "un ami → ɛ̃n‿ami Kept here with the onset class fr-FR had before it added [y ø œ ə] (Martinon 1913 on French liaison): no source states that wider class for Seselwa, so crs keeps the reading it had."
+    },
+    {
+      "id": "FR_LIAISON_R",
+      "name": "r-liaison",
+      "left_context": "ʁ$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "ʁ‿",
+      "obligatory": false,
+      "notes": "premier étage → optional Kept here with the onset class fr-FR had before it added [y ø œ ə] (Martinon 1913 on French liaison): no source states that wider class for Seselwa, so crs keeps the reading it had."
+    },
+    {
+      "id": "FR_LIAISON_P",
+      "name": "p-liaison",
+      "left_context": "p$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "p‿",
+      "obligatory": false,
+      "notes": "trop aimable → optional Kept here with the onset class fr-FR had before it added [y ø œ ə] (Martinon 1913 on French liaison): no source states that wider class for Seselwa, so crs keeps the reading it had."
+    },
+    {
+      "id": "FR_ENCHAÎNEMENT",
+      "name": "enchaînement",
+      "left_context": "([bdɡvzʒ])$",
+      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "\\1‿",
+      "obligatory": true,
+      "notes": "une amie → resyllabification: the final consonant is kept and the link mark follows it (rouge orange → ʁuʒ‿ ɔʁɑ̃ʒ) Kept here with the onset class fr-FR had before it added [y ø œ ə] (Martinon 1913 on French liaison): no source states that wider class for Seselwa, so crs keeps the reading it had."
+    },
+    {
+      "id": "FR_IENT_LIAISON_INVERSION",
+      "name": "disabled",
+      "left_context": "(?!)",
+      "right_context": "(?!)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "Disabled inherited fr-FR rule: the French sandhi that reads the spelling (vingt, neuf ans, est, verbal -ent; Martinon 1913: 161, 329-331, 370-371), the obligatory French liaisons (Martinon 1913: 359-391) and the French h aspiré stems (Martinon 1913: 248-254) read French words and French spelling, and no source states them for Seselwa, whose spelling writes the consonant it pronounces (en for a, zot, bann; onz is eleven). The pattern (?!) never matches."
     }
   ]
 }

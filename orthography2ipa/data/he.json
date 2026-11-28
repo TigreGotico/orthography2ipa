@@ -656,7 +656,7 @@
     "stress_mark": "ˈ",
     "notes": "Modern Israeli Hebrew default is milra (final stress, -1); stress is distinctive (Laufer 1999 p.98: ˈbereχ 'knee' vs beˈreχ 'he blessed'). Milel (penultimate) is common in a substantial minority of words (especially segolate nouns: מֶלֶךְ, שֶׁמֶשׁ) and cannot be predicted from unvocalized orthography. With niqqud the stressed syllable is identifiable; without niqqud (the norm in adult text) stress placement is not reliably computable from orthography alone. This block models the milra default only. Sources: Laufer (1999), Bolozky (1997)."
   },
-  "parent": "hbo",
+  "inherits": "hbo",
   "ancestors": [
     {
       "code": "hbo",

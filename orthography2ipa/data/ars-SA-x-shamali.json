@@ -5,7 +5,7 @@
  "script_type": "abjad",
  "graphemes_base": "ars-SA",
  "allophones_base": "ars-SA",
- "parent": "ars-SA",
+ "inherits": "ars-SA",
  "quality": "research",
  "graphemes": {},
  "allophones": {},

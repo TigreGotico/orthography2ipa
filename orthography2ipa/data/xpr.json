@@ -41,7 +41,7 @@
     "end_year": 700
   },
   "iso639_3": "xpr",
-  "parent": "ira",
+  "inherits": "ira",
   "ancestors": [
     {
       "code": "ira",

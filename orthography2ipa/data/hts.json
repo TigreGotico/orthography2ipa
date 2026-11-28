@@ -198,7 +198,7 @@
       "uː"
     ]
   },
-  "parent": "x-clade-hadz1240",
+  "inherits": "x-clade-hadz1240",
   "ancestors": [
     {
       "code": "x-clade-hadz1240",

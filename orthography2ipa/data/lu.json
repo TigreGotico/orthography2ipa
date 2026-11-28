@@ -111,7 +111,7 @@
       "notes": "Confirms intervocalic/pre-semivowel fricative allophony of b/p ([β]/[ɸ] between vowels, w, and y)."
     }
   ],
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "x-clade-narr1281",

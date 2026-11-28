@@ -4,7 +4,7 @@
   "script": "Burmese",
   "script_type": "abugida",
   "quality": "stub",
-  "parent": "sit",
+  "inherits": "sit",
   "inherent_vowel": "a",
   "graphemes": {},
   "allophones": {},

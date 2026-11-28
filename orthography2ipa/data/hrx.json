@@ -511,7 +511,7 @@
       "stress": "stressed"
     }
   ],
-  "parent": "gmh",
+  "inherits": "gmh",
   "ancestors": [
     {
       "code": "gmh",

@@ -318,7 +318,7 @@
     "source": "glottolog",
     "notes": "South/Centre/Littoral regions of Cameroon — Glottolog's representative point for Basaa."
   },
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "x-clade-narr1281",

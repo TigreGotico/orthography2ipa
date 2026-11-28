@@ -80,7 +80,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-musk1252",
+ "inherits": "x-clade-musk1252",
  "phonemes": [
   "b",
   "h",

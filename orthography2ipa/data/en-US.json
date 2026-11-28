@@ -40,7 +40,7 @@
       "əʊ"
     ]
   },
-  "parent": "en-GB",
+  "inherits": "en-GB",
   "ancestors": [
     {
       "code": "enm",

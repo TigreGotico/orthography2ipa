@@ -144,7 +144,7 @@
       "ʒ"
     ]
   },
-  "parent": "x-clade-west2792",
+  "inherits": "x-clade-west2792",
   "ancestors": [
     {
       "code": "x-clade-west2792",

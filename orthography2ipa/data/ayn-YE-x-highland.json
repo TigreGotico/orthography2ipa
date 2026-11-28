@@ -3,7 +3,7 @@
  "name": "Central Highland Yemeni Arabic",
  "script": "Arabic",
  "script_type": "abjad",
- "parent": "ayn-YE",
+ "inherits": "ayn-YE",
  "graphemes_base": "ayn-YE",
  "graphemes": {},
  "allophones_base": "ayn-YE",

@@ -119,7 +119,7 @@
     "though": "do",
     "thus": "dʌs"
   },
-  "parent": "gem-x-ingvaeon",
+  "inherits": "gem-x-ingvaeon",
   "ancestors": [
     {
       "code": "gem-x-ingvaeon",

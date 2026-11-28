@@ -321,7 +321,7 @@
       "dʒ"
     ]
   },
-  "parent": "pt-BR",
+  "inherits": "pt-BR",
   "notes": "Nortista (Belém, Pará). Coda /S/ is palatal [ʃ ʒ]: ALiB gives above 76 % palatal only in Rio de Janeiro, Belém and Florianópolis (Borges & Mendonça 2019: 58, quoting Cardoso et al. 2014: 111). /t d/ affricate before [i]: Belém 88 % (Oliveira 2013: 216) and categorical in ALiB (Battisti & Dornelles Filho 2015: 226). Pretonic /e o/ stay closed as in the base: 'a região Norte não pode ser caracterizada como uma área de vogais abertas' (Mota & Lopes 2018: 217). Coda /R/ is the glottal [h], dominant in the North in the ALiB maps (Silva & Aguilera, preprint, not peer reviewed). Manaus is outside this spec: its word-final /S/ is 67.1 % alveolar (Marins & Margotti 2012: 265).",
   "quality": "research",
   "script_type": "alphabet",

@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-buna1274",
+ "inherits": "x-clade-buna1274",
  "phonemes": [
   "j",
   "j̪",

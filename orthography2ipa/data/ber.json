@@ -300,7 +300,7 @@
       "rː"
     ]
   },
-  "parent": "x-clade-berb1260",
+  "inherits": "x-clade-berb1260",
   "ancestors": [
     {
       "code": "afa",

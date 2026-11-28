@@ -211,7 +211,7 @@ def test_empty_spec_does_not_claim_to_inherit_from_its_parent(code):
     disclosure this guard wants, so negation clears it.
     """
     raw = json.loads((DATA_DIR / f"{code}.json").read_text(encoding="utf-8"))
-    parent = raw.get("parent")
+    parent = raw.get("inherits")
     if not parent or get(code).graphemes:
         return
     if not get(parent).graphemes:
@@ -222,6 +222,6 @@ def test_empty_spec_does_not_claim_to_inherit_from_its_parent(code):
     ]
     assert not offenders, (
         f"{code}.json resolves to an empty grapheme table yet its notes claim "
-        f"it takes the system of '{parent}': {offenders}. 'parent' carries no "
+        f"it takes the system of '{parent}': {offenders}. 'inherits' carries no "
         f"data; declare 'graphemes_base' or correct the notes"
     )

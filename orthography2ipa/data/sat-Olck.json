@@ -5,7 +5,7 @@
   "script_type": "alphabet",
   "orthography_kind": "native",
   "quality": "skeleton",
-  "parent": "sat",
+  "inherits": "sat",
   "ancestors": [
     {
       "code": "sat",

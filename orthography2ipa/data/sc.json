@@ -239,7 +239,7 @@
       "ʒ"
     ]
   },
-  "parent": "x-clade-sard1257",
+  "inherits": "x-clade-sard1257",
   "ancestors": [
     {
       "code": "la",

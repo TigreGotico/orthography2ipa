@@ -53,7 +53,7 @@
     "end_year": 1000
   },
   "iso639_3": "sog",
-  "parent": "ira",
+  "inherits": "ira",
   "ancestors": [
     {
       "code": "ira",

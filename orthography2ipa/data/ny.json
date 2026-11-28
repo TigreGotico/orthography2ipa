@@ -1,7 +1,7 @@
 {
   "code": "ny",
   "name": "Chichewa (Nyanja)",
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",

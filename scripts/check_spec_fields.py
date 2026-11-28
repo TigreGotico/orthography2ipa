@@ -34,7 +34,7 @@ INERT: Dict[str, str] = {
     "LanguageSpec.family": "classification metadata",
     "LanguageSpec.family_path": "classification metadata",
     "LanguageSpec.clade": "marks a grouping node in the registry",
-    "LanguageSpec.parent": "inheritance is resolved before the compiler runs",
+    "LanguageSpec.inherits": "inheritance is resolved before the compiler runs",
     "LanguageSpec.ancestors": "read by the distance metric, not by G2P",
     "LanguageSpec.orthography_kind": "classification metadata",
     "LanguageSpec.iso639_3": "external identifier",

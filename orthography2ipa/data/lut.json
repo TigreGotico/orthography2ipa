@@ -96,7 +96,7 @@
       "ə"
     ]
   },
-  "parent": "x-clade-sali1255",
+  "inherits": "x-clade-sali1255",
   "ancestors": [
     {
       "code": "x-clade-sali1255",

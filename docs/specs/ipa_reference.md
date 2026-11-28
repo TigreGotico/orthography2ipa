@@ -244,7 +244,7 @@ Portuguese has the nasal vowels /ã ẽ ĩ õ ũ/, and `pt-PT` writes the first 
 
 French has the labio-palatal approximant /ɥ/, as in *nuit* and *lui*. It is a separate sound from /j/ and /w/. The spec `fr-FR` maps ⟨ui⟩ to [ɥi], so `nuit` is [nɥi].
 
-Liaison is a process across a word boundary, so the grapheme map holds the base forms only. The spec `fr-FR` declares its cross-word rules in `sandhi_rules`: z-, t-, n-, r- and p-liaison, and enchaînement. A liaison is marked with ‿.
+Liaison is a process across a word boundary, so the grapheme map holds the base forms only. The spec `fr-FR` declares its cross-word rules in `sandhi_rules`: the obligatory liaisons, which read the spelling of the words (⟨les amis⟩ [lez‿ ami]), and the enchaînement of a pronounced final consonant (⟨cet homme⟩ [sɛt‿ ɔm]). A liaison is marked with ‿ after the left word.
 
 French has four nasal vowels: /ɛ̃/ (*vin*), /ɑ̃/ (*vent*), /ɔ̃/ (*bon*) and /œ̃/ (*brun*). Many speakers merge /œ̃/ with /ɛ̃/.
 

@@ -144,7 +144,7 @@
       "z"
     ]
   },
-  "parent": "x-clade-nort3152",
+  "inherits": "x-clade-nort3152",
   "ancestors": [
     {
       "code": "gem",

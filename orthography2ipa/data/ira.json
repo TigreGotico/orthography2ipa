@@ -188,7 +188,7 @@
       "dʒ"
     ]
   },
-  "parent": "x-clade-iran1269",
+  "inherits": "x-clade-iran1269",
   "ancestors": [
     {
       "code": "iir",

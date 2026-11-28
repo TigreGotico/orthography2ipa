@@ -222,7 +222,7 @@
       "z"
     ]
   },
-  "parent": "bnt",
+  "inherits": "bnt",
   "ancestors": [
     {
       "code": "bnt",
