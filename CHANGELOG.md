@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.135.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.135.1a1) (2026-11-28)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.135.0a1...7.135.1a1)
+
+**Merged pull requests:**
+
+- fix\(pt\): read the French loan maillot as maiô [\#2740](https://github.com/TigreGotico/orthography2ipa/pull/2740) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.135.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.135.0a1) (2026-11-27)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.134.0a1...7.135.0a1)
@@ -331,10 +339,6 @@
 ## [7.131.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.131.0a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.130.2a1...7.131.0a1)
-
-**Merged pull requests:**
-
-- feat: export lexicon\_path and UnmappedGraphemeWarning [\#2637](https://github.com/TigreGotico/orthography2ipa/pull/2637) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.130.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.130.2a1) (2026-11-26)
 
