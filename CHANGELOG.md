@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.136.5a2](https://github.com/TigreGotico/orthography2ipa/tree/7.136.5a2) (2026-11-28)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.136.5a1...7.136.5a2)
+
+**Merged pull requests:**
+
+- fix\(fr-FR\): every form of humer and huer blocks the liaison \(rest of \#2737\) [\#2772](https://github.com/TigreGotico/orthography2ipa/pull/2772) ([goldyfruit](https://github.com/goldyfruit))
+- ci: release on a merged fork pull request too \(pull\_request\_target\) [\#2758](https://github.com/TigreGotico/orthography2ipa/pull/2758) ([goldyfruit](https://github.com/goldyfruit))
+
 ## [7.136.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.136.5a1) (2026-11-28)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.136.4a3...7.136.5a1)
@@ -307,10 +316,6 @@
 ## [7.131.5a1](https://github.com/TigreGotico/orthography2ipa/tree/7.131.5a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.131.4a5...7.131.5a1)
-
-**Merged pull requests:**
-
-- fix\(pt\): keep the hiatus of an atonic i before nh in pt-PT [\#2678](https://github.com/TigreGotico/orthography2ipa/pull/2678) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.131.4a5](https://github.com/TigreGotico/orthography2ipa/tree/7.131.4a5) (2026-11-26)
 
