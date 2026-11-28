@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.136.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.136.0a2) (2026-11-28)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.136.0a1...7.136.0a2)
+
+**Merged pull requests:**
+
+- test\(ir\): regenerate the pt-PT-syllable vectors on dev [\#2776](https://github.com/TigreGotico/orthography2ipa/pull/2776) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.136.0a1](https://github.com/TigreGotico/orthography2ipa/tree/7.136.0a1) (2026-11-28)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.135.1a1...7.136.0a1)
@@ -335,10 +343,6 @@
 ## [7.131.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.131.1a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.131.0a2...7.131.1a1)
-
-**Merged pull requests:**
-
-- fix\(ir\): look up the lexicon by the spelling before mark [\#2644](https://github.com/TigreGotico/orthography2ipa/pull/2644) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.131.0a2](https://github.com/TigreGotico/orthography2ipa/tree/7.131.0a2) (2026-11-26)
 
