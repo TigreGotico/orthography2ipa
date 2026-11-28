@@ -1344,6 +1344,28 @@ class SandhiRule:
         A single boundary may need both halves (``els dos`` → [əlz ðos]:
         the left ⟨s⟩ voices *and* the right ⟨d⟩ lenites), so the two sides are
         resolved independently — see :meth:`~orthography2ipa.sandhi.SandhiEngine.apply`.
+    left_spelling : Optional[str]
+        Regex that must also find a match in the SPELLING of the left word.
+        ``None`` (the default) sets no spelling condition. It is the spelling
+        mirror of :attr:`left_context`: what a rule needs when two words with
+        the same IPA take different sandhi, because only the written form
+        tells them apart (French ⟨cent⟩ and ⟨sang⟩ are both [sɑ̃], and only
+        ⟨cent ans⟩ links with [t]). The spelling is the casefolded text of the
+        word without the punctuation around it, and a hyphen ends it: in
+        ⟨vingt-deux⟩ the two words read ``vingt`` and ``deux``.
+    right_spelling : Optional[str]
+        The same condition on the spelling of the right word.
+    left_joined_spelling : Optional[str]
+        Regex that must find a match in the JOINED spelling of the left word:
+        for a word joined to the word before it by a hyphen, the spelling of
+        that word, ``-`` and its own spelling; for any other word, its own
+        spelling. It spans at most two words. In ⟨quatre-vingt-deux⟩ the
+        joined spellings are ``quatre``, ``quatre-vingt`` and ``vingt-deux``,
+        so ``^(?!quatre-vingt$)`` tells ⟨vingt-deux⟩ from ⟨quatre-vingt-deux⟩,
+        and an anchored word list such as ``^(?:les|des)$`` also says that the
+        word is not joined (⟨donne-les⟩ reads ``donne-les``).
+    right_joined_spelling : Optional[str]
+        The same condition on the joined spelling of the right word.
     obligatory : bool
         Whether this rule applies unconditionally.
     notes : str
@@ -1357,6 +1379,12 @@ class SandhiRule:
     right_transform: Optional[str] = None
     obligatory: bool = True
     notes: str = ""
+    # The spelling conditions come after ``notes``, so a positional call that
+    # predates them keeps its meaning.
+    left_spelling: Optional[str] = None
+    right_spelling: Optional[str] = None
+    left_joined_spelling: Optional[str] = None
+    right_joined_spelling: Optional[str] = None
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1493,6 +1521,10 @@ class AllophoneRule:
         (Russian ⟨с⟩ of ⟨гости⟩ palatalises because the ⟨т⟩ after it stands
         before a soft vowel; that is a fact about the ⟨т⟩'s underlying
         identity, not about what it surfaces as). Empty = don't care.
+    followed_by_phoneme_3 : Tuple[str, ...]
+        Like :attr:`followed_by_phoneme_2`, three graphemes ahead (the
+        Midi loi de position: a mid vowel before an obstruent-liquid onset
+        is close only when a full vowel, not a schwa, follows the onset).
     requires_other_nucleus : Optional[bool]
         Require (``True``) — or forbid (``False``) — that some OTHER slot
         in the word carries a syllable nucleus. A rule that DELETES a
@@ -1662,6 +1694,8 @@ class AllophoneRule:
     notes: str = ""
     mutates_neighbor: Optional[str] = None
     mutates_neighbor_side: Optional[str] = None
+    # last, so that a positional argument keeps the field it had before
+    followed_by_phoneme_3: Tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
         if isinstance(self.phonemes, str):
@@ -1676,6 +1710,8 @@ class AllophoneRule:
             self, "preceded_by_phoneme_2", tuple(self.preceded_by_phoneme_2))
         object.__setattr__(
             self, "followed_by_phoneme_2", tuple(self.followed_by_phoneme_2))
+        object.__setattr__(
+            self, "followed_by_phoneme_3", tuple(self.followed_by_phoneme_3))
         object.__setattr__(
             self, "preceded_by_surface_phoneme_2",
             tuple(self.preceded_by_surface_phoneme_2))

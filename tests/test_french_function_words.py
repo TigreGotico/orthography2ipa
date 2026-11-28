@@ -41,6 +41,10 @@ def test_a_function_word_has_its_lexique_reading(tag, text, expected):
     ("jette", "ʒɛt"), ("belles", "bɛl"),
 ])
 def test_e_before_a_doubled_l_t_or_r_is_open(tag, text, expected):
+    if tag == "fr-CA" and expected.endswith("ɛʁ"):
+        # Laurentian /ɛ/ before a word-final /ʁ/ is long and diphthongised
+        # [ai̯] (Dumas 1974: 18-21 and Table II, p. 26)
+        expected = expected[:-2] + "ai̯ʁ"
     assert o2i.transcribe(text, tag) == expected
 
 

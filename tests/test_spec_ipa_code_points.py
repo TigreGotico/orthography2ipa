@@ -15,7 +15,7 @@ _SANDHI_FIELDS = ("left_context", "right_context", "transform", "right_transform
 _ALLOPHONE_FIELDS = (
     "phonemes", "surface", "append", "mutates_neighbor",
     "preceded_by_phoneme", "followed_by_phoneme",
-    "preceded_by_phoneme_2", "followed_by_phoneme_2",
+    "preceded_by_phoneme_2", "followed_by_phoneme_2", "followed_by_phoneme_3",
     "preceded_by_surface_phoneme_2",
 )
 

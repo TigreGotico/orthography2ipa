@@ -476,7 +476,8 @@ def _allophone_rule(rule, spec: LanguageSpec, atoms: Sequence[str], keys: Dict[s
             hits = sorted(key for key in keys if key and key.lower() in wanted)
             test = _and(_EX(k), ["entry_in", k, hits])
             slot.append(_not(test) if negate else test)
-    for name, k in (("preceded_by_phoneme_2", -2), ("followed_by_phoneme_2", 2)):
+    for name, k in (("preceded_by_phoneme_2", -2), ("followed_by_phoneme_2", 2),
+                    ("followed_by_phoneme_3", 3)):
         wanted = getattr(rule, name)
         if wanted:
             hits = sorted(key for key, rs in keys.items()
@@ -797,8 +798,9 @@ def fragment_digest(fragment: dict) -> str:
 
 
 _FRAGMENT_PARTS = {"ir_version", "langs", "words", "sandhi", "unsupported"}
-_SANDHI_PAIR_KEYS = {"left", "right", "left_out", "right_out", "left_spelling", "right_spelling"}
-_SANDHI_PAUSE_KEYS = {"left", "left_out", "left_spelling", "pause"}
+_SANDHI_PAIR_KEYS = {"left", "right", "left_out", "right_out", "left_spelling", "right_spelling",
+                     "left_joined_spelling", "right_joined_spelling"}
+_SANDHI_PAUSE_KEYS = {"left", "left_out", "left_spelling", "left_joined_spelling", "pause"}
 
 
 def merge_fragments(fragments: Sequence[dict], ir_version: int,
@@ -887,8 +889,9 @@ def _sandhi_rule(rule: dict) -> dict:
         for side in ("left", "right"):
             if side + "_out" in rule:
                 item[side + "_out"] = compile_template(rule[side + "_out"])
-            if side + "_spelling" in rule:
-                item[side + "_spelling"] = compile_pattern(rule[side + "_spelling"])
+            for key in (side + "_spelling", side + "_joined_spelling"):
+                if key in rule:
+                    item[key] = compile_pattern(rule[key])
     except (re.error, ValueError) as err:
         raise ValueError(f"fragment sandhi rule {rule!r}: {err}") from err
     if pause:
@@ -1083,6 +1086,9 @@ def _build(spec: LanguageSpec, data_ref, apply_stress, apply_allophony, apply_sa
                 item["left_out"] = compile_template(rule.transform)
             if rule.right_transform is not None:
                 item["right_out"] = compile_template(rule.right_transform)
+            for key in ("left_spelling", "right_spelling", "left_joined_spelling", "right_joined_spelling"):
+                if getattr(rule, key) is not None:
+                    item[key] = compile_pattern(getattr(rule, key))
             sandhi.append(item)
             for part in (*item.get("left_out", ()), *item.get("right_out", ())):
                 if part[0] == "lit":

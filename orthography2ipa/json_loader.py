@@ -226,6 +226,10 @@ def load_json_spec(code: str) -> LanguageSpec:
                 right_context=sr["right_context"],
                 transform=sr.get("transform"),
                 right_transform=sr.get("right_transform"),
+                left_spelling=sr.get("left_spelling"),
+                right_spelling=sr.get("right_spelling"),
+                left_joined_spelling=sr.get("left_joined_spelling"),
+                right_joined_spelling=sr.get("right_joined_spelling"),
                 obligatory=sr.get("obligatory", True),
                 notes=sr.get("notes", ""),
             )
@@ -266,6 +270,7 @@ def load_json_spec(code: str) -> LanguageSpec:
                     ar.get("word_contains_grapheme_not", ())),
                 preceded_by_phoneme_2=tuple(ar.get("preceded_by_phoneme_2", ())),
                 followed_by_phoneme_2=tuple(ar.get("followed_by_phoneme_2", ())),
+                followed_by_phoneme_3=tuple(ar.get("followed_by_phoneme_3") or ()),
                 preceded_by_surface_phoneme_2=tuple(
                     ar.get("preceded_by_surface_phoneme_2", ())),
                 requires_other_nucleus=ar.get("requires_other_nucleus"),

@@ -24,6 +24,7 @@ Notes on intentional permissiveness:
 from __future__ import annotations
 
 import json
+import re
 import unicodedata
 from pathlib import Path
 from typing import Dict, List, Literal, Optional, Tuple, Union
@@ -151,8 +152,24 @@ class SandhiRuleModel(_Strict):
     right_context: str
     transform: Optional[str] = None
     right_transform: Optional[str] = None
+    left_spelling: Optional[str] = None
+    right_spelling: Optional[str] = None
+    left_joined_spelling: Optional[str] = None
+    right_joined_spelling: Optional[str] = None
     obligatory: bool = True
     notes: str = ""
+
+    @field_validator("left_context", "right_context", "left_spelling", "right_spelling",
+                     "left_joined_spelling", "right_joined_spelling")
+    @classmethod
+    def _valid_regex(cls, v: Optional[str]) -> Optional[str]:
+        """A context or spelling condition must be a regex that compiles."""
+        if v is not None:
+            try:
+                re.compile(v)
+            except re.error as err:
+                raise ValueError(f"not a valid regex: {v!r} ({err})") from err
+        return v
 
     @model_validator(mode="after")
     def _at_least_one_transform(self) -> "SandhiRuleModel":
@@ -207,6 +224,7 @@ class AllophoneRuleModel(_Strict):
         "front_vowel", "back_vowel", "palatal", "emphatic", "word_boundary", "any"]] = None
     preceded_by_phoneme_2: Optional[List[str]] = None
     followed_by_phoneme_2: Optional[List[str]] = None
+    followed_by_phoneme_3: Optional[List[str]] = None
     preceded_by_surface_phoneme_2: Optional[List[str]] = None
     requires_other_nucleus: Optional[bool] = None
     followed_by_nucleus: Optional[bool] = None

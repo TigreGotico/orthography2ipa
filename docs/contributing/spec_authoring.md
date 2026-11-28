@@ -189,7 +189,7 @@ A sound that depends on its neighbours, its position or the stress is a rule, no
 | The context | The mechanism |
 |---|---|
 | A neighbouring sound or letter class | `allophone_rules` with `preceded_by` or `followed_by` (`vowel`, `consonant`, `front_vowel`, `back_vowel`, `palatal`, `word_boundary` and more) |
-| A neighbour two or three slots away | `preceded_by_2`, `followed_by_2`, `preceded_by_3`, `followed_by_3`, `preceded_by_phoneme_2`, `followed_by_phoneme_2` |
+| A neighbour two or three slots away | `preceded_by_2`, `followed_by_2`, `preceded_by_3`, `followed_by_3`, `preceded_by_phoneme_2`, `followed_by_phoneme_2`, `followed_by_phoneme_3` |
 | The position in the word or syllable | `positional_graphemes`, `word_initial`, `word_final`, `syllable_position` |
 | The stress | The `stress` block and the `nucleus_stressed` position |
 | A word boundary | `sandhi_rules` |
