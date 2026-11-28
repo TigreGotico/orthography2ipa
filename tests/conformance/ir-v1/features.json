@@ -123,6 +123,10 @@
   "el.jsonl",
   15
  ],
+ "foreign_nuclei": [
+  "pt-PT-syllable.jsonl",
+  57
+ ],
  "gate.not": [
   "pt-PT@baixo_minhoto.jsonl",
   3
@@ -146,6 +150,10 @@
  "gated_map": [
   "pt-PT@algarve_barlavento.jsonl",
   0
+ ],
+ "glide_hiatus": [
+  "pt-PT-syllable.jsonl",
+  8
  ],
  "hiatus": [
   "pt-PT.jsonl",
@@ -263,6 +271,10 @@
   "lo.jsonl",
   2
  ],
+ "prefix_cuts": [
+  "pt-PT-syllable.jsonl",
+  13
+ ],
  "prefixes": [
   "li.jsonl",
   35
@@ -295,6 +307,10 @@
   "ar+arbtok.jsonl",
   6
  ],
+ "seams": [
+  "pt-PT-syllable.jsonl",
+  16
+ ],
  "secondary": [
   "en-GB.jsonl",
   89
@@ -322,6 +338,10 @@
  "splitter": [
   "fy.jsonl",
   20
+ ],
+ "stem_cuts": [
+  "pt-PT-syllable.jsonl",
+  11
  ],
  "syll.closed": [
   "en-GB.jsonl",

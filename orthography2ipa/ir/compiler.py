@@ -787,6 +787,9 @@ def build_ir(code: str, data_ref: Optional[str] = None, *, dialect_profile: Opti
         ir["word"] = {**ir["word"], "words": sorted(words.items())}
     if sandhi:
         ir["sandhi"] = [*ir.get("sandhi", ()), *sandhi]
+    syllable = merge_syllable_fragments(fragments, registry.resolve(code))
+    if syllable:
+        ir["syllable"] = _apply_syllable_fragment(dict(ir.get("syllable", {})), syllable, ir["chars"])
     ir["phonemes"] = ir_phonemes(ir)
     return ir
 
@@ -797,7 +800,7 @@ def fragment_digest(fragment: dict) -> str:
                                      ensure_ascii=False).encode()).hexdigest()
 
 
-_FRAGMENT_PARTS = {"ir_version", "langs", "words", "sandhi", "unsupported"}
+_FRAGMENT_PARTS = {"ir_version", "langs", "words", "sandhi", "syllable", "unsupported"}
 _SANDHI_PAIR_KEYS = {"left", "right", "left_out", "right_out", "left_spelling", "right_spelling",
                      "left_joined_spelling", "right_joined_spelling"}
 _SANDHI_PAUSE_KEYS = {"left", "left_out", "left_spelling", "left_joined_spelling", "pause"}
@@ -824,7 +827,7 @@ def merge_fragments(fragments: Sequence[dict], ir_version: int,
         unknown = sorted(set(fragment) - _FRAGMENT_PARTS)
         if unknown:
             raise ValueError(f"fragment part {unknown[0]!r} is not supported; "
-                             f"only 'langs', 'words', 'sandhi' and 'unsupported' are")
+                             f"only 'langs', 'words', 'sandhi', 'syllable' and 'unsupported' are")
         if fragment.get("ir_version") != ir_version:
             raise ValueError(f"fragment ir_version {fragment.get('ir_version')!r} is not {ir_version}")
         langs = fragment.get("langs")
@@ -843,11 +846,184 @@ def merge_fragments(fragments: Sequence[dict], ir_version: int,
             if not isinstance(name, str):
                 raise ValueError(f"fragment unsupported entry {name!r}: a name must be a string")
         rules = [_sandhi_rule(rule) for rule in fragment.get("sandhi", ())]
-        if langs is not None and code not in {registry.resolve(lang) for lang in langs}:
+        if not in_scope(fragment, code):
             continue
         words.update(fragment.get("words", {}))
         sandhi += rules
     return words, sandhi
+
+
+def in_scope(fragment: dict, code: str) -> bool:
+    """True when *fragment* applies to the resolved engine *code*: it has no
+    ``langs``, or one of its ``langs`` resolves to *code*."""
+    langs = fragment.get("langs")
+    return langs is None or code in {registry.resolve(lang) for lang in langs}
+
+
+_SYLLABLE_TABLES = {"glides", "heterosyllabic_pairs", "hiatus", "stem_cuts", "prefix_boundaries", "seams",
+                    "onsets", "foreign"}
+
+
+def _strings(value, where: str, min_len: int = 1) -> List[str]:
+    if not isinstance(value, list) or not all(isinstance(v, str) and len(v) >= min_len for v in value):
+        raise ValueError(f"fragment syllable {where}: a list of strings of {min_len} or more chars is required")
+    for v in value:
+        if v != unicodedata.normalize("NFC", v).lower():
+            raise ValueError(f"fragment syllable {where}: {v!r} must be lowercase NFC")
+    return list(value)
+
+
+def _keys(value, where: str, allowed: Optional[Set[str]] = None) -> dict:
+    if not isinstance(value, dict):
+        raise ValueError(f"fragment syllable {where}: an object is required")
+    unknown = sorted(set(value) - allowed) if allowed is not None else []
+    if unknown:
+        raise ValueError(f"fragment syllable {where}: key {unknown[0]!r} is not allowed")
+    return value
+
+
+def _fragment_pattern(text, where: str) -> list:
+    from orthography2ipa.ir.compile_patterns import compile_pattern
+    if not isinstance(text, str):
+        raise ValueError(f"fragment syllable {where}: a pattern must be a string")
+    try:
+        return compile_pattern(text)
+    except (re.error, ValueError) as err:
+        raise ValueError(f"fragment syllable {where}: {err}") from err
+
+
+def merge_syllable_fragments(fragments: Sequence[dict], code: str) -> dict:
+    """The ``syllable`` tables of the *fragments* in scope for the resolved
+    *code* (:func:`in_scope`), checked. Every fragment is checked, in scope or
+    not. A later fragment's table replaces an earlier one's.
+
+    Raises:
+        ValueError: an unknown table or key, or a value of the wrong shape.
+    """
+    out: dict = {}
+    for fragment in fragments:
+        tables: dict = {}
+        part = _keys(fragment.get("syllable", {}), "part", _SYLLABLE_TABLES)
+        if "glides" in part:
+            glides = _strings(part["glides"], "glides")
+            if any(len(g) != 1 for g in glides):
+                raise ValueError("fragment syllable glides: each glide must be one char")
+            tables["glides"] = glides
+        if "heterosyllabic_pairs" in part:
+            pairs = _strings(part["heterosyllabic_pairs"], "heterosyllabic_pairs", 2)
+            if any(len(p) != 2 for p in pairs):
+                raise ValueError("fragment syllable heterosyllabic_pairs: each pair must have 2 chars")
+            tables["heterosyllabic_pairs"] = pairs
+        if "hiatus" in part:
+            h = _keys(part["hiatus"], "hiatus", {"glides", "before", "codas", "diphthong_words"})
+            tables["hiatus"] = {k: _strings(h.get(k, []), "hiatus." + k)
+                             for k in ("glides", "before", "codas", "diphthong_words")}
+        if "stem_cuts" in part:
+            cuts = _keys(part["stem_cuts"], "stem_cuts")
+            _strings(list(cuts), "stem_cuts")
+            for stem, offsets in cuts.items():
+                if not isinstance(offsets, list) or not offsets or not all(
+                        type(o) is int and 0 < o < len(stem) for o in offsets):
+                    raise ValueError(f"fragment syllable stem_cuts {stem!r}: the cuts must be offsets inside the stem")
+            tables["stem_cuts"] = {k: sorted(set(v)) for k, v in cuts.items()}
+        if "prefix_boundaries" in part:
+            rules = part["prefix_boundaries"]
+            if not isinstance(rules, list):
+                raise ValueError("fragment syllable prefix_boundaries: a list is required")
+            tables["prefix_boundaries"] = []
+            for rule in rules:
+                r = _keys(rule, "prefix_boundaries", {"prefix", "onset", "stems"})
+                prefix = _strings([r.get("prefix")] if isinstance(r.get("prefix"), str) else None,
+                                  "prefix_boundaries.prefix")[0]
+                tables["prefix_boundaries"].append({"prefix": prefix,
+                                                 "onset": _strings(r.get("onset", []), "prefix_boundaries.onset"),
+                                                 "stems": _strings(r.get("stems", []), "prefix_boundaries.stems")})
+        if "seams" in part:
+            seams = _keys(part["seams"], "seams", {"suffixes", "stems", "next"})
+            if not isinstance(seams.get("suffixes", []), list):
+                raise ValueError("fragment syllable seams.suffixes: a list is required")
+            suffixes = []
+            for rule in seams.get("suffixes", []):
+                r = _keys(rule, "seams.suffixes", {"pattern", "cut"})
+                if type(r.get("cut", 0)) is not int or r.get("cut", 0) < 0:
+                    raise ValueError("fragment syllable seams.suffixes: cut must be an integer of 0 or more")
+                suffixes.append({"pattern": _fragment_pattern(r.get("pattern"), "seams.suffixes"),
+                                 "cut": r.get("cut", 0)})
+            tables["seams"] = {"suffixes": suffixes, "stems": _strings(seams.get("stems", []), "seams.stems"),
+                            "next": _strings(seams.get("next", []), "seams.next")}
+        if "onsets" in part:
+            onsets = _keys(part["onsets"], "onsets", {"complex", "max_onset", "digraphs"})
+            cap = onsets.get("max_onset", -1)
+            if type(cap) is not int or cap == 0 or cap < -1:
+                raise ValueError("fragment syllable onsets.max_onset: a positive integer or -1 is required")
+            tables["onsets"] = {"complex": _strings(onsets.get("complex", []), "onsets.complex", 2),
+                             "max_onset": cap,
+                             "digraphs": _strings(onsets.get("digraphs", []), "onsets.digraphs", 2)}
+        if "foreign" in part:
+            foreign = _keys(part["foreign"], "foreign", {"units", "pattern", "nuclei", "final_nuclei"})
+            finals = _keys(foreign.get("final_nuclei", {}), "foreign.final_nuclei")
+            _strings(list(finals), "foreign.final_nuclei", 2)
+            for nucleus, tails in finals.items():
+                if not isinstance(tails, list) or not all(isinstance(t, str) for t in tails):
+                    raise ValueError(f"fragment syllable foreign.final_nuclei {nucleus!r}: a list of strings is required")
+            nuclei = _strings(foreign.get("nuclei", []), "foreign.nuclei", 2)
+            if nuclei and "pattern" not in foreign:
+                raise ValueError("fragment syllable foreign: nuclei need a pattern")
+            tables["foreign"] = {"units": _strings(foreign.get("units", []), "foreign.units", 2),
+                              "nuclei": nuclei, "final_nuclei": {k: list(v) for k, v in finals.items()}}
+            if "pattern" in foreign:
+                tables["foreign"]["pattern"] = _fragment_pattern(foreign["pattern"], "foreign.pattern")
+        if in_scope(fragment, code):
+            out.update(tables)
+    return out
+
+
+def _units_of(text: str, units: Sequence[str]) -> List[str]:
+    out, i = [], 0
+    while i < len(text):
+        unit = next((u for u in units if text.startswith(u, i)), text[i])
+        out.append(unit)
+        i += len(unit)
+    return out
+
+
+def _apply_syllable_fragment(syllable: dict, part: dict, chars: Dict[int, int]) -> dict:
+    """*syllable* with the merged fragment tables of :func:`merge_syllable_fragments`."""
+    if "glides" in part:
+        # Every lowercase vowel letter of the IR plus a different glide is a falling diphthong.
+        vowels = {chr(cp) for cp, bits in chars.items()
+                  if bits >> CB["orth_vowel"] & 1 and chr(cp) == chr(cp).lower()}
+        diphthongs = list(syllable.get("diphthongs", ()))
+        diphthongs += sorted(v + g for v in vowels for g in part["glides"]
+                             if v != g and v + g not in diphthongs)
+        syllable["diphthongs"] = diphthongs
+    foreign = part.get("foreign", {})
+    if "onsets" in part:
+        onsets = part["onsets"]
+        units = sorted(set(onsets["digraphs"]) | set(foreign.get("units", ())), key=lambda u: (-len(u), u))
+        syllable["onsets"] = {"max": onsets["max_onset"], "units": units, "velar": [],
+                              "table": sorted(_units_of(c, units) for c in set(onsets["complex"]))}
+    elif foreign.get("units") and syllable.get("onsets"):
+        onsets = dict(syllable["onsets"])
+        onsets["units"] = sorted(set(onsets["units"]) | set(foreign["units"]), key=lambda u: (-len(u), u))
+        syllable["onsets"] = onsets
+    if "heterosyllabic_pairs" in part:
+        syllable["cut_pairs"] = sorted(set(part["heterosyllabic_pairs"]))
+    if "hiatus" in part:
+        syllable["glide_hiatus"] = {k: sorted(set(v)) for k, v in part["hiatus"].items()}
+    if "stem_cuts" in part:
+        syllable["stem_cuts"] = sorted(part["stem_cuts"].items())
+    if "prefix_boundaries" in part:
+        syllable["prefix_cuts"] = sorted(
+            ({"prefix": r["prefix"], "onset": sorted(set(r["onset"])), "stems": list(r["stems"])}
+             for r in part["prefix_boundaries"]), key=lambda r: (-len(r["prefix"]), r["prefix"]))
+    if "seams" in part:
+        syllable["seams"] = {**part["seams"], "next": sorted(set(part["seams"]["next"]))}
+    if foreign.get("nuclei") or foreign.get("final_nuclei"):
+        syllable["foreign"] = {"nuclei": list(foreign["nuclei"]),
+                               "finals": sorted(foreign["final_nuclei"].items()),
+                               **({"pattern": foreign["pattern"]} if foreign.get("nuclei") else {})}
+    return syllable
 
 
 def fragment_unsupported(fragments: Sequence[dict]) -> List[str]:

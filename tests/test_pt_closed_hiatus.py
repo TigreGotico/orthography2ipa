@@ -95,6 +95,7 @@ CONTROLS = [
     ("bairro", r"ˈbaj"),    # ⟨rr⟩ spells one consonant
     ("jaime", r"ˈʒaj"),     # ⟨m⟩ before a vowel opens the next syllable
     ("quinze", r"ˈk"),      # the ⟨u⟩ of ⟨qu⟩ is no vowel
+    ("braille", r"ˈbɾaj"),  # ⟨ll⟩ is a geminate, so ⟨l⟩ does not close the ⟨i⟩
 ]
 
 
@@ -159,3 +160,10 @@ def test_atonic_i_before_nh_keeps_the_hiatus_in_pt_pt(word, ipa):
 @pytest.mark.parametrize("word,ipa", sorted(INFOPEDIA_ATONIC_NH.items()))
 def test_atonic_i_before_nh_with_the_plugin(word, ipa, plugin_engine):
     assert plugin_engine("pt-PT").transcribe_word(word) == ipa
+
+
+@pytest.mark.parametrize("lang", ["pt-PT", "pt-BR"])
+def test_geminate_after_the_glide_keeps_the_diphthong(lang):
+    # pt-PT splits brai.lle and pt-BR brail.le; both keep ⟨ai⟩ in one syllable.
+    sylls = G2P(lang)._interpreter.syllables("braille")
+    assert sylls[0].startswith("brai"), sylls
