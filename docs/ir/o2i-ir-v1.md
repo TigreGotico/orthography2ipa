@@ -264,6 +264,15 @@ endings.sources: list of object
 endings.sources[].surface: s
 endings.sources[].vowels: sset
 phonemes: sset
+contact: list of object
+contact[].donor: s
+contact[].donor_revision: s
+contact[].chars: sset
+contact[].words: list of list of s
+contact[].rewrite: list of object
+contact[].rewrite[].pattern: pat
+contact[].rewrite[].template: tpl
+contact[].map: list of list of s
 ```
 <!-- layout-schema:end -->
 
@@ -698,7 +707,7 @@ The compiler writes one IR entry for each fragment entry in scope:
 - `chars`: every letter of the donor's grapheme keys, in lower and upper case.
 - `words`: the `words` table as sorted `[key, ipa]` pairs.
 - `rewrite`: the compiled rules.
-- `map`: the pairs sorted by key length, longest first, then by key. For each phoneme of the donor IR that `map` does not name, the compiler adds the phoneme itself when the lect has it, else the lect phoneme at the smallest `phonematcher.feature_distance`.
+- `map`: the pairs sorted by key length, longest first, then by key. For each phoneme of the donor IR that `map` does not name, the compiler adds the phoneme itself when the lect has it, else the lect phoneme at the smallest `phonematcher.feature_distance`. On a tie, the phoneme that sorts first by codepoints wins.
 
 The compiler raises `ValueError` for an unknown key, a donor that names no registered language, a word key that is not lowercase NFC, a key or value that is not a string, a rewrite it cannot compile, and a map output with a segment that is not in the phoneme set of the lect.
 
