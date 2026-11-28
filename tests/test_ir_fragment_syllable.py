@@ -17,7 +17,7 @@ from orthography2ipa.ir.interpreter import Interpreter
 sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
 
 # A trimmed fixture written by hand: a few rows of each table of
-# scripts/silabificador_fragment.py, so a silabificador release does not move it.
+# silabificador scripts/loom_fragment.py, so a silabificador release does not move it.
 FRAGMENT = json.loads((Path(__file__).parent / "data" / "ir_fragment_syllable.json").read_text(encoding="utf-8"))
 
 
@@ -136,13 +136,6 @@ def test_a_later_fragment_replaces_a_table():
 def test_a_malformed_table_is_refused(part, message):
     with pytest.raises(ValueError, match=message.replace("(", r"\(").replace(")", r"\)")):
         build_ir("pt-PT", fragments=[{"ir_version": 1, "syllable": part}])
-
-
-def test_the_silabificador_fragment_compiles():
-    import silabificador_fragment
-    fragment = silabificador_fragment.fragment()
-    assert "ruin" in fragment["syllable"]["stem_cuts"]
-    assert splitter(fragment).syllables("neymar") == ["ney", "mar"]
 
 
 SCOPED = {**FRAGMENT, "langs": ["pt-PT"]}

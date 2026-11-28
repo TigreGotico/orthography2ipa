@@ -876,7 +876,7 @@ The unit split of the onset table (3.7.2) also defines the **multi-letter units*
 
 The tables do not change stress. The stress tables of a fragment (word endings, accents and clitics) are not part of this version of the part.
 
-`scripts/silabificador_fragment.py` writes the fragment of the installed silabificador data (`python scripts/silabificador_fragment.py OUT.json`).
+silabificador writes the fragment of its own data with its script `scripts/loom_fragment.py`.
 
 ### 3.8 Stress (S5, S9e, S9f)
 
