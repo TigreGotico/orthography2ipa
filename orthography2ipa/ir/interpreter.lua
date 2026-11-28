@@ -30,7 +30,7 @@ local M = {}
 M.SUPPORTED_IR_VERSIONS = {[1] = true}
 -- The semantics version of every primitive and predicate node (8.1).
 M.SEMANTICS = {
-  codepoint_map = 1, pattern = 1, trie = 1, bits = 1, predicate = 1, candidates = 1,
+  codepoint_map = 1, contact = 1, pattern = 1, trie = 1, bits = 1, predicate = 1, candidates = 1,
   beam = 1, splitter = 1, decision = 1, sequencer = 1, segment = 1, word_has = 1,
   spell_gate = 1, positional_rewrite = 1, gated_map = 1, aligned_rewrite = 1,
   allophony = 1, mark_placement = 1, sandhi = 1, sandhi_spelling = 1, sandhi_joined = 1, sandhi_pause = 1, rewrite = 1, endings = 1, inherent = 1,
@@ -349,6 +349,8 @@ local LAYOUT = Ob{
                vowels = Lt(Ob{key = S_, reduced = SSET, readings = SSET}),
                sources = Lt(Ob{surface = S_, vowels = SSET})},
   phonemes = SSET,
+  contact = Lt(Ob{donor = S_, donor_revision = S_, chars = SSET, words = Lt(Lt(S_)),
+                  rewrite = Lt(Ob{pattern = PAT, template = TPL}), map = Lt(Lt(S_))}),
 }
 
 local SLOT_ARGS = {
@@ -597,7 +599,9 @@ M.pattern = {search = psearch, sub = psub, match_at = match_at, group_count = gr
 local P = {}
 local MT = {__index = P}
 
-function M.new(doc)
+-- donors maps the donor code of each contact entry to {interpreter, donor_words}
+-- (3.7.7); donor_words maps a key to its IPA, both in the fixed-width form.
+function M.new(doc, donors)
   if not M.SUPPORTED_IR_VERSIONS[doc.ir_version] then
     error("unsupported ir_version " .. tostring(doc.ir_version))
   end
@@ -613,6 +617,14 @@ function M.new(doc)
   end
   local ir = decode(doc)
   local self = setmetatable({ir = ir}, MT)
+  self._donors = donors or {}
+  self._contact = {}
+  for k, c in ipairs(ir.contact or {}) do
+    local words = {}
+    for _, p in ipairs(c.words or {}) do words[p[1]] = p[2] end
+    self._contact[k] = {donor = c.donor, chars = setof(c.chars), words = words,
+                        rewrite = c.rewrite or {}, map = c.map or {}}
+  end
   local function first_index(names)
     local idx = {}
     for i = #names, 1, -1 do idx[names[i]] = i end
@@ -3486,6 +3498,48 @@ function P:noncohering_split(word)
   return nil
 end
 
+-- 3.7.7: the reading of a loanword whose letters are all in the chars of a
+-- contact entry, or nil.
+function P:_contact_ipa(word)
+  if word == "" then return nil end
+  local entry
+  for _, e in ipairs(self._contact) do
+    local all = true
+    for _, c in ipairs(chars(word)) do if not e.chars[c] then all = false; break end end
+    if all then entry = e; break end
+  end
+  if entry == nil then return nil end
+  local donor = self._donors[entry.donor]
+  if donor == nil then
+    local name = {}
+    for k, cp in ipairs(to_cps(entry.donor)) do name[k] = utf8_char(cp) end
+    error("contact: no donor interpreter for " .. concat(name))
+  end
+  local donor_it, donor_words = donor[1], donor[2] or {}
+  local key = donor_it:nfc(donor_it:casefold(word))
+  local ipa = entry.words[key]
+  if ipa == nil then ipa = donor_words[key] end
+  if ipa == nil then ipa = donor_it:transcribe_word(word, 1) end
+  local stress = donor_it.stress or {}
+  for _, mark in ipairs({stress.mark, stress.secondary_mark}) do
+    if mark ~= nil and mark ~= "" then ipa = sreplace(ipa, mark, "") end
+  end
+  for _, rule in ipairs(entry.rewrite) do ipa = self:_sub(rule.pattern, rule.template, to_cps(ipa)) end
+  local out, i, n = {}, 0, slen(ipa)
+  while i < n do
+    local hit
+    for _, kv in ipairs(entry.map) do
+      if startswith(ipa, kv[1], i) then hit = kv; break end
+    end
+    if hit == nil then
+      out[#out + 1] = at(ipa, i); i = i + 1
+    else
+      out[#out + 1] = hit[2]; i = i + slen(hit[1])
+    end
+  end
+  return concat(out)
+end
+
 function P:transcribe_word(word, width)
   local override = self:_override_for(word)
   if override ~= nil then return self:_finalize(word, override, nil, false) end
@@ -3494,6 +3548,8 @@ function P:transcribe_word(word, width)
     return sreplace(self:transcribe_word(base, width), self.stress.mark, self.stress.secondary_mark)
       .. self:transcribe_word(suffix, width)
   end
+  local contact = self:_contact_ipa(word)
+  if contact ~= nil then return contact end
   local paths = self:_apply_ending(word, self:_word_paths(word, width))
   local best = paths[1]
   return self:_finalize(word, best == nil and word or concat(best[1]), best, true)

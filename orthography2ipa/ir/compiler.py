@@ -791,7 +791,81 @@ def build_ir(code: str, data_ref: Optional[str] = None, *, dialect_profile: Opti
     if syllable:
         ir["syllable"] = _apply_syllable_fragment(dict(ir.get("syllable", {})), syllable, ir["chars"])
     ir["phonemes"] = ir_phonemes(ir)
+    contact = [entry for entry, _ in contact_entries(fragments, registry.resolve(code), ir, data_ref)]
+    if contact:
+        ir["contact"] = contact
     return ir
+
+
+_CONTACT_KEYS = {"script", "donor", "words", "donor_words", "rewrite", "map"}
+
+
+def _donor_words_digest(donor_words: Dict[str, str]) -> str:
+    return hashlib.sha256(json.dumps(donor_words, sort_keys=True, separators=(",", ":"),
+                                     ensure_ascii=False).encode()).hexdigest()
+
+
+def contact_entries(fragments: Sequence[dict], code: str, ir: dict,
+                    data_ref: Optional[str] = None) -> List[Tuple[dict, Tuple[dict, Dict[str, str]]]]:
+    """The IR ``contact`` entries of the *fragments* in scope for the resolved
+    *code* (docs/ir/o2i-ir-v1.md, 3.7.7), each with its donor: the donor IR and
+    its ``donor_words``. *ir* is the lect IR with its phoneme set.
+
+    Raises:
+        ValueError: an entry has an unknown key, a donor that names no registered
+            language, a word key that is not lowercase NFC, a rewrite the IR cannot
+            compile, or a map output that is not in the lect's phoneme set.
+    """
+    from phonematcher import feature_distance
+
+    from orthography2ipa.ir.compile_patterns import compile_pattern, compile_template
+    from orthography2ipa.phonemes import segments
+
+    lect_phones = list(ir["phonemes"])
+    out = []
+    for fragment in fragments:
+        items = fragment.get("contact", ())
+        if not isinstance(items, list):
+            raise ValueError("fragment contact: a list is required")
+        for item in items:
+            unknown = sorted(set(item) - _CONTACT_KEYS)
+            if unknown:
+                raise ValueError(f"fragment contact key {unknown[0]!r} is not supported")
+            donor = item.get("donor")
+            if not isinstance(donor, str) or not registry.resolves_exactly(donor):
+                raise ValueError(f"fragment contact donor {donor!r} names no registered language")
+            for table in ("words", "donor_words", "map"):
+                for key, value in item.get(table, {}).items():
+                    if not isinstance(key, str) or not isinstance(value, str):
+                        raise ValueError(f"fragment contact {table} {key!r}: the key and the value must be strings")
+                    if table != "map" and key != unicodedata.normalize("NFC", key).lower():
+                        raise ValueError(f"fragment contact {table} {key!r}: a key must be lowercase NFC")
+            rewrite = [{"pattern": compile_pattern(r["pattern"]), "template": compile_template(r["template"])}
+                       for r in item.get("rewrite", ())]
+            if not in_scope(fragment, code):
+                continue
+            donor_ir = build_ir(registry.resolve(donor), data_ref)
+            mapping = dict(item.get("map", {}))
+            for phone in donor_ir["phonemes"]:
+                if phone not in mapping:
+                    mapping[phone] = phone if phone in lect_phones else min(
+                        lect_phones, key=lambda p: (feature_distance(phone, p), p))
+            for phone, target in mapping.items():
+                bad = [seg for seg in segments(target) if seg not in lect_phones]
+                if bad:
+                    raise ValueError(f"fragment contact map {phone!r} -> {target!r}: "
+                                     f"{bad[0]!r} is not in the phoneme set of {code}")
+            letters = {c for e in donor_ir["entries"] for c in e["key"] if c.isalpha()}
+            letters |= {c.upper() for c in letters} | {c.lower() for c in letters}
+            donor_words = dict(item.get("donor_words", {}))
+            entry = {"donor": registry.resolve(donor),
+                     "donor_revision": f"{layout.spec_revision(donor_ir)}+{_donor_words_digest(donor_words)}",
+                     "chars": sorted(letters),
+                     "words": sorted(item.get("words", {}).items()),
+                     "rewrite": rewrite,
+                     "map": sorted(mapping.items(), key=lambda kv: (-len(kv[0]), kv[0]))}
+            out.append((entry, (donor_ir, donor_words)))
+    return out
 
 
 def fragment_digest(fragment: dict) -> str:
@@ -800,7 +874,7 @@ def fragment_digest(fragment: dict) -> str:
                                      ensure_ascii=False).encode()).hexdigest()
 
 
-_FRAGMENT_PARTS = {"ir_version", "langs", "words", "sandhi", "syllable", "unsupported"}
+_FRAGMENT_PARTS = {"ir_version", "langs", "words", "sandhi", "syllable", "unsupported", "contact"}
 _SANDHI_PAIR_KEYS = {"left", "right", "left_out", "right_out", "left_spelling", "right_spelling",
                      "left_joined_spelling", "right_joined_spelling"}
 _SANDHI_PAUSE_KEYS = {"left", "left_out", "left_spelling", "left_joined_spelling", "pause"}
@@ -827,7 +901,7 @@ def merge_fragments(fragments: Sequence[dict], ir_version: int,
         unknown = sorted(set(fragment) - _FRAGMENT_PARTS)
         if unknown:
             raise ValueError(f"fragment part {unknown[0]!r} is not supported; "
-                             f"only 'langs', 'words', 'sandhi', 'syllable' and 'unsupported' are")
+                             f"only 'langs', 'words', 'sandhi', 'syllable', 'contact' and 'unsupported' are")
         if fragment.get("ir_version") != ir_version:
             raise ValueError(f"fragment ir_version {fragment.get('ir_version')!r} is not {ir_version}")
         langs = fragment.get("langs")

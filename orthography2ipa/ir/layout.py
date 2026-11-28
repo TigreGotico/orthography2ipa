@@ -70,13 +70,15 @@ LAYOUT = O(
               vowels=L(O(key=S, reduced=SSET, readings=SSET)),
               sources=L(O(surface=S, vowels=SSET))),
     phonemes=SSET,
+    contact=L(O(donor=S, donor_revision=S, chars=SSET, words=L(L(S)),
+                rewrite=L(O(pattern=PAT, template=TPL)), map=L(L(S)))),
 )
 _FIELDS = LAYOUT[1]
 RUNTIME_FIELDS = tuple(_FIELDS) + ("chars",)
 
 # The semantics version of every primitive and predicate node (section 8.1).
 SEMANTICS = {
-    "codepoint_map": 1, "pattern": 1, "trie": 1, "bits": 1, "predicate": 1, "candidates": 1,
+    "codepoint_map": 1, "contact": 1, "pattern": 1, "trie": 1, "bits": 1, "predicate": 1, "candidates": 1,
     "beam": 1, "splitter": 1, "decision": 1, "sequencer": 1, "segment": 1, "word_has": 1,
     "spell_gate": 1, "positional_rewrite": 1, "gated_map": 1, "aligned_rewrite": 1,
     "allophony": 1, "mark_placement": 1, "sandhi": 1, "sandhi_spelling": 1, "sandhi_joined": 1, "sandhi_pause": 1, "rewrite": 1, "endings": 1, "inherent": 1, "written_onsets": 1, "vowel_letters": 1, "secondary": 1, "aperture": 1, "prefixes": 1, "coda_liquid": 1, "mutate": 1, "accent2": 1, "fold": 1, "tone_dock": 1, "iambic": 1, "prevocalic_backoff": 1,
@@ -271,6 +273,7 @@ FIELD_SEMANTICS = {
     ("word", "exceptions"): "overrides",
     ("word", "words"): "words",
     ("allophone_map",): "allophone_map",
+    ("contact",): "contact",
     ("syllable", "closed_hiatus"): "hiatus",
     ("syllable", "final_diphthongs"): "hiatus",
     ("syllable", "semivowels"): "semivowels",
