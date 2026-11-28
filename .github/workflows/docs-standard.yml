@@ -1,7 +1,7 @@
 name: Docs Standard
 
-# Reports the docs standard findings (DS-6, 6a, 8, 9, 11, 12). Informational:
-# the job does not fail on a finding.
+# Checks the docs against the docs standard (DS-6, 6a, 8, 9, 11, 12). A finding
+# fails the job.
 
 on:
   pull_request:
