@@ -223,6 +223,24 @@ def test_the_midi_liaison_n_takes_the_place_of_the_appendix(text, expected):
     assert _say(text, MIDI) == expected
 
 
+@pytest.mark.parametrize("text, expected", [
+    # After ils or elles the verbal -ent is mute as in fr-FR, so the e before
+    # it is the Midi final schwa of a polysyllable: Martinon (1913: 161), "ils
+    # aim(ent) bien" reads as "j'aim(e) bien"; PFC, Le e caduc, Français
+    # méridional: "le e caduc est normalement prononcé en fin de polysyllabe
+    # (sauf s'il est suivi d'une voyelle)".
+    ("ils parlent", "il paʁlə"),
+    ("ils mangent", "il manʒə"),
+    ("qu'ils chantent", "kil ʃantə"),
+    ("ils jouent", "il ʒu"),        # after a vowel there is no schwa
+    ("ils lient", "il li"),
+    ("ils parlent à Paul", "il paʁl‿ a pɔl"),  # before a vowel it falls
+    ("le président", "lø pʁezidaŋ"),           # not after ils: a noun
+])
+def test_the_midi_verbal_ent_is_the_final_schwa(text, expected):
+    assert _say(text, MIDI) == expected
+
+
 def test_the_midi_spec_is_a_variant_of_fr_fr():
     spec = o2i.get(MIDI)
     assert spec.parent == "fr-FR"
