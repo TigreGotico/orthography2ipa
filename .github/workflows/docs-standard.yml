@@ -17,5 +17,6 @@ jobs:
     uses: OpenVoiceOS/gh-automations/.github/workflows/docs-check.yml@dev
     with:
       docs_standard: true
+      fail_on_standard: true
       hf_space: TigreGotico/orthography2ipa
     secrets: inherit
