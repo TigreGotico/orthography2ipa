@@ -226,14 +226,16 @@ SANDHI_RESTATED = {
     "fr-FR-x-midi": {"FR_NEUF_V_BEFORE_HEURES", "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
                      "FR_HUIT_MUTE_BEFORE_CONSONANT",
                      "FR_NUMERAL_Z_BEFORE_VOWEL", "FR_LIAISON_N_ARTICLE",
-                     "FR_LIAISON_N_PRONOUN"},
+                     "FR_LIAISON_N_PRONOUN", "FR_ENT_MUTE_AFTER_ILS",
+                     "FR_IENT_MUTE_AFTER_ILS"},
 }
 #: The sandhi rules a variant adds to those of fr-FR.
 OWN_SANDHI = {
     "fr-BE": {"FR_BE_HUIT_MUTE_BEFORE_CONSONANT", "FR_BE_QUATRE_VINGT_MUTE_T"},
     "fr-CH": {"FR_CH_QUATRE_VINGT_MUTE_T"},
     "fr-FR-x-midi": {"FR_MIDI_APPENDIX_LABIAL_ACROSS_WORDS", "FR_MIDI_APPENDIX_LABIODENTAL_ACROSS_WORDS",
-                     "FR_MIDI_APPENDIX_CORONAL_ACROSS_WORDS", "FR_MIDI_SCHWA_ELISION"},
+                     "FR_MIDI_APPENDIX_CORONAL_ACROSS_WORDS", "FR_MIDI_SCHWA_ELISION",
+                     "FR_MIDI_ENT_SCHWA_AFTER_ILS"},
 }
 
 
