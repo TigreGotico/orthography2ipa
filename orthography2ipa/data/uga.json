@@ -38,7 +38,7 @@
     "s̀": ["su"]
   },
   "allophones": {},
-  "parent": "x-clade-semi1276",
+  "inherits": "x-clade-semi1276",
   "ancestors": [
     {
       "code": "x-clade-semi1276",

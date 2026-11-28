@@ -201,7 +201,7 @@
   "˨": "yīnrù (陰入, no mark, checked syllables only), Sixian 2 / Hailu 5",
   "˥": "yángrù (陽入, vertical line, checked syllables only), Sixian 5 / Hailu 2"
  },
- "parent": "hak",
+ "inherits": "hak",
  "ancestors": [
   {
    "code": "hak",

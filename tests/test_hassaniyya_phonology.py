@@ -32,7 +32,7 @@ def test_targets_hassaniyya_and_cites_taine_cheikh():
     assert spec.quality.value == "research"
     ids = {s.id for s in spec.sources}
     assert {"tainecheikh2007", "cohen1963", "heath2004hass"} <= ids
-    assert spec.parent == "ar-x-maghrebi"
+    assert spec.inherits == "ar-x-maghrebi"
 
 
 # ─── qāf → [ɡ] (Bedouin), and the ġ/q merger ───────────────────────────────

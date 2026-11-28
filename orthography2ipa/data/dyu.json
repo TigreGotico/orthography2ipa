@@ -99,7 +99,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-mand1469",
+ "inherits": "x-clade-mand1469",
  "phonemes": [
   "b", "d", "d̠ʒ", "f", "h", "j", "k", "kp", "l", "m", "n", "p", "r", "s", "t", "t̠ʃ",
   "v", "w", "z", "ŋ", "ɡ", "ɡb", "ɲ",

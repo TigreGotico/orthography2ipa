@@ -477,17 +477,17 @@ class FrenchLiaison(SentenceRescorer):
             return ipa + "‿"                # the left word marks the liaison tie
         return ipa
 
-print(G2P("fr").transcribe("nous avons"))
-lattice = G2P("fr").sentence_lattice("nous avons")
+print(G2P("fr").transcribe("pas encore"))
+lattice = G2P("fr").sentence_lattice("pas encore")
 print(" ".join(apply_sentence_rescorers(lattice, [FrenchLiaison()])))
 ```
 
 ```text
-nu avɔ̃
-nu‿ zavɔ̃
+pa ɑ̃kɔʁ
+pa‿ zɑ̃kɔʁ
 ```
 
-The latent final consonant of *nous* becomes the onset of *avons*. The right word gains /z/, and the left word marks the tie. A rewrite of the left word only cannot move a segment onto the next word, and this seam can.
+The latent final consonant of *pas* becomes the onset of *encore*. The right word gains /z/, and the left word marks the tie. A rewrite of the left word only cannot move a segment onto the next word, and this seam can. The fr-FR spec writes the obligatory liaisons itself with spelling-conditioned `sandhi_rules`, as in `nuz‿ avɔ̃` for *nous avons*, with the link on the left word. The liaison after *pas* is optional (Martinon 1913: 374), so the spec leaves it out, and a sentence rescorer such as this one is where a caller adds it.
 
 ### How it composes with sandhi
 

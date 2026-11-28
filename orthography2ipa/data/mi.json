@@ -180,7 +180,7 @@
     "start_year": 1200,
     "end_year": null
   },
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",

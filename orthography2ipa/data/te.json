@@ -395,7 +395,7 @@
     "end_year": null
   },
   "iso639_3": "tel",
-  "parent": "ta-x-proto-dravidia",
+  "inherits": "ta-x-proto-dravidia",
   "phoible_id": "telu1262",
   "wals_code": "tel",
   "location": {

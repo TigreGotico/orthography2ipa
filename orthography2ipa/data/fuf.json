@@ -41,7 +41,7 @@
     "https://www.ethnologue.com/language/fuf/"
   ],
   "iso639_3": "fuf",
-  "parent": "ff",
+  "inherits": "ff",
   "ancestors": [
     {
       "code": "ff",

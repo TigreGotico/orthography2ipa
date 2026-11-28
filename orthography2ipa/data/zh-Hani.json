@@ -5,7 +5,7 @@
   "script_type": "logographic",
   "orthography_kind": "native",
   "quality": "stub",
-  "parent": "zh",
+  "inherits": "zh",
   "graphemes": {},
   "allophones": {},
   "phonemes": [

@@ -65,7 +65,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-sout2845",
+ "inherits": "x-clade-sout2845",
  "phonemes": [
   "b",
   "bː",

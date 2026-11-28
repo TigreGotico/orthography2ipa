@@ -147,7 +147,7 @@
     "https://en.wikipedia.org/wiki/Aja_language_(Benin)",
     "https://en.wikipedia.org/wiki/Adja_language"
   ],
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

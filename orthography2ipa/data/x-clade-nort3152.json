@@ -20,7 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Northwest_Germanic"
   ],
-  "parent": "gem",
+  "inherits": "gem",
   "urls": [
     "https://glottolog.org/resource/languoid/id/nort3152"
   ],

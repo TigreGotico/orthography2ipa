@@ -5,7 +5,7 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "por",
-  "parent": "pt-BR",
+  "inherits": "pt-BR",
   "graphemes_base": "pt-BR",
   "allophones_base": "pt-BR",
   "positional_graphemes_base": "pt-BR",

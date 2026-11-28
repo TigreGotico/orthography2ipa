@@ -14,7 +14,7 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "ancestors": [
     {
       "code": "es-ES",

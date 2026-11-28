@@ -314,6 +314,12 @@
     ],
     "kk": [
       "k"
+    ],
+    "oê": [
+      "wa"
+    ],
+    "uin": [
+      "ɥɛ̃"
     ]
   },
   "allophones": {
@@ -436,7 +442,7 @@
       "ɛ̃"
     ]
   },
-  "parent": "x-clade-gallorom",
+  "inherits": "x-clade-gallorom",
   "ancestors": [
     {
       "code": "la-x-gallia",
@@ -471,61 +477,407 @@
   ],
   "sandhi_rules": [
     {
+      "id": "FR_QUATRE_E_BEFORE_VINGT",
+      "name": "the e of quatre in quatre-vingts",
+      "left_context": "(ʁ)$",
+      "right_context": "",
+      "left_spelling": "^quatre$",
+      "right_spelling": "^vingts?$",
+      "transform": "\\1ə",
+      "obligatory": true,
+      "notes": "quatre keeps its e before vingt: quatre-vingts [katʁə vɛ̃], quatre-vingt-deux [katʁə vɛ̃ dø]. Martinon (1913: 161): the e of quatre falls with its r in familiar speech (à la six quat(re) deux), and this pronunciation is never quite correct, but on dit aussi uniquement quatre-vingts, with the whole word. Lexique 3.83 gives quatre-vingt-deux [katR°v5d2] and quatre-vingts with the same schwa. The final e of quatre alone is mute (word_final), so the rule reads the spelling of the next word. Before a vowel quatre keeps no e (quatre enfants [katʁ‿ ɑ̃fɑ̃])."
+    },
+    {
+      "id": "FR_NEUF_V_BEFORE_HEURES",
+      "name": "neuf before heures",
+      "left_context": "^nœf$",
+      "right_context": "^œʁ$",
+      "transform": "nœv‿",
+      "obligatory": true,
+      "notes": "neuf links with [v] before heures: neuf heures [nœv‿œʁ], dix-neuf heures. Martinon (1913: 234-235): the old liaison [v] of neuf survives only in neu(f) ans and neu(f) heures; elsewhere before a vowel the [f] is kept (neuf euros). neuf ans is FR_NEUF_V_BEFORE_ANS. The right spelling is heure or heures: heurt has the IPA [œʁ] of heure, and neuf heurts keeps [f] (heurt has an h aspiré, OQLF; Martinon 1913: 248).",
+      "right_spelling": "^heures?$"
+    },
+    {
+      "id": "FR_NEUF_V_BEFORE_ANS",
+      "name": "neuf before ans",
+      "left_context": "^nœf$",
+      "right_context": "^ɑ̃$",
+      "right_spelling": "^ans$",
+      "transform": "nœv‿",
+      "obligatory": true,
+      "notes": "neuf links with [v] before ans: neuf ans [nœv‿ɑ̃], dix-neuf ans, vingt-neuf ans. Martinon (1913: 371): the old liaison of f with a change to v survives in two very frequent expressions, neu(f) vans, dix-neu(f) vans, and neu(f) vheures; before the other plurals that begin with a vowel neuf keeps [f] (neuf amis, et même neuf années, à côté de neu(f) vans); 234-235 give the same two words. ans has the IPA [ɑ̃] of en and an, so the rule reads the spelling of the right word: neuf en tout keeps [f]."
+    },
+    {
+      "id": "FR_DIX_Z_BEFORE_HUIT_NEUF",
+      "name": "dix in dix-huit and dix-neuf",
+      "left_context": "^((?:d|d͡z)[iɪ])s$",
+      "right_context": "^(?:ɥit|nœf|ɥitjɛm|nøvjɛm|nœvjɛm)$",
+      "transform": "\\1z",
+      "obligatory": true,
+      "notes": "dix takes [z] before huit and neuf in the numerals 18 and 19: dix-huit [dizɥit], dix-neuf [diznœf], quatre-vingt-dix-huit. Martinon (1913: 346): dix-huit (dizuite) by analogy with the liaison, and the soft s of dix-neuf by analogy with dix-huit; in dix-sept the [s] stays hard (dis-sète), which FR_NUMERAL_MUTE_BEFORE_CONSONANT leaves alone. The left context also takes the allophones an inheriting variety gives the same word: an affricated /d/ and a lax /i/ (fr-CA dix [d͡zis] or [d͡zɪs]). The derivatives take it too: dix-huitième [diz ɥitjɛm], dix-neuvième [diz nøvjɛm] (Martinon 1913: 346: dans dix-huit (dizuite) et ses dérivés, and dix-neuf by analogy with dix-huit)."
+    },
+    {
+      "id": "FR_VINGT_T_BEFORE_UNIT",
+      "name": "vingt in 22 to 29",
+      "left_context": "t$|(?<!t)$",
+      "right_context": "",
+      "left_spelling": "^vingt$",
+      "left_joined_spelling": "^(?!quatre-vingt$)",
+      "right_spelling": "^(?:deux|trois|quatre|cinq|six|sept|neuf|deuxième|troisième|quatrième|cinquième|sixième|septième|neuvième)s?$",
+      "transform": "t",
+      "obligatory": true,
+      "notes": "The t of vingt sounds in 22 to 29: vingt-deux [vɛ̃t dø], vingt-neuf [vɛ̃t nœf], vingt-deuxième. Martinon (1913: 329-330): le t de vingt sonne encore dans vingt et un, par liaison, et aussi dans vingt-deux, vingt-trois, etc., malgré la consonne qui suit, mais il ne sonne pas dans quatre-vingt-un, -deux, -trois, etc. (quatre-vingt-trois would else be quatre fois vingt-trois); 346: le t dans vingt-quatre ou vingt-neuf. Lexique 3.83 gives vingt-deux [v5td2] and quatre-vingt-deux [katR°v5d2]. Martinon adds that the t becomes [d] before deux (vind deux); the spec writes the phoneme /t/, as Lexique does. The joined spelling of ⟨vingt⟩ in ⟨quatre-vingt-deux⟩ is quatre-vingt, so the rule does not fire there; quatre vingt deux written without hyphens is out of its reach."
+    },
+    {
+      "id": "FR_VINGT_T_BEFORE_ET_HUIT",
+      "name": "vingt in 21 and 28",
+      "left_context": "t$|(?<!t)$",
+      "right_context": "",
+      "left_spelling": "^vingt$",
+      "left_joined_spelling": "^(?!quatre-vingt$)",
+      "right_spelling": "^(?:et|huit|huitième|huitièmes)$",
+      "transform": "t‿",
+      "obligatory": true,
+      "notes": "The t of vingt sounds and links in vingt et un and vingt-huit: [vɛ̃t‿ e œ̃], [vɛ̃t‿ ɥit]. Martinon (1913: 329): vingt et un, par liaison; 253 note 2: l'on prononce vingt-(h)uit comme quarant(e)-(h)uit, and quatre-vingt-huit comme quatre-vingt-deux, without it. Lexique 3.83 gives vingt-huit [v5t8it]. Ordered before FR_LINK_BLOCKED_BEFORE_HUIT_OUI, which keeps the numeral huit from linking elsewhere."
+    },
+    {
+      "id": "FR_EST_NOUN_AFTER_COMPASS",
+      "name": "est in nord-est and sud-est",
+      "left_context": "",
+      "right_context": "^ɛ$",
+      "right_joined_spelling": "^(?:nord|sud)-est$",
+      "right_transform": "ɛst",
+      "obligatory": true,
+      "notes": "est after a hyphen in nord-est and sud-est is the noun, with its st: [nɔʁ‿ ɛst], [syd‿ ɛst]. Martinon (1913: 331): the final group st sounds in est and ouest, and is mute in the verb e(st); 370: the d of sud always sounds and that of nord never, il vaut mieux prononcer nor(d)-ouest, ce qui entraîne à peu près nécessairement nor(d)-est. Lexique 3.83 gives nord-est [nOREst] and sud-est [sydEst]. The joined spelling holds the hyphen, so the verb in le nord est froid keeps [ɛ]."
+    },
+    {
+      "id": "FR_EST_NOUN_BEFORE_HYPHEN",
+      "name": "est at the head of a compound",
+      "left_context": "^ɛ$",
+      "right_context": "",
+      "left_joined_spelling": "^est$",
+      "right_joined_spelling": "^est-(?!(?:ce|il|elle|on|ils|elles)$)",
+      "transform": "ɛst",
+      "obligatory": true,
+      "notes": "est at the head of a hyphenated compound is the noun: est-allemand [ɛst aləmɑ̃], est-européen. Martinon (1913: 331): st sounds in est the noun and is mute in the verb e(st). Lexique 3.83 gives est-allemand [Estal°m@]. A verb in front of a hyphen takes a subject clitic or ce (est-ce, est-il, est-elle, est-on), and those keep the verb's [ɛ]; il est allemand has no hyphen."
+    },
+    {
+      "id": "FR_ENT_MUTE_AFTER_ILS",
+      "name": "verbal -ent after ils and elles",
+      "left_context": "",
+      "right_context": "(?:ɑ̃|ã|ã)$",
+      "left_joined_spelling": "^(?:(?:(?:lors|puis|quoi)?qu['’])?(?:ils|elles)|s['’]ils)$",
+      "right_spelling": "ent$",
+      "right_transform": "",
+      "obligatory": true,
+      "notes": "After the subject clitics ils and elles (also qu'ils, lorsqu'elles, puisqu'ils, quoiqu'ils, s'ils) a word in -ent is the verb, and its -ent is mute: ils parlent [il paʁl], elles mangent [ɛl mɑ̃ʒ], ils couvent [il kuv], ils président [il pʁezid]. Martinon (1913: 161): the nt of the third-person plural changes nothing (ils aime(nt) bien sounds as j'aime bien), and this mute -ent keeps a series of verb forms spelled like the nouns and adjectives in tonic -ent: expédient, affluent, résident et président, négligent, divergent, équivalent, excellent, violent, content et couvent. The spelling alone cannot tell them apart, which is why the ending ent keeps the nasal reading first (the ambiguous ending); the clitic before the word decides. A clitic between (ils les mangent, ils ne parlent) is out of reach of a rule on two words. In Lexique 3.83, 8742 written forms in -ent are third-person plural verbs, and 24 of them are also a noun, an adjective or an adverb (couvent, président, parent, talent, violent, content)."
+    },
+    {
+      "id": "FR_IENT_MUTE_AFTER_ILS",
+      "name": "verbal -ient after ils and elles",
+      "left_context": "",
+      "right_context": "j(?:ɛ̃|ẽ|ẽ)$",
+      "left_joined_spelling": "^(?:(?:(?:lors|puis|quoi)?qu['’])?(?:ils|elles)|s['’]ils)$",
+      "right_spelling": "ient$",
+      "right_transform": "i",
+      "obligatory": true,
+      "notes": "The same mute -ent after a stem in i: ils lient [il li], elles oublient. The letters ien read [jɛ̃] first, so the rule writes the stem vowel back. Martinon (1913: 161), as FR_ENT_MUTE_AFTER_ILS: the nt of the third-person plural changes nothing."
+    },
+    {
+      "id": "FR_ENT_LIAISON_INVERSION",
+      "name": "verbal -ent before an inverted subject",
+      "left_context": "t?(?:ɑ̃|ã|ã)$",
+      "right_context": "",
+      "left_spelling": "ent$",
+      "right_spelling": "^(?:ils|elles)$",
+      "right_joined_spelling": "-",
+      "transform": "t‿",
+      "obligatory": true,
+      "notes": "A verb in -ent before the inverted subject ils or elles drops its nasal vowel and links with [t]: parlent-ils [paʁlt‿ il], viennent-elles, and with one [t] after a stem in t: partent-ils [paʁt‿ il], mettent-elles. Martinon (1913: 364): one links, and more necessarily still, when the verb and the subject are inverted (dit-il, que perd-on?); 161: the -ent of the third-person plural is mute. The right joined spelling holds the hyphen."
+    },
+    {
+      "id": "FR_IENT_LIAISON_INVERSION",
+      "name": "verbal -ient before an inverted subject",
+      "left_context": "j(?:ɛ̃|ẽ|ẽ)$",
+      "right_context": "",
+      "left_spelling": "ient$",
+      "right_spelling": "^(?:ils|elles)$",
+      "right_joined_spelling": "-",
+      "transform": "it‿",
+      "obligatory": true,
+      "notes": "A verb in -ient before the inverted subject ils or elles has the mute -ent of the plural and links with [t]: lient-ils [lit‿ il], oublient-elles. Martinon (1913: 161): the nt of the third-person plural changes nothing; 364: the inverted subject links. The letters ien read [jɛ̃] first, so the rule writes the stem vowel back, as FR_IENT_MUTE_AFTER_ILS does after the clitic. Only ils and elles count: a singular in -ient before il, elle or on is a form of venir or tenir and keeps its nasal vowel (vient-il [vjɛ̃t‿ il])."
+    },
+    {
+      "id": "FR_LIAISON_T_INVERSION",
+      "name": "t before an inverted subject",
+      "left_context": "$",
+      "right_context": "",
+      "left_spelling": "[td]$",
+      "right_spelling": "^(?:il|ils|elle|elles|on|en)$",
+      "right_joined_spelling": "-",
+      "transform": "t‿",
+      "obligatory": true,
+      "notes": "A verb in t or d before an inverted subject links with [t]: dit-il [dit‿ il], est-il, vient-il, que perd-on, and the written -t- of a-t-il and va-t-on. Martinon (1913: 364): on lie également, et plus nécessairement encore, quand il y a inversion du verbe et du sujet: di(t)-il, que per(d)-on?; 363 note 2: the d links with the sound of t. The right joined spelling holds the hyphen, so only a subject joined by a hyphen counts. Before en only the written t of va-t-en links: Martinon (1913: 364 note 3): va-t-en, a-t-il, aime-t-il ne sont pas autre chose qu'une liaison faite, par analogie, là où il n'y a pas de t."
+    },
+    {
+      "id": "FR_LIAISON_Z_BEFORE_Y_EN",
+      "name": "z before a hyphenated y or en",
+      "left_context": "$",
+      "right_context": "",
+      "left_spelling": "[sxz]$",
+      "right_spelling": "^(?:y|en)$",
+      "right_joined_spelling": "-",
+      "transform": "z‿",
+      "obligatory": true,
+      "notes": "An imperative or a verb in s, x or z links with [z] before a hyphenated y or en: vas-y [vaz‿ i], allez-y, prends-en, allons-y. Martinon (1913: 373): la liaison est encore évidemment nécessaire devant y et en toniques: va(s)-zy, alle(z)-zy, songe(s)-zy bien, donne(s)-zen; 379: the s of these imperatives before en and y cannot fail to link."
+    },
+    {
+      "id": "FR_LIAISON_T_EST_ONZE",
+      "name": "est before onze",
+      "left_context": "$",
+      "right_context": "",
+      "left_joined_spelling": "^(?:[cn]['’])?est$",
+      "right_spelling": "^onze$",
+      "transform": "t‿",
+      "obligatory": true,
+      "notes": "est links with [t] before onze: il est onze heures [il ɛt‿ ɔ̃z‿ œʁ]. Martinon (1913: 358): no liaison before the numerals un and onze, et, quoiqu'on dise régulièrement il es(t) tonze heures, avec liaison, cas spécial, on dira pourtant ils étai(ent) onze ou ils son(t) onze. Ordered before FR_LINK_BLOCKED_BEFORE_ONZE_OUI."
+    },
+    {
+      "id": "FR_H_ASPIRE_BLOCKS_LINK",
+      "name": "no link before an h aspiré",
+      "left_context": "^((?:s|d|d͡z)[iɪ])s$|^(ɥ[iɪ])t$|$",
+      "right_context": "",
+      "right_spelling": "^(?:hach|hagard|haies?$|haill|hain|haï(?!t)|hall(?:e|es|s|ebarde|ebardes)?$|halos?$|haltes?$|halet|halurg|hamac|hamburger|hameau|hampe|hamster|hanch|handica|hangar|hant|hanneton|hanses?$|happ|haras|harcel|hard|harem|hareng|harfang|hargn|haricot|harnach|harnais|harp(?!ag)|hasard|hâbl|hât|hauss|haut|hauban|havre|haschisch|henn|hériss|hernie|héron|héros$|héraut|hers(?:e|es|er|age)$|hêtre|heurt|hibou|hic$|hideu|hiérarchies?$|hippie|hiss|hies?$|hobereau|hoch|hockey|holland|homard|hongr|honni|hont|hoquet|hord|hors$|hott|houblon|houes?$|houill|houl|houp|hourra|houri|houss|houx|hospodar|huard|hublot|huch|hu[eé]|huguenot|hum(?:e|er|es|ent|é|ée|ées|és|ons|ez)$|huns?$|hune|hupp|hurl|huron|husk|hussard|hutt)",
+      "transform": "\\1\\2",
+      "obligatory": true,
+      "notes": "Before a word with an h aspiré the left word keeps the form it has before a consonant: no liaison, no enchaînement mark, and six, dix and huit drop their consonant. les héros [le eʁo], des hasards, cette hache [sɛt aʃ], six haricots [si aʁiko], huit héros [ɥi eʁo]; but les héroïnes [lez‿ eʁɔin], whose h is mute. The rule changes nothing else in the left word, and it comes before every liaison and enchaînement rule, so the first rule that matches the left side is this one. Martinon (1913: 248): l'interdiction absolue de l'élision et de la liaison, et par suite l'obligation de l'hiatus (des homards, les hauteurs); 249: after a consonant, par hauteur ne se confond pas avec par auteur, with a kind of arrest; 328, 345: the numerals drop their consonant before a plural that begins with a consonant; OQLF (Prononciation de six et dix): je n'ai mangé que six haricots [siaʁiko], the consonant mute before an h aspiré as before a consonant; Tranel (1995: 9, (23)): before hibou the latent consonant of petit stays silent, peti ibu, not *petitibu. THE STEMS. The h aspiré is not written, so the rule names the words, as a stem list on the right spelling. Martinon (1913: 251 note 1): halle, hameau, hanche, hanneton, hanter, harasser, hardi, hareng, haricot, harnais, hasard, hibou, hideux, hoche, hochet, homard, honnir, honte, honteux, houe, houx, houblon; 251-252: haleter, hennir, hisser, hoquet, hourra, hauban, hune, happer, hêtre, hie, hobereau, houille, halte, hâbler, hamac, haschisch, haras, harem, henné, houri, housse, hongre and hongrois, hussard, horde, hospodar, harpon, huguenot, huppe, haut and its family, halo, halurgie, harpie, la hiérarchie, hors, hic, harceler, hargneux, hérisser, hérisson, hâtier, hernie, herse; 253: héros (not héroïque, héroïne); 254: hanse, héraut, and the names Hollande, Hongrie, Huns, Hurons. The OQLF list (Banque de dépannage linguistique, La prononciation du h aspiré, read 2026-11-26) adds hache, hagard, haie, haillon, haine, haïr, hall, hamburger, hampe, hamster, handicap, hangar, harfang, hâte, hausse, havre, héron, heurter, hippie, hocher, hockey, hotte, houle, huard, hublot, huche, huer, humer, hurler, husky, hutte; Tranel (1995: 1): hibou, hache. Martinon (1913: 250) keeps the h of hameçon, hallucination, haltère and the words in hy- mute, and 252 that of héroïque and hiérarchique; the stems are written not to reach them. The stems match 684 of the 2332 h-initial written forms of Lexique 3.83. This is a closed class that the sources list, used as a condition of a sandhi rule. It is not a lexicon in the sense of spec_authoring.md (Supply a lexicon, never bundle one): it gives no reading of any word, it grows only with a cited source, and a word outside it falls back on the ordinary liaison, so an unlisted h aspiré word (la hulotte) links in error."
+    },
+    {
+      "id": "FR_LINK_BLOCKED_BEFORE_ONZE_OUI",
+      "name": "no link before onze, uhlan and a glide",
+      "left_context": "^((?:s|d|d͡z)[iɪ])s$|^(ɥ[iɪ])t$|$",
+      "right_context": "",
+      "right_spelling": "^(?:onz|uhlan|y(?!eux$)[aeiouéèêëàâîïôû]|w)",
+      "transform": "\\1\\2",
+      "obligatory": true,
+      "notes": "Before onze and onzième, before uhlan, before a y that the next vowel makes a glide and before a w, the word is treated as consonant-initial: no liaison, no link mark, and six, dix and huit take the form they have before a consonant. les onze [le ɔ̃z], six onzièmes [si ɔ̃zjɛm], des yachts, six yachts [si iaʃ], dix watts [di wat]; but les yeux [lez‿ iø]. Martinon (1913: 358): no liaison before un and onze (no(s) onze enfants, aprè(s) onze heures), before uhlan, and before a y grec suivi d'une voyelle, parce que cet y fait alors fonction de semi-voyelle (de(s) yachts, de(s) youyous); 375: les yeux, with the [z] of zyeux; 328, 345: the numerals drop their consonant before a word that begins with a consonant. A w at the start of a word is an English loan (week-end, whisky). The left context is the one of FR_H_ASPIRE_BLOCKS_LINK. est onze heures links by FR_LIAISON_T_EST_ONZE, ordered before this rule."
+    },
+    {
+      "id": "FR_LINK_BLOCKED_BEFORE_HUIT_OUI",
+      "name": "no link before huit and oui",
+      "left_context": "$",
+      "right_context": "",
+      "right_spelling": "^(?:oui$|ouistitis?$|huit(?:s|ième|ièmes|aine|aines|ante|antes|antième|antièmes)?$)",
+      "transform": "",
+      "obligatory": true,
+      "notes": "No liaison before the numeral huit and before oui: les huit [le ɥit], trois-huit, cent-huit, je dis oui. Martinon (1913: 253): huit as a numeral has an h aspiré of its own (trois huit sans liaison, cent-huit sans liaison, quatre-vingt-huit like quatre-vingt-deux); 358: je di(s) oui, pour un oui, pour un non, and ouistiti takes none. The Swiss huitante is the same numeral. Unlike FR_LINK_BLOCKED_BEFORE_ONZE_OUI, the left word keeps its consonant: six-huit, the musical measure, keeps a hard s (Martinon 1913: 346). vingt-huit and dix-huit link by rules ordered before this one."
+    },
+    {
+      "id": "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
+      "name": "final consonant of six and dix before a consonant",
+      "left_context": "^((?:s|d|d͡z)[iɪ])s$",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:ɛ̃|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə)$)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "transform": "\\1",
+      "obligatory": true,
+      "notes": "six and dix lose their final [s] before a word that begins with a consonant: six sous [si su], dix francs [di fʁɑ̃]. The left context is the whole word, [sis] or [dis], so other words in [s] are untouched. Martinon (1913: 328, 345) drops the consonant only before the plural that the numeral multiplies (hui(t) sous, di(x) francs, si(x) cents). The rule cannot see the number of the next word, so it names the cases he keeps apart: before the name of a month the consonant stays (le huit mai [ɥit me], le six janvier; Martinon 1913: 345, 'dix et six se prononcent dis et sis devant avril, août, octobre, comme devant mai, juin ou septembre'); dix-sept keeps its hard [s] (dis sɛt, Martinon 1913: 346); and a function word is not a multiplied plural, so the consonant stays before the prepositions de, du, des, pour, par, sur, contre, chez, pendant, selon, devant, derrière, depuis, parmi, durant, malgré, moins and plus, the articles and determiners le, la, les, ce, ces, ses, tes, mes, the conjunctions mais, ni and donc, and the pronouns nous, vous, je, que, qui and ne (six de mes amis, six contre un, ils sont dix pour). dans, sans, vers, sous and car stay out of the list, because they have the IPA of the plural nouns dents, cents, vers, sous and cars, before which the consonant falls (six cents, si(x) sous). [me] is both mai and mes, and both keep the consonant. Juin is matched as [ʒɥɛ̃] and juillet as [ʒɥijɛ], the readings FR_NASAL_UI and FR_LL_YOD_AFTER_UI give them; another word in [ʒɥ] (huit juifs [ɥi ʒɥif]) is a counted plural. The left context also takes the allophones an inheriting variety gives the same word: an affricated /d/ and a lax /i/ (fr-CA dix [d͡zis] or [d͡zɪs])."
+    },
+    {
+      "id": "FR_HUIT_MUTE_BEFORE_CONSONANT",
+      "name": "final consonant of huit before a consonant",
+      "left_context": "^(ɥ[iɪ])t$",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:ɛ̃|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə)$)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "transform": "\\1",
+      "obligatory": true,
+      "notes": "huit loses its final [t] before a word that begins with a consonant: huit jours [ɥi ʒuʁ], huit cents. The left context is the whole word [ɥit], so dites [dit], site and cite [sit] are untouched. Martinon (1913: 328, 345) drops the consonant only before the plural that the numeral multiplies (hui(t) sous, di(x) francs, si(x) cents). The rule cannot see the number of the next word, so it names the cases he keeps apart: before the name of a month the consonant stays (le huit mai [ɥit me], le six janvier; Martinon 1913: 345, 'dix et six se prononcent dis et sis devant avril, août, octobre, comme devant mai, juin ou septembre'); dix-sept keeps its hard [s] (dis sɛt, Martinon 1913: 346); and a function word is not a multiplied plural, so the consonant stays before the prepositions de, du, des, pour, par, sur, contre, chez, pendant, selon, devant, derrière, depuis, parmi, durant, malgré, moins and plus, the articles and determiners le, la, les, ce, ces, ses, tes, mes, the conjunctions mais, ni and donc, and the pronouns nous, vous, je, que, qui and ne (six de mes amis, six contre un, ils sont dix pour). dans, sans, vers, sous and car stay out of the list, because they have the IPA of the plural nouns dents, cents, vers, sous and cars, before which the consonant falls (six cents, si(x) sous). [me] is both mai and mes, and both keep the consonant. Juin is matched as [ʒɥɛ̃] and juillet as [ʒɥijɛ], the readings FR_NASAL_UI and FR_LL_YOD_AFTER_UI give them; another word in [ʒɥ] (huit juifs [ɥi ʒɥif]) is a counted plural. The left context also takes the allophones an inheriting variety gives the same word: a lax /i/ (fr-CA huit [ɥɪt])."
+    },
+    {
+      "id": "FR_NUMERAL_Z_BEFORE_VOWEL",
+      "name": "z-liaison of six and dix",
+      "left_context": "^((?:s|d|d͡z)[iɪ])s$",
+      "right_context": "^(?!(?:avʁil|au|ut|u|ɔktɔbʁ|e|a)$)[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "\\1z‿",
+      "obligatory": true,
+      "notes": "six and dix take the liaison [z] before a vowel-initial word they multiply: six hommes [siz‿ɔm], six enfants, dix ans [diz‿ɑ̃]. Martinon (1913: 345): six hommes (si-zom) against six avril (si-savril), because the name of the month is not multiplied, so dix and six are [dis] [sis] before avril, août and octobre; si zavril and si zet huit are abuses of liaison. The rule therefore leaves the vowel-initial months and the words et, ou and à alone (le six avril [sis avʁil], six et huit [sis e ɥit]). août is matched both as [u] and as [ut] and as [au], the reading the spec now gives it. The left context also takes the allophones an inheriting variety gives the same word: an affricated /d/ and a lax /i/ (fr-CA dix [d͡zis] or [d͡zɪs]). The vowel class adds [y ø œ ə] to the class of FR_LIAISON_Z, so six euros [siz‿øʁo] and dix usines [diz‿yzin] link too. A function word after the numeral is no noun it multiplies, so the numeral is the pronoun and keeps [s]: six en tout [sis ɑ̃ tu], dix en tout, six avec moi, six entre eux. OQLF (Banque de dépannage linguistique, Prononciation de six et dix, read 2026-11-27): comme pronoms, six et dix se prononcent [sis] et [dis] (il lui en reste six à faire [sisa]), and as determiners before a vowel [siz] [diz] (six hommes [sizɔm], trente-six enfants). en has the IPA [ɑ̃] of ans, so the rule reads the spelling of the right word; six ans and six enfants keep [z].",
+      "right_spelling": "^(?!(?:en|ou|au|aux|avec|après|entre|envers|y|à|et)$)"
+    },
+    {
+      "id": "FR_LIAISON_Z_DETERMINER",
+      "name": "z after a determiner",
+      "left_context": "$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "left_joined_spelling": "^(?:les|des|mes|tes|ses|ces|nos|vos|leurs|aux|quelques)$",
+      "right_spelling": "^(?!(?:et|ou|un|une)$)",
+      "transform": "z‿",
+      "obligatory": true,
+      "notes": "The obligatory [z] liaisons after a determiner: les amis [lez‿ ami], des enfants, aux armes, quelques amis, les uns. Martinon (1913: 375): the plural articles les, des, aux, and ces, the possessive or indefinite adjectives mes, tes, ses, nos, vos, leurs, certains, plusieurs, etc. se lient encore sans exception devant un substantif, even with an adjective in between; 376: les is also the object pronoun before a verb (je les attends); quelques stands with certains and plusieurs as an indefinite plural adjective, and is never a pronoun. The joined spelling is anchored at both ends, so a word joined by a hyphen does not link (donne-les à mon père: 376, no link). Not before et or ou, nor before the numeral un or une (Martinon 1913: 358: les numéro(s) un et deux, sur le(s) une heure); the pronoun les uns links. The h aspiré, onze, huit and oui are stopped by FR_H_ASPIRE_BLOCKS_LINK and the two FR_LINK_BLOCKED_BEFORE_* rules, ordered before this rule."
+    },
+    {
+      "id": "FR_LIAISON_Z_PREPOSITION",
+      "name": "z after a preposition and très",
+      "left_context": "$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "left_joined_spelling": "^(?:chez|dans|dès|sans|sous|très)$",
+      "right_spelling": "^(?!(?:et|ou)$)",
+      "transform": "z‿",
+      "obligatory": true,
+      "notes": "The obligatory [z] liaisons after the monosyllabic prepositions and très: chez elle [ʃez‿ ɛl], dans un jour, sans amour, sous un arbre, dès à présent, très utile. Martinon (1913: 374): la liaison est encore nécessaire avec les prépositions monosyllabiques dans, dès, sans, chez, sous, devant leurs régimes (dan(s) zun jour, san(s) zamour, che(z) zelle, sou(s) zun arbre), and with très before the word it modifies. The joined spelling is anchored at both ends, so the second word of Très-Haut does not link (the h aspiré block also stops it). Not before et or ou."
+    },
+    {
+      "id": "FR_LIAISON_Z_INDEFINITE",
+      "name": "z after plusieurs and certains before a noun",
+      "left_context": "$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "left_joined_spelling": "^(?:plusieurs|certains|certaines)$",
+      "right_spelling": "^(?!(?:et|ou|en|y|ont|avaient|auront|auraient|eurent|aient|sont|étaient|seront|seraient|furent|soient)$)",
+      "transform": "z‿",
+      "obligatory": true,
+      "notes": "plusieurs and certains link with [z] before a noun: plusieurs autres personnes, certains auteurs [sɛʁtɛ̃z‿ otœʁ]. Martinon (1913: 375): certain(s) zauteurs, plusieur(s) zautres personnes; 376: si ces mots ne sont pas suivis d'un substantif, la liaison ne se fait plus dans la conversation: plusieur(s) ont prétendu, où plusieurs devient pronom. The pronoun stands before its verb, so the rule leaves out the forms of avoir and être and the clitics en and y; another verb after the pronoun (plusieurs arrivent) is out of reach of a rule on two words."
+    },
+    {
+      "id": "FR_LIAISON_Z_NUMERAL",
+      "name": "z after deux, trois, vingts, cents",
+      "left_context": "$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "left_spelling": "^(?:deux|trois|vingts|cents)$",
+      "right_spelling": "^(?!(?:et|ou|avril|août|octobre)$)",
+      "transform": "z‿",
+      "obligatory": true,
+      "notes": "The numerals deux, trois, quatre-vingts and the plural cents link with [z] before the noun they count, also inside a hyphenated numeral: deux ans [døz‿ ɑ̃], vingt-deux ans, trois hommes, quatre-vingts ans, deux cents ans. Martinon (1913: 375): the numerals deux, trois, six, dix, quatre-vingts se lient encore sans exception devant un substantif; 376: not when the numeral is not before a noun (deu(x) et deux, troi(s) et trois), and deu(x) avril, sans liaison, as before the other months (345). Six and dix keep their own rules (FR_NUMERAL_Z_BEFORE_VOWEL)."
+    },
+    {
+      "id": "FR_LIAISON_Z_PRONOUN",
+      "name": "z after a subject or object pronoun",
+      "left_context": "$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "left_joined_spelling": "^(?:nous|vous|(?:(?:lors|puis|quoi)?qu['’])?(?:ils|elles)|s['’]ils)$",
+      "right_spelling": "^(?!(?:et|ou|à|aussi|avec|il|elle|on|ils|elles)$)",
+      "transform": "z‿",
+      "obligatory": true,
+      "notes": "The pronouns nous, vous, ils and elles link with [z] before their verb and before en and y: nous avons [nuz‿ avɔ̃], vous êtes, ils ont, elles aiment, qu'ils aient, ils en ont, elles y vont. Martinon (1913: 376): les pronoms personnels nous, vous, ils, elles, et même les, devant les verbes ou devant en et y, are in the position of the adjective before its noun, aussi lie-t-on nécessairement: nou(s) zavons dit, je vou(s) zai vu, elle(s) zont fait, elle(s) zen ont, elle(s) zy vont; 379: the s of the pronoun elles cannot fail to link. Out of that position they do not link (376: pour vou(s) et pour nous; donne-le(s) à mon père): the rule leaves out the words that follow a stressed pronoun and are never its verb, et, ou, à, aussi, avec and a subject pronoun (chez vous il fait froid, entre nous on dit), and the joined spelling is anchored at both ends, so ont-ils été and dites-vous keep no link."
+    },
+    {
+      "id": "FR_LIAISON_T_PROCLITIC",
+      "name": "t after est, sont, ont, tout, quand, dont",
+      "left_context": "$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "left_joined_spelling": "^(?:(?:[cn]['’])?est|sont|ont|tout|quand|quant|dont)$",
+      "right_spelling": "^(?!(?:et|ou)$)",
+      "transform": "t‿",
+      "obligatory": true,
+      "notes": "The obligatory [t] liaisons: il est allé [il ɛt‿ ale], c'est un, ils sont arrivés, ils ont eu, tout à fait, tout homme, tout est fini, quand il viendra, quant à, dont il est. Martinon (1913: 363): forms like est or sont, avait or ont, without liaison are certainly incorrect, surtout si ce sont des auxiliaires (ils on(t) taimé); 364: il e(st) ta Paris is indispensable; 365: cet and tout se lient toujours, being always before the noun (tou(t) thomme); 366: the adverb tout before an adjective (il est tou(t) tautre, tout à fai(t)), quan(t) ta, the relative dont and the conjunction quand (quan(d) til viendra, don(t) til est); 367: le pronom indéfini sujet se lie toujours: tou(t) test fini. Not before et or ou (367: the noun tout does not link, le tou(t) et la partie). The noun tout before a verb (le tout est de savoir, 367, no link) cannot be told from the pronoun (tout est fini) by two words, and takes the link. grand has a rule of its own, FR_LIAISON_T_GRAND."
+    },
+    {
+      "id": "FR_LIAISON_T_GRAND",
+      "name": "t after grand before its noun",
+      "left_context": "$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "left_joined_spelling": "^grand$",
+      "right_spelling": "^(?!(?:et|ou|à|au|aux|en|avec|aussi|il|elle|on|ils|elles|y|encore|alors|ici|après|avant|assez|entre|envers|ou|un|une)$)",
+      "transform": "t‿",
+      "obligatory": true,
+      "notes": "grand links with [t] before its noun: grand homme [ɡʁɑ̃t‿ ɔm], grand ami, grand hôtel, grand-oncle. Martinon (1913: 365): l'adjectif se lie à peu près uniquement, mais obligatoirement, avec le substantif qui le suit (gran(d) thomme); 366: when the adjective is not before its noun it does not link (il est gran(d) et fort). A rule on two words cannot see the noun, so it leaves out a right word that is never a noun: the conjunctions, the prepositions, the adverbs that follow a predicative adjective (il est grand aussi) and the pronouns. Another word after a predicative grand (il est grand ici, il est grand ami de) is out of its reach; the h aspiré block keeps grand héros unlinked."
+    },
+    {
+      "id": "FR_LIAISON_T_NUMERAL",
+      "name": "t after vingt and cent before a noun",
+      "left_context": "t$|(?<!t)$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "left_spelling": "^(?:vingt|cent)$",
+      "left_joined_spelling": "^(?!quatre-vingt$)",
+      "right_spelling": "^(?!(?:et|ou|un|une|avril|août|octobre)$)",
+      "transform": "t‿",
+      "obligatory": true,
+      "notes": "vingt and cent link with [t] before the noun they count: vingt ans [vɛ̃t‿ ɑ̃], cent ans [sɑ̃t‿ ɑ̃], cent hommes. Martinon (1913: 365): ving(t) thommes ou cen(t) thommes, like the adjectives placed before their noun. cent has the IPA of sans and sang, so the rule reads the spelling of the left word. Not in cent un or cent-un (358 note 1: cent un is cent et un, without the link of cent fois un), nor before cent huit and cent onze (253 note 2, cent-huit sans liaison; FR_LINK_BLOCKED_BEFORE_HUIT_OUI and FR_LINK_BLOCKED_BEFORE_ONZE_OUI), nor before the months (345). The right spelling is the word alone, so the hyphenated forms of 1990 behave as the spaced ones. quatre-vingt is left to the plural quatre-vingts, which links with [z] (FR_LIAISON_Z_NUMERAL)."
+    },
+    {
+      "id": "FR_LIAISON_N_ARTICLE",
+      "name": "n after un and aucun",
+      "left_context": "$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "left_spelling": "^(?:(?:d['’]|qu['’])?(?:un|aucun))$",
+      "right_spelling": "^(?!(?:et|ou|avril|août|octobre)$)",
+      "transform": "n‿",
+      "obligatory": true,
+      "notes": "un and aucun link with [n] and keep the nasal vowel: un ami [œ̃n‿ ami], d'un ami, aucun homme, vingt-et-un ans. Martinon (1913: 390): l'usage s'est établi de faire la liaison sans décomposer: un nhomme, un nami; aucun fait exactement comme un; but un ou deux and un et un font deux have no link, and vingt et un avril, où avril n'est pas multiplié, has none either. The adjectives in -ain, bon, mon, ton, son link by denasalising (387-388: un vilai-nenfant, mo-nami); that reading is left out (see the fr-FR page)."
+    },
+    {
+      "id": "FR_LIAISON_N_PRONOUN",
+      "name": "n after en and on",
+      "left_context": "$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "left_joined_spelling": "^(?:(?:[jmtsnl]['’]|qu['’])?(?:en|on))$",
+      "right_spelling": "^(?!(?:et|ou)$)",
+      "transform": "n‿",
+      "obligatory": true,
+      "notes": "en and on link with [n] and keep the nasal vowel: en Asie, en effet [ɑ̃n‿ efɛ], on a dit, l'on a, qu'on a, il y en a, je n'en ai pas, s'en aller. Martinon (1913: 390): en, on, rien, bien se lient sans se dénasaliser (je n'en nai pas, on na dit, en nAsie, en nargent). After a hyphen there is no link (391: parlez-en à votre père, a-t-on été): the joined spelling is anchored at both ends. rien and bien link only when the tie to the next word is close (391: rien ou peu de chose, bien et vite, nous sommes bien ici), which two words cannot show, so they are left out."
+    },
+    {
+      "id": "FR_LIAISON_R_PREMIER",
+      "name": "r after premier and dernier before a noun",
+      "left_context": "je$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "left_spelling": "^(?:premier|dernier)$",
+      "right_spelling": "^(?!(?:et|ou|à|en|avril|août|octobre)$)",
+      "transform": "jɛʁ‿",
+      "obligatory": true,
+      "notes": "premier and dernier before their noun link with [ʁ], and the e opens: premier enfant [pʁəmjɛʁ‿ ɑ̃fɑ̃], dernier étage. Martinon (1913: 359): no liaison proper is left for l, m, n, r, except the nasals and three or four adjectives in -ier, surtout premier et dernier, quand ils sont devant un substantif: premie(r) racte, dernie(r) racte; en cas de liaison, l'e s'ouvre à demi. Not before et, ou, à, en, nor before a month (le premier avril, as 345 says of the numerals), where premier is not before its noun. The noun before a verb (le dernier arrive) cannot be told from the adjective by two words."
+    },
+    {
       "id": "FR_LIAISON_Z",
       "name": "z-liaison",
       "left_context": "z$",
-      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "right_context": "^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]",
       "transform": "z‿",
       "obligatory": true,
-      "notes": "les amis → lez‿ami"
+      "notes": "Despite its id, this rule is the enchaînement of a final [z] that the spec pronounces: douze ans [duz‿ ɑ̃]. The [z] liaison is FR_LIAISON_Z_DETERMINER and the rules after it. It reads no spelling, so it runs where the caller passes no spellings. Before an h aspiré word, FR_H_ASPIRE_BLOCKS_LINK, ordered before it, takes the left side first (Martinon 1913: 249). The onset class is every French vowel: [y ø œ ə] beside the others (huit unités [ɥit‿ynite], sept euros [sɛt‿øʁo]); a nasal vowel matches by its base letter. The glides [j w ɥ] stay out."
     },
     {
       "id": "FR_LIAISON_T",
       "name": "t-liaison",
       "left_context": "t$",
-      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "right_context": "^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]",
       "transform": "t‿",
       "obligatory": true,
-      "notes": "petit ami → pətit‿ami"
+      "notes": "Despite its id, this rule is the enchaînement of a final [t] that the spec pronounces: cet homme [sɛt‿ ɔm]. The [t] liaison is FR_LIAISON_T_PROCLITIC and FR_LIAISON_T_NUMERAL. It reads no spelling, so it runs where the caller passes no spellings. Before an h aspiré word, FR_H_ASPIRE_BLOCKS_LINK, ordered before it, takes the left side first (Martinon 1913: 249). The onset class is every French vowel: [y ø œ ə] beside the others (huit unités [ɥit‿ynite], sept euros [sɛt‿øʁo]); a nasal vowel matches by its base letter. The glides [j w ɥ] stay out."
     },
     {
       "id": "FR_LIAISON_N",
       "name": "n-liaison",
       "left_context": "n$",
-      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "right_context": "^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]",
       "transform": "n‿",
       "obligatory": true,
-      "notes": "un ami → ɛ̃n‿ami"
+      "notes": "Despite its id, this rule is the enchaînement of a final [n] that the spec pronounces: une amie [yn‿ ami]. The [n] liaison is FR_LIAISON_N_ARTICLE and FR_LIAISON_N_PRONOUN. It reads no spelling, so it runs where the caller passes no spellings. Before an h aspiré word, FR_H_ASPIRE_BLOCKS_LINK, ordered before it, takes the left side first (Martinon 1913: 249). The onset class is every French vowel: [y ø œ ə] beside the others (huit unités [ɥit‿ynite], sept euros [sɛt‿øʁo]); a nasal vowel matches by its base letter. The glides [j w ɥ] stay out."
     },
     {
       "id": "FR_LIAISON_R",
       "name": "r-liaison",
       "left_context": "ʁ$",
-      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "right_context": "^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]",
       "transform": "ʁ‿",
       "obligatory": false,
-      "notes": "premier étage → optional"
+      "notes": "Despite its id, this rule is the enchaînement of a final [ʁ] that the spec pronounces: pour elle [puʁ‿ ɛl]. The [ʁ] liaison of premier and dernier is FR_LIAISON_R_PREMIER. It reads no spelling, so it runs where the caller passes no spellings. Before an h aspiré word, FR_H_ASPIRE_BLOCKS_LINK, ordered before it, takes the left side first (Martinon 1913: 249). The onset class is every French vowel: [y ø œ ə] beside the others (huit unités [ɥit‿ynite], sept euros [sɛt‿øʁo]); a nasal vowel matches by its base letter. The glides [j w ɥ] stay out."
     },
     {
       "id": "FR_LIAISON_P",
       "name": "p-liaison",
       "left_context": "p$",
-      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "right_context": "^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]",
       "transform": "p‿",
       "obligatory": false,
-      "notes": "trop aimable → optional"
+      "notes": "Despite its id, this rule is the enchaînement of a final [p] that the spec pronounces. The [p] liaison of trop and beaucoup is not written: Martinon (1913: 360) calls it not quite obligatory in conversation. It reads no spelling, so it runs where the caller passes no spellings. Before an h aspiré word, FR_H_ASPIRE_BLOCKS_LINK, ordered before it, takes the left side first (Martinon 1913: 249). The onset class is every French vowel: [y ø œ ə] beside the others (huit unités [ɥit‿ynite], sept euros [sɛt‿øʁo]); a nasal vowel matches by its base letter. The glides [j w ɥ] stay out."
     },
     {
       "id": "FR_ENCHAÎNEMENT",
       "name": "enchaînement",
       "left_context": "([bdɡvzʒ])$",
-      "right_context": "^[aeiouɛɔɑãɛ̃ɔ̃œ̃]",
+      "right_context": "^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]",
       "transform": "\\1‿",
       "obligatory": true,
-      "notes": "une amie → resyllabification: the final consonant is kept and the link mark follows it (rouge orange → ʁuʒ‿ ɔʁɑ̃ʒ)"
+      "notes": "une amie → resyllabification: the final consonant is kept and the link mark follows it (rouge orange → ʁuʒ‿ ɔʁɑ̃ʒ). It reads no spelling, so it runs where the caller passes no spellings. Before an h aspiré word, FR_H_ASPIRE_BLOCKS_LINK, ordered before it, takes the left side first (Martinon 1913: 249). The onset class is every French vowel: [y ø œ ə] beside the others (huit unités [ɥit‿ynite], sept euros [sɛt‿øʁo]); a nasal vowel matches by its base letter. The glides [j w ɥ] stay out."
     }
   ],
-  "notes": "Standard Metropolitan French (Parisian). Nasal grapheme sequences (⟨an⟩, ⟨am⟩, ⟨en⟩, ⟨em⟩, ⟨in⟩, ⟨im⟩, ⟨on⟩, ⟨om⟩, ⟨un⟩, ⟨um⟩) denasalise before a following vowel within the word (positional_graphemes before_vowel branch, e.g. amateur [amatœʁ], inutile [inytil], bonasse [bɔnas]); the ⟨n⟩/⟨m⟩-doubling trigger for denasalisation (immense, ennemi) is not separately modelled because the doubled consonant is tokenised as its own bb/dd/ff/gg/ll/mm/nn/pp/rr/tt digraph rather than surfacing as BEFORE_VOWEL/BEFORE_CONSONANT context on the nasal grapheme — a known engine-limit gap. Word-final unstressed ⟨e⟩ (e caduc) defaults to silent (positional_graphemes word_final), matching modern colloquial elision of the mute e; monosyllabic function words whose sole vowel is that final ⟨e⟩ (le, de, que, ce, ne, se, je, me, te) are handled via the word_exceptions whole-word override, since the positional-grapheme priority order always resolves WORD_FINAL before NUCLEUS_STRESSED and cannot express 'sole vowel nucleus of a monosyllable' as a rule — the schwa is grammatically obligatory there to preserve the syllable. FINAL CONSONANTS: t, d, p, s, x, r typically silent word-finally in modern French, resurfacing in liaison. LIAISON: s/x→[z], d/t→[t], n→[n] before vowel-initial words (sandhi_rules, obligatory after determiners/pronouns, optional after adjectives/prepositions per Tranel 1995). Aspirate-h words (les héros, le hibou) block both liaison and elision (Tranel 1995); this cannot currently be distinguished from mute-h words at the grapheme/sandhi level since ⟨h⟩ maps to the empty string in both cases — a lexical h-aspiré wordlist would be required, out of scope for this pass. ELISION: the orthography writes the elided clitic (le/la/je/me/te/se/ne/de/que/ce + vowel → l'/j'/m'/t'/s'/n'/d'/qu'/c') with an apostrophe and no space, and the clitic is the onset of the vowel-initial host: l'ami is [lami], not [l ami] (Tranel 1995: 1, examples (1b) and 4, (5), the elided vowel is absent before a vowel-initial word). The clitic is therefore NOT a word of its own. word_internal_apostrophe is true so that the clitic and its host are one unit: the word-final silencing of ⟨d⟩, ⟨s⟩, ⟨t⟩ and ⟨e⟩ then does not apply to the clitic's consonant (d'accord [dakɔʁ], s'il [sil], j'ai [ʒe]), the engine reads the letter after the apostrophe as the one that follows ⟨qu⟩ (qu'il [kil], jusqu'à [ʒyska], quelqu'un [kɛlkœ̃]), and a whole-word entry can name a word that spells the apostrophe inside it (aujourd'hui). apostrophe_elision is true, so a host with a whole-word entry and no entry for the elided form keeps its own entry, with the clitic's reading in front: l'hiver [livɛʁ], d'hier [djɛʁ], l'os [lɔs]. After l' and d' the word est is the noun 'east', which Lexique 3.83 reads [ɛst] (est, NOM), so l'est and d'est have entries of their own and do not take the verb's [ɛ]. It is not a text normaliser: U+0027 and U+2019 are both read, and any other mark is left alone. The citation covers the elision pattern only. The reading of the host word (est, et, des) is a separate claim that this spec does not make here. SOFTENING: c→[s] before e/i/y; g→[ʒ] before e/i/y. INTERVOCALIC s: [z] between vowels within a word. Doubled consonants (bb, dd, ff, gg, ll, mm, nn, pp, rr, tt) degeminate to a single consonant, the modern-French default (Fouché 1959; Tranel 1987). Modern Parisian speech increasingly merges /œ̃/ into /ɛ̃/ (brun/brin, un/hein); both realizations are kept as allophones of œ̃ rather than collapsing the phonemic contrast, since conservative Standard French sources (Fougeron & Smith 1993) still treat them as distinct. GLIDE FORMATION: word-internal ⟨i⟩ before another vowel letter glides to [j] (pied [pje], lion [ljɔ̃], fiacre [fjakʁ]) — positional_graphemes before_vowel branch, Tranel (1987) §5-6 on high-vowel gliding; the plain vowel-letter ⟨i⟩ (unlike the ⟨y⟩/⟨ien⟩/⟨oui⟩ digraphs already carrying [j]) previously always surfaced as the full vowel. This is blocked (BEFORE_FINAL_VOWEL, an engine-level position, see orthography2ipa/types.py) when the following vowel is itself the word's last audible slot — word-final unmarked ⟨ie⟩ stays [i], not [j+deleted-e]: vie [vi], envie [ɑ̃vi], folie [fɔli], Algérie [alʒeʁi], and the plural vies [vi] (⟨s⟩ is a transparent, independently-silenced suffix grapheme, Tranel 1987 §3) — without this exclusion the glide rule wrongly produces a vowel-less [vj] for the entire closed class of French nouns ending in unstressed ⟨-ie⟩/⟨-ies⟩. ILL EXCEPTION CLASS: ⟨ill⟩ is [ij] by default (fille, famille, bastille) except in a closed irregular set where it stays [il] — ville, mille, tranquille (and tranquillement) and the place name Lille — handled via word_exceptions per Tranel (1987) §4.3's irregular-ill list, since the digraph mapping cannot express a lexical exception to its own default. Sources: Fouché (1959), Tranel (1987), Ladefoged & Maddieson (1996), Fougeron & Smith (1993), Tranel (1995). word_exceptions also carry Tranel 1987 §7's closed list of common words whose final ⟨s⟩ is exceptionally pronounced (fils [fis], os, ours, mars, maïs, tennis, sens...); regular final ⟨s⟩ stays silent, and ambiguous homographs (tous, plus) are deliberately excluded. DEFINITE ARTICLE les: the plural article is [le] (Tranel 1995: 1, example (1a): les [le], les amis [lezami] against les tamis [letami]). The letter rules read its ⟨es⟩ as the silent plural ending and left a bare [l], so the word is a whole-word entry in word_exceptions, like the other monosyllabic function words whose only vowel is written before a silent ⟨s⟩ or ⟨e⟩. The liaison [z] is not added here. MUTE ⟨-er⟩/⟨-ez⟩ ENDINGS: deliberately NOT modelled as grapheme keys. ENDING \"er\" is [e] — the infinitive, the -er/-ier adjective and the agent noun lose the final consonant of the grammatical ending (parler, manger, boulanger, and boulangers behind the transparent plural) (Fouché 1959, Traité de prononciation française; Tranel 1987 §3 on final-consonant elision in grammatical endings). ENDING \"ez\" is [e] — the 2pl inflection and the frozen nez/chez/assez, the same elision in the same environment (Fouché 1959; Tranel 1987 §3). Word-final ⟨-er⟩/[e] (parler) vs /ɛʁ/ (mer, hiver, super, loanwords) and ⟨-ez⟩/[e] (mangez, nez) are a MORPHOLOGICAL split — the mute reading belongs to the infinitive/2pl/agent-noun endings, not to the letter sequence — and morpheme chunks are forbidden grapheme keys (an ⟨er⟩ digraph makes ⟨s⟩ in pers-/vers- look intervocalic → *[pɛʁzɔn], and out-munches ⟨rr⟩ degemination → *[tɛʁʁ]); needs a morpheme-aware engine context (same follow-up as English suffix palatalization). The general word-final ⟨r⟩ silencing above covers the mute class at the letter level; the words whose final ⟨r⟩ IS pronounced (the mer/fer/hiver monosyllable-and-friends set plus English -er loanwords keeping /œʁ/~/ɛʁ/) are lexical exceptions carried in word_exceptions. FINAL ⟨r⟩ IS PRONOUNCED: the earlier word_final [\"\"] made silence the DEFAULT for every final ⟨r⟩, which is the inverse of the fact — French word-final ⟨r⟩ is [ʁ] (mer, bonjour, sur, par, hiver, amour, chanteur); it is mute only in the ⟨-er⟩ sequence (infinitives parler, -er/-ier nouns and adjectives boulanger, premier), and that case is already owned by the grammatical_endings ⟨er⟩→[e] rewrite, which runs after the beam and also absorbs the transparent plural ⟨-ers⟩ (Fouché 1959; Tranel 1987 §3). word_final is therefore [\"ʁ\", \"\"] — pronounced first, silence kept as the second beam branch for the monosyllabic-lexical residue. VERBAL ⟨-ent⟩ IS AMBIGUOUS AND IS EXPOSED, NOT DECIDED: the 3rd-person-plural inflection ⟨-ent⟩ is silent (ils parlent [paʁl], munissent [mynis]) while the nominal/adjectival ⟨-ent⟩ is [ɑ̃] (vent, dent, cent, argent, accent, talent, absent, serpent, Occident, Vincent). Verb-vs-noun is not decidable from spelling; it needs part-of-speech, which this layer does not have and (owner ruling) does not accept as an input — that decision belongs to a downstream rescorer. A rewriting ⟨ent⟩→[] entry is still NOT shipped: it wins 3844 wikipron/fr types against 254 losses, but the 254 are far commoner in running text than the inflected verb forms it wins, and this library feeds TTS; the counter-set is also open (Laurent, Florent, Clément), so it cannot go in word_exceptions. (NOTE, two different measurements, do not conflate them: 3844/254 is the ENGINE OUTCOME of the rewrite — types whose 1-best would move toward or away from gold if the rewrite shipped, so it depends on what the rest of the spec already gets right; 3873/287 below is a property of the GOLD ALONE — ⟨-ent⟩ types whose reference transcription is mute versus nasal, counted by string operations with no engine run. The two are close because the spec is mostly right on this class, not because they measure the same thing.) What IS shipped is the deferring candidate list \"ent\": [null, \"\"]. ENDING \"ent\" is [ɑ̃] or mute — both readings are attested for the same spelling, the mute one being the 3PL inflection and the nasal one the noun or adjective (Fouché 1959; Tranel 1987 §3; Divay & Vitale 1997, which uses this very ending as the standard worked example of a grapheme-to-phoneme rule that requires part of speech). Element 0 is null, so rank 1 stays exactly what nasal ⟨en⟩ + silent ⟨t⟩ already produced (every 1-best byte-identical, vent [vɑ̃], moment [mɔmɑ̃], comment [kɔmɑ̃] unchanged), and the mute reading is added below rank 1 — measured at rank 4 for parlent, munissent and vent, rank 5 for moment, dorment and argent, i.e. below the ⟨e⟩ and final-⟨t⟩ branches the beam already carried. LATTICE-HOLE EVIDENCE for \"ent\" (the admissibility bar in SCHEMA.md, 0-in-top-k on gold): on a 300-word random sample of the gold-mute ⟨-ent⟩ class from wikipron/fr (fra_latn_broad), the gold mute reading appeared in word_candidates 0 times out of 300 anywhere in the top 10 before this entry, and 192 times out of 300 after it; exact@1 is 0 before and 0 after, because o2i does not decide. [paʁl] was in no beam at any width, so no downstream rescorer could ever recover it — a coverage hole, not a ranking error. ORDERING BASIS for \"ent\": rank 1 defers to the base path, i.e. to [ɑ̃], the majority reading in running text — the nominal/adjectival class (vent, dent, cent, argent) is far commoner in text than the inflected verb forms, even though gold TYPES run 3873 mute against 287 nasal, and this library feeds TTS, where type counts do not price a mispronounced vent. The mute alternative is gold-attested for the 3PL class and cited (Fouché 1959; Tranel 1987 §3; Divay & Vitale 1997). LOI DE POSITION for ⟨eu⟩: [ø] in an open syllable (heureux, peu, jeu), [œ] in a closed one (fleur, chanteur, jeune) — Fougeron & Smith (1993), loi de position; Tranel (1987) ch. 4. Expressed with the OPEN_SYLLABLE/CLOSED_SYLLABLE positions. HOW APERTURE IS DECIDED, and what that costs: the law is about a PRONOUNCED coda, but the engine has only letters, so open/closed is an ORTHOGRAPHIC proxy — strip the graphemes this spec declares silent word-finally, then ask what the syllable ends in. On top of that, a final syllable with no audible nucleus (a mute ⟨e⟩: jeu·ne, eu·re) is folded into the syllable before it, whose coda its consonants really are (positional.merge_nucleusless_final_syllable, generic and spec-driven), and the strip then runs a SECOND time on that merged string — on letters that are no longer word-final in the pronunciation. So meute [møt] and heureuse [øʁøz] come out right for the wrong reason (both strip back to an open meu/reu although /t/ and /z/ are pronounced), and the proxy is outright wrong for a pronounced coda that does not close for the law (obstruent + liquid: neutre [nøtʁ] and feutre [føtʁ] get [œ]) and for a /z/ spelled ⟨z⟩, which cannot be stripped and is instead handled by FR_EU_BEFORE_Z. The same law is NOT declared for ⟨o⟩ or ⟨e⟩, and the proxy is why. ⟨o⟩: generalising close [o] to every open syllable is the SOUTHERN pattern (Walker 2001 ch. 3); standard French keeps [ɔ] in non-final open syllables (homophone [ɔmɔfɔn], obole [ɔbɔl], homme [ɔm]), and the aperture rule measured PER 0.0887 → 0.1177 on wikipron/fr, 16836 types worse against 447 better — so ⟨o⟩ stays on FR_O_FINAL_OPEN plus FR_O_BEFORE_Z. ⟨e⟩: French ⟨e⟩ is [ɛ] in a GRAPHICALLY closed syllable whether or not the coda is pronounced (met [mɛ], mets [mɛ], effets [efɛ]), which is the opposite of what a phonetic-coda proxy answers, so it keeps the orthographic FR_E_CLOSED_CLUSTER / FR_E_CLOSED_FINAL rules; the aperture version measured 0.0887 → 0.0903. 2026-08 LOANWORD -ER SNAPSHOT EXTENSION: the English-loan -er/[œʁ]~[ɛʁ] carve-out above (leader, cracker, container, poker, revolver) is a documented instance of an OPEN class, not a closed one — French keeps borrowing English agent-noun -er coinages on an ongoing basis, and proper nouns (surnames, place names) ending -er with gold /ʁ/ are unboundedly open by definition. A full closed-set fix via word_exceptions is therefore not possible without violating the closed-lexical-class rule (AGENTS.md §2). What IS shipped: 56 additional word_exceptions entries — every wikipron fr gold type ending ⟨-er⟩ with a SINGLE, unambiguous gold /ʁ/-final transcription (disagreement across wikipron entries for the same word, e.g. quaker, hamburger, manager, master, panzer, was treated as evidence of genuine synchronic variation and those words were deliberately left OUT rather than picking a transcription arbitrarily). A further 47 candidate types were audited against gold and dropped for a distinct, more specific reason than plain variation: their gold has BOTH an [e]-final and an [œʁ]/[ɛʁ]-final transcription, and the two readings are not free variation of the same word but a VERB–NOUN HOMOGRAPH split — mute-⟨er⟩ infinitive (and 2pl/agent-noun) morphology already covered by the grammatical_endings ⟨er⟩→[e] rewrite above versus the loanword agentive -er nominal reading this carve-out targets. Some are native French verbs (porter, reporter, poster, cacher, ranger, fier); most are English loan STEMS that French freely verbs with its own -er infinitive morphology the moment they are borrowed — denominal-verb formation from an English -er noun/agent borrowing (dealer/\"to deal drugs\", hacker/\"to hack\", zapper, spammer, streamer, scanner, mixer…) — so the SAME orthographic type is simultaneously a noun keeping /œʁʕ/ɛʁ/ (\"un dealer\") and a verb infinitive taking [e] (\"dealer de la drogue\"). A context-free lexical override in word_exceptions cannot express that split: it would silently mispronounce every verbal use of these types. This is a real ceiling of the whole-word-override layer, not an oversight — verb-vs-noun for this class needs part-of-speech, the same gap already documented above for the VERBAL ⟨-ent⟩ class, and is left to a morphology-aware pass / the ambiguity lattice and downstream rescorers rather than resolved by guessing one reading here. The 47 excluded types (with both gold readings) are: biker, bomber, boxer, cacher, carter, clipper, cruiser, dealer, designer, destroyer, driver, ester, fier, flipper, flyer, follower, gaffer, hacker, hamster, kicker, loader, loser, mixer, outsider, pointer, porter, poster, pranker, putter, quinter, ranger, rapper, recorder, reporter, scanner, skipper, spammer, spoiler, sprinter, starter, streamer, supporter, taler, trader, tuner, tweeter, zipper. Proper nouns (Jupiter, Esther, Jennifer, Khmer, Vancouver, Christopher, Miller, Niger, Roger...) were also deliberately left OUT of this pass — the onomastic class is open by construction and no finite word_exceptions list will ever be complete for it; they remain a documented, not a silently missed, gap. This is an ATTESTED-IN-THIS-GOLD-SNAPSHOT extension of the existing carve-out, not a claim of exhaustive coverage: new unambiguous English -er loans and new proper nouns will keep needing individual word_exceptions additions as they are attested in future gold, and the 47 homograph types remain a known gap for whichever future layer gets part-of-speech.\n\nBARE ⟨-ent⟩ 3PL — DOWNSTREAM-RESCORER CEILING. Bare ⟨-ent⟩ stays list-valued (null or empty) because it spells both the mute 3PL verbal inflection and the nasal ending of a noun, adjective or adverb, and only part of speech separates them (Divay & Vitale 1997). A prior draft of this wave tried to carve out the longer 3PL desinences (⟨-aient -èrent -assent -issent -irent -urent⟩) as single-valued endings on the theory that their extra tense/mood morphology made them verb-only. That was wrong on two counts: Laurent (proper noun, gold [lɔʁɑ̃]) ends in the same letters as ⟨-urent⟩'s tail and is not a verb form, and — more seriously — each ending was a plain-string tail rewrite with no stem condition, so it clobbered the stem vowel of any OTHER verb whose 3PL happens to share the letters (courent misread as cour+ent, meurent, paraissent, croissent, puissent). Both failures are inherent to enumerating paradigm cells as context-free string endings rather than modelling the verbal stem; they are dropped and not reintroduced in any form. Reaching them correctly needs the same POS layer bare ⟨-ent⟩ is already waiting on (Divay & Vitale 1997).\n\nNASAL VOWEL BLOCKING. A vowel letter plus ⟨n⟩ or ⟨m⟩ spells a nasal vowel only when the nasal letter closes the syllable — that is, only when it is neither doubled nor followed by a vowel letter. When either of those holds, the nasal consonant is a syllable ONSET, it is pronounced, and the vowel in front of it stays oral: ⟨-aine⟩ [ɛn] (Africaine [afʁikɛn]), ⟨-ienne⟩ [jɛn] (Adrienne [adʁjɛn]), ⟨aim-⟩ before a vowel [ɛm] (aimer [ɛme]), against the nasal readings of ⟨-ain⟩, ⟨-ien⟩ and ⟨-aim⟩ when a consonant or the word edge follows (bien [bjɛ̃], ancien [ɑ̃sjɛ̃]) (Tranel 1987 §3 on nasal vowels and their orthographic conditioning; Walker 2001; Fouché 1959). The spec's ⟨an/am/en/em/in/im/on/om/un/um⟩ sequences already get this from the coda condition on FR_NASAL_*; the multigraph spellings ⟨ain aim ein ien oin⟩ carry their nasal in the grapheme itself and need the same condition stated over them, which is what the FR_NASAL_BLOCK_* rules do.\n\nYOD FROM ⟨il⟩ AFTER A VOWEL LETTER. Latin geminate -LL- palatalised to the \"l mouillé\", which in modern French has merged with the glide [j]. After a VOWEL letter, ⟨il⟩ and ⟨ill⟩ therefore spell [j] alone, not [l] or [ij]: travail [tʁavaj], soleil [sɔlɛj], bouteille [butɛj], feuille [fœj], ailleurs [ajœʁ] (Fouché 1959; Tranel 1987 §5 on the glides; Walker 2001). The doubled spellings ⟨aill eill euill ouill ueill⟩ have this value in every position; the single ⟨ail eil euil ouil ueil⟩ have it only when the syllable is closed by the ⟨l⟩ — before a vowel letter the ⟨l⟩ is an ordinary onset and the preceding digraph keeps its own value (aile [ɛl] against ail [aj]). After a CONSONANT letter ⟨ill⟩ keeps the older [ij] (fille [fij], famille [famij]), which the existing context-free ⟨ill⟩ entry already supplies.\n\nASSIBILATION OF ⟨ti⟩ IN LEARNED WORDS. In the Latinate suffixes borrowed into French, ⟨t⟩ before ⟨i⟩ plus a vowel assibilated to [s]. These are ``grammatical_endings`` (word-final-bound), not ``graphemes`` (context-free), because unlike bare ⟨ti⟩ they are morpheme-final chunks that must not fire word-internally (⟨-tionn-⟩ of national, ⟨-tional⟩ of dictionnaire) — precedent: en-GB.json's own ⟨tion stion tial stial⟩ entries. ENDING \"tion\" is [sjɔ̃] (nation) (Fouché 1959; Tranel 1987 §3). ENDING \"stion\" is [stjɔ̃] (question, gestion, bastion) — the change did not apply after ⟨s⟩, where the cluster kept its stop (Fouché 1959; Tranel 1987 §3). ENDING \"tial\" is [sjal] (initial) (Fouché 1959; Tranel 1987 §3). ENDING \"tiel\" is [sjɛl] (partiel) (Fouché 1959; Tranel 1987 §3). ENDING \"tience\" is [sjɑ̃s] (patience) (Fouché 1959; Tranel 1987 §3). The assibilation is a property of these suffixes, not of ⟨ti⟩ generally — ordinary ⟨ti⟩ before a vowel stays [tj] (pitié [pitje], moitié) — so it is stated as those suffix spellings and no wider.\n\nDOUBLE CONSONANT LETTERS AND ⟨sc⟩/⟨cc⟩. French has no phonetic geminates: a doubled consonant letter spells a single consonant (Fouché 1959; Tranel 1987 §2). The spec already carried ⟨bb dd ff gg ll mm nn pp rr tt ss⟩; ⟨ck⟩, ⟨kk⟩ and ⟨cqu⟩ are the same single [k] in a different spelling (Annick [anik], Becquart [bəkaʁ]). ⟨cc⟩ and ⟨sc⟩ are the two spellings where the second letter is a ⟨c⟩ that still softens: before a front vowel they are [ks] and [s] (accent [aksɑ̃], Ascension [asɑ̃sjɔ̃]), elsewhere the plain [k] and [sk] (accord [akɔʁ], scandale [skɑ̃dal]) (Fouché 1959).\n\nHONEST RESIDUAL — bare verbal ⟨-ent⟩. The 3PL ⟨-ent⟩ of verbs whose stem does not end in one of the desinences listed above (abattent, abdiquent, abandonnent) stays ambiguous here on purpose: separating it from nominal ⟨-ent⟩ needs part of speech, which this engine does not have (Divay & Vitale 1997). It is a real and measurable residual, not a modelling ceiling.\n\nHONEST RESIDUAL — ⟨-tions⟩ and the other POS collisions. The suffix-bound ⟨ti⟩ assibilation above is stated over spellings, and two French forms share a spelling with those suffixes: the 1PL imperfect/subjunctive in ⟨-tions⟩ of a stem ending in ⟨t⟩ (nous aboutions [abutjɔ̃], nous adaptions [adaptjɔ̃]) is spelled exactly like the plural of a ⟨-tion⟩ noun (nations [nasjɔ̃]), and ⟨-tial⟩ appears in bestial [bɛstjal] with the same ⟨st⟩ context the ⟨-stion⟩ entry covers only for ⟨-tion⟩. Measured against the full fr wikipron gold, this wave improves 9436 words and worsens 155, of which 72 are ⟨-tions⟩ verb forms. Separating them needs part of speech, which this engine does not have (Divay & Vitale 1997), so they are left wrong rather than pinned word by word.\n\nFINAL-CONSONANT DELETION SEES THROUGH THE TRANSPARENT PLURAL. The word-final consonant a root loses (⟨petit⟩ [pəti], ⟨mot⟩ [mo], ⟨nid⟩ [ni], ⟨drap⟩ [dʁa]) is still lost when the plural or 2SG ⟨-s⟩/⟨-x⟩ is written behind it, because that suffix is itself silent and leaves the root-final letter as the word's last audible slot: ⟨petits⟩ [pəti], ⟨mots⟩ [mo], ⟨nids⟩ [ni], ⟨draps⟩ [dʁa], ⟨temps⟩ [tɑ̃] (Tranel 1987 §3 on final-consonant elision and on ⟨-s⟩/⟨-x⟩ as a transparent grammatical marker; Fouché 1959). The engine already carried that transparency for a VOWEL in the last audible slot (the ⟨vie⟩/⟨vies⟩ case), but not for a consonant, so ⟨mots⟩ came out *[mɔt] with the ⟨t⟩ audible and the syllable wrongly closed. The promotion reaches exactly one slot, so a letter further back is untouched and keeps whatever it has: ⟨corps⟩ is [kɔʁ], with ⟨p⟩ silent and ⟨r⟩ pronounced, and ⟨toujours⟩ stays [tuʒuʁ]. The promotion is floored at the word's first slot: with nothing audible in front of it there is no root for the suffix to be transparent TO, and silencing it would delete the word's only segment — ⟨DS⟩, ⟨ts⟩, ⟨ps⟩ would transcribe as the empty string. RESIDUAL: 44 wikipron fr types whose final cluster IS pronounced now lose it. They are three different strata, not one: initialisms read letter by letter (⟨BZDs⟩, ⟨IDS⟩, ⟨TPS⟩, ⟨VPS⟩); NATIVE Latinate adjectives and nouns whose learned final cluster is pronounced (⟨abjects⟩, ⟨abrupts⟩, ⟨exacts⟩, ⟨prompts⟩, ⟨incorrects⟩, ⟨relaps⟩, ⟨karsts⟩); and English/Latin loan plurals (⟨chips⟩, ⟨clips⟩, ⟨biceps⟩, ⟨forceps⟩, ⟨schnaps⟩, ⟨yaourts⟩). All three are open classes — new initialisms and new borrowings keep arriving, and the learned-cluster adjectives are not separable from the regular ones by spelling — so they are left wrong rather than pinned word by word, exactly as the ⟨-er⟩ loanword class above.\n\nTHE CIRCUMFLEX AND THE GRAVE DO NOT CHANGE A VOWEL DIGRAPH'S VALUE. The circumflex on a French vowel digraph is etymological — it marks an ⟨s⟩ the word lost (⟨coste⟩ > ⟨coût⟩, ⟨aoust⟩ > ⟨août⟩, ⟨jeusne⟩ > ⟨jeûne⟩, ⟨maistre⟩ > ⟨maître⟩) — and the digraph keeps the value it has unaccented (Fouché 1959; Tranel 1987 ch. 2). ⟨oû⟩ is ⟨ou⟩ [u] (goût, coûte, voûte, soûl, moût, ragoût); ⟨aî⟩ is ⟨ai⟩ [ɛ] (naît, faîtes, aînesse, maître); ⟨eû⟩ is ⟨eu⟩ [ø]~[œ] (jeûne, eût); ⟨oî⟩ is ⟨oi⟩ [wa] (cloître, croître). Without these keys the tokenizer split them into the plain letter plus the accented letter (⟨o⟩+⟨û⟩ → *[ɔy] for goût, ⟨a⟩+⟨î⟩ → *[ai] for naît), which is neither reading French has. ⟨où⟩ is the same digraph ⟨ou⟩ [u]; its grave is not a phonetic mark at all but the graphic device that keeps the relative/interrogative apart from the conjunction ⟨ou⟩ (Fouché 1959). The claim is about the DIGRAPHS: the single accented letters ⟨î ê â ù û⟩ are untouched and keep their existing values.\n\nINTERVOCALIC ⟨y⟩ COUNTS AS TWO ⟨i⟩. Between two vowel letters, ⟨y⟩ does the work of a vowel-⟨i⟩ and a glide-⟨i⟩ at once: the first joins the preceding vowel letter into that letter's own digraph, the second surfaces as [j] — ⟨royal⟩ is ⟨roi⟩+⟨ial⟩ [ʁwajal], ⟨voyer⟩ [vwaje], ⟨croyons⟩ [kʁwajɔ̃], ⟨appuyer⟩ [apɥije], ⟨payer⟩ [pɛje], ⟨rayon⟩ [ʁɛjɔ̃], ⟨asseyez⟩ [asɛje] (Fouché 1959; Tranel 1987 §5 on the glides; Walker 2001). Stated as positional_graphemes on ⟨oy uy ay ey⟩ with a before_vowel branch, since with no following vowel letter there is no second ⟨i⟩ and only the digraph surfaces: ⟨Roy⟩ [ʁwa], ⟨Puy⟩ [pɥi], ⟨Épinay⟩ [epinɛ]. ⟨ay⟩ carries [ɛj] first and [aj] second, and ⟨ai⟩'s own [ɛ]/[e] alternation is inherited: the [aj] reading is real but minority (⟨mayonnaise⟩ [majɔnɛz], ⟨papaye⟩, ⟨cobaye⟩ against ⟨crayon⟩ [kʁɛjɔ̃], ⟨rayon⟩, ⟨ayez⟩ [ɛje]), so it is ranked, not chosen. RESIDUAL: 55 gold types where ⟨y⟩ after a vowel letter is [ɔj]/[aj] rather than the digraph — the IUPAC acyl nomenclature (benzoyle, alcoyle, halloysite), the ⟨ouïr⟩ forms (oyais, oyait), and onomastic/loan material (boy, arroyo, Haydn, Fayçal). Both strata are open classes; they are documented here rather than pinned. The ⟨pays⟩/⟨paysage⟩ family is a fourth, etymological case — its ⟨ay⟩ is [ei], the trace of an older ⟨païs⟩ hiatus — and the class RE-SHUFFLES rather than simply regressing: 42 types move, the inflected ⟨paysage-⟩ forms improve and the short ones do not, for a net gain of 0.27 PER-units. It is left as measured rather than lexicalised.\n\nWORD-FINAL ⟨ai⟩ IS CLOSE-MID. ⟨ai⟩ with nothing after it is [e] — ⟨j'ai⟩ [ʒe], ⟨vrai⟩ [vʁe], ⟨quai⟩ [ke], ⟨balai⟩, ⟨essai⟩, and the 1SG futures ⟨chanterai⟩ — while ⟨ai⟩ followed by any consonant letter, pronounced or not, is [ɛ]: ⟨mais⟩ [mɛ], ⟨lait⟩ [lɛ], ⟨français⟩ [fʁɑ̃sɛ], ⟨parfait⟩, and the conditionals ⟨chanterais⟩/⟨chanterait⟩ (the loi de position stated for the word's last syllable, Walker 2001; Fouché 1959). Expressed as FR_AI_FINAL_CLOSE_MID, an allophone rule conditioned on followed_by word_boundary — the TRUE word edge, not the WORD_FINAL position, which the transparent ⟨-s⟩/⟨-x⟩ promotion above also reaches. Stated as a word_final positional entry instead, the same claim reads ⟨-ais⟩ as effectively final, turns every conditional into a future and gives ⟨mais⟩ *[me] and ⟨français⟩ *[fʁɑ̃se]; measured on the full wikipron fr gold that variant is 0.0707 against 0.0673 for the rule shipped here. THIS CLAIM IS GOLD-DEPENDENT AND THE TWO GOLD SETS DISAGREE DIAMETRICALLY, so it is recorded as a choice, not as a fact both sources confirm. In wikipron fr (Wiktionary, human-sourced) word-final ⟨ai⟩ is [e] in 1467 types against [ɛ] in 68; in ipadict fr (machine-generated, phonemizer-lineage) it is [ɛ] in 9236 types against [e] in 49. This spec follows wikipron and the reference grammars, on the reasoning that a human-transcribed source outranks a phonemizer's own output for a distinction that is precisely about orthoepic tradition (Walker 2001; Fouché 1959), and that the ipadict PER improves anyway (0.0785 → 0.0768) even though its exact match falls, because the disagreement is one segment deep. The [ɛ] reading is NOT in the beam at any k: FR_AI_FINAL_CLOSE_MID is an allophone rewrite (ɛ→e), which removes the [ɛ] candidate from the lattice rather than demoting it — the same coverage-hole shape documented above for the mute ⟨-ent⟩ reading before its list-valued entry. A downstream consumer targeting the phonemizer convention cannot recover [ɛ] by re-ranking; that would need a spec-level alternative, which is a known lattice hole of this rule. RESIDUAL within wikipron: 67 types whose final ⟨ai⟩ is [ɛ] there too (⟨mai⟩, ⟨lai⟩, ⟨geai⟩, ⟨Tournai⟩) — the 4.4% minority is left wrong rather than lexicalised.\n\nREFUTED IN THIS WAVE — THE UNLIGATED ⟨oe⟩/⟨oeu⟩ SPELLINGS. Adding ⟨oeu⟩ [ø]~[œ] and ⟨oe⟩ [œ] as graphemes, so that the typewriter spellings of ⟨œu⟩/⟨œ⟩ transcribe like the ligature (⟨oeuf⟩, ⟨boeuf⟩, ⟨coeur⟩), measured 0.0674 against 0.0673 — no gain — and broke ⟨coefficient⟩ [kɔefisjɑ̃] → *[kœfisjɛ̃], ⟨moelle⟩ and ⟨Noel⟩, where ⟨oe⟩ is genuinely two vowels. ⟨oe⟩ is a typographic substitution for a character the writer could not type, not a French grapheme, so restoring the ligature is normalisation and belongs upstream of this library (AGENTS.md §7), not in the grapheme table.\n\nEVERY LETTER OF THE ALPHABET HAS A KEY. ⟨à⟩, ⟨æ⟩, ⟨œ⟩ and ⟨ÿ⟩ are letters of the French alphabet, and a letter with no key is dropped from the output (⟨déjà⟩ *[deʒ], ⟨à⟩ empty). ⟨à⟩ is [a], the vowel of ⟨a⟩; the grave only keeps homophones apart (à against a, là against la) — French orthography, Wikipedia, whose letter table gives ⟨a, à⟩ [a] with là and déjà. ⟨æ⟩ is [e] like ⟨é⟩ (cæcum, ex æquo) — the same table, and Prononciation du français, Wikipédia, whose vowel table gives ⟨æ⟩ /e/. ⟨œ⟩ on its own (not in ⟨œu⟩ or ⟨œil⟩) is the Latin rendering of the Greek diphthong ⟨οι⟩ and spells [e] like ⟨é⟩, with a spelling pronunciation [ø] that both sources record as the newer reading (œsophage [ezɔfaʒ] or [øzɔfaʒ], fœtus, cœlacanthe) — French orthography, Wikipedia, on Greek loanwords and on ⟨œ⟩. The [œ] the letter tables list first is the native ⟨œil⟩ family, and that family has keys of its own: ⟨il⟩ and ⟨ill⟩ after ⟨œ⟩ are [j], exactly as after ⟨eu⟩ and ⟨ue⟩ (œil [œj], œillet [œjɛ]) — French orthography, Wikipedia, which names ⟨œ⟩ in its list of the vowels after which ⟨il⟩/⟨ill⟩ is [j]. ⟨ÿ⟩ is [i] and occurs only in proper names (Aÿ [ai], L'Haÿ-les-Roses) — French orthography, Wikipedia. ⟨œ⟩, ⟨œu⟩, ⟨œil⟩, ⟨œill⟩ and ⟨ÿ⟩ are also declared in vowel_graphemes, beside ⟨y⟩: the closed orthographic-vowel inventory does not list ⟨œ⟩ or ⟨ÿ⟩ (⟨œ⟩ does not decompose, and ⟨ÿ⟩ decomposes to ⟨y⟩), so a grapheme that begins with either is not a vowel letter without the declaration. Then an ⟨s⟩ after ⟨œ⟩ is not intervocalic (⟨œsophage⟩ *[esɔfaʒ] for [ezɔfaʒ]), and an ⟨n⟩ before ⟨œu⟩ is read as a coda that nasalises the vowel before it (⟨manœuvre⟩ *[mɑ̃øvʁ] for [manœvʁ], fr.wiktionary). ⟨œu⟩ follows the loi de position exactly as ⟨eu⟩ does, with the same OPEN_SYLLABLE/CLOSED_SYLLABLE entry: [ø] in an open syllable (vœu [vø], nœud [nø]), [œ] in a closed one (cœur [kœʁ], sœur [sœʁ], œuvre [œvʁ], bœuf [bœf]) — French orthography, Wikipedia, which gives ⟨œu⟩ [ø] phonologically finally and [œ] elsewhere; the headword pronunciations are those of fr.wiktionary. RESIDUAL: the plurals œufs and bœufs are [ø] and [bø] with the final ⟨fs⟩ silent; the spec keeps the ⟨f⟩, so they come out [œf] and [bœf]. In a non-final syllable the law is weak for ⟨œu⟩ as for ⟨eu⟩ (écœurer gives [ekøʁe]). Upper-case letters need no keys of their own: the engine folds case before lookup. FUNCTION WORDS (Lexique 3.83, New et al. 2004, column phon): the rules read ⟨est⟩ as [ɛs] and ⟨et⟩ as [ɛ], ⟨des mes tes ses ces⟩ as a bare consonant, ⟨cet⟩ as [sɛ] and ⟨sept⟩ as [sɛp]. Lexique gives est [e] (lower-case entries only: VER, freqfilms2 19417.69, and AUX, 3318.95), et [e] (CON, 12909.08), des [de] (ART, 6055.71), ces [se] (1222.51), mes [me] (1102.23), tes [te] (690.24), ses [se] (757.68), cet [sɛt] (499.91) and sept [sɛt] (ADJ, 66.07). Each is a closed-class word with one reading, so each is a whole-word entry in word_exceptions. The ambiguous homographs tous and plus stay out, as before; the numerals six, huit, neuf and dix change their final consonant with the context (liaison), which this spec does not model, so they stay out too. The reading of ⟨les⟩ is above. ELIDED FORMS OF es: Lexique 3.83 lists the elided clitics d', l', n', s' and t' as the bare consonant ([d] [l] [n] [s] [t]) and es as [ɛ] (VER, 1849.07, and AUX, 539.36). The whole-word entries t'es [tɛ] and n'es [nɛ] join the clitic and the host, because the lookup keys on the whole written word and the elided clitic is part of it (word_internal_apostrophe). The spelling ⟨est⟩ with a pronounced ⟨t⟩ (the cardinal point, est-ouest) is not modelled, except for the whole words l'est and d'est.",
+  "notes": "Standard Metropolitan French (Parisian). Nasal grapheme sequences (⟨an⟩, ⟨am⟩, ⟨en⟩, ⟨em⟩, ⟨in⟩, ⟨im⟩, ⟨on⟩, ⟨om⟩, ⟨un⟩, ⟨um⟩) denasalise before a following vowel within the word (positional_graphemes before_vowel branch, e.g. amateur [amatœʁ], inutile [inytil], bonasse [bɔnas]); the ⟨n⟩/⟨m⟩-doubling trigger for denasalisation (immense, ennemi) is not separately modelled because the doubled consonant is tokenised as its own bb/dd/ff/gg/ll/mm/nn/pp/rr/tt digraph rather than surfacing as BEFORE_VOWEL/BEFORE_CONSONANT context on the nasal grapheme — a known engine-limit gap. Word-final unstressed ⟨e⟩ (e caduc) defaults to silent (positional_graphemes word_final), matching modern colloquial elision of the mute e; monosyllabic function words whose sole vowel is that final ⟨e⟩ (le, de, que, ce, ne, se, je, me, te) are handled via the word_exceptions whole-word override, since the positional-grapheme priority order always resolves WORD_FINAL before NUCLEUS_STRESSED and cannot express 'sole vowel nucleus of a monosyllable' as a rule — the schwa is grammatically obligatory there to preserve the syllable. FINAL CONSONANTS: t, d, p, s, x, r typically silent word-finally in modern French, resurfacing in liaison. LIAISON: only the liaisons that Martinon (1913: 359-391) calls obligatory are written, and each rule reads the spelling of the left word, because the spec has already silenced its final consonant: [z] after the plural determiners (FR_LIAISON_Z_DETERMINER), plusieurs and certains before a noun (FR_LIAISON_Z_INDEFINITE), deux, trois, quatre-vingts (FR_LIAISON_Z_NUMERAL), the monosyllabic prepositions and très (FR_LIAISON_Z_PREPOSITION), and after nous, vous, ils, elles before the verb (FR_LIAISON_Z_PRONOUN); [t] after est, sont, ont, tout, quand, dont (FR_LIAISON_T_PROCLITIC) and grand before its noun (FR_LIAISON_T_GRAND) and after vingt and cent before a noun (FR_LIAISON_T_NUMERAL); [n] after un and aucun (FR_LIAISON_N_ARTICLE) and after en and on (FR_LIAISON_N_PRONOUN); [ʁ] after premier and dernier (FR_LIAISON_R_PREMIER); and across a hyphen before an inverted subject or y and en. Aspirate-h words (les héros, le hibou) block liaison (Tranel 1995: 1; Martinon 1913: 248); the rules share a list of h aspiré stems from Martinon (1913: 248-254, 358) and the OQLF list, in the note of FR_H_ASPIRE_BLOCKS_LINK. Elision before them needs no rule, because the spelling writes it (le héros). FR_LIAISON_Z, FR_LIAISON_T, FR_LIAISON_N, FR_LIAISON_R, FR_LIAISON_P and FR_ENCHAÎNEMENT mark the enchaînement of a final consonant that is pronounced. ELISION: the orthography writes the elided clitic (le/la/je/me/te/se/ne/de/que/ce + vowel → l'/j'/m'/t'/s'/n'/d'/qu'/c') with an apostrophe and no space, and the clitic is the onset of the vowel-initial host: l'ami is [lami], not [l ami] (Tranel 1995: 1, examples (1b) and 4, (5), the elided vowel is absent before a vowel-initial word). The clitic is therefore NOT a word of its own. word_internal_apostrophe is true so that the clitic and its host are one unit: the word-final silencing of ⟨d⟩, ⟨s⟩, ⟨t⟩ and ⟨e⟩ then does not apply to the clitic's consonant (d'accord [dakɔʁ], s'il [sil], j'ai [ʒe]), the engine reads the letter after the apostrophe as the one that follows ⟨qu⟩ (qu'il [kil], jusqu'à [ʒyska], quelqu'un [kɛlkœ̃]), and a whole-word entry can name a word that spells the apostrophe inside it (aujourd'hui). apostrophe_elision is true, so a host with a whole-word entry and no entry for the elided form keeps its own entry, with the clitic's reading in front: l'hiver [livɛʁ], d'hier [djɛʁ], l'os [lɔs]. After l' and d' the word est is the noun 'east', which Lexique 3.83 reads [ɛst] (est, NOM), so l'est and d'est have entries of their own and do not take the verb's [ɛ]. It is not a text normaliser: U+0027 and U+2019 are both read, and any other mark is left alone. The citation covers the elision pattern only. The reading of the host word (est, et, des) is a separate claim that this spec does not make here. SOFTENING: c→[s] before e/i/y; g→[ʒ] before e/i/y. INTERVOCALIC s: [z] between vowels within a word. Doubled consonants (bb, dd, ff, gg, ll, mm, nn, pp, rr, tt) degeminate to a single consonant, the modern-French default (Fouché 1959; Tranel 1987). Modern Parisian speech increasingly merges /œ̃/ into /ɛ̃/ (brun/brin, un/hein); both realizations are kept as allophones of œ̃ rather than collapsing the phonemic contrast, since conservative Standard French sources (Fougeron & Smith 1993) still treat them as distinct. GLIDE FORMATION: word-internal ⟨i⟩ before another vowel letter glides to [j] (pied [pje], lion [ljɔ̃], fiacre [fjakʁ]) — positional_graphemes before_vowel branch, Tranel (1987) §5-6 on high-vowel gliding; the plain vowel-letter ⟨i⟩ (unlike the ⟨y⟩/⟨ien⟩/⟨oui⟩ digraphs already carrying [j]) previously always surfaced as the full vowel. This is blocked (BEFORE_FINAL_VOWEL, an engine-level position, see orthography2ipa/types.py) when the following vowel is itself the word's last audible slot — word-final unmarked ⟨ie⟩ stays [i], not [j+deleted-e]: vie [vi], envie [ɑ̃vi], folie [fɔli], Algérie [alʒeʁi], and the plural vies [vi] (⟨s⟩ is a transparent, independently-silenced suffix grapheme, Tranel 1987 §3) — without this exclusion the glide rule wrongly produces a vowel-less [vj] for the entire closed class of French nouns ending in unstressed ⟨-ie⟩/⟨-ies⟩. ILL EXCEPTION CLASS: ⟨ill⟩ is [ij] by default (fille, famille, bastille) except in a closed irregular set where it stays [il] — ville, mille, tranquille (and tranquillement) and the place name Lille — handled via word_exceptions per Tranel (1987) §4.3's irregular-ill list, since the digraph mapping cannot express a lexical exception to its own default. Sources: Fouché (1959), Tranel (1987), Ladefoged & Maddieson (1996), Fougeron & Smith (1993), Tranel (1995). word_exceptions also carry Tranel 1987 §7's closed list of common words whose final ⟨s⟩ is exceptionally pronounced (fils [fis], os, ours, mars, maïs, tennis, sens...); regular final ⟨s⟩ stays silent, and ambiguous homographs (tous, plus) are deliberately excluded. DEFINITE ARTICLE les: the plural article is [le] (Tranel 1995: 1, example (1a): les [le], les amis [lezami] against les tamis [letami]). The letter rules read its ⟨es⟩ as the silent plural ending and left a bare [l], so the word is a whole-word entry in word_exceptions, like the other monosyllabic function words whose only vowel is written before a silent ⟨s⟩ or ⟨e⟩. The liaison [z] is not added here. MUTE ⟨-er⟩/⟨-ez⟩ ENDINGS: deliberately NOT modelled as grapheme keys. ENDING \"er\" is [e] — the infinitive, the -er/-ier adjective and the agent noun lose the final consonant of the grammatical ending (parler, manger, boulanger, and boulangers behind the transparent plural) (Fouché 1959, Traité de prononciation française; Tranel 1987 §3 on final-consonant elision in grammatical endings). ENDING \"ez\" is [e] — the 2pl inflection and the frozen nez/chez/assez, the same elision in the same environment (Fouché 1959; Tranel 1987 §3). Word-final ⟨-er⟩/[e] (parler) vs /ɛʁ/ (mer, hiver, super, loanwords) and ⟨-ez⟩/[e] (mangez, nez) are a MORPHOLOGICAL split — the mute reading belongs to the infinitive/2pl/agent-noun endings, not to the letter sequence — and morpheme chunks are forbidden grapheme keys (an ⟨er⟩ digraph makes ⟨s⟩ in pers-/vers- look intervocalic → *[pɛʁzɔn], and out-munches ⟨rr⟩ degemination → *[tɛʁʁ]); needs a morpheme-aware engine context (same follow-up as English suffix palatalization). The general word-final ⟨r⟩ silencing above covers the mute class at the letter level; the words whose final ⟨r⟩ IS pronounced (the mer/fer/hiver monosyllable-and-friends set plus English -er loanwords keeping /œʁ/~/ɛʁ/) are lexical exceptions carried in word_exceptions. FINAL ⟨r⟩ IS PRONOUNCED: the earlier word_final [\"\"] made silence the DEFAULT for every final ⟨r⟩, which is the inverse of the fact — French word-final ⟨r⟩ is [ʁ] (mer, bonjour, sur, par, hiver, amour, chanteur); it is mute only in the ⟨-er⟩ sequence (infinitives parler, -er/-ier nouns and adjectives boulanger, premier), and that case is already owned by the grammatical_endings ⟨er⟩→[e] rewrite, which runs after the beam and also absorbs the transparent plural ⟨-ers⟩ (Fouché 1959; Tranel 1987 §3). word_final is therefore [\"ʁ\", \"\"] — pronounced first, silence kept as the second beam branch for the monosyllabic-lexical residue. VERBAL ⟨-ent⟩ IS AMBIGUOUS AND IS EXPOSED, NOT DECIDED: the 3rd-person-plural inflection ⟨-ent⟩ is silent (ils parlent [paʁl], munissent [mynis]) while the nominal/adjectival ⟨-ent⟩ is [ɑ̃] (vent, dent, cent, argent, accent, talent, absent, serpent, Occident, Vincent). Verb-vs-noun is not decidable from spelling; it needs part-of-speech, which this layer does not have and (owner ruling) does not accept as an input — that decision belongs to a downstream rescorer. A rewriting ⟨ent⟩→[] entry is still NOT shipped: it wins 3844 wikipron/fr types against 254 losses, but the 254 are far commoner in running text than the inflected verb forms it wins, and this library feeds TTS; the counter-set is also open (Laurent, Florent, Clément), so it cannot go in word_exceptions. (NOTE, two different measurements, do not conflate them: 3844/254 is the ENGINE OUTCOME of the rewrite — types whose 1-best would move toward or away from gold if the rewrite shipped, so it depends on what the rest of the spec already gets right; 3873/287 below is a property of the GOLD ALONE — ⟨-ent⟩ types whose reference transcription is mute versus nasal, counted by string operations with no engine run. The two are close because the spec is mostly right on this class, not because they measure the same thing.) What IS shipped is the deferring candidate list \"ent\": [null, \"\"]. ENDING \"ent\" is [ɑ̃] or mute — both readings are attested for the same spelling, the mute one being the 3PL inflection and the nasal one the noun or adjective (Fouché 1959; Tranel 1987 §3; Divay & Vitale 1997, which uses this very ending as the standard worked example of a grapheme-to-phoneme rule that requires part of speech). Element 0 is null, so rank 1 stays exactly what nasal ⟨en⟩ + silent ⟨t⟩ already produced (every 1-best byte-identical, vent [vɑ̃], moment [mɔmɑ̃], comment [kɔmɑ̃] unchanged), and the mute reading is added below rank 1 — measured at rank 4 for parlent, munissent and vent, rank 5 for moment, dorment and argent, i.e. below the ⟨e⟩ and final-⟨t⟩ branches the beam already carried. LATTICE-HOLE EVIDENCE for \"ent\" (the admissibility bar in SCHEMA.md, 0-in-top-k on gold): on a 300-word random sample of the gold-mute ⟨-ent⟩ class from wikipron/fr (fra_latn_broad), the gold mute reading appeared in word_candidates 0 times out of 300 anywhere in the top 10 before this entry, and 192 times out of 300 after it; exact@1 is 0 before and 0 after, because o2i does not decide. [paʁl] was in no beam at any width, so no downstream rescorer could ever recover it — a coverage hole, not a ranking error. ORDERING BASIS for \"ent\": rank 1 defers to the base path, i.e. to [ɑ̃], the majority reading in running text — the nominal/adjectival class (vent, dent, cent, argent) is far commoner in text than the inflected verb forms, even though gold TYPES run 3873 mute against 287 nasal, and this library feeds TTS, where type counts do not price a mispronounced vent. The mute alternative is gold-attested for the 3PL class and cited (Fouché 1959; Tranel 1987 §3; Divay & Vitale 1997). LOI DE POSITION for ⟨eu⟩: [ø] in an open syllable (heureux, peu, jeu), [œ] in a closed one (fleur, chanteur, jeune) — Fougeron & Smith (1993), loi de position; Tranel (1987) ch. 4. Expressed with the OPEN_SYLLABLE/CLOSED_SYLLABLE positions. HOW APERTURE IS DECIDED, and what that costs: the law is about a PRONOUNCED coda, but the engine has only letters, so open/closed is an ORTHOGRAPHIC proxy — strip the graphemes this spec declares silent word-finally, then ask what the syllable ends in. On top of that, a final syllable with no audible nucleus (a mute ⟨e⟩: jeu·ne, eu·re) is folded into the syllable before it, whose coda its consonants really are (positional.merge_nucleusless_final_syllable, generic and spec-driven), and the strip then runs a SECOND time on that merged string — on letters that are no longer word-final in the pronunciation. So meute [møt] and heureuse [øʁøz] come out right for the wrong reason (both strip back to an open meu/reu although /t/ and /z/ are pronounced), and the proxy is outright wrong for a pronounced coda that does not close for the law (obstruent + liquid: neutre [nøtʁ] and feutre [føtʁ] get [œ]) and for a /z/ spelled ⟨z⟩, which cannot be stripped and is instead handled by FR_EU_BEFORE_Z. The same law is NOT declared for ⟨o⟩ or ⟨e⟩, and the proxy is why. ⟨o⟩: generalising close [o] to every open syllable is the SOUTHERN pattern (Walker 2001 ch. 3); standard French keeps [ɔ] in non-final open syllables (homophone [ɔmɔfɔn], obole [ɔbɔl], homme [ɔm]), and the aperture rule measured PER 0.0887 → 0.1177 on wikipron/fr, 16836 types worse against 447 better — so ⟨o⟩ stays on FR_O_FINAL_OPEN plus FR_O_BEFORE_Z. ⟨e⟩: French ⟨e⟩ is [ɛ] in a GRAPHICALLY closed syllable whether or not the coda is pronounced (met [mɛ], mets [mɛ], effets [efɛ]), which is the opposite of what a phonetic-coda proxy answers, so it keeps the orthographic FR_E_CLOSED_CLUSTER / FR_E_CLOSED_FINAL rules; the aperture version measured 0.0887 → 0.0903. 2026-08 LOANWORD -ER SNAPSHOT EXTENSION: the English-loan -er/[œʁ]~[ɛʁ] carve-out above (leader, cracker, container, poker, revolver) is a documented instance of an OPEN class, not a closed one — French keeps borrowing English agent-noun -er coinages on an ongoing basis, and proper nouns (surnames, place names) ending -er with gold /ʁ/ are unboundedly open by definition. A full closed-set fix via word_exceptions is therefore not possible without violating the closed-lexical-class rule (AGENTS.md §2). What IS shipped: 56 additional word_exceptions entries — every wikipron fr gold type ending ⟨-er⟩ with a SINGLE, unambiguous gold /ʁ/-final transcription (disagreement across wikipron entries for the same word, e.g. quaker, hamburger, manager, master, panzer, was treated as evidence of genuine synchronic variation and those words were deliberately left OUT rather than picking a transcription arbitrarily). A further 47 candidate types were audited against gold and dropped for a distinct, more specific reason than plain variation: their gold has BOTH an [e]-final and an [œʁ]/[ɛʁ]-final transcription, and the two readings are not free variation of the same word but a VERB–NOUN HOMOGRAPH split — mute-⟨er⟩ infinitive (and 2pl/agent-noun) morphology already covered by the grammatical_endings ⟨er⟩→[e] rewrite above versus the loanword agentive -er nominal reading this carve-out targets. Some are native French verbs (porter, reporter, poster, cacher, ranger, fier); most are English loan STEMS that French freely verbs with its own -er infinitive morphology the moment they are borrowed — denominal-verb formation from an English -er noun/agent borrowing (dealer/\"to deal drugs\", hacker/\"to hack\", zapper, spammer, streamer, scanner, mixer…) — so the SAME orthographic type is simultaneously a noun keeping /œʁʕ/ɛʁ/ (\"un dealer\") and a verb infinitive taking [e] (\"dealer de la drogue\"). A context-free lexical override in word_exceptions cannot express that split: it would silently mispronounce every verbal use of these types. This is a real ceiling of the whole-word-override layer, not an oversight — verb-vs-noun for this class needs part-of-speech, the same gap already documented above for the VERBAL ⟨-ent⟩ class, and is left to a morphology-aware pass / the ambiguity lattice and downstream rescorers rather than resolved by guessing one reading here. The 47 excluded types (with both gold readings) are: biker, bomber, boxer, cacher, carter, clipper, cruiser, dealer, designer, destroyer, driver, ester, fier, flipper, flyer, follower, gaffer, hacker, hamster, kicker, loader, loser, mixer, outsider, pointer, porter, poster, pranker, putter, quinter, ranger, rapper, recorder, reporter, scanner, skipper, spammer, spoiler, sprinter, starter, streamer, supporter, taler, trader, tuner, tweeter, zipper. Proper nouns (Jupiter, Esther, Jennifer, Khmer, Vancouver, Christopher, Miller, Niger, Roger...) were also deliberately left OUT of this pass — the onomastic class is open by construction and no finite word_exceptions list will ever be complete for it; they remain a documented, not a silently missed, gap. This is an ATTESTED-IN-THIS-GOLD-SNAPSHOT extension of the existing carve-out, not a claim of exhaustive coverage: new unambiguous English -er loans and new proper nouns will keep needing individual word_exceptions additions as they are attested in future gold, and the 47 homograph types remain a known gap for whichever future layer gets part-of-speech.\n\nBARE ⟨-ent⟩ 3PL — DOWNSTREAM-RESCORER CEILING. Bare ⟨-ent⟩ stays list-valued (null or empty) because it spells both the mute 3PL verbal inflection and the nasal ending of a noun, adjective or adverb, and only part of speech separates them (Divay & Vitale 1997). A prior draft of this wave tried to carve out the longer 3PL desinences (⟨-aient -èrent -assent -issent -irent -urent⟩) as single-valued endings on the theory that their extra tense/mood morphology made them verb-only. That was wrong on two counts: Laurent (proper noun, gold [lɔʁɑ̃]) ends in the same letters as ⟨-urent⟩'s tail and is not a verb form, and — more seriously — each ending was a plain-string tail rewrite with no stem condition, so it clobbered the stem vowel of any OTHER verb whose 3PL happens to share the letters (courent misread as cour+ent, meurent, paraissent, croissent, puissent). Both failures are inherent to enumerating paradigm cells as context-free string endings rather than modelling the verbal stem; they are dropped and not reintroduced in any form. What IS shipped for ⟨-aient⟩ and ⟨-oient⟩ is the allophone rule FR_ENT_MUTE_AFTER_AI_OI, which has neither failure: it rewrites only the ⟨e⟩ of a final ⟨ent⟩ whose left neighbour is the grapheme ⟨ai⟩ or ⟨oi⟩, so no stem vowel is touched, and no noun or adjective ends in those letters (Martinon 1913: 161). Reaching them correctly needs the same POS layer bare ⟨-ent⟩ is already waiting on (Divay & Vitale 1997).\n\nNASAL VOWEL BLOCKING. A vowel letter plus ⟨n⟩ or ⟨m⟩ spells a nasal vowel only when the nasal letter closes the syllable — that is, only when it is neither doubled nor followed by a vowel letter. When either of those holds, the nasal consonant is a syllable ONSET, it is pronounced, and the vowel in front of it stays oral: ⟨-aine⟩ [ɛn] (Africaine [afʁikɛn]), ⟨-ienne⟩ [jɛn] (Adrienne [adʁjɛn]), ⟨aim-⟩ before a vowel [ɛm] (aimer [ɛme]), against the nasal readings of ⟨-ain⟩, ⟨-ien⟩ and ⟨-aim⟩ when a consonant or the word edge follows (bien [bjɛ̃], ancien [ɑ̃sjɛ̃]) (Tranel 1987 §3 on nasal vowels and their orthographic conditioning; Walker 2001; Fouché 1959). The spec's ⟨an/am/en/em/in/im/on/om/un/um⟩ sequences already get this from the coda condition on FR_NASAL_*; the multigraph spellings ⟨ain aim ein ien oin⟩ carry their nasal in the grapheme itself and need the same condition stated over them, which is what the FR_NASAL_BLOCK_* rules do.\n\nYOD FROM ⟨il⟩ AFTER A VOWEL LETTER. Latin geminate -LL- palatalised to the \"l mouillé\", which in modern French has merged with the glide [j]. After a VOWEL letter, ⟨il⟩ and ⟨ill⟩ therefore spell [j] alone, not [l] or [ij]: travail [tʁavaj], soleil [sɔlɛj], bouteille [butɛj], feuille [fœj], ailleurs [ajœʁ] (Fouché 1959; Tranel 1987 §5 on the glides; Walker 2001). The doubled spellings ⟨aill eill euill ouill ueill⟩ have this value in every position; the single ⟨ail eil euil ouil ueil⟩ have it only when the syllable is closed by the ⟨l⟩ — before a vowel letter the ⟨l⟩ is an ordinary onset and the preceding digraph keeps its own value (aile [ɛl] against ail [aj]). After a CONSONANT letter ⟨ill⟩ keeps the older [ij] (fille [fij], famille [famij]), which the existing context-free ⟨ill⟩ entry already supplies.\n\nASSIBILATION OF ⟨ti⟩ IN LEARNED WORDS. In the Latinate suffixes borrowed into French, ⟨t⟩ before ⟨i⟩ plus a vowel assibilated to [s]. These are ``grammatical_endings`` (word-final-bound), not ``graphemes`` (context-free), because unlike bare ⟨ti⟩ they are morpheme-final chunks that must not fire word-internally (⟨-tionn-⟩ of national, ⟨-tional⟩ of dictionnaire) — precedent: en-GB.json's own ⟨tion stion tial stial⟩ entries. ENDING \"tion\" is [sjɔ̃] (nation) (Fouché 1959; Tranel 1987 §3). ENDING \"stion\" is [stjɔ̃] (question, gestion, bastion) — the change did not apply after ⟨s⟩, where the cluster kept its stop (Fouché 1959; Tranel 1987 §3). ENDING \"tial\" is [sjal] (initial) (Fouché 1959; Tranel 1987 §3). ENDING \"tiel\" is [sjɛl] (partiel) (Fouché 1959; Tranel 1987 §3). ENDING \"tience\" is [sjɑ̃s] (patience) (Fouché 1959; Tranel 1987 §3). The assibilation is a property of these suffixes, not of ⟨ti⟩ generally — ordinary ⟨ti⟩ before a vowel stays [tj] (pitié [pitje], moitié) — so it is stated as those suffix spellings and no wider.\n\nDOUBLE CONSONANT LETTERS AND ⟨sc⟩/⟨cc⟩. French has no phonetic geminates: a doubled consonant letter spells a single consonant (Fouché 1959; Tranel 1987 §2). The spec already carried ⟨bb dd ff gg ll mm nn pp rr tt ss⟩; ⟨ck⟩, ⟨kk⟩ and ⟨cqu⟩ are the same single [k] in a different spelling (Annick [anik], Becquart [bəkaʁ]). ⟨cc⟩ and ⟨sc⟩ are the two spellings where the second letter is a ⟨c⟩ that still softens: before a front vowel they are [ks] and [s] (accent [aksɑ̃], Ascension [asɑ̃sjɔ̃]), elsewhere the plain [k] and [sk] (accord [akɔʁ], scandale [skɑ̃dal]) (Fouché 1959).\n\nHONEST RESIDUAL — bare verbal ⟨-ent⟩. The 3PL ⟨-ent⟩ of verbs whose stem does not end in one of the desinences listed above (abattent, abdiquent, abandonnent) stays ambiguous here on purpose: separating it from nominal ⟨-ent⟩ needs part of speech, which this engine does not have (Divay & Vitale 1997). It is a real and measurable residual, not a modelling ceiling.\n\nHONEST RESIDUAL — ⟨-tions⟩ and the other POS collisions. The suffix-bound ⟨ti⟩ assibilation above is stated over spellings, and two French forms share a spelling with those suffixes: the 1PL imperfect/subjunctive in ⟨-tions⟩ of a stem ending in ⟨t⟩ (nous aboutions [abutjɔ̃], nous adaptions [adaptjɔ̃]) is spelled exactly like the plural of a ⟨-tion⟩ noun (nations [nasjɔ̃]), and ⟨-tial⟩ appears in bestial [bɛstjal] with the same ⟨st⟩ context the ⟨-stion⟩ entry covers only for ⟨-tion⟩. Measured against the full fr wikipron gold, this wave improves 9436 words and worsens 155, of which 72 are ⟨-tions⟩ verb forms. Separating them needs part of speech, which this engine does not have (Divay & Vitale 1997), so they are left wrong rather than pinned word by word.\n\nFINAL-CONSONANT DELETION SEES THROUGH THE TRANSPARENT PLURAL. The word-final consonant a root loses (⟨petit⟩ [pəti], ⟨mot⟩ [mo], ⟨nid⟩ [ni], ⟨drap⟩ [dʁa]) is still lost when the plural or 2SG ⟨-s⟩/⟨-x⟩ is written behind it, because that suffix is itself silent and leaves the root-final letter as the word's last audible slot: ⟨petits⟩ [pəti], ⟨mots⟩ [mo], ⟨nids⟩ [ni], ⟨draps⟩ [dʁa], ⟨temps⟩ [tɑ̃] (Tranel 1987 §3 on final-consonant elision and on ⟨-s⟩/⟨-x⟩ as a transparent grammatical marker; Fouché 1959). The engine already carried that transparency for a VOWEL in the last audible slot (the ⟨vie⟩/⟨vies⟩ case), but not for a consonant, so ⟨mots⟩ came out *[mɔt] with the ⟨t⟩ audible and the syllable wrongly closed. The promotion reaches exactly one slot, so a letter further back is untouched and keeps whatever it has: ⟨corps⟩ is [kɔʁ], with ⟨p⟩ silent and ⟨r⟩ pronounced, and ⟨toujours⟩ stays [tuʒuʁ]. The promotion is floored at the word's first slot: with nothing audible in front of it there is no root for the suffix to be transparent TO, and silencing it would delete the word's only segment — ⟨DS⟩, ⟨ts⟩, ⟨ps⟩ would transcribe as the empty string. RESIDUAL: 44 wikipron fr types whose final cluster IS pronounced now lose it. They are three different strata, not one: initialisms read letter by letter (⟨BZDs⟩, ⟨IDS⟩, ⟨TPS⟩, ⟨VPS⟩); NATIVE Latinate adjectives and nouns whose learned final cluster is pronounced (⟨abjects⟩, ⟨abrupts⟩, ⟨exacts⟩, ⟨prompts⟩, ⟨incorrects⟩, ⟨relaps⟩, ⟨karsts⟩); and English/Latin loan plurals (⟨chips⟩, ⟨clips⟩, ⟨biceps⟩, ⟨forceps⟩, ⟨schnaps⟩, ⟨yaourts⟩). All three are open classes — new initialisms and new borrowings keep arriving, and the learned-cluster adjectives are not separable from the regular ones by spelling — so they are left wrong rather than pinned word by word, exactly as the ⟨-er⟩ loanword class above.\n\nTHE CIRCUMFLEX AND THE GRAVE DO NOT CHANGE A VOWEL DIGRAPH'S VALUE. The circumflex on a French vowel digraph is etymological — it marks an ⟨s⟩ the word lost (⟨coste⟩ > ⟨coût⟩, ⟨aoust⟩ > ⟨août⟩, ⟨jeusne⟩ > ⟨jeûne⟩, ⟨maistre⟩ > ⟨maître⟩) — and the digraph keeps the value it has unaccented (Fouché 1959; Tranel 1987 ch. 2). ⟨oû⟩ is ⟨ou⟩ [u] (goût, coûte, voûte, soûl, moût, ragoût); ⟨aî⟩ is ⟨ai⟩ [ɛ] (naît, faîtes, aînesse, maître); ⟨eû⟩ is ⟨eu⟩ [ø]~[œ] (jeûne, eût); ⟨oî⟩ is ⟨oi⟩ [wa] (cloître, croître). Without these keys the tokenizer split them into the plain letter plus the accented letter (⟨o⟩+⟨û⟩ → *[ɔy] for goût, ⟨a⟩+⟨î⟩ → *[ai] for naît), which is neither reading French has. ⟨où⟩ is the same digraph ⟨ou⟩ [u]; its grave is not a phonetic mark at all but the graphic device that keeps the relative/interrogative apart from the conjunction ⟨ou⟩ (Fouché 1959). The claim is about the DIGRAPHS: the single accented letters ⟨î ê â ù û⟩ are untouched and keep their existing values.\n\nINTERVOCALIC ⟨y⟩ COUNTS AS TWO ⟨i⟩. Between two vowel letters, ⟨y⟩ does the work of a vowel-⟨i⟩ and a glide-⟨i⟩ at once: the first joins the preceding vowel letter into that letter's own digraph, the second surfaces as [j] — ⟨royal⟩ is ⟨roi⟩+⟨ial⟩ [ʁwajal], ⟨voyer⟩ [vwaje], ⟨croyons⟩ [kʁwajɔ̃], ⟨appuyer⟩ [apɥije], ⟨payer⟩ [pɛje], ⟨rayon⟩ [ʁɛjɔ̃], ⟨asseyez⟩ [asɛje] (Fouché 1959; Tranel 1987 §5 on the glides; Walker 2001). Stated as positional_graphemes on ⟨oy uy ay ey⟩ with a before_vowel branch, since with no following vowel letter there is no second ⟨i⟩ and only the digraph surfaces: ⟨Roy⟩ [ʁwa], ⟨Puy⟩ [pɥi], ⟨Épinay⟩ [epinɛ]. ⟨ay⟩ carries [ɛj] first and [aj] second, and ⟨ai⟩'s own [ɛ]/[e] alternation is inherited: the [aj] reading is real but minority (⟨mayonnaise⟩ [majɔnɛz], ⟨papaye⟩, ⟨cobaye⟩ against ⟨crayon⟩ [kʁɛjɔ̃], ⟨rayon⟩, ⟨ayez⟩ [ɛje]), so it is ranked, not chosen. RESIDUAL: 55 gold types where ⟨y⟩ after a vowel letter is [ɔj]/[aj] rather than the digraph — the IUPAC acyl nomenclature (benzoyle, alcoyle, halloysite), the ⟨ouïr⟩ forms (oyais, oyait), and onomastic/loan material (boy, arroyo, Haydn, Fayçal). Both strata are open classes; they are documented here rather than pinned. The ⟨pays⟩/⟨paysage⟩ family is a fourth, etymological case — its ⟨ay⟩ is [ei], the trace of an older ⟨païs⟩ hiatus — and the class RE-SHUFFLES rather than simply regressing: 42 types move, the inflected ⟨paysage-⟩ forms improve and the short ones do not, for a net gain of 0.27 PER-units. It is left as measured rather than lexicalised.\n\nWORD-FINAL ⟨ai⟩ IS CLOSE-MID. ⟨ai⟩ with nothing after it is [e] — ⟨j'ai⟩ [ʒe], ⟨vrai⟩ [vʁe], ⟨quai⟩ [ke], ⟨balai⟩, ⟨essai⟩, and the 1SG futures ⟨chanterai⟩ — while ⟨ai⟩ followed by any consonant letter, pronounced or not, is [ɛ]: ⟨mais⟩ [mɛ], ⟨lait⟩ [lɛ], ⟨français⟩ [fʁɑ̃sɛ], ⟨parfait⟩, and the conditionals ⟨chanterais⟩/⟨chanterait⟩ (the loi de position stated for the word's last syllable, Walker 2001; Fouché 1959). Expressed as FR_AI_FINAL_CLOSE_MID, an allophone rule conditioned on followed_by word_boundary — the TRUE word edge, not the WORD_FINAL position, which the transparent ⟨-s⟩/⟨-x⟩ promotion above also reaches. Stated as a word_final positional entry instead, the same claim reads ⟨-ais⟩ as effectively final, turns every conditional into a future and gives ⟨mais⟩ *[me] and ⟨français⟩ *[fʁɑ̃se]; measured on the full wikipron fr gold that variant is 0.0707 against 0.0673 for the rule shipped here. THIS CLAIM IS GOLD-DEPENDENT AND THE TWO GOLD SETS DISAGREE DIAMETRICALLY, so it is recorded as a choice, not as a fact both sources confirm. In wikipron fr (Wiktionary, human-sourced) word-final ⟨ai⟩ is [e] in 1467 types against [ɛ] in 68; in ipadict fr (machine-generated, phonemizer-lineage) it is [ɛ] in 9236 types against [e] in 49. This spec follows wikipron and the reference grammars, on the reasoning that a human-transcribed source outranks a phonemizer's own output for a distinction that is precisely about orthoepic tradition (Walker 2001; Fouché 1959), and that the ipadict PER improves anyway (0.0785 → 0.0768) even though its exact match falls, because the disagreement is one segment deep. The [ɛ] reading is NOT in the beam at any k: FR_AI_FINAL_CLOSE_MID is an allophone rewrite (ɛ→e), which removes the [ɛ] candidate from the lattice rather than demoting it — the same coverage-hole shape documented above for the mute ⟨-ent⟩ reading before its list-valued entry. A downstream consumer targeting the phonemizer convention cannot recover [ɛ] by re-ranking; that would need a spec-level alternative, which is a known lattice hole of this rule. RESIDUAL within wikipron: 67 types whose final ⟨ai⟩ is [ɛ] there too (⟨mai⟩, ⟨lai⟩, ⟨geai⟩, ⟨Tournai⟩) — the 4.4% minority is left wrong rather than lexicalised.\n\nREFUTED IN THIS WAVE — THE UNLIGATED ⟨oe⟩/⟨oeu⟩ SPELLINGS. Adding ⟨oeu⟩ [ø]~[œ] and ⟨oe⟩ [œ] as graphemes, so that the typewriter spellings of ⟨œu⟩/⟨œ⟩ transcribe like the ligature (⟨oeuf⟩, ⟨boeuf⟩, ⟨coeur⟩), measured 0.0674 against 0.0673 — no gain — and broke ⟨coefficient⟩ [kɔefisjɑ̃] → *[kœfisjɛ̃], ⟨moelle⟩ and ⟨Noel⟩, where ⟨oe⟩ is genuinely two vowels. ⟨oe⟩ is a typographic substitution for a character the writer could not type, not a French grapheme, so restoring the ligature is normalisation and belongs upstream of this library (AGENTS.md §7), not in the grapheme table.\n\nEVERY LETTER OF THE ALPHABET HAS A KEY. ⟨à⟩, ⟨æ⟩, ⟨œ⟩ and ⟨ÿ⟩ are letters of the French alphabet, and a letter with no key is dropped from the output (⟨déjà⟩ *[deʒ], ⟨à⟩ empty). ⟨à⟩ is [a], the vowel of ⟨a⟩; the grave only keeps homophones apart (à against a, là against la) — French orthography, Wikipedia, whose letter table gives ⟨a, à⟩ [a] with là and déjà. ⟨æ⟩ is [e] like ⟨é⟩ (cæcum, ex æquo) — the same table, and Prononciation du français, Wikipédia, whose vowel table gives ⟨æ⟩ /e/. ⟨œ⟩ on its own (not in ⟨œu⟩ or ⟨œil⟩) is the Latin rendering of the Greek diphthong ⟨οι⟩ and spells [e] like ⟨é⟩, with a spelling pronunciation [ø] that both sources record as the newer reading (œsophage [ezɔfaʒ] or [øzɔfaʒ], fœtus, cœlacanthe) — French orthography, Wikipedia, on Greek loanwords and on ⟨œ⟩. The [œ] the letter tables list first is the native ⟨œil⟩ family, and that family has keys of its own: ⟨il⟩ and ⟨ill⟩ after ⟨œ⟩ are [j], exactly as after ⟨eu⟩ and ⟨ue⟩ (œil [œj], œillet [œjɛ]) — French orthography, Wikipedia, which names ⟨œ⟩ in its list of the vowels after which ⟨il⟩/⟨ill⟩ is [j]. ⟨ÿ⟩ is [i] and occurs only in proper names (Aÿ [ai], L'Haÿ-les-Roses) — French orthography, Wikipedia. ⟨œ⟩, ⟨œu⟩, ⟨œil⟩, ⟨œill⟩ and ⟨ÿ⟩ are also declared in vowel_graphemes, beside ⟨y⟩: the closed orthographic-vowel inventory does not list ⟨œ⟩ or ⟨ÿ⟩ (⟨œ⟩ does not decompose, and ⟨ÿ⟩ decomposes to ⟨y⟩), so a grapheme that begins with either is not a vowel letter without the declaration. Then an ⟨s⟩ after ⟨œ⟩ is not intervocalic (⟨œsophage⟩ *[esɔfaʒ] for [ezɔfaʒ]), and an ⟨n⟩ before ⟨œu⟩ is read as a coda that nasalises the vowel before it (⟨manœuvre⟩ *[mɑ̃øvʁ] for [manœvʁ], fr.wiktionary). ⟨œu⟩ follows the loi de position exactly as ⟨eu⟩ does, with the same OPEN_SYLLABLE/CLOSED_SYLLABLE entry: [ø] in an open syllable (vœu [vø], nœud [nø]), [œ] in a closed one (cœur [kœʁ], sœur [sœʁ], œuvre [œvʁ], bœuf [bœf]) — French orthography, Wikipedia, which gives ⟨œu⟩ [ø] phonologically finally and [œ] elsewhere; the headword pronunciations are those of fr.wiktionary. RESIDUAL: the plurals œufs and bœufs are [ø] and [bø] with the final ⟨fs⟩ silent; the spec keeps the ⟨f⟩, so they come out [œf] and [bœf]. In a non-final syllable the law is weak for ⟨œu⟩ as for ⟨eu⟩ (écœurer gives [ekøʁe]). Upper-case letters need no keys of their own: the engine folds case before lookup. FUNCTION WORDS (Lexique 3.83, New et al. 2004, column phon): the rules read ⟨et⟩ as ⟨et⟩ as [ɛ], ⟨des mes tes ses ces⟩ as a bare consonant, ⟨cet⟩ as [sɛ] and ⟨sept⟩ as [sɛp]. Lexique gives et [e] (CON, 12909.08), des [de] (ART, 6055.71), ces [se] (1222.51), mes [me] (1102.23), tes [te] (690.24), ses [se] (757.68), cet [sɛt] (499.91) and sept [sɛt] (ADJ, 66.07). Each is a closed-class word with one reading, so each is a whole-word entry in word_exceptions. The ambiguous homographs tous and plus stay out, as before; huit, six and dix keep their final consonant, [ɥit] [sis] [dis], through the rules FR_HUIT_FINAL_T_SOUNDS and FR_NUMERAL_FINAL_X_SOUNDS, and the sandhi rules FR_NUMERAL_MUTE_BEFORE_CONSONANT, FR_HUIT_MUTE_BEFORE_CONSONANT and FR_NUMERAL_Z_BEFORE_VOWEL give their forms before a consonant and before a vowel (Martinon 1913: 328, 345); neuf changes its consonant only before ans and heures, so it stays out. The reading of ⟨les⟩ is above. ELIDED FORMS OF es: Lexique 3.83 lists the elided clitics d', l', n', s' and t' as the bare consonant ([d] [l] [n] [s] [t]) and es as [ɛ] (VER, 1849.07, and AUX, 539.36). The whole-word entries t'es [tɛ] and n'es [nɛ] join the clitic and the host, because the lookup keys on the whole written word and the elided clitic is part of it (word_internal_apostrophe). THE VERB est: the rules read it [ɛs]. Its ⟨st⟩ is mute (Martinon 1913: 331, who names the verb e(st) against the noun est and ouest), and Larousse (s.v. être, Homonymes) lists it with ai, ais, haie and hais, so the entry est is [ɛ]; c'est [sɛ] and n'est [nɛ] read it after the clitic. Lexique 3.83 gives [e] (VER, freqfilms2 19417.69, and AUX, 3318.95); the entry follows Larousse and the [ɛ] of es. The noun est with a pronounced ⟨st⟩ (est-ouest) is not modelled, except for the whole words l'est and d'est. ⟨oê⟩ IS [wa]: poêle [pwal], poêlon, poêler. Martinon (1913, p. 62: ⟨oê⟩ is [wa] in poêle (pwâl) and its derivatives, as ⟨oe⟩ is in moelle). The key passes the first test for a multigraph: [wa] is not ⟨o⟩ plus ⟨ê⟩. The unaccented ⟨oe⟩ of moelle stays out, as the earlier refutation of an ⟨oe⟩ key records (coefficient, Noel). LOANS THAT THE ⟨ch⟩ AND FINAL ⟨g⟩ RULES DO NOT COVER. FR_CH_HARD_BEFORE_SONORANT states Martinon's rule for French words of learned origin (1913: 226); the German loan families chleuh, chlinguer and chnoque keep [ʃ] in every form, which the rule states with word_contains_grapheme_not; Lexique 3.83 (New et al. 2004, column phon: Sl2, Sl5ge, Sl5g, SnOk) gives that reading. Lexique gives kalachnikovs [kalaknikɔv], so that loan takes the rule. FR_G_MUTE_FINAL_AFTER_NASAL states the French final ⟨g⟩ (Martinon 1913: 236); Martinon (1913: 238) gives the pronounced final ⟨g⟩ of foreign words, rotang, ginseng and gong among them. rotang [ʁɔtɑ̃ɡ] follows Martinon, and gong, gongs, ginseng, gang, gangs, bang, bangs, boomerang and slang follow Lexique 3.83 (g§g, Zins@G, g@g, b@g, bum°R@g, sl@g). The class is open: other loans in ⟨-ang⟩ and ⟨-ong⟩, and names such as Washington and Hong Kong, are not entries. ⟨uin⟩ IS [ɥɛ̃]: juin [ʒɥɛ̃], suint [sɥɛ̃], suinter. Martinon (1913: 196) names ui and uin among the groups that are diphthongs in current usage, juin among the examples; Fougeron & Smith (1993: 74) transcribe suint [sɥɛ̃]; Lexique 3.83 juin [ʒɥɛ̃]. It is a grapheme like ⟨ain ein ien oin⟩, which the spec already keys for the same reason: its value is not ⟨ui⟩ [ɥi] plus ⟨n⟩. FR_NASAL_BLOCK_PREVOCALIC_UIN gives it the oral reading before a vowel (ruine [ʁɥin]); no French word writes ⟨uin⟩ before a doubled nasal letter, so the spec states no geminate rule for it. geai is a whole-word entry [ʒɛ] (TLFi; Lexique 3.83 ZE): FR_AI_FINAL_CLOSE_MID would read its final ⟨ai⟩ [e].",
   "quality": "research",
   "script_type": "alphabet",
   "sources": [
@@ -586,7 +938,7 @@
       "title": "French liaison and elision revisited: A unified account within Optimality Theory",
       "publisher": "Rutgers Optimality Archive (ROA-15)",
       "url": "https://roa.rutgers.edu/files/15-0594/15-0594-TRANEL-0-0.PDF",
-      "pages": "1, 4",
+      "pages": "1, 4, 9",
       "notes": "Formalises liaison (silent word-final consonant surfaces before a vowel-initial word, e.g. les amis [lezami]) and elision (word-final vowel deleted before a vowel-initial word, e.g. l'ami) as ONSET-driven; establishes that h-aspiré words (hibou) block both liaison and elision despite being phonetically vowel-initial (les hiboux *[lezibu], le hibou *[libu])."
     },
     {
@@ -607,7 +959,7 @@
       "publisher": "Behavior Research Methods, Instruments, & Computers 36(3), 516-524",
       "url": "http://www.lexique.org",
       "pages": null,
-      "notes": "READ: Lexique 3.83 (Lexique383.tsv, column phon, CC BY-SA), the university-published French lexical database. Used for the reading of the closed function-word set in word_exceptions, for the noun est [ɛst] in l'est and d'est, and to measure the ⟨e⟩ before a doubled consonant letter. It is a published dataset, not a bundled lexicon: only the values of the closed set below are copied, as the other word_exceptions are. For the verb form est the sources differ: Lexique 3.83 gives [e], and Larousse (s.v. être, Homonymes) lists est with ai, ais, haie and hais. The spec lists no entry for the verb, and the rules read it."
+      "notes": "READ: Lexique 3.83 (Lexique383.tsv, column phon, CC BY-SA), the university-published French lexical database. Used for the reading of the closed function-word set in word_exceptions, for the noun est [ɛst] in l'est and d'est, and to measure the ⟨e⟩ before a doubled consonant letter. It is a published dataset, not a bundled lexicon: only the values of the closed set below are copied, as the other word_exceptions are. For the verb form est the sources differ: Lexique 3.83 gives [e], and Larousse (s.v. être, Homonymes) lists est with ai, ais, haie and hais. The entry est follows Larousse with [ɛ]."
     },
     {
       "id": "fery2001",
@@ -618,6 +970,46 @@
       "url": "https://roa.rutgers.edu/files/474-1101/474-1101-FERY-0-0.PDF",
       "pages": "7-8",
       "notes": "READ (open access PDF). Ex. (19): only [ɛ] stands before a word-final consonant (elle, cette, cèpe, bec); generalisation (20b): no [e], but always [ɛ] before a final consonant; [e] is allowed only in an open syllable."
+    },
+    {
+      "id": "martinon1913",
+      "author": "Martinon, P.",
+      "year": 1913,
+      "title": "Comment on prononce le français : traité complet de prononciation pratique avec les noms propres et les mots étrangers",
+      "publisher": "Larousse, Paris",
+      "url": "https://archive.org/details/commentonprononc00martuoft",
+      "pages": "53, 59, 62, 93, 123, 129, 130, 131, 145, 151, 156, 161, 164, 171, 196, 213, 214, 222, 226, 234, 235, 236, 238, 239, 240, 241, 248, 249, 250, 251, 252, 253, 254, 269, 284, 285, 328, 329, 330, 331, 345, 346, 347, 348, 349, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391",
+      "notes": "READ (archive.org full scan of the University of Toronto copy; each cited page read in the scan's text). The Paris orthoepic norm of 1913; the allophone rules that cite it give the page and the passage."
+    },
+    {
+      "id": "larousse_etre",
+      "author": "Éditions Larousse",
+      "year": 2026,
+      "title": "Dictionnaire de français, s.v. être (Homonymes des variantes de être)",
+      "publisher": "Larousse, online edition, read 2026-11-26",
+      "url": "https://www.larousse.fr/dictionnaires/francais/%C3%AAtre/31549",
+      "pages": null,
+      "notes": "READ (online). The tab 'Homonymes des variantes de être' gives est with ai, ais, haie and hais; étaient with étai; soient with soi, soie and soit."
+    },
+    {
+      "id": "oqlf_h_aspire",
+      "author": "Office québécois de la langue française",
+      "year": 2026,
+      "title": "La prononciation du h aspiré (Banque de dépannage linguistique)",
+      "publisher": "OQLF, Vitrine linguistique, online edition, read 2026-11-26",
+      "url": "https://vitrinelinguistique.oqlf.gouv.qc.ca/22203/la-prononciation/prononciation-de-certaines-lettres/la-prononciation-du-h-aspire",
+      "pages": null,
+      "notes": "READ (online). Lists the main words that begin with an h aspiré (hache to hutte, héros but not héroïne) and states that the h aspiré blocks liaison. The list is not exhaustive. Used for the h aspiré stems of FR_H_ASPIRE_BLOCKS_LINK."
+    },
+    {
+      "id": "oqlf_six_dix",
+      "author": "Office québécois de la langue française",
+      "year": 2026,
+      "title": "Prononciation de six et dix (Banque de dépannage linguistique)",
+      "publisher": "OQLF, Vitrine linguistique, online edition, read 2026-11-27",
+      "url": "https://vitrinelinguistique.oqlf.gouv.qc.ca/23137/la-prononciation/prononciation-des-nombres/prononciation-de-six-et-dix",
+      "pages": null,
+      "notes": "READ (online). Pronouns six and dix are [sis] [dis] (il lui en reste six à faire); determiners are [siz] [diz] before a vowel or a mute h and [si] [di] before a consonant or an aspirate h (six haricots [siaʁiko]); the nouns are [sis] [dis]. Used for FR_NUMERAL_Z_BEFORE_VOWEL and FR_H_ASPIRE_BLOCKS_LINK."
     }
   ],
   "wikipedia": [
@@ -1012,7 +1404,29 @@
     "t'es": "tɛ",
     "n'es": "nɛ",
     "l'est": "lɛst",
-    "d'est": "dɛst"
+    "d'est": "dɛst",
+    "est": "ɛ",
+    "parfum": "paʁfœ̃",
+    "parfums": "paʁfœ̃",
+    "zinc": "zɛ̃ɡ",
+    "dessus": "dəsy",
+    "dessous": "dəsu",
+    "gong": "ɡɔ̃ɡ",
+    "gongs": "ɡɔ̃ɡ",
+    "ginseng": "ʒinsɛŋ",
+    "rotang": "ʁɔtɑ̃ɡ",
+    "gang": "ɡɑ̃ɡ",
+    "gangs": "ɡɑ̃ɡ",
+    "bang": "bɑ̃ɡ",
+    "bangs": "bɑ̃ɡ",
+    "boomerang": "buməʁɑ̃ɡ",
+    "slang": "slɑ̃ɡ",
+    "cresson": "kʁəsɔ̃",
+    "cressonnière": "kʁəsɔnjɛʁ",
+    "donc": "dɔ̃k",
+    "sud": "syd",
+    "ouest": "wɛst",
+    "geai": "ʒɛ"
   },
   "timespan": {
     "start_year": 1300,
@@ -1174,6 +1588,103 @@
       "notes": "A vowel letter plus ⟨n⟩/⟨m⟩ spells a nasal vowel only when that nasal letter is neither doubled nor followed by a vowel letter; otherwise the nasal consonant is an onset and the vowel stays oral (Tranel 1987 §3; Walker 2001; Fouché 1959)."
     },
     {
+      "id": "FR_NASAL_BLOCK_PREVOCALIC_UIN",
+      "phonemes": [
+        "ɥɛ̃"
+      ],
+      "surface": "ɥin",
+      "grapheme": [
+        "uin"
+      ],
+      "followed_by": "vowel",
+      "notes": "A vowel letter plus ⟨n⟩/⟨m⟩ spells a nasal vowel only when that nasal letter is neither doubled nor followed by a vowel letter; otherwise the nasal consonant is an onset and the vowel stays oral (Tranel 1987 §3; Walker 2001; Fouché 1959). ⟨uin⟩ is ruine [ʁɥin], bruine."
+    },
+    {
+      "id": "FR_ENT_MUTE_AFTER_AI_OI",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "",
+      "grapheme": [
+        "e"
+      ],
+      "preceded_by_grapheme": [
+        "ai",
+        "oi"
+      ],
+      "followed_by_grapheme": [
+        "n"
+      ],
+      "followed_by_2": "consonant",
+      "followed_by_3": "word_boundary",
+      "notes": "Word-final ⟨ent⟩ after ⟨ai⟩ or ⟨oi⟩ is mute, so ⟨-aient⟩ is [ɛ] and ⟨-oient⟩ is [wa]: étaient [etɛ], avaient [avɛ], parlaient [paʁlɛ], seraient [səʁɛ], paient [pɛ], soient [swa], voient [vwa]. Martinon (1913, p. 161: the ⟨nt⟩ of the third-person plural changes nothing, so tombait dru and tombaient dru have the same pronunciation; n. 1 lists the ⟨-ent⟩ homographs that are also nouns or adjectives, and none ends in ⟨-aient⟩ or ⟨-oient⟩). Larousse (s.v. être, Homonymes) gives étaient as a homonym of étai, and soient as a homonym of soi, soie and soit. No French noun or adjective ends in ⟨-aient⟩ or ⟨-oient⟩, so the spelling decides here, unlike bare ⟨-ent⟩ (see ENDING \"ent\"): all 1654 ⟨-aient⟩ and 6 ⟨-oient⟩ types of the wikipron fr gold are mute, apart from 22 verb forms entered twice, once with a nasal reading that contradicts Martinon. The rule deletes the ⟨e⟩; FR_NASAL_ABSORB already drops the coda ⟨n⟩ after a vowel letter, and the word-final ⟨t⟩ is silent."
+    },
+    {
+      "id": "FR_UM_FINAL_LATIN",
+      "phonemes": [
+        "y"
+      ],
+      "surface": "ɔ",
+      "grapheme": [
+        "u"
+      ],
+      "followed_by_grapheme": [
+        "m"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "Word-final ⟨um⟩ is the Latin ending, read [ɔm] with the ⟨m⟩ pronounced and no nasal vowel: forum [fɔʁɔm], album [albɔm], minimum, maximum, podium, référendum, aquarium, rhum. Martinon (1913, p. 123: the Latin final -um is [ɔm], also in fully French words (album, forum, géranium); p. 130: parfum keeps the nasal vowel; p. 131: in every other word final m is pronounced on its own (album)). parfum, the one common word that keeps [œ̃], is a whole-word entry. FR_UM_FINAL_M keeps the ⟨m⟩, which FR_NASAL_ABSORB would otherwise drop."
+    },
+    {
+      "id": "FR_UM_FINAL_LATIN_PLURAL",
+      "phonemes": [
+        "y"
+      ],
+      "surface": "ɔ",
+      "grapheme": [
+        "u"
+      ],
+      "followed_by_grapheme": [
+        "m"
+      ],
+      "followed_by_phoneme_2": [
+        "s"
+      ],
+      "followed_by_3": "word_boundary",
+      "notes": "FR_UM_FINAL_LATIN behind the silent plural ⟨-s⟩: albums [albɔm], forums, aquariums. Martinon (1913, p. 123: the Latin final -um is [ɔm], also in fully French words (album, forum, géranium); p. 130: parfum keeps the nasal vowel; p. 131: in every other word final m is pronounced on its own (album))."
+    },
+    {
+      "id": "FR_ING_FINAL_ORAL_I",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "i",
+      "grapheme": [
+        "i"
+      ],
+      "followed_by_grapheme": [
+        "n"
+      ],
+      "followed_by_phoneme_2": [
+        "ɡ"
+      ],
+      "followed_by_3": "word_boundary",
+      "notes": "Identity rule ordered before FR_NASAL_i: the ⟨i⟩ of the English final ⟨-ing⟩ stays oral, parking [paʁkiŋ], camping [kɑ̃piŋ], marketing, jogging, meeting. Martinon (1913, p. 145: the English final -ing is not nasalised (shampoing excepted)). Fougeron & Smith (1993: 74-75) transcribe parking [paʁkiŋ] and state that the velar nasal occurs only word-finally in borrowed, usually English, words. RESIDUAL: the plural ⟨-ings⟩ (parkings) puts the ⟨i⟩ four slots from the word end, past the reach of the rule conditions, so the plural keeps the nasal reading."
+    },
+    {
+      "id": "FR_LL_YOD_AFTER_UI",
+      "phonemes": [
+        "l"
+      ],
+      "surface": "j",
+      "grapheme": [
+        "ll"
+      ],
+      "preceded_by_grapheme": [
+        "ui"
+      ],
+      "notes": "⟨ll⟩ after ⟨ui⟩ is the yod: juillet [ʒɥijɛ], cuillère [kɥijɛʁ]. Martinon (1913, p. 269: the ⟨ll⟩ is mouillé in cuiller and juillet, where the ⟨i⟩ only marks the mouillé ⟨ll⟩); Lexique 3.83 juillet [ʒɥijɛ], cuillère [kɥijɛʁ]. Martinon calls the [ɥ] of juillet a long-standing and regrettable usage and gives ju-yet as the true reading; the spec follows the usage that Lexique records. The yod of ⟨ill⟩ after other vowel letters is in the ⟨aill eill euill ouill ueill⟩ keys."
+    },
+    {
       "id": "FR_NASAL_a",
       "phonemes": [
         "a"
@@ -1219,6 +1730,33 @@
       "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨canne⟩, ⟨cana⟩) leaves it oral"
     },
     {
+      "id": "FR_UM_FINAL_M",
+      "phonemes": [
+        "m"
+      ],
+      "surface": "m",
+      "preceded_by_grapheme": [
+        "u"
+      ],
+      "word_final": true,
+      "notes": "Identity rule ordered before FR_NASAL_ABSORB: the ⟨m⟩ of a word-final ⟨um⟩ is pronounced (album [albɔm]), so it is not absorbed into a nasal vowel. word_final holds behind the silent plural ⟨-s⟩ too (albums). Martinon (1913, p. 123: the Latin final -um is [ɔm], also in fully French words (album, forum, géranium); p. 130: parfum keeps the nasal vowel; p. 131: in every other word final m is pronounced on its own (album))."
+    },
+    {
+      "id": "FR_ING_FINAL_VELAR_NASAL",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "ŋ",
+      "preceded_by_grapheme": [
+        "i"
+      ],
+      "followed_by_grapheme": [
+        "g"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "The ⟨ng⟩ of the English final ⟨-ing⟩ is the velar nasal [ŋ]: parking [paʁkiŋ]. Fougeron & Smith (1993: 74-75) transcribe parking [paʁkiŋ] and state that the velar nasal occurs only word-finally in borrowed, usually English, words. Ordered before FR_NASAL_ABSORB, so the ⟨n⟩ is not absorbed. Martinon (1913, p. 145: the English final -ing is not nasalised (shampoing excepted))."
+    },
+    {
       "id": "FR_NASAL_ABSORB",
       "phonemes": [
         "n",
@@ -1228,6 +1766,175 @@
       "syllable_position": "coda",
       "notes": "the coda nasal is absorbed into the nasal vowel it created; keyed on the nasal vowel so it cannot bleed the rule that makes it",
       "preceded_by": "vowel"
+    },
+    {
+      "id": "FR_E_MUTE_AFTER_SOFT_G",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "",
+      "grapheme": [
+        "e"
+      ],
+      "preceded_by_grapheme": [
+        "g",
+        "j"
+      ],
+      "followed_by": "back_vowel",
+      "notes": "⟨e⟩ between ⟨g⟩ and a back vowel letter is not a vowel: it only marks the soft [ʒ] of ⟨g⟩ before ⟨a o u⟩. mangeait [mɑ̃ʒɛ], pigeon [piʒɔ̃], bourgeois [buʁʒwa], nageant [naʒɑ̃], geôle [ʒol], George [ʒɔʁʒ]. The same mute ⟨e⟩ stands after ⟨j⟩ in Jean [ʒɑ̃] and Jeanne [ʒan]. Martinon (1913, pp. 164 and 239: the ⟨e⟩ between ⟨g⟩ and ⟨a o u⟩ is not pronounced and only gives ⟨g⟩ its sound before ⟨e i⟩ (mangea, pigeon, nageoire, Georges); p. 164 n. 1: J(e)an, J(e)anne, J(e)annot). ⟨g⟩ itself already reads [ʒ] before ⟨e⟩ (before_front_vowel). RESIDUAL: ⟨geu⟩ before ⟨r⟩ in gageure, mangeure and vergeure is [ʒy] (Martinon 1913: 240), but the tokenizer reads ⟨eu⟩ as one grapheme there, so the rule cannot reach it."
+    },
+    {
+      "id": "FR_IED_CLOSE_MID",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "e",
+      "grapheme": [
+        "e"
+      ],
+      "preceded_by_grapheme": [
+        "i"
+      ],
+      "followed_by_grapheme": [
+        "d"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "The ⟨e⟩ of a word-final ⟨-ied⟩ is close-mid [e], not the [ɛ] of FR_E_CLOSED_FINAL: pied [pje], sied [sje], assied, trépied, marchepied. Martinon (1913, p. 53: the final ⟨e⟩ of pied, sied, messied and assied is close [e])."
+    },
+    {
+      "id": "FR_IED_CLOSE_MID_PLURAL",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "e",
+      "grapheme": [
+        "e"
+      ],
+      "preceded_by_grapheme": [
+        "i"
+      ],
+      "followed_by_grapheme": [
+        "d"
+      ],
+      "followed_by_phoneme_2": [
+        "s"
+      ],
+      "followed_by_3": "word_boundary",
+      "notes": "FR_IED_CLOSE_MID behind the silent plural ⟨-s⟩: pieds [pje], trépieds. Martinon (1913, p. 53: the final ⟨e⟩ of pied, sied, messied and assied is close [e])."
+    },
+    {
+      "id": "FR_E_RESSUSCITER_RESSUYER",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "e",
+      "grapheme": [
+        "e"
+      ],
+      "preceded_by_grapheme": [
+        "r"
+      ],
+      "preceded_by_2": "word_boundary",
+      "followed_by_grapheme": [
+        "ss"
+      ],
+      "word_contains_grapheme": [
+        "ressusc",
+        "ressuy",
+        "ressuie"
+      ],
+      "notes": "The two exceptions Martinon names to the mute e of re- before ⟨ss⟩ have a close [e]: ressusciter [ʁesysite] and its forms, because the word comes straight from Latin resuscitare and not from French susciter, and ressuyer, made from essuyer. Martinon (1913, p. 171); Lexique 3.83 ressusciter [ʁesysite]. Ordered before FR_E_MUTE_PREFIX_RE_SS. Like FR_P_MUTE_COMPT, the condition names the word family by its spelling with word_contains_grapheme, because the letters re-ss-u do not decide it (ressurgir keeps [ʁə], Lexique 3.83). The forms of ressuyer with ⟨ui⟩ (ressuie, ressuies, ressuient, ressuiera) are matched by ⟨ressuie⟩: TLFi, s.v. ressuyer, gives [ʁesɥije] and (il) ressuie [-sɥi]. The noun ressui, which Lexique 3.83 reads [ʁəsɥi], is not matched."
+    },
+    {
+      "id": "FR_E_MUTE_PREFIX_RE_SS",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "ə",
+      "grapheme": [
+        "e"
+      ],
+      "preceded_by_grapheme": [
+        "r"
+      ],
+      "preceded_by_2": "word_boundary",
+      "followed_by_grapheme": [
+        "ss"
+      ],
+      "notes": "Identity rule ordered before FR_E_BEFORE_DOUBLED_NONFINAL: the prefix re- keeps its mute ⟨e⟩ before ⟨ss⟩, which only keeps the ⟨s⟩ voiceless: ressembler [ʁəsɑ̃ble], ressentir, resserrer, ressortir, ressource. Martinon (1913, p. 171: ⟨e⟩ before a doubled consonant letter is not a mute e, with the exceptions dessus, dessous and the prefix re- before ⟨ss⟩ (ressembler, ressentir, resserrer, ressort, ressource), where the ⟨ss⟩ only keeps the ⟨s⟩ voiceless; p. 151 n. 1 says the same of re- and of dessus and dessous). Martinon also names ressusciter and ressuyer as exceptions with [e]; FR_E_RESSUSCITER_RESSUYER, ordered before this rule, reads them. dessus and dessous, the other exception he names, are whole-word entries. cresson and cressonnière, where Martinon (1913: 171) keeps the mute e 'at least at Paris', are whole-word entries too."
+    },
+    {
+      "id": "FR_E_BEFORE_DOUBLED_NONFINAL",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "e",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_grapheme": [
+        "ss",
+        "ll",
+        "tt",
+        "rr",
+        "ff",
+        "pp",
+        "cc"
+      ],
+      "followed_by_nucleus": true,
+      "notes": "⟨e⟩ before a doubled consonant letter in a syllable before the last is not a schwa: message [mesaʒ], dessert [desɛʁ], dessin, cesser [sese], serrer [seʁe], terrible [teʁibl], nettoyer [netwaje], effet [efɛ], effort. Martinon (1913, p. 171: ⟨e⟩ before a doubled consonant letter is not a mute e, with the exceptions dessus, dessous and the prefix re- before ⟨ss⟩ (ressembler, ressentir, resserrer, ressort, ressource), where the ⟨ss⟩ only keeps the ⟨s⟩ voiceless; p. 151 n. 1 says the same of re- and of dessus and dessous). Martinon does not fix the quality of this unstressed vowel; the rule writes [e], the reading of the wikipron fr gold in 500 of the 591 word-initial types (ss 190 [e] against 12 [ɛ] once the re- types are set apart, rr 197 against 13, ll 69 against 27, tt 35 against 21, ff 6 against 4). ⟨nn⟩ and ⟨mm⟩ stay out: there ⟨e⟩ is often the nasal prefix en- (ennui [ɑ̃nɥi], emmener)."
+    },
+    {
+      "id": "FR_E_BEFORE_DOUBLED_FINAL",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "ɛ",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_grapheme": [
+        "ss",
+        "ff",
+        "pp",
+        "cc"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "FR_E_BEFORE_DOUBLED_CONSONANT for ⟨ss ff pp cc⟩: in the last syllable the ⟨e⟩ before them is open [ɛ], messe [mɛs], presse, jeunesse [ʒœnɛs], greffe [ɡʁɛf], steppe. Martinon (1913, p. 59: the open e of -esse in nièce, vieillesse, noblesse, allégresse, and of -effe in greffe)."
+    },
+    {
+      "id": "FR_E_SCHWA_BEFORE_OBSTRUENT_LIQUID",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "ə",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v"
+      ],
+      "followed_by_phoneme_2": [
+        "l",
+        "ʁ"
+      ],
+      "followed_by_grapheme_not": [
+        "pp",
+        "bb",
+        "tt",
+        "dd",
+        "cc",
+        "gg",
+        "ff"
+      ],
+      "notes": "An obstruent (p b t d k g f v) followed by l or r is an onset, so the ⟨e⟩ before it stands in an open syllable and stays schwa; FR_E_CLOSED_CLUSTER, which opens ⟨e⟩ before two consonants, must not see such a pair as a closing cluster. Martinon (1913, p. 156): a group whose second consonant is an obstruent (b, c, d, g, t, p) or a fricative (f, v) followed by a liquid, l or r, is 'presque aussi faciles à prononcer qu'une consonne seule'. Wiktionnaire: secret \\sə.kʁɛ\\, degré \\də.ɡʁe\\, regret \\ʁə.ɡʁɛ\\, repli \\ʁə.pli\\. A doubled consonant closes the syllable before the liquid, so ⟨ff pp tt cc bb dd gg⟩ are left out: effroi \\e.fʁwɑ\\ ou \\ɛ.fʁwa\\ (Wiktionnaire)."
     },
     {
       "id": "FR_E_CLOSED_MULTIGRAPH",
@@ -1333,7 +2040,7 @@
       "followed_by_grapheme": [
         "œu"
       ],
-      "notes": "⟨c⟩ before ⟨œu⟩ is hard [k] (cœur [kœʁ], écœurer), although ⟨œ⟩ is a front vowel letter: ⟨œu⟩ is the native ⟨eu⟩ vowel written with an ⟨o⟩ that imitates the Latin spelling, and a ⟨c⟩ before it stays [k]. Before a bare ⟨œ⟩, which is Greek ⟨οι⟩, ⟨c⟩ softens as before ⟨é⟩ (cœlacanthe [selakɑ̃t]). French orthography, Wikipedia: after ⟨c⟩, ⟨œ⟩ gives [k] in some words (cœur) and [s] in others (cœlacanthe), and the [s] reading is the one before ⟨æ⟩ and ⟨œ⟩ in scientific terms of Latin and Greek origin. RESIDUAL: ⟨ch⟩ before ⟨œu⟩ in the Greek loan chœur [kœʁ] stays [ʃ]; ⟨ch⟩ = [k] in Greek loans is lexical and is not modelled. Stated as a rule on ⟨c⟩, not as a ⟨cœu⟩ key: a ⟨cœu⟩ key would pass none of the three key tests, because its value [kœ] is the concatenation of a hard ⟨c⟩ and ⟨œu⟩. Source: TLFi chœur, Prononc. [kœ:ʀ], 'Homon. cœur', so cœur is [kœ:ʀ] too (cnrtl.fr/definition/chœur; saved in Papers/Languages/Romance/French/cnrtl_choeur.html)."
+      "notes": "⟨c⟩ before ⟨œu⟩ is hard [k] (cœur [kœʁ], écœurer), although ⟨œ⟩ is a front vowel letter: ⟨œu⟩ is the native ⟨eu⟩ vowel written with an ⟨o⟩ that imitates the Latin spelling, and a ⟨c⟩ before it stays [k]. Before a bare ⟨œ⟩, which is Greek ⟨οι⟩, ⟨c⟩ softens as before ⟨é⟩ (cœlacanthe [selakɑ̃t]). French orthography, Wikipedia: after ⟨c⟩, ⟨œ⟩ gives [k] in some words (cœur) and [s] in others (cœlacanthe), and the [s] reading is the one before ⟨æ⟩ and ⟨œ⟩ in scientific terms of Latin and Greek origin. ⟨ch⟩ before ⟨œu⟩ in chœur [kœʁ] is FR_CH_HARD_BEFORE_OEU (Martinon 1913: 222). Stated as a rule on ⟨c⟩, not as a ⟨cœu⟩ key: a ⟨cœu⟩ key would pass none of the three key tests, because its value [kœ] is the concatenation of a hard ⟨c⟩ and ⟨œu⟩. Source: TLFi chœur, Prononc. [kœ:ʀ], 'Homon. cœur', so cœur is [kœ:ʀ] too (cnrtl.fr/definition/chœur; saved in Papers/Languages/Romance/French/cnrtl_choeur.html)."
     },
     {
       "id": "FR_AI_FINAL_CLOSE_MID",
@@ -1363,6 +2070,331 @@
       ],
       "followed_by_nucleus": false,
       "notes": "⟨e⟩ before a doubled ⟨ll⟩, ⟨tt⟩ or ⟨rr⟩ in the last syllable of the word stands in a word-final closed syllable and is [ɛ], not schwa: elle [ɛl], cette [sɛt], belle [bɛl], terre [tɛʁ], guerre [ɡɛʁ] (Féry 2001: 8, ex. (19) 'Only [ɛ] in word-final closed syllables', with elle and cette among the examples, and generalisation (20b) 'No [e], but always [ɛ] before a final consonant'). followed_by_nucleus false keeps the rule to that syllable. The same closure is why ⟨ll tt rr⟩ stay one consonant. Lexique 3.83 (New et al. 2004) reads this ⟨e⟩ as [ɛ] in 1476 of the 1478 word types that end in -elle(s), -ette(s) or -erre(s); the other two are moelle and moelles [mwal], where ⟨oe⟩ spells one vowel. NOT MODELLED: the same ⟨e⟩ in an earlier syllable. Féry states the generalisation for word-final syllables only, and Lexique reads that ⟨e⟩ as [ɛ] in some words (terrible, tellement) and as [e] in others (cellule, nettoyer, serrer), so no rule here covers it. ⟨ss ff nn mm⟩ are left out: the prefixes de- and re- end with a schwa before ⟨ss⟩ (dessus [dəsy], ressembler [ʁəsɑ̃ble]), and ⟨mm⟩ after ⟨e⟩ can spell [a] (femme [fam])."
+    },
+    {
+      "id": "FR_X_VOICED_INITIAL_EX",
+      "phonemes": [
+        "ks"
+      ],
+      "surface": "ɡz",
+      "grapheme": [
+        "x"
+      ],
+      "preceded_by_grapheme": [
+        "e"
+      ],
+      "preceded_by_2": "word_boundary",
+      "followed_by": "vowel",
+      "notes": "⟨x⟩ of a word-initial ⟨ex⟩ before a vowel letter is [ɡz]: exemple [ɛɡzɑ̃pl], exercice, exister [ɛɡziste], exiger, exotique, examen, exact. Martinon (1913, pp. 348-349: before a vowel, initial ex- (or hex-) is regularly [ɡz] (exalter, exhaler, exécuter, exiger, exotique, exubérant) and so are its derivatives (inexigible, inexact); p. 347: elsewhere inside a word ⟨x⟩ is [ks] (laxatif, maxime, sexuel)). Martinon notes that exécration and exécrable are often said with [ks] for emphasis; they take the rule."
+    },
+    {
+      "id": "FR_X_VOICED_INITIAL_EX_H",
+      "phonemes": [
+        "ks"
+      ],
+      "surface": "ɡz",
+      "grapheme": [
+        "x"
+      ],
+      "preceded_by_grapheme": [
+        "e"
+      ],
+      "preceded_by_2": "word_boundary",
+      "followed_by_grapheme": [
+        "h"
+      ],
+      "notes": "FR_X_VOICED_INITIAL_EX before a mute ⟨h⟩: exhiber [ɛɡzibe], exhaler, exhaustif. Martinon (1913, pp. 348-349: before a vowel, initial ex- (or hex-) is regularly [ɡz] (exalter, exhaler, exécuter, exiger, exotique, exubérant) and so are its derivatives (inexigible, inexact); p. 347: elsewhere inside a word ⟨x⟩ is [ks] (laxatif, maxime, sexuel))."
+    },
+    {
+      "id": "FR_X_VOICED_PREFIXED_EX",
+      "phonemes": [
+        "ks"
+      ],
+      "surface": "ɡz",
+      "grapheme": [
+        "x"
+      ],
+      "preceded_by_grapheme": [
+        "e"
+      ],
+      "preceded_by_2": "vowel",
+      "followed_by": "vowel",
+      "notes": "FR_X_VOICED_INITIAL_EX after a vowel-final prefix, the derivatives Martinon names: coexister [kɔɛɡziste], réexaminer, préexistant. In these spellings a vowel letter before ⟨ex⟩ marks the prefix boundary; all 86 such types of the wikipron fr gold have [ɡz]. Martinon (1913, pp. 348-349: before a vowel, initial ex- (or hex-) is regularly [ɡz] (exalter, exhaler, exécuter, exiger, exotique, exubérant) and so are its derivatives (inexigible, inexact); p. 347: elsewhere inside a word ⟨x⟩ is [ks] (laxatif, maxime, sexuel)). RESIDUAL: after the consonant-final prefix in- (inexact, inexistant) the rule cannot see the word start three slots back, so ⟨x⟩ stays [ks]; hex- (Hexagone) is not reached either."
+    },
+    {
+      "id": "FR_X_Z_ORDINAL",
+      "phonemes": [
+        "ks"
+      ],
+      "surface": "z",
+      "grapheme": [
+        "x"
+      ],
+      "preceded_by_2": "consonant",
+      "followed_by_grapheme": [
+        "i"
+      ],
+      "followed_by_phoneme_2": [
+        "ɛ"
+      ],
+      "notes": "⟨x⟩ before the ordinal ⟨-ième⟩ is [z], the liaison consonant of deux, six and dix: deuxième [døzjɛm], sixième [sizjɛm], dixième [dizjɛm]. Martinon (1913, p. 348: deuxième, dixième, sixième have the [z] of the liaison of deux, six, dix). The condition on a consonant two slots back keeps out the letter name in ixième [iksjɛm] (wikipron fr)."
+    },
+    {
+      "id": "FR_G_MUTE_BEFORE_T",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "",
+      "grapheme": [
+        "g"
+      ],
+      "followed_by_grapheme": [
+        "t"
+      ],
+      "notes": "⟨g⟩ before ⟨t⟩ is mute: vingt [vɛ̃], vingtaine [vɛ̃tɛn], vingtième, doigt [dwa], doigté, longtemps [lɔ̃tɑ̃]. Martinon (1913, p. 236: ⟨g⟩ is mute in vin(gt) and its derivatives, lon(g)temps and doi(gt)). Every native ⟨gt⟩ type of the wikipron fr gold agrees; the foreign names Washington and Pingtung keep [ŋt] there and are lexical."
+    },
+    {
+      "id": "FR_G_MUTE_FINAL_AFTER_NASAL",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "",
+      "grapheme": [
+        "g"
+      ],
+      "preceded_by_grapheme": [
+        "n",
+        "ain",
+        "ein",
+        "oin"
+      ],
+      "word_final": true,
+      "notes": "Word-final ⟨g⟩ after a nasal spelling is mute, also behind the silent plural ⟨-s⟩: long [lɔ̃], longs, sang [sɑ̃], rang, étang [etɑ̃], hareng [aʁɑ̃], poing [pwɛ̃], coing, seing. Martinon (1913, p. 236: at the end of a French word ⟨g⟩ is not pronounced; it survives in the spelling after a nasal: ran(g), san(g), étan(g), haren(g), sein(g), coin(g), poin(g), lon(g)). Martinon (1913: 238) gives the pronounced final ⟨g⟩ of foreign words (gong, ginseng, iceberg, the English -ing); the open class of loans in ⟨-ang⟩ and ⟨-ong⟩ (gang, slang, boomerang, mustang) keeps [ɡ] in the wikipron fr gold and is lexical, the same residual as the loanwords in ⟨-er⟩."
+    },
+    {
+      "id": "FR_CH_HARD_BEFORE_SONORANT",
+      "phonemes": [
+        "ʃ"
+      ],
+      "surface": "k",
+      "grapheme": [
+        "ch"
+      ],
+      "followed_by_phoneme": [
+        "l",
+        "ʁ",
+        "m",
+        "n"
+      ],
+      "notes": "⟨ch⟩ before /l ʁ m n/ is [k]: chrétien [kʁetjɛ̃], Christ, chronologie, chrome, chlore [klɔʁ], technique [tɛknik], drachme. Martinon (1913, p. 226: before a consonant ⟨ch⟩ is always learned and keeps the velar sound; the consonants are the liquids and nasals l, m, n, r, and sometimes s and t (chlore, drachme, technique, chrétien)). The rule takes only the four consonants Martinon names without restriction; before ⟨s⟩ and ⟨t⟩ he says only 'parfois', and fichtre keeps [ʃ]. The German loan families chlinguer, chnoque and chleuh keep [ʃ] in every form (Lexique 3.83: chlinguer [ʃlɛ̃ɡe], chlingues [ʃlɛ̃ɡ], chnoques [ʃnɔk], chleuhs [ʃlø]), so word_contains_grapheme_not names their spellings; whole-word entries would miss the conjugated and inflected forms.",
+      "word_contains_grapheme_not": [
+        "chlingu",
+        "chnoqu",
+        "chleuh"
+      ]
+    },
+    {
+      "id": "FR_CH_HARD_BEFORE_OEU",
+      "phonemes": [
+        "ʃ"
+      ],
+      "surface": "k",
+      "grapheme": [
+        "ch"
+      ],
+      "followed_by_grapheme": [
+        "œu"
+      ],
+      "notes": "⟨ch⟩ before ⟨œu⟩ is [k]: chœur [kœʁ], chœurs. Martinon (1913, p. 222: co is said in all the words that begin with chol- and chor-, choléra, chorus, choral, 'avec c(h)œur, et leurs dérivés'). The ⟨œu⟩ is the native vowel written with the ⟨o⟩ of the Latin chorus, as in cœur, whose ⟨c⟩ FR_C_HARD_BEFORE_OEU keeps hard. The words in chol- and chor- are not stated: Cholet keeps [ʃ]."
+    },
+    {
+      "id": "FR_P_MUTE_FINAL_MPT",
+      "phonemes": [
+        "p"
+      ],
+      "surface": "",
+      "grapheme": [
+        "p"
+      ],
+      "preceded_by_grapheme": [
+        "m"
+      ],
+      "followed_by_grapheme": [
+        "t"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "⟨p⟩ of a word-final ⟨-mpt⟩ is mute, as the ⟨t⟩ is: prompt [pʁɔ̃], exempt [ɛɡzɑ̃], rompt [ʁɔ̃], corrompt, interrompt. Martinon (1913, p. 129: exempt, prompt, rompt end in the nasal vowel; p. 331: in ⟨-empt⟩ and ⟨-ompt⟩ neither p nor t sounds)."
+    },
+    {
+      "id": "FR_P_MUTE_COMPT",
+      "phonemes": [
+        "p"
+      ],
+      "surface": "",
+      "grapheme": [
+        "p"
+      ],
+      "preceded_by_grapheme": [
+        "m"
+      ],
+      "followed_by_grapheme": [
+        "t"
+      ],
+      "word_contains_grapheme": [
+        "compt"
+      ],
+      "notes": "The ⟨p⟩ of the word family of compter is mute: compte [kɔ̃t], compter, comptable, comptoir, décompte, escompte, acompte, recompter. Martinon (1913, p. 285: p is mute in com(p)te and all its derivatives, com(p)tabilité included, but not in exemption, présomption, consomption or symptôme). This is a fact of one word family, not of the letters ⟨mpt⟩: the same letters keep [p] in somptueux, symptôme, présomption and péremptoire, so the condition names the family's spelling ⟨compt⟩ with word_contains_grapheme. Every ⟨compt⟩ type of the wikipron fr gold (about 130) has the mute [p]. Martinon also lists the derivatives of prompt and, with hesitation, dompter, but the gold splits on prompte, promptitude and dompter, and impromptu keeps [p], so those stay out."
+    },
+    {
+      "id": "FR_ING_FINAL_G_MUTE",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "",
+      "grapheme": [
+        "g"
+      ],
+      "preceded_by_grapheme": [
+        "n"
+      ],
+      "preceded_by_phoneme_2": [
+        "i"
+      ],
+      "followed_by": "word_boundary",
+      "notes": "The ⟨g⟩ of the English final ⟨-ing⟩ is part of [ŋ] and adds no [ɡ]. Fougeron & Smith (1993: 74-75) transcribe parking [paʁkiŋ] and state that the velar nasal occurs only word-finally in borrowed, usually English, words."
+    },
+    {
+      "id": "FR_EIL_AFTER_GU",
+      "phonemes": [
+        "ɛj"
+      ],
+      "surface": "œj",
+      "grapheme": [
+        "eil",
+        "eill"
+      ],
+      "preceded_by_grapheme": [
+        "gu"
+      ],
+      "notes": "After ⟨gu⟩, ⟨eil⟩ and ⟨eill⟩ spell [œj], the ⟨ueil⟩ of accueil written with the ⟨u⟩ of ⟨gu⟩: orgueil [ɔʁɡœj], enorgueillir. Martinon (1913, p. 93: in ⟨-cueil⟩ and ⟨-gueil⟩ the ⟨ue⟩ is the vowel eu, the u needed by ⟨c⟩ or ⟨g⟩ standing for the second u (accueil, écueil, cercueil, orgueil)). ⟨cueil⟩ needs no rule, because the tokenizer reads its ⟨ueil⟩ as one grapheme."
+    },
+    {
+      "id": "FR_GU_BEFORE_TREMA_E",
+      "phonemes": [
+        "ɡ"
+      ],
+      "surface": "ɡy",
+      "grapheme": [
+        "gu"
+      ],
+      "followed_by_grapheme": [
+        "ë"
+      ],
+      "notes": "⟨gu⟩ before ⟨ë⟩ keeps its ⟨u⟩ as [y]: ambiguë [ɑ̃biɡy], ciguë [siɡy], aiguë, contiguë, exiguë. Martinon (1913, p. 241: the ⟨u⟩ of ⟨gu⟩ is pronounced before the mute final ⟨ë⟩ of aiguë, ambiguë, contiguë, exiguë, besaiguë and ciguë)."
+    },
+    {
+      "id": "FR_TREMA_E_MUTE_AFTER_GU",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "",
+      "grapheme": [
+        "ë"
+      ],
+      "preceded_by_grapheme": [
+        "gu"
+      ],
+      "notes": "The ⟨ë⟩ after ⟨gu⟩ is the mute final ⟨e⟩ of the feminine; its diaeresis only marks the ⟨u⟩ as a vowel. Martinon (1913, p. 241: the ⟨u⟩ of ⟨gu⟩ is pronounced before the mute final ⟨ë⟩ of aiguë, ambiguë, contiguë, exiguë, besaiguë and ciguë)."
+    },
+    {
+      "id": "FR_G_HARD_BEFORE_TREMA_U",
+      "phonemes": [
+        "ʒ"
+      ],
+      "surface": "ɡ",
+      "grapheme": [
+        "g"
+      ],
+      "followed_by_grapheme": [
+        "ü"
+      ],
+      "notes": "⟨g⟩ before ⟨ü⟩ is hard [ɡ]: the 1990 spellings ambigüe, aigüe and cigüe move the diaeresis to the ⟨u⟩ that Martinon (1913: 241) says is pronounced, so ambigüe [ɑ̃biɡy] reads as ambiguë. ⟨ü⟩ counts as a front vowel letter for before_front_vowel, which would otherwise soften the ⟨g⟩."
+    },
+    {
+      "id": "FR_C_MUTE_FINAL_AFTER_NASAL",
+      "phonemes": [
+        "k"
+      ],
+      "surface": "",
+      "grapheme": [
+        "c"
+      ],
+      "preceded_by_grapheme": [
+        "n",
+        "ain",
+        "ein",
+        "oin"
+      ],
+      "word_final": true,
+      "notes": "Word-final ⟨c⟩ after a nasal spelling is mute, also behind the silent plural ⟨-s⟩: blanc [blɑ̃], blancs, banc, flanc, franc [fʁɑ̃], tronc, jonc, vainc [vɛ̃]. Martinon (1913, p. 213: after a nasal vowel final ⟨c⟩ stayed mute: ban(c), blan(c), flan(c), fran(c), vain(c), convain(c), jon(c), ajon(c), tron(c); in donc it is mute in principle and sounds only when the word opens a clause or is stressed (je pense, donc je suis)). donc is a whole-word entry [dɔ̃k], the reading of Lexique 3.83 (d§k): Martinon sounds its ⟨c⟩ when the word opens a clause (je pense, donc je suis), and a word rule cannot see the clause, so the spec keeps the reading that is right in that position. zinc keeps [ɡ] (Martinon 1913: 214 n. 1: 'on devrait tout simplement écrire zing') as a whole-word entry."
+    },
+    {
+      "id": "FR_X_S_AFTER_OI",
+      "phonemes": [
+        "ks"
+      ],
+      "surface": "s",
+      "grapheme": [
+        "x"
+      ],
+      "preceded_by_grapheme": [
+        "oi"
+      ],
+      "followed_by": "vowel",
+      "notes": "⟨x⟩ between ⟨oi⟩ and a vowel is [s]: soixante [swasɑ̃t], soixantaine, soixantième, soixantenaire. Martinon (1913, p. 347: inside a word ⟨x⟩ is [ks] before a vowel (laxatif, maxime), but the simple [s] of the popular pronunciation stands in soixante and its derivatives, where the etymological ⟨x⟩ was put back after the fact, as in six and dix). soixante and its derivatives are the French words with ⟨oix⟩ before a vowel; the wikipron fr gold has [s] in all of them. Martinon names the [s] of Bruxelles, Auxerre and Auxonne too; they are proper names and stay out."
+    },
+    {
+      "id": "FR_NUMERAL_FINAL_X_SOUNDS",
+      "phonemes": [
+        ""
+      ],
+      "surface": "s",
+      "grapheme": [
+        "x"
+      ],
+      "word": [
+        "six",
+        "dix"
+      ],
+      "notes": "The final ⟨x⟩ of six and dix, silent in other words, is [s]: six [sis], dix [dis]. Martinon (1913, p. 328: the final ⟨t⟩ of huit is pronounced, page huit, le huit mai, huit hommes; p. 345: the final ⟨x⟩ of six and dix is [s], j'en ai six, page dix, le dix août). A rule on the whole word, not a word_exceptions entry, so the other rules and those of a regional variety still read the rest of the word (fr-CA affricates the /d/ of dix). The forms before a consonant and before a vowel are the FR_*_MUTE_BEFORE_CONSONANT and FR_NUMERAL_Z_BEFORE_VOWEL sandhi rules."
+    },
+    {
+      "id": "FR_HUIT_FINAL_T_SOUNDS",
+      "phonemes": [
+        ""
+      ],
+      "surface": "t",
+      "grapheme": [
+        "t"
+      ],
+      "word": [
+        "huit"
+      ],
+      "notes": "The final ⟨t⟩ of huit, silent in other words, is [t]: huit [ɥit]. Martinon (1913, p. 328: the final ⟨t⟩ of huit is pronounced, page huit, le huit mai, huit hommes; p. 345: the final ⟨x⟩ of six and dix is [s], j'en ai six, page dix, le dix août). A rule on the whole word, not a word_exceptions entry, so the other rules and those of a regional variety still read the rest of the word (fr-CA affricates the /d/ of dix). The forms before a consonant and before a vowel are the FR_*_MUTE_BEFORE_CONSONANT and FR_NUMERAL_Z_BEFORE_VOWEL sandhi rules."
+    },
+    {
+      "id": "FR_X_K_BEFORE_SIBILANT",
+      "phonemes": [
+        "ks"
+      ],
+      "surface": "k",
+      "grapheme": [
+        "x"
+      ],
+      "followed_by_phoneme": [
+        "s"
+      ],
+      "notes": "⟨x⟩ before a letter that reads [s] (⟨c⟩ before a front vowel, ⟨s⟩) is [k], not [ks]: excès [ɛksɛ], exception [ɛksɛpsjɔ̃], exciter [ɛksite], excellent, excentrique. Martinon (1913, p. 348: before a hissing consonant, ce or ci or an s, the second half of the x merges with the sound that follows, so ecs is reduced to ec: ec-cellent, ec-centrique, ec-sangue). Before a hard ⟨c⟩ the [ks] stays (excuse [ɛkskyz])."
     }
   ],
   "vowel_graphemes": [

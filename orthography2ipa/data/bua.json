@@ -163,7 +163,7 @@
       "notes": "Obstruent devoicing: /b/ devoices to [p] before a voiceless consonant (e.g. үбсүүн [ypsyːŋ])."
     }
   ],
-  "parent": "xgn",
+  "inherits": "xgn",
   "ancestors": [
     {
       "code": "xgn",

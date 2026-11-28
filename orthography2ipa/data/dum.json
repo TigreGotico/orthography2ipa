@@ -117,7 +117,7 @@
       "z"
     ]
   },
-  "parent": "x-clade-west2793",
+  "inherits": "x-clade-west2793",
   "ancestors": [
     {
       "code": "x-clade-west2793",

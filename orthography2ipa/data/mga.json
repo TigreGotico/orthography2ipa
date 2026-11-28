@@ -162,7 +162,7 @@
    "t"
   ]
  },
- "parent": "x-clade-goid1240",
+ "inherits": "x-clade-goid1240",
  "ancestors": [
   {
    "code": "x-clade-goid1240",

@@ -129,7 +129,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-ticu1244",
+ "inherits": "x-clade-ticu1244",
  "phonemes": [
   "b",
   "d",

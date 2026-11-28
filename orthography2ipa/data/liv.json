@@ -138,7 +138,7 @@
     "default_position": 1,
     "stress_mark": "ˈ"
   },
-  "parent": "urj",
+  "inherits": "urj",
   "ancestors": [
     {
       "code": "urj",

@@ -156,7 +156,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-krua1234",
+ "inherits": "x-clade-krua1234",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/W%C3%A8_Southern_language"

@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-araw1282",
+ "inherits": "x-clade-araw1282",
  "phonemes": [
   "dz",
   "h",

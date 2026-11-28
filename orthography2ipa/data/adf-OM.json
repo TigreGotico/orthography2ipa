@@ -3,7 +3,7 @@
   "name": "Coastal Dhofari Arabic",
   "script": "Arabic",
   "script_type": "abjad",
-  "parent": "acx-OM",
+  "inherits": "acx-OM",
   "graphemes_base": "acx-OM",
   "allophones_base": "acx-OM",
   "graphemes": {

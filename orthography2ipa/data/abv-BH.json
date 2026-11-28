@@ -3,7 +3,7 @@
  "name": "Bahārna Arabic (B dialects of Bahrain)",
  "script": "Arabic",
  "script_type": "abjad",
- "parent": "afb-BH",
+ "inherits": "afb-BH",
  "graphemes_base": "afb-BH",
  "iso639_3": "abv",
  "quality": "research",

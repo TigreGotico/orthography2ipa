@@ -2,7 +2,7 @@
   "code": "pnb-PK",
   "name": "Western Punjabi (Shahmukhi)",
   "script": "Arabic",
-  "parent": "pa",
+  "inherits": "pa",
   "allophones_base": "pa",
   "graphemes": {
     "ا": [

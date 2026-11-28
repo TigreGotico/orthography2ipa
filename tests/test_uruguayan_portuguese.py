@@ -40,7 +40,7 @@ class TestRegistrationAndAncestry:
         assert spec.quality.value == "research"
 
     def test_parent_is_brazilian_portuguese(self, spec):
-        assert spec.parent == "pt-BR"
+        assert spec.inherits == "pt-BR"
 
     def test_spanish_adstrate_declared(self, spec):
         roles = {a.code: a.role.value for a in spec.ancestors}

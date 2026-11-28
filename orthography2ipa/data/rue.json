@@ -157,7 +157,7 @@
       "notes": "Polish adstrate (Lemko contact zone)."
     }
   ],
-  "parent": "x-clade-east1426",
+  "inherits": "x-clade-east1426",
   "notes": "Rusyn (Русиньскый язык), East Slavic variety spoken in Carpathian region (Ukraine, Slovakia, Poland, Serbia). Classification as language vs. Ukrainian dialect contested. Uses Cyrillic script. Soft sign ь marks palatalization. Multiple codification standards exist.",
   "sources": [
     {

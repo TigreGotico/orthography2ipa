@@ -166,8 +166,8 @@ class TestRegionalAncestry:
 class TestNationalAugmentation:
     def test_es_mx_parent_field_preserved(self):
         # test_iberian_extended asserts es-MX/es-CL/es-VE/es-419 parent == es-ES
-        assert get("es-MX").parent == "es-ES"
-        assert get("es-CL").parent == "es-ES"
+        assert get("es-MX").inherits == "es-ES"
+        assert get("es-CL").inherits == "es-ES"
 
     @pytest.mark.parametrize("code,expected", [
         ("es-MX", {"nah", "yua"}),

@@ -63,7 +63,7 @@
     }
   ],
   "wikipedia": [],
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

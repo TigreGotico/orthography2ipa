@@ -81,7 +81,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Inuinnaqtun"
   ],
-  "parent": "iu",
+  "inherits": "iu",
   "ancestors": [
     {
       "code": "iu",

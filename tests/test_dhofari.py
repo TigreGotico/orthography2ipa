@@ -17,7 +17,7 @@ DHOFARI, OMANI = "adf-OM", "acx-OM"
 
 def test_it_hangs_off_omani_with_the_right_codes():
     s = get(DHOFARI)
-    assert s.parent == OMANI
+    assert s.inherits == OMANI
     assert s.iso639_3 == "adf", "acw is Hejazi, not Dhofari"
     assert catalog_ids(s.code).get("glottolog_code") == "dhof1235"
 

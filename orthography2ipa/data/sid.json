@@ -120,7 +120,7 @@
       "ʔ"
     ]
   },
-  "parent": "x-clade-cush1243",
+  "inherits": "x-clade-cush1243",
   "ancestors": [
     {
       "code": "x-clade-cush1243",

@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-zapa1251",
+ "inherits": "x-clade-zapa1251",
  "phonemes": [
   "h",
   "hʲ",

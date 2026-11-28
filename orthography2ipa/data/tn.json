@@ -290,7 +290,7 @@
             "notes": "Southern Sotho adstrate: Sotho-Tswana subgroup mate sharing the ejective/aspirate laryngeal system and disjunctive orthographic style, but not the same plain-stop mapping."
         }
     ],
-    "parent": "x-clade-narr1281",
+    "inherits": "x-clade-narr1281",
     "location": {
         "latitude": -24.368,
         "longitude": 24.7587,

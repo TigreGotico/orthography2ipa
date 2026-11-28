@@ -528,7 +528,7 @@
     "χʷˤ",
     "χˤ"
   ],
-  "parent": "x-clade-abkh1242",
+  "inherits": "x-clade-abkh1242",
   "ancestors": [
     {
       "code": "x-clade-abkh1242",

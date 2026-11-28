@@ -656,7 +656,7 @@ class AllophoneRescorer(LatticeRescorer):
             if nxt is not None and nxt.grapheme and \
                     nxt.grapheme.lower() in rule.followed_by_grapheme_not:
                 return False
-        if rule.preceded_by_phoneme_2 or rule.followed_by_phoneme_2:
+        if rule.preceded_by_phoneme_2 or rule.followed_by_phoneme_2 or rule.followed_by_phoneme_3:
             # The grapheme TWO away, by its first IPA candidate. Read from the
             # grapheme layer (not the slot), so it is the underlying phoneme —
             # which is the point: ⟨с⟩ of ⟨гости⟩ palatalises because the ⟨т⟩
@@ -674,6 +674,10 @@ class AllophoneRescorer(LatticeRescorer):
             if rule.followed_by_phoneme_2:
                 n2 = _phoneme_at(2)
                 if n2 is None or n2 not in rule.followed_by_phoneme_2:
+                    return False
+            if rule.followed_by_phoneme_3:
+                n3 = _phoneme_at(3)
+                if n3 is None or n3 not in rule.followed_by_phoneme_3:
                     return False
         if rule.preceded_by_2 is not None:
             if not _neighbor_is(rule.preceded_by_2, ctx.grapheme.at(-2), -1):
@@ -876,6 +880,7 @@ def _rule_atoms(rules: Sequence[AllophoneRule]) -> Tuple[str, ...]:
         atoms.update(rule.followed_by_phoneme or ())
         atoms.update(rule.preceded_by_phoneme_2 or ())
         atoms.update(rule.followed_by_phoneme_2 or ())
+        atoms.update(rule.followed_by_phoneme_3 or ())
         atoms.update(rule.preceded_by_surface_phoneme_2 or ())
         if rule.surface:
             atoms.add(rule.surface)

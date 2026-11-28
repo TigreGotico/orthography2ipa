@@ -20,5 +20,5 @@
  "urls": [
   "https://glottolog.org/resource/languoid/id/eska1234"
  ],
- "parent": "x-clade-arti1236"
+ "inherits": "x-clade-arti1236"
 }
