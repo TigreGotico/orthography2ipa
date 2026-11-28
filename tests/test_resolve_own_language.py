@@ -115,9 +115,10 @@ def test_a_script_other_than_latin_is_not_dropped_to_fit_a_spec(tag):
 
 
 def test_an_unresolved_tag_stays_unresolved():
-    assert resolve("zh-HK") == "zh-HK"
+    # Hakka has no spec; the zh macrolanguage must not pull it onto Mandarin.
+    assert resolve("hak-TW") == "hak-TW"
     with pytest.raises(KeyError):
-        get("zh-HK")
+        get("hak-TW")
 
 
 @pytest.mark.parametrize("tag", ["cdo-Hans", "cdo-Hans-CN"])
