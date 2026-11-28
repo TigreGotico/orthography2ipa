@@ -2661,6 +2661,48 @@
       "notes": "The stressed ⟨e⟩ of word-final ⟨-ese⟩ is open [ɛ]: tese [ˈtɛzi], diocese, maionese. No grammar that was read names ⟨-ese⟩ as a suffix, so this rule rests on dictionary transcriptions alone. Stressed mid-vowel height is lexical in Portuguese. Barbosa & Albano (2004: 229, JIPA 34(2)): 'Portuguese phonemically contrasts seven oral vowels in stressed position: /i e E a O o u/', with the pair seco [sekU] 'dry' against seco [sEkU] '(I) dry' (their ASCII notation). No spelling rule gives the height, so a dictionary transcription is the only evidence for a suffix: it is evidence of what a speaker says, not a statement of a phonological rule. Measured on three lists. WikiPron pt-BR (por_latn_bz_broad, the Wiktionary readings; its transcriptions carry no stress mark, so the vowel is read at the suffix): 27 forms end in ⟨-ese⟩ with a readable vowel; 26 have only the open vowel and 1 only the close vowel (anurese). The pt-BR rows of the unified pronunciation lexicon, counted by source: Michaelis 5 of 5 open; Wiktionary 4 of 4 open. The pt-PT rows of the same lexicon (Infopédia and Wiktionary), as a cross-check from another dictionary: 64 of 64 open. The ipadict pt-BR list is not used: it writes the close vowel for words that all three lists above write open (cela, mortadela, boneca), so its [e] is not a reading of the vowel. The plural ⟨-eses⟩ is not covered: its WikiPron forms are the gentilic plurals (franceses, ingleses, portugueses), which are close. The exception is listed in BR_LEX_CLOSE_E_SUFFIX. pt-UY disables this rule."
     },
     {
+      "id": "BR_SUFFIX_OSA_OPEN",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ",
+      "stress": "stressed",
+      "grapheme": [
+        "o"
+      ],
+      "preceded_by_2": "any",
+      "followed_by_grapheme": [
+        "s"
+      ],
+      "followed_by_phoneme_2": [
+        "a",
+        "ɐ"
+      ],
+      "notes": "The stressed ⟨o⟩ of the feminine adjective suffix ⟨-osa⟩, ⟨-osas⟩ is open [ɔ]: gostosa [ɡosˈtɔzɐ], famosas [faˈmɔzɐs]. The masculine singular ⟨-oso⟩ keeps the close [o]. Belando, Seara & Agostinho (2019, Gradus 4.2, p. 35), after Cavacas (1920): 'o fenômeno metafônico se observa, portanto, na forma feminina, tornando mais aberto o timbre da vogal tônica por influência da vogal a final'. The rule puts no condition on what follows ⟨-osa⟩, because the engine cannot see the word edge after the ⟨s⟩. The rule needs a grapheme two places before the ⟨o⟩, so a word whose first syllable is ⟨Cos⟩ (rosa, cosa, tosa) is not matched: such a word is not the suffix. Measured on WikiPron pt-BR (por_latn_bz_broad, the Wiktionary readings), types that end in ⟨-osa⟩ or ⟨-osas⟩ after a stem with a vowel: 87 have only the open vowel, 5 only the close vowel (acetosa, comatosa, comatosas, mariposa, tortuosa), 3 list both (esposa, esposas, raposa), and 1 has another reading. The stems of one consonant cluster that the rule also matches are open in WikiPron: glosa, grosa, prosa."
+    },
+    {
+      "id": "BR_SUFFIX_OSOS_OPEN",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ",
+      "stress": "stressed",
+      "grapheme": [
+        "o"
+      ],
+      "preceded_by_2": "any",
+      "followed_by_grapheme": [
+        "s"
+      ],
+      "followed_by_phoneme_2": [
+        "o",
+        "u",
+        "ʊ"
+      ],
+      "followed_by_3": "consonant",
+      "notes": "The stressed ⟨o⟩ of the masculine plural ⟨-osos⟩ is open [ɔ]: gostosos [ɡosˈtɔzus], caprichosos [kapɾiˈʃɔzus]. Belando, Seara & Agostinho (2019, Gradus 4.2, p. 35), after Cavacas (1920): 'por ser a forma do masculino plural a mais tardia na língua, sofreu influência analógica das formas femininas'. In Brazilian speech the open plural varies, and it is the majority form. The same paper (p. 46) counts the open forms [ɔzʊs] and [ɔzs] at '75,52% do total das emissões' of its speakers. The open vowel is the only output, as with the other majority forms of this spec. The consonant after the final ⟨o⟩ is the plural ⟨s⟩, so the singular ⟨-oso⟩ keeps the close [o]. The rule needs a grapheme two places before the ⟨o⟩, as BR_SUFFIX_OSA_OPEN does. Measured on WikiPron pt-BR (por_latn_bz_broad): of 30 types that end in ⟨-osos⟩, 28 have only the open vowel, and 2 only the close vowel (comatosos, dolorosos)."
+    },
+    {
       "id": "BR_LEX_OPEN_E",
       "phonemes": [
         "e",

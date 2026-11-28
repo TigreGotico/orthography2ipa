@@ -28,7 +28,7 @@ The compiler in `orthography2ipa/ir/compiler.py` lowers the stages below into th
 | 6 | Rescore | The rescorers re-cost each slot in the context of its neighbours. The rescorers of `Pipeline.rescore` run first, then the rescorers of declared plugins, then the allophone rules of the spec. |
 | 7 | Beam select | Greedy search keeps one path, and beam search keeps `beam_width` paths. The best path wins. A grammatical ending can then rewrite the end of that path. |
 | 8 | Finalize the word | Computed tone, geminate collapse, the word-final virama vowel, tone-mark docking, iambic lengthening and the stress mark apply in that order. |
-| 9 | Compound stress | A spec with `compound_stress == "last"` marks hyphen-joined compounds. |
+| 9 | Compound stress | A spec with `compound_stress == "last"` marks hyphen-joined compounds. A word that ends in a `noncohering_suffixes` entry is two stress domains, marked the same way. |
 | 10 | Sandhi | The declarative `sandhi_rules` of the spec run. |
 | 11 | Sentence rescorers and sandhi plugin | A `SentenceRescorer` that the caller passes in the deprecated `sentence_rescorer=` argument sees the whole utterance and can rewrite across words. Then `Pipeline.sandhi` runs. With no `Pipeline.sandhi`, a declared sandhi plugin runs in its place. |
 | 12 | Dialect transform | An optional `dialect_profile` rewrites the final IPA. |

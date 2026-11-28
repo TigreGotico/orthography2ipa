@@ -251,6 +251,10 @@
   "da.jsonl",
   0
  ],
+ "noncohering": [
+  "pt-PT-x-terceira.jsonl",
+  14
+ ],
  "overrides": [
   "ru.jsonl",
   12

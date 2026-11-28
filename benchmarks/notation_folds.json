@@ -3,9 +3,9 @@
     "lang": "pt-BR",
     "dataset": "portuguese_unified",
     "words": 23125,
-    "per": 0.1421,
-    "folded_per": 0.0679,
-    "segment_per": 0.1249,
+    "per": 0.142,
+    "folded_per": 0.0678,
+    "segment_per": 0.1248,
     "folded_segment_per": 0.0685,
     "folds": [
       "michaelis_ã",
@@ -17,8 +17,8 @@
     "lang": "pt-BR",
     "dataset": "portuguese_unified_corrected",
     "words": 23109,
-    "per": 0.1412,
-    "folded_per": 0.0669,
+    "per": 0.1411,
+    "folded_per": 0.0668,
     "segment_per": 0.1237,
     "folded_segment_per": 0.0673,
     "folds": [

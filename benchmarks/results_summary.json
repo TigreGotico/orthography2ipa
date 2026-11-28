@@ -1,6 +1,6 @@
 {
- "o2i_version": "7.136.0a1",
- "o2i_git_sha": "00e8f824a813046dc49221aeb88e6e933b756bdd",
+ "o2i_version": "7.136.1a1",
+ "o2i_git_sha": "4f5d41a06c7f583987373e828e81e1f9b4b2a7f5",
  "harness_version": "1.1",
  "min_n": 1000,
  "rows": [
@@ -6954,8 +6954,8 @@
    "reliability_tier": "lupo-derived",
    "gating": false,
    "headline": true,
-   "n": 53148,
-   "strict_per": 0.2302,
+   "n": 53144,
+   "strict_per": 0.23,
    "folded_per": null,
    "folds": []
   },
@@ -6981,7 +6981,7 @@
    "gating": false,
    "headline": false,
    "n": 2116,
-   "strict_per": 0.2067,
+   "strict_per": 0.2066,
    "folded_per": null,
    "folds": []
   },
@@ -6994,7 +6994,7 @@
    "gating": true,
    "headline": false,
    "n": 95933,
-   "strict_per": 0.2313,
+   "strict_per": 0.2304,
    "folded_per": null,
    "folds": []
   },
@@ -7007,7 +7007,7 @@
    "gating": false,
    "headline": false,
    "n": 95933,
-   "strict_per": 0.2313,
+   "strict_per": 0.2304,
    "folded_per": null,
    "folds": []
   },
@@ -7020,7 +7020,7 @@
    "gating": false,
    "headline": false,
    "n": 20,
-   "strict_per": 0.0552,
+   "strict_per": 0.054,
    "folded_per": null,
    "folds": []
   },
@@ -7033,8 +7033,8 @@
    "gating": true,
    "headline": true,
    "n": 23123,
-   "strict_per": 0.1421,
-   "folded_per": 0.0679,
+   "strict_per": 0.142,
+   "folded_per": 0.0678,
    "folds": [
     "michaelis_ã",
     "michaelis_no_palatal",
@@ -7050,8 +7050,8 @@
    "gating": false,
    "headline": false,
    "n": 23107,
-   "strict_per": 0.1412,
-   "folded_per": 0.0669,
+   "strict_per": 0.1411,
+   "folded_per": 0.0668,
    "folds": [
     "michaelis_ã",
     "michaelis_no_palatal",
@@ -7080,7 +7080,7 @@
    "gating": false,
    "headline": false,
    "n": 33958,
-   "strict_per": 0.3951,
+   "strict_per": 0.3957,
    "folded_per": null,
    "folds": []
   },
@@ -7093,7 +7093,7 @@
    "gating": true,
    "headline": false,
    "n": 57897,
-   "strict_per": 0.0248,
+   "strict_per": 0.0245,
    "folded_per": null,
    "folds": []
   },
@@ -7106,7 +7106,7 @@
    "gating": false,
    "headline": true,
    "n": 20,
-   "strict_per": 0.1611,
+   "strict_per": 0.1594,
    "folded_per": null,
    "folds": []
   },
@@ -7158,7 +7158,7 @@
    "gating": false,
    "headline": true,
    "n": 20,
-   "strict_per": 0.1181,
+   "strict_per": 0.1162,
    "folded_per": null,
    "folds": []
   },
@@ -7171,7 +7171,7 @@
    "gating": false,
    "headline": true,
    "n": 20,
-   "strict_per": 0.0666,
+   "strict_per": 0.0654,
    "folded_per": null,
    "folds": []
   },
@@ -7236,7 +7236,7 @@
    "gating": false,
    "headline": true,
    "n": 53143,
-   "strict_per": 0.1694,
+   "strict_per": 0.1692,
    "folded_per": null,
    "folds": []
   },
@@ -7249,7 +7249,7 @@
    "gating": false,
    "headline": false,
    "n": 20,
-   "strict_per": 0.0363,
+   "strict_per": 0.035,
    "folded_per": null,
    "folds": []
   },
@@ -7262,7 +7262,7 @@
    "gating": false,
    "headline": true,
    "n": 53143,
-   "strict_per": 0.1589,
+   "strict_per": 0.1587,
    "folded_per": null,
    "folds": []
   },
@@ -7275,7 +7275,7 @@
    "gating": false,
    "headline": false,
    "n": 20,
-   "strict_per": 0.1214,
+   "strict_per": 0.1201,
    "folded_per": null,
    "folds": []
   },
@@ -7339,8 +7339,8 @@
    "reliability_tier": "lupo-derived",
    "gating": false,
    "headline": true,
-   "n": 53147,
-   "strict_per": 0.167,
+   "n": 53143,
+   "strict_per": 0.1662,
    "folded_per": null,
    "folds": []
   },
@@ -7405,7 +7405,7 @@
    "gating": true,
    "headline": true,
    "n": 105553,
-   "strict_per": 0.1862,
+   "strict_per": 0.1859,
    "folded_per": null,
    "folds": []
   },
@@ -7418,7 +7418,7 @@
    "gating": false,
    "headline": false,
    "n": 105534,
-   "strict_per": 0.1861,
+   "strict_per": 0.1858,
    "folded_per": null,
    "folds": []
   },
@@ -7431,7 +7431,7 @@
    "gating": true,
    "headline": false,
    "n": 56979,
-   "strict_per": 0.0572,
+   "strict_per": 0.0568,
    "folded_per": null,
    "folds": []
   },
@@ -7600,7 +7600,7 @@
    "gating": false,
    "headline": true,
    "n": 6,
-   "strict_per": 0.2733,
+   "strict_per": 0.2728,
    "folded_per": null,
    "folds": []
   },
@@ -7626,7 +7626,7 @@
    "gating": false,
    "headline": true,
    "n": 8,
-   "strict_per": 0.2979,
+   "strict_per": 0.2981,
    "folded_per": null,
    "folds": []
   },
@@ -7691,7 +7691,7 @@
    "gating": false,
    "headline": false,
    "n": 5,
-   "strict_per": 0.2682,
+   "strict_per": 0.2678,
    "folded_per": null,
    "folds": []
   },
@@ -7716,8 +7716,8 @@
    "reliability_tier": "lupo-derived",
    "gating": false,
    "headline": false,
-   "n": 53150,
-   "strict_per": 0.0704,
+   "n": 53145,
+   "strict_per": 0.0702,
    "folded_per": null,
    "folds": []
   },
@@ -7808,7 +7808,7 @@
    "gating": false,
    "headline": true,
    "n": 9,
-   "strict_per": 0.2828,
+   "strict_per": 0.2822,
    "folded_per": null,
    "folds": []
   },
@@ -7834,7 +7834,7 @@
    "gating": false,
    "headline": false,
    "n": 17,
-   "strict_per": 0.3934,
+   "strict_per": 0.3935,
    "folded_per": null,
    "folds": []
   },
@@ -7938,7 +7938,7 @@
    "gating": false,
    "headline": true,
    "n": 6,
-   "strict_per": 0.2977,
+   "strict_per": 0.2968,
    "folded_per": null,
    "folds": []
   },
@@ -8002,8 +8002,8 @@
    "reliability_tier": "lupo-derived",
    "gating": false,
    "headline": true,
-   "n": 53147,
-   "strict_per": 0.3626,
+   "n": 53142,
+   "strict_per": 0.362,
    "folded_per": null,
    "folds": []
   },
