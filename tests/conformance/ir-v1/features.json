@@ -244,8 +244,8 @@
   1
  ],
  "node.word_has": [
-  "pt-PT-x-braga.jsonl",
-  15
+  "pt-PT-x-terceira.jsonl",
+  8
  ],
  "node.word_in": [
   "da.jsonl",
@@ -404,8 +404,8 @@
   0
  ],
  "word_has": [
-  "pt-PT-x-braga.jsonl",
-  15
+  "pt-PT-x-terceira.jsonl",
+  8
  ],
  "words": [
   "pt-PT+words.jsonl",

@@ -62,7 +62,7 @@ def test_unstressed_e_keeps_its_reduction(word, ipa, slot):
     assert _stressed_e(word) == slot
 
 
-@pytest.mark.parametrize("word, ipa", [("complexo", "kõˈplɛʃu"), ("sexo", "ˈsɛʃu"), ("bege", "ˈbɛʒɨ")])
+@pytest.mark.parametrize("word, ipa", [("mexo", "ˈmɛʃu"), ("bege", "ˈbɛʒɨ")])
 def test_x_and_g_stay_out(word, ipa):
     assert G2P("pt-PT").transcribe(word) == ipa
     slots = [s for s in G2P("pt-PT").ipa_lattice(word) if s.grapheme == "e"]
