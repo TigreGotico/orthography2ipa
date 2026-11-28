@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.136.4a3](https://github.com/TigreGotico/orthography2ipa/tree/7.136.4a3) (2026-11-28)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.136.4a2...7.136.4a3)
+
+**Merged pull requests:**
+
+- docs: footers on the two redirect pages; the docs standard check fails on a finding [\#2788](https://github.com/TigreGotico/orthography2ipa/pull/2788) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(fr-FR-x-midi\): the liaison \[n\] takes the place of the nasal appendix \(closes \#2761\) [\#2787](https://github.com/TigreGotico/orthography2ipa/pull/2787) ([goldyfruit](https://github.com/goldyfruit))
+
 ## [7.136.4a2](https://github.com/TigreGotico/orthography2ipa/tree/7.136.4a2) (2026-11-28)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.136.4a1...7.136.4a2)
@@ -326,10 +335,6 @@
 ## [7.131.3a1](https://github.com/TigreGotico/orthography2ipa/tree/7.131.3a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.131.2a7...7.131.3a1)
-
-**Merged pull requests:**
-
-- fix\(pt\): keep the \[w\] of pinguim in its plural and derivatives [\#2669](https://github.com/TigreGotico/orthography2ipa/pull/2669) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [7.131.2a7](https://github.com/TigreGotico/orthography2ipa/tree/7.131.2a7) (2026-11-26)
 
