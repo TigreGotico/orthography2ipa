@@ -38,7 +38,6 @@
  },
  "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "mym",
- "glottolog_code": "meen1242",
  "sources": [
   {
    "id": "glottolog2024",
@@ -67,7 +66,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-surm1244",
+ "inherits": "x-clade-surm1244",
  "phonemes": [
   "b",
   "cç",

@@ -1,5 +1,13 @@
 # Board regeneration
 
+<!-- agent-hint
+covers: how to regenerate the five board files together and pass the board guards
+source: `scripts/benchmark.py`, `scripts/compare_systems.py`, `scripts/check_board_not_reverting.py`, `scripts/check_board_freshness.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_check_board_not_reverting.py`
+see: `docs/evaluation/benchmarks.md`, `docs/evaluation/generated/scoreboard.md`
+-->
+
 The benchmark board is five files that must move together:
 
 | File | Written by |
@@ -74,13 +82,17 @@ file, which you read first when a row moves with no spec change.
 
 The [language atlas](../languages/index.md) prints the board scores of each
 spec in the "Datasets" block of its page, so a board change makes those pages
-stale. After the board files, rewrite the atlas, then the navigation footers
-and `llms.txt` and `llms-full.txt`, which read the atlas:
+stale. After the board files, rewrite the atlas, then the navigation footers:
 
 ```bash
 PYTHONPATH=$PWD python scripts/gen_language_atlas.py --write
 python scripts/docs_nav.py --write
-PYTHONPATH=$PWD python scripts/gen_reference_docs.py --write
+```
+
+The charts of the evaluation pages read the same board files. Rewrite them too:
+
+```bash
+PYTHONPATH=$PWD python scripts/gen_doc_charts.py --write
 ```
 
 After the run, diff the CI sample against the merge base and count the rows
@@ -117,13 +129,14 @@ in between.
 
 | Guard | What it fails on | Local command |
 |---|---|---|
-| Benchmark regression | A CI-sample row that gets worse ([the CI regression sample](../evaluation/benchmarks.md#the-ci-regression-sample)) | `PYTHONPATH=$PWD python scripts/check_benchmark_regression.py --epsilon 0.005` |
+| Benchmark regression | A CI-sample row that gets worse ([the CI regression sample](../evaluation/benchmarks.md#the-ci-regression-sample)) | `PYTHONPATH=$PWD python scripts/check_benchmark_regression.py --epsilon 0.005 --base-ref origin/dev --body-file pr-body.md` |
 | Row counts | A stale row ([stale board rows](../evaluation/benchmarks.md#stale-board-rows)). Run it after every regeneration. | `PYTHONPATH=$PWD python scripts/check_board_row_counts.py` |
 | Board freshness | A row that a touched spec owns, whose fresh score differs from the committed value in either board file | `PYTHONPATH=$PWD python scripts/check_board_freshness.py --base origin/dev` |
 | Board not reverting | A merge result that puts back a row value `dev` already moved past, or that grows a burn-down list | `PYTHONPATH=$PWD python scripts/check_board_not_reverting.py --base origin/dev --body-file pr-body.md` |
 | Scoreboard in sync | A `docs/evaluation/generated/scoreboard.md` that differs from what `results.json` renders | `PYTHONPATH=$PWD python -m pytest tests/test_thin_row_marker.py` |
 | Docs prose | A generated page that fails the prose lint (fix the generator, then regenerate) | `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py` |
 | Language atlas | An atlas block or index that differs from what the specs and `results.json` render | `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check` |
+| Evaluation charts | A chart that differs from what the board files render | `PYTHONPATH=$PWD python scripts/gen_doc_charts.py --check` |
 
 The CI workflow `.github/workflows/benchmark-regression.yml` runs the first
 four guards. `board-not-reverting` runs the copy of the script on the base
@@ -148,7 +161,7 @@ not rescore, then regenerate `docs/evaluation/generated/scoreboard.md`.
 [`git merge-tree`](https://git-scm.com/docs/git-merge-tree) and
 fails on an old value, unless the branch edits that language's spec. An edit
 to a parent or clade spec owns the rows of every language that inherits from
-it, through `parent` or a `*_base` table.
+it, through `inherits` or a `*_base` table.
 
 A harness or engine change can move rows it does not own. The guard reads
 those rows off the merge result. A `Board-Rows:` line in the pull request

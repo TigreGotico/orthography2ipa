@@ -278,7 +278,7 @@
       "œː"
     ]
   },
-  "parent": "gem-x-north",
+  "inherits": "gem-x-north",
   "ancestors": [
     {
       "code": "gem-x-north",
@@ -320,8 +320,6 @@
     "start_year": 700,
     "end_year": 1350
   },
-  "glottolog_code": "oldn1244",
-  "wikidata_qid": "Q35505",
   "location": {
     "latitude": 63.42,
     "longitude": 10.38,

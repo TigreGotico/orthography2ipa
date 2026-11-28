@@ -1,5 +1,13 @@
 # Scripts
 
+<!-- agent-hint
+covers: what each script in `scripts/` does: the benchmark harness, the board guards and the doc generators
+source: `scripts/*.py`
+generated: no
+verify: `python scripts/docs_nav.py --check`
+see: `docs/contributing/board.md`, `docs/evaluation/benchmarks.md`
+-->
+
 Every script runs from the repository root with `PYTHONPATH=$PWD`, so that
 it measures the checkout and not an installed package. Each script has a
 module docstring with its usage, and most take `--help`.
@@ -32,7 +40,7 @@ The procedure and the guards are in
 | Script | Does |
 |---|---|
 | `gen_stubs.py`, `gen_africa_orthographies.py`, `gen_phoible.py` | Fill stub specs from ISO 639-3, africa-g2p and PHOIBLE |
-| `gen_family.py`, `gen_locations.py`, `dialect_places.py` | Fill classification and location fields from Glottolog and Wikidata |
+| `gen_locations.py`, `dialect_places.py` | Fill location fields from Glottolog and Wikidata |
 | `gen_burmese.py`, `gen_khmer.py`, `gen_tibetan.py`, `gen_vietnamese.py`, `gen_arabic_orthography_keys.py` | Regenerate the systematic tables of one spec |
 | `check_doi_titles.py`, `check_glottolog_codes.py` | Check that cited DOIs and Glottolog codes resolve to the right work and language |
 | `which_tests.py` | Names the test files that assert on a spec |
@@ -42,7 +50,7 @@ The procedure and the guards are in
 | Script | Does |
 |---|---|
 | `docs_nav.py` | Checks (`--check`) or rewrites (`--write`) the navigation footers from the order in `docs/index.md` |
-| `gen_reference_docs.py` | Writes `docs/reference/api.md`, `docs/reference/cli.md`, `llms.txt` and `llms-full.txt` from the code (`--write`, `--check`) |
+| `gen_reference_docs.py` | Writes `docs/reference/api.md` and `docs/reference/cli.md` from the code (`--write`, `--check`) |
 | `gen_explorer.py` | Writes the self-contained language explorer page |
 | `gen_language_atlas.py` | Writes the generated blocks of the atlas pages in `docs/languages/` and the four atlas indexes (`--write`, `--check`, `--scaffold CODE...`, and `--scaffold-cut` for every living research or production spec with no page and no `NO_PAGE` entry). `--refresh-snapshot` rebuilds `atlas_snapshot.json` from Glottolog, SIL and CLDR |
 | `ste_lint.py` | The prose linter that `tests/test_docs_prose.py` runs |

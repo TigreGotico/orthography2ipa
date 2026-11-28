@@ -282,7 +282,7 @@
       "au"
     ]
   },
-  "parent": "mni-x-proto-kuki-chin",
+  "inherits": "mni-x-proto-kuki-chin",
   "ancestors": [
     {
       "code": "mni-x-proto-kuki-chin",
@@ -335,8 +335,6 @@
     "start_year": 1900,
     "end_year": null
   },
-  "glottolog_code": "haka1240",
-  "wikidata_qid": "Q3250286",
   "location": {
     "latitude": 22.6528,
     "longitude": 93.6109,

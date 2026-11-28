@@ -1,5 +1,13 @@
 # Allophony: the second map
 
+<!-- agent-hint
+covers: how `allophone_rules` map a phoneme to its surface form in context, and how that differs from the flat `allophones` table
+source: `orthography2ipa/allophony.py`, `orthography2ipa/types.py:AllophoneRule`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_allophone_rules.py "tests/test_docs_examples.py::test_example_prints_what_its_comment_says[docs/engine/allophony.md]" "tests/test_docs_hint_sources.py::test_hint_sources_exist[docs/engine/allophony.md]"`
+see: `docs/engine/positional_graphemes.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 The library models pronunciation as two maps. The pre-lexical map takes orthography to phonemes. `positional_graphemes`, the vowel-class positions and the candidate weights condition it. The post-lexical map takes a phoneme to its surface allophone. `allophone_rules` make this second map conditional on context.
 
 A spec declares an ordered list of `allophone_rules`. Each rule is a declarative `phoneme → surface` rewrite with context conditions. The list compiles into a [lattice rescorer](lattice.md), `orthography2ipa.allophony.AllophoneRescorer`. The rescorer replaces a chosen phoneme with its one context-correct surface form at the same beam cost. It realises the phoneme and does not add beam branches.
@@ -8,15 +16,18 @@ The flat `spec.allophones` table is a different thing. It lists the variants of 
 
 ## Where it runs in the pipeline
 
-```
-normalize → tokenize → select (positional + weights)
-                          │
-                          ▼
-                 rescore  ├─ user rescorer(s)
-                          └─ allophony  ← allophone_rules compile to here
-                          │
-                          ▼
-                 beam path selection → stress marks → sandhi → dialect
+The diagram shows where the engine applies `allophone_rules`, from the text preparation to the dialect step. The rules run inside the slot stage of one word. Sandhi and the dialect step act later, on the whole utterance.
+
+```mermaid
+flowchart TD
+    P["G2P._prepared: Pipeline.expand, Pipeline.mark"] --> A["Interpreter.tokenize"]
+    A --> B["_branches: positional overrides, weights"]
+    B --> C["hooks.rescore: caller and plugin rescorers"]
+    C --> D["_rescore_pass: allophone_rules, allophone_passes times"]
+    D --> E["_word_paths: beam path selection"]
+    E --> F["_finalize: stress mark"]
+    F --> G["_sandhi, then hooks.sandhi"]
+    G --> H["dialect.run_program"]
 ```
 
 The allophony stage runs after phoneme selection, so it sees the chosen phoneme and its resolved neighbours. It runs after any user rescorer and before beam path selection. So it runs before stress-mark insertion and before cross-word sandhi, which act on the whole utterance. In the structured lattice, it turns the phoneme lattice into the allophone lattice.
@@ -50,6 +61,7 @@ The conditions on the neighbours:
 | `preceded_by_3`, `followed_by_3` | a neighbour class | the grapheme three away belongs to the class |
 | `preceded_by_phoneme`, `followed_by_phoneme` | list of IPA strings | the chosen phoneme of the previous or next slot is one of them |
 | `preceded_by_phoneme_2`, `followed_by_phoneme_2` | list of IPA strings | the first declared candidate of the grapheme two away is one of them |
+| `followed_by_phoneme_3` | list of IPA strings | the first segment of the first declared candidate of the grapheme three ahead is one of them: a candidate `ka` matches `["k"]` |
 | `preceded_by_surface_phoneme_2` | list of IPA strings | the resolved candidate of the slot two back is one of them |
 | `preceded_by_grapheme`, `followed_by_grapheme` | list of graphemes | the previous or next source grapheme is one of them |
 | `followed_by_grapheme_not` | list of graphemes | the next source grapheme is none of them |
@@ -279,7 +291,7 @@ pt.transcribe("casa")       # 'ˈkazɐ'
 pt.transcribe("os gatos")   # 'uʒ ˈɡatuʃ'
 ```
 
-The `pt-PT-x-*` dialect specs inherit these rules by id. The varieties that keep an alveolar coda /s/ (`pt-AO`, `pt-CV`, `pt-GW`, `pt-MZ`, `pt-ST`, `pt-TL`) override `PT_CODA_S_HUSH` and `PT_CODA_Z_HUSH` by id with [s] and [z].
+The `pt-PT-x-*` dialect specs inherit these rules by id. The varieties that keep an alveolar coda /s/ (`pt-CV`, `pt-GW`, `pt-MZ`, `pt-ST`, `pt-TL`) override `PT_CODA_S_HUSH` and `PT_CODA_Z_HUSH` by id with [s] and [z].
 
 ### Processes outside the rule list
 

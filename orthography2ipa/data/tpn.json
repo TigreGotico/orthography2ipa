@@ -1,7 +1,7 @@
 {
  "code": "tpn",
  "name": "Old Tupi (Tupinambá)",
- "parent": "x-clade-tupi1275",
+ "inherits": "x-clade-tupi1275",
  "script": "Latin",
  "graphemes": {
   "a": [
@@ -232,7 +232,6 @@
  "quality": "research",
  "script_type": "alphabet",
  "iso639_3": "tpn",
- "glottolog_code": "tupi1273",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Old_Tupi_language"
  ],
@@ -291,7 +290,6 @@
    "notes": "The convention the wikipron gold transcriptions follow; consulted for the prenasalised stops and the semivowel notation."
   }
  ],
- "wikidata_qid": "Q56944",
  "phoible_id": "tupi1273",
  "wals_code": "tup",
  "location": {

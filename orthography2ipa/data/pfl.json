@@ -5,8 +5,6 @@
   "script_type": "alphabet",
   "quality": "stub",
   "iso639_3": "pfl",
-  "glottolog_code": "pala1330",
-  "wikidata_qid": "Q23014",
   "graphemes": {},
   "allophones": {},
   "notes": "STUB (deliberate): the grapheme inventory of Palatine German is NOT specified. Pälzisch/Pfälzisch is a West Central German (Rhine Franconian) dialect group. It has NO published spelling norm and no letter->IPA table exists in any consultable source: it is written ad hoc in German spelling, which does not encode the dialect's lenition of /p t k/, its monophthongisation, or its vowel qualities. Documented facts that a future spec could build on, but which are not a map: rounded front vowels are absent (Standard German ö -> [e], ü -> [i], e.g. 'kenne' for 'können'); MHG ei surfaces as [ɛɪ̯], written <ää> (Schdää 'Stein'); intervocalic <g> -> [ç] (Nachel 'Nagel'); the written convention <gh-> is used to keep morphology visible (ghowe = gehoben). Building a map would require inventing IPA values, so none is claimed. INPUT CONTRACT (for any future spec): Latin-script, German-convention Palatine text. The closely related Pennsylvania German (pdc) DOES have a citable norm (Buffington-Barba) and is specced.",
@@ -38,7 +36,7 @@
     "https://en.wikipedia.org/wiki/Palatine_German_dialects",
     "https://pfl.wikipedia.org/wiki/Pf%C3%A4lzisch"
   ],
-  "parent": "x-clade-germ1287",
+  "inherits": "x-clade-germ1287",
   "ancestors": [
     {
       "code": "x-clade-germ1287",

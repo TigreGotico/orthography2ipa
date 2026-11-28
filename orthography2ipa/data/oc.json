@@ -2,7 +2,7 @@
   "code": "oc",
   "name": "Occitan",
   "script": "Latin",
-  "parent": "x-clade-gallorom",
+  "inherits": "x-clade-gallorom",
   "ancestors": [
     {
       "code": "la-x-gallia",
@@ -87,7 +87,6 @@
     "start_year": 1000,
     "end_year": null
   },
-  "glottolog_code": "occi1239",
   "iso639_3": "oci",
   "graphemes": {
     "a": [
@@ -647,7 +646,6 @@
     "max_onset": 2,
     "coda_liquid_capture": true
   },
-  "wikidata_qid": "Q14185",
   "phoible_id": "occi1239",
   "wals_code": "occ",
   "location": {

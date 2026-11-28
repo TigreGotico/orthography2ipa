@@ -21,7 +21,7 @@
       "ŋ"
     ]
   },
-  "parent": "fa-AF",
+  "inherits": "fa-AF",
   "ancestors": [
     {
       "code": "fa-AF",
@@ -99,9 +99,7 @@
     "start_year": 1200,
     "end_year": null
   },
-  "glottolog_code": "haza1239",
   "iso639_3": "haz",
-  "wikidata_qid": "Q33398",
   "location": {
     "latitude": 33.3708,
     "longitude": 64.5105,

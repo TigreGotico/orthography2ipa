@@ -2,7 +2,7 @@
   "code": "ast-x-pasiego",
   "name": "Pasiegu (Pasiego, Montes de Pas)",
   "script": "Latin",
-  "parent": "ast-x-cantabri",
+  "inherits": "ast-x-cantabri",
   "graphemes_base": "ast-x-cantabri",
   "allophones_base": "ast-x-cantabri",
   "positional_graphemes_base": "ast-x-cantabri",
@@ -88,7 +88,6 @@
     "start_year": 1000,
     "end_year": null
   },
-  "glottolog_code": "cant1245",
   "iso639_3": "ast",
   "quality": "skeleton",
   "script_type": "alphabet",
@@ -97,5 +96,13 @@
     "longitude": -3.77,
     "source": "manual",
     "notes": "Montes de Pas (Vega de Pas), upper Pas/Pisueña/Miera valleys, southern Cantabria."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "ES_S_VOICING",
+      "phonemes": [],
+      "surface": "",
+      "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. Its source describes the Castilian standard of Spain, and no source for this language was opened, so the rule is switched off here."
+    }
+  ]
 }

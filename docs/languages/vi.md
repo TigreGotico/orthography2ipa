@@ -1,5 +1,13 @@
 # Vietnamese (`vi`)
 
+<!-- agent-hint
+covers: what the `vi` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/vi.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Vietnamese is an Austroasiatic language, written in the Latin script. Glottolog places it in China, Laos and Vietnam. The `vi` spec is at the research tier. It cites 2 sources and has 3 scored datasets.
 <!-- atlas:summary end -->
@@ -129,7 +137,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 818 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 141 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -140,16 +148,17 @@ The spec can emit 818 segments. They come from the letter table, the positional 
 | Approximant |  |  |  | j |  |  |
 | Lateral approximant |  |  | l |  |  |  |
 
-| Vowels | Front | Back |
-|:--|:-:|:-:|
-| Close | i | u ɯ |
-| Close-mid | e | o ɤ ɤ̆ |
-| Open-mid | ɛ ɛː | ɔ ɔː |
-| Open | a ă |  |
+| Vowels | Front | Central | Back |
+|:--|:-:|:-:|:-:|
+| Close | i |  | u ɯ |
+| Close-mid | e |  | o ɤ ɤ̆ |
+| Mid |  | ə |  |
+| Open-mid | ɛ ɛː |  | ɔ ɔː |
+| Open | a ă |  |  |
 
-Sequences that the spec writes as one unit: [aj˧ˀ˥] [aj˧˧] [aj˧˨] [aj˧˩˨] [aj˨ˀ˩] [aj˨˦] [ak˦˥] [ak˨ˀ˩] [am˧ˀ˥] [am˧˧] [am˧˨] [am˧˩˨] [am˨ˀ˩] [am˨˦] [an˧ˀ˥] [an˧˧] [an˧˨] [an˧˩˨] [an˨ˀ˩] [an˨˦] [ap˦˥] [ap˨ˀ˩] [at˦˥] [at˨ˀ˩] [aw˧ˀ˥] [aw˧˧] [aw˧˨] [aw˧˩˨] [aw˨ˀ˩] [aw˨˦] [aŋ˧ˀ˥] [aŋ˧˧] [aŋ˧˨] [aŋ˧˩˨] [aŋ˨ˀ˩] [aŋ˨˦] [a˧ˀ˥] [a˧˧] [a˧˨] [a˧˩˨], and 747 more.
+Sequences that the spec writes as one unit: [a˧ˀ˥] [a˧˧] [a˧˨] [a˧˩˨] [a˨ˀ˩] [a˨˦] [e˧ˀ˥] [e˧˧] [e˧˨] [e˧˩˨] [e˨ˀ˩] [e˨˦] [i˧ˀ˥] [i˧˧] [i˧˨] [i˧˩˨] [i˨ˀ˩] [i˨˦] [j˧ˀ˥] [j˧˧] [j˧˨] [j˧˩˨] [j˨ˀ˩] [j˨˦] [k˦˥] [k˨ˀ˩] [k͡p] [k͡p˦˥] [k͡p˨ˀ˩] [m˧ˀ˥] [m˧˧] [m˧˨] [m˧˩˨] [m˨ˀ˩] [m˨˦] [n˧ˀ˥] [n˧˧] [n˧˨] [n˧˩˨] [n˨ˀ˩], and 69 more.
 
-Tones: [◌̄] ngang (A1, level) — ˧˧; unmarked in the orthography, [◌̀] huyền (A2, mid falling) — ˧˨, [◌́] sắc (B1, rising) — ˨˦; ˦˥ on a syllable closed by an oral stop (D1), [◌̉] hỏi (C1, low falling) — ˧˩˨, [◌̃] ngã (C2, broken) — ˧ˀ˥, [◌̣] nặng (B2, low glottalized) — ˨ˀ˩; D2 on a syllable closed by an oral stop.
+Tones: [˧˧] ngang (A1, level) — ˧˧; unmarked in the orthography, [˧˨] huyền (A2, mid falling) — ˧˨, [˨˦] sắc (B1, rising) — ˨˦; ˦˥ on a syllable closed by an oral stop (D1), [˧˩˨] hỏi (C1, low falling) — ˧˩˨, [˧ˀ˥] ngã (C2, broken) — ˧ˀ˥, [˨ˀ˩] nặng (B2, low glottalized) — ˨ˀ˩; D2 on a syllable closed by an oral stop.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

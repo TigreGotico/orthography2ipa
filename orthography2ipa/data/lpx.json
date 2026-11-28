@@ -11,16 +11,18 @@
    "b"
   ],
   "c": [
-   "ʧ"
+   "t͡ʃ"
   ],
   "d": [
    "d̪"
   ],
   "e": [
-   "e~ɛ"
+   "e",
+   "ɛ"
   ],
   "f": [
-   "f~ɸ"
+   "f",
+   "ɸ"
   ],
   "g": [
    "ɡ"
@@ -29,7 +31,8 @@
    "x"
   ],
   "i": [
-   "i~ɪ"
+   "i",
+   "ɪ"
   ],
   "j": [
    "ɟ"
@@ -50,7 +53,8 @@
    "ɲ"
   ],
   "o": [
-   "o~ɔ"
+   "o",
+   "ɔ"
   ],
   "p": [
    "p"
@@ -71,7 +75,8 @@
    "tː"
   ],
   "u": [
-   "u~ʊ"
+   "u",
+   "ʊ"
   ],
   "w": [
    "w"
@@ -95,7 +100,6 @@
  "allophones": {},
  "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (lpx.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "lpx",
- "glottolog_code": "lopi1242",
  "sources": [
   {
    "id": "glottolog2024",
@@ -124,7 +128,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-nilo1247",
+ "inherits": "x-clade-nilo1247",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Lopit_language"

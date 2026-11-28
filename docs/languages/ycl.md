@@ -1,5 +1,13 @@
 # Lolopo (`ycl`)
 
+<!-- agent-hint
+covers: what the `ycl` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ycl.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Lolopo is a Sino-Tibetan language, written in the Latin script. Glottolog places it in the Eurasia macroarea. The `ycl` spec is at the research tier. It cites 5 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -62,27 +70,27 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 97 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 125 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p pʰ |  | d t tʰ |  |  | k kʰ ɡ |  |
+| Plosive | b bʲ bʷ p pʰ pʰʲ pʰʷ pʲ pʷ |  | d dʲ dʷ t tʰ tʰʲ tʰʷ tʲ tʷ |  |  | k kʰ kʰʲ kʰʷ kʲ kʷ ɡ ɡʲ ɡʷ | ʔ ʔʲ ʔʷ |
 | Affricate |  |  | dz ts tsʰ | dʒ tʃ tʃʰ |  |  |  |
-| Nasal | m |  | n |  |  | ŋ |  |
-| Fricative |  | f v | s z z̩ z̩ʷ | ʃ | ʝ | x ɣ | h |
-| Lateral fricative |  |  | ɮ |  |  |  |  |
-| Lateral approximant |  |  | l |  |  |  |  |
+| Nasal | m mʲ mʷ |  | n nʲ nʷ |  |  | ŋ ŋʲ ŋʷ |  |
+| Fricative |  | f fʲ fʷ v vʲ vʷ | s sʰʲ sʰʷ sʲ sʷ z zʲ zʷ z̩ z̩ʷ | ʃ ʃʰʲ ʃʰʷ ʃʲ ʃʷ ʒʲ ʒʷ | ʝ ʝʲ ʝʷ | x xʲ xʷ ɣ ɣʲ ɣʷ | h hʲ hʷ |
+| Lateral fricative |  |  | ɮ ɮʲ ɮʷ |  |  |  |  |
+| Lateral approximant |  |  | l lʲ lʷ |  |  |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
-| Close | i |  | ɯ |
-| Close-mid | e |  | o ɤ ʲo |
-| Mid |  | ə |  |
-| Open-mid | ʲɛ |  |  |
-| Near-open | æ ʲæ |  |  |
-| Open | a ʲa ʷa |  |  |
+| Close | i i̠ |  | ɯ ɯ̠ |
+| Close-mid | e e̠ |  | o o̠ ɤ ɤ̠ |
+| Mid |  | ə ə̠ |  |
+| Open-mid | ɛ ɛ̠ |  |  |
+| Near-open | æ æ̠ |  |  |
+| Open | a a̠ |  |  |
 
-Sequences that the spec writes as one unit: [a³³] [e³³] [i³³] [o³³] [w] [z̩³³] [z̩ʷ³³] [²¹] [æ³³] [ə³³] [ɤ³³] [ɯ³³] [ʔa] [ʔa³³] [ʔe] [ʔe³³] [ʔi] [ʔi³³] [ʔo] [ʔo³³] [ʔz̩] [ʔz̩³³] [ʔz̩ʷ] [ʔz̩ʷ³³] [ʔæ] [ʔæ³³] [ʔə] [ʔə³³] [ʔɤ] [ʔɤ³³] [ʔɯ] [ʔɯ³³] [ʔʲa] [ʔʲa³³] [ʔʲo] [ʔʲo³³] [ʔʲæ] [ʔʲæ³³] [ʔʲɛ] [ʔʲɛ³³], and 13 more.
+Sequences that the spec writes as one unit: [a˧˧] [e˧˧] [i˧˧] [o˧˧] [w] [w̠] [z̩ʷ˧˧] [z̩˧˧] [æ˧˧] [ə˧˧] [ɛ˧˧] [ɤ˧˧] [ɯ˧˧] [ʔ˨˩] [ʔ˨˩ʲ] [ʔ˨˩ʷ] [˥˥] [˦˦] [˦˦ɮ] [˦˦˨˩] [˨˩].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -92,47 +100,47 @@ Each letter or letter group of the spec with its readings. The first reading is 
 
 | Spelling | Readings | By position |
 |:--|:--|:--|
-| ⟨a⟩ | [a³³] | word initial [ʔa³³] |
-| ⟨ae⟩ | [æ³³] | word initial [ʔæ³³] |
+| ⟨a⟩ | [a˧˧] | word initial [ʔa˧˧] |
+| ⟨ae⟩ | [æ˧˧] | word initial [ʔæ˧˧] |
 | ⟨b⟩ | [p] |  |
 | ⟨bb⟩ | [b] |  |
 | ⟨c⟩ | [tsʰ] |  |
 | ⟨d⟩ | [t] |  |
 | ⟨dd⟩ | [d] |  |
-| ⟨e⟩ | [ɯ³³] | word initial [ʔɯ³³] |
-| ⟨ei⟩ | [e³³] | word initial [ʔe³³] |
+| ⟨e⟩ | [ɯ˧˧] | word initial [ʔɯ˧˧] |
+| ⟨ei⟩ | [e˧˧] | word initial [ʔe˧˧] |
 | ⟨f⟩ | [f] |  |
 | ⟨g⟩ | [k] |  |
 | ⟨gg⟩ | [ɡ] |  |
 | ⟨h⟩ | [x] [h] |  |
 | ⟨hh⟩ | [ɣ] |  |
-| ⟨i⟩ | [i³³] | word initial [ʔi³³] |
-| ⟨ia⟩ | [ʲa³³] | word initial [ʔʲa³³] |
-| ⟨iae⟩ | [ʲæ³³] | word initial [ʔʲæ³³] |
-| ⟨ie⟩ | [ʲɛ³³] | word initial [ʔʲɛ³³] |
-| ⟨io⟩ | [ʲo³³] | word initial [ʔʲo³³] |
-| ⟨iu⟩ | [ʲo³³] | word initial [ʔʲo³³] |
+| ⟨i⟩ | [i˧˧] | word initial [ʔi˧˧] |
+| ⟨ia⟩ | [ʲa˧˧] | word initial [ʔʲa˧˧] |
+| ⟨iae⟩ | [ʲæ˧˧] | word initial [ʔʲæ˧˧] |
+| ⟨ie⟩ | [ʲɛ˧˧] | word initial [ʔʲɛ˧˧] |
+| ⟨io⟩ | [ʲo˧˧] | word initial [ʔʲo˧˧] |
+| ⟨iu⟩ | [ʲo˧˧] | word initial [ʔʲo˧˧] |
 | ⟨j⟩ | [tʃ] |  |
 | ⟨jj⟩ | [dʒ] |  |
 | ⟨k⟩ | [kʰ] |  |
-| ⟨l⟩ | [ɮ] [l] | before vowel [ɮ] [l] · default [⁵⁵] |
+| ⟨l⟩ | [ɮ] [l] | before vowel [ɮ] [l] · default [˥˥] |
 | ⟨m⟩ | [m] |  |
 | ⟨n⟩ | [n] |  |
 | ⟨ng⟩ | [ŋ] |  |
-| ⟨o⟩ | [o³³] | word initial [ʔo³³] |
+| ⟨o⟩ | [o˧˧] | word initial [ʔo˧˧] |
 | ⟨p⟩ | [pʰ] |  |
 | ⟨q⟩ | [tʃʰ] |  |
-| ⟨r⟩ | [²¹] |  |
+| ⟨r⟩ | [˨˩] |  |
 | ⟨s⟩ | [s] |  |
 | ⟨ss⟩ | [z] |  |
 | ⟨t⟩ | [tʰ] |  |
-| ⟨u⟩ | [ɤ³³] | word initial [ʔɤ³³] |
-| ⟨ua⟩ | [ʷa³³] | word initial [ʔʷa³³] |
+| ⟨u⟩ | [ɤ˧˧] | word initial [ʔɤ˧˧] |
+| ⟨ua⟩ | [ʷa˧˧] | word initial [ʔʷa˧˧] |
 | ⟨v⟩ | [v] |  |
 | ⟨w⟩ | [w] |  |
-| ⟨x⟩ | [ʃ] | before vowel [ʃ] · default [̠⁴⁴] |
-| ⟨xl⟩ | [̠⁶⁶] | before vowel [̠⁴⁴ɮ] · default [̠⁶⁶] |
-| ⟨xr⟩ | [̠ʔ²¹] | before vowel [̠⁴⁴²¹] · default [̠ʔ²¹] |
+| ⟨x⟩ | [ʃ] | before vowel [ʃ] · default [̠˦˦] |
+| ⟨xl⟩ | [̠˥˥] | before vowel [̠˦˦ɮ] · default [̠˥˥] |
+| ⟨xr⟩ | [̠ʔ˨˩] | before vowel [̠˦˦˨˩] · default [̠ʔ˨˩] |
 | ⟨y⟩ | [ʝ] |  |
 | ⟨z⟩ | [ts] |  |
 | ⟨zz⟩ | [dz] |  |
@@ -147,42 +155,42 @@ The spec applies 36 allophone rules after the letters are read. The change colum
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
-| `YCL_MID_UNSPELLED_C_a` | /a³³/ → [a], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_C_e` | /e³³/ → [e], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_APICAL_TONED_C_i` | /i³³/ → [z̩], after [s] [z] [ts] [dz] [tsʰ], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_APICAL_C_i` | /i³³/ → [z̩³³], after [s] [z] [ts] [dz] [tsʰ] | - | - |
-| `YCL_MID_UNSPELLED_C_i` | /i³³/ → [i], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_C_o` | /o³³/ → [o], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_C_æ` | /æ³³/ → [æ], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_APICAL_TONED_C_ɤ` | /ɤ³³/ → [z̩ʷ], after [s] [z] [ts] [dz] [tsʰ], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_APICAL_C_ɤ` | /ɤ³³/ → [z̩ʷ³³], after [s] [z] [ts] [dz] [tsʰ] | - | - |
-| `YCL_MID_UNSPELLED_C_ɤ` | /ɤ³³/ → [ɤ], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_APICAL_TONED_C_ɯ` | /ɯ³³/ → [ə], after [s] [z] [ts] [dz] [tsʰ] [tʃ] [dʒ] [tʃʰ] and 3 more, before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_APICAL_C_ɯ` | /ɯ³³/ → [ə³³], after [s] [z] [ts] [dz] [tsʰ] [tʃ] [dʒ] [tʃʰ] and 3 more | - | - |
-| `YCL_MID_UNSPELLED_C_ɯ` | /ɯ³³/ → [ɯ], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_C_ʲa` | /ʲa³³/ → [ʲa], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_C_ʲo` | /ʲo³³/ → [ʲo], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_C_ʲæ` | /ʲæ³³/ → [ʲæ], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_C_ʲɛ` | /ʲɛ³³/ → [ʲɛ], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_C_ʷa` | /ʷa³³/ → [ʷa], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_ʔ_a` | /ʔa³³/ → [ʔa], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_ʔ_e` | /ʔe³³/ → [ʔe], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_APICAL_TONED_ʔ_i` | /ʔi³³/ → [ʔz̩], after [s] [z] [ts] [dz] [tsʰ], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_APICAL_ʔ_i` | /ʔi³³/ → [ʔz̩³³], after [s] [z] [ts] [dz] [tsʰ] | - | - |
-| `YCL_MID_UNSPELLED_ʔ_i` | /ʔi³³/ → [ʔi], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_ʔ_o` | /ʔo³³/ → [ʔo], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_ʔ_æ` | /ʔæ³³/ → [ʔæ], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_APICAL_TONED_ʔ_ɤ` | /ʔɤ³³/ → [ʔz̩ʷ], after [s] [z] [ts] [dz] [tsʰ], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_APICAL_ʔ_ɤ` | /ʔɤ³³/ → [ʔz̩ʷ³³], after [s] [z] [ts] [dz] [tsʰ] | - | - |
-| `YCL_MID_UNSPELLED_ʔ_ɤ` | /ʔɤ³³/ → [ʔɤ], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_APICAL_TONED_ʔ_ɯ` | /ʔɯ³³/ → [ʔə], after [s] [z] [ts] [dz] [tsʰ] [tʃ] [dʒ] [tʃʰ] and 3 more, before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_APICAL_ʔ_ɯ` | /ʔɯ³³/ → [ʔə³³], after [s] [z] [ts] [dz] [tsʰ] [tʃ] [dʒ] [tʃʰ] and 3 more | - | - |
-| `YCL_MID_UNSPELLED_ʔ_ɯ` | /ʔɯ³³/ → [ʔɯ], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_ʔ_ʲa` | /ʔʲa³³/ → [ʔʲa], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_ʔ_ʲo` | /ʔʲo³³/ → [ʔʲo], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_ʔ_ʲæ` | /ʔʲæ³³/ → [ʔʲæ], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_ʔ_ʲɛ` | /ʔʲɛ³³/ → [ʔʲɛ], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
-| `YCL_MID_UNSPELLED_ʔ_ʷa` | /ʔʷa³³/ → [ʔʷa], before [²¹] [̠ʔ²¹] [̠⁴⁴] [̠⁴⁴ɮ] [̠⁶⁶] [⁵⁵] | - | - |
+| `YCL_MID_UNSPELLED_C_a` | /a˧˧/ → [a], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_C_e` | /e˧˧/ → [e], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_APICAL_TONED_C_i` | /i˧˧/ → [z̩], after [s] [z] [ts] [dz] [tsʰ], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_APICAL_C_i` | /i˧˧/ → [z̩˧˧], after [s] [z] [ts] [dz] [tsʰ] | - | - |
+| `YCL_MID_UNSPELLED_C_i` | /i˧˧/ → [i], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_C_o` | /o˧˧/ → [o], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_C_æ` | /æ˧˧/ → [æ], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_APICAL_TONED_C_ɤ` | /ɤ˧˧/ → [z̩ʷ], after [s] [z] [ts] [dz] [tsʰ], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_APICAL_C_ɤ` | /ɤ˧˧/ → [z̩ʷ˧˧], after [s] [z] [ts] [dz] [tsʰ] | - | - |
+| `YCL_MID_UNSPELLED_C_ɤ` | /ɤ˧˧/ → [ɤ], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_APICAL_TONED_C_ɯ` | /ɯ˧˧/ → [ə], after [s] [z] [ts] [dz] [tsʰ] [tʃ] [dʒ] [tʃʰ] and 3 more, before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_APICAL_C_ɯ` | /ɯ˧˧/ → [ə˧˧], after [s] [z] [ts] [dz] [tsʰ] [tʃ] [dʒ] [tʃʰ] and 3 more | - | - |
+| `YCL_MID_UNSPELLED_C_ɯ` | /ɯ˧˧/ → [ɯ], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_C_ʲa` | /ʲa˧˧/ → [ʲa], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_C_ʲo` | /ʲo˧˧/ → [ʲo], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_C_ʲæ` | /ʲæ˧˧/ → [ʲæ], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_C_ʲɛ` | /ʲɛ˧˧/ → [ʲɛ], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_C_ʷa` | /ʷa˧˧/ → [ʷa], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_ʔ_a` | /ʔa˧˧/ → [ʔa], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_ʔ_e` | /ʔe˧˧/ → [ʔe], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_APICAL_TONED_ʔ_i` | /ʔi˧˧/ → [ʔz̩], after [s] [z] [ts] [dz] [tsʰ], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_APICAL_ʔ_i` | /ʔi˧˧/ → [ʔz̩˧˧], after [s] [z] [ts] [dz] [tsʰ] | - | - |
+| `YCL_MID_UNSPELLED_ʔ_i` | /ʔi˧˧/ → [ʔi], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_ʔ_o` | /ʔo˧˧/ → [ʔo], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_ʔ_æ` | /ʔæ˧˧/ → [ʔæ], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_APICAL_TONED_ʔ_ɤ` | /ʔɤ˧˧/ → [ʔz̩ʷ], after [s] [z] [ts] [dz] [tsʰ], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_APICAL_ʔ_ɤ` | /ʔɤ˧˧/ → [ʔz̩ʷ˧˧], after [s] [z] [ts] [dz] [tsʰ] | - | - |
+| `YCL_MID_UNSPELLED_ʔ_ɤ` | /ʔɤ˧˧/ → [ʔɤ], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_APICAL_TONED_ʔ_ɯ` | /ʔɯ˧˧/ → [ʔə], after [s] [z] [ts] [dz] [tsʰ] [tʃ] [dʒ] [tʃʰ] and 3 more, before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_APICAL_ʔ_ɯ` | /ʔɯ˧˧/ → [ʔə˧˧], after [s] [z] [ts] [dz] [tsʰ] [tʃ] [dʒ] [tʃʰ] and 3 more | - | - |
+| `YCL_MID_UNSPELLED_ʔ_ɯ` | /ʔɯ˧˧/ → [ʔɯ], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_ʔ_ʲa` | /ʔʲa˧˧/ → [ʔʲa], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_ʔ_ʲo` | /ʔʲo˧˧/ → [ʔʲo], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_ʔ_ʲæ` | /ʔʲæ˧˧/ → [ʔʲæ], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_ʔ_ʲɛ` | /ʔʲɛ˧˧/ → [ʔʲɛ], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
+| `YCL_MID_UNSPELLED_ʔ_ʷa` | /ʔʷa˧˧/ → [ʔʷa], before [˨˩] [̠ʔ˨˩] [̠˦˦] [̠˦˦ɮ] [̠˥˥] [˥˥] | - | - |
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin -->

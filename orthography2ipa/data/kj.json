@@ -4,7 +4,7 @@
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "skeleton",
-  "parent": "bnt",
+  "inherits": "bnt",
   "graphemes": {
     "a": ["a"],
     "e": ["ɛ"],
@@ -47,8 +47,6 @@
   },
   "notes": "Kwanyama (Oshikwanyama / Kuanyama) — Bantu language of northern Namibia and southern Angola, one of the two written standards of Ovambo, written in the Latin script. SKELETON: grapheme inventory now specified from the PHOIBLE-attested phoneme list (glottocode kuan1247) already recorded in this spec's `phonemes` field. KEY FEATURES (Fivaz 1986, 'A Reference Grammar of Oshikwanyama'; Wikipedia): (1) prenasalised stops/affricates ⟨mb, nd, ny⟩ (the last spelling the postalveolar affricate /n̠d̠ʒ/, not a palatal nasal — Kwanyama's palatal nasal is written ⟨nh⟩... no: it is spelled with the digraph shown here) are single phonological units per AGENTS.md test 2 (Bantu prenasalised stops), NOT c+c clusters; (2) a parallel series of VOICELESS nasals ⟨mh, nh, ngh⟩ /m̥ n̥ ŋ̥/ contrasts with the plain nasals — an areal feature of the Wambo (Ndonga/Kwanyama) subgroup absent from most other Bantu languages, so it is asserted as data here rather than left to a generic engine rule; (3) ⟨h⟩ is the voiceless velar fricative /x/, not a glottal fricative; (4) Kwanyama has NO /r/ phoneme and no plain oral ⟨g⟩ outside the prenasalised ⟨ng⟩ digraph, matching the PHOIBLE inventory's absence of both. Tone (˦ high, ˨ low in the PHOIBLE inventory) is lexically/grammatically contrastive but is NOT marked in the standard orthography; no `stress` block is declared and tone is not asserted at the grapheme level (STRESS/TONE EXEMPTION). INPUT CONTRACT: input is expected in the Latin-script Kwanyama orthography.",
   "iso639_3": "kua",
-  "glottolog_code": "kuan1247",
-  "wikidata_qid": "Q1405077",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kwanyama"
   ],

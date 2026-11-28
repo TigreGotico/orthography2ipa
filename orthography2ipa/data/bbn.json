@@ -28,7 +28,7 @@
     "y": ["j"],
     "z": ["z"]
   },
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",
@@ -39,7 +39,6 @@
   ],
   "notes": "Skeleton. Uneapa (Bola) is an Oceanic (Meso-Melanesian, Willaumez) Austronesian language of West New Britain, Papua New Guinea, written in a practical Latin orthography. The grapheme map covers the five-vowel system and a basic consonant inventory including the digraph ng for the velar nasal, with v representing a bilabial fricative. Prenasalized stops, if present and written as plain stops, are not distinguished, and any conditioned voicing is not encoded. Stress and vowel length are left unencoded. This entry is a low-confidence skeleton assembled from general classificatory sources for a language with limited published orthographic description.",
   "iso639_3": "bbn",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "bbn_glottolog",

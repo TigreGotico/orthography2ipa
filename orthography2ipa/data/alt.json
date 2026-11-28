@@ -4,7 +4,7 @@
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "research",
-  "parent": "trk",
+  "inherits": "trk",
   "ancestors": [
     {
       "code": "trk",
@@ -229,8 +229,6 @@
     ]
   },
   "iso639_3": "alt",
-  "glottolog_code": "sout2694",
-  "wikidata_qid": "Q1991779",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Southern_Altai_language",
     "https://alt.wikipedia.org/wiki/%D0%90%D0%BB%D1%82%D0%B0%D0%B9_%D1%82%D0%B8%D0%BB"

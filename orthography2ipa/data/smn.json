@@ -197,7 +197,7 @@
       "dʒ"
     ]
   },
-  "parent": "urj",
+  "inherits": "urj",
   "ancestors": [
     {
       "code": "urj",
@@ -208,8 +208,6 @@
   ],
   "notes": "Inari Sámi (anarâškielâ), Finland. Official orthography adopted 1996: <a> = /ɑ/ vs <á> = /a/, <â> = /ə/, <ä> = /æ/; <c> = /ts/, <č> = /tʃ/, <z> = /dz/, <ž> = /dʒ/, <đ> = /ð/, <š> = /ʃ/, <ŋ> = /ŋ/. Consonant gradation and the three-way quantity system (short / long / overlong, written with single vs doubled letters) are morphophonological and are NOT modelled here — this spec covers the segmental letter-to-phoneme mapping only.",
   "iso639_3": "smn",
-  "glottolog_code": "inar1241",
-  "wikidata_qid": "Q33462",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Inari_S%C3%A1mi_language",
     "https://smn.wikipedia.org/wiki/Anar%C3%A2%C5%A1kiel%C3%A2"

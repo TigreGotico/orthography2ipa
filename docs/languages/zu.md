@@ -1,5 +1,13 @@
 # Zulu (`zu`)
 
+<!-- agent-hint
+covers: what the `zu` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/zu.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Zulu is a Bantu language, written in the Latin script. Glottolog places it in 5 countries. The `zu` spec is at the research tier. It cites 4 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -64,7 +72,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 79 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 52 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -83,7 +91,7 @@ The spec can emit 79 segments. They come from the letter table, the positional r
 | Close-mid | e eː | o oː |
 | Open | a aː |  |
 
-Sequences that the spec writes as one unit: [mb] [mf] [mp] [mpʰ] [mv] [m̩b] [m̩f] [m̩p] [m̩pʰ] [m̩v] [m̩ɓ] [nd] [nt] [nts] [nz] [nɬ] [nɮ] [w] [ŋk] [ŋǀ] [ŋǀʱ] [ŋǁ] [ŋǁʱ] [ŋǃ] [ŋǃʱ] [ŋɡ] [ǀ] [ǀʰ] [ǁ] [ǁʰ] [ǃ] [ǃʰ] [ɓ] [ɠ] [ɡǀʱ] [ɡǁʱ] [ɡǃʱ] [ɲdʒ] [ɲtʃ].
+Sequences that the spec writes as one unit: [w] [ǀ] [ǀʰ] [ǀʱ] [ǁ] [ǁʰ] [ǁʱ] [ǃ] [ǃʰ] [ǃʱ] [ɓ] [ɠ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -199,4 +207,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Zou](zom.md) · [Home](../index.md) · [Comparative phonology →](comparative.md)
+[← Zou](zom.md) · [Home](../index.md) · [Leader languages →](leaders.md)

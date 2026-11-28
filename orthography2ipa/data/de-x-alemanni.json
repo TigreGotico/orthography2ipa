@@ -4,7 +4,7 @@
   "script": "Latin",
   "graphemes_base": "de-CH",
   "allophones_base": "de-CH",
-  "parent": "de-CH",
+  "inherits": "de-CH",
   "notes": "Alemannic German (Schwyzerdütsch, Alsatian, Swabian, Vorarlbergisch), ISO 639-3 gsw. This is the DIALECT, not Schweizerhochdeutsch: the parent de-CH models Swiss Standard German, which is Standard German with Swiss features and shares the de-DE grapheme table. Alemannic diverges from that table systematically, and the divergences below are what this spec declares.\n\nThe High German consonant shift ran to completion, so ⟨ch⟩ is the Ach-Laut [x]~[χ] in every position, word-initially included (Chatz, Chilbi, Chueche), and the Standard German Ich-Laut [ç] is absent altogether; ⟨k⟩ and ⟨ck⟩ spell the affricate /kx/ (Brocki, Stock, Anke). There are no voiced obstruents: ⟨s⟩ is [s] in every position, and the lenis series is voiceless-unaspirated, transcribed either plainly or with a voicelessness ring. /r/ is an alveolar trill [r], and Standard German ⟨-er⟩ vocalisation to [ɐ] does not apply.\n\nSpelling follows Dieth-Schreibung, where a doubled vowel letter marks length (Huus [huːs], Wii [viː], Füür [fyːr]) and ⟨y⟩/⟨yy⟩ traditionally stand for /iː/. A doubled consonant letter marks the preceding vowel short and, for the stops, spells the fortis rather than a geminate (Rugge [rukə]). The gold is split on how it writes that fortis — [k] in Rugge, a long lenis [ɡ̊ː] in seggle — so the ⟨gg⟩ entry costs a little PER against the second convention; the entry follows the description, not the majority notation.\n\nSources: Wikipedia, \"Swiss German\" (fortis/lenis, absence of voiced obstruents, /x/ without a [ç] allophone, ⟨k⟩/⟨ck⟩ = /kx/, alveolar-trill /r/, ⟨y⟩/⟨yy⟩ = /iː/); Wikipedia, \"Alemannic German\" (High and Highest Alemannic fricativize initial /k/ to [x]; these varieties use the Ach-Laut exclusively); de.wikipedia, \"Dieth-Schreibung\" (short vowels written singly, long vowels doubled). Russ (1994) and Haas (2000) are the standard descriptive references; editions not consulted.",
   "quality": "research",
   "script_type": "alphabet",
@@ -60,9 +60,7 @@
     "start_year": 1000,
     "end_year": null
   },
-  "glottolog_code": "alem1243",
   "iso639_3": "gsw",
-  "wikidata_qid": "Q131339",
   "wals_code": "gos",
   "location": {
     "latitude": 47.631173,

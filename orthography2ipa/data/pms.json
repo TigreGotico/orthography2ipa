@@ -103,7 +103,7 @@
       "ø"
     ]
   },
-  "parent": "la-x-gallo-italic",
+  "inherits": "la-x-gallo-italic",
   "ancestors": [
     {
       "code": "la-x-gallo-italic",
@@ -176,8 +176,6 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "piem1238",
-  "wikidata_qid": "Q15085",
   "wals_code": "itu",
   "location": {
     "latitude": 45.4633,

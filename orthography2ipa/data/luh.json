@@ -5,7 +5,7 @@
   "script_type": "logographic",
   "quality": "stub",
   "graphemes": {},
-  "parent": "x-clade-sini1245",
+  "inherits": "x-clade-sini1245",
   "ancestors": [
     {
       "code": "x-clade-sini1245",
@@ -16,7 +16,6 @@
   ],
   "notes": "Skeleton. Leizhou (Luichew) is a branch of Min Chinese spoken on the Leizhou Peninsula, written in Han (Chinese) characters. Han script is logographic: a character's reading is a lexical fact, not composable from graphic parts, so grapheme-to-IPA requires a per-word pronunciation stratum (a character-to-reading lexicon for this specific variety) that the engine does not bundle. Without that stratum engine coverage is effectively zero, so graphemes are left empty rather than faked. Lexical tone, checked syllables, and tone sandhi are not recoverable from the characters.",
   "iso639_3": "luh",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "luh_glottolog",

@@ -49,7 +49,7 @@
       "ɔ"
     ]
   },
-  "parent": "an",
+  "inherits": "an",
   "notes": "Eastern Aragonese / Ribagorçan / Benasquese transition zone. Catalan influence: voiced affricate [dʒ] for Latin G/J before front vowels, possible partial yeísmo. 7-vowel system with /ɛ/ and /ɔ/. Seseo: /θ/ → /s/. Transitional phonology between Aragonese and Catalan, debated classification.",
   "quality": "skeleton",
   "script_type": "alphabet",
@@ -95,7 +95,6 @@
     "start_year": 1100,
     "end_year": null
   },
-  "glottolog_code": "east2273",
   "iso639_3": "arg",
   "positional_graphemes": {
     "g": {

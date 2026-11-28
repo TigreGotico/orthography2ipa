@@ -167,7 +167,7 @@
       "ʒ"
     ]
   },
-  "parent": "ar-x-mashriqi",
+  "inherits": "ar-x-mashriqi",
   "ancestors": [
     {
       "code": "ar-x-mashriqi",
@@ -248,7 +248,6 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "meso1252",
   "iso639_3": "acm",
   "allophone_rules": [
     {
@@ -368,7 +367,6 @@
       "notes": "Emphatic backing / tafxim (Jasim 2020; Blanc 1964, §3.3): long /aː/ → [ɑː] after an emphatic coronal."
     }
   ],
-  "wikidata_qid": "Q56232",
   "wals_code": "arq",
   "location": {
     "latitude": 33.8178,

@@ -32,21 +32,22 @@ on:
       - "scripts/benchmark.py"
       - "scripts/build_en_lexicon.py"
       - "scripts/espeak_agreement.py"
+      # Writes benchmarks/gold_defects.json, the data behind docs/evaluation/gold_defects.md.
+      - "scripts/measure_gold_defects.py"
       # The navigation footers and the generated reference pages: api.md
       # reads every exported docstring, cli.md the real --help output.
       - "scripts/docs_nav.py"
       - "scripts/gen_reference_docs.py"
-      # The language atlas reads the specs, the board and the snapshot.
-      - "scripts/gen_language_atlas.py"
-      - "scripts/atlas_snapshot.json"
-      - "benchmarks/results.json"
+      - "benchmarks/*.json"
+      - "scripts/gen_doc_charts.py"
       - "orthography2ipa/data/gold/primary_sources/**"
-      - "tests/test_language_atlas.py"
       - "orthography2ipa/**"
-      - "llms.txt"
-      - "llms-full.txt"
       - ".github/workflows/docs-prose.yml"
   workflow_dispatch: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   docs-prose:
@@ -55,7 +56,7 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v10.3.3
+        uses: astral-sh/setup-uv@v10.4.0
         with:
           python-version: "3.11"
 
@@ -77,13 +78,11 @@ jobs:
       # argparse lays out --help differently across Python versions, so the
       # CLI page is checked on the 3.11 this job installs, never in the
       # version matrix of the build tests.
-      - name: Check the generated reference pages, llms.txt and llms-full.txt
+      - name: Check the generated reference pages
         run: |
           PYTHONPATH=$PWD .venv/bin/python scripts/gen_reference_docs.py --check
 
-      # The atlas blocks print engine output and board scores, so a spec, an
-      # engine or a board change can make a language page stale.
-      - name: Check the language atlas
+      # The charts of the evaluation pages read the board files.
+      - name: Check the evaluation charts
         run: |
-          PYTHONPATH=$PWD .venv/bin/python scripts/gen_language_atlas.py --check
-          PYTHONPATH=$PWD .venv/bin/python -m pytest -q tests/test_language_atlas.py
+          PYTHONPATH=$PWD .venv/bin/python scripts/gen_doc_charts.py --check

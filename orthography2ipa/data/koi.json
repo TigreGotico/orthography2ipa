@@ -5,8 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "koi",
-  "glottolog_code": "komi1269",
-  "wikidata_qid": "Q56318",
   "graphemes": {
     "а": [
       "a"
@@ -325,7 +323,7 @@
     "ʐ",
     "ʑ"
   ],
-  "parent": "x-clade-ural1272",
+  "inherits": "x-clade-ural1272",
   "ancestors": [
     {
       "code": "x-clade-ural1272",

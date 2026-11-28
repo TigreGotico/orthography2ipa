@@ -1,5 +1,13 @@
 # Public API stability
 
+<!-- agent-hint
+covers: which names downstream code imports, the deprecation rule that protects them and the deprecated names
+source: `orthography2ipa/__init__.py`, `orthography2ipa/pipeline.py`, `orthography2ipa/g2p.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_feats_lm_deprecation.py tests/test_unmapped_digits.py`
+see: `docs/reference/api.md`, `docs/contributing/engine.md`
+-->
+
 This page lists the names that downstream code imports from `orthography2ipa`, and the deprecation rule that protects them. It also describes the surfaces that a caller can add to the engine without a change to the default output.
 
 ## The stability commitment
@@ -15,6 +23,8 @@ The same rule covers the spec fields that `G2P` reads. The `plugins` field and t
 The inventory comes from the Python imports on the `dev` branch of each downstream repository: [arbtok](https://github.com/TigreGotico/arbtok), [euskaphone](https://github.com/TigreGotico/euskaphone) and [tugaphone](https://github.com/TigreGotico/tugaphone). The scan parses every Python file of each repository, so it covers the library code, the tests, the scripts and the examples. It counts both `from orthography2ipa import X` and attribute access such as `orthography2ipa.get`. [phonematcher](https://github.com/TigreGotico/phonematcher) and [sotaque_forcado](https://github.com/TigreGotico/sotaque_forcado) import nothing from `orthography2ipa`.
 
 A name imported from a submodule and also re-exported at the top level is one name, and both import paths are covered.
+
+The `Downstream Smoke` workflow (`.github/workflows/downstream-smoke.yml`) tests the consumers in its matrix on each pull request to `dev` and on each push to `dev`. It checks out each one, such as arbtok, tugaphone and euskaphone, at its default branch. It installs the checkout under test over each one. Then `scripts/smoke_downstream.py` imports the consumer and transcribes one word with it, and the job runs the test suite of that consumer. A change that breaks a consumer therefore fails CI in this repository.
 
 ### Names in `__all__`
 
@@ -60,7 +70,7 @@ Downstream code also imports these public names straight from their submodules. 
 | `parse_lexicon_text` | `lexicon` | euskaphone, tugaphone |
 | `parse_markup`, `MarkupError` | `markup` | tugaphone |
 
-One downstream import reaches a private name: `phonetok._expand_arabic_gemination` in arbtok. A private name has no guarantee, and it can change in any release.
+`expand_arabic_gemination` is public. Its private name `phonetok._expand_arabic_gemination`, which arbtok imports, is an alias of it until the next stable release.
 
 `assert_syllabifier_conforms` and `assert_rescorer_conforms` in `orthography2ipa.conformance` are deprecated. No downstream repository calls them. They go in the next major release, and until then each call raises a `DeprecationWarning` that names that release. A caller tests a step in its own suite: it compares `G2P(lang)` with `G2P(lang, pipeline=Pipeline(...))`, and for a rescorer it checks the output against `phoneme_inventory(spec)`.
 
@@ -87,27 +97,23 @@ The exception types `UnmappedScriptError`, `UnmappedGraphemeWarning`, `StubSpecW
 
 ## Spec revisions
 
-`spec_revision(code)` names the rules that an engine for `code` reads. A consumer records the value when it trains, and compares it with the value of the engine that it runs later.
+`spec_revision(code)` names the IR that `G2P(code)` runs. A consumer records the value when it trains, and compares it with the value of the engine that it runs later.
 
-The value is `"sha256:"` followed by a hex digest. It is a function of three inputs, in this order:
+The value is `"sha256:"` followed by a hex digest of the canonical IR document and the versions of the interpreter primitives that the IR uses. Section 8.1 of [o2i-ir-v1.md](../ir/o2i-ir-v1.md#81-versions-and-the-revision) gives the exact input. The IR holds the spec data with its parent and `<field>_base` chains, and the default compile options. So an edit that leaves the IR equal leaves the revision equal: a note in a spec, a comment in the engine, or a spec that is not on the chains of `code`.
 
-1. The spec-format version, `orthography2ipa.revision.SPEC_FORMAT_VERSION`. The version is `1`.
-2. The spec files that the loader merges into the spec. These are the file of the resolved code, then every file on its `parent` chain and on each `<field>_base` chain, sorted by code. A clade with no `parent`, or with a `parent` that names a code with no spec file, continues the chain through its first `parent`-role ancestor, because `LanguageSpec` takes its `parent` from there. Each file counts as its parsed JSON with sorted keys and no whitespace, tagged with its code. The other `ancestors` codes do not count, because the loader merges none of their data.
-3. The engine fingerprint. This is a sha256 over the version of the Unicode database of the running Python, `unicodedata.unidata_version`, and the tokens of the modules in `orthography2ipa.revision.ENGINE_MODULES`, the modules on the transcription path. The engine normalises and classifies text with `unicodedata`, so a Python with another Unicode version can give other output from the same spec. Comments, blank lines and the width of an indent do not count. Statement ends, block edges and docstrings count, so a line that moves into or out of a block changes the value. The package version does not count, because a daily alpha changes it with no change to the engine.
+The function reads the IR from the precompiled documents of the package, then from the user cache (`$O2I_IR_CACHE`, else `~/.cache/orthography2ipa/ir`). It compiles the spec only when neither holds the document. The cache key hashes the spec chain, the engine source, the `ir` package and the Unicode version, so a changed engine never reads a stale document.
 
-The revision covers the spec and the engine. It does not cover a step that a caller passes in a `Pipeline`. It also does not cover a third-party plugin that a spec names through the deprecated `plugins` field or `stress.source = "plugin"`. `G2P` raises a `DeprecationWarning` for both, and no shipped spec sets either. An installed plugin that no spec names never runs: `G2P` does not call `get_rescorers`, and the stress plugin runs only for `stress.source = "plugin"`.
+The revision covers the spec, the compiler and the interpreter. It does not cover a step that a caller passes in a `Pipeline`, or a plugin that a spec names through the deprecated `plugins` field. `G2P` raises a `DeprecationWarning` for that field, and no shipped spec sets it. An installed plugin that no spec names never runs.
 
-The code resolves as `G2P` resolves it, so an alias and its canonical code give one revision. The value is computed at the first call for a code in a process, and the process keeps it. The engine files are read at that first call. If the package files change on disk before it, the value describes the files on disk and not the code that the process runs. A whitespace-only edit of a spec leaves the revision equal. An edit to a spec that is not on the chains of `code` leaves it equal too.
+The code resolves as `G2P` resolves it, so an alias and its canonical code give one revision. The cache key needs the `.py` source of each engine module. An install that ships only byte code still transcribes, but `spec_revision` raises `orthography2ipa.exceptions.EngineSourceUnavailable`, a `RuntimeError`.
 
-The engine fingerprint needs the `.py` source of each engine module. An install that ships only byte code still transcribes, but `spec_revision` raises `orthography2ipa.exceptions.EngineSourceUnavailable`, a `RuntimeError`.
-
-The spec-format version goes up when a spec field starts to mean something else. An example is an engine that reads an existing key in a new way. Every spec revision then changes, although no spec file changed. A new optional field does not need a new version, because only the specs that use it change.
+`transcription_revision(code, patches=False)` names the default path: the hash of `spec_revision(code)` and `lexicon_revision(code, patches)`. Record it for output that `transcribe(text, code)` or `G2P(code)` gives with the packaged lexicon.
 
 `lexicon_revision(code, patches=False)` names the packaged lexicon that `packaged_lexicon(code, patches)` reads. It is a sha256 over the `patches` flag, the bytes of the exceptions file and, with `patches=True`, the bytes of the patch file. The two values of the flag never give one revision. The function raises `LookupError` in the cases where `packaged_lexicon` raises it. A lexicon sits outside the spec, so a consumer that passes one to the engine records both revisions.
 
 ## Deprecated names
 
-These names served plugin discovery by entry point, or a lexicon for the whole process. A caller passes each step and each lexicon to one engine in a `Pipeline` field, so they go in the next major release. Until then they keep working, and the commitment covers them. Each one raises a `DeprecationWarning` that names the release that removes it and the name to use. A function warns when a caller calls it, and a constant warns when a caller reads it. A class warns when a caller reads it from `orthography2ipa`, and when a subclass of it is defined.
+These names served plugin discovery by entry point, or a lexicon for the whole process. A caller passes each step and each lexicon to one engine in a `Pipeline` field, so they go in the next major release. The three language-model functions of `feats` moved to `lm`, and their old names go in the same release. `feature_vector` and `feature_names` are the exception: they stay, and only the layout of their result changes in that release. Until then they keep working, and the commitment covers them. Each one raises a `DeprecationWarning` that names the release that removes it and the name to use. A function warns when a caller calls it, and a constant warns when a caller reads it. A class warns when a caller reads it from `orthography2ipa`, and when a subclass of it is defined.
 
 | Name | Module | Use in its place | Used by |
 | :--- | :--- | :--- | :--- |
@@ -129,6 +135,11 @@ These names served plugin discovery by entry point, or a lexicon for the whole p
 | `G2P(rescorer=...)` | `g2p` | `Pipeline(rescore=...)` | None |
 | `G2P(sentence_rescorer=...)` | `g2p` | `Pipeline(sandhi=...)` | None |
 | `G2P(plugins=...)` | `g2p` | The `Pipeline` field of each stage | arbtok (tests) |
+| `feature_vector`, `feature_names` (the 23-feature layout) | `distance` | `phonematcher.vectorize_phones` and `phonematcher.FEATURES` | None |
+| `is_vowel_phone` | `feats` | `phonematcher.is_vowel_phone` | None |
+| `phoneme_embeddings`, `build_ngram_lm`, `perplexity` | `feats` | The same name in `orthography2ipa.lm` | None |
+
+`feature_vector` and `feature_names` stay, and the layout of their result changes in the next major release. Until then they return the 23-feature layout of the vendored `feats` table. Each call raises a `DeprecationWarning` that names the release and names `phonematcher.vectorize_phones` and `phonematcher.FEATURES`, which give the feature layout of [phonematcher](https://github.com/TigreGotico/phonematcher). At the next major release, `segment_distance` and the distance functions built on it read the distance of phonematcher, and their values change. The distance functions raise no warning before then, and their values stay as they are.
 
 `SyllabifierPlugin` and `SandhiPlugin` stay, because `Pipeline.syllabifier` and `Pipeline.sandhi` take them. Their `language_codes` property defaults to an empty list, and the engine does not read it.
 
@@ -218,4 +229,4 @@ A caller that assumes `word_candidates` returns only readings that the grapheme 
 `margin` is `None` for a slot with one candidate. `as_dict()` returns a flat dict of scalars that `json.dumps` accepts, ready for [python-crfsuite](https://github.com/scrapinghub/python-crfsuite) or [sklearn-crfsuite](https://github.com/TeamHG-Memex/sklearn-crfsuite). The stability commitment covers these names, and the export adds no `LanguageSpec` field. [../engine/lattice.md](../engine/lattice.md#feature-export-for-a-learned-model) documents the export.
 
 ---
-[← Language Registry](registry.md) · [Home](../index.md) · [Architecture →](../engine/architecture.md)
+[← Language Registry](registry.md) · [Home](../index.md) · [o2i IR v1 →](../ir/o2i-ir-v1.md)

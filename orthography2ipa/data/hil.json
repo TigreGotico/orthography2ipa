@@ -26,7 +26,7 @@
     "w": ["w"],
     "y": ["j"]
   },
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",
@@ -37,7 +37,6 @@
   ],
   "notes": "Skeleton. A Central Philippine (Bisayan) Austronesian language of Panay and Negros, written in a Latin alphabet based on the modern Filipino/abakada convention. The grapheme map covers the native consonant and five-vowel inventory plus the digraph ng for the velar nasal. The phonemic glottal stop (word-initial, intervocalic, and word-final) is not written in the standard orthography and is left unencoded, as are contrastive stress and vowel length, so a nonzero PER floor is expected. The mid vowels e and o largely reflect Spanish loans and later mergers; e is mapped to a lax value. Spanish/English loan letters (c, f, j, ñ, q, v, x, z) are omitted from the native map.",
   "iso639_3": "hil",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "hil_glottolog",

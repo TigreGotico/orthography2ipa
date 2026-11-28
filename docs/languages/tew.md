@@ -1,5 +1,13 @@
 # Tewa (USA) (`tew`)
 
+<!-- agent-hint
+covers: what the `tew` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/tew.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Tewa (USA) is a Kiowa-Tanoan language, written in the Latin script. Glottolog places it in the North America macroarea. The `tew` spec is at the research tier. It cites 7 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -64,7 +72,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 185 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 106 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -83,7 +91,7 @@ The spec can emit 185 segments. They come from the letter table, the positional 
 | Near-open | æ̀ æ̀ː æ̂ æ̂ː æ̃̀ æ̃̀ː æ̃́ æ̃́ː æ̃̂ æ̃̂ː ǽ ǽː |  |
 | Open |  | ɑ̀ ɑ̀ː ɑ́ ɑ́ː ɑ̂ ɑ̂ː ɑ̃̀ ɑ̃̀ː ɑ̃́ ɑ̃́ː ɑ̃̂ ɑ̃̂ː |
 
-Sequences that the spec writes as one unit: [w] [ŋɡ] [ɑ̀j] [ɑ́j] [ɑ̂j] [ɑ̃̀j] [ɑ̃́j] [ɑ̃̂j] [ʔæ̀] [ʔæ̀ː] [ʔæ̂] [ʔæ̂ː] [ʔæ̃̀] [ʔæ̃̀ː] [ʔæ̃́] [ʔæ̃́ː] [ʔæ̃̂] [ʔæ̃̂ː] [ʔè] [ʔèː] [ʔé] [ʔéː] [ʔê] [ʔêː] [ʔì] [ʔìː] [ʔí] [ʔíː] [ʔî] [ʔîː] [ʔò] [ʔòː] [ʔó] [ʔóː] [ʔô] [ʔôː] [ʔõ̀] [ʔõ̀ː] [ʔõ̂] [ʔõ̂ː], and 40 more.
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

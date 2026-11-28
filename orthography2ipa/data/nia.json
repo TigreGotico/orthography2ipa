@@ -182,7 +182,7 @@
       "ʔ"
     ]
   },
-  "parent": "poz",
+  "inherits": "poz",
   "ancestors": [
     {
       "code": "poz",
@@ -193,8 +193,6 @@
   ],
   "notes": "Nias (Li Niha), Barrier Islands off Sumatra, Indonesia. Latin orthography: six vowels including <ö> = /ɤ/; <ŵ> = /w/ while <w>/<v> spell the labiodental /v ~ ʋ/; <mb> and <ndr> are prenasalised/trilled-release units; <kh> = /x/; apostrophe = glottal stop. Every syllable is open (CV). Dialect differences (northern vs southern) affect several of these values; the northern standard is taken as the default.",
   "iso639_3": "nia",
-  "glottolog_code": "nias1242",
-  "wikidata_qid": "Q2407831",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Nias_language",
     "https://nia.wikipedia.org/wiki/Li_Niha"

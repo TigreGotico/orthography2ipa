@@ -120,7 +120,6 @@
     ]
   },
   "iso639_3": "haw",
-  "glottolog_code": "hawa1245",
   "notes": "Hawaiian (ʻŌlelo Hawaiʻi), Polynesian. The alphabet (pīʻāpā) has 13 letters: five vowels a e i o u, eight consonants h k l m n p w and the ʻokina ⟨ʻ⟩ = glottal stop /ʔ/, which is a full consonant. The kahakō (macron: ā ē ī ō ū) marks a long vowel. The orthography is essentially one-to-one phonemic. Allophony: /k/ varies [k]~[t] ([k] almost universally word-initially, [t] favoured before /i/); /w/ varies [w]~[v] ([v] usually after /i/ and /e/, [w] after /u/ and /o/); /l/ varies with [n] in some dialects. Diphthongs are written as vowel sequences and fall out of the single-vowel graphemes.",
   "sources": [
     {
@@ -165,7 +164,7 @@
     "start_year": 1826,
     "end_year": null
   },
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",

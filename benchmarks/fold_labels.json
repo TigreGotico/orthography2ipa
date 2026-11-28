@@ -1,0 +1,5 @@
+{
+ "michaelis_ã": {"source": "michaelis", "lang": "pt-BR", "description": "0 of 20,774 Michaelis readings write [ɐ̃], also 0 of the 4,878 words spelled with ⟨an am en em⟩ and no ⟨ã⟩. [ã] occurs in 2,798. The fold changes [ɐ̃] to [ã] in every spelling."},
+ "michaelis_no_palatal": {"source": "michaelis", "lang": "pt-BR", "description": "1 of 1,378 ⟨ti⟩ words and 0 of 982 ⟨di⟩ words write a palatal. The fold changes [t͡ʃ d͡ʒ] to [t d] before [i ĩ ɪ j]."},
+ "michaelis_final_r": {"source": "michaelis", "lang": "pt-BR", "pos": "VERB", "description": "3,865 of 3,868 words in -ar, -er, -ir write the final r. In a verb, the final rhotic of the gold is not counted where the hypothesis ends without one. This fold accepts a cited optional deletion, not a notation: Callou, Moraes & Leite 1998 (DELTA 14, p. 66), \"A perda do R é mais freqüente nos verbos ... Nos não-verbos, em que o R não carreia informação morfológica, o peso relativo é baixo\". A reading from a row without the POS VERB keeps its r."}
+}

@@ -1,5 +1,13 @@
 # Hakka Chinese — Phák-fa-sṳ (`hak-Latn-x-phak-fa-su`)
 
+<!-- agent-hint
+covers: what the `hak-Latn-x-phak-fa-su` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/hak-Latn-x-phak-fa-su.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Hakka Chinese — Phák-fa-sṳ is a Sinitic variety, written in the Latin script. Glottolog places it in China and Taiwan. The `hak-Latn-x-phak-fa-su` spec is at the research tier. It cites 3 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -76,7 +84,7 @@ The spec can emit 28 segments. They come from the letter table, the positional r
 | Close-mid | e |  | o ɤ |
 | Open | a |  |  |
 
-Tones: [◌́] yīnpíng (陰平), Sixian 24 / Hailu 53, [◌] yángpíng (陽平, grave accent), Sixian 11 / Hailu 55, [◌̀] shǎng (上聲, acute accent — same mark as yīnpíng in this table; Sixian merges yīnshǎng/yángshǎng), Sixian 31 / Hailu 24, [unmarked] yīnqù (陰去, no mark), Sixian 55 / Hailu 11, [◌̊] yángqù (陽去, ring — Hailu only, Sixian merges with yīnqù), Hailu 33, [unmarked-checked] yīnrù (陰入, no mark, checked syllables only), Sixian 2 / Hailu 5, [◌̍] yángrù (陽入, vertical line, checked syllables only), Sixian 5 / Hailu 2.
+Tones: [˨˦] yīnpíng (陰平), Sixian 24 / Hailu 53, [˩˩] yángpíng (陽平, grave accent), Sixian 11 / Hailu 55, [˧˩] shǎng (上聲, acute accent — same mark as yīnpíng in this table; Sixian merges yīnshǎng/yángshǎng), Sixian 31 / Hailu 24, [˥˥] yīnqù (陰去, no mark), Sixian 55 / Hailu 11, [˧˧] yángqù (陽去, ring — Hailu only, Sixian merges with yīnqù), Hailu 33, [˨] yīnrù (陰入, no mark, checked syllables only), Sixian 2 / Hailu 5, [˥] yángrù (陽入, vertical line, checked syllables only), Sixian 5 / Hailu 2.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

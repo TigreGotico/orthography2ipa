@@ -5,7 +5,7 @@
   "script_type": "abugida",
   "quality": "stub",
   "graphemes": {},
-  "parent": "x-clade-taik1256",
+  "inherits": "x-clade-taik1256",
   "ancestors": [
     {
       "code": "x-clade-taik1256",
@@ -16,7 +16,6 @@
   ],
   "notes": "Tai (Southwestern Tai) language of Sipsong Panna and neighbouring areas, written with the New Tai Lue script. New Tai Lue is an abugida with high- and low-class consonant series, an inherent vowel, separately placed vowel signs and explicit tone letters, so the phonetic value of a consonant symbol depends on its class and the accompanying tone marking rather than being fixed. Reading a spelling as IPA requires a per-word pronunciation lexicon that the engine does not bundle; grapheme->IPA coverage is lexicon-dependent and effectively zero without that stratum, and no letter->IPA table is asserted. Lü is tonal, and tone is left unencoded.",
   "iso639_3": "khb",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "khb_glottolog",

@@ -1,5 +1,13 @@
 # Namuyi (`nmy`)
 
+<!-- agent-hint
+covers: what the `nmy` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/nmy.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Namuyi is a Sino-Tibetan language, written in the Latin script. Glottolog places it in the Eurasia macroarea. The `nmy` spec is at the research tier. It cites 8 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -65,18 +73,19 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 198 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 136 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Retroflex | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p pʰ |  | d t tʰ |  |  | k kʰ ɡ | q qʰ ɢ |  |
+| Plosive | b p pʰ |  | d t tʰ |  |  | k kʰ ɡ | q qʰ ɢ | ʔ |
 | Affricate |  |  | dz ts tsʰ |  | dʑ tɕ tɕʰ |  |  |  |
 | Nasal | m |  | n |  | ɲ | ŋ | ɴ |  |
+| Trill | ʙ ʙ̥ |  |  |  |  |  |  |  |
 | Fricative |  | f v | s z | ʂ ʐ |  | x x̃ | ʁ χ | ɦ ɦ̃ |
 | Approximant |  |  |  |  | j |  |  |  |
 | Lateral approximant |  |  | l l̥ |  |  |  |  |  |
 
-Sequences that the spec writes as one unit: [a˥] [a˥˧] [a˧] [a˧˥] [a˧˩] [a˨] [bʙ] [dʐ] [dʙ] [e˥] [e˥˧] [e˧] [e˧˥] [e˧˩] [e˨] [i˥] [i˥˧] [i˧] [i˧˥] [i˧˩] [i˨] [o˥] [o˥˧] [o˧] [o˧˥] [o˧˩] [o˨] [pʙ̥] [tʂ] [tʂʰ] [tʙ̥] [u˥] [u˥˧] [u˧] [u˧˥] [u˧˩] [u˨] [v̩˥] [v̩˥˧] [v̩˧], and 120 more.
+Sequences that the spec writes as one unit: [a˥] [a˥˧] [a˧] [a˧˥] [a˧˩] [a˨] [dʐ] [e˥] [e˥˧] [e˧] [e˧˥] [e˧˩] [e˨] [i˥] [i˥˧] [i˧] [i˧˥] [i˧˩] [i˨] [o˥] [o˥˧] [o˧] [o˧˥] [o˧˩] [o˨] [tʂ] [tʂʰ] [u˥] [u˥˧] [u˧] [u˧˥] [u˧˩] [u˨] [v̩˥] [v̩˥˧] [v̩˧] [v̩˧˥] [v̩˧˩] [v̩˨] [w], and 55 more.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

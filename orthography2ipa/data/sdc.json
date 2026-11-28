@@ -99,7 +99,7 @@
       "ts"
     ]
   },
-  "parent": "la-x-italia",
+  "inherits": "la-x-italia",
   "ancestors": [
     {
       "code": "la-x-italia",
@@ -110,7 +110,6 @@
   ],
   "notes": "Skeleton. Romance variety of northern Sardinia (transitional Sardo-Corsican) written in the Latin alphabet. Grapheme map follows Italian-based conventions with Sassarese specifics: the retroflex ddh/dd [ɖ], ch/gh for plain velars, gn [ɲ], sc [ʃ] and the affricate readings of c/g before front vowels. Gemination, the precise voiced/voiceless value of z and s, and context-conditioned lenition are not fully recoverable from the spelling and are left unencoded, so a PER floor is expected. Sassarese stress is lexically contrastive but only partially recoverable from the practical orthography's accent marks; unmarked cases are left unencoded (documented exemption).",
   "iso639_3": "sdc",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "sdc_glottolog",

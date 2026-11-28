@@ -256,7 +256,7 @@ def test_medieval_has_no_theta_and_no_velar_fricative():
     strict=True,
     reason="GORGIA TOSCANA cites /k/→[h] intervocalically; engine produces "
     "[amiko] for amico — the gorgia is listed in the allophone table but no "
-    "allophone_rule fires it, so Tuscan is segmentally identical to it-IT",
+    "allophone_rule fires it, so Tuscan is segmentally identical to it-IT", raises=AssertionError,
 )
 def test_toscana_gorgia_k_to_h():
     """GORGIA TOSCANA: intervocalic /k/ → [h].
@@ -273,7 +273,7 @@ def test_toscana_gorgia_k_to_h():
 @pytest.mark.xfail(
     strict=True,
     reason="GORGIA TOSCANA cites /t/→[θ] intervocalically; engine produces "
-    "[vita] for vita — no allophone_rule fires the gorgia",
+    "[vita] for vita — no allophone_rule fires the gorgia", raises=AssertionError,
 )
 def test_toscana_gorgia_t_to_theta():
     """GORGIA TOSCANA: intervocalic /t/ → [θ].
@@ -289,7 +289,7 @@ def test_toscana_gorgia_t_to_theta():
 @pytest.mark.xfail(
     strict=True,
     reason="GORGIA TOSCANA cites /p/→[ɸ] intervocalically; engine produces "
-    "[lupo] for lupo — no allophone_rule fires the gorgia",
+    "[lupo] for lupo — no allophone_rule fires the gorgia", raises=AssertionError,
 )
 def test_toscana_gorgia_p_to_phi():
     """GORGIA TOSCANA: intervocalic /p/ → [ɸ].
@@ -327,7 +327,7 @@ def test_roma_no_gorgia():
 @pytest.mark.xfail(
     strict=True,
     reason="Romanesco rhotacism cites alto → [ˈarto]; engine produces [alto] — "
-    "no allophone_rule turns pre-consonantal /l/ into [r]",
+    "no allophone_rule turns pre-consonantal /l/ into [r]", raises=AssertionError,
 )
 def test_roma_rhotacism_l_to_r_before_consonant():
     """Rhotacism: /l/ → [r] before a consonant.
@@ -344,7 +344,7 @@ def test_roma_rhotacism_l_to_r_before_consonant():
 @pytest.mark.xfail(
     strict=True,
     reason="Romanesco cites -ND- → [nː]; engine produces [kwando] for quando — "
-    "the assimilation is not encoded",
+    "the assimilation is not encoded", raises=AssertionError,
 )
 def test_roma_nd_assimilates_to_geminate_n():
     """-ND- assimilates to the geminate [nː].
@@ -361,7 +361,7 @@ def test_roma_nd_assimilates_to_geminate_n():
 @pytest.mark.xfail(
     strict=True,
     reason="Romanesco cites -MB- → [mː]; engine produces [ɡamba] for gamba — "
-    "the assimilation is not encoded",
+    "the assimilation is not encoded", raises=AssertionError,
 )
 def test_roma_mb_assimilates_to_geminate_m():
     """-MB- assimilates to the geminate [mː].
@@ -378,7 +378,7 @@ def test_roma_mb_assimilates_to_geminate_m():
     strict=True,
     reason="Romanesco cites /dʒ/ → [dːʒ] intervocalically; engine produces "
     "[redʒna] for regina — the affricate is not strengthened, and the spec's "
-    "⟨gi⟩ digraph additionally swallows the following ⟨i⟩",
+    "⟨gi⟩ digraph additionally swallows the following ⟨i⟩", raises=AssertionError,
 )
 def test_roma_affricate_strengthening_intervocalic_dz():
     """Affricate strengthening: intervocalic /dʒ/ → [dːʒ].
@@ -413,7 +413,7 @@ def test_umbria_no_gorgia():
 @pytest.mark.xfail(
     strict=True,
     reason="Umbrian cites ND→nn; engine produces [kwando] for quando — the "
-    "assimilation is not encoded",
+    "assimilation is not encoded", raises=AssertionError,
 )
 def test_umbria_nd_assimilates():
     """ND → nn.
@@ -429,7 +429,7 @@ def test_umbria_nd_assimilates():
 @pytest.mark.xfail(
     strict=True,
     reason="Umbrian cites MB→mm; engine produces [ɡamba] for gamba — the "
-    "assimilation is not encoded",
+    "assimilation is not encoded", raises=AssertionError,
 )
 def test_umbria_mb_assimilates():
     """MB → mm.
@@ -455,7 +455,7 @@ def test_umbria_mb_assimilates():
     strict=True,
     reason="Abruzzese cites 'unstressed finals → [ə]'; engine produces [kane] "
     "for cane — no vowel-reduction rule fires, so the final vowel is the full "
-    "[e] of standard Italian",
+    "[e] of standard Italian", raises=AssertionError,
 )
 def test_abruzzo_final_vowel_reduces_to_schwa():
     """Very strong vowel reduction: unstressed final vowels → [ə].
@@ -484,7 +484,7 @@ def test_abruzzo_gemination_preserved():
 @pytest.mark.xfail(
     strict=True,
     reason="Abruzzese cites '/ʃ/ in consonant clusters'; engine produces "
-    "[stelːa] for stella — pre-consonantal /s/ is not retracted",
+    "[stelːa] for stella — pre-consonantal /s/ is not retracted", raises=AssertionError,
 )
 def test_abruzzo_s_retracts_to_esh_in_cluster():
     """/ʃ/ appears in consonant clusters — pre-consonantal /s/ retracts.
@@ -521,7 +521,7 @@ def test_calabria_tr_cluster_is_retroflex():
 @pytest.mark.xfail(
     strict=True,
     reason="Calabrian cites -LL-→[ɖː]; engine produces [belːo] for bello — the "
-    "retroflex geminate is in the allophone table but no rule maps ⟨ll⟩ to it",
+    "retroflex geminate is in the allophone table but no rule maps ⟨ll⟩ to it", raises=AssertionError,
 )
 def test_calabria_ll_is_retroflex_geminate():
     """Retroflex consonants: -LL- → [ɖː].
@@ -537,7 +537,7 @@ def test_calabria_ll_is_retroflex_geminate():
 @pytest.mark.xfail(
     strict=True,
     reason="Calabrian cites vowel reduction to [ə]; engine produces [kane] for "
-    "cane — no reduction rule fires",
+    "cane — no reduction rule fires", raises=AssertionError,
 )
 def test_calabria_unstressed_vowel_reduces_to_schwa():
     """Vowel reduction to [ə].
@@ -563,7 +563,7 @@ def test_calabria_unstressed_vowel_reduces_to_schwa():
 @pytest.mark.xfail(
     strict=True,
     reason="Apulian cites vowel reduction to [ə]; engine produces [kane] for "
-    "cane — no reduction rule fires, so Apulian is segmentally standard Italian",
+    "cane — no reduction rule fires, so Apulian is segmentally standard Italian", raises=AssertionError,
 )
 def test_puglia_unstressed_vowel_reduces_to_schwa():
     """Vowel reduction to [ə].
@@ -693,7 +693,7 @@ def test_la_archaic_ei_and_ou_diphthongs_still_distinct():
     strict=True,
     reason="la-x-archaic cites '/oj/ still distinct'; engine produces [poena] "
     "for poena — the ⟨oe⟩ (and ⟨ae⟩) digraph is absent from the archaic spec, "
-    "so the diphthong is spelled out as two vowels. Classical la gives [pojna]",
+    "so the diphthong is spelled out as two vowels. Classical la gives [pojna]", raises=AssertionError,
 )
 def test_la_archaic_oe_is_the_oj_diphthong():
     """The /oj/ diphthong is still distinct.
@@ -711,7 +711,7 @@ def test_la_archaic_oe_is_the_oj_diphthong():
     strict=True,
     reason="la-x-archaic lists no departure from la's '⟨v⟩ = [w]' yet the "
     "engine produces [ita] for vita — the ⟨v⟩ grapheme is missing from the "
-    "archaic spec and is DELETED outright. DATA BUG in la-x-archaic",
+    "archaic spec and is DELETED outright. DATA BUG in la-x-archaic", raises=AssertionError,
 )
 def test_la_archaic_v_is_still_the_glide():
     """⟨v⟩ is [w] — Old Latin does not depart from the Classical value.
@@ -770,7 +770,7 @@ def test_la_late_greek_aspirates_become_fricatives():
 @pytest.mark.xfail(
     strict=True,
     reason="la-x-late cites '/h/ effectively silent'; engine produces [hora] "
-    "for hora — the ⟨h⟩ still maps to a full [h], identical to Classical la",
+    "for hora — the ⟨h⟩ still maps to a full [h], identical to Classical la", raises=AssertionError,
 )
 def test_la_late_h_is_silent():
     """/h/ is effectively silent.
@@ -788,7 +788,7 @@ def test_la_late_h_is_silent():
     strict=True,
     reason="la-x-late cites the B/V merger; engine produces [wita] for vita and "
     "[bita] for bita — ⟨v⟩ is still the Classical glide [w] and is not merged "
-    "with ⟨b⟩ at all",
+    "with ⟨b⟩ at all", raises=AssertionError,
 )
 def test_la_late_b_and_v_merge():
     """B/V merger (betacism): ⟨v⟩ and ⟨b⟩ no longer contrast.
@@ -806,7 +806,7 @@ def test_la_late_b_and_v_merge():
 @pytest.mark.xfail(
     strict=True,
     reason="la-x-late cites /t/ + i + V → [tsʲ]; engine produces [natio] for "
-    "natio — the assibilation is not encoded",
+    "natio — the assibilation is not encoded", raises=AssertionError,
 )
 def test_la_late_ti_before_vowel_assibilates():
     """Palatalisation: /t/ + i + V → [tsʲ].
@@ -853,7 +853,7 @@ def test_la_italia_u_is_not_fronted():
 @pytest.mark.xfail(
     strict=True,
     reason="la-x-italia cites 'Final -s LOST'; engine produces [lupus] for "
-    "lupus — the final ⟨s⟩ survives, exactly as in Classical la",
+    "lupus — the final ⟨s⟩ survives, exactly as in Classical la", raises=AssertionError,
 )
 def test_la_italia_final_s_is_lost():
     """Final -s is LOST — Italian plurals go by vowel alternation, not -s.
@@ -872,7 +872,7 @@ def test_la_italia_final_s_is_lost():
     reason="la-x-italia cites k/g before e,i → [tʃ]/[dʒ]; engine produces "
     "[kentum] for centum and [ɡens] for gens — the palatalisation is not "
     "encoded, so Italo-Romance is more conservative here than its own parent "
-    "la-x-late, which at least reaches [kʲ]",
+    "la-x-late, which at least reaches [kʲ]", raises=AssertionError,
 )
 def test_la_italia_velar_palatalisation_to_affricate():
     """Palatalisation of k/g before e,i → [tʃ]/[dʒ].
@@ -943,7 +943,7 @@ def test_la_gallia_nasal_vowels_develop():
 @pytest.mark.xfail(
     strict=True,
     reason="la-x-gallia cites 'intervocalic stops → ∅'; engine produces [ripə] "
-    "for ripa — the intervocalic /p/ is not lenited at all, let alone deleted",
+    "for ripa — the intervocalic /p/ is not lenited at all, let alone deleted", raises=AssertionError,
 )
 def test_la_gallia_intervocalic_stop_deletes():
     """More aggressive lenition: intervocalic stops → ∅.
@@ -960,7 +960,7 @@ def test_la_gallia_intervocalic_stop_deletes():
     strict=True,
     reason="la-x-gallia cites 'Voiced /v/ preserved (not merged with /b/)'; "
     "engine produces [witə] for vita — ⟨v⟩ is still the Classical glide [w], so "
-    "there is no /v/ to preserve",
+    "there is no /v/ to preserve", raises=AssertionError,
 )
 def test_la_gallia_v_is_a_voiced_fricative():
     """Voiced /v/ is preserved, not merged with /b/.
@@ -996,7 +996,7 @@ def test_la_galloitalic_u_fronts_to_y():
     strict=True,
     reason="la-x-gallo-italic cites Degemination; engine produces [bella] for "
     "bella and [annys] for annus — the doubled consonant survives as two "
-    "segments, so the spec is not degeminated relative to la-x-italia [anːus]",
+    "segments, so the spec is not degeminated relative to la-x-italia [anːus]", raises=AssertionError,
 )
 def test_la_galloitalic_degemination():
     """Degemination — the La Spezia-Rimini hallmark.
@@ -1015,7 +1015,7 @@ def test_la_galloitalic_degemination():
     strict=True,
     reason="la-x-gallo-italic cites 'Nasal vowels'; engine produces [myrym] for "
     "murum — the final ⟨m⟩ surfaces as a full [m], where the sister spec "
-    "la-x-gallia, citing the same innovation, gives the nasalised [myrỹ]",
+    "la-x-gallia, citing the same innovation, gives the nasalised [myrỹ]", raises=AssertionError,
 )
 def test_la_galloitalic_nasal_vowels():
     """Nasal vowels develop.
@@ -1033,7 +1033,7 @@ def test_la_galloitalic_nasal_vowels():
     strict=True,
     reason="la-x-gallo-italic cites 'Final vowel loss/reduction'; engine "
     "produces [vita] for vita — the final vowel is the full Classical [a], "
-    "where the sister spec la-x-gallia reduces it to [ə] ([witə])",
+    "where the sister spec la-x-gallia reduces it to [ə] ([witə])", raises=AssertionError,
 )
 def test_la_galloitalic_final_vowel_reduces():
     """Final vowel loss/reduction.
@@ -1072,7 +1072,7 @@ def test_la_balkans_no_intervocalic_lenition():
     strict=True,
     reason="la-x-balkans cites intervocalic /l/ → /r/; engine produces [solem] "
     "for solem — the rhotacism is not encoded (the very change the note "
-    "illustrates with Romanian soare < SOLEM)",
+    "illustrates with Romanian soare < SOLEM)", raises=AssertionError,
 )
 def test_la_balkans_l_rhotacism():
     """Rhotacism: intervocalic /l/ → /r/.
@@ -1088,7 +1088,7 @@ def test_la_balkans_l_rhotacism():
 @pytest.mark.xfail(
     strict=True,
     reason="la-x-balkans cites labial palatalisation before front vowels; "
-    "engine produces [bene] for bene — the labial is plain",
+    "engine produces [bene] for bene — the labial is plain", raises=AssertionError,
 )
 def test_la_balkans_labial_palatalisation():
     """Labial palatalisation before front vowels.
@@ -1234,7 +1234,7 @@ def test_grc_geminates_are_phonemic():
     reason="grc cites rough breathing = [h] and word-initial /r/ = [r̥]; engine "
     "produces [odon] for ῥοδον — ⟨ῥ⟩ (rho with dasia, U+1FE5) is absent from "
     "the grapheme table, so BOTH the rhotic and its breathing are dropped. "
-    "DATA BUG in grc",
+    "DATA BUG in grc", raises=AssertionError,
 )
 def test_grc_initial_rho_is_voiceless():
     """Word-initial ⟨ῥ⟩ is the voiceless trill [r̥], with the rough breathing.
@@ -1263,8 +1263,8 @@ def test_etr_four_vowel_system_has_no_o():
     ⟨o⟩ maps to nothing, so no [o] can enter a transcription; ⟨u⟩ is the back
     vowel that carries the load (ruma).
     """
-    assert _t("etr", "o") == ""
-    assert _bare("etr", "ruma") == "ruma"
+    assert _t("ett-Latn", "o") == ""
+    assert _bare("ett-Latn", "ruma") == "ruma"
 
 
 @pytest.mark.xfail(
@@ -1272,7 +1272,7 @@ def test_etr_four_vowel_system_has_no_o():
     reason="etr cites 'aspirate stops prominent'; engine produces [efarie] for "
     "θefarie and [welur] for velθur — the transliteration grapheme ⟨θ⟩ is "
     "absent from the table and is DELETED, so the aspirated dental never "
-    "surfaces (⟨ph⟩ does give [pʰ]). DATA BUG in etr",
+    "surfaces (⟨ph⟩ does give [pʰ]). DATA BUG in etr", raises=AssertionError,
 )
 def test_etr_theta_is_an_aspirated_stop():
     """The aspirate stops are prominent — ⟨θ⟩ is the aspirated dental [tʰ].
@@ -1284,8 +1284,8 @@ def test_etr_theta_is_an_aspirated_stop():
     θefarie (the Etruscan name on the Praeneste fibula tradition) isolates it on
     the onset; the sister aspirate ⟨ph⟩ does surface as [pʰ] in phersu.
     """
-    assert _bare("etr", "θefarie").startswith("tʰ")
-    assert _bare("etr", "phersu").startswith("pʰ")
+    assert _bare("ett-Latn", "θefarie").startswith("tʰ")
+    assert _bare("ett-Latn", "phersu").startswith("pʰ")
 
 
 def test_xum_has_the_distinctive_sibilant():
@@ -1361,7 +1361,7 @@ def test_ht_hyphen_blocks_the_nasal_reading():
     reason="ht cites 'an ⟨n⟩+vowel sequence blocks the nasal reading'; engine "
     "produces [ãe] for ane — the ⟨an⟩ digraph is matched greedily even when the "
     "⟨n⟩ is the onset of the next syllable, so the blocker never applies (the "
-    "hyphen blocker does work). DATA BUG in ht",
+    "hyphen blocker does work). DATA BUG in ht", raises=AssertionError,
 )
 def test_ht_n_plus_vowel_blocks_the_nasal_reading():
     """An ⟨n⟩+vowel sequence blocks the nasal reading of ⟨an⟩.

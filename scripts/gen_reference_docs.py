@@ -1,19 +1,15 @@
 #!/usr/bin/env python3
 """Generate the reference pages from the code they describe.
 
-Four files are written from the source and never edited by hand:
+Two files are written from the source and never edited by hand:
 
 * ``docs/reference/api.md`` lists every name in ``orthography2ipa.__all__``,
   grouped by the module that defines it, with the first line of its docstring.
 * ``docs/reference/cli.md`` holds the ``--help`` output of the
   ``orthography2ipa`` command and of each subcommand.
-* ``llms.txt`` is the map of the repository for a language model, built from
-  the reading order of ``docs/index.md``. Of the language atlas it lists the
-  four indexes and the pages of the production specs.
-* ``llms-full.txt`` is the same map with every atlas page and its summary.
 
 Run it after changing a public name, a docstring summary, a CLI option or the
-documentation index::
+documentation index, which sets the footers::
 
     PYTHONPATH=$PWD python scripts/gen_reference_docs.py --write
     PYTHONPATH=$PWD python scripts/gen_reference_docs.py --check
@@ -28,7 +24,6 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import inspect
-import json
 import os
 import re
 import subprocess
@@ -39,9 +34,8 @@ from collections import defaultdict
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 API_PAGE = "docs/reference/api.md"
 CLI_PAGE = "docs/reference/cli.md"
-LLMS_TXT = "llms.txt"
-LLMS_FULL_TXT = "llms-full.txt"
 SUBCOMMANDS = ("list", "info", "transcribe", "distance", "validate")
+REFERENCE_CHECK = "`PYTHONPATH=$PWD python scripts/gen_reference_docs.py --check`"
 
 
 def _docs_nav():
@@ -98,6 +92,17 @@ def api_page(order: list[str]) -> str:
     lines = [
         "# Python API",
         "",
+        _docs_nav().agent_hint(
+            covers="every name that `orthography2ipa.__all__` exports, by "
+                   "module, with the first paragraph of its docstring",
+            source="`orthography2ipa/__init__.py` (`__all__`) and the docstring of "
+                   "each exported name",
+            generated="yes, by `scripts/gen_reference_docs.py`. Edit the "
+                      "docstring or the generator, not the page",
+            verify=REFERENCE_CHECK,
+            see="`docs/reference/api_stability.md`, "
+                "`docs/guide/getting_started.md`"),
+        "",
         "These are the names `import orthography2ipa` exports, from "
         "`orthography2ipa.__all__`. Each summary is the first paragraph of "
         "the docstring. Read the docstring itself for the parameters.",
@@ -140,6 +145,16 @@ def cli_page(order: list[str]) -> str:
     lines = [
         "# Command line",
         "",
+        _docs_nav().agent_hint(
+            covers="the `--help` output of the `orthography2ipa` command and "
+                   "of each of its subcommands",
+            source="`orthography2ipa/cli.py`",
+            generated="yes, by `scripts/gen_reference_docs.py`. Edit the "
+                      "argparse help in `orthography2ipa/cli.py` or the "
+                      "generator, not the page",
+            verify=REFERENCE_CHECK,
+            see="`docs/guide/getting_started.md`, `docs/reference/registry.md`"),
+        "",
         "The package installs one command, `orthography2ipa`. Each subcommand "
         "takes `--json` for output that a program can read. The blocks below "
         "are the real `--help` output. The top-level description prints the "
@@ -158,114 +173,11 @@ def cli_page(order: list[str]) -> str:
     return "\n".join(lines) + _docs_nav().footer("reference/cli.md", order)
 
 
-def llms_txt(order: list[str], full: bool = False) -> str:
-    """The language-model map. Without *full*, the atlas section lists only
-    the pages of the production specs and points to ``llms-full.txt``."""
-    nav = _docs_nav()
-    lines = [
-        "# orthography2ipa",
-        "",
-        "> Cited, per-language JSON specs that map spelling to IPA, a "
-        "language-agnostic engine that turns them into transcriptions and "
-        "ranked pronunciation lattices, and distance metrics that compare "
-        "languages on separate axes. No trained weights.",
-        "",
-        "Start with AGENTS.md before you change anything. Every spec is a "
-        "file in orthography2ipa/data/, and its fields are in "
-        "orthography2ipa/data/SCHEMA.md.",
-        "",
-        "## Entry points",
-        "",
-        "- [README](README.md): what the library does, install, quick start",
-        "- [AGENTS.md](AGENTS.md): repository map, setup, hard rules, "
-        "checklist before a push",
-        "- [Spec schema](orthography2ipa/data/SCHEMA.md): every JSON key the "
-        "loader reads",
-        "- [Python API](docs/reference/api.md): every exported name",
-        "- [Command line](docs/reference/cli.md): every subcommand",
-        "- [Scripts](scripts/README.md), [benchmarks](benchmarks/README.md), "
-        "[tests](tests/README.md): what each directory holds",
-        "",
-        "## Documentation, in reading order",
-        "",
-    ]
-    for rel in order:
-        if rel.startswith("languages/") and rel != "languages/index.md":
-            continue
-        lines.append(f"- [{nav._label(rel)}](docs/{rel})")
-    lines += [
-        "",
-        "## Language atlas",
-        "",
-        "- [Languages by family](docs/languages/by-family.md): every spec by "
-        "family path",
-        "- [Languages by region](docs/languages/by-region.md): every spec by "
-        "Glottolog macroarea and country",
-        "- [Languages by script](docs/languages/by-script.md): every spec by "
-        "script",
-        "- [Languages from A to Z](docs/languages/a-z.md): every spec by name",
-    ]
-    pages = _atlas_pages()
-    if full:
-        lines += [f"- [{nav._label(rel)}](docs/{rel}): {summary}"
-                  for rel, summary in pages]
-    else:
-        lines += [
-            f"- [Every language page]({LLMS_FULL_TXT}): this map with all "
-            f"{len(pages)} atlas pages, each with its summary",
-            "",
-            "## Production language pages",
-            "",
-        ]
-        production = _production_codes()
-        lines += [f"- [{nav._label(rel)}](docs/{rel}): {summary}"
-                  for rel, summary in pages
-                  if rel[len("languages/"):-len(".md")] in production]
-    lines += [
-        "",
-        "## Optional",
-        "",
-        "- [Per-language pages](docs/languages/index.md): phonology notes "
-        "for single languages and families",
-        "- [Changelog](CHANGELOG.md)",
-    ]
-    return "\n".join(lines) + "\n"
-
-
-def _atlas_pages() -> list[tuple[str, str]]:
-    """Each atlas page under ``docs/languages/`` with its generated summary."""
-    pages = []
-    pattern = re.compile(
-        r"<!-- atlas:summary begin -->\n(.*?)\n<!-- atlas:summary end -->", re.S)
-    folder = os.path.join(REPO_ROOT, "docs", "languages")
-    for name in sorted(os.listdir(folder)):
-        with open(os.path.join(folder, name), encoding="utf-8") as fh:
-            match = pattern.search(fh.read())
-        if match:
-            pages.append((f"languages/{name}", " ".join(match.group(1).split())))
-    return pages
-
-
-def _production_codes() -> set[str]:
-    """The codes of the specs at the production tier."""
-    folder = os.path.join(REPO_ROOT, "orthography2ipa", "data")
-    codes = set()
-    for name in os.listdir(folder):
-        if name.endswith(".json"):
-            with open(os.path.join(folder, name), encoding="utf-8") as fh:
-                raw = json.load(fh)
-            if raw.get("quality") == "production":
-                codes.add(raw["code"])
-    return codes
-
-
 def outputs() -> dict[str, str]:
     order = _docs_nav().reading_order()
     return {
         API_PAGE: api_page(order),
         CLI_PAGE: cli_page(order),
-        LLMS_TXT: llms_txt(order),
-        LLMS_FULL_TXT: llms_txt(order, full=True),
     }
 
 

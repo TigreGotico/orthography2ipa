@@ -510,6 +510,17 @@ PT_MARKS = "ˈ'"
 
 _AO = "Acordo Ortográfico 1990 (Portal da Língua Portuguesa text)"
 PT_AUTHORITY = {
+    "ba2004": (
+        "Barbosa & Albano 2004, Brazilian Portuguese, JIPA 34(2), p. 229: 'In "
+        "pre-stressed position, there is a ten-vowel phonetic contrast, where the "
+        "quality of the corresponding stressed vowel is roughly preserved'; 'In "
+        "post-stressed position, the variety studied here contrasts four oral "
+        "vowels', and ópera ends in [ɐ]. An oral pretonic /a/ is [a], and a final "
+        "unstressed /a/ is [ɐ]. The source of each row writes the same in most of "
+        "its pt-BR rows (one reading per row): Michaelis ends a word in ⟨a⟩ with "
+        "an unstressed [ɐ] 3,488 times and [a] 68 times; Wiktionary writes a "
+        "word-initial oral pretonic ⟨a⟩ as [a] 314 times and [ɐ] 51 times"
+    ),
     "accent": (
         _AO + ", Bases VIII, IX and XI: the acute and the circumflex are written "
         "on the stressed vowel, e.g. Base XI 1.º a 'árabe, cáustico, Cleópatra, "
@@ -565,6 +576,16 @@ PT_MOJIBAKE_AUTHORITY = (
     "the reading itself: 'Ã' is not an IPA symbol. It is the first byte of a "
     "two-byte UTF-8 character such as 'ã' (C3 A3) read as Latin-1"
 )
+PT_NOT_IPA = re.compile(r'[{}~"@ȷ0-9A-Z]')
+PT_NOT_IPA_REASON = (
+    "the reading is not IPA: a leaked wiki template or X-SAMPA notation; the "
+    "row is dropped"
+)
+PT_NOT_IPA_AUTHORITY = (
+    "the reading itself: {chars} is not an IPA symbol (IPA chart, revised to "
+    "2020); '{{{{AFI' opens the pt.wiktionary pronunciation template, and '\"', "
+    "'~' and the capital letters are X-SAMPA"
+)
 #: Hand-checked corrections of the ``ipa_narrow`` field:
 #: ``(word, region, source, original, corrected, kind, basis)``. ``corrected``
 #: ``None`` drops the source row. ``basis`` is a written accent letter, a key
@@ -572,6 +593,8 @@ PT_MOJIBAKE_AUTHORITY = (
 #: transcribes instead. ``scripts/build_gold_corrections.py`` checks every entry
 #: against the upstream file and stops on one that matches no row.
 PT_UNIFIED_DECISIONS: Tuple[Tuple[str, str, str, str, Optional[str], str, str], ...] = (
+    ("borguinhão", "pt-BR", "wiktionary", "boɹgoˈɲejs", None, "wrong_headword", "borgonhês: the reading has the stressed -ês [ejs] and -go- of that word, not the -guinhão of this one"),
+    ("vida", "pt-BR", "wiktionary", "ˈvita", None, "wrong_segment", "the reading has [t] for the ⟨d⟩ of the spelling"),
     ("Blátidas", "pt-PT", "infopedia", "blaˈtidɐʃ", "ˈblatidɐʃ", "accent_contradiction", "á"),
     ("abígeo", "pt-PT", "infopedia", "ɐbiˈʒju", "ɐˈbiʒju", "accent_contradiction", "í"),
     ("acridídeo", "pt-PT", "infopedia", "ɐkridiˈdju", "ɐkriˈdidju", "accent_contradiction", "í"),
@@ -728,6 +751,143 @@ PT_UNIFIED_DECISIONS: Tuple[Tuple[str, str, str, str, Optional[str], str, str], 
     ("peruíce", "pt-PT", "infopedia", "pɐrˈvwisə", None, "wrong_headword", "parvoíce: the reading has [v] and no [e] of pe-ru"),
     ("proxenético", "pt-PT", "infopedia", "prɔksəˈnɛtiku,prɔʃə", "prɔksəˈnɛtiku", "wrong_headword", "the second variant [prɔʃə] covers only proxe-"),
     ("psicadélico", "pt-BR", "wiktionary", "psɪkɐdeˈliɐ", None, "wrong_headword", "psicadelia: the reading ends in -ia, the word in -ico"),
+    ("Albânia", "pt-BR", "wiktionary", "ɐwˈbãnjɐ", "awˈbãnjɐ", "a_quality", "ba2004"),
+    ("América", "pt-BR", "michaelis", "aˈmɛɾika", "aˈmɛɾikɐ", "a_quality", "ba2004"),
+    ("Antártida", "pt-BR", "michaelis", "ãˈtaɾtida", "ãˈtaɾtidɐ", "a_quality", "ba2004"),
+    ("Mesoamérica", "pt-BR", "wiktionary", "mezoaˈmɛɾika", "mezoaˈmɛɾikɐ", "a_quality", "ba2004"),
+    ("Sena", "pt-BR", "michaelis", "ˈsena", "ˈsenɐ", "a_quality", "ba2004"),
+    ("Terra", "pt-BR", "wiktionary", "ˈtɛha", "ˈtɛhɐ", "a_quality", "ba2004"),
+    ("abacial", "pt-BR", "wiktionary", "ɐbɐsɪˈaw", "abasɪˈaw", "a_quality", "ba2004"),
+    ("abiogênese", "pt-BR", "wiktionary", "ɐbioˈʒenezi", "abioˈʒenezi", "a_quality", "ba2004"),
+    ("abolicionista", "pt-BR", "wiktionary", "abolisjoˈnista", "abolisjoˈnistɐ", "a_quality", "ba2004"),
+    ("acateco", "pt-BR", "wiktionary", "ɐkɐˈtɛku", "akaˈtɛku", "a_quality", "ba2004"),
+    ("acatitar", "pt-BR", "wiktionary", "ɐkɐʧiˈtaɾ", "akaʧiˈtaɾ", "a_quality", "ba2004"),
+    ("acerca", "pt-BR", "michaelis", "aˈseɾka", "aˈseɾkɐ", "a_quality", "ba2004"),
+    ("acerta", "pt-BR", "wiktionary", "ɐˈsɛɾtɐ", "aˈsɛɾtɐ", "a_quality", "ba2004"),
+    ("achara", "pt-BR", "wiktionary", "aˈʃaɾa", "aˈʃaɾɐ", "a_quality", "ba2004"),
+    ("acompanhante", "pt-BR", "wiktionary", "ɐkõpãˈɲãⁿʧɪ", "akõpãˈɲãⁿʧɪ", "a_quality", "ba2004"),
+    ("acérrimo", "pt-BR", "wiktionary", "ɐˈsɛxɪmʊ", "aˈsɛxɪmʊ", "a_quality", "ba2004"),
+    ("adido", "pt-BR", "wiktionary", "ɐˈʤidʊ", "aˈʤidʊ", "a_quality", "ba2004"),
+    ("adjudicar", "pt-BR", "wiktionary", "ɐdʒuʤiˈkaɾ", "adʒuʤiˈkaɾ", "a_quality", "ba2004"),
+    ("admire", "pt-BR", "wiktionary", "ɐʤiˈmiɾi", "aʤiˈmiɾi", "a_quality", "ba2004"),
+    ("adotar", "pt-BR", "wiktionary", "ɐdɔˈtaɾ", "adɔˈtaɾ", "a_quality", "ba2004"),
+    ("aduzir", "pt-BR", "wiktionary", "ɐdʊˈziɾ", "adʊˈziɾ", "a_quality", "ba2004"),
+    ("aforisma", "pt-BR", "wiktionary", "afoˈɾizma", "afoˈɾizmɐ", "a_quality", "ba2004"),
+    ("aforquilhar", "pt-BR", "wiktionary", "ɐfoɾkiˈʎaɾ", "afoɾkiˈʎaɾ", "a_quality", "ba2004"),
+    ("africânder", "pt-BR", "wiktionary", "ɐfɾɪˈkãⁿdeɾ", "afɾɪˈkãⁿdeɾ", "a_quality", "ba2004"),
+    ("ajaja", "pt-BR", "wiktionary", "ɐˈʒaʒɐ", "aˈʒaʒɐ", "a_quality", "ba2004"),
+    ("alativo", "pt-BR", "wiktionary", "ɐlɐˈʧivʊ", "alaˈʧivʊ", "a_quality", "ba2004"),
+    ("aleitar", "pt-BR", "wiktionary", "ɐlejˈtaɾ", "alejˈtaɾ", "a_quality", "ba2004"),
+    ("alpargata", "pt-BR", "michaelis", "awpaɾˈɡata", "awpaɾˈɡatɐ", "a_quality", "ba2004"),
+    ("alérgico", "pt-BR", "wiktionary", "ɐˈlɛɾʒɪkʊ", "aˈlɛɾʒɪkʊ", "a_quality", "ba2004"),
+    ("anagrama", "pt-BR", "michaelis", "anaˈɡɾama", "anaˈɡɾamɐ", "a_quality", "ba2004"),
+    ("anquinha", "pt-BR", "michaelis", "ɐnˈkiɲa", "ɐnˈkiɲɐ", "a_quality", "ba2004"),
+    ("apalpadela", "pt-BR", "michaelis", "apawpaˈdɛla", "apawpaˈdɛlɐ", "a_quality", "ba2004"),
+    ("apanhando", "pt-BR", "wiktionary", "ɐpãˈɲãⁿdʊ", "apãˈɲãⁿdʊ", "a_quality", "ba2004"),
+    ("aparecia", "pt-BR", "wiktionary", "ɐpɐɾeˈsiɐ", "apaɾeˈsiɐ", "a_quality", "ba2004"),
+    ("apartamento", "pt-BR", "wiktionary", "ɐpɐɾtɐˈmẽⁿtʊ", "apaɾtaˈmẽⁿtʊ", "a_quality", "ba2004"),
+    ("apesar", "pt-BR", "wiktionary", "ɐpeˈzaɾ", "apeˈzaɾ", "a_quality", "ba2004"),
+    ("apicultura", "pt-BR", "michaelis", "apikuwˈtuɾa", "apikuwˈtuɾɐ", "a_quality", "ba2004"),
+    ("aposentado", "pt-BR", "wiktionary", "ɐpozẽⁿˈtadʊ", "apozẽⁿˈtadʊ", "a_quality", "ba2004"),
+    ("aquemeneres", "pt-BR", "wiktionary", "ɐkemeˈneɾɪs", "akemeˈneɾɪs", "a_quality", "ba2004"),
+    ("aquemuneres", "pt-BR", "wiktionary", "ɐkemʊˈneɾɪs", "akemʊˈneɾɪs", "a_quality", "ba2004"),
+    ("aquemuneris", "pt-BR", "wiktionary", "ɐkemʊneˈɾɪs", "akemʊneˈɾɪs", "a_quality", "ba2004"),
+    ("aquemunéris", "pt-BR", "wiktionary", "ɐkemʊˈnɛɾɪs", "akemʊˈnɛɾɪs", "a_quality", "ba2004"),
+    ("arapuca", "pt-BR", "michaelis", "aɾaˈpuka", "aɾaˈpukɐ", "a_quality", "ba2004"),
+    ("arnica", "pt-BR", "michaelis", "aɾˈnika", "aɾˈnikɐ", "a_quality", "ba2004"),
+    ("aruaque", "pt-BR", "wiktionary", "ɐɾʊˈakɪ", "aɾʊˈakɪ", "a_quality", "ba2004"),
+    ("assincronia", "pt-BR", "wiktionary", "ɐsɪŋkɾoˈniɐ", "asɪŋkɾoˈniɐ", "a_quality", "ba2004"),
+    ("assumido", "pt-BR", "wiktionary", "ɐsʊˈmidʊ", "asʊˈmidʊ", "a_quality", "ba2004"),
+    ("astrólogo", "pt-BR", "wiktionary", "ɐsˈtɾɔlogʊ", "asˈtɾɔlogʊ", "a_quality", "ba2004"),
+    ("atando", "pt-BR", "wiktionary", "ɐˈtãⁿdʊ", "aˈtãⁿdʊ", "a_quality", "ba2004"),
+    ("ateia", "pt-BR", "wiktionary", "ɐˈtɛjɐ", "aˈtɛjɐ", "a_quality", "ba2004"),
+    ("atlante", "pt-BR", "wiktionary", "ɐˈtlãⁿʧɪ", "aˈtlãⁿʧɪ", "a_quality", "ba2004"),
+    ("autodefesa", "pt-BR", "michaelis", "awtodeˈfeza", "awtodeˈfezɐ", "a_quality", "ba2004"),
+    ("açougue", "pt-BR", "wiktionary", "ɐˈsowgɪ", "aˈsowgɪ", "a_quality", "ba2004"),
+    ("baitola", "pt-BR", "wiktionary", "bajˈtola", "bajˈtolɐ", "a_quality", "ba2004"),
+    ("banha", "pt-BR", "wiktionary", "ˈbãɲa", "ˈbãɲɐ", "a_quality", "ba2004"),
+    ("bazuca", "pt-BR", "wiktionary", "baˈzuka", "baˈzukɐ", "a_quality", "ba2004"),
+    ("beca", "pt-BR", "michaelis", "ˈbeka", "ˈbekɐ", "a_quality", "ba2004"),
+    ("bexiga", "pt-BR", "wiktionary", "beˈʃiga", "beˈʃigɐ", "a_quality", "ba2004"),
+    ("cela", "pt-BR", "wiktionary", "ˈsɛla", "ˈsɛlɐ", "a_quality", "ba2004"),
+    ("chibatada", "pt-BR", "wiktionary", "ʃibaˈtada", "ʃibaˈtadɐ", "a_quality", "ba2004"),
+    ("ciriguela", "pt-BR", "wiktionary", "siɾiˈgwɛla", "siɾiˈgwɛlɐ", "a_quality", "ba2004"),
+    ("copiosa", "pt-BR", "wiktionary", "kopiˈɔza", "kopiˈɔzɐ", "a_quality", "ba2004"),
+    ("cova", "pt-BR", "michaelis", "ˈkɔva", "ˈkɔvɐ", "a_quality", "ba2004"),
+    ("dalguma", "pt-BR", "wiktionary", "dawˈɡuma", "dawˈɡumɐ", "a_quality", "ba2004"),
+    ("defensiva", "pt-BR", "michaelis", "defẽˈsiva", "defẽˈsivɐ", "a_quality", "ba2004"),
+    ("diadema", "pt-BR", "wiktionary", "dʒiaˈdema", "dʒiaˈdemɐ", "a_quality", "ba2004"),
+    ("dilema", "pt-BR", "wiktionary", "dʒiˈlema", "dʒiˈlemɐ", "a_quality", "ba2004"),
+    ("dondoca", "pt-BR", "wiktionary", "dõˈdɔka", "dõˈdɔkɐ", "a_quality", "ba2004"),
+    ("empreitada", "pt-BR", "michaelis", "ẽpɾejˈtada", "ẽpɾejˈtadɐ", "a_quality", "ba2004"),
+    ("equidna", "pt-BR", "wiktionary", "eˈkidʒna", "eˈkidʒnɐ", "a_quality", "ba2004"),
+    ("fantasma", "pt-BR", "wiktionary", "fãˈtazma", "fãˈtazmɐ", "a_quality", "ba2004"),
+    ("faxineira", "pt-BR", "michaelis", "faʃiˈnejɾa", "faʃiˈnejɾɐ", "a_quality", "ba2004"),
+    ("figurinista", "pt-BR", "michaelis", "fiɡuɾiˈnista", "fiɡuɾiˈnistɐ", "a_quality", "ba2004"),
+    ("flamenguista", "pt-BR", "wiktionary", "flamẽjˈgista", "flamẽjˈgistɐ", "a_quality", "ba2004"),
+    ("fonema", "pt-BR", "michaelis", "foˈnema", "foˈnemɐ", "a_quality", "ba2004"),
+    ("fortaleza", "pt-BR", "wiktionary", "foɹtaˈleza", "foɹtaˈlezɐ", "a_quality", "ba2004"),
+    ("gamela", "pt-BR", "wiktionary", "gaˈmɛla", "gaˈmɛlɐ", "a_quality", "ba2004"),
+    ("grama", "pt-BR", "wiktionary", "ˈgɾãma", "ˈgɾãmɐ", "a_quality", "ba2004"),
+    ("grosa", "pt-BR", "wiktionary", "ˈgɾɔza", "ˈgɾɔzɐ", "a_quality", "ba2004"),
+    ("gráfica", "pt-BR", "michaelis", "ˈɡɾafika", "ˈɡɾafikɐ", "a_quality", "ba2004"),
+    ("gôndola", "pt-BR", "michaelis", "ˈɡõdola", "ˈɡõdolɐ", "a_quality", "ba2004"),
+    ("hinduísta", "pt-BR", "michaelis", "ĩduˈista", "ĩduˈistɐ", "a_quality", "ba2004"),
+    ("iluminada", "pt-BR", "wiktionary", "ilumiˈnada", "ilumiˈnadɐ", "a_quality", "ba2004"),
+    ("imensa", "pt-BR", "wiktionary", "iˈmẽsa", "iˈmẽsɐ", "a_quality", "ba2004"),
+    ("ioruba", "pt-BR", "wiktionary", "ioˈɾuba", "ioˈɾubɐ", "a_quality", "ba2004"),
+    ("iraquiana", "pt-BR", "wiktionary", "iɾakiˈɐ̃na", "iɾakiˈɐ̃nɐ", "a_quality", "ba2004"),
+    ("javalina", "pt-BR", "wiktionary", "ˌʒavaˈlina", "ˌʒavaˈlinɐ", "a_quality", "ba2004"),
+    ("javalina", "pt-BR", "michaelis", "ʒavaˈlina", "ʒavaˈlinɐ", "a_quality", "ba2004"),
+    ("lagarta", "pt-BR", "wiktionary", "laˈgaɹta", "laˈgaɹtɐ", "a_quality", "ba2004"),
+    ("lixeira", "pt-BR", "michaelis", "liˈʃejɾa", "liˈʃejɾɐ", "a_quality", "ba2004"),
+    ("lágrima", "pt-BR", "wiktionary", "ˈlagɾima", "ˈlagɾimɐ", "a_quality", "ba2004"),
+    ("machista", "pt-BR", "michaelis", "maˈʃista", "maˈʃistɐ", "a_quality", "ba2004"),
+    ("macromolécula", "pt-BR", "wiktionary", "makɾomoˈlɛkula", "makɾomoˈlɛkulɐ", "a_quality", "ba2004"),
+    ("madeira", "pt-BR", "michaelis", "maˈdejɾa", "maˈdejɾɐ", "a_quality", "ba2004"),
+    ("manauara", "pt-BR", "wiktionary", "manawˈwaɾa", "manawˈwaɾɐ", "a_quality", "ba2004"),
+    ("medusa", "pt-BR", "michaelis", "meˈduza", "meˈduzɐ", "a_quality", "ba2004"),
+    ("mexerica", "pt-BR", "wiktionary", "meʃeˈɾika", "meʃeˈɾikɐ", "a_quality", "ba2004"),
+    ("microempresa", "pt-BR", "michaelis", "mikɾoẽˈpɾeza", "mikɾoẽˈpɾezɐ", "a_quality", "ba2004"),
+    ("morsa", "pt-BR", "wiktionary", "ˈmɔɹsa", "ˈmɔɹsɐ", "a_quality", "ba2004"),
+    ("motocicleta", "pt-BR", "wiktionary", "ˌmɔtosiˈklɛta", "ˌmɔtosiˈklɛtɐ", "a_quality", "ba2004"),
+    ("máxima", "pt-BR", "michaelis", "ˈmasima", "ˈmasimɐ", "a_quality", "ba2004"),
+    ("oferenda", "pt-BR", "michaelis", "ofeˈɾẽda", "ofeˈɾẽdɐ", "a_quality", "ba2004"),
+    ("oficina", "pt-BR", "michaelis", "ofiˈsina", "ofiˈsinɐ", "a_quality", "ba2004"),
+    ("padroeira", "pt-BR", "michaelis", "padɾoˈejɾa", "padɾoˈejɾɐ", "a_quality", "ba2004"),
+    ("palafita", "pt-BR", "wiktionary", "palaˈfita", "palaˈfitɐ", "a_quality", "ba2004"),
+    ("perna", "pt-BR", "wiktionary", "ˈpɛɹna", "ˈpɛɹnɐ", "a_quality", "ba2004"),
+    ("pescada", "pt-BR", "michaelis", "pesˈkada", "pesˈkadɐ", "a_quality", "ba2004"),
+    ("pira", "pt-BR", "michaelis", "ˈpiɾa", "ˈpiɾɐ", "a_quality", "ba2004"),
+    ("pocilga", "pt-BR", "wiktionary", "poˈsiwga", "poˈsiwgɐ", "a_quality", "ba2004"),
+    ("porra", "pt-BR", "michaelis", "ˈpoʁa", "ˈpoʁɐ", "a_quality", "ba2004"),
+    ("porrada", "pt-BR", "michaelis", "poˈʁada", "poˈʁadɐ", "a_quality", "ba2004"),
+    ("prateleira", "pt-BR", "michaelis", "pɾateˈlejɾa", "pɾateˈlejɾɐ", "a_quality", "ba2004"),
+    ("quadratura", "pt-BR", "michaelis", "kwadɾaˈtuɾa", "kwadɾaˈtuɾɐ", "a_quality", "ba2004"),
+    ("quatrocentista", "pt-BR", "michaelis", "kwatɾosẽˈtista", "kwatɾosẽˈtistɐ", "a_quality", "ba2004"),
+    ("quinta", "pt-BR", "michaelis", "ˈkĩta", "ˈkĩtɐ", "a_quality", "ba2004"),
+    ("racha", "pt-BR", "wiktionary", "ˈχaʃa", "ˈχaʃɐ", "a_quality", "ba2004"),
+    ("rizicultura", "pt-BR", "wiktionary", "χizikuwˈtuɾa", "χizikuwˈtuɾɐ", "a_quality", "ba2004"),
+    ("romãzeira", "pt-BR", "wiktionary", "χomãˈzejɾa", "χomãˈzejɾɐ", "a_quality", "ba2004"),
+    ("salsa", "pt-BR", "wiktionary", "ˈsawsa", "ˈsawsɐ", "a_quality", "ba2004"),
+    ("sarça", "pt-BR", "wiktionary", "ˈsaɹsa", "ˈsaɹsɐ", "a_quality", "ba2004"),
+    ("tartaruga", "pt-BR", "wiktionary", "taɹtaˈɾuga", "taɹtaˈɾugɐ", "a_quality", "ba2004"),
+    ("taturana", "pt-BR", "wiktionary", "tatuˈɾãna", "tatuˈɾãnɐ", "a_quality", "ba2004"),
+    ("taxista", "pt-BR", "wiktionary", "takˈsista", "takˈsistɐ", "a_quality", "ba2004"),
+    ("toga", "pt-BR", "michaelis", "ˈtoɡa", "ˈtoɡɐ", "a_quality", "ba2004"),
+    ("tortura", "pt-BR", "michaelis", "toɾˈtuɾa", "toɾˈtuɾɐ", "a_quality", "ba2004"),
+    ("trama", "pt-BR", "michaelis", "ˈtɾɐma", "ˈtɾɐmɐ", "a_quality", "ba2004"),
+    ("triticultura", "pt-BR", "wiktionary", "tɾitʃikuwˈtuɾa", "tɾitʃikuwˈtuɾɐ", "a_quality", "ba2004"),
+    ("têmpora", "pt-BR", "michaelis", "ˈtẽpoɾa", "ˈtẽpoɾɐ", "a_quality", "ba2004"),
+    ("ufa", "pt-BR", "michaelis", "ˈufa", "ˈufɐ", "a_quality", "ba2004"),
+    ("ultravioleta", "pt-BR", "wiktionary", "ˌuwtɾavioˈleta", "ˌuwtɾavioˈletɐ", "a_quality", "ba2004"),
+    ("verbena", "pt-BR", "michaelis", "veɾˈbena", "veɾˈbenɐ", "a_quality", "ba2004"),
+    ("vietnamita", "pt-BR", "michaelis", "vietnaˈmita", "vietnaˈmitɐ", "a_quality", "ba2004"),
+    ("vina", "pt-BR", "wiktionary", "ˈvina", "ˈvinɐ", "a_quality", "ba2004"),
+    ("vitícola", "pt-BR", "michaelis", "viˈtikola", "viˈtikolɐ", "a_quality", "ba2004"),
+    ("vírgula", "pt-BR", "michaelis", "ˈviɾɡula", "ˈviɾɡulɐ", "a_quality", "ba2004"),
+    ("xoxota", "pt-BR", "wiktionary", "ʃoˈʃɔta", "ʃoˈʃɔtɐ", "a_quality", "ba2004"),
+    ("África", "pt-BR", "michaelis", "ˈafɾika", "ˈafɾikɐ", "a_quality", "ba2004"),
 )
 
 
@@ -857,6 +1017,9 @@ def pt_broad_from_narrow(broad: str, narrow: str) -> Optional[str]:
 def _pt_authority(kind: str, basis: str, word: str, region: str) -> str:
     if kind == "wrong_headword":
         text = f"the orthography of ⟨{word}⟩ against the reading"
+    elif kind == "wrong_segment":
+        text = (f"the orthography of ⟨{word}⟩ against the reading; the Michaelis "
+                f"row of the same word and region reads the letter as the spelling does")
     elif basis in PT_AUTHORITY:
         text = PT_AUTHORITY[basis]
     else:
@@ -872,8 +1035,13 @@ def _pt_reason(kind: str, basis: str, original: str, corrected: Optional[str]) -
     if kind == "wrong_headword":
         what = "the row is dropped" if corrected is None else "that variant is dropped"
         return f"the reading transcribes another headword, {basis}; {what}"
+    if kind == "wrong_segment":
+        return f"{basis}; the row is dropped"
     if kind == "missing_mark":
         return "the reading has no primary stress mark; the mark is added"
+    if kind == "a_quality":
+        return ("an oral pretonic [ɐ] or a final unstressed [a] contradicts the "
+                "vowel quality of the variety; [a] and [ɐ] are swapped there")
     if kind == "unaccented_stress":
         return "the primary stress mark is on a syllable the spelling does not stress"
     return "the primary stress mark contradicts the written accent"
@@ -957,6 +1125,10 @@ def build_pt_unified_rows(rows: List[Dict]) -> Tuple[List[Dict], Dict[str, int]]
         if "Ã" in row["ipa_narrow"]:
             emit(row, "ipa_narrow", row["ipa_narrow"], None, "mojibake",
                  PT_MOJIBAKE_REASON, PT_MOJIBAKE_AUTHORITY)
+        elif PT_NOT_IPA.search(row["ipa_narrow"]):
+            chars = ", ".join(f"'{c}'" for c in sorted(set(PT_NOT_IPA.findall(row["ipa_narrow"]))))
+            emit(row, "ipa_narrow", row["ipa_narrow"], None, "not_ipa",
+                 PT_NOT_IPA_REASON, PT_NOT_IPA_AUTHORITY.format(chars=chars))
     out.sort(key=lambda r: (r["word"], r["region"], r["source"], r["pos"],
                             r["field"], r["original_reading"]))
     stats["overlay_rows"] = len(out)

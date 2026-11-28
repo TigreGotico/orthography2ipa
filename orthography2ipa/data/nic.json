@@ -1,7 +1,7 @@
 {
   "code": "nic",
   "name": "Niger-Congo (family node)",
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "script": "Latin",
   "graphemes": {},
   "allophones": {},
@@ -9,7 +9,6 @@
   "quality": "stub",
   "script_type": "alphabet",
   "iso639_3": null,
-  "glottolog_code": "atla1278",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Niger%E2%80%93Congo_languages"
   ],
@@ -29,7 +28,6 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Niger%E2%80%93Congo_languages"
     }
   ],
-  "wikidata_qid": "Q33838",
   "location": {
     "latitude": 9.740652,
     "longitude": -8.642392,

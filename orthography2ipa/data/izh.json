@@ -5,8 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "izh",
-  "glottolog_code": "ingr1248",
-  "wikidata_qid": "Q35553",
   "graphemes_base": "fi",
   "graphemes": {
     "š": [
@@ -70,7 +68,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Ingrian_language"
   ],
-  "parent": "x-clade-finn1317",
+  "inherits": "x-clade-finn1317",
   "ancestors": [
     {
       "code": "x-clade-finn1317",

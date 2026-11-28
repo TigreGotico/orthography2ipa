@@ -2,7 +2,7 @@
   "code": "gl-ES-x-occident",
   "name": "Western Galician",
   "script": "Latin",
-  "parent": "gl-ES",
+  "inherits": "gl-ES",
   "graphemes_base": "gl-ES",
   "allophones_base": "gl-ES",
   "positional_graphemes_base": "gl-ES",
@@ -108,7 +108,6 @@
     "start_year": 1300,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "glg",
   "quality": "research",
   "location": {

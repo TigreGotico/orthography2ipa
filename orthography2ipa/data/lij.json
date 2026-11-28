@@ -575,7 +575,7 @@
     "stress_mark": "ˈ",
     "notes": "Stress per the Académia Ligùstica do Brénno grafia ofiçiâ. The default position is paroxytone (penultimate), as in most Gallo-Italic. Any orthographically accented vowel (grave à è ì ò ù, acute é ó, circumflex â ê î ô û, diaeresis ä ë ï ö ü, and the ligature æ) marks the stressed syllable and always wins; the circumflex and diaeresis additionally encode vowel length. This is an orthographic-encoding simplification: the grafia writes the accent precisely so stress is recoverable from the spelling."
   },
-  "parent": "la-x-gallo-italic",
+  "inherits": "la-x-gallo-italic",
   "ancestors": [
     {
       "code": "la-x-gallo-italic",
@@ -681,8 +681,6 @@
     "start_year": 1300,
     "end_year": null
   },
-  "glottolog_code": "ligu1248",
-  "wikidata_qid": "Q36106",
   "phoible_id": "ligu1248",
   "wals_code": "itg",
   "location": {

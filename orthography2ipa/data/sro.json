@@ -18,7 +18,7 @@
       "ɣ"
     ]
   },
-  "parent": "sc",
+  "inherits": "sc",
   "ancestors": [
     {
       "code": "sc",
@@ -72,9 +72,7 @@
     "start_year": 1000,
     "end_year": null
   },
-  "glottolog_code": "camp1261",
   "iso639_3": "sro",
-  "wikidata_qid": "Q35348",
   "phoible_id": "camp1261",
   "location": {
     "latitude": 39.0566,

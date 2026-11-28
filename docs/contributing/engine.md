@@ -1,5 +1,13 @@
 # Engine changes
 
+<!-- agent-hint
+covers: the rules for a change to the engine code and the review gate that each such change passes
+source: orthography2ipa/*.py, orthography2ipa/ir/, orthography2ipa/revision.py:ENGINE_MODULES, scripts/check_engine_agnostic.py
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py "tests/test_docs_hint_sources.py::test_hint_sources_exist[docs/contributing/engine.md]"`
+see: docs/engine/architecture.md, docs/contributing/behaviour_is_data.md, docs/reference/api_stability.md
+-->
+
 This page gives the rules for a change to the engine, the Python code in
 `orthography2ipa/`, and the review gate that every such change passes.
 [architecture.md](../engine/architecture.md) describes how the engine works
@@ -13,6 +21,13 @@ needs a behaviour that the engine cannot express, add a generic capability,
 such as a context class or a rule field. Then use it from the data.
 Never special-case the language in code, and never fake the capability by
 enumerating data.
+
+Tag resolution in `registry.py` is the one exception. It maps a tag to a
+spec before any transcription runs, and holds named fallbacks: `fr` regions
+without a spec read as the motherland variety, a Bosnian Cyrillic tag reads
+as `bs`, and an Arabic region that no Arabic spec names reads as `ar`.
+
+The same rule holds in the IR, with one difference. The compiler in `orthography2ipa/ir/compiler.py` may hold a table of language facts, because it writes data. The interpreters may not, and `scripts/check_engine_agnostic.py` refuses a language code, a script name or a family name in them. [behaviour_is_data.md](behaviour_is_data.md) gives the rules for the IR and the checks.
 
 A closed set in engine code is allowed only when it is a cross-linguistic
 class with a citation at the constant. The transparent-suffix graphemes in
@@ -91,4 +106,4 @@ No linter or type checker runs in CI. The code uses
 follows that style.
 
 ---
-[← Board regeneration](board.md) · [Home](../index.md) · [Silver IPA correction →](silver_correction.md)
+[← Board regeneration](board.md) · [Home](../index.md) · [Behaviour is data →](behaviour_is_data.md)

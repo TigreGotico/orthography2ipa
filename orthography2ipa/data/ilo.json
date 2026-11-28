@@ -4,7 +4,7 @@
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "graphemes": {
     "a": [
       "a"
@@ -158,7 +158,6 @@
   },
   "notes": "Ilocano (Iloko / Pagsasao nga Ilokano) — Northern Philippine (Austronesian) language of Luzon. Latin orthography; the digraph ⟨ng⟩ is a single letter /ŋ/. Native morphemes write /u/ as ⟨o⟩ in the ultima and ⟨u⟩ elsewhere, so ⟨o⟩ is ambiguous between /o/ and /u/. ⟨e⟩ is /ɛ~e/ in the nuclear dialects and loanwords but /ɯ/ in native words in non-nuclear dialects. ⟨r⟩ is a tap /ɾ/, ⟨rr⟩ a trill /r/. Unstressed /a/ is [ɐ] outside final syllables; /i/ and /u/ glide to [j]/[w] before another vowel. Glottal stop is phonemic but generally unwritten (⟨'⟩ / hyphen where marked).",
   "iso639_3": "ilo",
-  "glottolog_code": "ilok1237",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Ilocano_language",
     "https://ilo.wikipedia.org/wiki/Pagsasao_nga_Ilokano"

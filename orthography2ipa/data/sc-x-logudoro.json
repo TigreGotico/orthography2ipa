@@ -10,7 +10,7 @@
       "θ"
     ]
   },
-  "parent": "sc",
+  "inherits": "sc",
   "notes": "Logudorese Sardinian. The MOST archaic variety, spoken in north-central Sardinia. Less lenition than Campidanese, preserves intervocalic voiceless stops more consistently. Often cited as the closest living language to Latin.",
   "quality": "skeleton",
   "script_type": "alphabet",
@@ -55,9 +55,7 @@
     "start_year": 1000,
     "end_year": null
   },
-  "glottolog_code": "logu1236",
   "iso639_3": "src",
-  "wikidata_qid": "Q777974",
   "location": {
     "latitude": 40.49,
     "longitude": 9.09957,

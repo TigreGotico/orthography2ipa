@@ -53,7 +53,6 @@
  },
  "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "spo",
- "glottolog_code": "spok1245",
  "sources": [
   {
    "id": "glottolog2024",
@@ -82,7 +81,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-sali1255",
+ "inherits": "x-clade-sali1255",
  "phonemes": [
   "h",
   "j",

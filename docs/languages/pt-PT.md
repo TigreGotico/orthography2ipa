@@ -1,5 +1,13 @@
 # European Portuguese (pt-PT)
 
+<!-- agent-hint
+covers: what the European Portuguese spec models, which field holds each process and the transcription of each example
+source: `orthography2ipa/data/pt-PT.json`, `orthography2ipa/data/pt-PT-x-medieval.json`, `tests/test_pt_pt_allophony.py`, `tests/test_pt_coda_l.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -c 'import re,sys;from orthography2ipa import transcribe as t;c,p=sys.argv[1:];r=[(w,f) for l in open(p,encoding="utf-8") if l[:1]=="|" for w,f in re.findall(r"\x60([^\x60]+)\x60 \[([^]]+)\]",l) if " " not in w];b=[x for x in r if t(x[0],c)!=x[1]];print(len(r),b);sys.exit(bool(b) or not r)' pt-PT docs/languages/pt-PT.md`
+see: `docs/languages/pt-PT-dialects.md`, `docs/engine/allophony.md`, `docs/languages/pt-BR.md`
+-->
+
 | Field | Value |
 |:---|:---|
 | Code | `pt-PT` |
@@ -37,7 +45,7 @@ Reduction is the most diagnostic EP feature. Unstressed vowels raise or move to 
 
 The positional rows of ⟨a⟩, ⟨e⟩ and ⟨o⟩ carry the reduction. They are `nucleus_stressed`, `nucleus_unstressed`, `pretonic` and `word_final`, plus `posttonic` for ⟨a⟩. Each row sets the vowel by stress and position. The `allophone_rules` layer does not repeat the reduction, because a second rule for the same change would never fire.
 
-Speakers often delete a word-final [ɨ]. The spec writes the vowel in most contexts. The sandhi rule `PT_ELISION` deletes it when the next word starts with [a e i o u ɛ ɔ]: `norte e` gives [ˈnɔɾt i]. The engine applies this rule by default. A next word that starts with [ɐ] or a stress mark keeps the vowel: `de amor` gives [dɨ ɐˈmoɾ], and `de ouro` gives [dɨ ˈoɾu]. A word exception maps the conjunction `e` to [i].
+Speakers often delete a word-final [ɨ]. The spec writes the vowel in most contexts. The sandhi rule `PT_ELISION` deletes it when the next word starts with [a e i o u ɛ ɔ]: `norte e` gives [ˈnɔɾt i]. The engine applies this rule by default. The word that loses the vowel must carry a primary or secondary stress mark. Final-vowel fall applies only at the edge of a prosodic word inside a prosodic word group (Paulino 2016: 9, reporting Vigário 2003 and 2010). The first element of a compound is a prosodic word, so `verde-escuro` gives [ˌvɛɾd iʃˈkuɾu]. A proclitic has no lexical stress, so it keeps the vowel: `que o` gives [kɨ u]. The same page says that an enclitic joins the prosodic word of its host (`come-o`). The engine writes a hyphenated enclitic as a separate word with no stress mark, so `sinto-me estranho` keeps the [ɨ] of `me`. This is a known gap. A next word that starts with [ɐ] or a stress mark also keeps the vowel: `de amor` gives [dɨ ɐˈmoɾ], and `de ouro` gives [dɨ ˈoɾu]. A word exception maps the conjunction `e` to [i].
 
 ### Unstressed vowels before a coda ⟨l⟩
 
@@ -78,6 +86,16 @@ A word-initial unstressed ⟨e⟩ before a coda sibilant is [i]. `PT_INITIAL_ES_
 The vowel can drop. Vázquez writes "pode desaparecer, p. ex. [iʃˈtaɾ / ʃˈtaɾ]" (p. 265), and Teyssier (1989: 28, quoted on Vázquez's p. 244) writes "o [i] quase não se ouve". Mateus & d'Andrade (1998: 26) state that the vowel is deleted before a coda /S/. Cruz-Ferreira (1999: 130) writes `todo o esplendor` as ['todu ʃplẽ'dor], a narrow transcription of connected speech. The spec writes the vowel and does not model the drop.
 
 The rule stays off for double ⟨ss⟩, for a stressed ⟨e⟩, and for ⟨es⟩ before a vowel. A stressed ⟨e⟩ keeps its reading: `este` [ˈeʃtɨ]. Before ⟨ss⟩ or ⟨s⟩ and a vowel the first syllable is open, so the rules of the next section apply: `essência` [iˈsẽsiɐ], `esotérico` [izuˈtɛɾiku]. Initial ⟨ex⟩ has a separate reading.
+
+## Word-initial ⟨ex⟩ before a vowel
+
+A word-initial ⟨ex⟩ before a vowel writes [z] for the ⟨x⟩. `PT_INITIAL_EX_VOICED` gives `exame` [eˈzɐmɨ], `existir` [eziʃˈtiɾ], `êxito` [ˈezitu] and `exótico` [eˈzɔtiku]. The Portal da Língua Portuguesa Dicionário fonético (ILTEC, Lisbon variety) writes the same consonant: `exame` [i.zˈɐ.mɨ], `exato` [i.zˈa.tu], `existir` [i.ziʃ.tˈiɾ], `exótico` [i.zˈɔ.ti.ku]. The rule needs the ⟨e⟩ at the word start. ⟨ex⟩ before a consonant is [ejʃ] and is not matched (`texto` [ˈtejʃtu]). ⟨exh⟩ and ⟨hex⟩ are not matched either.
+
+The prefix ⟨ex⟩ inside a word (`inexato`, `coexistir`, `ex-presidente`) and the [ks] of `sexo` need a morphological rule that this rule does not cover. The Portal gives `inexato` [i.ni.zˈa.tu], `coexistir` [kwi.ziʃ.tˈiɾ] and `sexo` [sˈɛk.su].
+
+The Portal writes the initial vowel as [i], and the spec writes [e] (Lisbon [ɐ]). No rule here covers that vowel, so it stays as it was.
+
+pt-AO, pt-MZ and pt-TL apply the same rule. The Portal pages for Luanda, Maputo and Díli write [z] in `exame`, `existir`, `exato`, `êxito`, `exótico` and `exemplo`.
 
 ## Word-initial ⟨e⟩
 
@@ -248,8 +266,8 @@ A word-final coda /s/ is [ʃ] alone and before a voiceless consonant. Across a w
 
 | Rule id | Context | Value | Example |
 |:---|:---|:---|:---|
-| `PT_FINAL_S_PREVOCALIC_VOICE` | `…s#` + `#V…` | [z] | `estás a ver` [iʃˈtaz ɐ ˈveɾ], `os amigos` [oz ɐˈmiɡuʃ] |
-| `PT_CODA_S_VOICING` | `…s#` + `#[voiced C]…` | [ʒ] | `estás bem` [iʃˈtaʒ ˈbɐ̃j̃], `as bocas` [ɐʒ ˈbɔkɐʃ], `os dois` [oʒ ˈdojʃ] |
+| `PT_FINAL_S_PREVOCALIC_VOICE` | `…s#` + `#V…` | [z] | `estás a ver` [iʃˈtaz ɐ ˈveɾ], `os amigos` [uz ɐˈmiɡuʃ] |
+| `PT_CODA_S_VOICING` | `…s#` + `#[voiced C]…` | [ʒ] | `estás bem` [iʃˈtaʒ ˈbɐ̃j̃], `as bocas` [ɐʒ ˈbɔkɐʃ], `os dois` [uʒ ˈdojʃ] |
 | `PT_CODA_S_BEFORE_ZH` | `…Vs#` + `#ʒ…` | deleted | `mais giro` [ˈmaj ˈʒiɾu], `as janelas` [ɐ ʒɐˈnɛlɐʃ] |
 
 Before a vowel, the final sibilant joins the next syllable and is voiced to the alveolar [z]. Before a voiced consonant, it takes the voicing of that consonant and is the post-alveolar [ʒ] (Mateus & d'Andrade 2000, ch. 2). Before a voiceless consonant it stays [ʃ]: `estás feliz` [iʃˈtaʃ fɨˈliʃ]. A single word does not change: `estás` [iʃˈtaʃ].
@@ -275,6 +293,8 @@ WikiPron writes the EP coda /l/ as a plain [l]. So `PT_CODA_L_DARK` disagrees wi
 ## Other notes
 
 Portuguese keeps the /v/ and /b/ distinction, which Castilian lost: `vinho` [ˈviɲu], `bebe` [ˈbɛbɨ]. The nasal vowels and nasal diphthongs (⟨ão ãe õe⟩) are diagnostic, and they drive the placement of final stress.
+
+A doubled consonant letter in a loan reads as one consonant, because the spec sets `collapse_geminates`. So `lobby` is [ˈlɔbi] and `hobby` is [ˈɔbi], as Priberam gives them (|lóbi|, |óbi|). The pass merges only two identical consonants. In ⟨sc⟩ the coda [ʃ] differs from the [s] after it, so `nascer` [nɐʃˈseɾ] keeps both.
 
 ---
 [← Pyrenean-valley Aragonese subdialects](an-valleys.md) · [Home](../index.md) · [European Portuguese dialects →](pt-PT-dialects.md)

@@ -34,7 +34,7 @@
     "u": ["u"],
     "y": ["ɤ"]
   },
-  "parent": "x-clade-nucl1710",
+  "inherits": "x-clade-nucl1710",
   "ancestors": [
     {
       "code": "x-clade-nucl1710",
@@ -45,7 +45,6 @@
   ],
   "notes": "Macro-Je language of southern Brazil, Latin orthography. The letters m/n/nh/g denote the nasal-consonant series whose oral and prestopped allophones ([m~b], [n~d], [ɲ~ɟ], [ŋ~ɡ]) are conditioned by adjacent vowel nasality and are not written; the nasal phonemic value is mapped. Note that g is the velar nasal, not a plosive, and s is realized as a palatal fricative. Vowel nasality is written with a tilde. Stress (tending to the final syllable) and the oral/prestopped allophony are left unencoded, raising the PER floor.",
   "iso639_3": "kgp",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "kgp_glottolog",

@@ -4,7 +4,7 @@
   "script": "Devanagari",
   "graphemes": {},
   "allophones": {},
-  "parent": "sa",
+  "inherits": "sa",
   "ancestors": [
     {
       "code": "sa",
@@ -41,8 +41,6 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "raja1256",
-  "wikidata_qid": "Q13196",
   "location": {
     "latitude": 26.9124,
     "longitude": 75.7873,

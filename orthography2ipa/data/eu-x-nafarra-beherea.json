@@ -22,8 +22,7 @@
       "h"
     ]
   },
-  "parent": "eu",
-  "glottolog_code": null,
+  "inherits": "eu",
   "ancestors": [
     {
       "code": "eu",

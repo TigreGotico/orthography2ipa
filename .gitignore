@@ -21,6 +21,7 @@ MANIFEST
 coverage.xml
 htmlcov/
 .benchmark_cache/
+ir-parity-reports/
 
 # scripts/compare_systems.py fair-comparison 2x2: GPL-derived espeak-ng data
 # (rules-only compiled dicts, and o2i_lex's word->IPA cache) — comparison
@@ -49,3 +50,7 @@ docs/explorer.html
 
 # No lockfiles: dependencies are floor pins resolved at install time.
 uv.lock
+
+# Compiled IR documents: built at release by scripts/build_ir_cache.py.
+orthography2ipa/ir/precompiled/
+.ircache-test/

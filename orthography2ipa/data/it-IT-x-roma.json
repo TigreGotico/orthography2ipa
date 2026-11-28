@@ -166,7 +166,7 @@
       "dːz"
     ]
   },
-  "parent": "it-IT",
+  "inherits": "it-IT",
   "ancestors": [
     {
       "code": "it-IT",
@@ -228,9 +228,7 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "ita",
-  "wikidata_qid": "Q1231625",
   "location": {
     "latitude": 41.893056,
     "longitude": 12.482778,

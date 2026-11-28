@@ -1,5 +1,13 @@
 # Interlingue (Occidental) (`ie`)
 
+<!-- agent-hint
+covers: what the `ie` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ie.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Interlingue (Occidental) is a Constructed language, written in the Latin script. The `ie` spec is at the research tier. It cites 3 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -27,7 +35,7 @@ The notes of the spec file open with these words:
 
 > Interlingue (originally Occidental), constructed international auxiliary language published by Edgar de Wahl in 1922, renamed Interlingue in 1949. Published, fully regular phonemic orthography over the 26-letter Latin alphabet.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. No board row scores it yet, so the measured gold of that tier is still missing. It cites 3 works, from 1922 to 2026. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes all 36 spellings of its letter table itself.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. No board row scores it yet, so the measured gold of that tier is still missing. It cites 3 works, from 1922 to 2026. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes all 38 spellings of its letter table itself.
 
 The [spec file](../../orthography2ipa/data/ie.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -62,10 +70,10 @@ The spec can emit 32 segments. They come from the letter table, the positional r
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | Plosive | b p |  | d t |  |  | k ɡ |  |
-| Affricate |  |  | dz ts |  |  |  |  |
+| Affricate |  |  | dz ts | dʒ |  |  |  |
 | Nasal | m |  | n |  |  |  |  |
 | Trill |  |  | r |  |  |  |  |
-| Fricative |  | f v | s z | ʃ ʒ |  |  | h |
+| Fricative |  | f v | s z | ʃ ʒ |  | x | h |
 | Approximant |  |  |  |  | j |  |  |
 | Lateral approximant |  |  | l |  |  |  |  |
 
@@ -76,7 +84,7 @@ The spec can emit 32 segments. They come from the letter table, the positional r
 | Open-mid | ɛ |  |
 | Open | a | ɒ |
 
-Sequences that the spec writes as one unit: [ks] [kw] [w].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -87,9 +95,11 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | Spelling | Readings | By position |
 |:--|:--|:--|
 | ⟨a⟩ | [a] |  |
+| ⟨ai⟩ | [aj] |  |
+| ⟨au⟩ | [aw] |  |
 | ⟨b⟩ | [b] |  |
 | ⟨c⟩ | [k] | before front vowel [ts] |
-| ⟨ch⟩ | [ʃ] |  |
+| ⟨ch⟩ | [ʃ] | before consonant [x] |
 | ⟨d⟩ | [d] |  |
 | ⟨e⟩ | [e] |  |
 | ⟨eu⟩ | [ø] |  |
@@ -97,7 +107,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨g⟩ | [ɡ] | before front vowel [ʒ] |
 | ⟨h⟩ | [h] |  |
 | ⟨i⟩ | [i] | before vowel [j] |
-| ⟨j⟩ | [ʒ] |  |
+| ⟨j⟩ | [dʒ] |  |
 | ⟨k⟩ | [k] |  |
 | ⟨l⟩ | [l] |  |
 | ⟨m⟩ | [m] |  |
@@ -124,12 +134,14 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ú⟩ | [u] |  |
 
 Stress falls on the penult by default. A written ⟨á⟩ ⟨é⟩ ⟨í⟩ ⟨ó⟩ ⟨ú⟩ marks the stressed vowel. These endings take final stress: ⟨-ac⟩ ⟨-acs⟩ ⟨-aen⟩ ⟨-aic⟩ ⟨-aics⟩ ⟨-ail⟩ ⟨-al⟩ ⟨-am⟩ ⟨-ams⟩ ⟨-an⟩ ⟨-ay⟩ ⟨-b⟩ ⟨-bc⟩ ⟨-bcs⟩ ⟨-ben⟩ ⟨-bl⟩ ⟨-bm⟩ ⟨-bms⟩ ⟨-bn⟩ ⟨-bs⟩ ⟨-cc⟩ ⟨-ccs⟩ ⟨-cen⟩ ⟨-cil⟩ ⟨-cl⟩ ⟨-cm⟩ ⟨-cms⟩ ⟨-cn⟩ ⟨-d⟩ ⟨-dc⟩ ⟨-dcs⟩ ⟨-den⟩ ⟨-dil⟩ ⟨-dl⟩ ⟨-dm⟩ ⟨-dms⟩ ⟨-dn⟩ ⟨-ds⟩ ⟨-ec⟩ ⟨-ecs⟩ ⟨-een⟩ ⟨-eil⟩ ⟨-el⟩ ⟨-em⟩ ⟨-ems⟩ ⟨-ey⟩ ⟨-f⟩ ⟨-fc⟩ ⟨-fcs⟩ ⟨-fen⟩ ⟨-fil⟩ ⟨-fl⟩ ⟨-fm⟩ ⟨-fms⟩ ⟨-fn⟩ ⟨-fs⟩ ⟨-g⟩ ⟨-gc⟩ ⟨-gcs⟩ ⟨-gen⟩ ⟨-gil⟩ ⟨-gl⟩ ⟨-gm⟩ ⟨-gms⟩ ⟨-gn⟩ ⟨-gs⟩ ⟨-h⟩ ⟨-hc⟩ ⟨-hcs⟩ ⟨-hen⟩ ⟨-hil⟩ ⟨-hl⟩ ⟨-hm⟩ ⟨-hms⟩ ⟨-hn⟩ ⟨-hs⟩ ⟨-ien⟩ ⟨-iil⟩ ⟨-in⟩ ⟨-j⟩ ⟨-jc⟩ ⟨-jcs⟩ ⟨-jen⟩ ⟨-jil⟩ ⟨-jl⟩ ⟨-jm⟩ ⟨-jms⟩ ⟨-jn⟩ ⟨-js⟩ ⟨-k⟩ ⟨-kc⟩ ⟨-kcs⟩ ⟨-ken⟩ ⟨-kil⟩ ⟨-kl⟩ ⟨-km⟩ ⟨-kms⟩ ⟨-kn⟩ ⟨-ks⟩ ⟨-lc⟩ ⟨-lcs⟩ ⟨-len⟩ ⟨-lil⟩ ⟨-ll⟩ ⟨-lm⟩ ⟨-lms⟩ ⟨-ln⟩ ⟨-ls⟩ ⟨-mc⟩ ⟨-mcs⟩ ⟨-mil⟩ ⟨-ml⟩ ⟨-mm⟩ ⟨-mms⟩ ⟨-mn⟩ ⟨-nc⟩ ⟨-ncs⟩ ⟨-nen⟩ ⟨-nil⟩ ⟨-nl⟩ ⟨-nm⟩ ⟨-nms⟩ ⟨-nn⟩ ⟨-ns⟩ ⟨-oc⟩ ⟨-ocs⟩ ⟨-oen⟩ ⟨-oil⟩ ⟨-ol⟩ ⟨-om⟩ ⟨-oms⟩ ⟨-on⟩ ⟨-oy⟩ ⟨-p⟩ ⟨-pc⟩ ⟨-pcs⟩ ⟨-pen⟩ ⟨-pil⟩ ⟨-pl⟩ ⟨-pm⟩ ⟨-pms⟩ ⟨-pn⟩ ⟨-ps⟩ ⟨-r⟩ ⟨-rc⟩ ⟨-rcs⟩ ⟨-ren⟩ ⟨-ril⟩ ⟨-rl⟩ ⟨-rm⟩ ⟨-rms⟩ ⟨-rn⟩ ⟨-rs⟩ ⟨-sc⟩ ⟨-scs⟩ ⟨-sen⟩ ⟨-sil⟩ ⟨-sl⟩ ⟨-sm⟩ ⟨-sms⟩ ⟨-sn⟩ ⟨-ss⟩ ⟨-t⟩ ⟨-tc⟩ ⟨-tcs⟩ ⟨-ten⟩ ⟨-til⟩ ⟨-tl⟩ ⟨-tm⟩ ⟨-tms⟩ ⟨-tn⟩ ⟨-ts⟩ ⟨-uc⟩ ⟨-ucs⟩ ⟨-uen⟩ ⟨-uic⟩ ⟨-uics⟩ ⟨-uil⟩ ⟨-un⟩ ⟨-uy⟩ ⟨-v⟩ ⟨-vc⟩ ⟨-vcs⟩ ⟨-ven⟩ ⟨-vil⟩ ⟨-vl⟩ ⟨-vm⟩ ⟨-vms⟩ ⟨-vn⟩ ⟨-vs⟩ ⟨-w⟩ ⟨-wc⟩ ⟨-wcs⟩ ⟨-wen⟩ ⟨-wil⟩ ⟨-wl⟩ ⟨-wm⟩ ⟨-wms⟩ ⟨-wn⟩ ⟨-ws⟩ ⟨-x⟩ ⟨-xc⟩ ⟨-xcs⟩ ⟨-xen⟩ ⟨-xil⟩ ⟨-xl⟩ ⟨-xm⟩ ⟨-xms⟩ ⟨-xn⟩ ⟨-xs⟩ ⟨-yc⟩ ⟨-ycs⟩ ⟨-yen⟩ ⟨-yil⟩ ⟨-yl⟩ ⟨-ym⟩ ⟨-yms⟩ ⟨-yn⟩ ⟨-z⟩ ⟨-zc⟩ ⟨-zcs⟩ ⟨-zen⟩ ⟨-zil⟩ ⟨-zl⟩ ⟨-zm⟩ ⟨-zms⟩ ⟨-zn⟩ ⟨-zs⟩. These endings take the penult: ⟨-aica⟩ ⟨-aicas⟩ ⟨-aicmen⟩ ⟨-aico⟩ ⟨-aicos⟩.
+
+Whole-word exceptions (2): ⟨cyan⟩ [tsyˈan], ⟨cyans⟩ [tsyˈans].
 <!-- atlas:spelling end -->
 
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 4 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 10 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -137,6 +149,12 @@ The spec applies 4 allophone rules after the letters are read. The change column
 | `IE_ART4_STRESSED_I_PLURAL` | /j/ → [i], stressed, before a vowel, spelled ⟨i⟩, with more context in the spec | - | [Janotta 1929](#src-janotta1929) |
 | `IE_ART4_STRESSED_U` | /w/ → [u], stressed, before a vowel, spelled ⟨u⟩, with more context in the spec | - | [Janotta 1929](#src-janotta1929) |
 | `IE_ART4_STRESSED_U_PLURAL` | /w/ → [u], stressed, before a vowel, spelled ⟨u⟩, with more context in the spec | - | [Janotta 1929](#src-janotta1929) |
+| `IE_T_TIA_TIE` | /t/ → [ts], spelled ⟨t⟩, before ⟨i⟩, with more context in the spec | ⟨scientie⟩ [sstsyéntsye] | [Janotta 1929](#src-janotta1929) |
+| `IE_T_TION` | /t/ → [ts], spelled ⟨t⟩, before ⟨i⟩, with more context in the spec | ⟨scientie⟩ [sstsyéntsye] | [Janotta 1929](#src-janotta1929) |
+| `IE_CH_AFTER_S` | /ʃ/ → [x], spelled ⟨ch⟩, after ⟨s⟩ | - | [Janotta 1929](#src-janotta1929) |
+| `IE_CH_AFTER_Y` | /ʃ/ → [x], spelled ⟨ch⟩, after ⟨y⟩ | - | [Janotta 1929](#src-janotta1929) |
+| `IE_CH_BEFORE_Y` | /ʃ/ → [x], spelled ⟨ch⟩, before ⟨y⟩ | - | [Janotta 1929](#src-janotta1929) |
+| `IE_CH_ARCH` | /ʃ/ → [x], spelled ⟨ch⟩, after ⟨r⟩, with more context in the spec | - | [Janotta 1929](#src-janotta1929) |
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin -->

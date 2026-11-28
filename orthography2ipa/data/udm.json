@@ -252,8 +252,6 @@
   },
   "notes": "Udmurt (удмурт кыл), a Permic (Uralic) language of the Udmurt Republic, Russia. INPUT CONTRACT: modern Udmurt Cyrillic text, Unicode NFC (⟨ӝ ӟ ӥ ӧ ӵ⟩ are precomposed characters, not base letter + combining diaeresis). Orthography: the Russian alphabet plus ⟨Ӝӝ⟩ /d͡ʒ/, ⟨Ӟӟ⟩ /d͡ʑ/, ⟨Ӥӥ⟩ (non-palatalising i), ⟨Ӧӧ⟩ /ɜ~ə/ and ⟨Ӵӵ⟩ /t͡ʃ/; plain ⟨ч⟩ is the palatal affricate /t͡ɕ/ and ⟨ж з⟩ are the plain fricatives. Palatalisation is not spelled with its own consonant letters: ⟨д з л н с т⟩ are realised as /dʲ ʑ ʎ ɲ ɕ tʲ(~c)/ before ⟨е ё и ю я⟩ and before the soft sign ⟨ь⟩, so those sequences are entered as multigraph keys that the maximal-munch matcher prefers over the bare letters. ⟨ӥ⟩ is the explicitly non-palatalising counterpart of ⟨и⟩ and therefore forms no digraphs. Iotated ⟨е ё ю я⟩ carry the [j]-initial reading first (word-initial and post-vocalic); after a palatalisable coronal the digraph key applies instead. ⟨ф х ц щ⟩ occur only in Russian loanwords. ⟨ъ⟩ maps to the empty string. Word stress (normally final) is not marked and is not modelled.",
   "iso639_3": "udm",
-  "glottolog_code": "udmu1245",
-  "wikidata_qid": "Q13238",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Udmurt_language",
     "https://udm.wikipedia.org/wiki/%D0%A3%D0%B4%D0%BC%D1%83%D1%80%D1%82_%D0%BA%D1%8B%D0%BB"
@@ -355,7 +353,7 @@
     "ʑ",
     "β"
   ],
-  "parent": "x-clade-ural1272",
+  "inherits": "x-clade-ural1272",
   "ancestors": [
     {
       "code": "x-clade-ural1272",

@@ -210,7 +210,7 @@
       "ɨ"
     ]
   },
-  "parent": "x-clade-roma1334",
+  "inherits": "x-clade-roma1334",
   "ancestors": [
     {
       "code": "la",
@@ -275,9 +275,7 @@
     "start_year": 200,
     "end_year": 900
   },
-  "glottolog_code": "east2714",
   "iso639_3": "lat",
-  "wikidata_qid": "Q147576",
   "location": {
     "latitude": 42.604838,
     "longitude": 19.975475,

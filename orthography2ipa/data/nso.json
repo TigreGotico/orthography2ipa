@@ -4,7 +4,7 @@
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
-  "parent": "bnt",
+  "inherits": "bnt",
   "ancestors": [
     {
       "code": "bnt",
@@ -249,8 +249,6 @@
     ]
   },
   "iso639_3": "nso",
-  "glottolog_code": "pedi1238",
-  "wikidata_qid": "Q33890",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Northern_Sotho",
     "https://nso.wikipedia.org/wiki/Sesotho_sa_Leboa"

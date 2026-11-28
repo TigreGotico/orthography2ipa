@@ -202,8 +202,6 @@
   },
   "notes": "Erzya (эрзянь кель), Mordvinic (Uralic) language of Mordovia. Written in the Russian Cyrillic alphabet. Five vowels /a e i o u/ and a palatalised consonant series (/nʲ tʲ dʲ sʲ zʲ lʲ rʲ t͡sʲ/) marked, as in Russian, by ⟨ь⟩ or by a following front vowel — the palatalisation modifier is emitted as /ʲ/ rather than folded into the preceding consonant. ⟨ф х щ⟩ occur essentially only in Russian loanwords; the hard sign ⟨ъ⟩ is not used and is not mapped. Vowel harmony governs suffixes but is not a grapheme-level phenomenon.",
   "iso639_3": "myv",
-  "glottolog_code": "erzy1239",
-  "wikidata_qid": "Q29952",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Erzya_language",
     "https://myv.wikipedia.org/wiki/%D0%AD%D1%80%D0%B7%D1%8F%D0%BD%D1%8C_%D0%BA%D0%B5%D0%BB%D1%8C"
@@ -232,7 +230,7 @@
       "notes": "§23.2.1-23.2.2, read in full. Table 23.1 (p. 393) gives the five Erzya vowels with their Cyrillic letters, the second letter of each pair used after a palatalised consonant (и/ы, е/э, ю/у, ё/о, я/а); Table 23.3 (p. 394) the 28 consonants with palatalisation contrastive only for the dental-alveolars and marked by the following vowel letter or ⟨ь⟩, ⟨ф х⟩ bracketed as loan phonemes, and ⟨е ю я ё⟩ standing for j plus vowel when no consonant precedes. Two disagreements with this map: ⟨ч⟩ is the alveolo-palatal affricate t͡ɕ, not t͡ʃ; and ⟨ы⟩ and ⟨э⟩ write the velar allophones of /i/ and /e/ after a non-palatalised alveolar, not a separate ɨ. ⟨щ⟩ is absent from the Erzya table. Recorded here, not changed."
     }
   ],
-  "parent": "x-clade-ural1272",
+  "inherits": "x-clade-ural1272",
   "ancestors": [
     {
       "code": "x-clade-ural1272",

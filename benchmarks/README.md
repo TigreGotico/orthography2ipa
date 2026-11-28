@@ -1,5 +1,13 @@
 # Benchmarks
 
+<!-- agent-hint
+covers: what each committed board file in `benchmarks/` holds and which script writes it
+source: `scripts/benchmark.py`, `scripts/compare_systems.py`, `scripts/espeak_agreement.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_thin_row_marker.py`
+see: `docs/contributing/board.md`, `docs/evaluation/benchmarks.md`
+-->
+
 This directory holds the committed board files. Scripts write every file
 here, so never edit one by hand. The procedure is in
 [docs/contributing/board.md](../docs/contributing/board.md).
@@ -17,6 +25,8 @@ here, so never edit one by hand. The procedure is in
 `docs/evaluation/generated/espeak_agreement.md` are the rendered pages of these files. A
 whole-board `--scoreboard` run also writes `results_environment.json`, the
 versions of the plugin and scorer packages it used.
+
+After a board regeneration, run `PYTHONPATH=$PWD python scripts/gen_doc_charts.py --write` to redraw the charts of the evaluation pages.
 
 How a score is computed and how far it can be trusted is in
 [docs/evaluation/benchmarks.md](../docs/evaluation/benchmarks.md).

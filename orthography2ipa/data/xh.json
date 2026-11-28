@@ -1,8 +1,7 @@
 {
   "code": "xh",
   "name": "Xhosa",
-  "parent": "x-clade-narr1281",
-  "glottolog_code": "xhos1239",
+  "inherits": "x-clade-narr1281",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "xho",
@@ -545,7 +544,6 @@
     "start_year": 1800,
     "end_year": null
   },
-  "wikidata_qid": "Q13218",
   "phoible_id": "xhos1239",
   "wals_code": "xho",
   "location": {

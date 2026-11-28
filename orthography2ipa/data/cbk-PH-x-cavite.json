@@ -5,7 +5,7 @@
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "stub",
-  "parent": "cbk-PH",
+  "inherits": "cbk-PH",
   "ancestors": [
     {
       "code": "es-ES",
@@ -26,8 +26,6 @@
   "allophones": {},
   "notes": "Caviteño Chabacano (Chabacano de Cavite), a Manila-Bay Spanish-lexifier creole of Cavite City, Luzon, Philippines, distinct from Zamboangueño (cbk-PH). Sippola (2013, §4 Phonology) states that the usual orthography is based on Spanish and uses ⟨c, qu⟩ for /k/, ⟨j⟩ for /h/, ⟨y⟩ for /j/ and ⟨ch⟩ for /tʃ/, and transcribes casa as [kása] 'house'. These are the readings of the Spanish-based cbk-PH table, so the spec takes its table over `graphemes_base: cbk-PH` and states no letter of its own. The other letter values (⟨c⟩ and ⟨g⟩ before a front vowel, ⟨ll⟩, ⟨ñ⟩, ⟨r⟩ against ⟨rr⟩, ⟨v⟩ = [b], ⟨z⟩ = [s]) and the non-lenited allophone map are inherited from cbk-PH with no Cavite source that states them. Table 2 has /h/ and no /x/, so the inherited [x] reading of ⟨g⟩ before a front vowel has no phoneme in the inventory; the chapter does not state the value of that ⟨g⟩. The chapter writes hombre 'male' with an etymological ⟨h⟩ and gives no reading for it; ⟨h⟩ keeps the cbk-PH reading [h]. Sippola states that /f/, /v/, /ʃ/ and /dʒ/ occur in loanwords from English; the spelling of those loanwords is not described, so ⟨v⟩ keeps the cbk-PH reading [b]. The close realisation of unstressed and word-final mid vowels that Sippola reports is a variant and is not encoded. Stress is not marked: cbk-PH carries no stress block, and casa against casá is contrastive (Sippola 2013, §4). The described lect is almost entirely written Cavite Chabacano produced by language activists, and there is no standardized orthography (Sippola 2013, §3). The variety is moribund. Documented differences from Zamboangueño (the TMA particles ta, ya and di, and a Tagalog rather than Visayan substrate) are not encoded.",
   "iso639_3": "cbk",
-  "glottolog_code": "cavi1254",
-  "wikidata_qid": "Q33281",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Chavacano"
   ],
@@ -53,5 +51,13 @@
     "longitude": 120.8969,
     "source": "manual",
     "notes": "Cavite City, Cavite, Philippines."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "ES_S_VOICING",
+      "phonemes": [],
+      "surface": "",
+      "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. Its source describes the Castilian standard of Spain, and no source for this language was opened, so the rule is switched off here."
+    }
+  ]
 }

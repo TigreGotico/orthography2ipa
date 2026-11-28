@@ -5,8 +5,6 @@
   "script_type": "alphabet",
   "quality": "skeleton",
   "iso639_3": "tsd",
-  "glottolog_code": "tsak1248",
-  "wikidata_qid": "Q220607",
   "graphemes_base": "el",
   "graphemes": {
     "σχ": [
@@ -49,7 +47,7 @@
       "ʒ"
     ]
   },
-  "parent": "x-clade-doric-greek",
+  "inherits": "x-clade-doric-greek",
   "ancestors": [
     {
       "code": "x-clade-doric-greek",

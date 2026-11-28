@@ -2,7 +2,7 @@
   "code": "ca-x-occident",
   "name": "North-Western Catalan",
   "script": "Latin",
-  "parent": "ca-x-medieval",
+  "inherits": "ca-x-medieval",
   "graphemes_base": "ca-x-medieval",
   "graphemes": {
     "v": [
@@ -324,9 +324,7 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "cata1291",
   "iso639_3": "cat",
-  "wikidata_qid": "Q2941598",
   "location": {
     "latitude": 41.616667,
     "longitude": 0.633333,

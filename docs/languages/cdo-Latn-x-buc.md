@@ -1,5 +1,13 @@
 # Eastern Min (Fuzhou) — Bàng-uâ-cê (`cdo-Latn-x-buc`)
 
+<!-- agent-hint
+covers: what the `cdo-Latn-x-buc` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/cdo-Latn-x-buc.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Eastern Min (Fuzhou) — Bàng-uâ-cê is a Sinitic variety, written in the Latin script. Glottolog places it in China. The `cdo-Latn-x-buc` spec is at the research tier. It cites 3 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -59,11 +67,11 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 55 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 24 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Alveolar | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|
-| Plosive | p pʰ | t tʰ | k kʰ |  |
+| Plosive | p pʰ | t tʰ | k kʰ | ʔ |
 | Affricate |  | ts tsʰ |  |  |
 | Nasal | m | n | ŋ |  |
 | Fricative |  | s |  | h |
@@ -72,13 +80,11 @@ The spec can emit 55 segments. They come from the letter table, the positional r
 | Vowels | Front | Back |
 |:--|:-:|:-:|
 | Close | i y | u |
-| Close-mid | ø |  |
+| Close-mid | e ø | o |
 | Open-mid | ɛ | ɔ |
 | Open | a |  |
 
-Sequences that the spec writes as one unit: [ai] [au] [aŋ] [aʔ] [eiŋ] [eu] [ia] [iaŋ] [iaʔ] [ie] [ieu] [ieŋ] [ieʔ] [io] [ioŋ] [ioʔ] [iu] [iŋ] [oi] [ouŋ] [ua] [uai] [uaŋ] [uaʔ] [ui] [uo] [uoi] [uoŋ] [uoʔ] [uŋ] [øŋ] [øʔ] [ɔʔ] [ɛʔ].
-
-Tones: [◌̆] shàngpíng (上平), 55, [◌̄] shǎngshēng (上聲), 33, [◌́-qu] shàngqù (上去), 213, [◌́-ru] shàngrù (上入, checked syllable only), 24, [◌̀] xiàpíng (下平), 53, [◌̂] xiàqù (下去), 242, [◌̆-ru] xiàrù (下入, checked syllable only, same breve mark as shàngpíng), 5.
+Tones: [˥˥] shàngpíng (上平), 55, [˧˧] shǎngshēng (上聲), 33, [˨˩˧] shàngqù (上去), 213, [˨˦] shàngrù (上入, checked syllable only), 24, [˥˧] xiàpíng (下平), 53, [˨˦˨] xiàqù (下去), 242, [˥] xiàrù (下入, checked syllable only, same breve mark as shàngpíng), 5.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

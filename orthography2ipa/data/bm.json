@@ -183,8 +183,6 @@
     ]
   },
   "iso639_3": "bam",
-  "glottolog_code": "bamb1269",
-  "wikidata_qid": "Q33243",
   "notes": "Bambara (bamanankan), Manding (Mande), Mali. Official Latin orthography (Bamako 1967 alphabet, revised 1982) with the African-reference-alphabet letters ɛ ɔ ɲ ŋ. Seven oral vowels a e ɛ i o ɔ u; length is written by doubling the vowel and nasalisation by a following ⟨n⟩ (both fall out of the base graphemes and are not listed separately). ⟨c⟩ = /t͡ʃ/, ⟨j⟩ = /d͡ʒ/, ⟨y⟩ = /j/. Bambara is a two-tone language (high vs low/mid) but tone is NOT written in the standard orthography, so no tone is emitted here. ⟨w⟩ as the plural suffix is realised [u]; ⟨s⟩ varies [s]~[ʃ]~[z] and ⟨g⟩ [ɡ]~[ɣ] — recorded as allophones.",
   "sources": [
     {
@@ -218,7 +216,7 @@
     "start_year": 1967,
     "end_year": null
   },
-  "parent": "x-clade-mand1469",
+  "inherits": "x-clade-mand1469",
   "ancestors": [
     {
       "code": "x-clade-mand1469",

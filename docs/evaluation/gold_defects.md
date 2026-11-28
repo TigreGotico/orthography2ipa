@@ -1,5 +1,13 @@
 # Gold defects
 
+<!-- agent-hint
+covers: the measured defects in individual gold rows and what they mean for a score
+source: `scripts/benchmark.py`, `tests/test_gold_composition.py`, `scripts/measure_gold_defects.py`, `benchmarks/gold_defects.json`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_gold_composition.py tests/test_gold_defects_doc.py`
+see: `docs/evaluation/benchmarks.md`, `docs/evaluation/datasets.md`
+-->
+
 A [provenance tier](benchmarks.md#reliability-tiers) says where a gold transcription came from, not whether it is right about the language. This page is the registry of measured defects in individual gold rows. In each case the gold merges a contrast, marks something impossible, describes another lect, mixes conventions, or comes from the system it scores.
 
 The figures were measured against the cached gold in `.benchmark_cache/`, with the loaders that the scoreboard uses, so each one can be reproduced. They count words and symbols in the gold files that the harness reads. Where a figure is a count of raw file lines, the text says so, because the board's `N` counts distinct words.
@@ -93,6 +101,13 @@ The `pt-TL` row reads the `pt-TL-x-dili` region of the [Portal da Língua Portug
 
 The diff then keeps the 35,800 shared entries whose transcriptions have the same length, where a positional diff means something. Six substitutions account for 90.6% of the 63,189 character differences:
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="charts/pt-tl-substitutions.dark.svg">
+  <img alt="Lisbon to Dili substitutions: ɐ to ə 30,042, more than the other five together. u to ʊ 12,075 is second." src="charts/pt-tl-substitutions.light.svg">
+</picture>
+
+`scripts/gen_doc_charts.py` makes this figure from `benchmarks/gold_defects.json`, which `scripts/measure_gold_defects.py` measures from the gold cache.
+
 | Substitution | Count |
 |---|---:|
 | ɐ to ə | 30,042 |
@@ -102,7 +117,7 @@ The diff then keeps the 35,800 shared entries whose transcriptions have the same
 | ɐ to a | 1,858 |
 | ɫ to w | 1,724 |
 
-Further down come d to ð (223) and ɡ to ɣ (150). These counts are over the first-variant pairs of equal length.
+These counts are over the first-variant pairs of equal length.
 
 Another symbol for the reduced unstressed vowel of European Portuguese does not remove the vowel. 60% of `pt-TL-x-dili` entries still have a reduced [ə], and 31% still end in a reduced [ʊ]. Coda /s/ still surfaces as the Lisbon hush: gold *instrumentista* is `ĩʃtɾumẽntˈiʃtə`, and Lisbon has `ĩʃtɾumẽtˈiʃtɐ`. [Albuquerque (2010:275 fn. 7, 277)](http://www.revel.inf.br/files/artigos/revel_15_peculiaridades_prosodicas_do_portugues_falado_em_timor_leste.pdf), the source of the `pt-TL` spec, documents the opposite for this variety. It has no reduction of unstressed vowels and an alveolar coda /s/ with no hush. The row therefore measures agreement with European Portuguese in other symbols, not with the East Timorese acrolect that the spec models.
 

@@ -14,7 +14,7 @@
    "ɓ"
   ],
   "c": [
-   "ʧ"
+   "t͡ʃ"
   ],
   "d": [
    "d"
@@ -41,7 +41,7 @@
    "i"
   ],
   "j": [
-   "ʤ"
+   "d͡ʒ"
   ],
   "k": [
    "k"
@@ -92,7 +92,7 @@
    "z"
   ],
   "ı": [
-   "ɪˁ"
+   "ɪˤ"
   ],
   "ŋ": [
    "ŋ"
@@ -101,19 +101,18 @@
    "ŋʷ"
   ],
   "ɔ": [
-   "ɔˁ"
+   "ɔˤ"
   ],
   "ɛ": [
-   "ɛˀ"
+   "ɛˤ"
   ],
   "ʋ": [
-   "ʊˁ"
+   "ʊˤ"
   ]
  },
  "allophones": {},
  "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (gud.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "gud",
- "glottolog_code": "yoco1235",
  "sources": [
   {
    "id": "glottolog2024",
@@ -142,7 +141,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-krua1234",
+ "inherits": "x-clade-krua1234",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Yocobou%C3%A9_Dida_language"

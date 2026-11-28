@@ -280,7 +280,6 @@
   },
   "notes": "Southern Sotho (Sesotho), a Sotho-Tswana (Bantu) language of Lesotho and South Africa. INPUT CONTRACT: this spec implements the SOUTH AFRICAN standard orthography (the one used in South African publications and described as the main system in the Wikipedia 'Sesotho orthography' article), NOT the Lesotho orthography. The two differ systematically: SA <kg> = LS <kh>, SA <kh> = LS <k'h>, SA <tsh> = LS <tš>, SA <tjh> = LS <ch>, SA <tj> = LS <ky>, SA <y> = LS <e>, SA <w> = LS <o>, SA <di/du> = LS <li/lu>, SA <fj> = LS <fsh>, SA <pjh> = LS <psh>. Lesotho-spelled text (e.g. 'khotso', 'Motšeanong', 'utloisisa') is OUT OF CONTRACT and will be mis-transcribed; it must be converted to SA spelling upstream. KEY FEATURES: (1) plain <k p t ts tl tj pj> are EJECTIVE (kʼ pʼ tʼ tsʼ tɬʼ t͡ʃʼ pʃʼ); the h-digraphs <kh ph th tsh tlh tjh pjh> are the aspirated series. (2) <kg> = /x/ (velar fricative), <hl> = /ɬ/ (voiceless lateral fricative), <r> = /ʁ/ (uvular). (3) CLICKS: <q> = /ǃ/, <qh> = /ǃʰ/, <nq> = /ᵑǃ/ (alveolar/postalveolar click series, mostly in Nguni loans and ideophones). (4) NINE-VOWEL SYSTEM written with five letters: <e> = /ɛ ~ e ~ ɪ/ and <o> = /ɔ ~ o ~ ʊ/; the height distinction is NOT written and is therefore not recoverable from spelling — the candidate lists are ordered by the most common (open-mid) value first. (5) <d> is an allophone of /l/ before the close vowels <i, u> and is spelled <d> in SA orthography. (6) TONE: Sesotho is a tonal language (high vs low), but TONE IS NOT WRITTEN in either standard orthography, so it is NOT recoverable from the text and is not emitted here.",
   "iso639_3": "sot",
-  "glottolog_code": "sout2807",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Sotho_language",
     "https://en.wikipedia.org/wiki/Sesotho_orthography",
@@ -329,7 +328,7 @@
     "start_year": 1830,
     "end_year": null
   },
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "x-clade-narr1281",

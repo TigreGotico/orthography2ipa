@@ -1,5 +1,13 @@
 # Language pages
 
+<!-- agent-hint
+covers: how the language pages are organised and which pages cover a family or a group of lects
+source: `docs/languages/`, `scripts/gen_language_atlas.py`
+generated: no
+verify: `python scripts/docs_nav.py --check`
+see: `docs/languages/a-z.md`, `docs/languages/by-family.md`
+-->
+
 The language pages form an atlas of the specs. Four indexes list every
 registered spec, and each one links the page of a spec where a page exists,
 or its entry in the [data explorer](https://tigregotico.github.io/orthography2ipa/)
@@ -11,6 +19,7 @@ where it does not.
 | [by-region.md](by-region.md) | Every spec by Glottolog macroarea and country |
 | [by-script.md](by-script.md) | Every spec by the script it reads |
 | [a-z.md](a-z.md) | Every spec by name, with the atlas pages first |
+| [leaders.md](leaders.md) | The best gold board row of each leader language |
 
 An atlas page has a fixed shape. A generated summary and a table of names,
 codes and links come first. An overview follows. Where nobody has written
@@ -91,6 +100,7 @@ differences over one of them.
 | [pt-BR-dialects.md](pt-BR-dialects.md) | The Brazilian regional specs: Carioca, Paulistano, Caipira, Mineiro, the South, the North and the Northeast |
 | [pt-BR-x-floripa.md](pt-BR-x-floripa.md) | Florianópolis Portuguese, the native *manezinho* speech of the island |
 | [pt-BR-x-cuiaba.md](pt-BR-x-cuiaba.md) | Cuiabano Portuguese of the Cuiabá river valley |
+| [pt-BR-x-paraiba.md](pt-BR-x-paraiba.md) | Paraibano Portuguese of the state of Paraíba |
 | [pt-AO.md](pt-AO.md) | Angolan Portuguese |
 | [pt-CV.md](pt-CV.md) | Cape Verdean Portuguese, which is not the Kabuverdianu creole (`kea`) |
 | [pt-MZ.md](pt-MZ.md) | Mozambican Portuguese |

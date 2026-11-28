@@ -1,5 +1,13 @@
 # IPA Reference
 
+<!-- agent-hint
+covers: the IPA symbols that the specs use, their code points and the encoding errors to avoid
+source: `orthography2ipa/data/*.json`, `tests/test_spec_ipa_code_points.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_spec_ipa_code_points.py`
+see: `docs/contributing/spec_authoring.md`, `docs/specs/bibliography.md`
+-->
+
 This page lists the IPA symbols that the specs use, with their code points and the errors to avoid. It ends with notes on how the specs of some major languages encode their phonology. The engine writes its output in Unicode NFC, so the code points below are the NFC forms.
 
 The authority for every symbol is the International Phonetic Association. Its [IPA chart](https://www.internationalphoneticassociation.org/content/full-ipa-chart) is free to download, and the [*Handbook of the International Phonetic Association*](https://doi.org/10.1017/9780511807954) (Cambridge University Press, 1999) defines each symbol and illustrates it with short descriptions of single languages. Later illustrations appear in the [*Journal of the International Phonetic Association*](https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association), and the specs cite many of them. The code points come from the Unicode blocks [IPA Extensions](https://www.unicode.org/charts/PDF/U0250.pdf), [Spacing Modifier Letters](https://www.unicode.org/charts/PDF/U02B0.pdf) and [Combining Diacritical Marks](https://www.unicode.org/charts/PDF/U0300.pdf).
@@ -236,7 +244,7 @@ Portuguese has the nasal vowels /ã ẽ ĩ õ ũ/, and `pt-PT` writes the first 
 
 French has the labio-palatal approximant /ɥ/, as in *nuit* and *lui*. It is a separate sound from /j/ and /w/. The spec `fr-FR` maps ⟨ui⟩ to [ɥi], so `nuit` is [nɥi].
 
-Liaison is a process across a word boundary, so the grapheme map holds the base forms only. The spec `fr-FR` declares its cross-word rules in `sandhi_rules`: z-, t-, n-, r- and p-liaison, and enchaînement. A liaison is marked with ‿.
+Liaison is a process across a word boundary, so the grapheme map holds the base forms only. The spec `fr-FR` declares its cross-word rules in `sandhi_rules`: the obligatory liaisons, which read the spelling of the words (⟨les amis⟩ [lez‿ ami]), and the enchaînement of a pronounced final consonant (⟨cet homme⟩ [sɛt‿ ɔm]). A liaison is marked with ‿ after the left word.
 
 French has four nasal vowels: /ɛ̃/ (*vin*), /ɑ̃/ (*vent*), /ɔ̃/ (*bon*) and /œ̃/ (*brun*). Many speakers merge /œ̃/ with /ɛ̃/.
 

@@ -1,7 +1,6 @@
 {
   "code": "mn",
   "name": "Mongolian",
-  "glottolog_code": "halh1238",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "iso639_3": "mon",
@@ -442,7 +441,7 @@
       "notes": "Orientation only; every rule in this spec is stated from Svantesson (2003)."
     }
   ],
-  "parent": "xgn",
+  "inherits": "xgn",
   "ancestors": [
     {
       "code": "xgn",
@@ -485,7 +484,6 @@
     "start_year": 1941,
     "end_year": null
   },
-  "wikidata_qid": "Q9246",
   "phoible_id": "halh1238",
   "location": {
     "latitude": 48.32397,

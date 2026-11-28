@@ -84,7 +84,7 @@
       "ʔ"
     ]
   },
-  "parent": "nah",
+  "inherits": "nah",
   "ancestors": [
     {
       "code": "nah",
@@ -95,7 +95,6 @@
   ],
   "notes": "Skeleton. Uto-Aztecan (Nahuan) variety of the Isthmus of Veracruz written in an SIL-based practical orthography. Digraphs ch=[tʃ], ts=[ts], cu/qu for [kʷ]/[k], hu=[w] and x=[ʃ], j=[h] are mapped; this variety merged the historic tl to [t]. Voiced stops b d g occur as allophones of the voiceless series in some contexts. Vowel length and the glottal stop are only partly recovered from spelling, raising the PER floor. Isthmus-Mecayapan Nahuatl stress is predictable (penultimate) and not separately orthographically marked; left unencoded (documented exemption).",
   "iso639_3": "nhx",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "nhx_glottolog",

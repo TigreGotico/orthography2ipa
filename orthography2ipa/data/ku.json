@@ -196,8 +196,6 @@
   },
   "notes": "Northern Kurdish / Kurmanji (kurdî, Kurmancî), the largest Kurdish variety. The mapping above is the 31-letter Hawar Latin alphabet (Celadet Alî Bedirxan, 1932), the script of the ku Wikipedia and of Kurmanji in Turkey, Syria and the diaspora. The Kurdo-Arabic (Sorani-style) alphabet and the former Soviet Cyrillic alphabet are also used for Kurdish and are NOT modelled here — Hawar Latin input is assumed. Aspiration of /p t k/ is contrastive but unwritten.",
   "iso639_3": "kmr",
-  "glottolog_code": "nort2641",
-  "wikidata_qid": "Q36163",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kurmanji",
     "https://ku.wikipedia.org/wiki/Kurmanc%C3%AE",
@@ -238,7 +236,7 @@
       "notes": "'Alphabet and sounds' (pp. 1-3), read in full. Confirms the Hawar Latin letter set and ⟨c⟩ = dʒ, ⟨ç⟩ = tʃ, ⟨j⟩ = ʒ, ⟨ş⟩ = ʃ, ⟨x⟩ = x, ⟨q⟩ = q, ⟨w y⟩ = w j. Four vowel values differ from this map: ⟨e⟩ is æ as the standard reading (ɛ for many speakers, and before ⟨y⟩ or post-stress), ⟨a⟩ is ɑ, ⟨u⟩ is ʊ (ɪ-like or ʉ only in gu/ku), and Thackston states no length contrast, so the map's aː eː iː for ⟨a ê î⟩ are not his. He also records what the spelling does not show: ⟨p t k ç⟩ each stand for an aspirated and an unaspirated pharyngealised consonant, and ⟨h⟩ covers both h and the pharyngeal ħ in the areas that have it. Recorded here, not changed."
     }
   ],
-  "parent": "x-clade-iran1269",
+  "inherits": "x-clade-iran1269",
   "ancestors": [
     {
       "code": "x-clade-iran1269",

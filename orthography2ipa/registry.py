@@ -4,12 +4,16 @@ from __future__ import annotations
 import logging
 import re
 import warnings
+from dataclasses import replace
 from functools import lru_cache
 from importlib.metadata import entry_points
 from typing import Dict, List, Optional
 
-from linguatag import closest_lang, with_default_region
+import langcodes as _langcodes
+from linguatag import (LanguageTag, LanguageTagError, closest_lang, likely_script, parse_tag,
+                       standardize_lang, with_default_region)
 
+import orthography2ipa.json_loader as json_loader
 from orthography2ipa.json_loader import available_json_codes, load_json_spec
 from orthography2ipa.types import LanguageSpec
 from orthography2ipa.version import VERSION_MAJOR
@@ -33,7 +37,7 @@ class UnknownVariantWarning(UserWarning):
 
 def _warn_unknown_variant(code: str, resolved: str, stacklevel: int) -> None:
     parts = _PRIVATE_USE.split(code, maxsplit=1)
-    if (len(parts) == 1 or resolved not in available_json_codes()
+    if (len(parts) == 1 or resolved not in json_loader._index
             or resolves_exactly(code)):
         return
     discarded = parts[1]
@@ -113,20 +117,13 @@ _ALIASES: Dict[str, str] = {
     # generic Sardinian macrolanguage spec) under ``langcodes``, which would
     # otherwise shadow the dedicated ``src`` spec. Pin it to itself.
     "src": "src",
-    # ``oji`` (Ojibwa macrolanguage) and ``mnk`` (Mandinka) gained real specs
-    # while the registry also carries their langcodes-preferred siblings
-    # (``ojg`` Eastern Ojibwa, ``emk`` Eastern Maninkakan). Pin each to itself
-    # so standardisation does not rewrite an exact-file hit, same class of
-    # collision as bxr/diq above.
-    "oji": "oji",
+    # ``oji`` is the Ojibwa macrolanguage spec, ``oj``. ``mnk`` (Mandinka) is
+    # pinned to itself, so standardisation does not rewrite it to ``emk``.
+    "oji": "oj",
     "mnk": "mnk",
-    # ``kas`` (Kashmiri) is an ISO 639-3 individual code that langcodes'
-    # macro=True standardisation collapses into its macrolanguage tag ``ks``
-    # (Kashmiri, ISO 639-1) — same collision class as bxr/diq above. ``ks``
-    # already carries a Latin-transliteration research-tier spec; ``kas``
-    # is a distinct, separately-cited spec for the Perso-Arabic native
-    # script. Pin it to itself so the macro-collapse step does not shadow it.
-    "kas": "kas",
+    # ``kas`` is the Perso-Arabic Kashmiri spec, ``ks-Arab``; ``ks`` is the
+    # Latin transliteration.
+    "kas": "ks-Arab",
     # ``bcc`` (Southern Balochi) is an ISO 639-3 individual code that
     # langcodes' macro=True standardisation collapses into its
     # macrolanguage tag ``bal`` (Balochi) — same collision class as
@@ -189,16 +186,26 @@ _ALIASES: Dict[str, str] = {
     # region and lose the lect.
     "pt-BR-x-sao-paulo": "pt-BR-x-sp",
     "pt-BR-x-rio-janeiro": "pt-BR-x-rj",
+    # The state code of Paraíba. The spec key spells the state out, because
+    # "PB" also abbreviates "português brasileiro" in Brazilian linguistics.
+    "pt-BR-x-pb": "pt-BR-x-paraiba",
     # Brasília speech shows no feature that separates it from the pt-BR base
     # in the opened sources (alveolar coda /S/, 97 %: Hora 1999: 35), so the
     # code reads the base.
     "pt-BR-x-brasilia": "pt-BR",
     "pt-PT-x-lisboa": "pt-PT-x-lisbon",
+    # Retired key of the Latin-script Etruscan spec. ISO 639-3 etr is Edolo;
+    # Etruscan is ett. Kept for one stable cycle.
+    "etr": "ett-Latn",
     # The cnr spec reads both Montenegrin alphabets. Standardization folds
     # cnr into sr, so only an alias names it without a nearest match, and
     # these tags keep resolving under ``strict=True``.
     "cnr-Cyrl": "cnr", "cnr-Cyrl-BA": "cnr", "cnr-Cyrl-HR": "cnr",
     "cnr-Cyrl-ME": "cnr", "cnr-Cyrl-RS": "cnr", "cnr-Cyrl-XK": "cnr",
+    # The bs spec reads both Bosnian alphabets. The tag distance reads no
+    # spec data, so it puts ``bs-Cyrl`` nearer to ``sr`` than to ``bs``.
+    # These are the two Bosnian Cyrillic locales of CLDR.
+    "bs-Cyrl": "bs", "bs-Cyrl-BA": "bs",
     # Galician has one standard spec, ``gl-ES``, and its varieties carry the
     # region. These are the retired codes of the same varieties.
     "gl-x-central": "gl-ES-x-central",
@@ -316,20 +323,19 @@ _RENAMED: Dict[str, str] = {
     "sc-x-logudorese":      "sc-x-logudoro",
     "sv-x-rikssvenska":     "sv-x-rikssven",
     "ta-x-proto-dravidian": "ta-x-proto-dravidia",
-    # SIL retired ``bbz`` as non-existent and names no replacement, so Babalia
-    # Creole Arabic takes a private-use key. ``bbz`` is no other language's code.
-    "bbz":                  "ar-TD-x-babalia",
+    # IANA deprecates ``ajt`` (preferred ``aeb``) and ``yol`` (preferred
+    # ``enm``), so each variety takes a private-use key under its preferred code.
+    "ajt":                  "aeb-x-judeo",
+    "yol":                  "enm-x-yola",
+    # CLDR gives swc the canonical tag sw-CD.
+    "swc":                  "sw-CD",
 }
 _ALIASES.update(_RENAMED)
 
-# Default variety for a region tag whose specs are all sub-regional, so a bare
-# region has no exact spec and langcodes' nearest match would pick whichever
-# private-use sibling sorts first. This is an explicit editorial convention,
-# not a claim in the spec data: Saudi Arabia has several documented varieties
-# (Najdi, Hejazi, ...) and no single standard spoken form, so ``ar-SA`` is
-# steered to Najdi — the variety of the capital region (Riyadh) and the most
-# widely spoken (Ingham, Najdi Arabic, 1994) — rather than asserting that
-# Saudi Arabic *is* Najdi anywhere in the data.
+# Editorial default variety for a region tag whose specs are all sub-regional;
+# without it the nearest match picks the sibling that sorts first. ``ar-SA`` is
+# Najdi, the variety of Riyadh and the most widely spoken (Ingham, Najdi
+# Arabic, 1994).
 _REGION_DEFAULTS: Dict[str, str] = {
     "ar-SA": "ars-SA",
 }
@@ -343,10 +349,11 @@ _MOTHERLAND_FALLBACK = frozenset({"fr"})
 
 
 def _region_subtag(code: str) -> Optional[str]:
-    """The region subtag of *code* in upper case, or None (RFC 5646 §2.2.4).
+    """The region subtag of the spec key *code* in upper case, or None.
 
-    A region is two letters or three digits after the language and script.
-    A singleton starts the extensions, so nothing after it is a region.
+    Some legacy keys are not well-formed tags (``ar-Latn-buckwalter``), which
+    ``linguatag.parse_tag`` rejects, so keys are read here and a caller's
+    tag is read with ``parse_tag``.
     """
     for subtag in code.split("-")[1:]:
         if len(subtag) == 1:
@@ -355,11 +362,6 @@ def _region_subtag(code: str) -> Optional[str]:
             return subtag.upper()
     return None
 
-try:
-    import langcodes as _langcodes
-    _HAS_LANGCODES = True
-except ImportError:
-    _HAS_LANGCODES = False
 
 
 def _casefold_lookup(folded: str) -> Optional[str]:
@@ -382,11 +384,13 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
        that ``langcodes`` may not round-trip cleanly).
     2. Exact match against the alias keys and registered spec codes, without
        regard to case (``MNK`` → ``mnk``), then
-       ``langcodes.standardize_tag()`` when the library is available and the
-       code is not a private-use subtag (``x-`` extension).
-    3. Exact match of the standardized code. A private-use tag also matches
-       with a Suppress-Script subtag dropped (``pt-Latn-BR-x-sp`` →
-       ``pt-BR-x-sp``).
+       ``langcodes.standardize_tag()`` when the
+       code is not a private-use tag.
+    3. Exact match of the standardized code, also with a script subtag
+       dropped when it is the likely script of the rest of the tag and the
+       language subtag is unchanged (``apc-Arab-SY`` → ``apc-SY``). A
+       private-use tag also matches with a Suppress-Script subtag dropped
+       (``pt-Latn-BR-x-sp`` → ``pt-BR-x-sp``).
     4. The default region of a bare primary-language tag, when that
        spec is registered (``pt`` → ``pt-PT``), or the curated default
        variant of a region tag with only sub-regional specs
@@ -402,7 +406,7 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     """
     if code in _ALIASES:
         return _ALIASES[code]
-    available = available_json_codes()
+    available = json_loader._index
     # A registered code names its own spec. ``macro=True`` below folds an
     # individual language into its macrolanguage (``tl`` → ``fil``,
     # ``bcl`` → ``bik``), which would miss the spec.
@@ -413,8 +417,7 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     # ``mnk`` before macrolanguage folding can turn it into ``man``.
     if (known := _casefold_lookup(code.lower())) is not None:
         return known
-    if (_HAS_LANGCODES and not _PRIVATE_USE.search(code)
-            and not code.startswith("x-")):
+    if not _PRIVATE_USE.search(code) and not code.startswith("x-"):
         try:
             code = _langcodes.standardize_tag(code, macro=True)
         except Exception:
@@ -423,31 +426,44 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
             return _ALIASES[code]
     if code in available:
         return code
-    if _HAS_LANGCODES and _PRIVATE_USE.search(code):
+    # Legacy keys carry private-use subtags of more than 8 characters, which
+    # ``parse`` rejects, so the private use is split off before the rest is read.
+    requested_head, *requested_private = _PRIVATE_USE.split(requested, maxsplit=1)
+    code_head, *private = _PRIVATE_USE.split(code, maxsplit=1)
+    try:
+        wanted = parse_tag(requested_head)
+        tag = parse_tag(code_head)
+    except LanguageTagError:
+        wanted = tag = LanguageTag()
+    # A script subtag that linguatag gives as the likely script of the rest of
+    # the tag adds nothing to it, so ``apc-Arab-SY`` names ``apc-SY``. Left in,
+    # it ties ``apc-SY`` with bare ``apc``, which maximizes to ``apc-Arab-SY``.
+    # The language must be the one the tag gives: ``kas-Arab`` standardizes to
+    # ``ks-Arab``, and the own-language search below keeps it on ``kas``.
+    if tag.script and tag.language == wanted.language:
+        unscripted = "-x-".join([str(replace(tag, script=None)), *private])
+        if unscripted in available and likely_script(unscripted) == tag.script:
+            return unscripted
+    if private:
         # A script subtag that is the language's IANA Suppress-Script adds
         # no information (RFC 5646 §3.1.9), so ``pt-Latn-BR-x-sp`` names
-        # ``pt-BR-x-sp``. Only the part before the private use goes to
-        # langcodes, unnormalized, so no macrolanguage folding happens.
-        head, private = _PRIVATE_USE.split(code, maxsplit=1)
-        try:
-            bare = _langcodes.Language.get(
-                head, normalize=False).simplify_script().to_tag()
-        except Exception:
-            bare = None
-        if (bare and bare.lower() != head.lower() and (
-                known := _casefold_lookup(f"{bare}-x-{private}".lower()))
+        # ``pt-BR-x-sp``.
+        bare = standardize_lang(code_head)
+        if (bare.lower() != code_head.lower() and (
+                known := _casefold_lookup(f"{bare}-x-{private[0]}".lower()))
                 is not None):
             return known
     # A bare tag names its motherland variety, not the most-populous region
     # langcodes would pick: ``pt`` is ``pt-PT``, not ``pt-BR``.
-    if "-" not in code and (default := with_default_region(code)) in available:
+    if str(tag) == tag.language and not private and (
+            default := with_default_region(code)) in available:
         return default
     if code in _REGION_DEFAULTS:
         return _REGION_DEFAULTS[code]
-    language = code.split("-")[0].lower()
-    if language in _MOTHERLAND_FALLBACK and not _PRIVATE_USE.search(code):
-        if (region := _region_subtag(code)) and f"{language}-{region}" in available:
-            return f"{language}-{region}"
+    language = tag.language
+    if language in _MOTHERLAND_FALLBACK and not private:
+        if tag.region and f"{language}-{tag.region}" in available:
+            return f"{language}-{tag.region}"
         if (default := with_default_region(language)) in available:
             return default
     if not allow_nearest:
@@ -455,6 +471,18 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     # An unknown variant falls back to the standard variety, not to whichever
     # sibling lect ties with it: private use counts for nothing in the distance.
     candidates = sorted({*available, *_RENAMED})
+    # The bs spec reads Cyrillic too, so a Bosnian Cyrillic tag of any region
+    # or private use is Bosnian. Left to the distance it finds no near spec.
+    if language == "bs" and tag.script == "Cyrl":
+        return "bs"
+    # Likely subtags make bare ``ar`` Egyptian, so the distance puts a region
+    # no Arabic spec names beside whichever dialect spec sorts first
+    # (``ar-ZZ`` → ``arz-EG``, ``ar-FR`` → ``afb-AE``). No source states a
+    # difference from Modern Standard Arabic for such a region.
+    if (language == "ar" and tag.script in (None, "Arab") and tag.region
+            and tag.region not in {_region_subtag(c) for c in candidates
+                                   if c.split("-")[0] == "ar"}):
+        return "ar"
     # The primary language subtag names the language. When that language has
     # a spec, the match stays inside it: ``sr-Latn-RS`` is Serbian, and
     # langcodes would otherwise pick ``cnr``, whose likely subtags are
@@ -465,15 +493,23 @@ def _resolve_code(code: str, *, allow_nearest: bool = True) -> str:
     # The own-language specs are measured from the tag that names their
     # language: langcodes folds ``fat-GH`` into ``ak-GH``, and CLDR 49 makes
     # Fanti a language apart from Akan, so ``ak-GH`` is not near ``fat``.
-    # With no own-language spec near enough, the search is as wide as
-    # before, so no tag that resolved stops resolving.
+    # With no own-language spec near enough, the search covers every spec.
+    # ``hr-Cyrl`` finds none, since CLDR 49 puts Croatian and Serbian 80
+    # apart.
     match = None
-    for tag in (requested, code):
-        language = tag.split("-")[0].lower()
+    for text, parsed, extra in ((requested, wanted, requested_private),
+                                (code, tag, private)):
+        language = parsed.language
         own = [c for c in candidates
-               if len(language) > 1 and c.split("-")[0].lower() == language]
+               if language and c.split("-")[0].lower() == language]
         if own:
-            match = closest_lang(tag, own, lects="standard")
+            # CLDR lists no likely script for a language it does not name
+            # (``fat``), so ``Latn`` has nothing to be measured against and
+            # would put every own-language spec out of reach. Another script
+            # stays, so it does not fall to a spec of a different script.
+            if parsed.script == "Latn" and not likely_script(language):
+                text = "-x-".join([str(replace(parsed, script=None)), *extra])
+            match = closest_lang(text, own, lects="standard")
             break
     match = match or closest_lang(code, candidates, lects="standard")
     if match:
@@ -492,7 +528,7 @@ def resolves_exactly(code: str) -> bool:
     separates the two, so a caller can tell "this code is registered" from
     "something vaguely like it is".
     """
-    return _resolve_code(code, allow_nearest=False) in available_json_codes()
+    return _resolve_code(code, allow_nearest=False) in json_loader._index
 
 
 def resolve(code: str) -> str:
@@ -522,12 +558,8 @@ def get(code: str, strict: bool = False) -> LanguageSpec:
             ``closest_lang``, which answers an unregistered code with the
             nearest thing it can find.
 
-    The default is the guess, because callers depend on it. It is worth knowing
-    what it costs: before ``ar-BH-x-baharna`` had a spec, ``get`` answered it with
-    a 261-grapheme table and plausible Arabic output — the Bahraini Sunni one —
-    with nothing in the result saying a substitution had happened. A reviewer
-    reading a baseline that way got a complete, confident column from the wrong
-    spec. ``strict=True`` is for any caller that would rather be told.
+    The default guesses, and the result does not say that it is a substitute
+    spec. ``strict=True`` is for a caller that must know.
 
     Raises:
         KeyError: If the language is not registered, or — under *strict* — if it
@@ -569,19 +601,19 @@ def _available_codes(include_clades: bool) -> tuple:
 
 
 def ancestry_chain(code: str) -> List[str]:
-    """Return the ``parent`` chain above *code*, nearest ancestor first.
+    """Return the ``inherits`` chain above *code*, nearest ancestor first.
 
     Includes the classification-only clade nodes the chain passes through
     (``["ber", "x-clade-berb1260", "afa", "x-clade-afro1255"]``).
     """
     chain: List[str] = []
     seen = {resolve(code)}
-    parent = get(code).parent
+    parent = get(code).inherits
     while parent and parent not in seen:
         chain.append(parent)
         seen.add(parent)
         try:
-            parent = get(parent).parent
+            parent = get(parent).inherits
         except KeyError:
             break
     return chain
@@ -735,12 +767,7 @@ def _get_stress_plugin(code: str) -> Optional["StressPlugin"]:
 class MissingStressPlugin(RuntimeError):
     """A spec asked for a stress plugin and none is registered.
 
-    Deliberately fatal. A spec that sets ``stress.source = "plugin"`` is saying its
-    stress cannot be expressed by the declarative rules — so falling back to them
-    would not be a graceful degradation, it would be a DIFFERENT ANSWER, silently.
-    The transcription must be a function of the spec and the input; quietly
-    substituting a different stress model makes it a function of what happens to
-    be installed, which is the bug this rule exists to prevent.
+    Fatal, because the declarative rules give a different answer.
     """
 
 
@@ -751,10 +778,7 @@ class MissingStressPlugin(RuntimeError):
 class MissingPlugin(RuntimeError):
     """A spec named a plugin and it is not installed.
 
-    Deliberately fatal. The spec asked for this plugin because the built-in answer
-    is not the answer it wants — so falling back to the built-in would not be a
-    graceful degradation, it would be a DIFFERENT TRANSCRIPTION, silently, with no
-    way for the caller to know which one they got.
+    Fatal, because the built-in stage gives a different transcription.
     """
 
 
@@ -762,12 +786,7 @@ _declared: Dict[str, Dict[str, object]] = {}
 
 
 def _discover_stage(stage: str) -> Dict[str, object]:
-    """Every plugin registered for *stage*, keyed by its ENTRY-POINT NAME.
-
-    The name is the plugin's identity, and it is what a spec names. That makes the
-    declaration readable and greppable — and it means two packages cannot fight
-    over a language, because the spec already said which one it wanted.
-    """
+    """Every plugin registered for *stage*, keyed by the entry-point name a spec uses."""
     from orthography2ipa.plugins import _ENTRY_POINT_GROUPS
 
     found: Dict[str, object] = {}

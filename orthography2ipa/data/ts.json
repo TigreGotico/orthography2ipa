@@ -1,8 +1,7 @@
 {
   "code": "ts",
-  "glottolog_code": "tson1249",
   "name": "Tsonga (Xitsonga)",
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",
@@ -343,7 +342,6 @@
     "end_year": null
   },
   "iso639_3": "tso",
-  "wikidata_qid": "Q34327",
   "wals_code": "tsn",
   "location": {
     "latitude": -23.5754,

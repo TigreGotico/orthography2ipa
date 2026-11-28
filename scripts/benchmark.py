@@ -118,7 +118,7 @@ GoldPair = Tuple[str, str]
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from docs_nav import footer  # noqa: E402
+from docs_nav import agent_hint, footer  # noqa: E402
 from orthography2ipa.vowels import is_ipa_vowel  # noqa: E402
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -234,6 +234,11 @@ _CLICK_ACCOMPANIMENT_SUPERSCRIPTS = {"ᵏ": "k", "ᵑ": "ŋ"}
 #: rows write the SAME segment tie-barred as c͜ʎ̥˔ (see the "hts" registry
 #: comment below) -- so the fold target is ʎ̥˔, not ǁ.
 _NOTATIONAL_LETTER_ALIASES = {"𝼆": "ʎ̥˔"}
+# Chao pitch numerals and Chao tone letters write the same pitch levels, and
+# gold sets use either. Folding the numerals keeps a spec that writes IPA tone
+# letters from scoring against a gold that writes numerals. Six is a level some
+# Yi and Tai descriptions add above five; IPA tone letters stop at ˥.
+_CHAO_NUMERALS = str.maketrans("¹²³⁴⁵⁶", "˩˨˧˦˥˥")
 
 #: ASCII "g" (U+0067, keyboard Latin) vs the official IPA voiced velar
 #: plosive ɡ (U+0261, LATIN SMALL LETTER SCRIPT G) — a Unicode confusable,
@@ -3536,135 +3541,15 @@ def can_gate_promotion(tier: str) -> bool:
         raise ValueError(f"unknown reliability tier: {tier!r}")
     return tier not in NON_QUALIFYING_TIERS
 
-# Every key in DATASETS MUST appear here (a test enforces it, so a new
-# dataset cannot be registered without an explicit, evidence-based
-# reliability classification). Classifications are justified per-dataset in
-# docs/evaluation/benchmarks.md "Provenance and reliability".
-PROVENANCE: Dict[str, str] = {
-    # The transcriptions are the published examples of the phonologists and
-    # dialectologists the specs cite — the most authoritative gold in the
-    # harness, and the only one whose every row names the page it came from.
-    # Still small-n, still bound by each source's own conventions (and by the
-    # editor-supplied Arabic ḥarakāt: see the dataset README), so it diagnoses
-    # rules rather than certifying a language on its own.
-    "primary_sources": "expert-human",
-    # The LLM-generated sets score against their llm-corrected file (see
-    # load_llm_corrected). The source rows were drafted by a language model,
-    # and spain_romance_tts was also pinned to the engine's own output. The
-    # correction tool wrote a new label for every row: two blind passes from
-    # the text and the lect's cited sources, and a third that decides where
-    # they differ, with the engine output in view. The label is still a
-    # language model's, with no lexicon and no rule system behind it, so a
-    # disagreement cannot be attributed to anything. The tier is
-    # `llm-corrected`: silver, never `expert-human`, and it gates no quality
-    # decision (docs/specs/quality_tiers.md). gold20_arabic was also
-    # spot-checked by a native speaker, which raises confidence, not tier.
-    "arabic_tts": "llm-corrected",
-    "gold20_arabic": "llm-corrected",
-    "portuguese_tts": "llm-corrected",
-    "spain_romance_tts": "llm-corrected",
-    # phonetician / native-speaker / expert-annotator curated IPA
-    "ep_dialects": "expert-human",       # TigreGotico team, manual, unvalidated, small-n
-    "mirandese_g2p": "expert-human",     # TigreGotico/mirandese_g2p; native-speaker collected; small-n
-    "4catac": "expert-human",            # expert annotators, IEC guidelines, consensus review
-    "clup_dialect": "expert-human",      # U.Porto CLUP dialect archive; see note (IPA-column provenance undocumented, many rows n=1-17)
-    # human lexicographers via dictionary notation conventions
-    "cmudict": "lexicon-derived",             # CMU hand-curated ARPABET, mechanically mapped to IPA
-    # ipa-dict is MIXED-PROVENANCE and is classified PER LANGUAGE in
-    # PROVENANCE_BY_LANG below (human dictionaries, Wiktionary scrapes, rule
-    # scripts, and — for en-GB — espeak output all live in the same project).
-    # This dataset-wide value is only the fallback for a language with no
-    # explicit classification, so it is the most pessimistic tier, never an
-    # average: an unclassified ipa-dict file is not to be trusted. A test
-    # forbids leaving a registered ipadict language unclassified.
-    "ipadict": "machine-generated",
-    # community-scraped Wiktionary
-    "wikipron": "crowd-scraped",
-    # Infopédia + pt.wiktionary, classified per region in
-    # _PT_UNIFIED_PROVENANCE. The fallback is the more pessimistic tier.
-    "portuguese_unified": "crowd-scraped",
-    # The SAME gold with the committed stress and headword overlay applied
-    # (see load_portuguese_unified_corrected). It keeps the base tier, per
-    # language through PROVENANCE_BY_LANG as the base does, and never gates
-    # because it is in CORRECTED_DATASETS.
-    "portuguese_unified_corrected": "crowd-scraped",
-    # The Portal da Língua Portuguesa Dicionário Fonético rows: the output of
-    # the LUPo rule-based generator (Ashby et al. 2012). See load_portal_lupo.
-    "portal_lupo": "lupo-derived",
-    # SAME crowd-scraped WikiPron ar gold; only the INPUT word is
-    # machine-diacritized (text2tashkeel, ~2% DER), which adds a small
-    # machine noise floor on top of the gold's own tier. Diagnostic for
-    # the vowelized-Arabic rules; certifies nothing beyond the raw row.
-    "wikipron_ar_diacritized": "crowd-scraped",
-    # Same crowd-scraped WikiPron tier as ``wikipron``; a different file,
-    # scraped under the Norwegian MACROLANGUAGE code (see load_wikipron_nor).
-    "wikipron_nor": "crowd-scraped",
-    # The gold IPA is byte-identical to ``wikipron`` and the input word
-    # comes from the same Wiktionary page, read from the headword line
-    # instead of the page title. No new annotator and no machine
-    # transcription enter, so the tier does not move.
-    "wikipron_restored": "crowd-scraped",
-    # A COMPETITOR'S OUTPUT reused as a reference. These phonemes come from the
-    # espeak-ng-backed phonemizer, so this row measures AGREEMENT WITH ESPEAK,
-    # not correctness — and espeak is a system we benchmark ourselves *against*
-    # (docs/evaluation/generated/comparison.md). Diverging from it can mean we are right and it is
-    # wrong, which would show here as a *worse* score. Quality also varies by
-    # language. Never gate a quality decision on this row; judge any divergence
-    # against a cited source instead. Kept because it is broad coverage and a
-    # useful directional signal.
-    # IPA-BabyLM: G2P+ (github.com/codebyzeb/g2p-plus) with the `phonemizer`
-    # backend, language en-us — i.e. espeak-ng output. espeak output can
-    # never qualify or block a spec: a disagreement measures divergence
-    # from espeak, which may be exactly what the cited source demands.
-    "ipa_babylm": "espeak-derived",
-    # VoxCommunis lexicons are built with Epitran (a scored competitor),
-    # XPF and Charsiu; partially hand-corrected, but not attributably so.
-    "vox_communis": "epitran-derived",
-    # The SAME gold with the committed corrections overlay applied (see
-    # load_vox_communis_corrected). A corrected gold inherits its base's tier
-    # and can never rise above it: repairing one derivable defect does not make
-    # the untouched majority of the rows anything other than the competitor's
-    # output, and the repair itself was applied by an automated process. Every
-    # overlay therefore lands on a non-gating tier by construction — a test
-    # asserts can_gate_promotion is False for it.
-    "vox_communis_corrected": "epitran-derived",
-    # ipa-dict with the committed pt-BR stress overlay applied. The tier is
-    # resolved per language through PROVENANCE_BY_LANG, from the same table as
-    # the base `ipadict` row; this fallback mirrors the base fallback.
-    "ipadict_corrected": "machine-generated",
-    # IPA-CHILDES is MIXED-PROVENANCE and is classified PER LANGUAGE in
-    # PROVENANCE_BY_LANG below: its dataset card names a DIFFERENT phonemizing
-    # tool per language (phonemizer/espeak for most, epitran for six,
-    # pinyin_to_ipa for Mandarin). The dataset-wide value here is only the
-    # fallback for an unclassified language and is deliberately pessimistic —
-    # every classified language is either espeak- or epitran-derived, so an
-    # unclassified one is assumed competitor-derived and cannot gate.
-    "ipa_childes": "epitran-derived",
-    "hitz_basque_ipa": "machine-generated",     # HiTZ ahoNT automatic phonemizer
-    # LLM-generated (Claude, research-conditioned) IPA dictionaries, scored
-    # against their llm-corrected file like the sentence sets above. NO ERROR
-    # MODEL: an LLM has no lexicon and no rules, so a disagreement cannot be
-    # attributed to anything. Silver; can never gate a promotion.
-    "barranquenho_dict": "llm-corrected",
-    "mirandese_dict": "llm-corrected",
-    # Lexibank/CLDF wordlists: every row is compiled from, and cites, a
-    # published source dictionary (the CLDF `Source` column) — human
-    # lexicographers via a published notation, the same class of gold as
-    # `cmudict`/`portuguese_unified`, not a phonemizer's own output.
-    "northeuralex": "lexicon-derived",  # Dellert et al. 2020, NorthEuraLex
-    "wold": "lexicon-derived",          # Haspelmath & Tadmor 2009, WOLD
-    "kaikki": "crowd-scraped",          # kaikki.org Wiktextract (Wiktionary)
-    # alphacep/biggest-ru-book-cleanup: automatic accentuator/G2P annotation
-    # over its5Q/biggest-ru-book, not hand-transcribed or lexicon-derived.
-    # Also morphophonemic (no vowel reduction, ⟨г⟩=[g]) rather than
-    # surface-phonetic — see load_alphacep_ru_book's docstring.
-    "alphacep_ru_book": "machine-generated",
-    # CoRuSS: expert phonetic transcription of recorded speech by the SPbU
-    # phonetics lab, no engine in the loop. Surface-phonetic and
-    # colloquial, so its PER floor is far above a careful-speech gold's --
-    # see load_coruss_ru's docstring.
-    "coruss_ru": "expert-human",
-}
+#: One table defines every gold dataset: its reliability tier, where the gold
+#: comes from, and how it was made. Every key in DATASETS must appear in it (a
+#: test enforces it). The classifications are justified per dataset in
+#: docs/evaluation/benchmarks.md "Provenance and reliability".
+GOLD_SOURCES_JSON = os.path.join(REPO_ROOT, "benchmarks", "gold_sources.json")
+with open(GOLD_SOURCES_JSON, encoding="utf-8") as _fh:
+    GOLD_SOURCES: Dict[str, Dict[str, str]] = json.load(_fh)
+PROVENANCE: Dict[str, str] = {name: entry["tier"]
+                              for name, entry in GOLD_SOURCES.items()}
 
 # portuguese_unified reads Infopédia, Michaelis and pt.wiktionary rows, and the
 # mix differs by region. 94% of the pt-PT rows are Infopédia entries and 86% of
@@ -3770,7 +3655,8 @@ def _prosody_marks(lang: str) -> str:
     A spec that declares ``stress.accent2_mark`` (Scandinavian pitch accent)
     makes ¹/² prosody for that language, unscored on both sides — exactly
     like the universal stress marks. For every other language the digits are
-    left alone (they are lexical tone in e.g. Yi gold).
+    lexical tone (as in Yi gold): ``normalize`` folds them into Chao tone
+    letters and scores them.
     """
     try:
         from orthography2ipa import get
@@ -3801,6 +3687,7 @@ def normalize(ipa: str, strip_stress: bool, broad: bool,
         s = s.replace(ch, "")
     for alt, canon in _NOTATIONAL_LETTER_ALIASES.items():
         s = s.replace(alt, canon)
+    s = s.translate(_CHAO_NUMERALS)
     s = _expand_consonant_length(s)
     if broad:
         decomposed = unicodedata.normalize("NFD", s)
@@ -3840,6 +3727,60 @@ def levenshtein(a: str, b: str) -> int:
                             prev[j - 1] + (ca != cb)))
         prev = curr
     return prev[-1]
+
+
+_SEG_LIGATURES = (("ʧ", "t\u0361ʃ"), ("ʤ", "d\u0361ʒ"), ("ʦ", "t\u0361s"), ("ʣ", "d\u0361z"))
+_SEG_TIES = "\u0361\u035c"
+_SEG_MODIFIERS = "ʰʲʷˠˤːˑ"
+_SEG_DROP = "ˈˌ.·|‿'"
+
+
+def segments(ipa: str) -> List[str]:
+    """The phone segments of *ipa*, by the shared segment rule of the PER
+    board: NFD; ʧ ʤ ʦ ʣ become their tied forms; stress marks, syllable
+    dots, joiners and spaces drop; a segment is one base symbol with its
+    combining marks and modifier letters, and a tie bar joins the next base
+    into the same segment."""
+    s = unicodedata.normalize("NFD", ipa)
+    for lig, tied in _SEG_LIGATURES:
+        s = s.replace(lig, tied)
+    out: List[str] = []
+    join = False
+    for ch in s:
+        if ch in _SEG_DROP or ch.isspace():
+            continue
+        if ch in _SEG_TIES:
+            join = bool(out)
+            if out:
+                out[-1] += "\u0361"
+        elif out and (join or unicodedata.combining(ch) or ch in _SEG_MODIFIERS):
+            out[-1] += ch
+            join = False
+        else:
+            out.append(ch)
+    return out
+
+
+def segment_per(pairs: Sequence[GoldPair], lang: str) -> Tuple[int, float]:
+    """Micro segment PER of the rules on *pairs*: the edits over the closest
+    gold variant of each word, summed, over the summed gold segments. A word
+    with an empty transcription counts as the deletion of its gold.
+    Returns ``(words scored, PER)``."""
+    from orthography2ipa import G2P, Pipeline
+
+    engine = G2P(lang, pipeline=Pipeline(lexicon=None))
+    refs: Dict[str, List[str]] = {}
+    for word, gold in pairs:
+        refs.setdefault(word, []).append(gold)
+    edits = total = scored = 0
+    for word, golds in refs.items():
+        transcribe = engine.transcribe if _is_multiword(word) else engine.transcribe_word
+        hyp = segments(transcribe(word))
+        cost, size = min((levenshtein(hyp, segments(g)), len(segments(g))) for g in golds)
+        edits += cost
+        total += size
+        scored += 1
+    return scored, (edits / total if total else 1.0)
 
 
 def align(a: str, b: str) -> List[Tuple[Optional[str], Optional[str]]]:
@@ -4781,6 +4722,144 @@ def read_ci_sample_rows() -> List[dict]:
 SCOREBOARD_JSON_INDENT = 1
 
 
+NOTATION_FOLDS_JSON = os.path.join(REPO_ROOT, "benchmarks", "notation_folds.json")
+
+
+def notation_fold_section() -> List[str]:
+    """The scoreboard section of the per-source notation-fold rows that
+    ``scripts/source_notation_per.py --write`` commits. They are reported and
+    never gate."""
+    if not os.path.exists(NOTATION_FOLDS_JSON):
+        return []
+    with open(NOTATION_FOLDS_JSON, encoding="utf-8") as fh:
+        rows = json.load(fh)
+    lines = [
+        "## Per-source notation folds (reported, not gated)", "",
+        "Each fold applies only to a gold reading from a source whose own rows "
+        "show no contrast for it (`scripts/source_notation_per.py`). The Michaelis "
+        "folds rest on counts of its rows, not on its transcription key, so the "
+        "folded numbers never gate. The section is a list, not a table, because "
+        "the board checks read every table row of this page as a board row.", "",
+    ]
+    for r in rows:
+        lines.append(
+            f"- {r['lang']} {r['dataset']} ({r['words']} words): PER {r['per']:.4f}, "
+            f"folded {r['folded_per']:.4f}. Segment PER {r['segment_per']:.4f}, "
+            f"folded {r['folded_segment_per']:.4f}. Folds: "
+            f"{', '.join(f'`{f}`' for f in r['folds'])}.")
+    return lines + [""]
+
+
+#: The label of every notation fold, keyed on the fold name. The fold scripts
+#: read their fold names from it.
+FOLD_LABELS_JSON = os.path.join(REPO_ROOT, "benchmarks", "fold_labels.json")
+
+#: One row per dataset and language, for consumers that copy board numbers.
+RESULTS_SUMMARY_JSON = os.path.join(
+    REPO_ROOT, "benchmarks", "results_summary.json")
+
+#: A row with a smaller N has a CI too wide to stand for a language.
+MIN_N = 1000
+
+
+def headline_row(rows: Sequence[dict]) -> Optional[dict]:
+    """The row that stands for one language, from that language's rows.
+
+    Gating rows go first, if the language has one. Then rows with N of at
+    least ``MIN_N``, if one reaches it. Of those, the row on the most trusted
+    reliability tier wins, then the row with the largest N, then the first
+    dataset name.
+    """
+    if not rows:
+        return None
+    rows = [r for r in rows if r["gating"]] or list(rows)
+    rows = [r for r in rows if r["n"] >= MIN_N] or rows
+    return min(rows, key=lambda r: (RELIABILITY_TIERS.index(r["provenance"]),
+                                    -r["n"], r["dataset"]))
+
+
+def _git_sha() -> Optional[str]:
+    import subprocess
+    try:
+        return subprocess.run(
+            ["git", "-C", REPO_ROOT, "rev-parse", "HEAD"], check=True,
+            capture_output=True, text=True).stdout.strip()
+    except (OSError, subprocess.CalledProcessError):
+        return None
+
+
+def results_summary(rows: Sequence[dict], folded: Sequence[dict],
+                    version: str, sha: Optional[str]) -> dict:
+    """The results summary of the board *rows*.
+
+    *folded* holds the rows of ``notation_folds.json``. A row with no fold
+    has ``folded_per`` None and an empty ``folds`` list.
+    """
+    folds = {(r["lang"], r["dataset"]): r for r in folded}
+    by_lang: Dict[str, List[dict]] = {}
+    for r in rows:
+        by_lang.setdefault(r["lang"], []).append(r)
+    headlines = {id(headline_row(group)) for group in by_lang.values()}
+    out = []
+    for r in sorted(rows, key=lambda r: (r["lang"], r["dataset"])):
+        fold = folds.get((r["lang"], r["dataset"]))
+        gold = GOLD_SOURCES[r["dataset"]]
+        out.append({
+            "dataset": r["dataset"],
+            "lang": r["lang"],
+            "gold_source": gold["source"],
+            "gold_provenance": gold["provenance"],
+            "reliability_tier": r["provenance"],
+            "gating": r["gating"],
+            "headline": id(r) in headlines,
+            "n": r["n"],
+            "strict_per": r["per"],
+            "folded_per": fold["folded_per"] if fold else None,
+            "folds": list(fold["folds"]) if fold else [],
+        })
+    return {"o2i_version": version, "o2i_git_sha": sha,
+            "harness_version": HARNESS_VERSION, "min_n": MIN_N, "rows": out}
+
+
+def write_results_summary(rows: Sequence[dict]) -> None:
+    from orthography2ipa import __version__
+    folded: List[dict] = []
+    if os.path.exists(NOTATION_FOLDS_JSON):
+        with open(NOTATION_FOLDS_JSON, encoding="utf-8") as fh:
+            folded = json.load(fh)
+    summary = results_summary(rows, folded, __version__, _git_sha())
+    with open(RESULTS_SUMMARY_JSON, "w", encoding="utf-8") as fh:
+        json.dump(summary, fh, indent=SCOREBOARD_JSON_INDENT,
+                  ensure_ascii=False)
+        fh.write("\n")
+
+
+def report_row_changes(old: Sequence[dict], new: Sequence[dict],
+                       written: Sequence[dict]) -> List[str]:
+    """Lines that give the rows in and out of a regenerate, and a diff of
+    each changed row. *old* is the committed set, *new* the rescored rows
+    and *written* the set that goes to the file."""
+    committed = {(r["lang"], r["dataset"]): r for r in old}
+    lines = [f"rows in: {len(old)} committed, {len(new)} rescored; "
+             f"rows out: {len(written)}"]
+    changed = 0
+    for row in sorted(new, key=lambda r: (r["lang"], r["dataset"])):
+        before = committed.get((row["lang"], row["dataset"]))
+        if before == row:
+            continue
+        changed += 1
+        name = f"{row['dataset']}/{row['lang']}"
+        if before is None:
+            lines.append(f"  + {name}: new row")
+            continue
+        for key in sorted(set(before) | set(row)):
+            if before.get(key) != row.get(key):
+                lines.append(f"  ~ {name}: {key} {before.get(key)!r} -> "
+                             f"{row.get(key)!r}")
+    lines.insert(1, f"rows changed: {changed}")
+    return lines
+
+
 def write_scoreboard(rows: List[dict]) -> None:
     os.makedirs(os.path.dirname(SCOREBOARD_JSON), exist_ok=True)
     with open(SCOREBOARD_JSON, "w", encoding="utf-8") as fh:
@@ -4789,6 +4868,18 @@ def write_scoreboard(rows: List[dict]) -> None:
 
     lines = [
         "# Scoreboard",
+        "",
+        agent_hint(
+            covers="the committed PER, exact-match rate and provenance of every "
+                   "gold dataset and language row the harness scores",
+            source="`benchmarks/results.json`, `scripts/benchmark.py` "
+                   "(`DATASETS`, `write_scoreboard`)",
+            generated="yes, by `scripts/benchmark.py --scoreboard`. Edit the "
+                      "generator, not the page",
+            verify="`PYTHONPATH=$PWD python -m pytest "
+                   "tests/test_thin_row_marker.py`",
+            see="`docs/evaluation/benchmarks.md`, "
+                "`docs/evaluation/datasets.md`, `docs/contributing/board.md`"),
         "",
         "**Grain of salt — read this first.** Reliable G2P \"gold\" barely "
         "exists. Most datasets below are semi-automated, dictionary-extracted, "
@@ -4997,6 +5088,7 @@ def write_scoreboard(rows: List[dict]) -> None:
             f"| {'-' if em is None else f'{em:.4f}'} | {tier} | {prov} |"
         )
     lines.append("")
+    lines += notation_fold_section()
     os.makedirs(os.path.dirname(SCOREBOARD_MD), exist_ok=True)
     with open(SCOREBOARD_MD, "w", encoding="utf-8") as fh:
         fh.write("\n".join(lines).rstrip() + footer("evaluation/generated/scoreboard.md"))
@@ -5087,6 +5179,17 @@ def write_lexicon_report(rows: List[dict]) -> None:
     lines = [
         "# Lexicon-overlay scoreboard",
         "",
+        agent_hint(
+            covers="the PER of each gold set with and without a "
+                   "caller-supplied lexicon",
+            source="`scripts/benchmark.py` (`--lexicon-report`), "
+                   "`orthography2ipa/lexicon.py`",
+            generated="yes, by `scripts/benchmark.py --lexicon-report`. Edit "
+                      "the generator, not the page",
+            verify="`PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py`",
+            see="`docs/guide/lexicon.md`, "
+                "`docs/evaluation/generated/scoreboard.md`"),
+        "",
         "Rules-only against with-lexicon PER for each language with a "
         "caller-supplied lexicon. The package bundles no lexicon: see "
         "[`docs/guide/lexicon.md`](../../guide/lexicon.md) and `orthography2ipa/lexicon.py`. "
@@ -5147,6 +5250,8 @@ def main() -> None:
                          "report which ones upstream has changed. Scoring "
                          "otherwise uses the cached copy, so a row measured "
                          "against a stale snapshot is invisible.")
+    ap.add_argument("--segment-per", action="store_true",
+                    help="also print the micro segment PER of the shared board rule")
     ap.add_argument("--scoreboard", action="store_true",
                     help="Run every registered gold dataset/language "
                          "combination and write docs/evaluation/generated/scoreboard.md + "
@@ -5173,7 +5278,17 @@ def main() -> None:
                          "{code}.tsv file in DIR and "
                          "write docs/evaluation/generated/lexicon_scoreboard.md + "
                          "benchmarks/lexicon_results.json")
+    ap.add_argument("--results-summary", action="store_true",
+                    help="Write benchmarks/results_summary.json from the "
+                         "committed benchmarks/results.json, with no scoring")
     args = ap.parse_args()
+
+    if args.results_summary:
+        rows = read_scoreboard_rows()
+        write_results_summary(rows)
+        print(f"wrote {len(rows)} rows to "
+              f"{os.path.relpath(RESULTS_SUMMARY_JSON, REPO_ROOT)}")
+        return
 
     global REFRESH_CACHE
     REFRESH_CACHE = args.refresh_cache
@@ -5202,10 +5317,12 @@ def main() -> None:
             committed, rows, "CI sample",
             [args.lang] if args.lang else None,
             [args.dataset] if args.dataset else None)
+        rescored = rows
         if subset:
             print(f"merging {len(rows)} rescored rows into the committed "
                   f"CI sample", file=sys.stderr)
             rows = merge_scoreboard_rows(committed, rows)
+        print("\n".join(report_row_changes(committed, rescored, rows)))
         os.makedirs(os.path.dirname(CI_SAMPLE_JSON), exist_ok=True)
         with open(CI_SAMPLE_JSON, "w", encoding="utf-8") as fh:
             json.dump(rows, fh, indent=2, ensure_ascii=False)
@@ -5233,16 +5350,20 @@ def main() -> None:
             committed, rows, "scoreboard",
             [args.lang] if args.lang else None,
             [args.dataset] if args.dataset else None)
+        rescored = rows
         if subset:
             print(f"merging {len(rows)} rescored rows into the committed "
                   f"scoreboard", file=sys.stderr)
             rows = merge_scoreboard_rows(committed, rows)
         else:
             write_environment()
+        print("\n".join(report_row_changes(committed, rescored, rows)))
         write_scoreboard(rows)
+        write_results_summary(rows)
         print(f"wrote {len(rows)} rows to "
-              f"{os.path.relpath(SCOREBOARD_MD, REPO_ROOT)} and "
-              f"{os.path.relpath(SCOREBOARD_JSON, REPO_ROOT)}")
+              f"{os.path.relpath(SCOREBOARD_MD, REPO_ROOT)}, "
+              f"{os.path.relpath(SCOREBOARD_JSON, REPO_ROOT)} and "
+              f"{os.path.relpath(RESULTS_SUMMARY_JSON, REPO_ROOT)}")
         return
 
     if args.list or not args.dataset:
@@ -5264,6 +5385,9 @@ def main() -> None:
     )
     line = (f"{args.dataset} lang={lang} n={n} covered={covered} "
             f"PER={per:.4f} WER={wer:.4f}")
+    if args.segment_per:
+        seg_n, seg = segment_per(pairs, lang)
+        line += f" segPER={seg:.4f} (micro, {seg_n} words)"
     if oracle_res is not None:
         line += "".join(f" oracle@{k}={oracle_res.oracle_per[k]:.4f}"
                         f"/x{oracle_res.oracle_exact[k]:.4f}"

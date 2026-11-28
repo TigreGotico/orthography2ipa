@@ -1,5 +1,13 @@
 # Amharic (`am`)
 
+<!-- agent-hint
+covers: what the `am` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/am.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Amharic is a Semitic language, written in the Ethiopic script. Glottolog places it in Djibouti and Ethiopia. The `am` spec is at the research tier. It cites 3 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
@@ -64,23 +72,26 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 239 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 61 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p pʼ |  | d t tʼ |  |  | k kʷ kʼ kʼʷ ɡ ɡʷ | ʔ |
-| Affricate |  |  | tsʼ | dʒ tʃ tʃʼ |  |  |  |
-| Nasal | m |  | n |  | ɲ |  |  |
-| Tap |  |  | ɾ |  |  |  |  |
-| Fricative |  | f v | s z | ʃ ʒ |  |  | h hʷ |
+| Plosive | b bʷ p pʷ pʼ pʼʷ |  | d dʷ t tʷ tʼ tʼʷ |  |  | k kʷ kʼ kʼʷ ɡ ɡʷ | ʔ |
+| Affricate |  |  | tsʼ tsʼʷ | dʒ dʒʷ tʃ tʃʷ tʃʼ tʃʼʷ |  |  |  |
+| Nasal | m mʷ |  | n nʷ |  | ɲ ɲʷ |  |  |
+| Tap |  |  | ɾ ɾʷ |  |  |  |  |
+| Fricative |  | f fʷ v vʷ | s sʷ z zʷ | ʃ ʃʷ ʒ ʒʷ |  |  | h hʷ |
 | Approximant |  |  |  |  | j |  |  |
-| Lateral approximant |  |  | l |  |  |  |  |
+| Lateral approximant |  |  | l lʷ |  |  |  |  |
 
-| Vowels | Central |
-|:--|:-:|
-| Close | ɨ |
+| Vowels | Front | Central | Back |
+|:--|:-:|:-:|:-:|
+| Close | i | ɨ | u |
+| Close-mid | e |  | o |
+| Mid |  | ə |  |
+| Open | a aː |  |  |
 
-Sequences that the spec writes as one unit: [ba] [be] [bi] [bo] [bu] [bə] [bʷa] [da] [de] [di] [do] [du] [də] [dʒa] [dʒe] [dʒi] [dʒo] [dʒu] [dʒə] [dʒʷa] [dʷa] [fa] [fe] [fi] [fo] [fu] [fə] [fʷa] [ha] [haː] [he] [hi] [ho] [hu] [hə] [hʷa] [hʷe] [hʷi] [hʷə] [ja], and 167 more.
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

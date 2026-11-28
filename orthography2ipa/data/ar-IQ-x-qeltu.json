@@ -22,7 +22,7 @@
       "k"
     ]
   },
-  "parent": "acm-IQ",
+  "inherits": "acm-IQ",
   "ancestors": [
     {
       "code": "acm-IQ",
@@ -91,7 +91,6 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "nort3142",
   "iso639_3": "ayp",
   "allophone_rules": [
     {
@@ -127,7 +126,6 @@
       "notes": "Qəltu override: no gilit qaf-reflex affrication. Identity no-op overriding the inherited acm-IQ rule."
     }
   ],
-  "wikidata_qid": "Q56577",
   "location": {
     "latitude": 36.2986,
     "longitude": 42.0047,

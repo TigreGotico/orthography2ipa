@@ -1,7 +1,6 @@
 {
   "code": "th",
   "name": "Thai",
-  "glottolog_code": "thai1261",
   "script": "Thai",
   "script_type": "abugida",
   "inherent_vowel": "o",
@@ -828,7 +827,7 @@
       "notes": "Source for the three opening diphthongs /iːa uːa ɯːa/ and their spellings, for the short ⟨เ–าะ⟩ /ɔ/, for the live/dead syllable terminology the tone table turns on, and for the coda inventory /p t k m n ŋ j w/."
     }
   ],
-  "parent": "tai",
+  "inherits": "tai",
   "ancestors": [
     {
       "code": "tai",
@@ -866,7 +865,6 @@
     "start_year": 1283,
     "end_year": null
   },
-  "wikidata_qid": "Q9217",
   "phoible_id": "thai1261",
   "wals_code": "tha",
   "location": {

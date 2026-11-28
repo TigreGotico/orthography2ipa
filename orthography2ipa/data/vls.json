@@ -6,7 +6,7 @@
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "parent": "nl-NL",
+  "inherits": "nl-NL",
   "ancestors": [
     {
       "code": "nl-NL",
@@ -17,8 +17,6 @@
   ],
   "notes": "West Flemish (West-Vlams), a Low Franconian variety of Belgium, the Netherlands and French Flanders. STUB: the grapheme inventory is NOT yet specified. West Flemish has no official orthography: it is written with ad-hoc adaptations of Dutch spelling that do not consistently mark its distinctive vowels, the h-dropping, or the /ɣ/→[h] shift. A Dutch-based grapheme map would mis-transcribe it, so no map is claimed here.",
   "iso639_3": "vls",
-  "glottolog_code": "vlaa1240",
-  "wikidata_qid": "Q100103",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/West_Flemish",
     "https://vls.wikipedia.org/wiki/West-Vlams"

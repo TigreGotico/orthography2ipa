@@ -5,8 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "krl",
-  "glottolog_code": "kare1335",
-  "wikidata_qid": "Q33557",
   "graphemes_base": "fi",
   "graphemes": {
     "š": [
@@ -85,7 +83,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Karelian_language"
   ],
-  "parent": "x-clade-finn1317",
+  "inherits": "x-clade-finn1317",
   "ancestors": [
     {
       "code": "x-clade-finn1317",

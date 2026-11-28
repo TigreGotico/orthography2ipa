@@ -1,7 +1,7 @@
 {
   "code": "urj",
   "name": "Proto-Uralic (family node)",
-  "parent": "x-clade-ural1272",
+  "inherits": "x-clade-ural1272",
   "script": "IPA-reconstruction",
   "graphemes": {},
   "allophones": {},
@@ -9,7 +9,6 @@
   "quality": "stub",
   "script_type": "reconstruction",
   "iso639_3": null,
-  "glottolog_code": "ural1272",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Proto-Uralic_language"
   ],

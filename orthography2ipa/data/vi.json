@@ -1,18 +1,17 @@
 {
   "code": "vi",
   "name": "Vietnamese",
-  "glottolog_code": "viet1252",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "vie",
   "quality": "research",
   "tone_inventory": {
-    "◌̄": "ngang (A1, level) — ˧˧; unmarked in the orthography",
-    "◌̀": "huyền (A2, mid falling) — ˧˨",
-    "◌́": "sắc (B1, rising) — ˨˦; ˦˥ on a syllable closed by an oral stop (D1)",
-    "◌̉": "hỏi (C1, low falling) — ˧˩˨",
-    "◌̃": "ngã (C2, broken) — ˧ˀ˥",
-    "◌̣": "nặng (B2, low glottalized) — ˨ˀ˩; D2 on a syllable closed by an oral stop"
+    "˧˧": "ngang (A1, level) — ˧˧; unmarked in the orthography",
+    "˧˨": "huyền (A2, mid falling) — ˧˨",
+    "˨˦": "sắc (B1, rising) — ˨˦; ˦˥ on a syllable closed by an oral stop (D1)",
+    "˧˩˨": "hỏi (C1, low falling) — ˧˩˨",
+    "˧ˀ˥": "ngã (C2, broken) — ˧ˀ˥",
+    "˨ˀ˩": "nặng (B2, low glottalized) — ˨ˀ˩; D2 on a syllable closed by an oral stop"
   },
   "graphemes": {
     "a": [
@@ -2847,7 +2846,7 @@
     "start_year": 1651,
     "end_year": null
   },
-  "parent": "kha-x-proto-mon-khmer",
+  "inherits": "kha-x-proto-mon-khmer",
   "ancestors": [
     {
       "code": "kha-x-proto-mon-khmer",
@@ -2874,7 +2873,6 @@
       "notes": "Sanskrit adstrate: older Indic learned terms."
     }
   ],
-  "wikidata_qid": "Q9199",
   "phoible_id": "viet1252",
   "wals_code": "vie",
   "location": {

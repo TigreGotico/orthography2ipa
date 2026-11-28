@@ -1,10 +1,25 @@
 # Languages by region
 
+<!-- agent-hint
+covers: every spec, grouped by its Glottolog macroarea and then by country, each linked to its page or to its entry in the data explorer
+source: `orthography2ipa/data/*.json`, `scripts/atlas_snapshot.json`
+generated: yes, by `scripts/gen_language_atlas.py`. Edit the generator, not the page
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/index.md`, `docs/languages/by-family.md`, `docs/languages/by-script.md`, `docs/languages/a-z.md`
+-->
+
 Every spec, grouped by its Glottolog macroarea and then by country. A region subtag in the code names the country. Otherwise the countries are those Glottolog gives for the spec's own languoid. A spec spoken in several countries appears under each of them. A dialect with no languoid and no region subtag sits under its macroarea, with no country.
 
 A stub has a name, a code and a place in the family tree, but no phonology yet. The tables list every spec above the stub tier. The stubs follow each table by name and code. To open a stub, put its code after the `#` of an [explorer](https://tigregotico.github.io/orthography2ipa/) link, as in the [entry for `mwl`](https://tigregotico.github.io/orthography2ipa/#mwl).
 
 `scripts/gen_language_atlas.py` writes this page. Do not edit it by hand.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../evaluation/charts/atlas-region.dark.svg">
+  <img alt="Countries per macroarea. The most: Eurasia 124, Africa 62, North America and Papunesia 39." src="../evaluation/charts/atlas-region.light.svg">
+</picture>
+
+`scripts/gen_doc_charts.py` makes this figure from the table under it.
 
 | Macroarea | Countries |
 |:--|--:|
@@ -248,7 +263,7 @@ Stubs (82): Ali `aiy`, Yaka (Central African Republic) `axk`, West Central Banda
 | [Tedaga](https://tigregotico.github.io/orthography2ipa/#tuq) | `tuq` | skeleton | Saharan |
 | [Zaghawa](https://tigregotico.github.io/orthography2ipa/#zag) | `zag` | skeleton | Saharan |
 
-Stubs (117): Amdang `amj`, Babalia Creole Arabic `ar-TD-x-babalia`, Buduma `bdm`, Morom `bdo`, Besme `bes`, Bidiyo `bid`, Bedjond `bjv`, Bagirmi `bmi`, Buso `bso`, Birgit `btf`, Bua `bub`, Boor `bvf`, Bolgo `bvo`, Berakou `bxv`, Chadian Sign Language `cds`, Kajakse `ckq`, Day `dai`, Dar Sila Daju `dau`, Dagba `dgk`, Dar Daju Daju `djc`, Disa `dsi`, Dazaga `dzg`, Fongoro `fgr`, Fania `fni`, Adamawa Fulfulde `fub`, Bagirmi Fulfulde `fui`, Central-Eastern Niger Fulfulde `fuq`, Fur `fvr`, Gabri `gab`, Gadang `gdk`, Laal `gdm`, Gidar `gid`, Bon Gula `glc`, Gula Iro `glj`, Gula (Chad) `glu`, Goundo `goy`, Gor `gqr`, Gulay `gvl`, Herdé `hed`, Jonkor Bourmataguil `jeu`, Jina `jia`, Jaya `jyy`, Kanembu `kbl`, Kim `kia`, Kibet `kie`, Kendeje `klf`, Lagwan `kot`, Koke `kou`, Kimré `kqp`, Mser `kqx`, Tumari Kanuri `krt`, Kaba `ksp`, Karanga `kth`, Kabalai `kvf`, Kwang `kvi`, Sara Kaba Deme `kwg`, Sara Kaba Náà `kwv`, Kulfa `kxj`, Kenga `kyq`, Karang `kzr`, Laka (Chad) `lap`, Pévé `lme`, Masana `mcn`, Mambai `mcs`, Mawa (Chad) `mcw`, Maba (Chad) `mde`, Massalat `mdg`, Masmaje `mes`, Mararit `mgb`, Mango `mge`, Miltu `mlj`, Masalit `mls`, Naba `mne`, Mogum `mou`, Mukulu `moz`, Mpade `mpi`, Mbara (Chad) `mpk`, Maslam `msv`, Mundang `mua`, Mubi `mub`, Musgu `mug`, Mabire `muj`, Mulgi `mvh`, Marfa `mvu`, Sar `mwm`, Malgbe `mxf`, Mbay `myb`, Ndam `ndm`, Lutos `ndy`, Niellim `nie`, Ngam `nmc`, Nancere `nnc`, Ngete `nnn`, Noy `noy`, Nzakambay `nzy`, Pana (Central African Republic) `pnz`, Runga `rou`, Saba `saa`, Ngambay `sba`, Surbakhal `sbj`, Sara Kaba `sbz`, Assangori `sjg`, Somrai `sor`, Sarua `swy`, Sinyar `sys`, Tamki `tax`, Tama (Chad) `tma`, Tobanga `tng`, Toram `trj`, Tunia `tug`, Ubi `ubi`, Kujarge `vkj`, Majera `xmj`, Kuo `xuo`, Mesme `zim`, Zan Gula `zna`, Zerenkel `zrn`.
+Stubs (116): Amdang `amj`, Buduma `bdm`, Morom `bdo`, Besme `bes`, Bidiyo `bid`, Bedjond `bjv`, Bagirmi `bmi`, Buso `bso`, Birgit `btf`, Bua `bub`, Boor `bvf`, Bolgo `bvo`, Berakou `bxv`, Chadian Sign Language `cds`, Kajakse `ckq`, Day `dai`, Dar Sila Daju `dau`, Dagba `dgk`, Dar Daju Daju `djc`, Disa `dsi`, Dazaga `dzg`, Fongoro `fgr`, Fania `fni`, Adamawa Fulfulde `fub`, Bagirmi Fulfulde `fui`, Central-Eastern Niger Fulfulde `fuq`, Fur `fvr`, Gabri `gab`, Gadang `gdk`, Laal `gdm`, Gidar `gid`, Bon Gula `glc`, Gula Iro `glj`, Gula (Chad) `glu`, Goundo `goy`, Gor `gqr`, Gulay `gvl`, Herdé `hed`, Jonkor Bourmataguil `jeu`, Jina `jia`, Jaya `jyy`, Kanembu `kbl`, Kim `kia`, Kibet `kie`, Kendeje `klf`, Lagwan `kot`, Koke `kou`, Kimré `kqp`, Mser `kqx`, Tumari Kanuri `krt`, Kaba `ksp`, Karanga `kth`, Kabalai `kvf`, Kwang `kvi`, Sara Kaba Deme `kwg`, Sara Kaba Náà `kwv`, Kulfa `kxj`, Kenga `kyq`, Karang `kzr`, Laka (Chad) `lap`, Pévé `lme`, Masana `mcn`, Mambai `mcs`, Mawa (Chad) `mcw`, Maba (Chad) `mde`, Massalat `mdg`, Masmaje `mes`, Mararit `mgb`, Mango `mge`, Miltu `mlj`, Masalit `mls`, Naba `mne`, Mogum `mou`, Mukulu `moz`, Mpade `mpi`, Mbara (Chad) `mpk`, Maslam `msv`, Mundang `mua`, Mubi `mub`, Musgu `mug`, Mabire `muj`, Mulgi `mvh`, Marfa `mvu`, Sar `mwm`, Malgbe `mxf`, Mbay `myb`, Ndam `ndm`, Lutos `ndy`, Niellim `nie`, Ngam `nmc`, Nancere `nnc`, Ngete `nnn`, Noy `noy`, Nzakambay `nzy`, Pana (Central African Republic) `pnz`, Runga `rou`, Saba `saa`, Ngambay `sba`, Surbakhal `sbj`, Sara Kaba `sbz`, Assangori `sjg`, Somrai `sor`, Sarua `swy`, Sinyar `sys`, Tamki `tax`, Tama (Chad) `tma`, Tobanga `tng`, Toram `trj`, Tunia `tug`, Ubi `ubi`, Kujarge `vkj`, Majera `xmj`, Kuo `xuo`, Mesme `zim`, Zan Gula `zna`, Zerenkel `zrn`.
 
 ### Comoros
 
@@ -315,7 +330,7 @@ Stubs (60): Akwa `akw`, Yaka (Central African Republic) `axk`, Beembe `beq`, Ban
 | [Tembo (Kitembo)](https://tigregotico.github.io/orthography2ipa/#tbt) | `tbt` | skeleton | Atlantic-Congo |
 | [Zande (individual language)](https://tigregotico.github.io/orthography2ipa/#zne) | `zne` | skeleton | Atlantic-Congo |
 
-Stubs (192): Ngelima `agh`, Ali `aiy`, Asoa `asv`, Aushi `auh`, Bangba `bbe`, Babango `bbm`, Bali (Democratic Republic of Congo) `bcp`, Bendi `bct`, Baka (South Sudan) `bdh`, Bila `bip`, Baloi `biz`, Budza `bja`, Beeke `bkf`, Buraka `bkg`, Boko (Democratic Republic of Congo) `bkp`, Boloki `bkt`, Bolia `bli`, Bembe `bmb`, Bamwe `bmg`, Bomboli `bml`, Bangubangu `bnx`, Boma `boh`, Banda-Banda `bpd`, Binji `bpj`, Boguru `bqu`, Bira `brf`, Barambu `brm`, Budu `buu`, Bwile `bwc`, Bwela `bwl`, Bomboma `bws`, Bwa `bww`, Bangala `bxg`, Buyu `byi`, Bolondo `bzm`, Bozaba `bzo`, Doondo `dde`, Dendi (Central African Republic) `deq`, Dengese `dez`, Ding `diz`, Ndrulo `dno`, Dongo `doo`, Dzando `dzn`, Efe `efe`, Foma `fom`, Furu `fuu`, Gbanziri `gbg`, Enya `gey`, Gilima `gix`, Gobu `gox`, Havu `hav`, Hamba `hba`, Hemba `hem`, Hunde `hke`, Holu `hol`, Holoholo `hoo`, Hungana `hum`, Teke-Fuumu `ifm`, Joba `job`, Kari `kbj`, Kete `kcv`, Kabwari `kcw`, Seba `kdg`, Kela (Democratic Republic of Congo) `kel`, Kakwa `keo`, Kanu `khx`, Kaeku `kkq`, Kimbundu (Mbundu) `kmb`, Komo (Democratic Republic of Congo) `kmw`, Kanyok `kny`, Kpala `kpl`, Kaonde `kqn`, Kusu `ksv`, Kwami `ktf`, Kituba (Democratic Republic of Congo) `ktu`, Kango (Bas-Uélé District) `kty`, Kwese `kws`, San Salvador Kongo `kwy`, Likuba `kxx`, Kango (Tshopo District) `kzy`, Lalia `lal`, Lamba `lam`, Laari `ldi`, Lega-Shabunda `lea`, Lala-Bisa `leb`, Lendu `led`, Lengola `lej`, Lele (Democratic Republic of Congo) `lel`, Lese `les`, Lega-Mwenga `lgm`, Ligenza `lgz`, Likila `lie`, Lika `lik`, Libinza `liz`, Lombi `lmi`, Langbashe `lna`, South Central Banda `lnl`, Lonzo `lnz`, Logo `log`, Lombo `loo`, Lobala `loq`, Lusengo `lse`, Luna `luj`, Lwel `lvl`, Lwalu `lwa`, Mamvu `mdi`, Mangbutu `mdk`, Mayogo `mdm`, Mbala `mdp`, Mbole `mdq`, Mba `mfc`, Mabaale `mmz`, Mono (Democratic Republic of Congo) `mnh`, Monzombo `moj`, Moi (Congo) `mow`, Ma (Democratic Republic of Congo) `msj`, Mündü `muh`, Moingi `mwz`, Mvuba `mxh`, Mayeka `myc`, Ngbinda `nbd`, Ngbaka Ma'bo `nbm`, Southern Ngbandi `nbw`, Ndaka `ndk`, Ndolo `ndl`, Ndo `ndp`, Ndunga `ndt`, Ndobo `ndw`, Ngombe (Democratic Republic of Congo) `ngc`, Hema `nix`, Ngiti `niy`, Nkutu `nkw`, Nyali `nlj`, Ngul `nlo`, Ngongo `noq`, Ntomba `nto`, Ngbundu `nuu`, Ngando (Democratic Republic of Congo) `nxd`, Nyanga-li `nyc`, Nyindu `nyg`, Nyanga `nyj`, Nzakara `nzk`, Kobo `okc`, Omi `omi`, Ombo `oml`, Phende `pem`, Pambia `pmb`, Poke `pof`, Pelende `ppp`, Ruund `rnd`, Amba (Uganda) `rwm`, Suundi `sdj`, Sonde `shc`, Shi `shr`, Sakata `skt`, Salampasu `slx`, Samba `smx`, Sanga (Democratic Republic of Congo) `sng`, Riverain Sango `snj`, So (Democratic Republic of Congo) `soc`, Songoora `sod`, Songomeno `soe`, Songo `soo`, Suku `sub`, Congo Swahili `swc`, Sere `swf`, Taabwa `tap`, Ibali Teke `tek`, Tiene `tii`, Talinga-Bwisi `tlj`, Tetela `tll`, Tembo (Motembo) `tmv`, Togbo-Vara Banda `tor`, Tooro `ttj`, Vanuma `vau`, Wongo `won`, Yaka (Democratic Republic of Congo) `yaf`, Yela `yel`, Yakoma `yky`, Yamongeri `ymg`, Yango `yng`, Yansi `yns`, Yombe `yom`, Yulu `yul`, Zula `zla`, Zimba `zmb`, Mfinu `zmf`, Mbuun `zmp`, Mituku `zmq`, Mbesa `zms`, Mbo (Democratic Republic of Congo) `zmw`, Mbandja `zmz`.
+Stubs (192): Ngelima `agh`, Ali `aiy`, Asoa `asv`, Aushi `auh`, Bangba `bbe`, Babango `bbm`, Bali (Democratic Republic of Congo) `bcp`, Bendi `bct`, Baka (South Sudan) `bdh`, Bila `bip`, Baloi `biz`, Budza `bja`, Beeke `bkf`, Buraka `bkg`, Boko (Democratic Republic of Congo) `bkp`, Boloki `bkt`, Bolia `bli`, Bembe `bmb`, Bamwe `bmg`, Bomboli `bml`, Bangubangu `bnx`, Boma `boh`, Banda-Banda `bpd`, Binji `bpj`, Boguru `bqu`, Bira `brf`, Barambu `brm`, Budu `buu`, Bwile `bwc`, Bwela `bwl`, Bomboma `bws`, Bwa `bww`, Bangala `bxg`, Buyu `byi`, Bolondo `bzm`, Bozaba `bzo`, Doondo `dde`, Dendi (Central African Republic) `deq`, Dengese `dez`, Ding `diz`, Ndrulo `dno`, Dongo `doo`, Dzando `dzn`, Efe `efe`, Foma `fom`, Furu `fuu`, Gbanziri `gbg`, Enya `gey`, Gilima `gix`, Gobu `gox`, Havu `hav`, Hamba `hba`, Hemba `hem`, Hunde `hke`, Holu `hol`, Holoholo `hoo`, Hungana `hum`, Teke-Fuumu `ifm`, Joba `job`, Kari `kbj`, Kete `kcv`, Kabwari `kcw`, Seba `kdg`, Kela (Democratic Republic of Congo) `kel`, Kakwa `keo`, Kanu `khx`, Kaeku `kkq`, Kimbundu (Mbundu) `kmb`, Komo (Democratic Republic of Congo) `kmw`, Kanyok `kny`, Kpala `kpl`, Kaonde `kqn`, Kusu `ksv`, Kwami `ktf`, Kituba (Democratic Republic of Congo) `ktu`, Kango (Bas-Uélé District) `kty`, Kwese `kws`, San Salvador Kongo `kwy`, Likuba `kxx`, Kango (Tshopo District) `kzy`, Lalia `lal`, Lamba `lam`, Laari `ldi`, Lega-Shabunda `lea`, Lala-Bisa `leb`, Lendu `led`, Lengola `lej`, Lele (Democratic Republic of Congo) `lel`, Lese `les`, Lega-Mwenga `lgm`, Ligenza `lgz`, Likila `lie`, Lika `lik`, Libinza `liz`, Lombi `lmi`, Langbashe `lna`, South Central Banda `lnl`, Lonzo `lnz`, Logo `log`, Lombo `loo`, Lobala `loq`, Lusengo `lse`, Luna `luj`, Lwel `lvl`, Lwalu `lwa`, Mamvu `mdi`, Mangbutu `mdk`, Mayogo `mdm`, Mbala `mdp`, Mbole `mdq`, Mba `mfc`, Mabaale `mmz`, Mono (Democratic Republic of Congo) `mnh`, Monzombo `moj`, Moi (Congo) `mow`, Ma (Democratic Republic of Congo) `msj`, Mündü `muh`, Moingi `mwz`, Mvuba `mxh`, Mayeka `myc`, Ngbinda `nbd`, Ngbaka Ma'bo `nbm`, Southern Ngbandi `nbw`, Ndaka `ndk`, Ndolo `ndl`, Ndo `ndp`, Ndunga `ndt`, Ndobo `ndw`, Ngombe (Democratic Republic of Congo) `ngc`, Hema `nix`, Ngiti `niy`, Nkutu `nkw`, Nyali `nlj`, Ngul `nlo`, Ngongo `noq`, Ntomba `nto`, Ngbundu `nuu`, Ngando (Democratic Republic of Congo) `nxd`, Nyanga-li `nyc`, Nyindu `nyg`, Nyanga `nyj`, Nzakara `nzk`, Kobo `okc`, Omi `omi`, Ombo `oml`, Phende `pem`, Pambia `pmb`, Poke `pof`, Pelende `ppp`, Ruund `rnd`, Amba (Uganda) `rwm`, Suundi `sdj`, Sonde `shc`, Shi `shr`, Sakata `skt`, Salampasu `slx`, Samba `smx`, Sanga (Democratic Republic of Congo) `sng`, Riverain Sango `snj`, So (Democratic Republic of Congo) `soc`, Songoora `sod`, Songomeno `soe`, Songo `soo`, Suku `sub`, Congo Swahili `sw-CD`, Sere `swf`, Taabwa `tap`, Ibali Teke `tek`, Tiene `tii`, Talinga-Bwisi `tlj`, Tetela `tll`, Tembo (Motembo) `tmv`, Togbo-Vara Banda `tor`, Tooro `ttj`, Vanuma `vau`, Wongo `won`, Yaka (Democratic Republic of Congo) `yaf`, Yela `yel`, Yakoma `yky`, Yamongeri `ymg`, Yango `yng`, Yansi `yns`, Yombe `yom`, Yulu `yul`, Zula `zla`, Zimba `zmb`, Mfinu `zmf`, Mbuun `zmp`, Mituku `zmq`, Mbesa `zms`, Mbo (Democratic Republic of Congo) `zmw`, Mbandja `zmz`.
 
 ### Country not recorded
 
@@ -1768,6 +1783,7 @@ Stubs (8): Tornedalen Finnish `fit`, Kven Finnish `fkv`, Finnish Sign Language `
 | [Corsican](co.md) (page) | `co` | research | Indo-European > Italic > Romance > Italo-Romance |
 | [Basque (Euskara)](eu.md) (page) | `eu` | production | Vasconic |
 | [French](fr-FR.md) (page) | `fr-FR` | research | Indo-European > Italic > Romance > Gallo-Romance |
+| [Southern French (Midi)](https://tigregotico.github.io/orthography2ipa/#fr-FR-x-midi) | `fr-FR-x-midi` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [Franco-Provençal (Arpitan)](frp.md) (page) | `frp` | research | Indo-European > Italic > Romance > Gallo-Romance |
 | [Interlingua](ia.md) (page) | `ia` | research | Constructed |
 | [Ido](io.md) (page) | `io` | research | Constructed |
@@ -1915,11 +1931,11 @@ Stubs (1): Icelandic Sign Language `icl`.
 | [Gujarati](gu.md) (page) | `gu` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Hindi](hi.md) (page) | `hi` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Chhattisgarhi](https://tigregotico.github.io/orthography2ipa/#hne) | `hne` | skeleton | Indo-European > Indo-Iranian > Indo-Aryan |
-| [Kashmiri](kas.md) (page) | `kas` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Khasi](kha.md) (page) | `kha` | research | Austroasiatic |
 | [Kannada](kn.md) (page) | `kn` | research | Dravidian |
 | [Konkani](kok.md) (page) | `kok` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Kashmiri](ks.md) (page) | `ks` | research | Indo-European > Indo-Iranian > Indo-Aryan |
+| [Kashmiri](ks-Arab.md) (page) | `ks-Arab` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Mizo](lus.md) (page) | `lus` | research | Sino-Tibetan |
 | [Magahi](https://tigregotico.github.io/orthography2ipa/#mag) | `mag` | skeleton | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Maithili](mai.md) (page) | `mai` | research | Indo-European > Indo-Iranian > Indo-Aryan |
@@ -2000,8 +2016,8 @@ Stubs (13): Lishanid Noshan `aij`, Aramaic `arc`, North Mesopotamian Arabic `ayp
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
 | [Irish English (Hiberno-English)](https://tigregotico.github.io/orthography2ipa/#en-IE) | `en-IE` | skeleton | Indo-European > Germanic > Northwest Germanic > West Germanic |
+| [Yola](https://tigregotico.github.io/orthography2ipa/#enm-x-yola) | `enm-x-yola` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 | [Irish](ga.md) (page) | `ga` | research | Indo-European > Celtic > Goidelic |
-| [Yola](https://tigregotico.github.io/orthography2ipa/#yol) | `yol` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |
 
 Stubs (2): Irish Sign Language `isg`, Shelta `sth`.
 
@@ -2038,7 +2054,8 @@ Stubs (16): Lishanid Noshan `aij`, Bukharic `bhh`, Barzani Jewish Neo-Aramaic `b
 | [Emilian-Romagnol](https://tigregotico.github.io/orthography2ipa/#egl) | `egl` | skeleton | Indo-European > Italic > Romance > Italo-Romance |
 | [Modern Greek](el.md) (page) | `el` | research | Indo-European > Hellenic |
 | [Emilian, Romagnol](eml.md) (page) | `eml` | research | Indo-European > Italic > Romance |
-| [Etruscan](https://tigregotico.github.io/orthography2ipa/#etr) | `etr` | skeleton | Tyrsenian |
+| [Etruscan](ett.md) (page) | `ett` | research | Tyrsenian |
+| [Etruscan](https://tigregotico.github.io/orthography2ipa/#ett-Latn) | `ett-Latn` | skeleton | Tyrsenian |
 | [Franco-Provençal (Arpitan)](frp.md) (page) | `frp` | research | Indo-European > Italic > Romance > Gallo-Romance |
 | [Friulian](fur.md) (page) | `fur` | research | Indo-European > Italic > Romance > Italo-Romance |
 | [Croatian](hr.md) (page) | `hr` | research | Indo-European > Balto-Slavic > Slavic > South Slavic |
@@ -2451,8 +2468,8 @@ Stubs (8): Southern Balochi `bcc`, Bathari `bhm`, Mehri `gdq`, Hobyót `hoh`, Ha
 | [Dogri](https://tigregotico.github.io/orthography2ipa/#doi) | `doi` | skeleton | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Gujarati](gu.md) (page) | `gu` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Northern Hindko](https://tigregotico.github.io/orthography2ipa/#hno) | `hno` | skeleton | Indo-European |
-| [Kashmiri](kas.md) (page) | `kas` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Kashmiri](ks.md) (page) | `ks` | research | Indo-European > Indo-Iranian > Indo-Aryan |
+| [Kashmiri](ks-Arab.md) (page) | `ks-Arab` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Punjabi](pa.md) (page) | `pa` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Western Punjabi (Shahmukhi)](pnb-PK.md) (page) | `pnb-PK` | research | Indo-European > Indo-Iranian > Indo-Aryan |
 | [Pashto (Standard Afghan)](ps.md) (page) | `ps` | research | Indo-European > Indo-Iranian > Iranian |
@@ -3092,7 +3109,6 @@ Stubs (1): Finnish Sign Language `fse`.
 
 | Spec | Code | Tier | Family |
 |:--|:--|:--|:--|
-| [Etruscan](ett.md) (page) | `ett` | research | Tyrsenian |
 | [Interlingue (Occidental)](ie.md) (page) | `ie` | research | Constructed |
 | [Interslavic](isv.md) (page) | `isv` | research | Constructed |
 | [Nigerian Pidgin (Naijá)](pcm.md) (page) | `pcm` | research | Creole |
@@ -3178,7 +3194,7 @@ Stubs (9): Boruca `brn`, Bribri `bzd`, Cabécar `cjp`, Costa Rican Sign Language
 | [Mi'kmaq](mic.md) (page) | `mic` | research | Algic |
 | [Tetelcingo Nahuatl](nhg.md) (page) | `nhg` | research | Uto-Aztecan |
 | [Isthmus-Mecayapan Nahuatl](nhx.md) (page) | `nhx` | research | Uto-Aztecan |
-| [Ojibwe](oji.md) (page) | `oji` | research | Algic |
+| [Ojibwe](oj.md) (page) | `oj` | research | Algic |
 | [Malecite-Passamaquoddy](pqm.md) (page) | `pqm` | research | Algic |
 | [Sarsi](srs.md) (page) | `srs` | research | Athabaskan-Eyak-Tlingit |
 | [Tewa (USA)](tew.md) (page) | `tew` | research | Kiowa-Tanoan |
@@ -3772,7 +3788,7 @@ Stubs (1): American Sign Language `ase`.
 
 ### France
 
-Stubs (1): Judeo-Tunisian Arabic `ajt`.
+Stubs (1): Judeo-Tunisian Arabic `aeb-x-judeo`.
 
 ### Gabon
 
@@ -3790,11 +3806,11 @@ Stubs (1): American Sign Language `ase`.
 
 ### Israel
 
-Stubs (1): Judeo-Tunisian Arabic `ajt`.
+Stubs (1): Judeo-Tunisian Arabic `aeb-x-judeo`.
 
 ### Italy
 
-Stubs (1): Judeo-Tunisian Arabic `ajt`.
+Stubs (1): Judeo-Tunisian Arabic `aeb-x-judeo`.
 
 ### Jamaica
 
@@ -3826,7 +3842,7 @@ Stubs (1): American Sign Language `ase`.
 
 ### Spain
 
-Stubs (1): Judeo-Tunisian Arabic `ajt`.
+Stubs (1): Judeo-Tunisian Arabic `aeb-x-judeo`.
 
 ### Togo
 
@@ -3834,7 +3850,7 @@ Stubs (1): American Sign Language `ase`.
 
 ### Tunisia
 
-Stubs (1): Judeo-Tunisian Arabic `ajt`.
+Stubs (1): Judeo-Tunisian Arabic `aeb-x-judeo`.
 
 ### United Arab Emirates
 
@@ -3842,7 +3858,7 @@ Stubs (1): Soqotri `sqt`.
 
 ### United States
 
-Stubs (2): Judeo-Tunisian Arabic `ajt`, American Sign Language `ase`.
+Stubs (2): Judeo-Tunisian Arabic `aeb-x-judeo`, American Sign Language `ase`.
 
 ### Yemen
 
@@ -3891,6 +3907,7 @@ Stubs (44): Araona `aro`, Aymara `ay`, Southern Aymara `ayc`, Ayoreo `ayo`, Baur
 | [Fluminense Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-fluminen) | `pt-BR-x-fluminen` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Mineiro Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-mg) | `pt-BR-x-mg` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Nortista/Amazônico Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-norte) | `pt-BR-x-norte` | research | Indo-European > Italic > Romance > Ibero-Romance |
+| [Paraibano Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-paraiba) | `pt-BR-x-paraiba` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Curitibano/Paranaense Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-pr) | `pt-BR-x-pr` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Pernambucano Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-recife) | `pt-BR-x-recife` | research | Indo-European > Italic > Romance > Ibero-Romance |
 | [Carioca Portuguese](https://tigregotico.github.io/orthography2ipa/#pt-BR-x-rj) | `pt-BR-x-rj` | research | Indo-European > Italic > Romance > Ibero-Romance |

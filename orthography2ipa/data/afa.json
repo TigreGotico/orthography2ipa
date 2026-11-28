@@ -1,7 +1,7 @@
 {
   "code": "afa",
   "name": "Afroasiatic (family node)",
-  "parent": "x-clade-afro1255",
+  "inherits": "x-clade-afro1255",
   "script": "Latin",
   "graphemes": {},
   "allophones": {},
@@ -9,7 +9,6 @@
   "quality": "stub",
   "script_type": "alphabet",
   "iso639_3": null,
-  "glottolog_code": "afro1255",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Afroasiatic_languages"
   ],
@@ -29,7 +28,6 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Afroasiatic_languages"
     }
   ],
-  "wikidata_qid": "Q25268",
   "location": {
     "latitude": 18.798147,
     "longitude": 24.7401,

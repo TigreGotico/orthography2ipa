@@ -4,7 +4,7 @@
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",
@@ -202,7 +202,6 @@
     }
   },
   "iso639_3": "bjn",
-  "glottolog_code": "banj1239",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Banjarese_language",
     "https://bjn.wikipedia.org/wiki/Basa_Banjar"

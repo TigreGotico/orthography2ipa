@@ -2,7 +2,7 @@
   "code": "ca-x-balear",
   "name": "Balearic Catalan",
   "script": "Latin",
-  "parent": "ca-x-medieval",
+  "inherits": "ca-x-medieval",
   "graphemes_base": "ca-x-medieval",
   "graphemes": {
     "ix": [
@@ -457,9 +457,7 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "bale1256",
   "iso639_3": "cat",
-  "wikidata_qid": "Q804899",
   "location": {
     "latitude": 39.566667,
     "longitude": 2.649722,

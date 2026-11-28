@@ -1,0 +1,1713 @@
+{
+  "code": "fr-FR-x-midi",
+  "name": "Southern French (Midi)",
+  "script": "Latin",
+  "graphemes_base": "fr-FR",
+  "allophones_base": "fr-FR",
+  "positional_graphemes_base": "fr-FR",
+  "word_exceptions_base": "fr-FR",
+  "grammatical_endings_base": "fr-FR",
+  "allophone_passes": 3,
+  "allophones": {
+    "ə": [
+      "ə",
+      "ø"
+    ],
+    "n": [
+      "n",
+      "ŋ",
+      "m",
+      "ɱ"
+    ],
+    "m": [
+      "m",
+      "ŋ",
+      "n",
+      "ɱ"
+    ],
+    "ɑ̃": [
+      "ɑ̃",
+      "a"
+    ],
+    "ɔ̃": [
+      "ɔ̃",
+      "ɔ"
+    ],
+    "ɛ̃": [
+      "ɛ̃",
+      "ɛ"
+    ],
+    "œ̃": [
+      "œ̃",
+      "œ"
+    ],
+    "e": [
+      "e",
+      "ɛ"
+    ],
+    "ɛ": [
+      "ɛ",
+      "e"
+    ],
+    "o": [
+      "o",
+      "ɔ"
+    ],
+    "ɔ": [
+      "ɔ",
+      "o"
+    ],
+    "ø": [
+      "ø",
+      "œ"
+    ],
+    "œ": [
+      "œ",
+      "ø"
+    ]
+  },
+  "allophone_rules": [
+    {
+      "id": "FR_NASAL_a",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "a",
+      "followed_by": "coda_nasal",
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. The fr-FR rule FR_NASAL_a is restated with the oral vowel [a] as its surface (lent [laŋ], vin [vɛŋ], bon [bɔŋ], brun [bʁœŋ]); FR_MIDI_APPENDIX_* turns the ⟨n⟩ or ⟨m⟩ into the appendix."
+    },
+    {
+      "id": "FR_NASAL_ə",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "a",
+      "followed_by": "coda_nasal",
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. The fr-FR rule FR_NASAL_ə is restated with the oral vowel [a] as its surface (lent [laŋ], vin [vɛŋ], bon [bɔŋ], brun [bʁœŋ]); FR_MIDI_APPENDIX_* turns the ⟨n⟩ or ⟨m⟩ into the appendix."
+    },
+    {
+      "id": "FR_NASAL_i",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "ɛ",
+      "followed_by": "coda_nasal",
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. The fr-FR rule FR_NASAL_i is restated with the oral vowel [ɛ] as its surface (lent [laŋ], vin [vɛŋ], bon [bɔŋ], brun [bʁœŋ]); FR_MIDI_APPENDIX_* turns the ⟨n⟩ or ⟨m⟩ into the appendix."
+    },
+    {
+      "id": "FR_NASAL_ɔ",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "ɔ",
+      "followed_by": "coda_nasal",
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. The fr-FR rule FR_NASAL_ɔ is restated with the oral vowel [ɔ] as its surface (lent [laŋ], vin [vɛŋ], bon [bɔŋ], brun [bʁœŋ]); FR_MIDI_APPENDIX_* turns the ⟨n⟩ or ⟨m⟩ into the appendix."
+    },
+    {
+      "id": "FR_NASAL_y",
+      "phonemes": [
+        "y"
+      ],
+      "surface": "œ",
+      "followed_by": "coda_nasal",
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. The fr-FR rule FR_NASAL_y is restated with the oral vowel [œ] as its surface (lent [laŋ], vin [vɛŋ], bon [bɔŋ], brun [bʁœŋ]); FR_MIDI_APPENDIX_* turns the ⟨n⟩ or ⟨m⟩ into the appendix."
+    },
+    {
+      "id": "FR_NASAL_ABSORB",
+      "phonemes": [],
+      "surface": "",
+      "notes": "Disabled: in the Midi the coda ⟨n⟩ or ⟨m⟩ is not absorbed into a nasal vowel; it is the nasal appendix (FR_MIDI_APPENDIX_*)."
+    },
+    {
+      "id": "FR_E_CLOSED_FINAL",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "ɛ",
+      "grapheme": [
+        "e"
+      ],
+      "followed_by": "consonant",
+      "followed_by_2": "word_boundary",
+      "notes": "⟨e⟩ in a closed syllable is [ɛ], not schwa (Tranel 1987 §4: loi de position — Abel [abɛl], Albert [albɛʁ], mer, sel); e-caduc only occurs in open syllables. Two conditions cover closure: before a consonant cluster, and before a word-final consonant. Restated for the Midi without the plural ⟨-s⟩: there the ⟨e⟩ is the final schwa FR_MIDI_FINAL_SCHWA pronounces (pattes [patə]), not an ⟨e⟩ closed by a consonant.",
+      "followed_by_grapheme_not": [
+        "s"
+      ]
+    },
+    {
+      "id": "FR_O_BEFORE_Z",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "o",
+      "grapheme": [
+        "o"
+      ],
+      "followed_by_phoneme": [
+        "z"
+      ],
+      "notes": "Loi de position for /ɔ/ (Tranel 1987 §3): mid back vowel is close [o] in a word-final open syllable (mot [mo], numéro) and before /z/ (rose [ʁoz], chose); open [ɔ] in other closed syllables (bord, botte). Restated for the Midi: only where a vowel letter and a consonant letter follow the /z/ (poser, creuser), so that a mid vowel before /z/ and the final schwa (rose [ʁɔzə], creuse [kʁœzə]) is left to the Midi loi de position (FR_MIDI_LDP_*).",
+      "followed_by_2": "vowel",
+      "followed_by_3": "consonant"
+    },
+    {
+      "id": "FR_EU_BEFORE_Z",
+      "phonemes": [
+        "œ"
+      ],
+      "surface": "ø",
+      "grapheme": [
+        "eu"
+      ],
+      "followed_by_phoneme": [
+        "z"
+      ],
+      "notes": "⟨eu⟩ stays close-mid [ø] before /z/ even though the syllable is closed — Deleuze [dəløz], yeuz [jøz] — the front-rounded counterpart of the ⟨o⟩ rule FR_O_BEFORE_Z above (rose [ʁoz], chose). /z/ is the standard closing-environment exception to the loi de position, named as such by Fouché (1959), Traité de prononciation française, by Tranel (1987), The Sounds of French, §3, and by Walker (2001), French Sound Structure, ch. 3, which lists it for the whole mid series and not for the back vowel alone. Most French ⟨euse⟩ words (heureuse, creuse, chanteuse) already reach [ø] without this rule, because their mute ⟨e⟩ and mute-word-final ⟨s⟩ strip back to an open syllable; this rule covers the residue where the /z/ is spelled ⟨z⟩ and so is not strippable. Restated for the Midi: only where a vowel letter and a consonant letter follow the /z/ (poser, creuser), so that a mid vowel before /z/ and the final schwa (rose [ʁɔzə], creuse [kʁœzə]) is left to the Midi loi de position (FR_MIDI_LDP_*).",
+      "followed_by_2": "vowel",
+      "followed_by_3": "consonant"
+    },
+    {
+      "id": "FR_AU_BEFORE_R",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔ",
+      "grapheme": [
+        "au"
+      ],
+      "followed_by_phoneme": [
+        "ʁ"
+      ],
+      "notes": "⟨au⟩ is [ɔ], not its usual [o], before /ʁ/: Laure [lɔʁ], aurore [ɔʁɔʁ], restaurant [ʁɛstɔʁɑ̃], Aurélie [ɔʁeli], dinosaure [dinozɔʁ]. This is the one systematic exception to the otherwise exceptionless ⟨au⟩ = [o] of the loi de position, and it is stated as such by Fouché (1959), Traité de prononciation française, for ⟨au⟩ + r, by Tranel (1987), The Sounds of French, ch. 3, and by Walker (2001), French Sound Structure, ch. 3, all of which name /ʁ/ as an opening environment for the mid back vowel in standard (Parisian/northern) French. Modelled as Parisian, which is what the wikipron gold transcribes; a southern speaker generalises close [o] much more widely and would not want this rule. Residual counter-examples are learned or foreign (Saurat, nauruan, vaurien), where the spelling is not a native ⟨aur⟩ sequence. Restated for the Midi: only in the last syllable, so that ⟨au⟩ before /ʁ/ and a full vowel (aurore) is left to the Midi loi de position, which makes it close.",
+      "followed_by_nucleus": false
+    },
+    {
+      "id": "FR_MIDI_ENT_MUTE_AFTER_AI_OI",
+      "phonemes": [
+        "n"
+      ],
+      "surface": "",
+      "grapheme": [
+        "n"
+      ],
+      "preceded_by_grapheme": [
+        "e"
+      ],
+      "preceded_by_phoneme_2": [
+        "ɛ",
+        "w"
+      ],
+      "followed_by": "consonant",
+      "followed_by_2": "word_boundary",
+      "notes": "The ⟨n⟩ of the verb ending ⟨-ent⟩ after ⟨ai⟩ or ⟨oi⟩ (étaient, voient) is silent, not a nasal appendix: fr-FR mutes the ⟨e⟩ there (FR_ENT_MUTE_AFTER_AI_OI) and absorbs the ⟨n⟩ with FR_NASAL_ABSORB, which this spec disables. The rule reads the vowel two slots back by its underlying phoneme ([ɛ] for ⟨ai⟩, [w] at the start of ⟨oi⟩)."
+    },
+    {
+      "id": "FR_MIDI_APPENDIX_BEFORE_NASAL",
+      "phonemes": [
+        "n",
+        "m"
+      ],
+      "surface": "",
+      "syllable_position": "coda",
+      "preceded_by": "vowel",
+      "followed_by_phoneme": [
+        "m",
+        "n"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: before a nasal consonant the appendix shares its place and is that consonant, so it is written once (automne [otɔnə])."
+    },
+    {
+      "id": "FR_MIDI_APPENDIX_LABIAL",
+      "phonemes": [
+        "n",
+        "m"
+      ],
+      "surface": "m",
+      "syllable_position": "coda",
+      "preceded_by": "vowel",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "m"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a coda ⟨n⟩ or ⟨m⟩ after a vowel letter (the context of fr-FR's FR_NASAL_ABSORB) takes the place of a following /p b m/, [m] (lampe [lampə], lenteur [lantœʁ], enfant [aɱfaŋ])."
+    },
+    {
+      "id": "FR_MIDI_APPENDIX_LABIODENTAL",
+      "phonemes": [
+        "n",
+        "m"
+      ],
+      "surface": "ɱ",
+      "syllable_position": "coda",
+      "preceded_by": "vowel",
+      "followed_by_phoneme": [
+        "f",
+        "v"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a coda ⟨n⟩ or ⟨m⟩ after a vowel letter (the context of fr-FR's FR_NASAL_ABSORB) takes the place of a following /f v/, [ɱ] (lampe [lampə], lenteur [lantœʁ], enfant [aɱfaŋ])."
+    },
+    {
+      "id": "FR_MIDI_APPENDIX_CORONAL",
+      "phonemes": [
+        "n",
+        "m"
+      ],
+      "surface": "n",
+      "syllable_position": "coda",
+      "preceded_by": "vowel",
+      "followed_by_phoneme": [
+        "t",
+        "d",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "l",
+        "n"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a coda ⟨n⟩ or ⟨m⟩ after a vowel letter (the context of fr-FR's FR_NASAL_ABSORB) takes the place of a following /t d s z ʃ ʒ l n/, [n] (lampe [lampə], lenteur [lantœʁ], enfant [aɱfaŋ])."
+    },
+    {
+      "id": "FR_MIDI_APPENDIX_VELAR",
+      "phonemes": [
+        "n",
+        "m"
+      ],
+      "surface": "ŋ",
+      "syllable_position": "coda",
+      "preceded_by": "vowel",
+      "followed_by_phoneme": [
+        "k",
+        "ɡ"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a coda ⟨n⟩ or ⟨m⟩ after a vowel letter (the context of fr-FR's FR_NASAL_ABSORB) takes the place of a following /k ɡ/, [ŋ] (lampe [lampə], lenteur [lantœʁ], enfant [aɱfaŋ])."
+    },
+    {
+      "id": "FR_MIDI_APPENDIX_VELAR_DEFAULT",
+      "phonemes": [
+        "n",
+        "m"
+      ],
+      "surface": "ŋ",
+      "syllable_position": "coda",
+      "preceded_by": "vowel",
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: elsewhere (at the end of a word, before a silent letter, before a consonant of no shared place) the appendix is velar [ŋ] (lent [laŋ], vin [vɛŋ], temps [taŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_E_LABIAL",
+      "phonemes": [
+        "ɛ̃"
+      ],
+      "surface": "ɛm",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "m"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /p b m/ is [ɛm] (plainte [plɛntə], maintenant, sainfoin [sɛɱfwɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_E_LABIODENTAL",
+      "phonemes": [
+        "ɛ̃"
+      ],
+      "surface": "ɛɱ",
+      "followed_by_phoneme": [
+        "f",
+        "v"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /f v/ is [ɛɱ] (plainte [plɛntə], maintenant, sainfoin [sɛɱfwɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_E_CORONAL",
+      "phonemes": [
+        "ɛ̃"
+      ],
+      "surface": "ɛn",
+      "followed_by_phoneme": [
+        "t",
+        "d",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "l",
+        "n"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /t d s z ʃ ʒ l n/ is [ɛn] (plainte [plɛntə], maintenant, sainfoin [sɛɱfwɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_E_VELAR",
+      "phonemes": [
+        "ɛ̃"
+      ],
+      "surface": "ɛŋ",
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit is [ɛŋ] elsewhere (pain [pɛŋ], loin [lwɛŋ], bien [bjɛŋ], juin [ʒɥɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_WE_LABIAL",
+      "phonemes": [
+        "wɛ̃"
+      ],
+      "surface": "wɛm",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "m"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /p b m/ is [wɛm] (plainte [plɛntə], maintenant, sainfoin [sɛɱfwɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_WE_LABIODENTAL",
+      "phonemes": [
+        "wɛ̃"
+      ],
+      "surface": "wɛɱ",
+      "followed_by_phoneme": [
+        "f",
+        "v"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /f v/ is [wɛɱ] (plainte [plɛntə], maintenant, sainfoin [sɛɱfwɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_WE_CORONAL",
+      "phonemes": [
+        "wɛ̃"
+      ],
+      "surface": "wɛn",
+      "followed_by_phoneme": [
+        "t",
+        "d",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "l",
+        "n"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /t d s z ʃ ʒ l n/ is [wɛn] (plainte [plɛntə], maintenant, sainfoin [sɛɱfwɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_WE_VELAR",
+      "phonemes": [
+        "wɛ̃"
+      ],
+      "surface": "wɛŋ",
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit is [wɛŋ] elsewhere (pain [pɛŋ], loin [lwɛŋ], bien [bjɛŋ], juin [ʒɥɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_JE_LABIAL",
+      "phonemes": [
+        "jɛ̃"
+      ],
+      "surface": "jɛm",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "m"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /p b m/ is [jɛm] (plainte [plɛntə], maintenant, sainfoin [sɛɱfwɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_JE_LABIODENTAL",
+      "phonemes": [
+        "jɛ̃"
+      ],
+      "surface": "jɛɱ",
+      "followed_by_phoneme": [
+        "f",
+        "v"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /f v/ is [jɛɱ] (plainte [plɛntə], maintenant, sainfoin [sɛɱfwɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_JE_CORONAL",
+      "phonemes": [
+        "jɛ̃"
+      ],
+      "surface": "jɛn",
+      "followed_by_phoneme": [
+        "t",
+        "d",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "l",
+        "n"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /t d s z ʃ ʒ l n/ is [jɛn] (plainte [plɛntə], maintenant, sainfoin [sɛɱfwɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_JE_VELAR",
+      "phonemes": [
+        "jɛ̃"
+      ],
+      "surface": "jɛŋ",
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit is [jɛŋ] elsewhere (pain [pɛŋ], loin [lwɛŋ], bien [bjɛŋ], juin [ʒɥɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_UE_LABIAL",
+      "phonemes": [
+        "ɥɛ̃"
+      ],
+      "surface": "ɥɛm",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "m"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /p b m/ is [ɥɛm] (plainte [plɛntə], maintenant, sainfoin [sɛɱfwɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_UE_LABIODENTAL",
+      "phonemes": [
+        "ɥɛ̃"
+      ],
+      "surface": "ɥɛɱ",
+      "followed_by_phoneme": [
+        "f",
+        "v"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /f v/ is [ɥɛɱ] (plainte [plɛntə], maintenant, sainfoin [sɛɱfwɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_UE_CORONAL",
+      "phonemes": [
+        "ɥɛ̃"
+      ],
+      "surface": "ɥɛn",
+      "followed_by_phoneme": [
+        "t",
+        "d",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "l",
+        "n"
+      ],
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨aim⟩, ⟨oin⟩, ⟨ien⟩, ⟨uin⟩) before /t d s z ʃ ʒ l n/ is [ɥɛn] (plainte [plɛntə], maintenant, sainfoin [sɛɱfwɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_UNIT_UE_VELAR",
+      "phonemes": [
+        "ɥɛ̃"
+      ],
+      "surface": "ɥɛŋ",
+      "notes": "Nasal vowels of the Midi are a vowel followed by a nasal appendix (Eychenne 2006: 115-116, quoting Durand 1988: 167: '(i) une réalisation vélaire, [N], souvent devant une frontière de mot ... (par ex. lent [laN]) ; (ii) une réalisation où la consonne nasale a le même point d'articulation que la consonne qui suit à la fois à l'intérieur des mots (lenteur ..., lampe [lamp]), et à travers des frontières de mot'). Eychenne writes the vowel oral with the appendix after it (n. 5: long, lampe), and p. 117: in this accent there is no surface nasal vowel. This rule: a nasal vowel spelled as one unit is [ɥɛŋ] elsewhere (pain [pɛŋ], loin [lwɛŋ], bien [bjɛŋ], juin [ʒɥɛŋ])."
+    },
+    {
+      "id": "FR_MIDI_FINAL_SCHWA",
+      "phonemes": [
+        ""
+      ],
+      "surface": "ə",
+      "grapheme": [
+        "e"
+      ],
+      "word_final": true,
+      "preceded_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "ɱ",
+        "l",
+        "ʁ",
+        "j",
+        "ɛn",
+        "ɛm",
+        "jɛn",
+        "wɛn",
+        "ɥin",
+        "ɛj",
+        "œj",
+        "aj",
+        "uj",
+        "ij"
+      ],
+      "requires_other_nucleus": true,
+      "notes": "The mute final ⟨e⟩ of a polysyllable is pronounced after a consonant (PFC, Le e caduc : variation géographique, section 'Français méridional': 'le e caduc est normalement prononcé en fin de polysyllabe (sauf s'il est suivi d'une voyelle) : le mot patte est ainsi prononcé [patə] avec une voyelle finale'; seul vs seule, Michel vs Michèle). The page gives a vowel close to [ø] or [œ] and a true neutral [ə] as its usual values; the spec writes [ə]. The condition is the pronounced consonant before the ⟨e⟩, whatever letters spell it, so a unit that starts with a vowel letter and ends in a consonant counts too (fille [fijə], ville, Marseille [maʁsɛjə], aime [ɛmə], semaine [sømɛnə]; the units fr-FR denasalises before a vowel, ⟨ain⟩ [ɛn], ⟨aim⟩ [ɛm], ⟨ien⟩ [jɛn], ⟨oin⟩ [wɛn], ⟨uin⟩ [ɥin] (ruine [ʁɥinə]), are listed whole because the engine reads them as one segment, as are the units in [j] of ⟨eill⟩, ⟨euill⟩, ⟨aill⟩, ⟨ouill⟩ and ⟨ill⟩ once a rule names them). A silent plural ⟨-s⟩ after the ⟨e⟩ leaves it final (pattes [patə]). Its deletion before a vowel-initial word is a matter of the phrase."
+    },
+    {
+      "id": "FR_MIDI_SCHWA_INITIAL",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "ø",
+      "grapheme": [
+        "e"
+      ],
+      "preceded_by": "consonant",
+      "preceded_by_2": "word_boundary",
+      "followed_by_nucleus": true,
+      "notes": "Schwa in the first syllable of a polysyllable is [ø] (PFC, Le e caduc : variation géographique, section 'Français méridional', section 'Timbre': 'En position initiale de polysyllabe (ex : chemise, petit) ... la voyelle se prononce [ø] (ex : petit [pøti])'). This rule covers one consonant letter or digraph before the ⟨e⟩; a medial schwa, which the page says varies between [ø], [œ] and [ə], stays [ə]."
+    },
+    {
+      "id": "FR_MIDI_SCHWA_INITIAL_CC",
+      "phonemes": [
+        "ə"
+      ],
+      "surface": "ø",
+      "grapheme": [
+        "e"
+      ],
+      "preceded_by": "consonant",
+      "preceded_by_2": "consonant",
+      "preceded_by_3": "word_boundary",
+      "followed_by_nucleus": true,
+      "notes": "FR_MIDI_SCHWA_INITIAL after a word-initial two-consonant onset (premier, gredin) (PFC, Le e caduc : variation géographique, section 'Français méridional', section 'Timbre')."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_FINAL_ɛ",
+      "phonemes": [
+        "e",
+        "ɛ"
+      ],
+      "surface": "ɛ",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "ɱ",
+        "l",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: the last syllable is closed by a pronounced consonant (port, fleur, mer)."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_SCHWA_ɛ",
+      "phonemes": [
+        "e",
+        "ɛ"
+      ],
+      "surface": "ɛ",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "ɱ",
+        "l",
+        "ʁ"
+      ],
+      "followed_by_phoneme_2": [
+        "ə"
+      ],
+      "followed_by_3": "word_boundary",
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: one consonant and the final schwa follow (rose [ʁɔzə], père [pɛʁə], jaune [ʒɔnə], bête [bɛtə]). Before a plural ⟨-s⟩ the ⟨e⟩ no longer ends the word and the rule does not see it (NOT MODELLED: roses keeps the fr-FR vowel)."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_CLOSED_ɛ",
+      "phonemes": [
+        "e",
+        "ɛ"
+      ],
+      "surface": "ɛ",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "ɱ",
+        "l",
+        "ʁ"
+      ],
+      "followed_by_phoneme_2": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "ɱ"
+      ],
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a closed non-final syllable, before two consonants of which the second is not a liquid, so that an obstruent-liquid onset (cobra) leaves the syllable open (porter, perdu, festin)."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_FINAL_œ",
+      "phonemes": [
+        "ø",
+        "œ"
+      ],
+      "surface": "œ",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "ɱ",
+        "l",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: the last syllable is closed by a pronounced consonant (port, fleur, mer)."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_SCHWA_œ",
+      "phonemes": [
+        "ø",
+        "œ"
+      ],
+      "surface": "œ",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "ɱ",
+        "l",
+        "ʁ"
+      ],
+      "followed_by_phoneme_2": [
+        "ə"
+      ],
+      "followed_by_3": "word_boundary",
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: one consonant and the final schwa follow (rose [ʁɔzə], père [pɛʁə], jaune [ʒɔnə], bête [bɛtə]). Before a plural ⟨-s⟩ the ⟨e⟩ no longer ends the word and the rule does not see it (NOT MODELLED: roses keeps the fr-FR vowel)."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_CLOSED_œ",
+      "phonemes": [
+        "ø",
+        "œ"
+      ],
+      "surface": "œ",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "ɱ",
+        "l",
+        "ʁ"
+      ],
+      "followed_by_phoneme_2": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "ɱ"
+      ],
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a closed non-final syllable, before two consonants of which the second is not a liquid, so that an obstruent-liquid onset (cobra) leaves the syllable open (porter, perdu, festin)."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_FINAL_ɔ",
+      "phonemes": [
+        "o",
+        "ɔ"
+      ],
+      "surface": "ɔ",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "ɱ",
+        "l",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: the last syllable is closed by a pronounced consonant (port, fleur, mer)."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_SCHWA_ɔ",
+      "phonemes": [
+        "o",
+        "ɔ"
+      ],
+      "surface": "ɔ",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "ɱ",
+        "l",
+        "ʁ"
+      ],
+      "followed_by_phoneme_2": [
+        "ə"
+      ],
+      "followed_by_3": "word_boundary",
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: one consonant and the final schwa follow (rose [ʁɔzə], père [pɛʁə], jaune [ʒɔnə], bête [bɛtə]). Before a plural ⟨-s⟩ the ⟨e⟩ no longer ends the word and the rule does not see it (NOT MODELLED: roses keeps the fr-FR vowel)."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_CLOSED_ɔ",
+      "phonemes": [
+        "o",
+        "ɔ"
+      ],
+      "surface": "ɔ",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "ɱ",
+        "l",
+        "ʁ"
+      ],
+      "followed_by_phoneme_2": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "ɱ"
+      ],
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a closed non-final syllable, before two consonants of which the second is not a liquid, so that an obstruent-liquid onset (cobra) leaves the syllable open (porter, perdu, festin)."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_MULTI_ɛ",
+      "phonemes": [
+        "e",
+        "ɛ"
+      ],
+      "surface": "ɛ",
+      "followed_by_grapheme": [
+        "x"
+      ],
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a closed non-final syllable before ⟨x⟩, one letter for two consonants ([ks]): exil, texture."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_SC_V_ɛ",
+      "phonemes": [
+        "e",
+        "ɛ"
+      ],
+      "surface": "ɛ",
+      "followed_by_grapheme": [
+        "sc"
+      ],
+      "followed_by_2": "back_vowel",
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a closed non-final syllable before ⟨sc⟩ read [sk], that is before a back vowel letter or a consonant letter (escalier [ɛskalje], escargot, escroc); before a front vowel ⟨sc⟩ is one [s] and the syllable stays open (osciller [osije])."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_SC_C_ɛ",
+      "phonemes": [
+        "e",
+        "ɛ"
+      ],
+      "surface": "ɛ",
+      "followed_by_grapheme": [
+        "sc"
+      ],
+      "followed_by_2": "consonant",
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a closed non-final syllable before ⟨sc⟩ read [sk], that is before a back vowel letter or a consonant letter (escalier [ɛskalje], escargot, escroc); before a front vowel ⟨sc⟩ is one [s] and the syllable stays open (osciller [osije])."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_RL_ɛ",
+      "phonemes": [
+        "e",
+        "ɛ"
+      ],
+      "surface": "ɛ",
+      "followed_by_phoneme": [
+        "ʁ"
+      ],
+      "followed_by_phoneme_2": [
+        "l"
+      ],
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: [ʁl] is no onset, so the syllable before it is closed (perler [pɛʁle], merlan); FR_MIDI_LDP_OPEN_CLOSED_* leaves out a liquid as second consonant only to keep obstruent-liquid onsets (cobra) open."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_MULTI_œ",
+      "phonemes": [
+        "ø",
+        "œ"
+      ],
+      "surface": "œ",
+      "followed_by_grapheme": [
+        "x"
+      ],
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a closed non-final syllable before ⟨x⟩, one letter for two consonants ([ks]): exil, texture."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_SC_V_œ",
+      "phonemes": [
+        "ø",
+        "œ"
+      ],
+      "surface": "œ",
+      "followed_by_grapheme": [
+        "sc"
+      ],
+      "followed_by_2": "back_vowel",
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a closed non-final syllable before ⟨sc⟩ read [sk], that is before a back vowel letter or a consonant letter (escalier [ɛskalje], escargot, escroc); before a front vowel ⟨sc⟩ is one [s] and the syllable stays open (osciller [osije])."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_SC_C_œ",
+      "phonemes": [
+        "ø",
+        "œ"
+      ],
+      "surface": "œ",
+      "followed_by_grapheme": [
+        "sc"
+      ],
+      "followed_by_2": "consonant",
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a closed non-final syllable before ⟨sc⟩ read [sk], that is before a back vowel letter or a consonant letter (escalier [ɛskalje], escargot, escroc); before a front vowel ⟨sc⟩ is one [s] and the syllable stays open (osciller [osije])."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_RL_œ",
+      "phonemes": [
+        "ø",
+        "œ"
+      ],
+      "surface": "œ",
+      "followed_by_phoneme": [
+        "ʁ"
+      ],
+      "followed_by_phoneme_2": [
+        "l"
+      ],
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: [ʁl] is no onset, so the syllable before it is closed (perler [pɛʁle], merlan); FR_MIDI_LDP_OPEN_CLOSED_* leaves out a liquid as second consonant only to keep obstruent-liquid onsets (cobra) open."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_MULTI_ɔ",
+      "phonemes": [
+        "o",
+        "ɔ"
+      ],
+      "surface": "ɔ",
+      "followed_by_grapheme": [
+        "x"
+      ],
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a closed non-final syllable before ⟨x⟩, one letter for two consonants ([ks]): exil, texture."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_SC_V_ɔ",
+      "phonemes": [
+        "o",
+        "ɔ"
+      ],
+      "surface": "ɔ",
+      "followed_by_grapheme": [
+        "sc"
+      ],
+      "followed_by_2": "back_vowel",
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a closed non-final syllable before ⟨sc⟩ read [sk], that is before a back vowel letter or a consonant letter (escalier [ɛskalje], escargot, escroc); before a front vowel ⟨sc⟩ is one [s] and the syllable stays open (osciller [osije])."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_SC_C_ɔ",
+      "phonemes": [
+        "o",
+        "ɔ"
+      ],
+      "surface": "ɔ",
+      "followed_by_grapheme": [
+        "sc"
+      ],
+      "followed_by_2": "consonant",
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a closed non-final syllable before ⟨sc⟩ read [sk], that is before a back vowel letter or a consonant letter (escalier [ɛskalje], escargot, escroc); before a front vowel ⟨sc⟩ is one [s] and the syllable stays open (osciller [osije])."
+    },
+    {
+      "id": "FR_MIDI_LDP_OPEN_RL_ɔ",
+      "phonemes": [
+        "o",
+        "ɔ"
+      ],
+      "surface": "ɔ",
+      "followed_by_phoneme": [
+        "ʁ"
+      ],
+      "followed_by_phoneme_2": [
+        "l"
+      ],
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: [ʁl] is no onset, so the syllable before it is closed (perler [pɛʁle], merlan); FR_MIDI_LDP_OPEN_CLOSED_* leaves out a liquid as second consonant only to keep obstruent-liquid onsets (cobra) open."
+    },
+    {
+      "id": "FR_MIDI_LDP_CLOSE_HIATUS_e",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "e",
+      "followed_by_phoneme": [
+        "a",
+        "ɑ",
+        "e",
+        "ɛ",
+        "i",
+        "o",
+        "ɔ",
+        "u",
+        "y",
+        "ø",
+        "œ",
+        "ə"
+      ],
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel directly before another pronounced vowel ends an open syllable and is close (poème [poɛmə], poète)."
+    },
+    {
+      "id": "FR_MIDI_LDP_CLOSE_HIATUS_ø",
+      "phonemes": [
+        "œ"
+      ],
+      "surface": "ø",
+      "followed_by_phoneme": [
+        "a",
+        "ɑ",
+        "e",
+        "ɛ",
+        "i",
+        "o",
+        "ɔ",
+        "u",
+        "y",
+        "ø",
+        "œ",
+        "ə"
+      ],
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel directly before another pronounced vowel ends an open syllable and is close (poème [poɛmə], poète)."
+    },
+    {
+      "id": "FR_MIDI_LDP_CLOSE_HIATUS_o",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "o",
+      "followed_by_phoneme": [
+        "a",
+        "ɑ",
+        "e",
+        "ɛ",
+        "i",
+        "o",
+        "ɔ",
+        "u",
+        "y",
+        "ø",
+        "œ",
+        "ə"
+      ],
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel directly before another pronounced vowel ends an open syllable and is close (poème [poɛmə], poète)."
+    },
+    {
+      "id": "FR_MIDI_LDP_CLOSE_UNIT_ɛm",
+      "phonemes": [
+        "ɛm"
+      ],
+      "surface": "em",
+      "followed_by_phoneme": [
+        "a",
+        "ɑ",
+        "e",
+        "ɛ",
+        "i",
+        "o",
+        "ɔ",
+        "u",
+        "y",
+        "ø",
+        "œ"
+      ],
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: the units ⟨aim⟩, ⟨ain⟩, ⟨ein⟩ read [ɛm] or [ɛn] before a vowel are one slot, so their [ɛ] is in an open syllable when a full vowel follows and is close (aimer [eme], peiner [pene]); before the final schwa it stays open (aime [ɛmə])."
+    },
+    {
+      "id": "FR_MIDI_LDP_CLOSE_UNIT_ɛn",
+      "phonemes": [
+        "ɛn"
+      ],
+      "surface": "en",
+      "followed_by_phoneme": [
+        "a",
+        "ɑ",
+        "e",
+        "ɛ",
+        "i",
+        "o",
+        "ɔ",
+        "u",
+        "y",
+        "ø",
+        "œ"
+      ],
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: the units ⟨aim⟩, ⟨ain⟩, ⟨ein⟩ read [ɛm] or [ɛn] before a vowel are one slot, so their [ɛ] is in an open syllable when a full vowel follows and is close (aimer [eme], peiner [pene]); before the final schwa it stays open (aime [ɛmə])."
+    },
+    {
+      "id": "FR_MIDI_LDP_CLOSE_FINAL_e",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "e",
+      "followed_by_nucleus": false,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel in an open last syllable, which FR_MIDI_LDP_OPEN_FINAL_* did not close, is close (lait [le], jamais [ʒame], mai [me], paix [pe])."
+    },
+    {
+      "id": "FR_MIDI_LDP_CLOSE_OPEN_e",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "e",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "ɱ",
+        "l",
+        "ʁ"
+      ],
+      "followed_by_2": "vowel",
+      "followed_by_phoneme_2": [
+        "a",
+        "ɑ",
+        "e",
+        "ɛ",
+        "i",
+        "ɔ",
+        "o",
+        "y",
+        "u",
+        "ø",
+        "œ",
+        "w",
+        "ɥ",
+        "ɛ̃",
+        "wɛ̃"
+      ],
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel before one consonant and a full vowel is in an open syllable and is close (maison [mezɔŋ], bêtise [betizə], aimer [eme])."
+    },
+    {
+      "id": "FR_MIDI_LDP_CLOSE_TL_e",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "e",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v"
+      ],
+      "followed_by_phoneme_2": [
+        "l",
+        "ʁ"
+      ],
+      "followed_by_phoneme_3": [
+        "a",
+        "ɑ",
+        "e",
+        "ɛ",
+        "i",
+        "ɔ",
+        "o",
+        "y",
+        "u",
+        "ø",
+        "œ",
+        "w",
+        "ɥ",
+        "ɛ̃",
+        "wɛ̃"
+      ],
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel before an obstruent-liquid onset and a full vowel is in an open syllable and is close (cobra [kobʁa], problème [pʁoblɛmə]); before the onset and a schwa it stays open (propre [pʁɔpʁə]), as FR_MIDI_LDP_OPEN_CLOSED_* leaves an obstruent-liquid onset out of the closed syllables. The full vowels are those of FR_MIDI_LDP_CLOSE_OPEN_*, read as the underlying phoneme three slots ahead."
+    },
+    {
+      "id": "FR_MIDI_LDP_CLOSE_FINAL_ø",
+      "phonemes": [
+        "œ"
+      ],
+      "surface": "ø",
+      "followed_by_nucleus": false,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel in an open last syllable, which FR_MIDI_LDP_OPEN_FINAL_* did not close, is close (lait [le], jamais [ʒame], mai [me], paix [pe])."
+    },
+    {
+      "id": "FR_MIDI_LDP_CLOSE_OPEN_ø",
+      "phonemes": [
+        "œ"
+      ],
+      "surface": "ø",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "ɱ",
+        "l",
+        "ʁ"
+      ],
+      "followed_by_2": "vowel",
+      "followed_by_phoneme_2": [
+        "a",
+        "ɑ",
+        "e",
+        "ɛ",
+        "i",
+        "ɔ",
+        "o",
+        "y",
+        "u",
+        "ø",
+        "œ",
+        "w",
+        "ɥ",
+        "ɛ̃",
+        "wɛ̃"
+      ],
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel before one consonant and a full vowel is in an open syllable and is close (maison [mezɔŋ], bêtise [betizə], aimer [eme])."
+    },
+    {
+      "id": "FR_MIDI_LDP_CLOSE_TL_ø",
+      "phonemes": [
+        "œ"
+      ],
+      "surface": "ø",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v"
+      ],
+      "followed_by_phoneme_2": [
+        "l",
+        "ʁ"
+      ],
+      "followed_by_phoneme_3": [
+        "a",
+        "ɑ",
+        "e",
+        "ɛ",
+        "i",
+        "ɔ",
+        "o",
+        "y",
+        "u",
+        "ø",
+        "œ",
+        "w",
+        "ɥ",
+        "ɛ̃",
+        "wɛ̃"
+      ],
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel before an obstruent-liquid onset and a full vowel is in an open syllable and is close (cobra [kobʁa], problème [pʁoblɛmə]); before the onset and a schwa it stays open (propre [pʁɔpʁə]), as FR_MIDI_LDP_OPEN_CLOSED_* leaves an obstruent-liquid onset out of the closed syllables. The full vowels are those of FR_MIDI_LDP_CLOSE_OPEN_*, read as the underlying phoneme three slots ahead."
+    },
+    {
+      "id": "FR_MIDI_LDP_CLOSE_FINAL_o",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "o",
+      "followed_by_nucleus": false,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel in an open last syllable, which FR_MIDI_LDP_OPEN_FINAL_* did not close, is close (lait [le], jamais [ʒame], mai [me], paix [pe])."
+    },
+    {
+      "id": "FR_MIDI_LDP_CLOSE_OPEN_o",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "o",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "ɱ",
+        "l",
+        "ʁ"
+      ],
+      "followed_by_2": "vowel",
+      "followed_by_phoneme_2": [
+        "a",
+        "ɑ",
+        "e",
+        "ɛ",
+        "i",
+        "ɔ",
+        "o",
+        "y",
+        "u",
+        "ø",
+        "œ",
+        "w",
+        "ɥ",
+        "ɛ̃",
+        "wɛ̃"
+      ],
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel before one consonant and a full vowel is in an open syllable and is close (maison [mezɔŋ], bêtise [betizə], aimer [eme])."
+    },
+    {
+      "id": "FR_MIDI_LDP_CLOSE_TL_o",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "o",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v"
+      ],
+      "followed_by_phoneme_2": [
+        "l",
+        "ʁ"
+      ],
+      "followed_by_phoneme_3": [
+        "a",
+        "ɑ",
+        "e",
+        "ɛ",
+        "i",
+        "ɔ",
+        "o",
+        "y",
+        "u",
+        "ø",
+        "œ",
+        "w",
+        "ɥ",
+        "ɛ̃",
+        "wɛ̃"
+      ],
+      "followed_by_nucleus": true,
+      "notes": "Loi de position of the traditional Midi: a mid vowel is close in an open syllable, and open in a closed syllable or in an open syllable whose next vowel is schwa (Eychenne 2006: 120, ex. (2)-(3), after Rizzolo 2002: 11: peau [po], port [pɔr], pore [ˈpɔ.rə]; paix [pe], pair [pɛr], père [ˈpɛ.rə]; pleut [plø], pleur [plœr], pleure [ˈplœ.rə]). It applies almost categorically and its domain is the word (p. 120, p. 124, ex. (7): bête [bɛt], bêtise [betiz], fleur, fleuri [fløri]); Avanzi (2024, Oxford Handbook ch. 14: 422-423) maps it, and the loss of piqué ~ piquet, over the south of France. This rule: a mid vowel before an obstruent-liquid onset and a full vowel is in an open syllable and is close (cobra [kobʁa], problème [pʁoblɛmə]); before the onset and a schwa it stays open (propre [pʁɔpʁə]), as FR_MIDI_LDP_OPEN_CLOSED_* leaves an obstruent-liquid onset out of the closed syllables. The full vowels are those of FR_MIDI_LDP_CLOSE_OPEN_*, read as the underlying phoneme three slots ahead."
+    }
+  ],
+  "word_exceptions": {
+    "le": "lø",
+    "de": "dø",
+    "que": "kø",
+    "ce": "sø",
+    "ne": "nø",
+    "se": "sø",
+    "je": "ʒø",
+    "me": "mø",
+    "te": "tø",
+    "ville": "vilə",
+    "mille": "milə",
+    "lille": "lilə",
+    "tranquille": "tʁaŋkilə",
+    "tranquillement": "tʁaŋkiləmaŋ",
+    "enfer": "aɱfɛʁ",
+    "enfers": "aɱfɛʁ",
+    "sens": "sans",
+    "cancer": "kansɛʁ",
+    "cancers": "kansɛʁ",
+    "cresson": "kʁøsɔŋ",
+    "cressonnière": "kʁøsɔnjɛʁə",
+    "dessus": "døsy",
+    "dessous": "døsu",
+    "parfum": "paʁfœŋ",
+    "parfums": "paʁfœŋ",
+    "zinc": "zɛŋɡ",
+    "chnoque": "ʃnɔkə",
+    "chnoques": "ʃnɔkə",
+    "chlingue": "ʃlɛŋɡə",
+    "chlinguer": "ʃlɛŋɡe",
+    "donc": "dɔŋk"
+  },
+  "sandhi_rules": [
+    {
+      "id": "FR_LIAISON_N_ARTICLE",
+      "name": "n after un and aucun (Midi: the appendix is the liaison [n])",
+      "left_context": "^(.*[aɛɔœe])ŋ$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "left_spelling": "^(?:(?:d['’]|qu['’])?(?:un|aucun))$",
+      "right_spelling": "^(?!(?:et|ou|avril|août|octobre)$)",
+      "transform": "\\1n‿",
+      "obligatory": true,
+      "notes": "In liaison the Midi nasal appendix is the onset of the next word and is [n], and the vowel before it stays oral: Eychenne (2006: 116-117, ch. 5 « Le français du Midi traditionnel »), after Durand (1988): 'Pour de nombreux locuteurs, la voyelle est toujours orale dans le contexte de liaison (bon atout [bɔnatu], son atout [sɔnatu]), en face de [sõnatu] dans le Nord. Selon Durand, ce phénomène s'explique aisément si l'on suppose que l'appendice nasal est syllabifié en attaque (auquel cas il est réalisé comme un [n] par défaut)'; note 10, p. 116: 'les erreurs de segmentation du type en Andorre (= [anaᴺdɔrə]) > à Nandorre'. The fr-FR rule of the same id adds n‿ after the nasal vowel; restated here, the liaison [n] takes the place of the word-final velar appendix instead of following it: en avion [an‿ avjɔŋ], un ami [œn‿ ami], on a [ɔn‿ a] (#2761). The spelling conditions are fr-FR's."
+    },
+    {
+      "id": "FR_LIAISON_N_PRONOUN",
+      "name": "n after en and on (Midi: the appendix is the liaison [n])",
+      "left_context": "^(.*[aɛɔœe])ŋ$",
+      "right_context": "^[aeiouyøœəɛɔɑɪʏʊjwɥ]",
+      "left_joined_spelling": "^(?:(?:[jmtsnl]['’]|qu['’])?(?:en|on))$",
+      "right_spelling": "^(?!(?:et|ou)$)",
+      "transform": "\\1n‿",
+      "obligatory": true,
+      "notes": "In liaison the Midi nasal appendix is the onset of the next word and is [n], and the vowel before it stays oral: Eychenne (2006: 116-117, ch. 5 « Le français du Midi traditionnel »), after Durand (1988): 'Pour de nombreux locuteurs, la voyelle est toujours orale dans le contexte de liaison (bon atout [bɔnatu], son atout [sɔnatu]), en face de [sõnatu] dans le Nord. Selon Durand, ce phénomène s'explique aisément si l'on suppose que l'appendice nasal est syllabifié en attaque (auquel cas il est réalisé comme un [n] par défaut)'; note 10, p. 116: 'les erreurs de segmentation du type en Andorre (= [anaᴺdɔrə]) > à Nandorre'. The fr-FR rule of the same id adds n‿ after the nasal vowel; restated here, the liaison [n] takes the place of the word-final velar appendix instead of following it: en avion [an‿ avjɔŋ], un ami [œn‿ ami], on a [ɔn‿ a] (#2761). The spelling conditions are fr-FR's."
+    },
+    {
+      "id": "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
+      "name": "final consonant of six and dix before a consonant",
+      "left_context": "^((?:s|d|d͡z)[iɪ])s$",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:ɛ̃|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|ʒaɱvje|sɛptambʁə|nɔvambʁə|desambʁə|ʒɥɛŋ|ʒɥije|dø|kɔntʁə|pandaŋ|sølɔŋ|døvaŋ|deʁjɛʁə|døpɥi|dyʁaŋ|mwɛŋ|lø|sø|ʒø|kø|nø|dɔŋk)$)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "transform": "\\1",
+      "obligatory": true,
+      "notes": "fr-FR's FR_NUMERAL_MUTE_BEFORE_CONSONANT (PR #2710), restated by id. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [ʒaɱvje], [sɛptambʁə], [nɔvambʁə], [desambʁə], [ʒɥɛŋ], [ʒɥije], [dø], [kɔntʁə], [pandaŋ], [sølɔŋ], [døvaŋ], [deʁjɛʁə], [døpɥi], [dyʁaŋ], [mwɛŋ], [lø], [sø], [ʒø], [kø], [nø], [dɔŋk] (the months in ⟨-embre⟩ end in the Midi final schwa and carry the nasal appendix, de is [dø], donc is [dɔŋk]): le dix novembre [lø dis nɔvambʁə]. On a base without the fr-FR rule it is this spec's own rule and matches nothing, since six, dix and huit then have no final consonant."
+    },
+    {
+      "id": "FR_HUIT_MUTE_BEFORE_CONSONANT",
+      "name": "final consonant of huit before a consonant",
+      "left_context": "^(ɥ[iɪ])t$",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:ɛ̃|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|ʒaɱvje|sɛptambʁə|nɔvambʁə|desambʁə|ʒɥɛŋ|ʒɥije|dø|kɔntʁə|pandaŋ|sølɔŋ|døvaŋ|deʁjɛʁə|døpɥi|dyʁaŋ|mwɛŋ|lø|sø|ʒø|kø|nø|dɔŋk)$)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "transform": "\\1",
+      "obligatory": true,
+      "notes": "fr-FR's FR_HUIT_MUTE_BEFORE_CONSONANT (PR #2710), restated by id. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [ʒaɱvje], [sɛptambʁə], [nɔvambʁə], [desambʁə], [ʒɥɛŋ], [ʒɥije], [dø], [kɔntʁə], [pandaŋ], [sølɔŋ], [døvaŋ], [deʁjɛʁə], [døpɥi], [dyʁaŋ], [mwɛŋ], [lø], [sø], [ʒø], [kø], [nø], [dɔŋk] (the months in ⟨-embre⟩ end in the Midi final schwa and carry the nasal appendix, de is [dø], donc is [dɔŋk]): le dix novembre [lø dis nɔvambʁə]. On a base without the fr-FR rule it is this spec's own rule and matches nothing, since six, dix and huit then have no final consonant."
+    },
+    {
+      "id": "FR_NUMERAL_Z_BEFORE_VOWEL",
+      "name": "z-liaison of six and dix",
+      "left_context": "^((?:s|d|d͡z)[iɪ])s$",
+      "right_context": "^(?!(?:avʁil|au|ut|u|ɔktɔbʁ|e|a|ɔktɔbʁə)$)[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃]",
+      "transform": "\\1z‿",
+      "obligatory": true,
+      "notes": "fr-FR's FR_NUMERAL_Z_BEFORE_VOWEL (PR #2710), restated by id with the Midi octobre [ɔktɔbʁə], whose final schwa FR_MIDI_FINAL_SCHWA writes, among the dates before which six and dix keep [s]: le dix octobre [lø dis ɔktɔbʁə], but six enfants [siz‿ aɱfaŋ]. On a base without the fr-FR rule it is this spec's own rule and matches nothing."
+    },
+    {
+      "id": "FR_NEUF_V_BEFORE_HEURES",
+      "name": "neuf before heures",
+      "left_context": "^nœf$",
+      "right_context": "^œʁə?$",
+      "transform": "nœv‿",
+      "obligatory": true,
+      "notes": "fr-FR's FR_NEUF_V_BEFORE_HEURES (PR #2710), restated by id for the Midi heures [œʁə] with its final schwa (FR_MIDI_FINAL_SCHWA): neuf heures [nœv‿ œʁə]. Placed before FR_MIDI_SCHWA_ELISION. On a base without the fr-FR rule it is this spec's own rule and gives the same reading."
+    },
+    {
+      "id": "FR_MIDI_APPENDIX_LABIAL_ACROSS_WORDS",
+      "name": "word-final nasal appendix before a labial consonant",
+      "left_context": "^(?!ʒinsɛŋ$)(.*[aɛɔœe])ŋ$",
+      "right_context": "^[pbm]",
+      "transform": "\\1m",
+      "obligatory": true,
+      "notes": "Eychenne (2006: 115-116, §5.1.1), quoting Durand (1988: 167): the nasal appendix is homorganic with a following consonant within words and across word boundaries (en patois [ampatwa]); before a pause it is velar. The within-word rules are FR_MIDI_APPENDIX_*; these sandhi rules give the same places across a word boundary, so the word-final velar appendix of en, un, bien takes the place of the next word's first consonant (en patois [am patwa], un vin [œɱ vɛŋ], en tout [an tu]) and stays velar before a pause, a vowel or a velar. The [ŋ] of ginseng [ʒinsɛŋ], a word exception of fr-FR, is the consonant of the word, not an appendix, so the left context leaves that word out."
+    },
+    {
+      "id": "FR_MIDI_APPENDIX_LABIODENTAL_ACROSS_WORDS",
+      "name": "word-final nasal appendix before a labiodental consonant",
+      "left_context": "^(?!ʒinsɛŋ$)(.*[aɛɔœe])ŋ$",
+      "right_context": "^[fv]",
+      "transform": "\\1ɱ",
+      "obligatory": true,
+      "notes": "Eychenne (2006: 115-116, §5.1.1), quoting Durand (1988: 167): the nasal appendix is homorganic with a following consonant within words and across word boundaries (en patois [ampatwa]); before a pause it is velar. The within-word rules are FR_MIDI_APPENDIX_*; these sandhi rules give the same places across a word boundary, so the word-final velar appendix of en, un, bien takes the place of the next word's first consonant (en patois [am patwa], un vin [œɱ vɛŋ], en tout [an tu]) and stays velar before a pause, a vowel or a velar. The [ŋ] of ginseng [ʒinsɛŋ], a word exception of fr-FR, is the consonant of the word, not an appendix, so the left context leaves that word out."
+    },
+    {
+      "id": "FR_MIDI_APPENDIX_CORONAL_ACROSS_WORDS",
+      "name": "word-final nasal appendix before a coronal consonant",
+      "left_context": "^(?!ʒinsɛŋ$)(.*[aɛɔœe])ŋ$",
+      "right_context": "^[tdszʃʒln]",
+      "transform": "\\1n",
+      "obligatory": true,
+      "notes": "Eychenne (2006: 115-116, §5.1.1), quoting Durand (1988: 167): the nasal appendix is homorganic with a following consonant within words and across word boundaries (en patois [ampatwa]); before a pause it is velar. The within-word rules are FR_MIDI_APPENDIX_*; these sandhi rules give the same places across a word boundary, so the word-final velar appendix of en, un, bien takes the place of the next word's first consonant (en patois [am patwa], un vin [œɱ vɛŋ], en tout [an tu]) and stays velar before a pause, a vowel or a velar. The [ŋ] of ginseng [ʒinsɛŋ], a word exception of fr-FR, is the consonant of the word, not an appendix, so the left context leaves that word out."
+    },
+    {
+      "id": "FR_MIDI_SCHWA_ELISION",
+      "name": "final schwa elided before a vowel",
+      "left_context": "ə$",
+      "right_context": "^[aeiouyɛɔɑøœ]",
+      "transform": "‿",
+      "obligatory": true,
+      "notes": "The final schwa of a polysyllable is not pronounced when the next word begins with a vowel (PFC, Le e caduc : variation géographique, section 'Français méridional': 'le e caduc est normalement prononcé en fin de polysyllabe (sauf s'il est suivi d'une voyelle)'): quatre heures [katʁ‿ œʁə]. The consonant before it links to the next word, written with the link mark of fr-FR's FR_ENCHAÎNEMENT (une école [yn‿ ekɔlə]). The vowel class is the oral vowels; in this spec a nasal vowel is written as an oral vowel plus its appendix."
+    }
+  ],
+  "grammatical_endings": {
+    "tion": "sjɔŋ",
+    "stion": "stjɔŋ",
+    "tience": "sjansə"
+  },
+  "urls": [
+    "https://www.projet-pfc.net/"
+  ],
+  "inherits": "fr-FR",
+  "notes": "Southern French (français du Midi, français méridional), the French of the south of France, as a thin variant of Metropolitan French (fr-FR). It inherits every table, rule and word exception of fr-FR and states only what a cited source states. The sources describe the traditional accent of the Midi (Languedoc, Toulouse, Provence); younger and urban speakers move toward fr-FR. FINAL SCHWA: the mute final ⟨e⟩ of a polysyllable is pronounced after a consonant sound (FR_MIDI_FINAL_SCHWA: petite [pøtitə], seule [sœlə], pattes [patə], fille [fijə], semaine [sømɛnə]) and dropped before a vowel-initial word, its consonant linking to that word (sandhi rule FR_MIDI_SCHWA_ELISION: quatre heures [katʁ‿ œʁə], une école [yn‿ ekɔlə]), after the PFC e-caduc page, section 'Français méridional'. A post-vocalic final ⟨e⟩ stays mute (vie [vi]): the page gives the pronounced schwa after a consonant. SCHWA TIMBRE: schwa is [ø] in the first syllable of a polysyllable (FR_MIDI_SCHWA_INITIAL*: petit [pøti], chemise [ʃømizə]) and in a monosyllable; the clitic monosyllables are word exceptions in fr-FR, so this spec restates them with [ø] (le [lø], de [dø], que [kø], ce, ne, se, je, me, te). fr-FR's whole-word exceptions bypass every rule, so the native ones the Midi rules would change are restated too: ville [vilə], mille, lille, tranquille [tʁaŋkilə], tranquillement, enfer [aɱfɛʁ], sens [sans], cancer, and the native words fr-FR adds to its exceptions in PR #2710 (cresson [kʁøsɔŋ], cressonnière, dessus [døsy], dessous, parfum [paʁfœŋ], zinc, chnoque [ʃnɔkə], chlingue, chlinguer). LOI DE POSITION: the mid vowels follow the loi de position, open in a closed syllable and before a schwa syllable, close in any other open syllable (FR_MIDI_LDP_*: rose [ʁɔzə], père [pɛʁə], jaune [ʒɔnə], port [pɔʁ], escalier [ɛskalje], lait [le], jamais [ʒame], maison [mezɔŋ], bêtise [betizə], poème [poɛmə]), after Eychenne (2006: 120, 124) and Avanzi (2024, Oxford Handbook ch. 14: 422-423). The rules run after fr-FR's own (allophone_passes 3): the final schwa appears in the first pass, the schwa timbre that needs it in the second and the loi de position that reads that timbre in the third. NASAL VOWELS: a nasal vowel is an oral vowel plus a nasal appendix, velar [ŋ] at the end of a word and homorganic before a consonant (FR_MIDI_APPENDIX_*, FR_MIDI_UNIT_*: pain [pɛŋ], lent [laŋ], vin [vɛŋ], brun [bʁœŋ], lampe [lampə], plainte [plɛntə], enfant [aɱfaŋ]), after Eychenne (2006: 115-117) quoting Durand (1988: 167). Before a nasal consonant the appendix is that consonant and is written once (automne [otɔnə]). The fr-FR rules FR_NASAL_a, FR_NASAL_ə, FR_NASAL_i, FR_NASAL_ɔ and FR_NASAL_y are restated with the oral vowel as their surface, FR_NASAL_ABSORB is disabled, FR_E_CLOSED_FINAL is restated without the plural ⟨-s⟩, and FR_O_BEFORE_Z, FR_EU_BEFORE_Z and FR_AU_BEFORE_R are restated so that they leave the Midi loi de position its contexts. A rule rewrites every candidate of a slot, so two rules that undo each other would swap the candidates on every pass. ⟨ê⟩ and ⟨â⟩ take the fr-FR values, and /ɛ̃/ and /œ̃/ stay apart (PFC vowel page, d) 2): brin ≠ brun, 'différence de timbre très marquée' at Toulouse). The fr-FR endings that hold a nasal vowel are written after the allophone rules and do not pass through them, so this spec restates them: ENDING \"tion\" is [sjɔŋ], an oral vowel with the velar appendix of a word end (Eychenne 2006: 115-116): élection [elɛksjɔŋ]. ENDING \"stion\" is [stjɔŋ] for the same reason (Eychenne 2006: 115-116): question [kɛstjɔŋ]. ENDING \"tience\" is [sjansə], with the appendix homorganic with the [s] and the final schwa of a polysyllable (Eychenne 2006: 115-116): patience [pasjansə]. NOT MODELLED: the blocking of the elision and of the link by an aspirate h (une hache reads [yn‿ aʃə]; the sandhi rule sees only the IPA of the next word, where ⟨h⟩ is silent, the limit fr-FR has for liaison); the open vowel before a medial schwa (seulement [søləmaŋ], heureusement), because the rule layer reads the underlying /ə/ two slots ahead and cannot tell a medial schwa from the full vowel of ⟨-er⟩ and ⟨-ez⟩ (poser [poze]); the other whole-word exceptions inherited from fr-FR (loanwords such as container and gangster); the insertion after a final consonant (Marseille, the far south-west: sec[ə]), which belong to the phrase; the [ʌ], [e] and [ɐ] values of the final schwa; the variable medial schwa; the loi de position before a plural ⟨-s⟩ (roses keeps the fr-FR [o]) and in prefixed words; the [e] of /ɛ̃/ among conservative speakers (brin [breŋ]) and a labial appendix by harmony (pain [pɛm]); the loss of the appendix before a consonant cluster (transporter); the oral vowel of a liaison (bon ami [bɔnami]); the merger of /a/ and /ɑ/ at Toulouse (PFC vowel page, d) 1)), which no source states as a rule for the whole Midi; the final consonant of moins in the south-west (Avanzi 2016); and the ⟨e⟩ before a doubled nasal letter (femme), which fr-FR reads as schwa. huit, six, dix and vingt read as fr-FR reads them: vingt keeps fr-FR's stray [ɡ] ([vɛŋɡ]) until fr-FR silences the final g after a nasal vowel, and then reads [vɛŋ]. The ⟨n⟩ of ⟨-ent⟩ after ⟨ai⟩ or ⟨oi⟩ (étaient) is silent and takes no appendix (FR_MIDI_ENT_MUTE_AFTER_AI_OI).",
+  "quality": "skeleton",
+  "script_type": "alphabet",
+  "sources": [
+    {
+      "id": "pfc_schwa_geo",
+      "author": "Projet PFC (Phonologie du français contemporain), FLORAL-PFC",
+      "year": 2008,
+      "title": "Le e caduc : variation géographique",
+      "publisher": "FLORAL-PFC, projet-pfc.net",
+      "url": "https://www.projet-pfc.net/le-projet-pfc-ef/le-francais-explique/le-e-muet-2/variation-geographique-2/",
+      "pages": null,
+      "notes": "READ (open web page; the page metadata gives 2008-12-01 as its publication date and 2017-10-26 as its last change). Section 'Français méridional': the final e caduc is normally pronounced at the end of a polysyllable unless a vowel follows (patte [patə]); it is unstressed; it marks the feminine after a consonant (mat vs mate, seul vs seule, pat vs patte, Michel vs Michèle). Section 'Timbre': [ø] in the first syllable of a polysyllable and in monosyllables that are not enclitic (petit [pøti]); [ø], [œ] or [ə] in medial position; near [ø] or [œ], or [ə], at the end, with [ʌ], [e] and [ɐ] from contact with Occitan, fading among the young. The seul ~ seule contrast weakens among young speakers; Marseille and the far south-west insert a final [ə] after a consonant, mostly at the end of an utterance."
+    },
+    {
+      "id": "eychenne2006",
+      "author": "Eychenne, J.",
+      "year": 2006,
+      "title": "Aspects de la phonologie du schwa dans le français contemporain : optimalité, visibilité prosodique, gradience",
+      "publisher": "PhD thesis, Université de Toulouse-Le Mirail (supervisor J. Durand)",
+      "url": "https://julieneychenne.info/files/pdf/Eychenne_these.pdf",
+      "pages": "115-117, 120, 124",
+      "notes": "READ (open PDF). Chapter 5, 'Le français du Midi traditionnel'. pp. 115-116 (§5.1.1): the nasal vowels are on the surface a vowel plus a nasal appendix, quoting Durand (1988: 167): a velar [N] often before a word boundary (lent [laN]), a nasal homorganic with a following consonant within words and across word boundaries (lenteur, lampe [lamp], en patois [ampatwa]); n. 5: Eychenne writes the vowel oral with a superscript N; n. 6: in his idiolect the appendix is velar in general (vin, long, brun); conservative speakers have [eN] for /ɛ̃/ (brin). p. 117: in this accent there is no surface nasal vowel; the appendix drops before heavy codas (transporter). p. 120, ex. (2)-(3), after Rizzolo (2002: 11): the loi de position (close in an open syllable, open in a closed one and in an open one before schwa: peau, port, pore, paix, pair, père, pleut, pleur, pleure), applying almost categorically. p. 124, ex. (7): its domain is the word (bête [bɛt], bêtise [betiz], fleur, fleuri [fløri])."
+    },
+    {
+      "id": "avanzi2024_oxford",
+      "author": "Avanzi, M.",
+      "year": 2024,
+      "title": "Regional variation in the French of France",
+      "publisher": "In The Oxford Handbook of the French Language, ch. 14. Oxford University Press (uncorrected first proofs read)",
+      "url": "https://libra.unine.ch/bitstreams/61d92ed1-b677-4eba-ac50-ab9a25840120/download",
+      "pages": "421-426",
+      "notes": "READ (uncorrected proofs in the Neuchâtel LIBRA repository; page numbers are the proof's). p. 423: in southern mainland France the loi de position applies. p. 422: the south does not keep piqué ~ piquet apart (both [e]). p. 424: a circumflex triggers a long vowel in the north-eastern regions of France (a statement about France, not about Belgium or Switzerland). pp. 425-426: the faites ~ fête length contrast is phonological for everyone in the French-speaking regions of Belgium and most of French-speaking Switzerland (except Valais)."
+    },
+    {
+      "id": "pfc_voyelles",
+      "author": "Projet PFC (Phonologie du français contemporain), FLORAL-PFC",
+      "year": 2010,
+      "title": "Le français expliqué: Prononciation, I. Le système vocalique, d) Variation",
+      "publisher": "FLORAL-PFC, projet-pfc.net",
+      "url": "https://projet-pfc.net/le-projet-pfc-ef/le-francais-explique/prononciation/2",
+      "pages": null,
+      "notes": "READ (open web page; the page metadata gives 2010 as its publication year and 2017 as its last change). d) 1): rat = ras at Toulouse. d) 2): brin ≠ brun with a very marked timbre difference at Toulouse. d) 3): after Lyche, the loi de position is systematic in the French of the Midi and much less so elsewhere."
+    },
+    {
+      "id": "avanzi2016_vingt",
+      "author": "Avanzi, M.",
+      "year": 2016,
+      "title": "vingT et moinS",
+      "publisher": "Français de nos régions (blog of the survey project)",
+      "url": "https://francaisdenosregions.com/2016/08/31/1010-vin-ou-vingt/",
+      "pages": null,
+      "notes": "READ (open web page and its maps). The final -s of moins is said most in the south of France, much more in the south-west than in the south-east."
+    }
+  ],
+  "ancestors": [
+    {
+      "code": "fr-FR",
+      "role": "parent",
+      "weight": 0.9,
+      "notes": "Standard Metropolitan French, the base of every regional variety here. Glottolog has no node for Southern French and files it under French."
+    },
+    {
+      "code": "oc",
+      "role": "substrate",
+      "weight": 0.05,
+      "notes": "Occitan substrate: the PFC e-caduc page (section 'Français méridional') says the [ʌ], [e] and [ɐ] values of the final schwa come from contact with Occitan and fade among young speakers."
+    }
+  ],
+  "vowel_graphemes": [
+    "y",
+    "ÿ",
+    "œ",
+    "œu",
+    "œil",
+    "œill"
+  ],
+  "timespan": {
+    "start_year": 1800,
+    "end_year": null
+  },
+  "wikipedia": [
+    "https://fr.wikipedia.org/wiki/Fran%C3%A7ais_m%C3%A9ridional"
+  ]
+}

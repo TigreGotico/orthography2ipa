@@ -193,8 +193,6 @@
   },
   "notes": "Wayuu (wayuunaiki) — Arawakan language of the Guajira Peninsula (Colombia and Venezuela). Latin orthography standardised for bilingual education. Six vowel qualities /i ɛ ɨ a u ɔ/ (⟨i e ü a u o⟩), each with a long counterpart written by doubling. Plosives and nasals lengthen (geminate), written double: pp tt kk mm nn. ⟨sh⟩ = /ʃ/, ⟨j⟩ = /h/, ⟨ꞌ⟩ (saltillo, also typed as an apostrophe) = glottal stop. Stress generally falls on the second syllable, with exceptions for long vowels and closed syllables.",
   "iso639_3": "guc",
-  "glottolog_code": "wayu1243",
-  "wikidata_qid": "Q891085",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Wayuu_language",
     "https://guc.wikipedia.org/wiki/Wayuunaiki"
@@ -222,7 +220,7 @@
       "notes": "Phonology and orthography tables."
     }
   ],
-  "parent": "x-clade-araw1281",
+  "inherits": "x-clade-araw1281",
   "ancestors": [
     {
       "code": "x-clade-araw1281",

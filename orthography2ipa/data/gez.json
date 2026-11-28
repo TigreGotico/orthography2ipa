@@ -8,7 +8,6 @@
   "quality": "stub",
   "script_type": "abugida",
   "iso639_3": "gez",
-  "glottolog_code": "geez1241",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Ge%CA%BDez"
   ],
@@ -28,7 +27,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Ge%CA%BDez"
     }
   ],
-  "parent": "sem-x-ethiopic",
+  "inherits": "sem-x-ethiopic",
   "ancestors": [
     {
       "code": "sem-x-ethiopic",
@@ -37,7 +36,6 @@
       "notes": "Ethiopian (South) Semitic."
     }
   ],
-  "wikidata_qid": "Q35667",
   "location": {
     "latitude": 10.1342,
     "longitude": 40.6821,

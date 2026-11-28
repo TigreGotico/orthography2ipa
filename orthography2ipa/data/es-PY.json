@@ -42,7 +42,7 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Paraguayan Spanish. Uniquely influenced by Guaraní bilingualism (90%+ of population bilingual). Guaraní substrate: prenasalised stops [ᵐb, ⁿd, ᵑɡ] in contact speech, possible glottal stop and nasal vowels in Guaraní loans. Some žeísmo from Argentine influence. Coda /s/ generally conserved. SESEO: ⟨c⟩ before ⟨e i⟩ is [s], the same phoneme as ⟨z⟩. Lipski (2011, p. 4): «The opposition /s/-/θ/ is not found in the Canary Islands (where seseo is the norm), nor in any part of Latin America.»",
   "quality": "skeleton",
   "script_type": "alphabet",
@@ -107,7 +107,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "spa",
   "positional_graphemes": {
     "c": {
@@ -139,11 +138,18 @@
       "notes": "Guaraní indigenous adstrate (see stub gn.json; Lipski 1994)."
     }
   ],
-  "wikidata_qid": "Q773631",
   "location": {
     "latitude": -25.28,
     "longitude": -57.634444,
     "source": "wikidata",
     "notes": "Asunción. A national variety: the capital stands in for the country. [Wikidata Q2933 P625]"
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "ES_S_VOICING",
+      "phonemes": [],
+      "surface": "",
+      "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. Its source describes the Castilian standard of Spain, and no source for this variety was opened, so the rule is switched off here."
+    }
+  ]
 }

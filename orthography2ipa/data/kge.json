@@ -97,8 +97,6 @@
   },
   "allophones": {},
   "iso639_3": null,
-  "glottolog_code": null,
-  "wikidata_qid": "Q49224",
   "wikipedia": [
     "https://kge.wikipedia.org/wiki/Wikipidiya_basa_Kumoring",
     "https://en.wikipedia.org/wiki/Komering_language"
@@ -138,7 +136,7 @@
     }
   ],
   "notes": "Komering (Kumoring) — Lampungic (Malayo-Polynesian) language of South Sumatra, Indonesia, written today in an Indonesian-based Latin alphabet (the traditional Lampung/Kaganga abugida is out of scope). The map commits to that Latin alphabet as tabulated by Omniglot, cross-checked against the phoneme inventory in the Wikipedia phonology. Indonesian conventions hold: ⟨c⟩ = /tʃ/, ⟨j⟩ = /dʒ/, ⟨ng⟩ = /ŋ/, ⟨ny⟩ = /ɲ/, ⟨y⟩ = /j/. The phonemic vowels are /i u o a/; the letters ⟨e f q v x z⟩ occur essentially only in loanwords and foreign names (⟨e⟩ = [ə]~[e], ⟨f⟩ = [f]~[p], ⟨q⟩ = [q]~[k], ⟨v⟩ = [v]~[b], ⟨x⟩ = [z]~[ks]), and /z/ likewise enters only through loans. The glottal stop /ʔ/ is phonemic but has no dedicated letter in ordinary spelling, so it is not mapped. INPUT CONTRACT: Latin-script Komering in Indonesian-based spelling.",
-  "parent": "x-clade-aust1307",
+  "inherits": "x-clade-aust1307",
   "ancestors": [
     {
       "code": "x-clade-aust1307",

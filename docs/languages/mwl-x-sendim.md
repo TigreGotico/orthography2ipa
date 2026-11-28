@@ -1,5 +1,13 @@
 # Sendinês (Mirandese meridional) (`mwl-x-sendim`)
 
+<!-- agent-hint
+covers: what the `mwl-x-sendim` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/mwl-x-sendim.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/mwl.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Sendinês (Mirandese meridional) is an Asturleonese variety, written in the Latin script. Glottolog places it in the Eurasia macroarea. The `mwl-x-sendim` spec is at the research tier. It cites 4 sources and has 3 scored datasets.
 <!-- atlas:summary end -->
@@ -64,7 +72,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 80 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 60 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -74,19 +82,19 @@ The spec can emit 80 segments. They come from the letter table, the positional r
 | Trill |  |  |  | r |  |  |  |  |
 | Tap |  |  |  | ɾ |  |  |  |  |
 | Fricative | β | f | ð | s s̺ s̻ z z̺ z̻ | ʃ ʒ | ʝ | ɣ | h |
-| Approximant |  |  |  |  |  | j |  |  |
+| Approximant |  |  |  |  |  | j j̃ |  |  |
 | Lateral approximant |  |  |  | l ɫ |  | ʎ |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
 | Close | i i̯ ĩ | ɨ ɨ̃ | u u̯ ũ |
-| Near-close |  |  | ʊ̃ |
-| Close-mid | e ẽ |  | o õ |
+| Near-close | ɪ̃ |  | ʊ̃ |
+| Close-mid | e ẽ | ɵ | o õ |
 | Open-mid | ɛ |  | ɔ |
 | Near-open |  | ɐ ɐ̃ |  |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [aj] [aw] [ej] [ew] [iu] [iw] [ja] [jo] [ju] [jɪ̃] [jẽ] [kw] [oj] [uj] [uu] [w] [wa] [we] [wõ] [õj̃] [ɐ̃w̃] [ɟ͡ʝ] [ɡw] [ɡwe] [ɡwi] [ɵw].
+Sequences that the spec writes as one unit: [w] [w̃] [ɟ͡ʝ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

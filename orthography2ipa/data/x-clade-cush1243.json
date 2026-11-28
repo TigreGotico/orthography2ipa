@@ -20,8 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Cushitic_languages"
   ],
-  "parent": "afa",
-  "glottolog_code": "cush1243",
+  "inherits": "afa",
   "urls": [
     "https://glottolog.org/resource/languoid/id/cush1243"
   ],

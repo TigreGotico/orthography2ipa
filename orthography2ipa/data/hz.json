@@ -224,8 +224,6 @@
   },
   "notes": "Herero (Otjiherero), a Bantu language of Namibia and Botswana. INPUT CONTRACT: the standard Latin Otjiherero orthography (the practical missionary-derived spelling used in Namibian publications and schools) is assumed; text is expected to be already normalised. KEY FEATURES: (1) DIGRAPHS/TRIGRAPHS: <tj> = /tʃ/ (as in Otjiherero), <ny> = /ɲ/, and the prenasalised series <mb> = /ᵐb/, <nd> = /ⁿd/, <ndj> = /ⁿdʒ/, <ng> = /ᵑɡ/, with labialised <ngw> = /ᵑɡʷ/ and <mw> = /ᵐw/. (2) VOWEL LENGTH is contrastive and IS written, by doubling: <aa ee ii oo uu> = /ɑː ɛː iː ɔː uː/. (3) FIVE VOWEL QUALITIES /i ɛ ɑ ɔ u/; <u> is also read /w/ in glide position. (4) <z> = /ð/ (voiced interdental fricative). (5) /f s l/ occur only in loanwords. (6) DENTAL SERIES NOT RECOVERABLE: Otjiherero contrasts dental /t̪ n̪ ⁿd̪/ with alveolar /t n ⁿd/, and has a voiceless interdental /θ/; the practical orthography writes the dentals with the same letters <t n nd s> as the alveolars (only scholarly transcriptions add sub-diacritics, e.g. ṱ ṋ nḓ ṣ), so dentality is NOT distinguished here — the alveolar value is emitted. (7) TONE: Otjiherero is tonal, but TONE IS NOT WRITTEN in the standard orthography (only in linguistic transcriptions, which mark high/low/mid/rising/falling with diacritics), so it is NOT recoverable from ordinary text and is not emitted.",
   "iso639_3": "her",
-  "glottolog_code": "here1253",
-  "wikidata_qid": "Q33315",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Herero_language"
   ],
@@ -301,7 +299,7 @@
     "˨",
     "θ"
   ],
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

@@ -164,7 +164,6 @@
  "allophones": {},
  "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (dnj.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "dnj",
- "glottolog_code": "nucl1770",
  "sources": [
   {
    "id": "glottolog2024",
@@ -193,7 +192,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-mand1469",
+ "inherits": "x-clade-mand1469",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Dan_language"

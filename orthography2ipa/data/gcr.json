@@ -6,8 +6,6 @@
   "script_type": "alphabet",
   "quality": "stub",
   "iso639_3": "gcr",
-  "glottolog_code": "guia1246",
-  "wikidata_qid": "Q1363072",
   "graphemes": {},
   "allophones": {},
   "notes": "STUB (deliberate): the grapheme inventory of French Guianese Creole is NOT specified. Kriyòl gwiyannen is a French-lexifier creole written in a phonologically-based, GEREC-influenced Latin orthography. The GRAPHEME SET is citable (French Wikipedia): vowels a, é, è, i, o, ò, ou; semivowels w, y; nasal vowels <an> and <en> (note: no <on> is listed, contrary to the Antillean norms); consonants b, ch, d, f, g, j, k, l, m, n, p, r, s, t, v, z, with c, h, q and x unused (q -> k, x -> z, silent h dropped); <r> is realised as French /ʁ/, not the Antillean [w]; <ch> = [ʃ] (Omniglot). But NO source consulted gives a per-grapheme IPA table: the fr/en Wikipedia articles list letters with example words only, and the Omniglot pronunciation chart is an image. Filling the vowel values by analogy with Haitian or Antillean creole spelling would be cross-language guessing, so no map is claimed. INPUT CONTRACT (for any future spec): lowercase Latin-script kriyòl gwiyannen in the GEREC-style orthography, diacritics (é è ò) intact.",

@@ -313,7 +313,7 @@
    "ɑ"
   ]
  },
- "parent": "sa",
+ "inherits": "sa",
  "ancestors": [
   {
    "code": "sa",
@@ -332,6 +332,9 @@
  "quality": "production",
  "script_type": "abugida",
  "inherent_vowel": "ɔ",
+ "consonant_marks": [
+  "়"
+ ],
  "inherent_vowel_final": "",
  "sources": [
   {
@@ -386,9 +389,7 @@
   "start_year": 1400,
   "end_year": null
  },
- "glottolog_code": "assa1263",
  "iso639_3": "asm",
- "wikidata_qid": "Q29401",
  "phoible_id": "assa1263",
  "wals_code": "ass",
  "location": {

@@ -80,6 +80,13 @@ def test_scan_gold_apostrophe_is_not_treated_as_punctuation():
 # _twin
 # --------------------------------------------------------------------------
 
+def test_signature_keeps_the_case_of_a_key():
+    # str.lower follows the Unicode tables of the running Python: U+A7DC (kwk)
+    # lowercases only from Unicode 16, so a folded signature differs on 3.14.
+    sig = sd._signature({"A": ["a"], "a": ["a"], "\ua7dc": ["t͡ɬ"], "ƛ": ["t͡ɬ"]})
+    assert sig == {("A", "a"), ("a", "a"), ("\ua7dc", "t͡ɬ"), ("ƛ", "t͡ɬ")}
+
+
 def test_twin_finds_the_closest_undeclared_match():
     raw = {
         "aa": {"code": "aa", "script": "Latin"},
@@ -98,6 +105,16 @@ def test_twin_finds_the_closest_undeclared_match():
     assert twin is not None
     assert twin[0] == "bb"
     assert twin[1] == 1.0
+
+
+def test_a_tied_twin_is_the_first_candidate():
+    # 1/3 rounds down to 0.333, so comparing against the rounded best let the
+    # second of two tied candidates win.
+    raw = {c: {"code": c, "script": "Latin"} for c in ("aa", "bb", "cc")}
+    mine = {k: [k] for k in "abcdefghi"}
+    tied = dict(list(mine.items())[:3], **{k: ["x"] for k in "jklmno"})
+    sigs = {"aa": sd._signature(mine), "bb": sd._signature(tied), "cc": sd._signature(tied)}
+    assert sd._twin("aa", raw, "graphemes", sigs) == ("bb", 0.333)
 
 
 def test_twin_excludes_a_declared_base():
@@ -136,7 +153,7 @@ def test_twin_none_when_table_too_small():
 
 def test_chain_flags_a_base_from_a_different_root_family(monkeypatch):
     raw = {
-        "aa": {"code": "aa", "parent": "bb"},
+        "aa": {"code": "aa", "inherits": "bb"},
         "bb": {"code": "bb", "family": "Sino-Tibetan"},
     }
     monkeypatch.setattr(sd, "_family_cached", lambda code: None)
@@ -144,14 +161,14 @@ def test_chain_flags_a_base_from_a_different_root_family(monkeypatch):
                          ("Indo-European",) if code == "aa" else ("Sino-Tibetan",))
     links = sd._chain("aa", raw)
     assert len(links) == 1
-    assert links[0]["field"] == "parent"
+    assert links[0]["field"] == "inherits"
     assert links[0]["target"] == "bb"
     assert links[0]["cross_family"] is True
 
 
 def test_chain_does_not_flag_a_base_within_the_same_root_family(monkeypatch):
     raw = {
-        "aa": {"code": "aa", "parent": "bb"},
+        "aa": {"code": "aa", "inherits": "bb"},
         "bb": {"code": "bb", "family": "Indo-European > Germanic"},
     }
     monkeypatch.setattr(sd, "_family_cached", lambda code: None)

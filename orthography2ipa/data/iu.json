@@ -429,8 +429,6 @@
   },
   "allophones": {},
   "iso639_3": "iku",
-  "glottolog_code": null,
-  "wikidata_qid": "Q29921",
   "notes": "Inuktitut (ᐃᓄᒃᑎᑐᑦ). INPUT CONTRACT: qaniujaaqpait — Inuktitut syllabics (Unified Canadian Aboriginal Syllabics, U+1400..U+167F, NFC). The Latin orthography qaliujaaqpait (Inuujingajut) is a separate input and is NOT covered by this map. The syllabics are an abugida: each glyph is a consonant whose vowel is given by the glyph's rotation (ᐱ pi, ᐳ pu, ᐸ pa), a dot above marks a LONG vowel (ᐲ pii, ᐴ puu, ᐹ paa), and a superscript final writes a bare coda consonant (ᑉ p, ᑦ t, ᒃ k …). Geminates are written final + CV (ᒃᑯ kku) and so need no keys of their own. CRITICAL: Inuktitut and Cree assign DIFFERENT values to the same glyph shapes — ᒐ is Cree ⟨ca⟩ /tsa/ but Inuktitut ⟨ga⟩; ᐁ is Cree ⟨ê⟩ but Inuktitut ⟨ai⟩; the ⟨o⟩-column glyphs are /u/ in Inuktitut — so this map is built from the Inuktitut syllabary chart alone. Three vowels /i u a/ with a long counterpart each; ⟨g⟩ is /ɡ/~/ɣ/ and ⟨r⟩ is uvular /ʁ/. Dialect-restricted rows are mapped where the chart gives an IPA value: the ⟨ai⟩ column and the h-series (Nunavik), ᔅ as /h/ in western Nunavut, ł /ɬ/, and ᖯ b (Aivilingmiutut). LEFT OUT: the Natsilingmiutut ⟨š⟩ and ⟨ř⟩ series, which live in the Canadian Aboriginal Syllabics Extended-A block (U+11AB0..) and not in the main block, and every Cree/Carrier/Blackfoot character that shares the block but is not Inuktitut.",
   "sources": [
     {
@@ -504,7 +502,7 @@
     "https://en.wikipedia.org/wiki/Inuktitut",
     "https://iu.wikipedia.org/wiki/%E1%90%83%E1%93%84%E1%92%83%E1%91%8E%E1%91%90%E1%91%A6"
   ],
-  "parent": "x-clade-eski1264",
+  "inherits": "x-clade-eski1264",
   "ancestors": [
     {
       "code": "x-clade-eski1264",

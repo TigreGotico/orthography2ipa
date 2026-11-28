@@ -11,10 +11,10 @@
    "β"
   ],
   "c": [
-   "ʧ"
+   "t͡ʃ"
   ],
   "ch": [
-   "ʧʰ"
+   "t͡ʃʰ"
   ],
   "d": [
    "d̺"
@@ -35,7 +35,7 @@
    "i"
   ],
   "j": [
-   "ʤ"
+   "d͡ʒ"
   ],
   "k": [
    "k"
@@ -62,7 +62,7 @@
    "n"
   ],
   "nch": [
-   "ᶮʧʰ"
+   "ᶮt͡ʃʰ"
   ],
   "nd": [
    "ⁿd"
@@ -71,7 +71,7 @@
    "ŋɡ"
   ],
   "nj": [
-   "ᶮʤ"
+   "ᶮd͡ʒ"
   ],
   "nkh": [
    "ᵑkʰ"
@@ -128,7 +128,6 @@
  "allophones": {},
  "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (nba.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "nba",
- "glottolog_code": "nyem1238",
  "sources": [
   {
    "id": "glottolog2024",
@@ -157,7 +156,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-atla1278",
+ "inherits": "x-clade-atla1278",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Nyemba_language"

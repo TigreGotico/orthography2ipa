@@ -1,5 +1,13 @@
 # Lingala (`ln`)
 
+<!-- agent-hint
+covers: what the `ln` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ln.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Lingala is an Atlantic-Congo language, written in the Latin script. Glottolog places it in Central African Republic, Congo - Brazzaville and Congo - Kinshasa. The `ln` spec is at the research tier. It cites 2 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -57,12 +65,12 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 35 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 28 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | Plosive | b p |  | d t |  |  | k ɡ |  |
-| Nasal | m |  | n |  | ɲ |  |  |
+| Nasal | m |  | n |  | ɲ | ŋ |  |
 | Trill |  |  | r |  |  |  |  |
 | Fricative |  | f v | s z | ʃ |  |  | h |
 | Approximant |  |  |  |  | j |  |  |
@@ -75,7 +83,7 @@ The spec can emit 35 segments. They come from the letter table, the positional r
 | Open-mid | ɛ | ɔ |
 | Open | a |  |
 
-Sequences that the spec writes as one unit: [mb] [mp] [nd] [ns] [nt] [nz] [w] [ŋk] [ŋɡ] [ɡ͡b].
+Sequences that the spec writes as one unit: [w] [ɡ͡b].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

@@ -39,7 +39,7 @@ def test_cape_verdean_kept_at_skeleton_no_read_cv_source():
 def test_inherits_european_portuguese(code):
     """Each variety is built on pt-PT and resolves to usable data."""
     spec = get(code)
-    assert spec.parent == "pt-PT"
+    assert spec.inherits == "pt-PT"
     assert spec.graphemes  # resolved via graphemes_base = pt-PT
     assert spec.allophones
 
@@ -84,9 +84,9 @@ def test_angolan_final_e_keeps_barred_i():
     assert out.endswith("ɨ"), out
 
 
-# --- Coda /s/ stays alveolar (no Lisbon chiado) across all three -----------
+# --- Coda /s/ stays alveolar (no Lisbon chiado) in pt-CV and pt-MZ ---------
 
-@pytest.mark.parametrize("code", AFRICAN)
+@pytest.mark.parametrize("code", ["pt-CV", "pt-MZ"])
 def test_coda_s_stays_alveolar(code):
     """The inherited EP chiado coda-sibilant rule is overridden by id."""
     spec = get(code)

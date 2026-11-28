@@ -300,7 +300,7 @@
       "rː"
     ]
   },
-  "parent": "x-clade-berb1260",
+  "inherits": "x-clade-berb1260",
   "ancestors": [
     {
       "code": "afa",
@@ -368,8 +368,6 @@
     "start_year": -1000,
     "end_year": -300
   },
-  "glottolog_code": "berb1260",
-  "wikidata_qid": "Q25448",
   "location": {
     "latitude": 25.94571,
     "longitude": 1.453401,

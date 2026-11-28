@@ -12,7 +12,6 @@
  },
  "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "mgr",
- "glottolog_code": "mamb1296",
  "sources": [
   {
    "id": "glottolog2024",
@@ -41,7 +40,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-atla1278",
+ "inherits": "x-clade-atla1278",
  "phonemes": [
   "b",
   "d",
@@ -76,11 +75,11 @@
  "tone_inventory": {
   "˦": "PHOIBLE tone segment",
   "˦˨": "PHOIBLE tone segment",
-  "˦↓˦": "PHOIBLE tone segment",
+  "˦ꜜ˦": "PHOIBLE tone segment",
   "˨": "PHOIBLE tone segment",
   "˨˦": "PHOIBLE tone segment",
-  "↓˦": "PHOIBLE tone segment",
-  "↓˦↓˦": "PHOIBLE tone segment"
+  "ꜜ˦": "PHOIBLE tone segment",
+  "ꜜ˦ꜜ˦": "PHOIBLE tone segment"
  },
  "phoible_id": "1289"
 }

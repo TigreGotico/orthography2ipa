@@ -120,7 +120,7 @@ def test_interdental_retention_is_not_asserted_group_wide():
     assert "t" in g["ث"] and "d" in g["ذ"]
     assert transcribe("ثَوْب", "ar-SA-x-hejaz") == "ˈtoːb"      # merging leaf
     assert transcribe("ذَهَب", "ar-SA-x-hejaz") == "ˈdahab"
-    assert transcribe("ثَوْب", "ar-SA-x-najd") == "ˈθawb"       # retaining leaf
+    assert transcribe("ثَوْب", "ar-SA-x-najd") == "ˈθoːb"       # retaining leaf; /aw/ is [oː] (Algethami 2023:3384)
     assert transcribe("ذَهَب", "ar-SA-x-najd") == "ˈðahab"
 
 

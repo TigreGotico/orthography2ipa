@@ -1,5 +1,13 @@
 # Western Punjabi (Shahmukhi) (`pnb-PK`)
 
+<!-- agent-hint
+covers: what the `pnb-PK` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/pnb-PK.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/pa.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Western Punjabi (Shahmukhi) is an Indo-Aryan language, written in the Arabic script. Its code names Pakistan. The `pnb-PK` spec is at the research tier. It cites 4 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -60,7 +68,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 68 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 75 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Retroflex | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -70,21 +78,21 @@ The spec can emit 68 segments. They come from the letter table, the positional r
 | Trill |  |  | r |  |  |  |  |  |  |
 | Tap |  |  | ɾ |  | ɽ |  |  |  |  |
 | Fricative |  | f | s z | ʃ ʒ |  |  | x ɣ |  | h ɦ |
-| Approximant |  | ʋ |  |  |  | j |  |  |  |
+| Approximant |  | ʋ |  |  |  | j j̃ |  |  |  |
 | Lateral approximant |  |  | l |  | ɭ |  |  |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
-| Close | i iː |  | u uː |
-| Near-close | ɪ |  | ʊ |
-| Close-mid | eː |  | oː |
-| Mid |  | ə |  |
-| Open-mid | ɛː |  | ɔː |
-| Open | aː |  |  |
+| Close | i iː ĩ ĩː |  | u uː ũ ũː |
+| Near-close | ɪ ɪ̃ |  | ʊ ʊ̃ |
+| Close-mid | eː ẽː |  | oː õː |
+| Mid |  | ə ə̃ |  |
+| Open-mid | ɛː ɛ̃ː |  | ɔː ɔ̃ː |
+| Open | aː ãː |  |  |
 
-Sequences that the spec writes as one unit: [b˩] [dʒ˩] [d̪˩] [k˩] [k˩ə] [p˩] [p˩ə] [tʃ˩] [tʃ˩ə] [t̪˩] [t̪˩ə] [w] [ɖ˩] [ən] [ɡ˩] [ʈ˩] [ʈ˩ə] [̃].
+Sequences that the spec writes as one unit: [b˩] [dʒ˩] [d̪˩] [k˩] [p˩] [tʃ˩] [t̪˩] [w] [w̃] [ɖ˩] [ɡ˩] [ʈ˩].
 
-Tones: [H] high-rising tone (historically from voiceless aspirate onset), [L] low-falling tone (historically from voiced aspirate onset), [M] level/mid tone (default; no special onset).
+Tones: [˦˥] high-rising tone (historically from voiceless aspirate onset), [˨˩] low-falling tone (historically from voiced aspirate onset), [˧] level/mid tone (default; no special onset).
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

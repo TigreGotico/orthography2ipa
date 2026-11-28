@@ -11,11 +11,13 @@ Demonstrates:
 - pairwise distance matrix
 """
 
+import phonematcher
+
+import linguatag
+
 import orthography2ipa
 from orthography2ipa.distance import (
     allophone_overlap,
-    ancestry_similarity,
-    feature_vector,
     full_distance,
     grapheme_divergence,
     inventory_distance,
@@ -56,13 +58,10 @@ for a, b, note in pairs:
     print(f"  /{a}/ ↔ /{b}/  {d:.4f}  ({note})")
 
 print()
-print("  Feature vector for /p/:")
-vec = feature_vector("p")
-from orthography2ipa.distance import feature_names  # noqa
-names = feature_names()
-active = [(n, v) for n, v in zip(names, vec) if v != 0.5]
-for name, val in active:
-    print(f"    {name:25s} {val}")
+print("  phonematcher features for /p/:")
+for name, val in zip(phonematcher.FEATURES, phonematcher.vectorize_phones("p")):
+    if val is not None:
+        print(f"    {name:25s} {val}")
 
 
 # ── 2. Inventory distance ────────────────────────────────────────────────
@@ -131,7 +130,7 @@ for pair, (a, b) in [
     ("es ↔ fr", (es, fr)),
     ("la ↔ it", (la, it)),
 ]:
-    print(f"  {pair}: {ancestry_similarity(a, b):.3f}")
+    print(f"  {pair}: {linguatag.ancestry_similarity(a.code, b.code):.3f}")
 
 
 # ── 7. Full distance ─────────────────────────────────────────────────────

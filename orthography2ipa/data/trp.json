@@ -53,7 +53,6 @@
  },
  "notes": "Kokborok, official language of Tripura, India since 1979 (Tripura Official Language Act), ~918,000 first-language speakers (2011 Census), a Sino-Tibetan (Bodo-Garo) language written today mainly in the promoted ROMAN/LATIN alphabet alongside a still-current Bengali-Assamese rendering and a historic, defunct Koloma script; this spec covers the LATIN rendering (Jacquesson 2003; Wikipedia 'Kokborok language'). GRAPHEME KEYS: digraphs `ch/chh/kh/ph/th/ts/tsh/ng` earn their multigraph status under design-constraint test 2 -- each spells one consonant segment (a palatal affricate, an aspirated stop, or a velar nasal), not a cluster (the exact status AGENTS.md gives Urdu پھ). Kokborok is TONAL (high vs low), and the Roman orthography marks HIGH tone by writing `h` after the vowel of a high-toned syllable (Jacquesson 2003) -- a genuine suprasegmental spelling convention, so `ah/eh/ih/oh/uh` earn their keys under test 1: the IPA is not the concatenation of the vowel's IPA and /h/, it is the vowel plus a high-tone mark, and a bare word-final/onset `h` elsewhere still means the consonant /h/. KNOWN GAP, documented rather than guessed: Kokborok's central vowel /ə/ has NO dedicated Roman letter in the promoted orthography -- practice varies (often written `w`, which this spec keeps reserved for the consonant /w/ to avoid a silent, undocumented overload), so /ə/-spelling is left unencoded pending a primary-source citation disambiguating it from consonant `w`. Diphthongs /ai/ and /əi/ are written `ai`/`oi` (Jacquesson 2003) and pass test 2 (one syllable nucleus). STRESS: no separate lexical stress system is described in Jacquesson (2003) beyond the tone contrast; left unencoded, a documented exemption (tone carries the prosodic load). TIER: no WikiPron (or other registrable) gold exists for `trp` (checked against CUNY-CL/wikipron's scrape summary, 2026-08-03: zero rows), so `skeleton`, not `research`.",
  "iso639_3": "trp",
- "glottolog_code": "kokb1239",
  "sources": [
   {
    "id": "jacquesson2003",
@@ -104,7 +103,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-sino1245",
+ "inherits": "x-clade-sino1245",
  "phonemes": [
   "b",
   "cç",

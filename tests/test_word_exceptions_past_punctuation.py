@@ -26,10 +26,12 @@ def test_a_key_spelled_with_a_mark_still_hits():
 def test_an_elision_apostrophe_is_not_clinging_punctuation():
     # Catalan d' is the elided preposition, not ⟨d⟩ with a mark on it: the
     # bare-letter exception must not capture it.
-    from orthography2ipa.g2p import _EDGE_PUNCT_RE
-    assert _EDGE_PUNCT_RE.sub("", "d'") == "d'"
-    assert _EDGE_PUNCT_RE.sub("", "'em") == "'em"
-    assert _EDGE_PUNCT_RE.sub("", "i\u2019m,") == "i\u2019m"
+    import re
+    from orthography2ipa.g2p import _EDGE_PUNCT_CHAR
+    edges = re.compile(rf"^{_EDGE_PUNCT_CHAR}+|{_EDGE_PUNCT_CHAR}+$")
+    assert edges.sub("", "d'") == "d'"
+    assert edges.sub("", "'em") == "'em"
+    assert edges.sub("", "i\u2019m,") == "i\u2019m"
 
 
 def test_punctuation_alone_is_not_a_word():

@@ -5,8 +5,6 @@
   "script_type": "abjad",
   "quality": "research",
   "iso639_3": "skr",
-  "glottolog_code": "sera1259",
-  "wikidata_qid": "Q33902",
   "graphemes": {
     "ب": [
       "b"
@@ -433,7 +431,7 @@
     "ʌ̃",
     "ẽ"
   ],
-  "parent": "x-clade-indo1321",
+  "inherits": "x-clade-indo1321",
   "ancestors": [
     {
       "code": "x-clade-indo1321",

@@ -224,8 +224,6 @@
     ]
   },
   "iso639_3": "kau",
-  "glottolog_code": "kanu1279",
-  "wikidata_qid": "Q36094",
   "notes": "Kanuri (Kanuri: Kanuri) — Saharan (Nilo-Saharan) language of Borno (Nigeria), Niger, Chad and Cameroon. INPUT CONTRACT: the Standard Kanuri Orthography (SKO), the Latin orthography based on the Maiduguri/Yerwa dialect, developed by the Kanuri Research Unit and Kanuri Language Board and approved in Maiduguri in 1975 (also the basis of the Niger arrêté 213-99 alphabet). Ajami (Arabic-script) Kanuri is OUT OF SCOPE. The SKO letter set is: a b c d e ǝ f g h i j k l m n ny o p r ɍ s sh t u w y z. `kr` is a macrolanguage code (Yerwa/Central and Manga Kanuri); this map follows Yerwa (Maiduguri), the standard variety. KEY FEATURES: (1) DIGRAPHS: <c> = /t͡ʃ/, <j> = /d͡ʒ/, <sh> = /ʃ/, <ny> = /ɲ/ (Hutchison lists c, j, sh, ny as the palatal series of the SKO). (2) PRENASALIZED STOPS <mb nd ng> are written as digraphs in the SKO; <ng> also spells plain [ŋ], an allophone of /n/ before velars (the velar stop is often deleted). (3) SCHWA: <ǝ> is the central mid vowel /ə/ (encoded U+01DD in Kanuri practice, not U+0259; both code points are accepted as input keys here); [ɨ] is an allophone of /ə/. (4) <p> is not a phoneme but is a letter of the SKO: it is the realization of /b/ before a voiceless plosive (náb+t -> nápt) and varies freely with /f/ in some ideophones. (5) LENITION allophones, largely predictable and partly reflected in spelling: /b/ -> [β] and /f/ -> [ɸ] intervocalically/in open syllables (the SKO often writes the weakened result as <w>), /ɡ/ -> [ɣ] intervocalically. (6) RETROFLEX: <ɍ> writes the retroflex liquid of Yerwa; its occurrence is otherwise predictable before high front /i/ (where /l/ -> [ɭ]), and in loanwords it is written <r>. (7) TONE IS NOT WRITTEN in the SKO (Hutchison states this explicitly); Kanuri is tonal, so tone is NOT recoverable from standard orthography and is not emitted here. Glottal stop /ʔ/ is likewise not represented by a letter.",
   "sources": [
     {
@@ -284,7 +282,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kanuri_language"
   ],
-  "parent": "x-clade-nilo1247",
+  "inherits": "x-clade-nilo1247",
   "ancestors": [
     {
       "code": "x-clade-nilo1247",

@@ -31,8 +31,6 @@
   },
   "allophones": {},
   "iso639_3": "ikt",
-  "glottolog_code": "copp1244",
-  "wikidata_qid": "Q28070",
   "notes": "Inuinnaqtun, an Eskimo-Aleut language, a child variety of the Inuktitut macrolanguage (iu), spoken in the central Canadian Arctic (Kitikmeot region of Nunavut and the Inuvialuit Settlement Region of the NWT). Written in Latin (Roman) orthography except in Gjoa Haven, where Inuit syllabics (as for Natsilingmiutut) are used instead; only the Latin orthography is covered here, since a syllabics chart specific to the Gjoa Haven convention was not found with the same confidence. Three vowels /i u a/, each with a long counterpart written by doubling the letter. DISTINCTIVE MERGER: unlike most other Inuit varieties (including Eastern Canadian Inuktitut, `ike`), Inuinnaqtun has merged the historical *s and *ɬ phonemes into /h/ — there is no /s/ or /ɬ/ phoneme, and the language has one fewer consonant than dialects such as North Baffin Inuktitut that keep the three-way s/ɬ/h contrast (Compton 2008; Dorais 2010). ⟨j⟩ is the palatal approximant /j/; the geminate ⟨jj⟩ is described as sounding like 'd+j', i.e. the affricate /dʒ/, a documented gemination-triggered affrication parallel to the /ŋː/ realisation of geminate ⟨nng⟩. ⟨r⟩ and ⟨q⟩ are both back-of-the-throat sounds per pedagogical descriptions, consistent with the uvular fricative /ʁ/ and uvular stop /q/ attested elsewhere in Inuktitut. Consonant gemination beyond ⟨nng⟩/⟨jj⟩ (doubled ⟨pp⟩, ⟨tt⟩, ⟨kk⟩, etc.) is a productive orthographic doubling process and is not enumerated key-by-key here.",
   "sources": [
     {
@@ -83,7 +81,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Inuinnaqtun"
   ],
-  "parent": "iu",
+  "inherits": "iu",
   "ancestors": [
     {
       "code": "iu",

@@ -354,8 +354,6 @@
   },
   "notes": "Kabardian (къэбэрдей адыгэбзэ, East Circassian) — Northwest Caucasian, written in a Cyrillic alphabet since 1936 (Latin and Arabic orthographies are historical/diaspora and are not modelled). INPUT CONTRACT: Cyrillic text in the standard Kabardian orthography, Unicode NFC; the palochka is expected as U+04CF ⟨ӏ⟩ (lowercase) / U+04C0 ⟨Ӏ⟩ (uppercase), not ASCII I/l/1. The orthography is overwhelmingly DIGRAPHIC and TRIGRAPHIC: ⟨ъ⟩ (uvular/back series), ⟨ӏ⟩ (ejective/glottal) and ⟨у⟩ (labialisation) combine with a base letter to spell single phonemes — гъ, гъу, къ, къу, кхъ, кхъу, кӏ, кӏу, лъ, лӏ, пӏ, тӏ, фӏ, хь, хъ, хъу, ху, цӏ, щӏ, ӏу — and each is a grapheme key of its own, matched by maximal munch (longest key wins, so кхъу beats кхъ beats къ). Phonemic vowels are ⟨э⟩ /a/, ⟨а⟩ /aː/, ⟨ы⟩ /ə/; ⟨е и о у ю я ё⟩ spell glide+vowel sequences and take their surface values from the alphabet table. ⟨дж⟩ and ⟨кӏ⟩ have dialectal double values, both listed (best first). The modifier letters ⟨ъ⟩ /ˠ/ and ⟨ь⟩ /ʲ/ occur only as parts of digraphs in native words and are given no standalone entry.",
   "iso639_3": "kbd",
-  "glottolog_code": "kaba1278",
-  "wikidata_qid": "Q33522",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kabardian_language",
     "https://kbd.wikipedia.org/wiki/%D0%9A%D1%8A%D1%8D%D0%B1%D1%8D%D1%80%D0%B4%D0%B5%D0%B9_%D0%90%D0%B4%D1%8B%D0%B3%D1%8D%D0%B1%D0%B7%D1%8D"
@@ -513,12 +511,12 @@
     "ʃ",
     "ʃʼ",
     "ʃ͇",
-    "ʆ",
-    "ʆʼ",
+    "ʃʲ",
+    "ʃʲʼ",
     "ʑ",
     "ʒ",
     "ʒ͇",
-    "ʓ",
+    "ʒʲ",
     "ʔ",
     "ʔʷ",
     "ʕ",
@@ -527,7 +525,7 @@
     "χ",
     "χʷ"
   ],
-  "parent": "x-clade-abkh1242",
+  "inherits": "x-clade-abkh1242",
   "ancestors": [
     {
       "code": "x-clade-abkh1242",

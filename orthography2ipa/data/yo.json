@@ -1,16 +1,14 @@
 {
   "code": "yo",
   "name": "Yoruba",
-  "glottolog_code": "yoru1245",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "yor",
   "quality": "research",
   "tone_inventory": {
-    "◌́": "high",
-    "◌̀": "low",
-    "◌̄": "mid",
-    "unmarked": "mid"
+    "˦": "high",
+    "˨": "low",
+    "˧": "mid"
   },
   "graphemes": {
     "b": [
@@ -302,7 +300,7 @@
     "start_year": 1800,
     "end_year": null
   },
-  "parent": "nic",
+  "inherits": "nic",
   "ancestors": [
     {
       "code": "nic",
@@ -323,7 +321,6 @@
       "notes": "Arabic adstrate: Islamic religious vocabulary."
     }
   ],
-  "wikidata_qid": "Q34311",
   "phoible_id": "yoru1245",
   "wals_code": "yor",
   "location": {

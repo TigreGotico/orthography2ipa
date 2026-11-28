@@ -198,7 +198,6 @@
   },
   "notes": "Rohingya (of Rakhine State, Myanmar, and the diaspora) written input contract: the Rohingya Language Council's 2019 Latin standardisation (the community's most widely adopted digital-era alphabet alongside the bespoke Hanifi Rohingya script, Unicode block U+10D00-U+10D3F, which this skeleton does not yet cover). Double vowel letters spell length as a single nucleus (test 2: aa/ee/ii/oo/uu are one long vowel each, not a concatenation of two short ones); ng and sh each spell one consonant segment (test 1: ŋ and ʃ are not composable from their parts under this alphabet's other rules). Rohingya has phonemic vowel length and nasal vowels this skeleton does not yet encode; stress is not orthographically predictable and is exempt per quality_tiers.md. No WikiPron gold exists for rhg, so the tier stays at skeleton.",
   "iso639_3": "rhg",
-  "glottolog_code": "rohi1238",
   "sources": [
     {
       "id": "glottolog2024",
@@ -240,7 +239,7 @@
     "source": "glottolog",
     "notes": "Glottolog's representative point."
   },
-  "parent": "x-clade-indo1319",
+  "inherits": "x-clade-indo1319",
   "script_type": "alphabet",
   "orthography_standard": {
     "name": "Rohingya Language Council Latin alphabet",

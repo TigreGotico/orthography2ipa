@@ -1,5 +1,13 @@
 # Italian (`it-IT`)
 
+<!-- agent-hint
+covers: what the `it-IT` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/it-IT.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Italian is an Italo-Romance language, written in the Latin script. Its code names Italy. The `it-IT` spec is at the research tier. It cites 7 sources and has 3 scored datasets.
 <!-- atlas:summary end -->
@@ -130,15 +138,15 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `it` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 82276 | 0.0441 | yes |
-| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `it-IT` | generated | espeak-derived | CC BY 4.0 | 4583 | 0.2341 | no |
-| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `it` | generated | epitran-derived | CC0 1.0 | 48570 | 0.1031 | no |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `it` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 82276 | 0.0437 | yes |
+| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `it-IT` | generated | espeak-derived | CC BY 4.0 | 4583 | 0.2353 | no |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `it` | generated | epitran-derived | CC0 1.0 | 48570 | 0.1029 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 80 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 51 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -158,7 +166,7 @@ The spec can emit 80 segments. They come from the letter table, the positional r
 | Open-mid | ɛ | ɔ |
 | Open | a |  |
 
-Sequences that the spec writes as one unit: [aj] [aw] [ddz] [dʒi] [dːʒi] [ej] [ew] [ja] [je] [jo] [ju] [ks] [kw] [oj] [sk] [tts] [tʃi] [tːʃi] [uj] [w] [wa] [we] [wo] [ɡl] [ɡw] [ɲɲ] [ʃi] [ʃʃ] [ʎi] [ʎʎ].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -246,12 +254,13 @@ Stress falls on the penult by default. A written ⟨à⟩ ⟨è⟩ ⟨é⟩ ⟨�
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 6 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 7 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
 | `IT_INHERENT_GEMINATE_GN` | /ɲ/ → [ɲɲ], after a vowel, before a vowel | ⟨bagno⟩ [baɲɲo] | [Krämer 2009](#src-kramer2009) |
 | `IT_INHERENT_GEMINATE_GLI` | /ʎ/ → [ʎʎ], after a vowel, before a vowel | ⟨aglio⟩ [aʎʎo] | [Krämer 2009](#src-kramer2009) |
+| `IT_INHERENT_GEMINATE_GLI_FINAL` | /ʎ/ → [ʎʎ], after [a] [e] [ɛ] [i] [o] [ɔ] [u], before [i] | ⟨figli⟩ [ˈfiʎʎi] | [Bertinetto 2005](#src-bertinetto_loporcaro2005) |
 | `IT_INHERENT_GEMINATE_SC` | /ʃ/ → [ʃʃ], after a vowel, before a vowel | ⟨pesce⟩ [peʃʃe] | [Krämer 2009](#src-kramer2009) |
 | `IT_INHERENT_GEMINATE_TS` | /ts/ → [tts], after a vowel, before a vowel | ⟨vizio⟩ [vittsjo] | [Krämer 2009](#src-kramer2009) |
 | `IT_INHERENT_GEMINATE_DZ` | /dz/ → [ddz], after a vowel, before a vowel | - | [Krämer 2009](#src-kramer2009) |

@@ -20,8 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Central_Semitic_languages"
   ],
-  "parent": "sem-x-west",
-  "glottolog_code": "cent2236",
+  "inherits": "sem-x-west",
   "urls": [
     "https://glottolog.org/resource/languoid/id/cent2236"
   ],

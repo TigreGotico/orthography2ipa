@@ -227,8 +227,6 @@
     ]
   },
   "iso639_3": "sag",
-  "glottolog_code": "sang1328",
-  "wikidata_qid": "Q33954",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Sango_language",
     "https://sg.wikipedia.org/wiki/S%C3%A4ng%C3%B6"
@@ -271,7 +269,7 @@
     "start_year": 1900,
     "end_year": null
   },
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

@@ -364,9 +364,7 @@
     "end_year": -400
   },
   "iso639_3": "ave",
-  "glottolog_code": "aves1237",
-  "wikidata_qid": "Q29572",
-  "parent": "ira",
+  "inherits": "ira",
   "ancestors": [
     {
       "code": "ira",

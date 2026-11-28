@@ -351,7 +351,7 @@
       "æ̃̂ː"
     ]
   },
-  "parent": "x-clade-kiow1265",
+  "inherits": "x-clade-kiow1265",
   "ancestors": [
     {
       "code": "x-clade-kiow1265",
@@ -362,7 +362,6 @@
   ],
   "notes": "Rio Grande Tewa (Kiowa-Tanoan) in the practical orthography of the San Juan Pueblo Téwa Dictionary (Martinez 1982), the spelling this community's own literacy materials use. IPA correspondences follow Sutton (2014). INPUT CONTRACT: Martinez-orthography Tewa. CONSONANTS: ⟨ph th kh⟩ are the FRICATIVES /f θ x/, not aspirates — the single largest error in a naive Latin reading; ⟨wh khw qw xw⟩ = /xʷ/, ⟨kw⟩ = /kʷ/, ⟨ch sh ts⟩ = /t͡ʃ ʃ t͡s/, ⟨v⟩ = /v/, ⟨ñ⟩ = onset /j/, and an apostrophe after ⟨p t k ts ch kw⟩ marks an ejective. VOWELS: six qualities ⟨a e i o u ä⟩ = /ɑ e i o u æ/. A doubled or digraph nucleus is LONG and is not the sum of its letters: ⟨ay⟩ = /eː/ and ⟨ee⟩ = /iː/, alongside ⟨aa oe uu ää⟩ = /ɑː oː uː æː/; before a vowel the second letter of ⟨ay⟩ is instead the next syllable's onset glide (⟨khayêh⟩ [xɑ̀jê]). TONE IS WRITTEN and is mapped: an unmarked vowel is LOW /◌̀/, an acute is HIGH /◌́/ and a circumflex is FALLING /◌̂/. Nasalisation is written with a cedilla/ogonek under the vowel and maps to /◌̃/; only the U+0327 (Martinez) form is keyed. POSITION: a word-initial vowel takes an epenthetic /ʔ/; ⟨m n ñ⟩ not followed by a vowel is /ŋ/; a word-final ⟨h⟩ after an ⟨e⟩-nucleus is silent. KNOWN UNMAPPED, and unobservable in any gold this spec is scored against: (a) a PREVOCALIC ⟨ñ⟩ is /j/ plus nasalisation of the following vowel (Module:tew-IPA force_nasal), which the rule layer cannot state because ⟨ñ⟩ and ⟨y⟩ share the phoneme /j/ and a rule has no way to key on its own anchor grapheme — mapping it would nasalise every ⟨y⟩ too; (b) ⟨v⟩ is given here as /v/, its surface value, where Sutton's phonemicisation makes it underlying /b/ with an obligatory [v] realisation. Both are named rather than guessed. NOT APPLIED: the postlexical lenitions /b d ɡ/ → [v ɾ ɣ] and the place assimilations of /ŋ/ are recorded in `allophones` but not fired — Martinez/Sutton transcriptions are phonemic.",
   "iso639_3": "tew",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "tew_glottolog",

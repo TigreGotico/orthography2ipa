@@ -335,7 +335,7 @@
       "øː"
     ]
   },
-  "parent": "li",
+  "inherits": "li",
   "ancestors": [
     {
       "code": "li",
@@ -345,8 +345,6 @@
     }
   ],
   "iso639_3": "lim",
-  "glottolog_code": "limb1263",
-  "wikidata_qid": "Q102172",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Rheinische_Dokumenta"
   ],

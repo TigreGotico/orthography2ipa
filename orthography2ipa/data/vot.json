@@ -5,8 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "vot",
-  "glottolog_code": "voti1245",
-  "wikidata_qid": "Q32858",
   "graphemes_base": "fi",
   "graphemes": {
     "š": [
@@ -97,7 +95,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Votic_language"
   ],
-  "parent": "x-clade-finn1317",
+  "inherits": "x-clade-finn1317",
   "ancestors": [
     {
       "code": "x-clade-finn1317",

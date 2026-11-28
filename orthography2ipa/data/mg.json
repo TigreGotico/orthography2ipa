@@ -216,7 +216,6 @@
     ]
   },
   "iso639_3": "mlg",
-  "glottolog_code": "mala1537",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Malagasy_language",
     "https://mg.wikipedia.org/wiki/Fiteny_malagasy"
@@ -249,7 +248,7 @@
     "start_year": 1823,
     "end_year": null
   },
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",

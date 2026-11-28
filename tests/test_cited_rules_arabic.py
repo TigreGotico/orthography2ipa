@@ -405,6 +405,50 @@ def test_najd_affric_k_after_front_vowel():
     assert _bare("ar-SA-x-najd", "دِيك") == "diːts"
 
 
+@pytest.mark.parametrize("code", ["ar-SA-x-najd", "ars-SA-x-qassim", "ars-SA-x-shamali"])
+@pytest.mark.parametrize("word,expected", [
+    # Al Mahmoud 2020 pp.65-66: no affrication with a back or central vowel in the
+    # same syllable (exx. 14 [kʊm], 16 [kʊl]); Alshammari 2026 p.1336:
+    # affrication is "categorically blocked in the proximity of back vowels".
+    ("عَلَيْكُم", "ʕaleːkum"),
+    # Al Mahmoud 2020 pp.73-74, exx. 37, 39: masculine /lɪk/ is never [lɪts].
+    ("عَلَيْكَ", "ʕaleːka"),
+    ("فِيكُم", "fiːkum"),
+])
+def test_najd_affric_k_after_blocked_in_onset(code, word, expected):
+    """NAJD_AFFRIC_K_AFTER is coda-only: a /k/ that starts a syllable with a
+    back or central vowel stays [k] after a front vowel."""
+    assert _bare(code, word) == expected
+
+
+@pytest.mark.parametrize("code", ["ar-SA-x-najd", "ars-SA-x-qassim", "ars-SA-x-shamali"])
+@pytest.mark.parametrize("word,expected", [
+    # Al Mahmoud 2020 p.63 ex. 4: /keɪf/ 'how' -> [tsef]; the onset /k/ is
+    # affricated by NAJD_AFFRIC_K_BEFORE, before the front vowel.
+    ("كَيْف", "tseːf"),
+    # Al Mahmoud 2020 ex. 2: /dik/ -> [dits] 'rooster'; coda /k/ after /iː/.
+    ("دِيك", "diːts"),
+    # Coda /k/ after /i/ (fish): the front vowel is in the same syllable.
+    ("سِمِك", "simits"),
+])
+def test_najd_affric_k_kept_before_front_vowel_and_in_coda(code, word, expected):
+    assert _bare(code, word) == expected
+
+
+def test_shamali_affric_k_after_central_a_word_final():
+    """SHAMALI_AFFRIC_K_AFTER_CENTRAL_A: word-final /k/ after /a/ affricates
+    (Alshammari 2026 p.1336); the coda condition on the inherited rule does
+    not reach it."""
+    assert _bare("ars-SA-x-shamali", "سَمَك") == "samats"
+    assert _bare("ar-SA-x-najd", "سَمَك") == "samak"
+
+
+@pytest.mark.parametrize("code", ["ar-SA-x-najd", "ars-SA-x-qassim", "ars-SA-x-shamali"])
+def test_najd_glide_before_alif_after_fatha_is_not_a_monophthong(code):
+    """The ⟨َوا⟩ key keeps [awaː]: دَوام is [dawaːm], not *[doːaːm]."""
+    assert _bare(code, "دَوام") == "dawaːm"
+
+
 def test_najd_affrication_excludes_fatha_environment():
     """Najdi affrication is deliberately NOT triggered by /a/.
 
@@ -419,6 +463,46 @@ def test_najd_affrication_excludes_fatha_environment():
     """
     assert _bare("ar-SA-x-najd", "كَلْب").startswith("k")
     assert _bare("ar-SA-x-najd", "قَلْب").startswith("ɡ")
+
+
+@pytest.mark.parametrize("word,expected", [
+    # Algethami 2023 p.3384: "The classical Arabic diphthongs /ay/ and /aw/
+    # ... were realized as long monophthongs, /e:/ and /o:/"; Table 1 p.3385
+    # /be:t/ 'home'.
+    ("بَيْت", "beːt"),
+    ("يَوْم", "joːm"),
+    ("لَوْن", "loːn"),
+    # Al Mahmoud 2020 p.63 ex. 4: /keɪf/ 'how' → Najdi [tsef]~[kef]; the
+    # spec emits the affricate (NAJD_AFFRIC_K_BEFORE) before the [eː].
+    ("كَيْف", "tseːf"),
+    # The same words with the sukun left out, as dialect text often writes
+    # them: the glide still closes the syllable before a consonant letter.
+    ("بَيت", "beːt"),
+    ("يَوم", "joːm"),
+    # Word-final glide after fatha.
+    ("شَي", "ʃeː"),
+])
+def test_najd_aj_aw_are_long_monophthongs(word, expected):
+    """Fatha + ⟨ي و⟩ reads [eː oː] where the glide closes the syllable
+    (spec notes, item 6)."""
+    assert _bare("ar-SA-x-najd", word) == expected
+
+
+@pytest.mark.parametrize("word,expected", [
+    ("بَيَان", "bajaːn"),     # glide before a vowel is an onset
+    ("سَيارَة", "sajaːra"),   # glide before alif, shadda left out
+    ("أَيّام", "ʔajjaːm"),    # geminate glide
+    ("جَوّ", "dʒaww"),
+])
+def test_najd_glide_before_a_vowel_or_geminate_is_not_a_monophthong(word, expected):
+    assert _bare("ar-SA-x-najd", word) == expected
+
+
+def test_najd_geminate_glide_is_not_a_diphthong():
+    """⟨َيّ⟩ is /a/ + a geminate /jj/, not the diphthong, and its /a/ keeps
+    the emphatic backing of AR_PEN_EMPH_BACK_A_* after ط."""
+    assert _bare("ar-SA-x-najd", "طَيِّب") == "tˤɑjjib"
+    assert _bare("ar-SA-x-qassim", "طَيِّب") == "tˤɑjjib"
 
 
 def test_najd_gahawa_epenthesis_after_h():

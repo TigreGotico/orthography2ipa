@@ -27,7 +27,7 @@
       ]
     }
   },
-  "parent": "es-MX",
+  "inherits": "es-MX",
   "ancestors": [
     {
       "code": "es-MX",
@@ -46,7 +46,6 @@
   "quality": "stub",
   "script_type": "alphabet",
   "iso639_3": "spa",
-  "glottolog_code": "nort3385",
   "timespan": {
     "start_year": 1600,
     "end_year": null
@@ -84,5 +83,13 @@
     "longitude": -100.318056,
     "source": "wikidata",
     "notes": "Monterrey — the principal city of northern Mexico. [Wikidata Q81033 P625]"
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "ES_S_VOICING",
+      "phonemes": [],
+      "surface": "",
+      "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. Its source describes the Castilian standard of Spain, and no source for this variety was opened, so the rule is switched off here."
+    }
+  ]
 }

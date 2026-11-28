@@ -22,7 +22,7 @@ from benchmark import (DATASETS, levenshtein, normalize,  # noqa: E402
                        _prosody_marks)
 
 from orthography2ipa import G2P  # noqa: E402
-from orthography2ipa.phonetok import flat_contexts  # noqa: E402
+from orthography2ipa.phonetok import Token, TokenKind, flat_contexts  # noqa: E402
 from orthography2ipa.positional import (grapheme_positions,  # noqa: E402
                                         positional_candidates)
 
@@ -35,6 +35,7 @@ def diagnose(lang: str, limit: int, k: int = 5, dataset: str = "wikipron"):
         random.Random(20260810).shuffle(pairs)
         pairs = pairs[:limit]
     engine = G2P(lang)
+    it = engine._interpreter
     extra = _prosody_marks(lang)
     strip_stress, broad = True, True
 
@@ -57,8 +58,7 @@ def diagnose(lang: str, limit: int, k: int = 5, dataset: str = "wikipron"):
             return min(levenshtein(h, g) / max(len(g), 1) for g in gn)
 
         try:
-            paths = engine._positional_beam(word, max(k, 8))
-            paths = engine._apply_grammatical_ending(word, paths)
+            paths = it._apply_ending(word, it._word_paths(word, max(k, 8)))
         except Exception:
             continue
         if not paths:
@@ -67,7 +67,7 @@ def diagnose(lang: str, limit: int, k: int = 5, dataset: str = "wikipron"):
         for p in paths[:k]:
             s = normalize(
                 unicodedata.normalize(
-                    "NFC", engine._finalize_word_ipa(word, p.ipa)),
+                    "NFC", it._finalize(word, "".join(p[0]), p, collapse=True)),
                 strip_stress, broad, extra_strip=extra)
             fin.append(s)
         if not fin or not fin[0]:
@@ -86,9 +86,10 @@ def diagnose(lang: str, limit: int, k: int = 5, dataset: str = "wikipron"):
         n_rank_fail += 1
 
         # slot-level attribution
-        chosen = paths[0].segments
-        better = paths[best_i].segments
-        g_tokens = engine._tokenizer.grapheme_tokens(word)
+        chosen = paths[0][0]
+        better = paths[best_i][0]
+        g_tokens = [Token(TokenKind.GRAPHEME, t.grapheme, t.readings, t.position, t.length)
+                    for t in it.grapheme_tokens(word)]
         contexts = flat_contexts(g_tokens, engine.spec.vowel_graphemes)
         if len(chosen) != len(better) or len(chosen) != len(contexts):
             clusters["<unaligned>"] += 1

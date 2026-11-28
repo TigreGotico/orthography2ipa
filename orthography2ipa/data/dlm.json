@@ -102,7 +102,7 @@
       "ts"
     ]
   },
-  "parent": "la-x-italia",
+  "inherits": "la-x-italia",
   "ancestors": [
     {
       "code": "la-x-italia",
@@ -113,7 +113,6 @@
   ],
   "notes": "Skeleton. Extinct Romance language of the Dalmatian coast, known chiefly from the Vegliote of its last speaker and from documentary fragments; its phonology is a scholarly reconstruction. Grapheme map uses the Latin base with Italian-like digraphs (ch/gh plain velars, gn [ɲ], gl [ʎ], sc [ʃ]) and records the diphthongs prominent in the reconstruction. Because the data are scant and normalised by editors, the values are uncertain; stress and vowel length are not reliably recoverable and are left unencoded, so a high PER floor is expected.",
   "iso639_3": "dlm",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "dlm_glottolog",

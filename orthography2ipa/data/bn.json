@@ -312,7 +312,7 @@
       "o"
     ]
   },
-  "parent": "sa",
+  "inherits": "sa",
   "ancestors": [
     {
       "code": "sa",
@@ -331,6 +331,9 @@
   "quality": "research",
   "script_type": "abugida",
   "inherent_vowel": "ɔ",
+  "consonant_marks": [
+    "়"
+  ],
   "sources": [
     {
       "id": "masica1991",
@@ -393,9 +396,7 @@
     "start_year": 1800,
     "end_year": null
   },
-  "glottolog_code": "beng1280",
   "iso639_3": "ben",
-  "wikidata_qid": "Q9610",
   "phoible_id": "beng1280",
   "wals_code": "ben",
   "location": {

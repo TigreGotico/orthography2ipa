@@ -50,8 +50,6 @@
   },
   "allophones": {},
   "iso639_3": "dak",
-  "glottolog_code": "dako1258",
-  "wikidata_qid": "Q530384",
   "notes": "Dakota (Dakȟótiyapi), Siouan (Dakotan branch, sister to Lakota). Five oral vowels /a e i o u/ and three nasal vowels /ã ĩ ũ/, written with the tilde. Obstruents show a three-way (in places four-way) laryngeal contrast: plain voiceless unaspirated (p t k), h-aspirated (ph th kh, čh), a second 'fricated'/velar-released aspirated series marked with caron-h (pȟ tȟ kȟ, phonetically a stop with audible frication [pˣ tˣ kˣ]), and ejectives marked with an apostrophe (pʼ tʼ kʼ čʼ). A separate plain-voiced series (b d g) also occurs, mostly in loanwords and certain grammatical contexts. ⟨ȟ⟩ alone is the voiceless uvular fricative /χ/ (with ejective ȟʼ); its voiced counterpart is ⟨ǧ⟩ /ʁ/. ⟨'⟩ standing alone is the glottal stop /ʔ/. This is the standard Dakota practical orthography as used in modern pedagogical and dictionary sources; vowel length is not consistently marked and is therefore not represented here.",
   "sources": [
     {
@@ -92,7 +90,7 @@
     "https://en.wikipedia.org/wiki/Dakota_language",
     "https://en.wikipedia.org/wiki/Sioux_language"
   ],
-  "parent": "x-clade-siou1252",
+  "inherits": "x-clade-siou1252",
   "ancestors": [
     {
       "code": "x-clade-siou1252",

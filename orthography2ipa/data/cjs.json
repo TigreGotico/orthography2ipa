@@ -1,12 +1,11 @@
 {
   "code": "cjs",
   "name": "Shor",
-  "glottolog_code": "shor1247",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "iso639_3": "cjs",
   "quality": "research",
-  "parent": "trk",
+  "inherits": "trk",
   "ancestors": [
     {
       "code": "trk",
@@ -151,7 +150,6 @@
     "start_year": 1927,
     "end_year": null
   },
-  "wikidata_qid": "Q34139",
   "phoible_id": "shor1247",
   "location": {
     "latitude": 53.0,

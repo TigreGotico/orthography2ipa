@@ -1,5 +1,13 @@
 # Xhosa (`xh`)
 
+<!-- agent-hint
+covers: what the `xh` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/xh.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Xhosa is a Bantu language, written in the Latin script. Glottolog places it in Botswana, Lesotho and South Africa. The `xh` spec is at the research tier. It cites 5 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -65,18 +73,18 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 88 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 95 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p pʰ |  | d t tʰ |  | c cʰ ɟ | k kʰ ɡ |  |
-| Affricate |  |  | ts tɬ | dʒ tʃ |  | kx |  |
-| Nasal | m m̩ |  | n |  | ɲ | ŋ |  |
-| Trill |  |  | r |  |  |  |  |
-| Fricative |  | f v | s z | ʃ |  | x | h ɦ |
-| Lateral fricative |  |  | ɬ ɮ |  |  |  |  |
+| Plosive | b bʷ p pʰ pʰʷ pʷ |  | d dʷ t tʰ tʰʷ tʷ |  | c cʰ cʰʷ cʷ ɟ ɟʷ | k kʰ kʰʷ kʷ ɡ ɡʷ |  |
+| Affricate |  | pf | dz dɮ ts tɬ | dʒ tʃ |  | kx |  |
+| Nasal | m mʷ m̩ | ɱ ɱʷ | n nʷ |  | ɲ ɲʷ | ŋ ŋʷ |  |
+| Trill |  |  | r rʷ |  |  |  |  |
+| Fricative |  | f fʷ v vʷ | s sʷ z zʷ | ʃ ʃʷ ʒʷ |  | x xʷ | h hʷ ɦ ɦʷ |
+| Lateral fricative |  |  | ɬ ɬʷ ɮ ɮʷ |  |  |  |  |
 | Approximant |  |  |  |  | j |  |  |
-| Lateral approximant |  |  | l |  |  |  |  |
+| Lateral approximant |  |  | l lʷ |  |  |  |  |
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
@@ -84,7 +92,7 @@ The spec can emit 88 segments. They come from the letter table, the positional r
 | Close-mid | e eː | o oː |
 | Open | a aː |  |
 
-Sequences that the spec writes as one unit: [kǀ] [kǀʰ] [kǁ] [kǁʰ] [kǃ] [kǃʰ] [mb] [mp] [mpʰ] [mɬ] [m̩b] [m̩f] [m̩p] [m̩pʰ] [m̩v] [m̩ɓ] [m̩ɬ] [nd] [ndz] [ndɮ] [nt] [ntɬ] [ntʃ] [w] [ŋk] [ŋkǀ] [ŋkǁ] [ŋkǃ] [ŋǀ] [ŋǁ] [ŋǃ] [ŋɡ] [ɓ] [ɡǀ] [ɡǁ] [ɡǃ] [ɱbv] [ɱpf] [ɲc] [ɲdʒ], and 3 more.
+Sequences that the spec writes as one unit: [bv] [w] [ǀ] [ǀʰ] [ǀʰʷ] [ǀʷ] [ǁ] [ǁʰ] [ǁʰʷ] [ǁʷ] [ǃ] [ǃʰ] [ǃʰʷ] [ǃʷ] [ɓ] [ɓʷ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

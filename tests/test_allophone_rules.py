@@ -146,10 +146,9 @@ def test_stress_condition_fires_only_on_unstressed_engine_path():
     # not itself reduce), inject a synthetic 'unstressed /a/ → [ɐ]' rule and
     # confirm only the unstressed 'a' of "casa" (paroxytone: first syllable
     # stressed) is rewritten.
-    eng = G2P("es-ES", apply_allophony=False)
     rule = AllophoneRule(id="RED_A", phonemes=("a",), surface="ɐ",
                          stress="unstressed")
-    eng._rescorers = (AllophoneRescorer((rule,)),)
+    eng = G2P("es-ES", apply_allophony=False, rescorer=AllophoneRescorer((rule,)))
     out = eng.transcribe_word("casa")
     assert "ɐ" in out          # the unstressed final 'a' reduced
     assert out.count("a") >= 1  # the stressed 'a' stayed full
@@ -231,8 +230,6 @@ def test_composition_with_user_rescorer():
 def test_apply_allophony_toggle():
     on = G2P("ca")                        # default True
     off = G2P("ca", apply_allophony=False)
-    assert on._allophone_rescorer is not None
-    assert off._allophone_rescorer is None
     # 'fred' devoices word-final /d/ → [t] only when allophony is on.
     assert on.transcribe_word("fred").endswith("t")
     assert off.transcribe_word("fred").endswith("d")
@@ -242,7 +239,7 @@ def test_apply_allophony_noop_for_spec_without_rules():
     # A spec that declares no rules is unaffected by the (default-on) toggle.
     # ``fi`` stands in for the rules-free case; es-ES used to and no longer
     # can — it declares ES_TRILL_AFTER_CORONAL / ES_NASAL_LABIAL.
-    assert G2P("fi")._allophone_rescorer is None
+    assert not G2P("fi").spec.allophone_rules
     assert G2P("pt").transcribe("casa") == \
         G2P("pt", apply_allophony=False).transcribe("casa")
 

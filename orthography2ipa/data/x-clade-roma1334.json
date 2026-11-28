@@ -20,8 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Romance_languages"
   ],
-  "parent": "la-x-late",
-  "glottolog_code": "roma1334",
+  "inherits": "la-x-late",
   "urls": [
     "https://glottolog.org/resource/languoid/id/roma1334"
   ],

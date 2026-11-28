@@ -4,13 +4,11 @@
   "script": "Tifinagh",
   "script_type": "alphabet",
   "quality": "stub",
-  "parent": "ber",
+  "inherits": "ber",
   "graphemes": {},
   "allophones": {},
   "notes": "Tashelhit / Shilha (Taclḥit) — Berber (Amazigh) language of southwestern Morocco, the largest Amazigh variety. Written in three scripts: Neo-Tifinagh (the official IRCAM script, an alphabet), the Latin script (Berber Latin alphabet), and historically the Arabic script (a large medieval and modern manuscript tradition). GRAPHEME INVENTORY NOT YET SPECIFIED: a reliable spec has to pick one script and model the emphatic/labialised series and Tashelhit's syllabic consonants; the Standard Moroccan Amazigh (zgh) Tifinagh table is close but is not identical to Tashelhit usage, so it is not asserted here. INPUT CONTRACT: input is expected in Neo-Tifinagh (Unicode block Tifinagh) or in the Berber Latin orthography. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode tach1250), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
   "iso639_3": "shi",
-  "glottolog_code": "tach1250",
-  "wikidata_qid": "Q34152",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Shilha_language",
     "https://shi.wikipedia.org/wiki/Tutlayt_Tacl%E1%B8%A5iyt"

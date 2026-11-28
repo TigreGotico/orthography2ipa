@@ -233,12 +233,12 @@ def test_alternatives_are_rank_costed_and_ordered():
     order and can never undercut rank 1."""
     import dataclasses
 
-    g = G2P("fr-FR")
+    base = G2P("fr-FR").spec
     # A fresh spec object; the shared registry instance is not touched.
-    g.spec = dataclasses.replace(
-        g.spec,
-        grammatical_endings={**g.spec.grammatical_endings,
-                             "ent": ["\u0251\u0303", "", "\u025bnt"]})
+    g = G2P("fr-FR", spec=dataclasses.replace(
+        base,
+        grammatical_endings={**base.grammatical_endings,
+                             "ent": ["\u0251\u0303", "", "\u025bnt"]}))
     cands = g.word_candidates("parlent", k=10)
     assert cands[0] == "pa\u0281l\u0251\u0303"
     assert cands.index("pa\u0281l") < cands.index("pa\u0281l\u025bnt")

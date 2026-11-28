@@ -1,7 +1,6 @@
 {
   "code": "zu",
   "name": "Zulu",
-  "glottolog_code": "zulu1248",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "zul",
@@ -493,7 +492,7 @@
       "notes": "Standard reference grammar; edition not consulted for this spec."
     }
   ],
-  "parent": "bnt",
+  "inherits": "bnt",
   "ancestors": [
     {
       "code": "bnt",
@@ -529,7 +528,6 @@
     "start_year": 1800,
     "end_year": null
   },
-  "wikidata_qid": "Q10179",
   "phoible_id": "zulu1248",
   "wals_code": "zul",
   "location": {

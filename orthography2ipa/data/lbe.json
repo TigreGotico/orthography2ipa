@@ -178,8 +178,6 @@
   "allophones": {},
   "notes": "Lak (лакку маз), a Northeast Caucasian language of Dagestan, written in a Cyrillic alphabet (48 letters, later 54 with the doubled letters). INPUT CONTRACT: Cyrillic orthography, Unicode NFC, lowercased; the palochka must be U+04CF ⟨ӏ⟩ / U+04C0 ⟨Ӏ⟩ — Latin 'I'/'l'/'1' substitutes are not accepted, as no consulted source documents them. The alphabet writes the large consonant inventory with multigraphs: ejectives кӏ пӏ тӏ цӏ чӏ, uvulars хъ /q/, къ /qː/, кь /qʼ/, гъ /ʁ/, pharyngeal хӏ /ħ/, /h/ гь, and a tense (fortis/geminate) series spelled with doubled letters кк пп сс тт хх цц чч plus the quadrigraph хьхь /xː/. Matching is maximal munch, so хьхь and the doubled letters win over the single letters. Vowel letters are polyvalent (а = [a]~[ə]~[ɛ], и/у also [y] by umlaut), and pharyngealisation is only partly written (аь, оь), so candidate lists are ordered best-first. The letters ы and ь carry no independent value in Lak and are LEFT OUT of the map; ь occurs only inside the digraphs гь, кь, хь, аь, оь. Е is given as [e] first (its value after a consonant) with [je] as the second candidate (word-initial / post-vocalic), since the source lists both without positional detail.",
   "iso639_3": "lbe",
-  "glottolog_code": "lakk1252",
-  "wikidata_qid": "Q36206",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Lak_language",
     "https://lbe.wikipedia.org/wiki/%D0%9B%D0%B0%D0%BA%D0%BA%D1%83_%D0%BC%D0%B0%D0%B7"
@@ -365,7 +363,7 @@
     "χ͈",
     "χ͈ʷ"
   ],
-  "parent": "x-clade-nakh1245",
+  "inherits": "x-clade-nakh1245",
   "ancestors": [
     {
       "code": "x-clade-nakh1245",

@@ -1,5 +1,13 @@
 # Cantabrian Spanish (Montañés) (`es-ES-x-cantabri`)
 
+<!-- agent-hint
+covers: what the `es-ES-x-cantabri` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/es-ES-x-cantabri.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/es-ES.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Cantabrian Spanish (Montañés) is an Ibero-Romance variety, written in the Latin script. Its code names Spain. The `es-ES-x-cantabri` spec is at the research tier. It cites 3 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -62,7 +70,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 66 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 38 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Uvular |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -71,18 +79,18 @@ The spec can emit 66 segments. They come from the letter table, the positional r
 | Nasal | m |  |  | n |  | ɲ | ŋ |  |
 | Trill |  |  |  | r |  |  |  |  |
 | Tap |  |  |  | ɾ |  |  |  |  |
-| Fricative | β | f | ð θ | s s̺ |  | ʝ | x ɣ | χ |
+| Fricative | β | f | ð θ | s s̺ z |  | ʝ | x ɣ | χ |
 | Approximant |  |  |  |  |  | j |  |  |
 | Lateral approximant |  |  |  | l |  | ʎ |  |  |
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
-| Close | i | u |
+| Close | i i̯ | u u̯ |
 | Close-mid | e | o |
 | Open-mid | ɛ | ɔ |
 | Open | a |  |
 
-Sequences that the spec writes as one unit: [ai̯] [aj] [au̯] [aw] [ei̯] [ej] [eu̯] [ew] [ia] [ie] [io] [ja] [je] [jo] [ju] [ks] [oi̯] [oj] [ua] [ue] [uo] [w] [wa] [we] [wi] [wo] [ɟʝ] [ɡw] [ɡwe] [ɡwi] [ʝa] [ʝe] [ʝo].
+Sequences that the spec writes as one unit: [w] [ɟʝ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -160,13 +168,14 @@ Stress falls on the penult by default. A written ⟨á⟩ ⟨é⟩ ⟨í⟩ ⟨�
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 6 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 7 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
 | `ES_TRILL_AFTER_CORONAL` | /ɾ/ → [r], after [n] [l] [s] | ⟨alrededor⟩ [alreðeˈðoɾ] | [Hualde 2005](#src-hualde2005), Navarro Tomás 1977, Quilis 1993 |
 | `ES_NASAL_LABIAL` | /n/ → [m], before [b] [β] [p] [m] | ⟨inmaculada⟩ [immakuˈlaða] | [Hualde 2005](#src-hualde2005), Navarro Tomás 1977, Quilis 1993 |
 | `ES_NASAL_VELAR` | /n/ → [ŋ], in the coda, before [k] [ɡ] [ɣ] [x] [w] | ⟨cinco⟩ [θíŋko] | Navarro Tomás 1918 |
+| `ES_S_VOICING` | /s/ → [z], before [b] [β] [d] [ð] [ɡ] [ɣ] [m] [n] and 7 more | ⟨feature’⟩ [ˈrazɣo] | Fernández-Planas & Carrera-Sabaté 2003 |
 | `ES_SPIRANT_B` | /b/ → [β], after [a] [e] [i] [o] [u] [ɛ] [ɔ] [æ] and 28 more | - | Navarro Tomás 1918 |
 | `ES_SPIRANT_D` | /d/ → [ð], after [a] [e] [i] [o] [u] [ɛ] [ɔ] [æ] and 26 more | - | Navarro Tomás 1918 |
 | `ES_SPIRANT_G` | /ɡ/ → [ɣ], after [a] [e] [i] [o] [u] [ɛ] [ɔ] [æ] and 28 more | - | Navarro Tomás 1918 |

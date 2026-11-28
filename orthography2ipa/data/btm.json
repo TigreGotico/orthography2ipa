@@ -8,8 +8,6 @@
   "allophones": {},
   "notes": "Mandailing Batak (Saro Mandailing), a Northwest Sumatran (Batak) language of Indonesia. STUB: the grapheme inventory is NOT yet specified. The script recorded for this language is the Batak script (Surat Batak), a Brahmic ABUGIDA with an inherent /a/ and diacritic vowel signs; no abugida map is claimed here. In practice Mandailing is today most often written in the Latin script with Indonesian conventions — a Latin orthography or a romanisation would be required as input before this spec can produce anything.",
   "iso639_3": "btm",
-  "glottolog_code": "bata1291",
-  "wikidata_qid": "Q2891049",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Mandailing_Batak_language",
     "https://btm.wikipedia.org/wiki/Saro_Mandailing"
@@ -38,7 +36,7 @@
       "notes": "Orthography / phonology reference."
     }
   ],
-  "parent": "x-clade-aust1307",
+  "inherits": "x-clade-aust1307",
   "ancestors": [
     {
       "code": "x-clade-aust1307",

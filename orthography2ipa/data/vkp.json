@@ -1,12 +1,11 @@
 {
   "code": "vkp",
-  "glottolog_code": "korl1238",
   "name": "Korlai Indo-Portuguese (Korlai Creole Portuguese)",
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",
   "orthography_kind": "transliteration",
-  "parent": "pt-PT",
+  "inherits": "pt-PT",
   "graphemes": {
     "a": [
       "a"
@@ -274,6 +273,12 @@
     ]
   },
   "allophone_rules": [
+    {
+      "id": "PT_EX_CONSONANT_GLIDE",
+      "phonemes": [],
+      "surface": "ɐj",
+      "notes": "DISABLED for Korlai Creole Portuguese. No source for the vowel of ⟨ex⟩ before a consonant in this variety was read, so its output stays what it was. The pt-PT rule gives ⟨ex⟩ the diphthong of the pt-PT ⟨ei⟩, [ej]."
+    },
     {
       "id": "PT_LEX_NASAL_UI",
       "phonemes": [],
@@ -819,7 +824,6 @@
     "end_year": null
   },
   "iso639_3": "vkp",
-  "wikidata_qid": "Q3436603",
   "phoible_id": "korl1238",
   "location": {
     "latitude": 18.5232,

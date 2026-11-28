@@ -191,8 +191,6 @@
     ]
   },
   "iso639_3": "ada",
-  "glottolog_code": "adan1247",
-  "wikidata_qid": "Q35141",
   "notes": "Dangme (Adangme, Adaŋgbi), a Ga-Dangme (Kwa) language of the Eastern Region and Greater Accra Region, Ghana, closely related to Ga. Latin script plus ɛ, ɔ, ŋ; tones are not normally written (Dangme has three tones: high, mid, low, with terracing). Seven oral vowels a e ɛ i o ɔ u, five nasal vowels written with a following ⟨n⟩ (not modelled as separate graphemes here). 23 consonant phonemes including the doubly-articulated labial-velars ⟨gb⟩ /ɡ͡b/, ⟨kp⟩ /k͡p/ and the labial-velar nasal ⟨ŋm⟩ /ŋ͡m/. ⟨j⟩ = /dʒ/ with fricative allophone [ʒ] for /j/ in some contexts, ⟨ts⟩ = /tʃ/, ⟨ny⟩ = /ɲ/, ⟨y⟩ = /j/. /l/ varies between a lateral approximant and a central trill/tap [r]. Syllable structure is (C)(C)V(C), where a second onset consonant is restricted to /l/.",
   "sources": [
     {
@@ -218,7 +216,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Dangme_language"
   ],
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

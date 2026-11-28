@@ -225,8 +225,6 @@
     ]
   },
   "iso639_3": "dag",
-  "glottolog_code": "dagb1246",
-  "wikidata_qid": "Q32238",
   "notes": "Dagbani (Dagbanli), a Gur / Mabia (Atlantic-Congo) language of northern Ghana. INPUT CONTRACT: text is assumed to be in the modern Latin Dagbani orthography fixed by the Dagbani Orthography Committee: the Latin letters plus ⟨ɛ ɔ ŋ ɣ ʒ⟩, the apostrophe, and the digraphs ⟨ch sh ny ŋm kp gb⟩. (The historical Ajami/Arabic-script tradition is out of scope.) KEY FEATURES: (1) LABIAL-VELARS ⟨kp gb ŋm⟩ are single double-closure phonemes /k͡p ɡ͡b ŋ͡m/. (2) ⟨ɣ⟩ = /ɣ/, ⟨ʒ⟩ = /ʒ/, ⟨sh⟩ = /ʃ/, ⟨ch⟩ = /tʃ/, ⟨j⟩ = /dʒ/, ⟨ny⟩ = /ɲ/, ⟨y⟩ = /j/. (3) The apostrophe spells a glottal stop [ʔ] (also the post-vocalic realisation of /ɡ/). (4) ALLOPHONY: /s/ is often debuccalised to [h] intervocalically; the vowel pairs i~ɪ, e~ɛ, u~ʊ, o~ɔ alternate by tongue-root (ATR) harmony, and the orthography writes them as e/ɛ and o/ɔ but does not distinguish i~ɪ or u~ʊ, so both realisations are listed as allophones. (5) VOWEL LENGTH is contrastive and written by doubling the vowel letter. (6) TONE: Dagbani is a TONE LANGUAGE (two level tones plus downstep). The standard orthography DOES NOT MARK TONE, so tone is NOT RECOVERABLE from orthographic input and is not modelled here.",
   "sources": [
     {
@@ -316,7 +314,7 @@
     "˨",
     "˩"
   ],
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

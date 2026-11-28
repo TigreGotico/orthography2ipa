@@ -34,7 +34,7 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Buenos Aires / Rioplatense: žeísmo/šeísmo for ⟨ll⟩/⟨y⟩. Word-initial ⟨hie-, hia-, hio-⟩ keeps the GLIDE [j] here and does not join the rehilamiento: coloma2018 p.244 prints hielo [ˈjelo] in the same word list that prints llama [ˈʃama], so the ⟨hi⟩ words are demonstrably not merged with ⟨ll⟩/⟨y⟩ in this variety. The override is needed because the es-ES parent strengthens word-initial ⟨hi⟩ to its own palatal obstruent. ⟨y⟩ before a vowel is the same sound as ⟨ll⟩ ([ʃ], with the older voiced [ʒ]): yo [ˈʃo], mayo [ˈmaʃo], calle [ˈkaʃe]. Lipski (2018, p. 502): «In most of Argentina and Uruguay, /j/ has traditionally been realized as a voiced fricative, [ʒ], but devoicing to [ʃ] has extended from Buenos Aires and Montevideo to much of the remaining territory.»",
   "quality": "research",
   "script_type": "alphabet",
@@ -110,7 +110,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": "riop1234",
   "iso639_3": "spa",
   "positional_graphemes": {
     "c": {
@@ -205,11 +204,18 @@
       "notes": "Quechua indigenous adstrate (see stub qu.json; Lipski 1994)."
     }
   ],
-  "wikidata_qid": "Q85146618",
   "location": {
     "latitude": -34.599722,
     "longitude": -58.381944,
     "source": "wikidata",
     "notes": "Buenos Aires — the city Rioplatense is centred on. [Wikidata Q1486 P625]"
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "ES_S_VOICING",
+      "phonemes": [],
+      "surface": "",
+      "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. Its source describes the Castilian standard of Spain, and no source for this variety was opened, so the rule is switched off here."
+    }
+  ]
 }

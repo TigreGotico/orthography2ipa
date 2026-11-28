@@ -227,7 +227,7 @@
       "uː"
     ]
   },
-  "parent": "x-clade-italorom",
+  "inherits": "x-clade-italorom",
   "ancestors": [
     {
       "code": "la-x-italia",
@@ -299,8 +299,6 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "friu1240",
-  "wikidata_qid": "Q33441",
   "phoible_id": "friu1240",
   "location": {
     "latitude": 46.1473,

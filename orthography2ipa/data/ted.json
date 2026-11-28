@@ -122,7 +122,6 @@
  },
  "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from Hartell 1993, Alphabets of Africa (UNESCO/SIL), extracted via the AfriSpeech/africa-g2p compilation (ted.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "ted",
- "glottolog_code": "tepo1239",
  "sources": [
   {
    "id": "glottolog2024",
@@ -159,7 +158,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-krua1234",
+ "inherits": "x-clade-krua1234",
  "phonemes": [
   "b",
   "c",

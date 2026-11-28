@@ -107,7 +107,6 @@
  "allophones": {},
  "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (ziw.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "ziw",
- "glottolog_code": "zigu1244",
  "sources": [
   {
    "id": "glottolog2024",
@@ -136,7 +135,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-atla1278",
+ "inherits": "x-clade-atla1278",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Zigula_language"

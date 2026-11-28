@@ -68,7 +68,7 @@ def test_closed_hiatus_with_the_plugin(lang, word, plugin_engine):
 def test_bundled_syllabifier_splits_the_hiatus(lang, word):
     # The ⟨i u⟩ after the vowel opens a syllable of its own: ra-i-nha, ra-ul.
     g2p = G2P(lang)
-    sylls = g2p._syllables_cached(word.lower())
+    sylls = g2p._interpreter.syllables(word.lower())
     vowel = next(k for k in range(1, len(word))
                  if word[k] in "iu" and word[k - 1].lower() in "aeiou")
     starts, at = set(), 0
@@ -95,6 +95,7 @@ CONTROLS = [
     ("bairro", r"ˈbaj"),    # ⟨rr⟩ spells one consonant
     ("jaime", r"ˈʒaj"),     # ⟨m⟩ before a vowel opens the next syllable
     ("quinze", r"ˈk"),      # the ⟨u⟩ of ⟨qu⟩ is no vowel
+    ("braille", r"ˈbɾaj"),  # ⟨ll⟩ is a geminate, so ⟨l⟩ does not close the ⟨i⟩
 ]
 
 
@@ -142,5 +143,27 @@ def test_pt_specs_declare_the_rule():
     for code in ("pt-PT", "pt-BR", "pt-PT-x-lisbon", "pt-BR-x-sp", "pt-UY"):
         rule = get(code).stress.closed_hiatus
         assert rule.pairs == ("ai", "au", "ei", "eu", "iu", "oi", "ui")
-        assert rule.onsets == ("nh",)
+        assert (*rule.onsets, *rule.atonic_onsets) == ("nh",)
         assert rule.codas == ("l", "m", "n", "r", "z")
+
+
+# Infopédia (Porto Editora), pt-PT pronunciations: the atonic ⟨i⟩ of a
+# derivative of bainha keeps the hiatus before ⟨nh⟩.
+INFOPEDIA_ATONIC_NH = {"bainhar": "bɐiˈɲaɾ", "embainhar": "ẽbɐiˈɲaɾ"}
+
+
+@pytest.mark.parametrize("word,ipa", sorted(INFOPEDIA_ATONIC_NH.items()))
+def test_atonic_i_before_nh_keeps_the_hiatus_in_pt_pt(word, ipa):
+    assert G2P("pt-PT").transcribe_word(word) == ipa
+
+
+@pytest.mark.parametrize("word,ipa", sorted(INFOPEDIA_ATONIC_NH.items()))
+def test_atonic_i_before_nh_with_the_plugin(word, ipa, plugin_engine):
+    assert plugin_engine("pt-PT").transcribe_word(word) == ipa
+
+
+@pytest.mark.parametrize("lang", ["pt-PT", "pt-BR"])
+def test_geminate_after_the_glide_keeps_the_diphthong(lang):
+    # pt-PT splits brai.lle and pt-BR brail.le; both keep ⟨ai⟩ in one syllable.
+    sylls = G2P(lang)._interpreter.syllables("braille")
+    assert sylls[0].startswith("brai"), sylls

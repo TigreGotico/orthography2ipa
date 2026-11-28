@@ -1,5 +1,13 @@
 # Slovak (`sk`)
 
+<!-- agent-hint
+covers: what the `sk` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/sk.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Slovak is a West Slavic language, written in the Latin script. Glottolog places it in 7 countries. The `sk` spec is at the research tier. It cites 3 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
@@ -64,7 +72,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 73 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 44 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -76,14 +84,12 @@ The spec can emit 73 segments. They come from the letter table, the positional r
 | Approximant |  |  |  |  | j |  |  |
 | Lateral approximant |  |  | l lʲ l̩ l̩ː |  |  |  |  |
 
-| Vowels | Front | Back |
-|:--|:-:|:-:|
-| Close | i iː | u uː |
-| Open-mid | ɛ ɛː | ɔ ɔː |
-| Near-open | æ |  |
-| Open | a aː |  |
-
-Sequences that the spec writes as one unit: [ci] [ciː] [cɛ] [di] [diː] [dɛ] [iu] [iɐ] [iɛ] [ks] [kv] [li] [liː] [lɛ] [lʲi] [lʲiː] [lʲɛ] [ni] [niː] [nɛ] [ti] [tiː] [tɛ] [uɔ] [ɟi] [ɟiː] [ɟɛ] [ɲi] [ɲiː] [ɲɛ].
+| Vowels | Front | Central | Back |
+|:--|:-:|:-:|:-:|
+| Close | i iː |  | u uː |
+| Open-mid | ɛ ɛː |  | ɔ ɔː |
+| Near-open | æ | ɐ |  |
+| Open | a aː |  |  |
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

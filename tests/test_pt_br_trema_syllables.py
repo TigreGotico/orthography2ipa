@@ -24,7 +24,7 @@ LANGS = ["pt-BR", "pt-BR-x-sp", "pt-BR-x-sul"]
     ("seqüências", ["se", "qüên", "ci", "as"]),
 ])
 def test_u_with_the_trema_stays_with_the_next_vowel(lang, word, syllables):
-    assert G2P(lang)._syllables_cached(word) == syllables
+    assert G2P(lang)._interpreter.syllables(word) == syllables
 
 
 def test_the_division_places_the_stress():

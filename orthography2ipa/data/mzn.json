@@ -49,8 +49,6 @@
   },
   "notes": "Mazanderani (مازِرونی) — Northwestern Iranian (Caspian) language of northern Iran, written in the Perso-Arabic (Arabic) script. SKELETON: consonant/vowel-letter table now specified, built from the shared Persian-alphabet consonant inventory and adjusted to the PHOIBLE-attested Mazanderani inventory (glottocode maza1291) already recorded in this spec's `phonemes` field: unlike Persian, laterals and nasals are DENTAL (/l̪/, /n̪/) and ⟨ق⟩/⟨غ⟩ are kept apart as /q/ vs /ɡ/ rather than merged, matching the Caspian-dialect pattern also documented for `glk` (Windfuhr 2009). As an ABJAD, short vowels are normally unwritten, so this table cannot by itself vocalise unvowelled text — the same INPUT CONTRACT limitation documented for `fa`/`ar`/`glk`. STRESS EXEMPTION: no `stress` block is declared; Mazanderani word-stress is not reconstructible from unvocalised Perso-Arabic spelling.",
   "iso639_3": "mzn",
-  "glottolog_code": "maza1291",
-  "wikidata_qid": "Q13356",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Mazanderani_language",
     "https://mzn.wikipedia.org/wiki/%D9%85%D8%A7%D8%B2%D8%B1%D9%88%D9%86%DB%8C_%D8%B2%D9%88%D9%88%D9%86"
@@ -91,7 +89,7 @@
     "a", "b", "d", "d̠ʒ", "e", "f", "h", "i", "j", "k", "l̪", "m", "n̪", "o",
     "p", "q", "r", "s", "t", "t̠ʃ", "u", "v", "x", "z", "ɑ", "ɛ", "ɡ", "ʃ", "ʒ"
   ],
-  "parent": "ira",
+  "inherits": "ira",
   "location": {
     "latitude": 36.241,
     "longitude": 52.3009,

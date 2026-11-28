@@ -53,9 +53,7 @@
     "end_year": 1000
   },
   "iso639_3": "sog",
-  "glottolog_code": "sogd1245",
-  "wikidata_qid": "Q205979",
-  "parent": "ira",
+  "inherits": "ira",
   "ancestors": [
     {
       "code": "ira",

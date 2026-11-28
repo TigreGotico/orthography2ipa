@@ -7,7 +7,6 @@
  "allophones": {},
  "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "ygu",
- "glottolog_code": "yugu1250",
  "sources": [
   {
    "id": "glottolog2024",
@@ -21,5 +20,5 @@
  "urls": [
   "https://glottolog.org/resource/languoid/id/yugu1250"
  ],
- "parent": "x-clade-unat1236"
+ "inherits": "x-clade-unat1236"
 }

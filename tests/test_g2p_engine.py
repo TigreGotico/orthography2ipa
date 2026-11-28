@@ -11,6 +11,8 @@ Validates:
 """
 import pytest
 
+from orthography2ipa.sentence import Position
+
 import orthography2ipa
 from orthography2ipa import G2P, available_codes, get, transcribe
 from orthography2ipa.types import QualityTier
@@ -64,13 +66,13 @@ class TestGreedyVsBeam:
 class TestWordSplitting:
     def test_punctuation_marks_pausal(self):
         engine = G2P("pt-PT")
-        words = engine._split_words("olá, mundo grande.")
+        words = engine.sentence_lattice("olá, mundo grande.").words
         assert [w.surface for w in words] == ["olá", "mundo", "grande"]
         assert words[0].pausal is True          # before the comma
         assert words[1].pausal is False
         assert words[2].pausal is True          # end of text
-        assert words[0].sentence_initial is True
-        assert words[2].sentence_final is True
+        assert words[0].utterance_position == Position.INITIAL
+        assert words[2].utterance_position == Position.FINAL
 
     def test_empty_input(self):
         engine = G2P("pt-PT")
@@ -177,7 +179,7 @@ class TestSandhiAndTransforms:
     def test_sandhi_applied_when_rules_exist(self):
         # find any spec with sandhi rules to exercise the path
         engine = G2P("pt-PT")
-        if engine._sandhi is None:
+        if not engine.spec.sandhi_rules:
             pytest.skip("pt-PT has no sandhi rules")
         with_sandhi = engine.transcribe("os amigos")
         engine_off = G2P("pt-PT", apply_sandhi=False)

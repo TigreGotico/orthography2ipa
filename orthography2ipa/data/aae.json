@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "skeleton",
   "iso639_3": "aae",
-  "glottolog_code": "arbe1236",
   "timespan": {
     "start_year": 1592,
     "end_year": null
@@ -116,7 +115,7 @@
       "notes": "Centuries of contact with Sicilian and (southern) Italian produced substantial lexical borrowing, e.g. qaca ('square') < Sicilian chiazza, pincar ('think') < Sicilian pinzari (Wikipedia: Arbëresh language)."
     }
   ],
-  "parent": "x-clade-alba1267",
+  "inherits": "x-clade-alba1267",
   "notes": "Arbëresh (Arbërisht), spoken by the Italo-Albanian (Arbëreshë) communities of Sicily and Calabria since the 15th-century diaspora. Preserves medieval Tosk features lost in the modern standard: no front rounded vowel /y/, so ⟨y⟩ merges with /i/; ⟨ll⟩ and intervocalic ⟨g⟩ are realized as the voiced velar fricative [ɣ] (a feature carried into local speakers' Italian, per Wikipedia); archaic word-final devoicing of voiced obstruents. First-person singular present indicative ends in ⟨-nj⟩ rather than standard ⟨-j⟩ (morphological, not encoded here). Earliest text: E Mbësuame e Krështerë (1592) by Lekë Matrënga.",
   "sources": [
     {
@@ -130,7 +129,6 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Arb%C3%ABresh_language"
   ],
-  "wikidata_qid": "Q35852",
   "location": {
     "latitude": 39.3,
     "longitude": 16.4,

@@ -20,8 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Astur-Leonese_languages"
   ],
-  "parent": "x-clade-iberrom",
-  "glottolog_code": "astu1244",
+  "inherits": "x-clade-iberrom",
   "urls": [
     "https://glottolog.org/resource/languoid/id/astu1244"
   ],

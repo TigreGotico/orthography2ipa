@@ -2,7 +2,7 @@
   "code": "gl-ES-x-eonavia",
   "name": "Eonavian (Galician-Asturian, gallego-asturiano)",
   "script": "Latin",
-  "parent": "gl-ES",
+  "inherits": "gl-ES",
   "graphemes_base": "gl-ES",
   "allophones_base": "gl-ES",
   "positional_graphemes_base": "gl-ES",
@@ -169,7 +169,6 @@
     "start_year": 1200,
     "end_year": null
   },
-  "glottolog_code": "gali1258",
   "iso639_3": "glg",
   "quality": "research",
   "script_type": "alphabet",
@@ -292,7 +291,6 @@
     "year": 2025,
     "notes": "Third edition (ISBN 978-84-8168-652-4). The norm writes both the eastern palatal and the western alveolar outcome of Latin L- and -LL- (lleite ~ leite, §1.2.4, p. 16), so the spelling of a text shows the zone of its writer. It is a separate norm from the Galician RAG/ILG Normas, which the gl-ES parent follows."
   },
-  "wikidata_qid": "Q353400",
   "location": {
     "latitude": 43.55,
     "longitude": -6.9,

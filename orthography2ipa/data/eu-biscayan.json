@@ -42,8 +42,7 @@
       "ʎ"
     ]
   },
-  "parent": "eu",
-  "glottolog_code": "bisc1236",
+  "inherits": "eu",
   "ancestors": [
     {
       "code": "eu",
@@ -111,7 +110,6 @@
     "end_year": null
   },
   "iso639_3": "eus",
-  "wikidata_qid": "Q749166",
   "location": {
     "latitude": 43.261944,
     "longitude": -2.932222,

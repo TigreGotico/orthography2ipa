@@ -1,5 +1,13 @@
 # Erzya (`myv`)
 
+<!-- agent-hint
+covers: what the `myv` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/myv.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Erzya is an Uralic language, written in the Cyrillic script. Glottolog places it in 8 countries. The `myv` spec is at the research tier. It cites 2 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -61,25 +69,23 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 32 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 46 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p |  | d t |  |  | k ɡ |
+| Plosive | b bʲ p pʲ |  | d dʲ t tʲ t͡ |  |  | k kʲ ɡ ɡʲ |
 | Affricate |  |  | t͡s | t͡ʃ |  |  |
-| Nasal | m |  | n |  |  |  |
-| Trill |  |  | r |  |  |  |
-| Fricative |  | f v | s z | ʃ ʃː ʒ |  | x |
+| Nasal | m mʲ |  | n nʲ |  |  |  |
+| Trill |  |  | r rʲ |  |  |  |
+| Fricative |  | f fʲ v vʲ | s sʲ z zʲ | ʃ ʃʲ ʃʲː ʃː ʒ ʒʲ |  | x xʲ |
 | Approximant |  |  |  |  | j |  |
-| Lateral approximant |  |  | l |  |  |  |
+| Lateral approximant |  |  | l lʲ |  |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
 | Close | i | ɨ | u |
 | Close-mid | e |  | o |
 | Open | a |  |  |
-
-Sequences that the spec writes as one unit: [ja] [je] [jo] [ju] [ʲ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

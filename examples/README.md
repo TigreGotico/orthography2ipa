@@ -1,5 +1,13 @@
 # Examples
 
+<!-- agent-hint
+covers: what each runnable script in `examples/` shows
+source: `examples/*.py`
+generated: no
+verify: `PYTHONPATH=$PWD python examples/01_basic_usage.py`
+see: `docs/guide/getting_started.md`, `docs/reference/api.md`
+-->
+
 Runnable scripts, ordered from first transcription to building on the engine.
 Each is self-contained and prints what it demonstrates:
 

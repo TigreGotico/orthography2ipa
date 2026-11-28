@@ -191,7 +191,7 @@
       "j"
     ]
   },
-  "parent": "cus",
+  "inherits": "cus",
   "ancestors": [
     {
       "code": "cus",
@@ -202,8 +202,6 @@
   ],
   "notes": "Afar (Qafár af), Lowland East Cushitic, Djibouti/Eritrea/Ethiopia. Official Latin orthography (the 'Qafar Feera', adopted 1976) is phonemic: long vowels are written double (aa, ee, ii, oo, uu), <c> = /ħ/, <q> = /ʕ/, <x> = /ɖ/ (retroflex stop), <r> = /ɾ/. <ch>, <kh>, <sh>, <dh> occur mainly in loanwords. Tone/accent is not written.",
   "iso639_3": "aar",
-  "glottolog_code": "afar1241",
-  "wikidata_qid": "Q27811",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Afar_language"
   ],

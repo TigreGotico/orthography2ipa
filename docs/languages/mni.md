@@ -1,5 +1,13 @@
 # Meitei (`mni`)
 
+<!-- agent-hint
+covers: what the `mni` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/mni.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Meitei is a Sino-Tibetan language, written in the Latin script. Glottolog places it in Bangladesh, India and Myanmar (Burma). The `mni` spec is at the research tier. It cites 3 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -83,7 +91,7 @@ The spec can emit 34 segments. They come from the letter table, the positional r
 
 Sequences that the spec writes as one unit: [w].
 
-Tones: [falling] falling tone, [level] level tone.
+Tones: [˥˩] falling tone, [˧] level tone.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

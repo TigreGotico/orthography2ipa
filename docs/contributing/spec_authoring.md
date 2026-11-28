@@ -1,5 +1,13 @@
 # Writing a language spec
 
+<!-- agent-hint
+covers: how to write a language spec: the procedure, a minimal spec and the rules a spec keeps
+source: `orthography2ipa/data/SCHEMA.md`, `orthography2ipa/schema.py`, `tests/test_grammatical_endings.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_grammatical_endings.py`
+see: `docs/contributing/citations.md`, `docs/specs/data_model.md`
+-->
+
 A language is one JSON file under `orthography2ipa/data/`, named by its code. The engine is language-agnostic, so you add a language by writing cited data, never code. This page gives the procedure first. Then it gives the rules that keep a spec a linguistic description and not a lookup table. A violation of a rule degrades every consumer of the data, even when a score goes up. The field reference is [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md), and the Python view of a loaded spec is in [data model](../specs/data_model.md).
 
 ## What a spec declares
@@ -20,9 +28,9 @@ A spec does not declare a `family` string. The family comes from the clade nodes
 
 5. Cite every claim in `sources`, as [citation honesty](citations.md) describes.
 
-6. Add `glottolog_code`, `wikidata_qid` and `iso639_3` where they exist. Look them up in [Glottolog](https://glottolog.org), [Wikidata](https://www.wikidata.org) and the [ISO 639-3 registry](https://iso639-3.sil.org). Make sure that each identifier resolves to this language. A null code is better than a wrong one.
+6. Add `iso639_3` where it exists, from the [ISO 639-3 registry](https://iso639-3.sil.org). The [Glottolog](https://glottolog.org) and [Wikidata](https://www.wikidata.org) ids come from `linguatag.catalog_ids(code)`. A spec file does not hold them. For a new variety, add its ids to linguatag (`scripts/add_nodes.py`). Make sure that each identifier resolves to this language. A null code is better than a wrong one.
 
-7. Connect the ancestry with `parent` or `ancestors`. Give a new language or dialect the full `ancestors` list, because it carries the most data. A dialect that differs little from its parent can use `parent` alone. The ancestor roles and their typical weights are in [data model](../specs/data_model.md#ancestorrole) and in [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#ancestor-role-values).
+7. Connect the ancestry with `inherits` or `ancestors`. Give a new language or dialect the full `ancestors` list, because it carries the most data. A dialect that differs little from its parent can use `inherits` alone. The ancestor roles and their typical weights are in [data model](../specs/data_model.md#ancestorrole) and in [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#ancestor-role-values).
 
 8. Make sure that the parent has its own file. A dialect needs its standard variety. A historical language needs an ancestor chain that reaches a proto-language.
 
@@ -56,7 +64,7 @@ This file has one plain grapheme, one digraph, one positional rule and one paren
       "intervocalic": ["β"]
     }
   },
-  "parent": "parent-code",
+  "inherits": "parent-code",
   "ancestors": [
     {"code": "parent-code", "role": "parent", "weight": 0.85, "notes": "Primary descent"}
   ],
@@ -68,7 +76,7 @@ The package layout and the loader functions (`load_json_spec`, `load_all_json_sp
 
 ## Classification: wire it into the clade chain
 
-A family is a clade node, and a clade node holds classification only. You classify a new language when you point its `parent` at the correct node. Then `family` and `family_path` derive themselves ([data model](../specs/data_model.md#derived-classification-family-family_path-clade)).
+A family is a clade node, and a clade node holds classification only. You classify a new language when you point its `inherits` at the correct node. Then `family` and `family_path` derive themselves ([data model](../specs/data_model.md#derived-classification-family-family_path-clade)).
 
 If the clade of the language has no node, add the node. Do not write a `family` string to go around the missing node. An explicit `family` string is correct only for a grouping that is not a genetic clade. The node format and the full contract are in [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#clade-nodes-and-the-derived-family).
 
@@ -94,7 +102,7 @@ The merge is one level deep, and `null` deletes an inherited entry ([`SCHEMA.md`
 
 ## Metadata worth filling in
 
-A spec also records what the language is. Fill in `sources`, `orthography_standard`, `location` and `timespan`. Add the cross-references `glottolog_code` ([Glottolog](https://glottolog.org)), `wikidata_qid` ([Wikidata](https://www.wikidata.org)), `phoible_id` ([PHOIBLE](https://phoible.org)), `wals_code` ([WALS](https://wals.info)) and `iso639_3` ([ISO 639-3](https://iso639-3.sil.org)), and the reader links `wikipedia` and `urls`. [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#fields) defines each field and what reads it.
+A spec also records what the language is. Fill in `sources`, `orthography_standard`, `location` and `timespan`. Add the cross-references `phoible_id` ([PHOIBLE](https://phoible.org)), `wals_code` ([WALS](https://wals.info)) and `iso639_3` ([ISO 639-3](https://iso639-3.sil.org)), and the reader links `wikipedia` and `urls`. [`SCHEMA.md`](../../orthography2ipa/data/SCHEMA.md#fields) defines each field and what reads it.
 
 ## Looking for a source: what a phone inventory cannot tell you
 
@@ -123,7 +131,7 @@ The checks over every spec run in the full suite. These files hold them:
 
 | Test file | What it checks |
 |---|---|
-| `tests/test_language_integrity.py` | Required fields, `graphemes` or a declared inventory, existing `parent` and ancestor codes, weights in range, no parent cycles, and facts for key languages |
+| `tests/test_language_integrity.py` | Required fields, `graphemes` or a declared inventory, existing `inherits` and ancestor codes, weights in range, no parent cycles, and facts for key languages |
 | `tests/test_data_quality.py` | An explicit `quality` tier, content above `stub`, no own table on a stub, and the `production` benchmark bar |
 | `tests/test_sources.py` | At least one real source on every spec above `stub`, with well-formed fields |
 | `tests/test_grammatical_endings.py` | A cited `notes` sentence for every ending, the evidence for every list-valued ending, and a cap per spec |
@@ -181,7 +189,7 @@ A sound that depends on its neighbours, its position or the stress is a rule, no
 | The context | The mechanism |
 |---|---|
 | A neighbouring sound or letter class | `allophone_rules` with `preceded_by` or `followed_by` (`vowel`, `consonant`, `front_vowel`, `back_vowel`, `palatal`, `word_boundary` and more) |
-| A neighbour two or three slots away | `preceded_by_2`, `followed_by_2`, `preceded_by_3`, `followed_by_3`, `preceded_by_phoneme_2`, `followed_by_phoneme_2` |
+| A neighbour two or three slots away | `preceded_by_2`, `followed_by_2`, `preceded_by_3`, `followed_by_3`, `preceded_by_phoneme_2`, `followed_by_phoneme_2`, `followed_by_phoneme_3` |
 | The position in the word or syllable | `positional_graphemes`, `word_initial`, `word_final`, `syllable_position` |
 | The stress | The `stress` block and the `nucleus_stressed` position |
 | A word boundary | `sandhi_rules` |
@@ -272,7 +280,7 @@ A list-valued `grammatical_endings` entry puts a reading into the beam that the 
 
 ### Supply a lexicon, never bundle one
 
-The package ships descriptions: grapheme maps, rules, inventories and ancestry. It ships no word lists, lexicons, gold sets or weights. A lexicon is a corpus. A bundled lexicon makes the wheel larger and freezes a corpus into a release.
+The package ships descriptions: grapheme maps, rules, inventories and ancestry. It ships no word lists, lexicons or weights. It ships the gold sets under `data/gold/`, which downstream benchmarks read. A lexicon is a corpus. A bundled lexicon makes the wheel larger and freezes a corpus into a release.
 
 Deep orthographies such as English and Danish cannot reach production accuracy from rules alone. The answer is a lexicon that the caller passes to an engine in `Pipeline(lexicon=...)`. The caller reads it from a file, or from a separate package that supplies one through the `orthography2ipa.lexicons` entry points. The API, the file format and the precedence are in [lexicon](../guide/lexicon.md#supplying-a-lexicon).
 

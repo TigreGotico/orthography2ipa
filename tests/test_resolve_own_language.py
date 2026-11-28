@@ -11,6 +11,8 @@ The expected languages below are the primary subtags of the tags, or for a
 language with no spec of its own, the language that langcodes standardizes
 the tag to.
 """
+import warnings
+
 import langcodes
 import pytest
 
@@ -78,24 +80,59 @@ def test_an_arabic_variety_in_arabic_script_names_its_own_spec(tag, code):
     assert resolve(tag) == code == resolve(language)
 
 
-@pytest.mark.parametrize("tag,code", [
-    ("bs-Cyrl", "sr"), ("hr-Cyrl", "sr"), ("hr-Cyrl-HR", "sr"),
+@pytest.mark.parametrize("tag", [
+    "bs-Cyrl-RS", "bs-Cyrl-ME", "bs-Cyrl-HR", "bs-Cyrl-XK", "bs-Cyrl-x-a",
+    "BS-Cyrl-x-a",
 ])
-def test_with_no_own_spec_near_enough_the_old_target_stays(tag, code):
-    # The bs and hr specs read Latin, so no own-language spec is near
-    # enough; the wide search runs.
-    assert resolve(tag) == code
+def test_a_bosnian_cyrillic_tag_of_any_region_gives_bs(tag):
+    # The bs spec reads both Bosnian alphabets, and CLDR 49 puts no rule from
+    # bs to sr, so the tag stays Bosnian whatever its region.
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        assert resolve(tag) == "bs"
     assert not resolves_exactly(tag)
+    with pytest.raises(KeyError):
+        get(tag, strict=True)
 
 
-@pytest.mark.parametrize("tag", ["zh-HK", "cdo-Hans", "cdo-Hans-CN"])
-def test_an_unresolved_tag_stays_unresolved(tag):
-    # Min Dong (cdo) is a member of the zh macrolanguage, but it is not
-    # Mandarin, and the zh spec reads Mandarin pinyin. langcodes guesses
-    # Latn for cdo, so the cdo specs are not near cdo-Hans either.
+@pytest.mark.parametrize("tag", ["hr-Cyrl", "hr-Cyrl-HR"])
+def test_a_croatian_cyrillic_tag_stays_unresolved(tag):
+    # CLDR 49 languageMatching (UTS #35 section 4.4) has the rules hr => bs 4,
+    # sh => bs 4, sh => hr 4 and sh => sr 4, and none from hr to sr, so
+    # ``* => * 80`` keeps Croatian a language apart from Serbian. The hr spec
+    # is Latin, which is 50 away from Cyrillic.
     assert resolve(tag) == tag
+    assert not resolves_exactly(tag)
     with pytest.raises(KeyError):
         get(tag)
+
+
+@pytest.mark.parametrize("tag", ["afa-Cyrl", "fat-Arab", "fat-Cyrl"])
+def test_a_script_other_than_latin_is_not_dropped_to_fit_a_spec(tag):
+    assert not resolves_exactly(tag)
+    with pytest.raises(KeyError):
+        get(tag)
+
+
+def test_an_unresolved_tag_stays_unresolved():
+    assert resolve("zh-HK") == "zh-HK"
+    with pytest.raises(KeyError):
+        get("zh-HK")
+
+
+@pytest.mark.parametrize("tag", ["cdo-Hans", "cdo-Hans-CN"])
+def test_min_dong_in_han_script_is_not_mandarin(tag):
+    # Min Dong (cdo) is a member of the zh macrolanguage, but it is not
+    # Mandarin, and the zh spec reads Mandarin pinyin. CLDR gives Hans as the
+    # likely script of cdo, and the cdo spec declares Han script. It is a
+    # stub with no graphemes, where the zh spec reads pinyin.
+    assert resolve(tag) == "cdo"
+    assert not get(tag).graphemes
+
+
+def test_only_the_tag_with_no_region_names_the_cdo_spec_exactly():
+    assert resolves_exactly("cdo-Hans")
+    assert not resolves_exactly("cdo-Hans-CN")
 
 
 # langcodes 3.5.1 still folds these individual languages into a

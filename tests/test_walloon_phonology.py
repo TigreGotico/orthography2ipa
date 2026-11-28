@@ -42,7 +42,7 @@ def test_is_a_langue_doil_sister_of_french():
     strong Frankish superstrate (stronger than French's) that preserved
     word-initial /h/ and Latin initial /w/."""
     spec = get("wa")
-    assert spec.parent == "la-x-gallia"
+    assert spec.inherits == "la-x-gallia"
     roles = {a.code: a.role.value for a in spec.ancestors}
     assert roles.get("la-x-gallia") == "parent"
     assert roles.get("gem") == "superstrate"

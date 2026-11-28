@@ -675,8 +675,6 @@
   "allophones": {},
   "notes": "Cree (ᓀᐦᐃᔭᐍᐏᐣ). INPUT CONTRACT: WESTERN CREE SYLLABICS (Unified Canadian Aboriginal Syllabics, U+1400..U+167F, NFC). The Standard Roman Orthography (SRO) is a separate, Latin input and is NOT covered by this map. Canadian syllabics are an abugida in which the ORIENTATION of a glyph, not a diacritic, encodes the vowel: ᐸ pa, ᐯ pê, ᐱ pi, ᐳ po; a dot over the glyph lengthens the vowel (ᐹ pâ), and a superscript final encodes a coda consonant (ᑊ p, ᐟ t, ᐠ k …). This map is keyed on the Western Cree syllabary as taught for PLAINS CREE, whose values it uses: ê /eː/, i /ɪ/, î /iː/, o /o~ʊ/, ô /oː~uː/, a /a~ə/, â /aː/; p t k, c /ts/, m n s, y /j/, w, h. `cr` is a MACROLANGUAGE over a dialect continuum, so two dialect-specific series are also mapped where the syllabary distinguishes them: the th-series ᖧᖨᖪᖬ /ð/ (Woods Cree, where Plains has y) and the loanword series l /l/ and r /ɹ/. Both the Eastern and Western finals are keyed to the same value. w is written as a dot: the dotted CwV glyphs (ᐘ pwa-style) and the standalone w-dot ᐧ/ᐤ are both mapped. LEFT OUT: the Naskapi, Carrier, Blackfoot, Sayisi, Ojibwe and South-Slavey characters that share the block but are not Cree, the 1840-inventory characters, and the shape-named finals whose value varies by dialect.",
   "iso639_3": "cre",
-  "glottolog_code": "cree1271",
-  "wikidata_qid": "Q33390",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Cree_language"
   ],
@@ -752,7 +750,7 @@
     "start_year": 1840,
     "end_year": null
   },
-  "parent": "x-clade-algi1248",
+  "inherits": "x-clade-algi1248",
   "ancestors": [
     {
       "code": "x-clade-algi1248",

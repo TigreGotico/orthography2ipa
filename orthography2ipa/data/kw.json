@@ -205,7 +205,7 @@
       "oː"
     ]
   },
-  "parent": "xbr",
+  "inherits": "xbr",
   "ancestors": [
     {
       "code": "xbr",
@@ -265,9 +265,7 @@
     "start_year": 400,
     "end_year": null
   },
-  "glottolog_code": "corn1251",
   "iso639_3": "cor",
-  "wikidata_qid": "Q25289",
   "wals_code": "crn",
   "location": {
     "latitude": 50.5233,

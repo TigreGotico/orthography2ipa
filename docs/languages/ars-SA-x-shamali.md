@@ -1,5 +1,13 @@
 # Northern Najdi Arabic (Shamali) (`ars-SA-x-shamali`)
 
+<!-- agent-hint
+covers: what the `ars-SA-x-shamali` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ars-SA-x-shamali.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/ars-SA.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Northern Najdi Arabic (Shamali) is a Central Semitic variety, written in the Arabic script. Its code names Saudi Arabia. The `ars-SA-x-shamali` spec is at the research tier. It cites 2 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -27,7 +35,7 @@ The notes of the spec file open with these words:
 
 > Northern Najdi (Shamali) of Ha\u02beil, the variety of Alshammari (2026), spoken across the northern Najd. IT DIFFERS FROM ITS PARENT IN EXACTLY ONE RULE and the spec carries only that rule, everything else -- qaf as /\u0261/, the interdentals, gahawa, emphasis spreading, stress -- is inherited from ars-SA unchanged.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. No board row scores it yet, so the measured gold of that tier is still missing. It cites 2 works, from 1994 to 2026. [Sources](#sources) lists them. The spec file writes no spelling of its own. It takes all 249 from [Najdi Arabic](ars-SA.md) `ars-SA`.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. No board row scores it yet, so the measured gold of that tier is still missing. It cites 2 works, from 1994 to 2026. [Sources](#sources) lists them. The spec file writes no spelling of its own. It takes all 261 from [Najdi Arabic](ars-SA.md) `ars-SA`.
 
 The [spec file](../../orthography2ipa/data/ars-SA-x-shamali.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -56,7 +64,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 224 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 48 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Pharyngeal | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -72,10 +80,10 @@ The spec can emit 224 segments. They come from the letter table, the positional 
 |:--|:-:|:-:|
 | Close | i iː | u uː |
 | Near-close | ɪ ɪː | ʊ ʊː |
-| Close-mid |  | o oː |
+| Close-mid | eː | o oː |
 | Open | a aː | ɑ ɑː |
 
-Sequences that the spec writes as one unit: [add] [adˤdˤ] [aj] [aja] [ajaː] [aji] [ajj] [aju] [al] [all] [allaːh] [an] [ann] [arr] [ass] [asˤsˤ] [at] [att] [atˤtˤ] [aw] [awa] [awaː] [awi] [awu] [aww] [azz] [aðð] [aðˤðˤ] [aʃʃ] [aːj] [aθθ] [bi] [bidd] [bidˤdˤ] [bil] [bill] [binn] [birr] [biss] [bisˤsˤ], and 138 more.
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -261,6 +269,10 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨وَالظظ⟩ | [waðˤðˤ] [wadˤdˤ] |  |
 | ⟨وَاللل⟩ | [wall] |  |
 | ⟨وَالنن⟩ | [wann] |  |
+| ⟨وَو⟩ | [waw] | before consonant [woː] · default [waw] · word final [woː] |
+| ⟨وَوْ⟩ | [woː] |  |
+| ⟨وَي⟩ | [waj] | before consonant [weː] · default [waj] · word final [weː] |
+| ⟨وَيْ⟩ | [weː] |  |
 | ⟨وَٱ⟩ | [wa] |  |
 | ⟨وُ⟩ | [wu] |  |
 | ⟨وِال⟩ | [wil] |  |
@@ -284,6 +296,10 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨يي⟩ | [jj] |  |
 | ⟨يَ⟩ | [ja] |  |
 | ⟨يَا⟩ | [jaː] |  |
+| ⟨يَو⟩ | [jaw] | before consonant [joː] · default [jaw] · word final [joː] |
+| ⟨يَوْ⟩ | [joː] |  |
+| ⟨يَي⟩ | [jaj] | before consonant [jeː] · default [jaj] · word final [jeː] |
+| ⟨يَيْ⟩ | [jeː] |  |
 | ⟨يِ⟩ | [ji] |  |
 | ⟨ً⟩ | [an] |  |
 | ⟨ًا⟩ | [an] |  |
@@ -294,19 +310,23 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨َا⟩ | [aː] |  |
 | ⟨َاي⟩ | [aːj] |  |
 | ⟨َة⟩ | [a] | before vowel [at] · default [a] |
-| ⟨َو⟩ | [aw] |  |
+| ⟨َو⟩ | [aw] | before consonant [oː] · default [aw] · word final [oː] |
+| ⟨َوا⟩ | [awaː] |  |
 | ⟨َوو⟩ | [aww] |  |
 | ⟨َوَ⟩ | [awa] |  |
 | ⟨َوَا⟩ | [awaː] |  |
 | ⟨َوُ⟩ | [awu] |  |
 | ⟨َوِ⟩ | [awi] |  |
+| ⟨َوْ⟩ | [oː] |  |
 | ⟨َى⟩ | [aː] |  |
-| ⟨َي⟩ | [aj] |  |
+| ⟨َي⟩ | [aj] | before consonant [eː] · default [aj] · word final [eː] |
+| ⟨َيا⟩ | [ajaː] |  |
 | ⟨َيي⟩ | [ajj] |  |
 | ⟨َيَ⟩ | [aja] |  |
 | ⟨َيَا⟩ | [ajaː] |  |
 | ⟨َيُ⟩ | [aju] |  |
 | ⟨َيِ⟩ | [aji] |  |
+| ⟨َيْ⟩ | [eː] |  |
 | ⟨َٰ⟩ | [aː] |  |
 | ⟨ُ⟩ | [u] |  |
 | ⟨ُو⟩ | [uː] |  |
@@ -371,7 +391,7 @@ The spec applies 37 allophone rules after the letters are read. The change colum
 | `AR_PEN_EMPH_BACK_AA_AFTER` | /aː/ → [ɑː], after [tˤ] [dˤ] [sˤ] [ðˤ] [zˤ] | - | Watson 2002 |
 | `AR_PEN_EMPH_BACK_AA_BEFORE` | /aː/ → [ɑː], before [tˤ] [dˤ] [sˤ] [ðˤ] [zˤ] | - | Watson 2002 |
 | `NAJD_AFFRIC_K_BEFORE` | /k/ → [ts], before [i] [iː] [j] [e] [eː] | ⟨'dog'⟩ [tsɛlb] | [Ingham 1994](#src-ingham1994), Al Mahmoud 2020 |
-| `NAJD_AFFRIC_K_AFTER` | /k/ → [ts], after [i] [iː] [j] [e] [eː] | - | [Ingham 1994](#src-ingham1994), Al Mahmoud 2020 |
+| `NAJD_AFFRIC_K_AFTER` | /k/ → [ts], in the coda, after [i] [iː] [j] [e] [eː] | ⟨never⟩ [lɪts] | [Alshammari 2026](#src-alshammari2026), [Ingham 1994](#src-ingham1994), Al Mahmoud 2020 |
 | `NAJD_AFFRIC_G_BEFORE` | /ɡ/ → [dz], before [i] [iː] | - | [Alshammari 2026](#src-alshammari2026), [Ingham 1994](#src-ingham1994), Al Mahmoud 2020 |
 | `NAJD_AFFRIC_G_AFTER` | /ɡ/ → [dz], after [i] [iː] | - | [Alshammari 2026](#src-alshammari2026), [Ingham 1994](#src-ingham1994), Al Mahmoud 2020 |
 | `NAJD_GAHAWA_h` | /h/ → [ha], in the coda, before a consonant, after [a] [ɑ] | - | [Ingham 1994](#src-ingham1994) |

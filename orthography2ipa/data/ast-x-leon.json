@@ -1,9 +1,8 @@
 {
   "code": "ast-x-leon",
-  "glottolog_code": "leon1250",
   "name": "Leonese",
   "script": "Latin",
-  "parent": "ast",
+  "inherits": "ast",
   "graphemes_base": "ast",
   "allophones_base": "ast",
   "positional_graphemes_base": "ast",
@@ -452,7 +451,6 @@
   },
   "iso639_3": "ast",
   "quality": "research",
-  "wikidata_qid": "Q34108",
   "location": {
     "latitude": 42.620046,
     "longitude": -5.84066,

@@ -1,5 +1,13 @@
 # Southern Dagaare (`dga`)
 
+<!-- agent-hint
+covers: what the `dga` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/dga.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Southern Dagaare is an Atlantic-Congo language, written in the Latin script. Glottolog places it in the Africa and North America macroareas. The `dga` spec is at the research tier. It cites 2 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -65,6 +73,7 @@ The spec can emit 108 segments. They come from the letter table, the positional 
 | Plosive | b p pʰ |  | d t tʰ |  |  | k kʰ ɡ |  |
 | Affricate |  |  |  | d͡ʒ t͡ʃ |  |  |  |
 | Nasal | m |  | n |  | ɲ | ŋ |  |
+| Tap |  |  | ɾ |  |  |  |  |
 | Fricative |  | f v | s z |  |  |  | h |
 | Approximant |  |  | ɹ |  | j |  |  |
 | Lateral approximant |  |  | l |  |  |  |  |
@@ -78,7 +87,7 @@ The spec can emit 108 segments. They come from the letter table, the positional 
 | Open-mid | ɛ ɛː ɛ̀ ɛ̀ː ɛ́ ɛ́ː ɛ̂ ɛ̂ː |  | ɔ ɔː ɔ̀ ɔ̀ː ɔ́ ɔ́ː ɔ̂ ɔ̂ː |
 | Open | a aː à àː á áː â âː |  |  |
 
-Sequences that the spec writes as one unit: [k͡p] [w] [ŋ͡m] [ɡɾ] [ɡ͡b].
+Sequences that the spec writes as one unit: [k͡p] [w] [ŋ͡m] [ɡ͡b].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

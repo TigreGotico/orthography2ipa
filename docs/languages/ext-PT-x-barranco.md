@@ -1,5 +1,13 @@
 # Barranquenho (ext-PT-x-barranco)
 
+<!-- agent-hint
+covers: how the Barranquenho spec reads Portuguese and Spanish spelling
+source: `orthography2ipa/data/ext-PT-x-barranco.json`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_barranquenho.py`
+see: `docs/languages/index.md`
+-->
+
 | Field | Value |
 |:---|:---|
 | Code | `ext-PT-x-barranco` |

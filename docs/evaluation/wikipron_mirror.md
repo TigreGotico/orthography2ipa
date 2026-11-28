@@ -1,5 +1,13 @@
 # The pinned WikiPron mirror
 
+<!-- agent-hint
+covers: what the pinned WikiPron mirror holds and why the harness reads it
+source: `scripts/restore_wikipron_orthography.py`, `scripts/benchmark.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_wikipron_mirror.py`
+see: `docs/evaluation/datasets.md`, `docs/evaluation/benchmarks.md`
+-->
+
 [TigreGotico/wikipron-restored-orthography](https://huggingface.co/datasets/TigreGotico/wikipron-restored-orthography) is a snapshot of every pronunciation scrape in [CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron) at one commit. A second orthography column holds the headword that English Wiktionary displays. The `wikipron_restored` benchmark row reads it (see [its section in the dataset catalogue](datasets.md#wikipron-with-the-display-headword-restored-wikipron_restored)). This page is the maintainer procedure that refreshes it.
 
 The mirror is published under CC BY-SA 4.0. Its rows come from Wiktionary, so they also keep the [Wiktionary licence terms](https://en.wiktionary.org/wiki/Wiktionary:Copyrights).

@@ -3,7 +3,7 @@
   "name": "Antwerp Standard Dutch (Belgium)",
   "script": "Latin",
   "script_type": "alphabet",
-  "parent": "nl-BE",
+  "inherits": "nl-BE",
   "ancestors": [
     {
       "code": "nl-BE",
@@ -176,7 +176,6 @@
   ],
   "quality": "skeleton",
   "iso639_3": "nld",
-  "glottolog_code": null,
   "location": {
     "latitude": 51.221111,
     "longitude": 4.399722,

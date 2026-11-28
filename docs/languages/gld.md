@@ -1,5 +1,13 @@
 # Nanai (`gld`)
 
+<!-- agent-hint
+covers: what the `gld` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/gld.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Nanai is a Tungusic language, written in the Cyrl script. Glottolog places it in China and Russia. The `gld` spec is at the research tier. It cites 4 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -62,7 +70,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 31 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 29 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Alveolar | Postalveolar | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|
@@ -78,12 +86,12 @@ The spec can emit 31 segments. They come from the letter table, the positional r
 |:--|:-:|:-:|:-:|
 | Close | i iː |  | u |
 | Near-close | ɪ |  |  |
-| Close-mid |  |  | oː |
+| Close-mid | e |  | o oː |
 | Mid |  | ə əː |  |
 | Open-mid |  |  | ɔ |
 | Open | a aː |  |  |
 
-Sequences that the spec writes as one unit: [ja] [je] [jo] [ju] [w].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

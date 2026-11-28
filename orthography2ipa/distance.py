@@ -52,11 +52,15 @@ from __future__ import annotations
 import math
 
 import functools
+import warnings
+
+import linguatag
 from dataclasses import dataclass, replace
 from typing import Dict, List, Optional, Set, Tuple
 
 from orthography2ipa.feats import NUM_FEATURES, phonetic_distance, vectorize_phones
 from orthography2ipa.types import Ancestor, LanguageSpec, WeightedDistance
+from orthography2ipa.version import VERSION_MAJOR
 
 __all__ = [
     "Feature",
@@ -145,7 +149,24 @@ def _pm_vec_to_floats(vec: List) -> FeatureVector:
 # ═══════════════════════════════════════════════════════════════════════════
 
 def feature_vector(segment: str) -> FeatureVector:
-    """Return the 21-element distinctive feature vector for an IPA *segment*.
+    """Deprecated layout: return the 23-feature vector of an IPA *segment*.
+
+    From the next major release this returns the feature layout of
+    phonematcher, which ``phonematcher.vectorize_phones`` gives now.
+    """
+    warnings.warn(
+        "orthography2ipa.distance.feature_vector returns the 23-feature layout "
+        f"of a vendored table. From {VERSION_MAJOR + 1}.0.0 it returns the "
+        "feature layout of phonematcher. phonematcher.vectorize_phones and "
+        "phonematcher.FEATURES give that layout now.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+    return _feature_vector(segment)
+
+
+def _feature_vector(segment: str) -> FeatureVector:
+    """Return the 23-feature vector of the vendored table for *segment*.
 
     handles composite phones (diacritics,  modifiers like ˤ ˞ ː) natively.
     Returns the neutral vector (all 0.5)
@@ -170,7 +191,19 @@ def feature_vector(segment: str) -> FeatureVector:
 
 
 def feature_names() -> Tuple[str, ...]:
-    """Return the tuple of feature names, one per phone feature."""
+    """Deprecated layout: return the 23 feature names, one per phone feature.
+
+    From the next major release this returns the feature names of
+    phonematcher, which ``phonematcher.FEATURES`` gives now.
+    """
+    warnings.warn(
+        "orthography2ipa.distance.feature_names returns the 23-feature layout "
+        f"of a vendored table. From {VERSION_MAJOR + 1}.0.0 it returns the "
+        "feature layout of phonematcher. phonematcher.vectorize_phones and "
+        "phonematcher.FEATURES give that layout now.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     return _FEATURE_NAMES
 
 
@@ -207,7 +240,7 @@ def segment_distance(seg_a: str, seg_b: str, strict: bool = False) -> float:
         return 1.0
     if strict:
         for seg in (seg_a, seg_b):
-            vec = feature_vector(seg)
+            vec = _feature_vector(seg)
             if all(v == 0.5 for v in vec):
                 raise ValueError(f"Unknown IPA segment: {seg!r}")
     try:
@@ -218,8 +251,8 @@ def segment_distance(seg_a: str, seg_b: str, strict: bool = False) -> float:
     except (ValueError, KeyError):
         # Fallback: normalised Hamming distance over the raw feature vectors
         # (mean absolute difference per feature, each in [0, 1]).
-        vec_a = feature_vector(seg_a)
-        vec_b = feature_vector(seg_b)
+        vec_a = _feature_vector(seg_a)
+        vec_b = _feature_vector(seg_b)
         diff = sum(abs(a - b) for a, b in zip(vec_a, vec_b))
         return diff / NUM_FEATURES
 
@@ -512,7 +545,7 @@ def pairwise_distances(
     for i in range(n):
         for j in range(i + 1, n):
             if metric == "ancestry":
-                d = 1.0 - ancestry_similarity(specs[i], specs[j])
+                d = 1.0 - linguatag.ancestry_similarity(specs[i].code, specs[j].code)
             else:
                 pd = phonological_distance(specs[i], specs[j])
                 if metric == "combined":
@@ -559,7 +592,7 @@ def _data_ancestors(spec: LanguageSpec) -> Tuple[Ancestor, ...]:
                 break
             if not candidate.clade:
                 break
-            code = candidate.parent
+            code = candidate.inherits
         if code and code != ancestor.code:
             resolved.append(replace(ancestor, code=code))
         elif code:
@@ -702,6 +735,8 @@ def ancestry_similarity(
     - ~0.05-0.2: remote connection (substrate/adstrate only)
     - 0.0: no traceable connection
     """
+    warnings.warn("orthography2ipa.distance.ancestry_similarity is deprecated; use linguatag.ancestry_similarity "
+                  "with the spec codes", DeprecationWarning, stacklevel=2)
     from orthography2ipa.registry import get as _get
 
     if spec_a.code == spec_b.code:
@@ -872,7 +907,7 @@ def full_distance(
         Distance in [0.0, 1.0].
     """
     pd = phonological_distance(spec_a, spec_b)
-    anc_sim = ancestry_similarity(spec_a, spec_b)
+    anc_sim = linguatag.ancestry_similarity(spec_a.code, spec_b.code)
     return w_phonological * pd.combined + w_ancestry * (1.0 - anc_sim)
 
 
@@ -994,8 +1029,8 @@ def weighted_full_distance(
     inv = inventory_distance(spec_a, spec_b)
     gra = grapheme_divergence(spec_a, spec_b)
     allo = allophone_overlap(spec_a, spec_b)
-    anc = ancestry_similarity(spec_a, spec_b)
-    temp = temporal_distance(spec_a, spec_b, reference_year=reference_year)
+    anc = linguatag.ancestry_similarity(spec_a.code, spec_b.code)
+    temp = linguatag.temporal_distance(spec_a.code, spec_b.code, reference_year=reference_year)
 
     # If temporal data is unavailable, exclude it from the combined score
     effective_w_temporal = w_temporal if temp is not None else 0.0
@@ -1058,6 +1093,8 @@ def temporal_distance(
     >>> # Languages with full overlap → distance 0.0
     >>> # Languages in different eras → distance 1.0
     """
+    warnings.warn("orthography2ipa.distance.temporal_distance is deprecated; use linguatag.temporal_distance "
+                  "with the spec codes", DeprecationWarning, stacklevel=2)
     if spec_a.timespan is None or spec_b.timespan is None:
         return None
 
@@ -1252,6 +1289,8 @@ def geographic_distance(
     computed centroid and is weaker still. Weight this axis low, or off, when
     comparing macrolanguages.
     """
+    warnings.warn("orthography2ipa.distance.geographic_distance is deprecated; use linguatag.geographic_distance "
+                  "with the spec codes", DeprecationWarning, stacklevel=2)
     loc_a, loc_b = spec_a.location, spec_b.location
     if loc_a is None or loc_b is None:
         return None

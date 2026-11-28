@@ -1,5 +1,13 @@
 # Gold corrections overlays
 
+<!-- agent-hint
+covers: what a gold correction overlay is and how the harness applies it
+source: `orthography2ipa/data/gold/corrections/`, `scripts/benchmark.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_gold_composition.py`
+see: `docs/evaluation/gold_defects.md`, `docs/contributing/citations.md`
+-->
+
 Each file in this folder repairs a defect in an upstream gold set. The upstream file stays byte-identical. Each row of an overlay is one corrected gold entry, as one line of JSON.
 
 A correction may come only from the spelling of the word or from a citation that was fetched and read. It may never come from the output of orthography2ipa, because a gold repaired with the engine's own answers measures nothing. The rules for citations are in [Citations](../../../../docs/contributing/citations.md). [Corrections overlays](../../../../docs/evaluation/benchmarks.md#corrections-overlays) explains how the board scores an overlay.
@@ -78,18 +86,18 @@ Toneli, Priscila Marques (2011). *O comportamento prosódico de palavras compost
 
 ## `portuguese_unified_pt.jsonl`
 
-This overlay corrects the Infopédia and pt.wiktionary rows of the Portuguese unified pronunciation lexicon (`TigreGotico/portuguese-unified-pronunciation-lexicon`). It corrects no Portal da Língua Portuguesa row. Those rows are the output of the LUPo rule-based generator, and the benchmark scores them as a competitor's output (`portal_lupo`), which no overlay corrects. The file is keyed on the source row of that dataset, not on an o2i language tag. Any consumer of the dataset can apply the same rows. Its fields differ from the fields above.
+This overlay corrects the Infopédia, Michaelis and pt.wiktionary rows of the Portuguese unified pronunciation lexicon (`TigreGotico/portuguese-unified-pronunciation-lexicon`). It corrects no Portal da Língua Portuguesa row. Those rows are the output of the LUPo rule-based generator, and the benchmark scores them as a competitor's output (`portal_lupo`), which no overlay corrects. The file is keyed on the source row of that dataset, not on an o2i language tag. Any consumer of the dataset can apply the same rows. Its fields differ from the fields above.
 
 | Field | Meaning |
 |---|---|
 | `dataset` | Always `portuguese_unified`. |
-| `source` | `infopedia`, `wiktionary` or `infopedia+wiktionary`, read from the fields of the row. |
+| `source` | `infopedia`, `michaelis`, `wiktionary` or `infopedia+wiktionary`, read from the fields of the row. |
 | `region` | The region tag of the dataset, for example `pt-BR-x-carioca`. |
 | `word`, `pos` | The headword and the part of speech of the row. |
 | `field` | `ipa_narrow` or `ipa_broad`. |
 | `original_reading` | The reading that the row ships, matched exactly. |
 | `corrected_reading` | The reading to use. `null` drops the row. |
-| `kind` | `accent_contradiction`, `unaccented_stress`, `missing_mark`, `wrong_headword` or `mojibake`. |
+| `kind` | `accent_contradiction`, `unaccented_stress`, `missing_mark`, `a_quality`, `wrong_headword` or `mojibake`. |
 | `reason`, `authority` | What is wrong, and the orthographic fact or the fetched citation. |
 
 The written accent, or the accent rules of the Acordo Ortográfico 1990, settles each stressed syllable. Where a human source states the same stress, the authority quotes it verbatim: the syllable template of the pt.wiktionary page, at a named revision. No authority quotes a reading of the Portal Dicionário Fonético. Each `kind` value names one defect of the source rows.
@@ -99,9 +107,12 @@ The written accent, or the accent rules of the Acordo Ortográfico 1990, settles
 | `accent_contradiction` | The primary mark is on a syllable other than the one that a written acute or circumflex marks. | Infopédia *busílis* `buziˈliʃ` |
 | `unaccented_stress` | An unaccented word has its mark where the accent rules do not put it. An unaccented -ar infinitive is oxytone. | Infopédia *malucar* `mɐˈlukar` |
 | `missing_mark` | The reading has no primary mark. | pt.wiktionary *coitado* `koitádu` |
+| `a_quality` | A pt-BR row writes an oral pretonic /a/ as [ɐ], or a final unstressed /a/ as [a], against the vowel description of the variety and against most rows of its own source. | pt.wiktionary *acerta* `ɐˈsɛɾtɐ`, Michaelis *América* `aˈmɛɾika` |
 | `wrong_headword` | The reading transcribes another headword. | pt.wiktionary *halo* `'heɪloʊ`, the English word |
 | `mojibake` | The reading carries mis-encoded text. | pt.wiktionary *sundae* `'sÃndej` |
+| `not_ipa` | The reading is not IPA: a leaked wiki template or X-SAMPA notation. A drop keeps the rule that a correction changes no segment, so a row with one stray symbol (*varão* `vaˈɾɐ~w`) is dropped, not repaired. The build drops every row with a `{ } " ~ @ ȷ`, a digit or an ASCII capital letter. | pt.wiktionary *coesposa* `{{AFIkoesˈpozɑ}}`, *endemoninhado* `e~demonI"JadU` |
+| `wrong_segment` | The reading has a segment that contradicts the spelling, and the Michaelis row of the same word and region agrees with the spelling. | pt.wiktionary *vida* `ˈvita` |
 
-A correction moves, adds or removes a stress mark, or drops a variant or a row. It changes no segment, except where a stray symbol stands in for the mark (`koitádu`, `traveˡsejru`). A mark goes only on a vowel that the stressed letter can spell. A row that also needs a segment fix stays uncorrected. For example, a stressed [ɨ] cannot spell ⟨ê⟩.
+A correction moves, adds or removes a stress mark, or drops a variant or a row. It changes no segment, except where a stray symbol stands in for the mark (`koitádu`, `traveˡsejru`), and except in an `a_quality` row. An `a_quality` row changes only the vowel [a] or [ɐ]. Before the primary stress, an oral [ɐ] becomes [a], but not before [m n ɲ ŋ]. A final [a] after the stress becomes [ɐ]. Barbosa & Albano (2004: 229) give the vowels of each position. The row list is hand-checked: an abbreviation, a foreign name and a row with another segment defect stay uncorrected. A mark goes only on a vowel that the stressed letter can spell. A row that also needs a segment fix stays uncorrected. For example, a stressed [ɨ] cannot spell ⟨ê⟩.
 
 The file corrects both the narrow and the broad field, and the broad corrections follow the narrow ones. The `portuguese_unified_corrected` dataset of the benchmark applies only the `ipa_narrow` rows. The `ipa_broad` rows are there for other consumers of the dataset.

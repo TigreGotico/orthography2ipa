@@ -7,7 +7,6 @@
  "allophones": {},
  "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography or phonology is claimed: script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "yno",
- "glottolog_code": "yong1277",
  "sources": [
   {
    "id": "glottolog2024",
@@ -27,5 +26,5 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-taik1256"
+ "inherits": "x-clade-taik1256"
 }

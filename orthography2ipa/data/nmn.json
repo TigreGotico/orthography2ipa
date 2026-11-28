@@ -23,7 +23,7 @@
    "ao̭"
   ],
   "aq": [
-   "aˁ"
+   "aˤ"
   ],
   "aqh": [
    "aʢ"
@@ -59,13 +59,13 @@
    "d͡tsʰ"
   ],
   "dtshx": [
-   "ʣᵡ"
+   "d͡zᵡ"
   ],
   "dts’": [
    "d͡tsʼ"
   ],
   "dts’kx’": [
-   "ʣᵡʼ"
+   "d͡zᵡʼ"
   ],
   "dtx": [
    "dᵡ"
@@ -74,13 +74,13 @@
    "dᵡʼ"
   ],
   "dz": [
-   "ʣ"
+   "d͡z"
   ],
   "dzh": [
-   "ʣʱ"
+   "d͡zʱ"
   ],
   "dz’": [
-   "ʣˀ"
+   "d͡zˀ"
   ],
   "e": [
    "e"
@@ -92,7 +92,7 @@
    "ẽ"
   ],
   "eq": [
-   "eˁ"
+   "eˤ"
   ],
   "eqh": [
    "ɛʢ"
@@ -200,7 +200,7 @@
    "ĩ"
   ],
   "iq": [
-   "iˁ"
+   "iˤ"
   ],
   "iqh": [
    "ɪʢ"
@@ -308,7 +308,7 @@
    "õ"
   ],
   "oq": [
-   "oˁ"
+   "oˤ"
   ],
   "oqh": [
    "ɔʢ"
@@ -359,19 +359,19 @@
    "tʰ"
   ],
   "ts": [
-   "ʦ"
+   "t͡s"
   ],
   "tsh": [
-   "ʦʰ"
+   "t͡sʰ"
   ],
   "tshx": [
-   "ʦᵡ"
+   "t͡sᵡ"
   ],
   "ts’": [
-   "ʦʼ"
+   "t͡sʼ"
   ],
   "ts’kx’": [
-   "ʦᵡʼ"
+   "t͡sᵡʼ"
   ],
   "tx": [
    "tᵡ"
@@ -401,7 +401,7 @@
    "ũ"
   ],
   "uq": [
-   "uˁ"
+   "uˤ"
   ],
   "uqh": [
    "ʊʢ"
@@ -419,7 +419,7 @@
    "w"
   ],
   "x": [
-   "_ᵡ"
+   "ᵡ"
   ],
   "y": [
    "j"
@@ -627,7 +627,6 @@
  },
  "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (nmn.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "nmn",
- "glottolog_code": "huaa1248",
  "sources": [
   {
    "id": "glottolog2024",
@@ -665,7 +664,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-tuuu1241",
+ "inherits": "x-clade-tuuu1241",
  "phonemes": [
   "b",
   "d",
@@ -802,7 +801,7 @@
   "ã",
   "a̤",
   "a̰",
-  "aᴱ",
+  "a𐞴",
   "e",
   "eˤ",
   "ẽ",
@@ -818,13 +817,13 @@
   "õ",
   "o̤",
   "o̰",
-  "oᴱ",
+  "o𐞴",
   "u",
   "uˤ",
   "ũ",
   "ṳ",
   "ṵ",
-  "uᴱ"
+  "u𐞴"
  ],
  "tone_inventory": {
   "˦": "PHOIBLE tone segment",

@@ -2,7 +2,7 @@
   "code": "got",
   "name": "Gothic",
   "script": "Gothic",
-  "parent": "x-clade-east2805",
+  "inherits": "x-clade-east2805",
   "notes": "Gothic (4th c. CE; Wulfila's Bible, Codex Argenteus). East Germanic, the earliest well-attested Germanic language; Visigothic kingdom in Iberia ~470-711 CE left substrate loanwords in Ibero-Romance (guerra, guardar, ropa, yelmo). INPUT CONTRACT: native Gothic-script text (Unicode block U+10330..U+1034A, NFC) — NOT the Latin transliteration (a, b, g, þ, ƕ …). The Gothic alphabet is an ALPHABET built by Wulfila from Greek, Latin and runic models. Digraphs 𐌰𐌹 ⟨ai⟩, 𐌰𐌿 ⟨au⟩, 𐌴𐌹 ⟨ei⟩, 𐌹𐌿 ⟨iu⟩ are single vowel/diphthong graphemes and are keyed as multigraphs. 𐌲 ⟨g⟩ is [ŋ] before 𐌲/𐌺/𐌵, keyed as the multigraphs 𐌲𐌲, 𐌲𐌺, 𐌲𐌵. Voiced fricatives [β ð ɣ] are positional realisations of /b d ɡ/. Conservative Germanic: no High German consonant shift; labiovelars 𐌵 /kʷ/ and 𐍈 /ʍ/. The two numeral-only signs 𐍁 (90) and 𐍊 (900) carry no phonetic value and are deliberately left out of the map.",
   "sources": [
     {
@@ -67,10 +67,8 @@
     "start_year": 350,
     "end_year": 600
   },
-  "glottolog_code": "goth1244",
   "iso639_3": "got",
   "quality": "research",
-  "wikidata_qid": "Q35722",
   "location": {
     "latitude": 46.9304,
     "longitude": 29.9786,

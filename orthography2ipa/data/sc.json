@@ -239,7 +239,7 @@
       "ʒ"
     ]
   },
-  "parent": "x-clade-sard1257",
+  "inherits": "x-clade-sard1257",
   "ancestors": [
     {
       "code": "la",
@@ -298,9 +298,7 @@
     "start_year": 1000,
     "end_year": null
   },
-  "glottolog_code": "sard1257",
   "iso639_3": "srd",
-  "wikidata_qid": "Q33976",
   "wals_code": "srd",
   "location": {
     "latitude": 39.7733,

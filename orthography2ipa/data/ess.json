@@ -95,7 +95,6 @@
  "allophones": {},
  "notes": "Cyrillic literary orthography for Central Siberian (Chaplino/Naukan-area) Yupik, following de Reuse (1994), Siberian Yupik Eskimo: The Language and Its Contacts with Chukchi, and the Soviet-era practical alphabet used in Chaplino/Sireniki-area primers (extends Russian with eng /ŋ/ and gamma /ɣ/). Labialised dorsal consonants (k-w, g-w, ng-w) are written with a following у, each earning its key by test 2: the digraph spells one labialised segment (a single Yupik consonant with a co-articulated lip rounding), not a consonant-plus-vowel sequence -- the same logic the Kildin/Skolt Sami specs already apply to their own labialised series. The uvular fricative series (χ, and its labialised counterpart) is attested in the cited phoneme inventory but this spec's orthographic source does not give a confident single-letter/digraph citation for it here, so it is left as a documented, unencoded gap rather than guessed at. Voicing is not contrastive in native vocabulary for the dental/alveolar series (t/d, s/z, l/r pattern together, as in the other Eskimo-Aleut/Tungusic Siberian specs already registered here); ф is reserved for Russian loans. Stress in Yupik is weight-sensitive and rule-governed (de Reuse 1994) but not encoded here pending a verified syllable-weight model; documented exemption, not an oversight.",
  "iso639_3": "ess",
- "glottolog_code": "cent2128",
  "sources": [
   {
    "id": "glottolog2024",
@@ -131,7 +130,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-eski1264",
+ "inherits": "x-clade-eski1264",
  "phonemes": [
   "f",
   "j",

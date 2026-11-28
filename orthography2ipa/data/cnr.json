@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "skeleton",
   "iso639_3": "cnr",
-  "glottolog_code": "mont1282",
   "timespan": {
     "start_year": 2007,
     "end_year": null
@@ -150,7 +149,7 @@
       "notes": "Venetian/Italian adstrate along the Montenegrin Adriatic coast (Kotor, Budva)."
     }
   ],
-  "parent": "x-clade-sout3147",
+  "inherits": "x-clade-sout3147",
   "notes": "Montenegrin, codified as a standard separate from Serbian/Croatian/Bosnian in 2007 (official since the 2007 constitution). Same Shtokavian Ijekavian base as standard Croatian, so the Latin grapheme table is inherited from hr (graphemes_base=hr). Adds two letters not in the shared Serbo-Croatian alphabet: ⟨ś⟩ /ɕ/ and ⟨ź⟩ /ʑ/ (Cyrillic С́/З́), replacing the digraphs ⟨sj⟩/⟨zj⟩ used elsewhere in the diasystem; Wikipedia notes some linguists analyze these as allophones rather than distinct phonemes, but they are official graphemes of the Montenegrin alphabet and so are mapped as their own units per AGENTS.md §2 test 1 (their pronunciation is not literally sj/zj concatenated). Montenegrin has two equal scripts of 32 letters each: \"U savremenoj upotrebi u Crnoj Gori ravnopravna su dva pisma: latinica i ćirilica\" and \"Sastoje se od 32 slova (grafema)\" (Pravopis 2010: 7). Each Cyrillic key carries the phonemes of its Latin letter. The Pravopis pairs the two new letters by name: \"Konsonant ś (ćirilično ć)\" (2010: 9). Its Cyrillic table prints С́ with the shape ⟨Ć ć⟩ at place 23. At place 10 the 2010 file prints ⟨≤ ≥⟩, a font fault, and the 2009 edition prints ⟨З´ з´⟩ (Pravopis 2009: 8). These are print shapes, not encodings. The encoded letter is a base letter and U+0301: \"They are encoded as combining sequences\" (ICANN 2024). Unicode has no precomposed form of either letter, so the keys are ⟨с́⟩ and ⟨з́⟩ as two code points each. The dz letter of item 3a (Latin З з, Cyrillic S s) has no key: \"nema razloga da se uvrštava u standardnu crnogorsku azbuku i abecedu\" (Pravopis 2010: 9), and the count of 32 leaves it out.",
   "sources": [
     {
@@ -203,7 +202,6 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Montenegrin_language"
   ],
-  "wikidata_qid": "Q8821",
   "location": {
     "latitude": 42.708,
     "longitude": 19.374,

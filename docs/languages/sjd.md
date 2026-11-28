@@ -1,5 +1,13 @@
 # Kildin Sami (`sjd`)
 
+<!-- agent-hint
+covers: what the `sjd` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/sjd.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Kildin Sami is a Saami language, written in the Cyrillic script. Glottolog places it in the Eurasia macroarea. The `sjd` spec is at the research tier. It cites 4 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
@@ -62,25 +70,23 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 50 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 69 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p |  | d t |  |  | k ɡ |  |
+| Plosive | b bʲ p pʲ |  | d dʲ t tʲ |  |  | k kʲ ɡ ɡʲ |  |
 | Affricate |  |  | ts | tʃ |  |  |  |
-| Nasal | m m̥ |  | n n̥ |  | ɲ | ŋ |  |
-| Trill |  |  | r r̥ |  |  |  |  |
-| Fricative |  | f v | s z | ʃ ʒ | ç ɕ | x | h |
+| Nasal | m mʲ m̥ m̥ʲ |  | n nʲ n̥ n̥ʲ |  | ɲ ɲʲ | ŋ ŋʲ |  |
+| Trill |  |  | r rʲ r̥ r̥ʲ |  |  |  |  |
+| Fricative |  | f fʲ v vʲ | s sʲ z zʲ | ʃ ʃʲ ʒ ʒʲ | ç çʲ ɕ ɕʲ | x xʲ | h hʲ |
 | Approximant |  |  |  |  | j |  |  |
-| Lateral approximant |  |  | l l̥ |  | ʎ |  |  |
+| Lateral approximant |  |  | l lʲ l̥ l̥ʲ |  | ʎ ʎʲ |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
 | Close | i iː | ɨ ɨː | u uː |
 | Close-mid | e eː |  | o oː |
 | Open | a aː |  |  |
-
-Sequences that the spec writes as one unit: [ja] [jaː] [je] [jeː] [jo] [ju] [juː] [ʲ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

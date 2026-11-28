@@ -390,7 +390,7 @@
       ]
     }
   },
-  "parent": "oc",
+  "inherits": "oc",
   "notes": "Aranese (Aranès), the Gascon variety of Occitan spoken in the Val d'Aran and co-official in Catalonia, regulated by the Conselh Generau d'Aran. Written in the classical Occitan orthography with Gascon conventions. Gascon hallmarks are already in the SPELLING, not in the letter values: Latin F- became ⟨h⟩ (focus > huec, ferrum > hèr) and intervocalic -N- was lost (luna > lua, farina > haria), so ⟨f⟩ here is simply [f] — reading it as [h] would apply the sound change twice. Aranese then DEASPIRATED that /h/, so ⟨h⟩ is silent except in Bausen and Canejan, where it is [h]; the [h] candidate is kept for those two. The interpunct digraphs ⟨n·h⟩ and ⟨s·h⟩ spell the SEQUENCES [n]+[h] and [s]+[h] that ⟨nh⟩ /ɲ/ and ⟨sh⟩ /ʃ/ would otherwise swallow, which is the whole reason the norm writes the interpunct; they carry keys so that maximal munch neither reads them as the palatal digraphs nor breaks the word in two at the interpunct. ⟨th⟩ is [t] (vedèth), [tʃ] in Bausen and Canejan; ⟨ll⟩ is a plain [l], not a geminate. Like the rest of Gascon and Lengadocian, Aranese has betacism, so ⟨v⟩ is [b] and /v/ is not a phoneme of the inventory.\n\nThree points are left as the shipped Spain-Romance TTS gold has them, because the gold's rows were authored and checked against Alibert and Bec while the contrary reading comes from a single tertiary description, and a native check should settle them before either is encoded. Unstressed and phrase-final ⟨a⟩ is [a] here, where descriptions of Aranese give a backed [ɑ~ɔ] and Lengadocian has a clear [ɔ]. Intervocalic ⟨s⟩ stays [s] here, where the rest of Occitan voices it to [z]. And ⟨h⟩ keeps [h] as its first reading with silence as the second, because Aranese is described as having deaspirated the Gascon /h/ everywhere except Bausen and Canejan, yet the gold pronounces it.",
   "quality": "research",
   "script_type": "alphabet",
@@ -436,7 +436,6 @@
     "start_year": 1200,
     "end_year": null
   },
-  "glottolog_code": "aran1260",
   "iso639_3": "oci",
   "stress": {
     "onset_clusters": ["bl", "br", "bɫ", "bɾ", "bʀ", "bʁ", "bʎ", "bχ", "dr", "dɾ", "dʀ", "dʁ", "dʎ", "dχ", "fl", "fr", "fɫ", "fɾ", "fʀ", "fʁ", "fʎ", "fχ", "kl", "kr", "kɫ", "kɾ", "kʀ", "kʁ", "kʎ", "kχ", "pl", "pr", "pɫ", "pɾ", "pʀ", "pʁ", "pʎ", "pχ", "tr", "tɾ", "tʀ", "tʁ", "tʎ", "tχ", "vl", "vr", "vɫ", "vɾ", "vʀ", "vʁ", "vʎ", "vχ", "ðr", "ðɾ", "ðʀ", "ðʁ", "ðʎ", "ðχ", "ɡl", "ɡr", "ɡɫ", "ɡɾ", "ɡʀ", "ɡʁ", "ɡʎ", "ɡχ", "ɣl", "ɣr", "ɣɫ", "ɣɾ", "ɣʀ", "ɣʁ", "ɣʎ", "ɣχ", "βl", "βr", "βɫ", "βɾ", "βʀ", "βʁ", "βʎ", "βχ"],
@@ -481,7 +480,6 @@
     "max_onset": 2,
     "coda_liquid_capture": true
   },
-  "wikidata_qid": "Q10196",
   "location": {
     "latitude": 42.7225,
     "longitude": 0.837222,

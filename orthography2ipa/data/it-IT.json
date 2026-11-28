@@ -387,7 +387,7 @@
       "dːz"
     ]
   },
-  "parent": "x-clade-italorom",
+  "inherits": "x-clade-italorom",
   "ancestors": [
     {
       "code": "la-x-italia",
@@ -640,7 +640,6 @@
     "start_year": 1300,
     "end_year": null
   },
-  "glottolog_code": "ital1282",
   "iso639_3": "ita",
   "stress": {
     "default_position": -2,
@@ -660,7 +659,6 @@
     "stress_mark": "ˈ",
     "notes": "Italian stress: written accents (à è é ì ò ó ù) always mark the stressed syllable and override position rules. Without an accent mark the default is paroxytone (penultimate). Proparoxytones (tavola, àlbero, pàgina) are lexical and undetectable from orthography alone — a written accent is not compulsory on them in standard Italian; they cannot be reliably predicted by rule. This block therefore uses default -2 (paroxytone) and relies on marked_vowels to handle the accented subset. Unaccented antepenultimate stress is not predicted. DIPHTHONGS: the list holds the diphthongs of Bertinetto & Loporcaro (2005, JIPA 35(2), Table 2, p. 138): the opening diphthongs with [j] (je jɛ ja jɔ jo ju) and with [w] (wi we wɛ wa wɔ wo), the closing diphthongs with [i̯] (ei ɛi ai ɔi oi ui) and with [u̯] (eu ɛu au). In spelling these are ⟨ia ie io iu ua ue uo ui⟩ and ⟨ai ei oi ui au eu⟩, with the accented forms where the accent falls on the syllabic vowel (più, può, seguì, ài). Every other vowel sequence is a hiatus: two non-high vowels (poeta, teatro, paese, idea) and two equal vowels, which p. 137 describes as 'a quickly rearticulated vowel' (cooperare, linee, zoologia). Stress decides between a diphthong and a hiatus of a high vowel: 'stress is a reliable criterion to distinguish between hiatus and diphthong (cf. Laura [ˈlau̯ra] (person name) vs. paura [paˈuːra] ‘fear’, faida [ˈfai̯da] ‘feud’ vs. faina [faˈiːna] ‘stone-marten’)' (p. 139). An accented high vowel next to a non-high vowel (farmacìa, paùra) is therefore not listed, and an unaccented one is read as a glide, so paura, Luigi, mio and via keep a lexical stress that the spelling does not show. The ⟨i⟩ of ⟨ci gi sci gli⟩ before a vowel writes no vowel: cacio [ˈkaːtʃo], aglio [ˈaʎːo], ascia [ˈaʃːa], paglia [ˈpaʎːa] (pp. 133-134). It joins the next vowel in a listed diphthong, so ciao is cia-o and figlio is fi-glio. ⟨qu gu⟩ write [kw ɡw] (guida [ˈɡwiːda], quando [ˈkwando], p. 139), so their ⟨u⟩ is part of the onset. ipa_diphthongs holds the same Table 2 diphthongs in the transcription, with each glide written as its vowel: a transcription that keeps the vowel letters of a diphthong (può [puɔ], or a child spec without the glide graphemes) splits only a hiatus."
   },
-  "wikidata_qid": "Q652",
   "phoible_id": "ital1282",
   "wals_code": "ifi",
   "location": {
@@ -689,6 +687,16 @@
       "preceded_by": "vowel",
       "followed_by": "vowel",
       "notes": "Intervocalic /ʎ/ is inherently long in Italian (Krämer (2009) The Phonology of Italian (OUP) §7.2; Canepari DiPI): bagno [baɲɲo], aglio [aʎʎo], pesce [peʃʃe], vizio [vittsjo]."
+    },
+    {
+      "id": "IT_INHERENT_GEMINATE_GLI_FINAL",
+      "phonemes": [
+        "ʎ"
+      ],
+      "surface": "ʎʎ",
+      "preceded_by_phoneme": ["a", "e", "ɛ", "i", "o", "ɔ", "u"],
+      "followed_by_phoneme": ["i"],
+      "notes": "The ⟨gli⟩ at the end of a word is one slot that writes [ʎi], so IT_INHERENT_GEMINATE_GLI, which needs a vowel slot after the [ʎ], never sees it. This rule reads the [i] inside the slot. Bertinetto & Loporcaro (2005, JIPA 35(2), p. 134): /ɲ ʎ ʃ t͡s d͡z/ 'tend to have geminate-like duration, most saliently in intervocalic position: cf. ragno [ˈraɲːo] ‘spider’, aglio [ˈaʎːo] ‘garlic’'. The only exception they name is the article gli, 'with optional degemination in FI, even when it occurs in intervocalic position'. The article stands at the start of its word, where no vowel precedes the [ʎ], so it stays short: figli [ˈfiʎʎi], tagli [ˈtaʎʎi], gli [ʎi]."
     },
     {
       "id": "IT_INHERENT_GEMINATE_SC",

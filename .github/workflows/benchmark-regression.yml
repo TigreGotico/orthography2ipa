@@ -6,6 +6,7 @@ name: Benchmark Regression
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     branches: [dev]
     paths:
       - "orthography2ipa/**"
@@ -25,9 +26,17 @@ on:
       - ".github/workflows/benchmark-regression.yml"
   workflow_dispatch: {}
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   benchmark-regression:
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
     # A passing run takes about 18 minutes. The limit is about 2.5 times
     # that, so a hang fails the job instead of holding the runner for the
     # 360-minute platform default.
@@ -36,7 +45,7 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v10.3.3
+        uses: astral-sh/setup-uv@v10.4.0
         with:
           python-version: "3.11"
 
@@ -66,6 +75,13 @@ jobs:
         # Refresh that sample file (scripts/benchmark.py --ci-sample)
         # whenever the full scoreboard is regenerated.
         #
+        # In a pull request the baseline is the BASE branch's committed
+        # sample, not the checkout's. A pull request that regenerates the
+        # board commits its own sample, and a comparison with that copy
+        # compares the change with itself. A row the pull request means to
+        # make worse is named on a `Board-Rows:` line of its body, read live
+        # so a re-run sees an edited body.
+        #
         # This job only reliably gates the self-contained gold datasets:
         # wikipron, mirandese and ipadict fetch their TSVs directly over
         # plain HTTP (stdlib urllib, no credentials), and ep_dialects is
@@ -81,8 +97,19 @@ jobs:
         # epsilon=0.005 (absolute PER worsening) is the default: tight
         # enough to catch a real grapheme/allophone regression, loose
         # enough to absorb harness-level float noise between runs.
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_REF: ${{ github.base_ref }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          PYTHONPATH=$PWD .venv/bin/python scripts/check_benchmark_regression.py --epsilon 0.005
+          BASE_ARGS=()
+          if [ -n "$BASE_REF" ]; then
+            git fetch --no-tags --depth=1 origin "$BASE_REF"
+            PR_BODY="$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json body -q .body)"
+            export PR_BODY
+            BASE_ARGS=(--base-ref "origin/$BASE_REF")
+          fi
+          PYTHONPATH=$PWD .venv/bin/python scripts/check_benchmark_regression.py --epsilon 0.005 "${BASE_ARGS[@]}"
 
       - name: Check board row counts (stale-row guard)
         # Fails the build on a row scoring more words than its loader
@@ -106,7 +133,7 @@ jobs:
   # file, about 2.7 million word pairs), which one job cannot measure inside
   # its time limit; the shards keep every one of those rows measured.
   board-freshness-plan:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 15
     outputs:
@@ -120,7 +147,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v10.3.3
+        uses: astral-sh/setup-uv@v10.4.0
         with:
           python-version: "3.11"
 
@@ -160,7 +187,7 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v10.3.3
+        uses: astral-sh/setup-uv@v10.4.0
         with:
           python-version: "3.11"
 
@@ -202,14 +229,14 @@ jobs:
 
   board-freshness:
     needs: [board-freshness-plan, board-freshness-shard]
-    if: always() && github.event_name == 'pull_request'
+    if: always() && github.event_name == 'pull_request' && !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v10.3.3
+        uses: astral-sh/setup-uv@v10.4.0
         with:
           python-version: "3.11"
 
@@ -237,7 +264,7 @@ jobs:
             --plan board-freshness-plan.json --aggregate board-freshness-results
 
   board-not-reverting:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && !github.event.pull_request.draft
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -252,7 +279,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v10.3.3
+        uses: astral-sh/setup-uv@v10.4.0
         with:
           python-version: "3.11"
 

@@ -44,12 +44,12 @@
   "i": [
    "i",
    "ĩ",
-   "∅"
+   ""
   ],
   "o": [
    "o",
    "õ",
-   "∅",
+   "",
    "ɑː",
    "eː",
    "e"
@@ -57,18 +57,17 @@
   "u": [
    "u",
    "ũ",
-   "∅"
+   ""
   ],
   "ɑ": [
    "ɑ",
    "ɑ̃",
-   "∅",
+   "",
    "e"
   ]
  },
  "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "mkv",
- "glottolog_code": "mafe1237",
  "sources": [
   {
    "id": "glottolog2024",
@@ -97,7 +96,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-aust1307",
+ "inherits": "x-clade-aust1307",
  "phonemes": [
   "k",
   "l",

@@ -1,7 +1,15 @@
 # Bhojpuri (`bho`)
 
+<!-- agent-hint
+covers: what the `bho` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/bho.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/hi.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
-Bhojpuri is an Indo-Aryan language, written in the Devanagari script. Glottolog places it in India and Nepal. The `bho` spec is at the research tier. It cites 3 sources and has 0 scored datasets.
+Bhojpuri is an Indo-Aryan language, written in the Devanagari script. Glottolog places it in India and Nepal. The `bho` spec is at the research tier. It cites 5 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -29,7 +37,7 @@ The notes of the spec file open with these words:
 
 > Bhojpuri (Eastern UP and Bihar). Largest Indic diaspora language. Inherent vowel is /a/ (not /ə/ like Standard Hindi). No schwa deletion rule. Four-way laryngeal contrast. Retroflex series phonemic.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. No board row scores it yet, so the measured gold of that tier is still missing. It cites 3 works, from 1981 to 2003. [Sources](#sources) lists them. The spec file writes all 58 spellings of its letter table itself.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. No board row scores it yet, so the measured gold of that tier is still missing. It cites 5 works, from 1981 to 2024. [Sources](#sources) lists them. The spec file writes all 61 spellings of its letter table itself.
 
 The [spec file](../../orthography2ipa/data/bho.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -43,11 +51,13 @@ No spec names `bho` as its parent.
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 3 works. 0 of them have a DOI or a URL.
+The spec cites 5 works. 2 of them have a DOI or a URL. The spec file holds a note on what 2 of them support.
 
 1. <a id="src-masica1991"></a>Masica, C. (1991). *The Indo-Aryan Languages*. Cambridge University Press.
 2. <a id="src-cardona_jain2003"></a>Cardona, G. & Jain, D. (eds.) (2003). *The Indo-Aryan Languages*. Routledge.
 3. <a id="src-shukla1981"></a>Shukla, S. (1981). *Bhojpuri Grammar*. Central Institute of Indian Languages.
+4. <a id="src-unicode16_ch12"></a>The Unicode Consortium (2024). *The Unicode Standard, Version 16.0, Chapter 12: South and Central Asia-I (Devanagari)*. The Unicode Consortium. [unicode.org](https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/)
+5. <a id="src-unicode16_nameslist"></a>The Unicode Consortium (2024). *Unicode 16.0.0 NamesList.txt*. The Unicode Consortium. [unicode.org](https://www.unicode.org/Public/16.0.0/ucd/NamesList.txt)
 <!-- atlas:sources end -->
 
 <!-- atlas:datasets begin -->
@@ -59,7 +69,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 105 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 67 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Retroflex | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -69,18 +79,20 @@ The spec can emit 105 segments. They come from the letter table, the positional 
 | Trill |  |  | r |  |  |  |  |  |  |
 | Tap |  |  | ɾ |  | ɽ |  |  |  |  |
 | Fricative |  | f | s z | ʃ | ʂ |  | x ɣ |  | h ɦ |
-| Approximant |  | ʋ |  |  |  | j |  |  |  |
+| Approximant |  | ʋ |  |  |  | j j̃ |  |  |  |
 | Lateral approximant |  |  | l |  |  |  |  |  |  |
 
-| Vowels | Front | Back |
-|:--|:-:|:-:|
-| Close | i iː | u uː |
-| Close-mid | eː | oː |
-| Open-mid |  | ɔː |
-| Near-open | æː |  |
-| Open | a aː |  |
+| Vowels | Front | Central | Back |
+|:--|:-:|:-:|:-:|
+| Close | i iː ĩ ĩː |  | u uː ũ ũː |
+| Near-close | ɪ ɪ̃ |  |  |
+| Close-mid | eː ẽː |  | oː õː |
+| Mid |  | ə ə̃ |  |
+| Open-mid |  |  | ɔː ɔ̃ː |
+| Near-open | æː æ̃ː |  |  |
+| Open | a aː ã ãː |  |  |
 
-Sequences that the spec writes as one unit: [bə] [bʱ] [bʱə] [dʒə] [dʒɲ] [dʒɲə] [dʒʱ] [dʒʱə] [d̪ə] [d̪ʱ] [d̪ʱə] [fə] [jə] [kə] [kʃ] [kʃə] [kʰə] [lə] [mə] [nə] [pə] [pʰə] [qə] [sə] [tʃə] [tʃʰə] [t̪ə] [t̪ɾ] [t̪ɾə] [t̪ʰə] [xə] [zə] [ŋə] [ɖə] [ɖʱ] [ɖʱə] [ɡj] [ɡjə] [ɡə] [ɡʱ], and 19 more.
+Sequences that the spec writes as one unit: [bʱ] [dʒʱ] [d̪ʱ] [ɖʱ] [ɡʱ] [ɽʱ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -125,6 +137,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨द⟩ | [d̪] |  |
 | ⟨ध⟩ | [d̪ʱ] |  |
 | ⟨न⟩ | [n] |  |
+| ⟨ऩ⟩ | [n] |  |
 | ⟨प⟩ | [p] |  |
 | ⟨फ⟩ | [pʰ] |  |
 | ⟨ब⟩ | [b] |  |
@@ -132,7 +145,9 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨म⟩ | [m] |  |
 | ⟨य⟩ | [j] |  |
 | ⟨र⟩ | [r] |  |
+| ⟨ऱ⟩ | [r] |  |
 | ⟨ल⟩ | [l] |  |
+| ⟨ऴ⟩ | [l] |  |
 | ⟨व⟩ | [ʋ] |  |
 | ⟨श⟩ | [ʃ] |  |
 | ⟨ष⟩ | [ʂ] |  |

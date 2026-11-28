@@ -250,8 +250,6 @@
     ]
   },
   "iso639_3": "ndo",
-  "glottolog_code": "ndon1254",
-  "wikidata_qid": "Q33900",
   "notes": "Ndonga (Oshindonga), the main Ovambo (Bantu) language of northern Namibia and southern Angola. INPUT CONTRACT: the current standard Namibian orthography (Oshindonga omunyolelo / 'Oshindonga Orthography 3', 2004, implemented by NIED) is assumed; text is expected to be already normalised. KEY FEATURES: (1) DIGRAPHS: <dh> = /ð/, <th> = /θ/, <sh> = /ʃ/, <ng> = /ŋ/ (also read /ŋɡ/ in the prenasalised cluster), <ny> = /ɲ/, <mb> = /mb/, <nd> = /nd/, <ndj> = /ndʒ/, <ts> = /ts/. (2) SINGLE LETTERS with non-obvious values: <c> = /ts/, <g> = /ɣ/ (voiced velar fricative, not a stop), <j> = /dʒ/, <q> = /kw/, <x> = /x/, <y> = /j/. (3) VOWEL LENGTH is written by doubling: <aa ee ii oo uu>; the language has a plain five-vowel system /a e i o u/. (4) The full phonetic inventory also contains voiceless nasals and aspirated/ejective prenasalised compounds ([m̥p], [n̥tʰ], [n̥kʰ], [tsʼ], ...) which are allophonic/cluster realisations and are not separately spelled; they are therefore not emitted. (5) TONE: Oshindonga has two tones (high and low), but TONE IS NOT WRITTEN in the standard orthography and is therefore NOT recoverable from the text; no tone marks are emitted.",
   "sources": [
     {
@@ -356,7 +354,7 @@
     "˨",
     "θ"
   ],
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

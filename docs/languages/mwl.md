@@ -1,5 +1,13 @@
 # Mirandese (`mwl`)
 
+<!-- agent-hint
+covers: what the `mwl` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/mwl.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Mirandese is an Asturleonese language, written in the Latin script. Glottolog places it in Portugal and Spain. The `mwl` spec is at the research tier. It cites 7 sources and has 3 scored datasets.
 <!-- atlas:summary end -->
@@ -229,7 +237,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 89 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 65 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -239,20 +247,20 @@ The spec can emit 89 segments. They come from the letter table, the positional r
 | Trill |  |  |  | r |  |  |  |  |
 | Tap |  |  |  | ɾ |  |  |  |  |
 | Fricative | β | f | ð | s s̺ s̻ z z̺ z̻ | ʃ ʒ | ʝ | ɣ | h |
-| Approximant |  |  |  |  |  | j |  |  |
+| Approximant |  |  |  |  |  | j j̃ |  |  |
 | Lateral approximant |  |  |  | l ɫ |  | ʎ |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
 | Close | i i̯ ĩ | ɨ ɨ̃ | u u̯ ũ |
-| Near-close |  |  | ʊ ʊ̃ |
-| Close-mid | e ẽ | ɵ̃ | o õ |
-| Mid |  | ə̃ |  |
+| Near-close | ɪ ɪ̃ |  | ʊ ʊ̃ |
+| Close-mid | e ẽ | ɵ ɵ̃ | o õ |
+| Mid |  | ə ə̃ |  |
 | Open-mid | ɛ |  | ɔ |
 | Near-open |  | ɐ ɐ̃ |  |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [aj] [aw] [ej] [ew] [iu] [iw] [ja] [je] [jo] [ju] [jɪ] [jɪ̃] [jẽ] [kw] [oj] [uj] [uu] [w] [wa] [we] [wo] [wõ] [w̃] [õj̃] [ɐ̃w̃] [ɟ͡ʝ] [ɡw] [ɡwe] [ɡwi] [ɪə] [ɵw] [ʊə].
+Sequences that the spec writes as one unit: [w] [w̃] [ɟ͡ʝ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

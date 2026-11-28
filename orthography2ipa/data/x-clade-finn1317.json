@@ -20,8 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Finnic_languages"
   ],
-  "parent": "urj",
-  "glottolog_code": "finn1317",
+  "inherits": "urj",
   "urls": [
     "https://glottolog.org/resource/languoid/id/finn1317"
   ],

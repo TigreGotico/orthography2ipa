@@ -35,7 +35,7 @@
       "aʊ"
     ]
   },
-  "parent": "en-GB",
+  "inherits": "en-GB",
   "notes": "Australian English. Non-rhotic. FACE raising: /eɪ/ → [æɪ] (the 'Strine' stereotype). PRICE = [ɑɪ]; FLEECE = [ɪi] (diphthongal). Three sociolects: Broad (most Australian), General, Cultivated. Source: Wells (1982) vol. 3.",
   "quality": "skeleton",
   "script_type": "alphabet",
@@ -68,9 +68,7 @@
     "start_year": 1800,
     "end_year": null
   },
-  "glottolog_code": "aust1314",
   "iso639_3": "eng",
-  "wikidata_qid": "Q44679",
   "location": {
     "latitude": -25,
     "longitude": 133,

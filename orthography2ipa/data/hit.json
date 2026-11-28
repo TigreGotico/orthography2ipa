@@ -38,7 +38,7 @@
     "w": ["w"],
     "y": ["j"]
   },
-  "parent": "x-clade-anat1257",
+  "inherits": "x-clade-anat1257",
   "ancestors": [
     {
       "code": "x-clade-anat1257",
@@ -49,8 +49,6 @@
   ],
   "notes": "Skeleton. Extinct Anatolian (Indo-European) language of the Hittite Empire (c. 1650-1180 BCE), written in a form of Peripheral Akkadian cuneiform adapted from Northern Syria; the syllabic cuneiform signs are conventionally rendered in the standard Hittitological Latin transliteration scored here, following Assyriological practice as in akk.json. ⟨š⟩=/ʃ/, ⟨ḫ⟩ a laryngeal reconstructed as uvular fricative /χ/ (Kloekhorst 2008), macron marks vowel length. Doubled consonants ⟨pp tt kk ss šš ḫḫ⟩ intervocalically contrast with single-letter ⟨p t k s⟩; this is a genuine orthographic contrast, not a cartesian artifact, but its phonetic interpretation is debated in the literature — the traditional view (Melchert 1994, cited via Hoffner & Melchert 2024) reads it as a fortis/lenis (historically voiceless/voiced) contrast, while Wikipedia (Hittite language) notes Hittite scribes used the etymologically voiced and voiceless Akkadian cuneiform signs interchangeably, which some scholars instead take as evidence for a pure consonant-length distinction; scored here as a length/gemination contrast (doubled = long) without committing to the fortis/lenis phonetic story. Syllabic cuneiform sign-boundaries, plene (double vowel) writing, and word-internal sign polyphony are not modeled; a substantial PER floor is expected given the reconstructive nature of the transliteration.",
   "iso639_3": "hit",
-  "glottolog_code": "hitt1242",
-  "wikidata_qid": "Q35618",
   "sources": [
     {
       "id": "hoffner_melchert2024",

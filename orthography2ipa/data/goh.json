@@ -238,7 +238,7 @@
       "iɑ"
     ]
   },
-  "parent": "gem-x-north-west",
+  "inherits": "gem-x-north-west",
   "ancestors": [
     {
       "code": "gem-x-north-west",
@@ -280,8 +280,6 @@
     "start_year": 750,
     "end_year": 1100
   },
-  "glottolog_code": "oldh1241",
-  "wikidata_qid": "Q35218",
   "location": {
     "latitude": 52.0,
     "longitude": 10.0,

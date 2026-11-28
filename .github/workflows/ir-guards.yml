@@ -1,0 +1,157 @@
+name: IR Guards
+
+# Plain repo-specific CI (not a gh-automations reusable workflow). These
+# checks keep the IR one language-agnostic engine plus data: the
+# interpreters hold no language knowledge, a version bump changes the spec,
+# and the IR gives the same output as the legacy engine and as the Lua port.
+
+on:
+  pull_request:
+    branches: [dev]
+    paths:
+      - "orthography2ipa/**"
+      - "docs/ir/**"
+      - "scripts/check_engine_agnostic.py"
+      - "scripts/check_ir_version_doc.py"
+      - "scripts/check_spec_fields.py"
+      - "tests/test_check_spec_fields.py"
+      - "scripts/ir_parity.py"
+      - "scripts/ir_parity_ci.py"
+      - "scripts/ir_lua_parity.py"
+      - "tests/data/ir_golden_ci.json"
+      - "tests/data/ir_vector_inputs.json"
+      - "tests/data/rules_outputs.json"
+      - "tests/data/ep_dialect_sentences.csv"
+      - "tests/data/arbtok_sandhi_fragment.json"
+      - "tests/conformance/**"
+      - "tests/test_ir_conformance.py"
+      - "scripts/gen_ir_vectors.py"
+      - "scripts/ir_features.py"
+      - "scripts/ir_lua_conformance.lua"
+      - ".github/workflows/ir-guards.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  engine-agnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.4.0
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python --prerelease=allow -e ".[test]"
+
+      - name: Refuse language knowledge in the interpreters
+        run: .venv/bin/python -I scripts/check_engine_agnostic.py
+
+  spec-fields:
+    runs-on: ubuntu-latest
+    # About 1 minute on a laptop.
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.4.0
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python --prerelease=allow -e ".[test]"
+
+      - name: Every LanguageSpec field is lowered, refused or declared inert
+        run: .venv/bin/python -I -W ignore scripts/check_spec_fields.py
+
+      - name: The guard fails on a field the compiler ignores
+        run: .venv/bin/python -m pytest -q tests/test_check_spec_fields.py
+
+  ir-version-doc:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: An IR version change changes docs/ir/o2i-ir-v1.md
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: python3 -I scripts/check_ir_version_doc.py --base "origin/$BASE_REF"
+
+  ir-parity:
+    runs-on: ubuntu-latest
+    # A passing run takes about 2 minutes on a laptop; the English IR
+    # compile is the slowest step.
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.4.0
+        with:
+          python-version: "3.11"
+
+      - name: Install LuaJIT for the Lua interpreter
+        if: hashFiles('orthography2ipa/ir/interpreter.lua') != ''
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends luajit
+
+      - name: Install dependencies
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python --prerelease=allow -e ".[test]"
+
+      - name: Compare legacy, Python IR and Lua IR on a fixed sample
+        run: .venv/bin/python -I scripts/ir_parity_ci.py --out ir-parity-reports
+
+      - name: Upload the parity reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ir-parity-reports
+          path: ir-parity-reports/
+
+  conformance-vectors:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.4.0
+        with:
+          python-version: "3.11"
+
+      - name: Install LuaJIT for the Lua interpreter
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends luajit
+
+      - name: Install dependencies
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python --prerelease=allow -e ".[test]"
+
+      - name: The vector files equal a new run of the generator
+        run: .venv/bin/python -I -W ignore scripts/gen_ir_vectors.py --check
+
+      - name: Python and Lua give every expect, and every IR feature has a case
+        run: .venv/bin/python -m pytest -q tests/test_ir_conformance.py

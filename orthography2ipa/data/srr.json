@@ -90,12 +90,11 @@
     "https://www.ethnologue.com/language/srr/"
   ],
   "iso639_3": "srr",
-  "glottolog_code": "sere1260",
   "timespan": {
     "start_year": 2005,
     "end_year": null
   },
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

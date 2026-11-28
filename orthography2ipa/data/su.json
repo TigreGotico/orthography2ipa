@@ -1,8 +1,7 @@
 {
   "code": "su",
   "name": "Sundanese",
-  "parent": "x-clade-mala1545",
-  "glottolog_code": "sund1252",
+  "inherits": "x-clade-mala1545",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "sun",
@@ -196,7 +195,6 @@
     "start_year": 1900,
     "end_year": null
   },
-  "wikidata_qid": "Q34002",
   "phoible_id": "sund1252",
   "wals_code": "sun",
   "location": {

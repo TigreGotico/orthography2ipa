@@ -39,7 +39,7 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Highland Mexican (Mexico City / Central Plateau). Conservative: full coda /s/, velar [x], no aspiration. Distinctive unstressed vowel devoicing (especially sentence-finally). Very tense [tʃ]. Weak approximant [ʝ̞]. Largest Spanish-speaking country. SESEO: ⟨c⟩ before ⟨e i⟩ is [s], the same phoneme as ⟨z⟩. Lipski (2011, p. 4): «The opposition /s/-/θ/ is not found in the Canary Islands (where seseo is the norm), nor in any part of Latin America.»",
   "quality": "research",
   "script_type": "alphabet",
@@ -105,7 +105,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": "mexi1248",
   "iso639_3": "spa",
   "positional_graphemes": {
     "c": {
@@ -143,11 +142,18 @@
       "notes": "Yucatec Maya indigenous adstrate (see stub yua.json; Lipski 1994)."
     }
   ],
-  "wikidata_qid": "Q616620",
   "location": {
     "latitude": 19.353773,
     "longitude": -99.13589,
     "source": "wikidata",
     "notes": "Mexico City — the highland centre this spec models. [Wikidata Q1489 P625]"
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "ES_S_VOICING",
+      "phonemes": [],
+      "surface": "",
+      "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. Its source describes the Castilian standard of Spain, and no source for this variety was opened, so the rule is switched off here."
+    }
+  ]
 }

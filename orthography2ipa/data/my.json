@@ -1,17 +1,15 @@
 {
   "code": "my",
   "name": "Burmese",
-  "glottolog_code": "nucl1310",
   "script": "Myanmar",
   "script_type": "abugida",
   "inherent_vowel": "a̰",
   "iso639_3": "mya",
   "quality": "research",
   "tone_inventory": {
-    "creaky": "high, slightly falling, creaky/tense phonation — written ⟨့⟩, or by the vowel sign ⟨ိ ု⟩",
-    "low": "low, slightly rising, modal phonation — written by the bare rhyme, or ⟨ာ ီ ူ ေ⟩",
-    "high": "high falling, breathy phonation — written ⟨း⟩, or by the vowel sign ⟨ဲ ော⟩",
-    "checked": "short, closed by [ʔ]; no tone contrast — written with a final stop letter + asat ⟨်⟩"
+    "˥˦": "high, slightly falling, creaky/tense phonation — written ⟨့⟩, or by the vowel sign ⟨ိ ု⟩",
+    "˨˧": "low, slightly rising, modal phonation — written by the bare rhyme, or ⟨ာ ီ ူ ေ⟩",
+    "˥˩": "high falling, breathy phonation — written ⟨း⟩, or by the vowel sign ⟨ဲ ော⟩"
   },
   "graphemes": {
     "က": [
@@ -888,7 +886,7 @@
       "notes": "Rhyme-by-rhyme orthography-to-IPA tables; the source actually read when building this grapheme table."
     }
   ],
-  "parent": "sit",
+  "inherits": "sit",
   "ancestors": [
     {
       "code": "sit",
@@ -917,7 +915,6 @@
     "start_year": 1050,
     "end_year": null
   },
-  "wikidata_qid": "Q9228",
   "phoible_id": "nucl1310",
   "wals_code": "brm",
   "location": {

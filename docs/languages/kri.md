@@ -1,5 +1,13 @@
 # Krio (`kri`)
 
+<!-- agent-hint
+covers: what the `kri` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/kri.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/en-GB.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Krio is a West Germanic language, written in the Latin script. Glottolog places it in 5 countries. The `kri` spec is at the research tier. It cites 2 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -58,7 +66,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 64 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 50 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -66,20 +74,20 @@ The spec can emit 64 segments. They come from the letter table, the positional r
 | Affricate |  |  |  | dʒ tʃ |  |  |  |  |
 | Nasal | m |  | n |  | ɲ | ŋ |  |  |
 | Fricative |  | f v | s z | ʃ ʒ |  |  | ʁ | h |
-| Approximant |  |  |  |  | j |  |  |  |
+| Approximant |  |  | ɹ |  | j |  |  |  |
 | Lateral approximant |  |  | l |  |  |  |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
 | Close | i iː ĩ |  | u ũ |
-| Near-close | ɪ |  |  |
+| Near-close | ɪ |  | ʊ |
 | Close-mid | e ẽ |  | o õ |
 | Mid |  | ə |  |
 | Open-mid | ɛ ɛ̃ | ɜː | ɔ ɔː ɔ̃ ʌ |
 | Near-open | æ |  |  |
 | Open | a ã |  | ɑː ɒ |
 
-Sequences that the spec writes as one unit: [ai] [au] [aɪ] [aɪə] [aʊə] [jʊə] [k͡p] [w] [æɹ] [ɒɹ] [ɔi] [əʊɪ] [ɛə] [ɛɹ] [ɡ͡b] [ɪə] [ɪɹ] [ʊə] [ʌɹ].
+Sequences that the spec writes as one unit: [k͡p] [w] [ɡ͡b].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -186,7 +194,7 @@ The spec applies 49 allophone rules after the letters are read. The change colum
 | `KRI_NASAL_u` | /u/ → [ũ], before a coda nasal | - | - |
 | `KRI_NASAL_ABSORB` | /n m ŋ/ → ∅, in the coda, after a vowel | - | - |
 
-The spec switches off 3 inherited rules: `EN_GB_ES_VOICING_AFTER_MUTE_E`, `EN_GB_ES_VOICING_AFTER_EPENTHESIS`, `EN_GB_OING_HIATUS`.
+The spec switches off 7 inherited rules: `EN_GB_ES_VOICING_AFTER_MUTE_E`, `EN_GB_ES_VOICING_AFTER_EPENTHESIS`, `EN_GB_OING_HIATUS`, `EN_GB_UNSTRESSED_FINAL_OW`, `EN_GB_UNSTRESSED_OW_BEFORE_S`, `EN_GB_UNSTRESSED_OW_BEFORE_ED`, `EN_GB_UNSTRESSED_OW_BEFORE_ING`.
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin -->

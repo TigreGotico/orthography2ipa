@@ -1,8 +1,38 @@
 # Tokenizer
 
+<!-- agent-hint
+covers: how `PhonetokTokenizer` splits text into graphemes and expands each one into its IPA candidates
+source: `orthography2ipa/phonetok.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest "tests/test_docs_examples.py::test_example_prints_its_text_block[docs/engine/tokenizer.md]" "tests/test_docs_hint_sources.py::test_hint_sources_exist[docs/engine/tokenizer.md]"`
+see: `docs/engine/lattice.md`, `docs/engine/positional_graphemes.md`
+-->
+
 `PhonetokTokenizer`, in `orthography2ipa.phonetok`, splits text into the graphemes of one language spec and expands each grapheme into its IPA candidates. The same class works for every spec in the registry, because all language knowledge comes from the spec. This page covers tokenization, maximal munch, the beam search (`ipa_beam`), allophone expansion and special characters. The [pronunciation lattice](lattice.md) page covers the per-grapheme lattice, its costs, rescoring and the confidence signal.
 
 ## Core concepts
+
+The diagram shows the steps of `tokenize`. The scan tries the five kinds of token in this order at each position. A punctuation or digit match yields to a grapheme that claims the span, and a character with no trie entry can still become a grapheme through its canonical decomposition.
+
+```mermaid
+flowchart TD
+    A["prepare: NFC, fold_diacritics, script rewrites"] --> B{"next position"}
+    B --> C["_WS_RE: WHITESPACE"]
+    B --> D["_PUNCT_RE: PUNCTUATION"]
+    B --> E["_DIGIT_RE: DIGIT"]
+    B --> F["_GraphemeTrie.longest_match: GRAPHEME"]
+    D -->|a grapheme claims the span| F
+    E -->|a grapheme claims the span| F
+    F -->|no trie entry| I["NFD decomposition: every piece a grapheme"]
+    I -->|decomposes to a grapheme| J["GRAPHEME"]
+    I -->|a piece is unmapped| G["single character: UNKNOWN"]
+    C --> H["list of Token"]
+    D --> H
+    E --> H
+    F --> H
+    J --> H
+    G --> H
+```
 
 ### Maximal munch
 
@@ -83,10 +113,10 @@ A `Token` is a frozen dataclass with these fields.
 | `kind` | `TokenKind` | The kind of token |
 | `grapheme` | `str` | The table key it matched, lower-cased for `GRAPHEME` tokens and in its original case for the others |
 | `ipa` | `tuple[str, ...]` | The flat-table IPA candidates, empty for every kind except `GRAPHEME` |
-| `position` | `int` | Character offset into the normalised input |
+| `position` | `int` | Character offset into the prepared text, the string that `prepare(text)` returns |
 | `length` | `int` | Number of characters the token consumed |
 
-The `grapheme` key is not always the full input span. An abugida consonant followed by a virama matches the bare consonant key and consumes the virama too. Use `length`, or `token.text_span(text)` on the normalised text, to recover the characters that the token consumed.
+The `grapheme` key is not always the full input span. An abugida consonant followed by a virama matches the bare consonant key and consumes the virama too. Use `length`, or `token.text_span(prepared)` on the string that `prepare` returns, to recover the characters that the token consumed.
 
 ```python
 tok = PhonetokTokenizer(orthography2ipa.get("es"))
@@ -135,7 +165,9 @@ Each key takes the form that `tokenize` gives the text: lower case, NFC, and wit
 
 ### `tokenize(text)`
 
-`tokenize` returns every token, including whitespace and punctuation, so the structure of the text survives. Before the scan, it normalises the text to NFC and removes the diacritics the spec lists in `fold_diacritics`. For an Arabic-script spec, it also decomposes presentation forms and, if the spec models shadda, expands gemination.
+`tokenize` returns every token, including whitespace and punctuation, so the structure of the text survives. Before the scan, it normalises the text to NFC and removes the diacritics the spec lists in `fold_diacritics`.
+
+For an Arabic-script spec, it also decomposes presentation forms. A spec that declares the shadda ⟨ّ⟩ gets the same step, whatever its `script` label says. For such a spec, the tokenizer also expands gemination. `acq` and `ssh` are examples: their label is `Zyyy`, and they read Arabic letters. Persian declares no shadda, so its text keeps the shadda mark. For a Gurmukhi spec, it rewrites each addak and the consonant letter after it to the letter, a virama and the letter again, which reads as two consonant slots. [`prepare(text)`](#preparetext) returns the string after these steps.
 
 The scan then goes left to right. At each position it tries whitespace, punctuation, digits, the longest grapheme, and finally a single unknown character, in that order. A grapheme wins over punctuation when the spec claims the punctuation characters, as Tetum does with the apostrophe.
 
@@ -160,6 +192,20 @@ PUNCTUATION   '.'       ()
 ```
 
 The `ipa` on a token is the flat-table list. It does not apply positional overrides. Two helpers wrap `tokenize`: `graphemes(text)` returns the `grapheme` string of every token, and `grapheme_tokens(text)` returns the `GRAPHEME` tokens only.
+
+### `prepare(text)`
+
+`prepare` returns the string that `tokenize` scans: the text after the normalisation and the script rewrites above. The `position` and `length` of each token index into this string, not into the raw input. The two strings differ when a step changes the text. A Gurmukhi addak is one example: ⟨ਪੱਗ⟩ has three characters, and its prepared form has four. A prepared string does not change when you prepare it again.
+
+```python
+tok_pa = PhonetokTokenizer(orthography2ipa.get("pa"))
+prepared = tok_pa.prepare("ਪੱਗ")
+print(len(prepared), [t.text_span(prepared) for t in tok_pa.tokenize(prepared)])
+```
+
+```text
+4 ['ਪ', 'ਗ੍', 'ਗ']
+```
 
 ### `ipa_beam(text, ...)`
 
@@ -309,13 +355,13 @@ Neighbours are word-local. They never cross a whitespace, punctuation, digit or 
 
 ### Span
 
-`span` gives the `(start, end)` character offsets of the grapheme. The offsets index the NFC-normalised input that `tokenize()` reads, and `grapheme` is lower-cased. The exact contract is:
+`span` gives the `(start, end)` character offsets of the grapheme. The offsets index the string that `PhonetokTokenizer.prepare(text)` returns, and `grapheme` is lower-cased. The slice can also hold a virama that the grapheme consumed (hi ⟨भक्त⟩ gives the slice `क्` for the grapheme `क`). The contract is:
 
-```python
-unicodedata.normalize("NFC", text)[start:end].lower() == grapheme
+```text
+tokenizer.prepare(text)[start:end].lower().startswith(grapheme)
 ```
 
-A raw `text[start:end]` against the caller's string matches only when that string is already lower-case NFC. It fails for upper-case input and for NFD input.
+A raw `text[start:end]` against the caller's string matches only when `prepare` leaves that string unchanged. It fails for upper-case input, for NFD input, and for text that `prepare` rewrites, such as a Gurmukhi addak (⟨ਪੱਗ⟩ gives the span `(3, 4)` for the last ⟨ਗ⟩, past the end of the 3-character input).
 
 ### Class predicates
 
@@ -360,4 +406,4 @@ Some stages exist only in the engine. The engine adds syllable and stress contex
 The trie is built once, at construction, and every later call reuses it. The cost of `tokenize()` is O(n·k), where n is the text length and k is the longest grapheme key. The cost of `ipa_beam()` is O(n · beam_width · candidates per grapheme), which suits words and short phrases. The context view of `tokenize_with_context()` adds one O(n) pass. Its neighbour lookups `prev`, `next` and `at` are O(1). For a long document, tokenize one sentence at a time.
 
 ---
-[← Architecture](architecture.md) · [Home](../index.md) · [The pronunciation lattice →](lattice.md)
+[← Host-side plugins](plugins.md) · [Home](../index.md) · [The pronunciation lattice →](lattice.md)

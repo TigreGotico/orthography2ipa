@@ -1,5 +1,13 @@
 # Cape Verdean Portuguese (pt-CV)
 
+<!-- agent-hint
+covers: how the Cape Verdean Portuguese spec differs from `pt-PT`
+source: `orthography2ipa/data/pt-CV.json`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_lusophone_african.py`
+see: `docs/languages/pt-PT.md`, `docs/languages/pt-MZ.md`
+-->
+
 | Field | Value |
 |:---|:---|
 | Code | `pt-CV` |

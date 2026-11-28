@@ -1,7 +1,7 @@
 {
   "code": "tai",
   "name": "Proto-Tai-Kadai (family node)",
-  "parent": "x-clade-taik1256",
+  "inherits": "x-clade-taik1256",
   "script": "IPA-reconstruction",
   "graphemes": {},
   "allophones": {},
@@ -9,7 +9,6 @@
   "quality": "stub",
   "script_type": "reconstruction",
   "iso639_3": null,
-  "glottolog_code": "taik1256",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kra%E2%80%93Dai_languages"
   ],

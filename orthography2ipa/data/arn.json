@@ -1,7 +1,7 @@
 {
   "code": "arn",
   "name": "Mapudungun",
-  "parent": "x-clade-arau1255",
+  "inherits": "x-clade-arau1255",
   "script": "Latin",
   "graphemes": {
     "tr": [
@@ -90,7 +90,6 @@
   "quality": "research",
   "script_type": "alphabet",
   "iso639_3": "arn",
-  "glottolog_code": "mapu1245",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Mapudungun_language"
   ],
@@ -130,7 +129,6 @@
       "notes": "Establishes the Alfabeto Mapuche Unificado (Unified Alphabet) modelled by this spec, as distinct from the Azümchefe alternative orthography."
     }
   ],
-  "wikidata_qid": "Q33730",
   "phoible_id": "mapu1245",
   "wals_code": "map",
   "location": {

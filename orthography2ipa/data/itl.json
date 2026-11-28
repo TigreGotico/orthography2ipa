@@ -131,7 +131,6 @@
  "allophones": {},
  "notes": "Cyrillic literary orthography for (West) Itelmen described in Georg & Volodin (1999), Die itelmenische Sprache: Grammatik und Texte. Ejectives are marked with a following apostrophe, distinct from the plain glottal-stop apostrophe grapheme because pʼ/tʼ/kʼ/chʼ are not the concatenation of their base stop plus /ʔ/ (a different IPA symbol, the ejective release ʼ, not a following glottal stop). q-hook is uvular /q/; the gamma-tail letter is voiced velar fricative /ɣ/; ha-with-descender (ҳ) is uvular fricative /χ/. Itelmen practical Cyrillic borrows the Macedonian/Serbian palatal letters lje (љ) and nje (њ) to write the palatalised sonorants /lʲ/ /nʲ/ directly (distinct base letters, not a soft-sign digraph), and l-with-descender (ӆ) for the voiceless palatalised lateral /l̥ʲ/ (Georg & Volodin 1999); none of these are Cartesian products since each is its own atomic Cyrillic letter, not a constructed digraph. The soft sign (ь) elsewhere is silent (mapped to an empty candidate). Loanword-only letters (ts/sh/shch/zh/e/yo/yu/ya, from Russian) are mapped at face value. Stress is lexical and largely unpredictable from spelling (Georg & Volodin 1999); not encoded, documented exemption rather than an oversight.",
  "iso639_3": "itl",
- "glottolog_code": "itel1242",
  "sources": [
   {
    "id": "glottolog2024",
@@ -167,7 +166,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-chuk1271",
+ "inherits": "x-clade-chuk1271",
  "phonemes": [
   "j",
   "k",

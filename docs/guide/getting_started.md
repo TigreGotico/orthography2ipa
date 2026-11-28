@@ -1,5 +1,13 @@
 # Getting Started
 
+<!-- agent-hint
+covers: how to transcribe text, read a spec, pick a language code, use the command line and prepare text before the lattice
+source: `orthography2ipa/g2p.py`, `orthography2ipa/registry.py`, `orthography2ipa/pipeline.py`, `orthography2ipa/cli.py`, `pyproject.toml`
+generated: no
+verify: `PYTHONPATH=$PWD python examples/01_basic_usage.py`
+see: `docs/guide/lexicon.md`, `docs/reference/api.md`, `docs/reference/cli.md`
+-->
+
 This page starts from one call, `transcribe()`, and works out to the rest of the API. It covers the specs and their two maps, beam search, language lookup, the command line, plugins and the data explorer. Every output on this page is IPA, the alphabet of the [International Phonetic Association](https://www.internationalphoneticassociation.org/content/full-ipa-chart); [ipa_reference.md](../specs/ipa_reference.md) lists the symbols that the specs use.
 
 ## Why the library has no model weights
@@ -12,7 +20,7 @@ This design has a consequence that you must know first. For an ambiguous spellin
 
 ## Install
 
-The [README](../../README.md#install) gives the install command. The runtime dependencies are [`numpy`](https://numpy.org), [`langcodes`](https://github.com/georgkrause/langcodes) and [`linguatag`](https://github.com/TigreGotico/linguatag), as `pyproject.toml` lists them. The distinctive-feature matrix that the distance metrics use is part of the package (`orthography2ipa/feats.py`). Each optional extra in this table adds one feature, and none of them changes a transcription on install:
+The [README](../../README.md#install) gives the install command. The runtime dependencies are [`numpy`](https://numpy.org), [`langcodes`](https://github.com/georgkrause/langcodes), [`linguatag`](https://github.com/TigreGotico/linguatag) and [`phonematcher`](https://github.com/TigreGotico/phonematcher), as `pyproject.toml` lists them. `phonematcher` tells the compiler which phones are vowels, so a spec that is not precompiled needs it on the machine that compiles it. The distinctive-feature matrix that the distance metrics use is part of the package (`orthography2ipa/feats.py`). Each optional extra in this table adds one feature, and none of them changes a transcription on install:
 
 | Extra | Adds | Use it for |
 | :--- | :--- | :--- |
@@ -213,11 +221,23 @@ from functools import partial
 
 from orthography2ipa import G2P, Pipeline
 
+
+def write_out_numbers(text):
+    return text.replace("2", "dois")
+
+
+def add_extra_diacritics(text, lang):
+    return text.replace("tranquilo", "tranqüilo") if lang == "pt-PT" else text
+
+
 engine = G2P("pt-PT", pipeline=Pipeline(
     expand=write_out_numbers,
     mark=partial(add_extra_diacritics, lang="pt-PT"),
 ))
+engine.transcribe("2 tranquilo")  # 'ˈdojʃ tɾɐ̃ˈkwilu'
 ```
+
+The two functions stand in for a number expander and a diacritic marker, such as the ones a downstream package supplies.
 
 `expand` takes a string and returns a string, and the words may change. It runs once per plain run of the input, so it never sees a `<phoneme>` tag or a forced word. A run that starts or ends with whitespace must still do so after `expand`. When the pipeline has a `mark` stage, the engine joins the runs and the forced words with no separator before `mark` reads the sentence.
 

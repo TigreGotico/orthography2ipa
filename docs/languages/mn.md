@@ -1,5 +1,13 @@
 # Mongolian (`mn`)
 
+<!-- agent-hint
+covers: what the `mn` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/mn.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Mongolian is a Mongolic language, written in the Cyrillic script. Glottolog places it in Mongolia and Russia. The `mn` spec is at the research tier. It cites 2 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
@@ -118,27 +126,27 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 64 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 56 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|
-| Plosive | p pʰ |  | t tʰ |  | k kʰ ɡ |
+| Plosive | p pʰ pʰʲ pʲ |  | t tʰ tʰʲ tʲ |  | k kʰ kʰʲ kʲ ɡ ɡʲ |
 | Affricate |  |  | ts tsʰ | tɕ tɕʰ |  |
-| Nasal | m |  | n |  | ŋ |
-| Trill |  |  | r |  |  |
-| Fricative |  | f | s | ɕ | x ɣ |
-| Lateral fricative |  |  | ɮ |  |  |
+| Nasal | m mʲ |  | n nʲ |  | ŋ ŋʲ |
+| Trill |  |  | r rʲ |  |  |
+| Fricative |  | f fʲ | s sʰʲ sʲ | ɕ ɕʰʲ ɕʲ | x xʲ ɣ ɣʲ |
+| Lateral fricative |  |  | ɮ ɮʲ |  |  |
 | Approximant |  |  |  | j |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
-| Close | i iː |  | u uː ʲu ʲuː |
-| Near-close |  |  | ʊ ʊː ʲʊ ʲʊː |
-| Close-mid | e eː ʲe ʲeː | ɵ ɵː ʲɵ |  |
-| Open-mid |  |  | ɔ ɔː ʲɔ ʲɔː |
-| Open | a aː ʲa ʲaː |  |  |
+| Close | i iː |  | u uː |
+| Near-close |  |  | ʊ ʊː |
+| Close-mid | e eː | ɵ ɵː |  |
+| Open-mid |  |  | ɔ ɔː |
+| Open | a aː |  |  |
 
-Sequences that the spec writes as one unit: [ai] [ja] [jaː] [je] [jeː] [ju] [juː] [jɔ] [jɔː] [jɵ] [jʊ] [jʊː] [ui] [w] [ɔi] [ʊi] [ʲ].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

@@ -10,6 +10,7 @@ between two markers and is rewritten from the data on every run::
     ...
     <!-- atlas:header end -->
 
+The generator also writes the ``agent-hint`` comment right after the H1.
 Every other line of the page is hand-written and is never touched. The blocks
 come in a fixed order, so that a reader learns the page once:
 
@@ -57,9 +58,12 @@ when an atlas page breaks the template.
 
 from __future__ import annotations
 
+from linguatag import catalog_ids
+
 import argparse
 import csv
 import dataclasses
+import functools
 import glob
 import importlib.util
 import io
@@ -105,6 +109,8 @@ _BLOCK = re.compile(
     r"<!-- atlas:(?P<name>\w+) begin(?P<attrs>[^>]*?)-->\n.*?<!-- atlas:(?P=name) end -->",
     re.S)
 _ATTR = re.compile(r'(\w+)="([^"]*)"')
+_HINT = re.compile(r"\A(# .*\n)\n<!-- agent-hint\n.*?-->\n", re.S)
+ATLAS_CHECK = "`PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`"
 _REGION = re.compile(r"^[a-z]{2,3}(?:-[A-Z][a-z]{3})?-(?P<region>[A-Z]{2}|\d{3})(?:-|$)")
 
 #: The coarse class of each reliability tier, in the order of
@@ -199,6 +205,7 @@ def no_page_reason(code: str) -> Optional[str]:
 # Inputs
 
 
+@functools.lru_cache(maxsize=None)
 def _docs_nav():
     path = os.path.join(REPO_ROOT, "scripts", "docs_nav.py")
     spec = importlib.util.spec_from_file_location("docs_nav", path)
@@ -219,7 +226,7 @@ class Atlas:
         self.codes = sorted(registry.available_codes())
         self.children: Dict[str, List[str]] = defaultdict(list)
         for code in self.codes:
-            parent = self.raw.get(code, {}).get("parent")
+            parent = self.raw.get(code, {}).get("inherits")
             if parent:
                 self.children[parent].append(code)
         self.aliases: Dict[str, List[str]] = defaultdict(list)
@@ -277,7 +284,7 @@ class Atlas:
         """
         macroarea, countries = "", []
         for depth, spec in enumerate(self.lineage(code)):
-            entry = self.snapshot["geography"].get(spec.glottolog_code or "")
+            entry = self.snapshot["geography"].get(catalog_ids(spec.code).get("glottolog_code") or "")
             if entry:
                 macroarea, _, listed = entry.partition("|")
                 if depth == 0:
@@ -424,14 +431,15 @@ def block_header(atlas: Atlas, spec) -> str:
         cell = (f"[{spec.iso639_3}](https://iso639-3.sil.org/code/"
                 f"{spec.iso639_3})")
         rows.append(("ISO 639-3", f"{cell}, {name}" if name else cell))
-    if spec.glottolog_code:
-        name = atlas.snapshot["glottolog_names"].get(spec.glottolog_code)
-        cell = (f"[{spec.glottolog_code}](https://glottolog.org/resource/"
-                f"languoid/id/{spec.glottolog_code})")
+    ids = catalog_ids(spec.code)
+    glottocode, qid = ids.get("glottolog_code"), ids.get("wikidata_qid")
+    if glottocode:
+        name = atlas.snapshot["glottolog_names"].get(glottocode)
+        cell = (f"[{glottocode}](https://glottolog.org/resource/"
+                f"languoid/id/{glottocode})")
         rows.append(("Glottolog", f"{cell}, {name}" if name else cell))
-    if spec.wikidata_qid:
-        rows.append(("Wikidata", f"[{spec.wikidata_qid}](https://www.wikidata"
-                                 f".org/wiki/{spec.wikidata_qid})"))
+    if qid:
+        rows.append(("Wikidata", f"[{qid}](https://www.wikidata.org/wiki/{qid})"))
     wiki = _wikipedia(spec)
     if wiki:
         title = urllib.parse.unquote(wiki.rsplit("/", 1)[-1]).replace("_", " ")
@@ -455,12 +463,12 @@ def block_header(atlas: Atlas, spec) -> str:
         end = spec.timespan.end_year
         rows.append(("Attested", f"from {spec.timespan.start_year}"
                      + (f" to {end}" if end is not None else ", living")))
-    if spec.parent and spec.parent in atlas.raw:
-        parent = atlas.raw[spec.parent]
+    if spec.inherits and spec.inherits in atlas.raw:
+        parent = atlas.raw[spec.inherits]
         historical = (parent.get("timespan") or {}).get("end_year") is not None
         rows.append(("Ancestor" if historical else "Parent",
-                     f"[{parent['name']}]({atlas.link(spec.parent)})"
-                     f" `{spec.parent}`"))
+                     f"[{parent['name']}]({atlas.link(spec.inherits)})"
+                     f" `{spec.inherits}`"))
     children = _child_lects(atlas, spec.code)
     if children:
         rows.append(("Child lects",
@@ -781,7 +789,7 @@ def block_spelling(atlas: Atlas, spec) -> str:
              "as lower-ranked candidates. The last column gives the readings "
              "that depend on the position in the word.", "",
              "| Spelling | Readings | By position |", "|:--|:--|:--|"]
-    for grapheme in sorted(spec.graphemes, key=lambda g: (g.lower(), g)):
+    for grapheme in sorted(spec.graphemes):
         readings = _readings(spec.graphemes[grapheme])
         if not readings and grapheme not in positional:
             continue
@@ -861,7 +869,8 @@ def _change(rule) -> str:
     rest = [f.name for f in dataclasses.fields(rule)
             if f.name in ("preceded_by_2", "followed_by_2", "preceded_by_3",
                           "followed_by_3", "preceded_by_phoneme_2",
-                          "followed_by_phoneme_2", "preceded_by_surface_phoneme_2",
+                          "followed_by_phoneme_2", "followed_by_phoneme_3",
+                          "preceded_by_surface_phoneme_2",
                           "requires_other_nucleus", "followed_by_nucleus",
                           "followed_by_grapheme_not", "word_contains_grapheme",
                           "word_contains_grapheme_not", "mutates_neighbor")
@@ -915,13 +924,24 @@ def _show(example) -> str:
     return f"⟨{_clean(example[0])}⟩ [{_clean(example[1])}]" if example else ""
 
 
-def _example(notes: str, output: str = "") -> str:
+def _example(notes: str, output: str = "", graphemes=()) -> str:
     """The first example of the note whose transcription holds *output*.
 
     A note that three rules share must not give the labial example to the
     velar rule, so an example that does not show the rule's output is skipped.
+    When the rule names its *graphemes*, the example must also spell one of
+    them inside a longer word: an output that is a substring of another
+    segment ([s] of [ks]) would otherwise accept an unrelated word, and the
+    bare letter cited on its own (⟨x⟩ [ks]) is not a worked example.
     """
-    return _show(next((e for e in _examples(notes) if output in e[1]), None))
+    wanted = [g.lower() for g in graphemes or () if g]
+
+    def spells(example) -> bool:
+        spelled = example[0].lower()
+        return not wanted or any(g in spelled and spelled != g for g in wanted)
+
+    return _show(next((e for e in _examples(notes)
+                       if output in e[1] and spells(e)), None))
 
 
 def _sandhi_example(rule, output: str) -> str:
@@ -953,6 +973,25 @@ def _sandhi_example(rule, output: str) -> str:
         return False
 
     return _show(next((e for e in _examples(rule.notes) if fits(e[1])), None))
+
+
+#: The longest spelling condition that a rules table prints in full.
+_MAX_SPELLING_CELL = 60
+
+
+def _context_cell(context: str, spelling, joined) -> str:
+    """A table cell for one side of a sandhi rule: the IPA context, and the
+    spelling conditions when the rule has them (a long one is named, not printed)."""
+    # GitHub splits a table cell at a pipe, even inside a code span.
+    cell = "`" + context.replace("|", "\\|") + "`"
+    for label, text in (("spelled", spelling), ("joined", joined)):
+        if text is None:
+            continue
+        if len(text) > _MAX_SPELLING_CELL:
+            cell += f", {label} by a long condition"
+        else:
+            cell += f", {label} `" + text.replace("|", "\\|") + "`"
+    return cell
 
 
 def _cites(name: str, year: int, notes: str) -> bool:
@@ -994,11 +1033,23 @@ def _citations(spec, notes: str) -> str:
     return ", ".join(found[:3])
 
 
+#: The pattern that never matches. A spec switches off an inherited sandhi
+#: rule by redeclaring its id with this context (SCHEMA.md, Sandhi Rule
+#: Schema), as it switches off an allophone rule with empty ``phonemes``.
+_NEVER_MATCHES = "(?!)"
+
+
+def _sandhi_off(rule) -> bool:
+    return _NEVER_MATCHES in (rule.left_context, rule.right_context)
+
+
 def block_rules(atlas: Atlas, spec) -> str:
     rules = list(spec.allophone_rules or ())
     active = [r for r in rules if r.phonemes]
     off = [r for r in rules if not r.phonemes]
-    sandhi = list(spec.sandhi_rules or ())
+    all_sandhi = list(spec.sandhi_rules or ())
+    sandhi = [r for r in all_sandhi if not _sandhi_off(r)]
+    off += [r for r in all_sandhi if _sandhi_off(r)]
     lines = ["## Rules", ""]
     if not active and not sandhi:
         lines.append("The spec has no allophone rule and no cross-word rule.")
@@ -1012,12 +1063,16 @@ def block_rules(atlas: Atlas, spec) -> str:
             "| Rule | Change | Example | Cited |", "|:--|:--|:--|:--|"]
         for rule in active:
             lines.append(f"| `{rule.id}` | {_change(rule)} | "
-                         f"{_example(rule.notes, rule.surface or rule.append) or '-'} | "
+                         f"{_example(rule.notes, rule.surface or rule.append, rule.grapheme) or '-'} | "
                          f"{_citations(spec, rule.notes) or '-'} |")
     if sandhi:
         lines += ["", f"The spec applies {len(sandhi)} rules across a word "
                   "boundary. The contexts are regular expressions on the IPA "
-                  "of the two words.", "",
+                  "of the two words."
+                  + (" A rule may also read the spelling of a word, or its joined spelling, "
+                     "which adds the word before a hyphen."
+                     if any(r.left_spelling or r.right_spelling or r.left_joined_spelling
+                            or r.right_joined_spelling for r in sandhi) else ""), "",
                   "| Rule | End of word | Start of next word | Change | Example | Cited |",
                   "|:--|:--|:--|:--|:--|:--|"]
         for rule in sandhi:
@@ -1030,11 +1085,11 @@ def block_rules(atlas: Atlas, spec) -> str:
                 value = re.sub(r"\\\d|\\g<\w+>", "", value)
                 output = output or value
                 change.append(f"{side} [{value}]" if value else f"{side} ∅")
-            # GitHub splits a table cell at a pipe, even inside a code span.
-            left, right = (c.replace("|", "\\|")
-                           for c in (rule.left_context, rule.right_context))
+            left, right = (_context_cell(c, sp, joined) for c, sp, joined in (
+                (rule.left_context, rule.left_spelling, rule.left_joined_spelling),
+                (rule.right_context, rule.right_spelling, rule.right_joined_spelling)))
             lines.append(
-                f"| `{rule.id}` | `{left}` | `{right}` | "
+                f"| `{rule.id}` | {left} | {right} | "
                 f"{', '.join(change) or 'none'} | {_sandhi_example(rule, output) or '-'} | "
                 f"{_citations(spec, rule.notes) or '-'} |")
     if off:
@@ -1176,7 +1231,32 @@ def render_page(atlas: Atlas, code: str, text: str) -> str:
         return f"<!-- atlas:{name} begin{attrs}-->\n{body}\n<!-- atlas:{name} end -->"
 
     text = re.sub(r"\A# .*", f"# {spec.name} (`{code}`)", text)
+    text = _HINT.sub(r"\1", text)
+    text = re.sub(r"\A(# .*\n)",
+                  lambda m: m.group(1) + "\n" + page_hint(atlas, code) + "\n",
+                  text)
     return _BLOCK.sub(fill, text)
+
+
+def page_hint(atlas: Atlas, code: str) -> str:
+    """The ``agent-hint`` comment of the page of *code*."""
+    see = ["`docs/languages/a-z.md`", "`docs/specs/quality_tiers.md`",
+           "`orthography2ipa/data/SCHEMA.md`"]
+    parent = atlas.raw[code].get("inherits")
+    if parent in atlas.pages:
+        see.insert(0, f"`docs/languages/{parent}.md`")
+    return _docs_nav().agent_hint(
+        covers=f"what the `{code}` spec holds: its place in the family tree, "
+               "its sources and scores, its sounds, its spelling rules and "
+               "transcribed examples",
+        source=f"`orthography2ipa/data/{code}.json`, `benchmarks/results.json`, "
+               "`scripts/atlas_snapshot.json`",
+        generated="partly. `scripts/gen_language_atlas.py` writes this hint and "
+                  "the blocks between the `atlas:` markers. Edit the "
+                  "generator for those, and the page for the prose between "
+                  "them",
+        verify=ATLAS_CHECK,
+        see=", ".join(see))
 
 
 def scaffold(atlas: Atlas, code: str) -> str:
@@ -1200,8 +1280,40 @@ def _entry(atlas: Atlas, code: str) -> str:
     return f"[{_clean(name)}]({atlas.link(code)})"
 
 
+def _figure(name: str, alt: str) -> List[str]:
+    return ["<picture>",
+            f'  <source media="(prefers-color-scheme: dark)" '
+            f'srcset="../evaluation/charts/{name}.dark.svg">',
+            f'  <img alt="{alt}" src="../evaluation/charts/{name}.light.svg">',
+            "</picture>", "",
+            "`scripts/gen_doc_charts.py` makes this figure from the table under it.", ""]
+
+
+def _ranked(counts: Dict[str, int], n: int) -> str:
+    """The *n* largest counts, each with every name that has that count."""
+    names: Dict[int, List[str]] = {}
+    for name, count in sorted(counts.items()):
+        names.setdefault(count, []).append(name)
+    parts = []
+    for count in sorted(names, reverse=True)[:n]:
+        tied = names[count]
+        label = tied[0] if len(tied) == 1 else f"{', '.join(tied[:-1])} and {tied[-1]}"
+        parts.append(f"{label} {count:,}")
+    return ", ".join(parts)
+
+
 def _index_head(title: str, intro: str) -> List[str]:
-    return [f"# {title}", "", intro, "",
+    others = [f"`docs/languages/{name}`" for name, other in INDEXES.items()
+              if other != title]
+    hint = _docs_nav().agent_hint(
+        covers=f"{intro[0].lower()}{intro.split('. ')[0][1:].rstrip('.')}, each linked to its page or "
+               "to its entry in the data explorer",
+        source="`orthography2ipa/data/*.json`, `scripts/atlas_snapshot.json`",
+        generated="yes, by `scripts/gen_language_atlas.py`. Edit the "
+                  "generator, not the page",
+        verify=ATLAS_CHECK,
+        see=", ".join(["`docs/languages/index.md`"] + others))
+    return [f"# {title}", "", hint, "", intro, "",
             "A stub has a name, a code and a place in the family tree, but no "
             "phonology yet. The tables list every spec above the stub tier. "
             "The stubs follow each table by name and code. To open a stub, "
@@ -1247,6 +1359,10 @@ def index_family(atlas: Atlas) -> str:
         "the page, and every other spec links to its entry in the data "
         "explorer. Each family path has its own heading, so a page can link "
         "the exact branch.")
+    counts = {top: sum(len(v) for v in groups[top].values()) for top in groups}
+    lines += _figure("atlas-family",
+                     f"Specs per top-level family, {sum(counts.values()):,} in all. "
+                     f"The largest: {_ranked(counts, 3)}.")
     lines += ["| Family | Specs |", "|:--|--:|"]
     for top in sorted(groups):
         count = sum(len(v) for v in groups[top].values())
@@ -1277,6 +1393,9 @@ def index_region(atlas: Atlas) -> str:
         "spec spoken in several countries appears under each of them. A "
         "dialect with no languoid and no region subtag sits under its "
         "macroarea, with no country.")
+    lines += _figure("atlas-region",
+                     "Countries per macroarea. The most: "
+                     f"{_ranked({a: len(groups[a]) for a in groups}, 3)}.")
     lines += ["| Macroarea | Countries |", "|:--|--:|"]
     for area in sorted(groups):
         lines.append(f"| [{area}](#{_slug(area)}) | {len(groups[area])} |")
@@ -1296,6 +1415,9 @@ def index_script(atlas: Atlas) -> str:
     lines = _index_head(
         INDEXES["by-script.md"],
         "Every spec, grouped by the script it reads.")
+    lines += _figure("atlas-script",
+                     f"Specs per script, {sum(len(v) for v in groups.values()):,} in all. "
+                     f"The largest: {_ranked({k: len(v) for k, v in groups.items()}, 3)}.")
     lines += ["| Script | Specs |", "|:--|--:|"]
     for script in sorted(groups):
         lines.append(f"| [{script}](#{_slug(script)}) | {len(groups[script])} |")
@@ -1344,8 +1466,8 @@ def refresh_snapshot() -> None:
     for path in sorted(glob.glob(os.path.join(DATA_DIR, "*.json"))):
         with open(path, encoding="utf-8") as fh:
             specs.append(json.load(fh))
-    glottocodes = {s.get("glottolog_code") for s in specs} - {None}
-    named = {s.get("glottolog_code") for s in specs
+    glottocodes = {catalog_ids(s["code"]).get("glottolog_code") for s in specs} - {None}
+    named = {catalog_ids(s["code"]).get("glottolog_code") for s in specs
              if s.get("quality", "research") != "stub"} - {None}
     iso_codes = {s.get("iso639_3") for s in specs
                  if s.get("quality", "research") != "stub"} - {None}

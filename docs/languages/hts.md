@@ -1,5 +1,13 @@
 # Hadza (`hts`)
 
+<!-- agent-hint
+covers: what the `hts` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/hts.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Hadza is a Hadza language, written in the Latin script. Glottolog places it in the Africa macroarea. The `hts` spec is at the research tier. It cites 6 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -63,11 +71,11 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 75 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 63 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p pʰ pʼ |  | d t tʰ |  |  | k kʰ kʷ kʷʰ ɡ |  |
+| Plosive | b p pʰ pʼ |  | d t tʰ |  |  | k kʰ kʷ kʷʰ ɡ | ʔ |
 | Affricate |  |  | d͡z t͡s t͡sʰ t͡sʼ | d͡ʒ t͡ʃ t͡ʃʰ t͡ʃʼ |  | k͡xʷʼ k͡xʼ |  |
 | Nasal | m |  | n n̩ |  |  |  |  |
 | Fricative |  | f | s | ʃ |  | x | ɦ |
@@ -81,7 +89,7 @@ The spec can emit 75 segments. They come from the letter table, the positional r
 | Close-mid | e eː | o oː |
 | Open | a aː |  |
 
-Sequences that the spec writes as one unit: [c͡ʎ̥˔] [c͡ʎ̥˔ʰ] [c͡ʎ̥˔ʼ] [k͡ǀ] [k͡ǀʰ] [k͡ǁ] [k͡ǁʰ] [k͡ǃ] [k͡ǃʰ] [nk͡ǀ] [nk͡ǀʰ] [nk͡ǃʰ] [w] [ŋ͡ǀ] [ŋ͡ǀˀ] [ŋ͡ǁ] [ŋ͡ǁˀ] [ŋ͡ǃ] [ŋ͡ǃˀ] [ɺ] [ʔa] [ʔaː] [ʔe] [ʔeː] [ʔi] [ʔiː] [ʔo] [ʔoː] [ʔu] [ʔuː] [ᵑʘ] [ᵑʘʷ].
+Sequences that the spec writes as one unit: [c͡ʎ̥˔] [c͡ʎ̥˔ʰ] [c͡ʎ̥˔ʼ] [k͡ǀ] [k͡ǀʰ] [k͡ǁ] [k͡ǁʰ] [k͡ǃ] [k͡ǃʰ] [w] [ŋ͡ǀ] [ŋ͡ǀˀ] [ŋ͡ǁ] [ŋ͡ǁˀ] [ŋ͡ǃ] [ŋ͡ǃˀ] [ɺ] [ᵑʘ] [ᵑʘʷ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

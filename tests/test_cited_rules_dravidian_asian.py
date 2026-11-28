@@ -218,7 +218,7 @@ def test_proto_dravidian_vowel_length_contrast():
 
 @pytest.mark.xfail(strict=True, reason="Proto-Dravidian notes claim medial stops "
                                        "have voiced allophones; the spec carries no "
-                                       "allophone_rules, so *katu stays [katu]")
+                                       "allophone_rules, so *katu stays [katu]", raises=AssertionError)
 def test_proto_dravidian_medial_stops_are_voiced_allophones():
     """"two stop series (initial: unaspirated; medial: voiced allophones)"
     (Krishnamurti 2003) — medial *t should surface voiced."""
@@ -357,7 +357,7 @@ def test_szy_e_is_central_schwa():
 
 @pytest.mark.xfail(strict=True, reason="szy notes claim /ts s z/ palatalise to "
                                        "[tɕ ɕ ʑ] before /i/, but the spec has no "
-                                       "allophone_rules: cimel → tsiməɾ, sipi → sipi")
+                                       "allophone_rules: cimel → tsiməɾ, sipi → sipi", raises=AssertionError)
 def test_szy_sibilants_palatalise_before_i():
     """"/ts s z/ palatalise to [tɕ ɕ ʑ] before /i/ and /j/ (allophones)" (szy notes)."""
     assert G2P("szy").transcribe_word("cimel").startswith("tɕ")
@@ -389,7 +389,7 @@ def test_tay_x_is_velar_fricative_distinct_from_h():
 
 @pytest.mark.xfail(strict=True, reason="tay notes claim /s/ and /ts/ palatalise to "
                                        "[ɕ tɕ] before /i/ and /j/, but the spec has "
-                                       "no allophone_rules: cyux → tsjux, siliq → siliq")
+                                       "no allophone_rules: cyux → tsjux, siliq → siliq", raises=AssertionError)
 def test_tay_sibilants_palatalise_before_i_and_j():
     """"/s/ and /ts/ are palatalised to [ɕ tɕ] before /i/ and /j/ (allophones)"
     (tay notes)."""
@@ -452,7 +452,7 @@ def test_ace_eu_is_close_back_unrounded_and_e_is_schwa():
 
 @pytest.mark.xfail(strict=True, reason="ace notes claim word-final ⟨k⟩ is a glottal "
                                        "stop, but the spec has no positional rule: "
-                                       "manok → manɔk, not manɔʔ")
+                                       "manok → manɔk, not manɔʔ", raises=AssertionError)
 def test_ace_word_final_k_is_a_glottal_stop():
     """"Word-final ⟨k⟩ is realised as a glottal stop" (ace notes)."""
     assert G2P("ace").transcribe_word("manok") == "manɔʔ"
@@ -620,7 +620,9 @@ def test_ie_intervocalic_s_is_voiced():
 
 
 def test_ie_z_is_dz_and_ch_is_esh():
-    """"⟨ch⟩ = [ʃ], ⟨j⟩ = [ʒ], ⟨z⟩ = [dz], ⟨y⟩ = [j] as a consonant" (ie notes)."""
+    """⟨z⟩ = [dz]; ⟨ch⟩ before a vowel keeps its one reading [ʃ]; ⟨y⟩ at the start
+    of a word before a vowel = [j] (ie notes; Janotta 1929, Cosmoglotta 64,
+    pp. 152-154)."""
     g = G2P("ie")
     assert g.transcribe_word("zon").lstrip("ˈ").startswith("dz")
     assert g.transcribe_word("chef").lstrip("ˈ").startswith("ʃ")
@@ -772,6 +774,108 @@ def test_ie_y_after_a_vowel_closes_the_syllable():
     assert G2P("ie").transcribe_word("antey") == "anˈtej"
 
 
+@pytest.mark.parametrize("word, expected", [
+    ("januar", "dʒaˈnwar"),
+    ("conjugation", "kondʒuɡaˈtsjon"),
+])
+def test_ie_j_is_the_affricate(word, expected):
+    """Cosmoglotta 64, p. 153: "j es egal a j in A jazz, a dg in D Budget e F
+    budget, transcrition [dž]: januar [džanwár], conjugation [kondžugatsyón]"."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("nation", "naˈtsjon"),
+    ("scientie", "ˈstsjentsje"),
+    ("position", "poziˈtsjon"),
+])
+def test_ie_t_is_ts_in_the_endings_tia_tie_tion(word, expected):
+    """Cosmoglotta 64, p. 153: "t deveni un sibilant in li finales -tia, -tie,
+    -tion; transcrition [ts]: scientie [sstsyéntsye]; nation [natsyón]"; the
+    same page: position [positsyón]. The page's single s is voiced, so position
+    has [z]."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+def test_ie_misalliantie_has_ts_but_not_the_prefix_s():
+    """Cosmoglotta 64, p. 153 prints misalliantie [missallyántsye] under rule (b),
+    where the prefixes des-, dis-, mis- keep a voiceless [ss]. The spec has no
+    prefix rule, so it reads the s as intervocalic [z]; only the [ts] of the
+    ending -tie is asserted."""
+    assert G2P("ie").transcribe_word("misalliantie").endswith("ˈljantsje")
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("physica", "ˈfyzika"),
+    ("analyse", "anaˈlyze"),
+])
+def test_ie_s_after_vocalic_y_is_intervocalic(word, expected):
+    """Cosmoglotta 64, p. 152: physica [fü'sika], analyse [analü'se]; p. 153: s
+    "es sonor ... transcrition [s] inter du vocales", the voiceless one being
+    [ss]. A vocalic ⟨y⟩ is one of the two vowels."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("email", "eˈmajl"),
+    ("rauc", "ˈrawk"),
+    ("applause", "apˈplawze"),
+    ("caul", "ˈkawl"),
+])
+def test_ie_ai_au_are_diphthongs(word, expected):
+    """Cosmoglotta 64, p. 152: "ai e au es diphtongs e es pronunciat [ay],
+    respectivmen [aw]: email [emáyl], rauc [rawk], applause [appláwse]; caul
+    [kawl]"."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("yacht", "ˈjaxt"),          # before a consonant
+    ("chromometre", "xromoˈmetre"),
+    ("psycholog", "psyxoˈloɡ"),  # joined with y
+    ("architect", "arxiˈtekt"),  # in the syllable arch
+    ("monarchist", "monarˈxist"),
+    ("schisma", "ˈsxisma"),      # after s
+])
+def test_ie_ch_is_the_velar_fricative_in_its_spelled_contexts(word, expected):
+    """Cosmoglotta 64, p. 154: "Ante consonantes o juntet con y, o in li syllabe
+    arch e pos s, ch es pronunciat quam ch in D machen o quam j in S Méjico ...
+    transcrition [kh], p. ex. yacht [yakht], chromometre [khronometre], psycholog
+    [psükhológ], architect [arkhitékt], monarchist [monarkhíst], schisma
+    [skhíssma]"; p. 153 writes the same word [ss-khíssma]. The page's single s is
+    voiced; in schisma it is voiceless [ss] before ⟨ch⟩, which the spec writes
+    [s]."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("cyan", "tsyˈan"),
+    pytest.param("dyade", "dyˈade", marks=pytest.mark.xfail(
+        strict=True, reason="only cyan is a word exception; the engine never "
+        "makes ⟨y⟩ a nucleus next to a vowel letter, so the rule is missing", raises=AssertionError)),
+])
+def test_ie_vocalic_y_before_a_vowel_is_its_own_syllable(word, expected):
+    """Cosmoglotta 64, p. 152: cyan [tsüán], two syllables with the stress on the
+    second; art. 1 (Cosmoglotta 65, p. 165) puts it on the vowel before the last
+    consonant. cyan reads right through a word exception; dyade stands for the
+    rest of the class."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
+@pytest.mark.parametrize("word, expected", [
+    ("canya", "ˈkanya"),
+    ("Catalunya", "kataˈlunya"),
+    ("Libya", "ˈlibya"),
+    ("embryo", "ˈembryo"),
+])
+def test_ie_stress_is_on_the_vowel_before_the_last_consonant_beside_y(word, expected):
+    """Cosmoglotta 65, p. 165, art. 1: "Li accentu tonic es situat ordinarmen sur
+    li vocal ante li ultim consonant". In a word ending in consonant + ⟨y⟩ +
+    vowel that vowel is the one before the consonant: the ⟨a⟩ of canya, the ⟨u⟩
+    of Catalunya, the ⟨i⟩ of Libya, the ⟨e⟩ of embryo."""
+    assert G2P("ie").transcribe_word(word) == expected
+
+
 # ── Interlingua (ia) ──
 
 def test_ia_c_is_ts_before_front_vowels_and_k_elsewhere():
@@ -790,7 +894,7 @@ def test_ia_intervocalic_s_is_voiced_and_ch_is_esh():
 
 
 @pytest.mark.xfail(strict=True, reason="ia notes claim ⟨qu⟩ = /k/ in que/qui; engine "
-                                       "gives kwe / kwi")
+                                       "gives kwe / kwi", raises=AssertionError)
 def test_ia_qu_is_bare_k_in_que_and_qui():
     """"⟨qu⟩ = /kw/ (but /k/ in que, qui)" (ia notes; Gode & Blair 1951)."""
     g = G2P("ia")
@@ -815,14 +919,14 @@ def test_lfn_stress_falls_before_the_last_consonant():
 
 
 @pytest.mark.xfail(strict=True, reason="lfn notes claim ⟨n⟩ is [ŋ] before a velar; "
-                                       "engine gives ˈtanɡo / ˈbanka")
+                                       "engine gives ˈtanɡo / ˈbanka", raises=AssertionError)
 def test_lfn_n_is_velar_before_a_velar():
     """"⟨n⟩ is [ŋ] before a velar" (lfn notes)."""
     assert "ŋ" in G2P("lfn").transcribe_word("tango")
 
 
 @pytest.mark.xfail(strict=True, reason="lfn notes claim ⟨i⟩/⟨u⟩ are [j]/[w] before "
-                                       "another vowel; engine keeps the vowel: lia → ˈlia")
+                                       "another vowel; engine keeps the vowel: lia → ˈlia", raises=AssertionError)
 def test_lfn_i_is_a_glide_before_another_vowel():
     """"⟨i⟩ and ⟨u⟩ are [j]/[w] before another vowel" (lfn notes)."""
     assert "j" in G2P("lfn").transcribe_word("lia")
@@ -842,7 +946,7 @@ def test_nov_j_ch_sh_z_x_values():
 
 
 @pytest.mark.xfail(strict=True, reason="nov notes claim ⟨c⟩ = /s/ before front "
-                                       "vowels; engine gives [k] everywhere: cite → kite")
+                                       "vowels; engine gives [k] everywhere: cite → kite", raises=AssertionError)
 def test_nov_c_is_s_before_front_vowels():
     """"⟨c⟩ is /k/ except before front vowels, where it is /s/" (nov notes)."""
     g = G2P("nov")
@@ -865,7 +969,7 @@ def test_jbo_y_is_the_schwa():
 
 @pytest.mark.xfail(strict=True, reason="jbo notes claim penultimate stress; the spec "
                                        "has no stress block, so no stress mark is "
-                                       "emitted: mlatu → mlatu")
+                                       "emitted: mlatu → mlatu", raises=AssertionError)
 def test_jbo_stress_is_penultimate():
     """"Stress falls on the penultimate syllable of Lojban words" (jbo notes)."""
     assert G2P("jbo").transcribe_word("mlatu") == "ˈmlatu"
@@ -884,7 +988,7 @@ def test_avk_c_j_x_y_values():
 
 @pytest.mark.xfail(strict=True, reason="avk notes claim final stress on "
                                        "consonant-final words and penultimate on "
-                                       "vowel-final ones; no stress mark is emitted")
+                                       "vowel-final ones; no stress mark is emitted", raises=AssertionError)
 def test_avk_stress_depends_on_the_final_segment():
     """"Stress falls on the final syllable when the word ends in a consonant and on
     the penultimate when it ends in a vowel" (avk notes)."""
@@ -911,7 +1015,7 @@ def test_vo_u_umlaut_is_front_rounded():
 
 @pytest.mark.xfail(strict=True, reason="vo notes claim stress is always on the final "
                                        "vowel of a polysyllable; no stress mark is "
-                                       "emitted: volapük → volapyk")
+                                       "emitted: volapük → volapyk", raises=AssertionError)
 def test_vo_stress_is_on_the_final_vowel():
     """"Stress is always on the final vowel of a polysyllabic word" (vo notes)."""
     assert "ˈ" in G2P("vo").transcribe_word("volapük")

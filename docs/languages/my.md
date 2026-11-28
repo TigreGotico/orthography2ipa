@@ -1,5 +1,13 @@
 # Burmese (`my`)
 
+<!-- agent-hint
+covers: what the `my` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/my.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Burmese is a Sino-Tibetan language, written in the Myanmar script. Glottolog places it in Bangladesh, Myanmar (Burma) and Thailand. The `my` spec is at the research tier. It cites 4 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -64,7 +72,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 127 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 71 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Dental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -78,15 +86,15 @@ The spec can emit 127 segments. They come from the letter table, the positional 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
 | Close | i ì í ḭ |  | u ù ú ṵ |
-| Near-close | ɪ |  | ʊ |
+| Near-close | ɪ ɪ̀ ɪ́ ɪ̰ |  | ʊ ʊ̀ ʊ́ ʊ̰ |
 | Close-mid | e è é ḛ |  | o o̰ ò ó |
 | Mid |  | ə |  |
 | Open-mid | ɛ ɛ̀ ɛ́ ɛ̰ |  | ɔ ɔ̀ ɔ́ ɔ̰ |
 | Open | a a̰ à á |  |  |
 
-Sequences that the spec writes as one unit: [aɪʔ] [aʊʔ] [aʔ] [a̰ɪɴ] [a̰ɴ] [a̰ʊɴ] [bj] [eɪʔ] [hj] [lj] [mj] [m̥j] [oʊʔ] [o̰ʊɴ] [pj] [pʰj] [w] [wa̰] [wo̰] [wà] [wá] [wè] [wé] [wì] [wò] [wó] [wɛʔ] [wɛ̀] [wɛ́] [wɪʔ] [wɪ̀ɴ] [wɪ́ɴ] [wɪ̰ɴ] [wḛ] [wḭ] [àɪɴ] [àɴ] [àʊɴ] [áɪɴ] [áɴ], and 24 more.
+Sequences that the spec writes as one unit: [w] [ʍ].
 
-Tones: [creaky] high, slightly falling, creaky/tense phonation — written ⟨့⟩, or by the vowel sign ⟨ိ ု⟩, [low] low, slightly rising, modal phonation — written by the bare rhyme, or ⟨ာ ီ ူ ေ⟩, [high] high falling, breathy phonation — written ⟨း⟩, or by the vowel sign ⟨ဲ ော⟩, [checked] short, closed by [ʔ]; no tone contrast — written with a final stop letter + asat ⟨်⟩.
+Tones: [˥˦] high, slightly falling, creaky/tense phonation — written ⟨့⟩, or by the vowel sign ⟨ိ ု⟩, [˨˧] low, slightly rising, modal phonation — written by the bare rhyme, or ⟨ာ ီ ူ ေ⟩, [˥˩] high falling, breathy phonation — written ⟨း⟩, or by the vowel sign ⟨ဲ ော⟩.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

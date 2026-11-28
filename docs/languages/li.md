@@ -1,5 +1,13 @@
 # Limburgish (`li`)
 
+<!-- agent-hint
+covers: what the `li` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/li.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Limburgish is a Germanic language, written in the Latin script. Glottolog places it in Belgium, Germany and Netherlands. The `li` spec is at the research tier. It cites 14 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -76,7 +84,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 126 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 62 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -98,7 +106,7 @@ The spec can emit 126 segments. They come from the letter table, the positional 
 | Near-open | æ æː |  |  |
 | Open | a aː |  | ɑ ɒː |
 
-Sequences that the spec writes as one unit: [aj] [au] [aə] [aːj] [aːw] [aːə] [eːj] [eːw] [eːə] [iɛ] [iːj] [iːw] [iːə] [iːɛ] [ks] [oj] [ow] [oɑ] [oə] [oːj] [oːw] [oːə] [uːj] [uːw] [uːɑ] [uːə] [uːɛ] [w] [yɛ] [yːj] [yːw] [yːə] [yːɛ] [²] [¹] [æj] [æw] [æə] [æːj] [æːw], and 27 more.
+Sequences that the spec writes as one unit: [w] [²] [¹].
 
 Tones: [¹] Accent 1 (stoottoon), written ⟨\⟩ in Spelling 2003, [²] Accent 2 (sleeptoon), written ⟨~⟩ in Spelling 2003.
 <!-- atlas:inventory end -->

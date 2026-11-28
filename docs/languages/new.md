@@ -1,5 +1,13 @@
 # Newar (`new`)
 
+<!-- agent-hint
+covers: what the `new` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/new.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Newar is a Sino-Tibetan language, written in the Devanagari script. Glottolog places it in India and Nepal. The `new` spec is at the research tier. It cites 6 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -28,7 +36,7 @@ The notes of the spec file open with these words:
 
 > Newar (Nepal Bhasa) of the Kathmandu Valley, a Sino-Tibetan language written today in Devanagari and historically in the Newar, Ranjana and other Nepalese scripts.
 
-The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 6 works, from 2003 to 2024. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes 42 of the 80 spellings of its letter table and takes the other 38 from [Hindi](hi.md) `hi`.
+The spec is at the [research](../specs/quality_tiers.md#research) tier, which asks for a cited description, with stress and a measured gold. It cites 6 works, from 2003 to 2024. 1 of them is a Wikipedia article. [Sources](#sources) lists them. The spec file writes 45 of the 86 spellings of its letter table and takes the other 41 from [Hindi](hi.md) `hi`.
 
 The [spec file](../../orthography2ipa/data/new.json) holds the full notes, with the caveats of the spec.
 <!-- atlas:overview end -->
@@ -65,29 +73,29 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 122 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 164 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
-| Consonants | Bilabial | Labiodental | Alveolar | Retroflex | Palatal | Velar | Uvular | Glottal |
-|:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p pʰ |  | d t tʰ | ɖ ʈ ʈʰ |  | k kʰ ɡ | q |  |
-| Affricate |  |  | d̠z̠ t̠s̠ |  | d͡ʑ t͡ɕ t͡ɕʰ |  |  |  |
-| Nasal | m |  | n |  | ɲ | ŋ |  |  |
-| Tap |  |  | ɾ | ɽ |  |  |  |  |
-| Fricative |  | f | s z |  | ɕ | x ɣ |  | h |
-| Approximant |  |  |  |  | j |  |  |  |
-| Lateral approximant |  |  | l |  |  |  |  |  |
+| Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Retroflex | Palatal | Velar | Uvular | Glottal |
+|:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Plosive | b bː p pʰ pʰː pː |  | d dː d̠ d̪ d̪ː d͡ t tʰ tʰː tː t̠ t̪ t̪ʰ t̪ʰː t̪ː t͡ |  | ɖ ɖː ʈ ʈʰ ʈʰː ʈː |  | k kʰ kʰː kː ɡ ɡː | q qː |  |
+| Affricate |  |  | d̠z̠ t̠s̠ | dʒ tʃ tʃʰ |  | d͡ʑ t͡ɕ t͡ɕʰ |  |  |  |
+| Nasal | m mː |  | n nː |  | ɳ ɳː | ɲ ɲː | ŋ ŋː |  |  |
+| Tap |  |  | ɾ ɾː |  | ɽ ɽː |  |  |  |  |
+| Fricative |  | f fː | s sː s̠ː z zː z̠ː | ʃ ʃʰː ʃː ʒː | ʂ ʂː | ɕ ɕʰː ɕː ʑː | x xː ɣ ɣː |  | h hː ɦ ɦː |
+| Approximant |  | ʋ ʋː |  |  |  | j jː j̃ j̃ː |  |  |  |
+| Lateral approximant |  |  | l lː |  |  |  |  |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
-| Close | i iː |  | u uː |
-| Near-close |  |  | ʊ |
-| Close-mid | e eː |  | o oː |
-| Mid |  | ə əː |  |
-| Open-mid | ɛː ɛ̃ː |  | ɔ ɔː |
+| Close | i iː ĩ ĩː |  | u uː ũ ũː |
+| Near-close | ɪ ɪː ɪ̃ ɪ̃ː |  | ʊ ʊː ʊ̃ ʊ̃ː |
+| Close-mid | e eː ẽ ẽː |  | o oː õ õː |
+| Mid |  | ə əː ə̃ ə̃ː |  |
+| Open-mid | ɛː ɛ̃ː |  | ɔ ɔː ɔ̃ ɔ̃ː |
 | Near-open | æː æ̃ː |  |  |
-| Open | a aː |  |  |
+| Open | a aː ã ãː |  |  |
 
-Sequences that the spec writes as one unit: [bə] [bʱ] [bʱə] [dʒə] [dʒɲ] [dʒɲə] [dʒʱə] [dʱ] [d̪ə] [d̪ʱə] [d͡ʑʱ] [fə] [jə] [jʱ] [kə] [kʃ] [kʃə] [kʰə] [lə] [lʱ] [mə] [mʱ] [nə] [nʱ] [pə] [pʰə] [qə] [sə] [tɾ] [tʃə] [tʃʰə] [t̪ə] [t̪ɾə] [t̪ʰə] [w] [wʱ] [xə] [zə] [ŋə] [ɖə], and 30 more.
+Sequences that the spec writes as one unit: [bʱ] [bʱː] [dʒʱ] [dʱ] [dʱː] [d̪ʱ] [d̪ʱː] [d͡ʑʱ] [jʱ] [jʱː] [lʱ] [lʱː] [mʱ] [mʱː] [nʱ] [nʱː] [w] [wʱ] [wʱː] [wː] [w̃] [w̃ː] [ɖʱ] [ɖʱː] [ɡʱ] [ɡʱː] [ɽʱ] [ɽʱː] [ɾʱ] [ɾʱː] [ʑʱː] [ʒʱː].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -144,6 +152,8 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ध⟩ | [dʱ] |  |
 | ⟨न⟩ | [n] |  |
 | ⟨न्ह⟩ | [nʱ] |  |
+| ⟨ऩ⟩ | [n] |  |
+| ⟨ऩ्ह⟩ | [nʱ] |  |
 | ⟨प⟩ | [p] |  |
 | ⟨फ⟩ | [pʰ] |  |
 | ⟨फ़⟩ | [f] |  |
@@ -155,8 +165,12 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨य्⟩ | [ɛː] |  |
 | ⟨र⟩ | [ɾ] |  |
 | ⟨र्ह⟩ | [ɾʱ] |  |
+| ⟨ऱ⟩ | [ɾ] |  |
+| ⟨ऱ्ह⟩ | [ɾʱ] |  |
 | ⟨ल⟩ | [l] |  |
 | ⟨ल्ह⟩ | [lʱ] |  |
+| ⟨ऴ⟩ | [l] |  |
+| ⟨ऴ्ह⟩ | [lʱ] |  |
 | ⟨व⟩ | [w] |  |
 | ⟨श⟩ | [s] |  |
 | ⟨श्र⟩ | [ʃɾ] |  |

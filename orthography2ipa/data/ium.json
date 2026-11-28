@@ -100,7 +100,6 @@
  },
  "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "ium",
- "glottolog_code": "iumi1238",
  "sources": [
   {
    "id": "glottolog2024",
@@ -129,7 +128,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-hmon1336",
+ "inherits": "x-clade-hmon1336",
  "phonemes": [
   "b",
   "c",

@@ -9,7 +9,7 @@ are mechanical, so they can be found without reading a spec.
 Two signals are computed here. The first is coverage: the characters that occur
 on the orthographic side of a spec's own gold, minus the characters its resolved
 grapheme table can consume. Every one of those is a character the engine drops.
-The second is inheritance across a language-family boundary: a ``parent``,
+The second is inheritance across a language-family boundary: an ``inherits``,
 ``graphemes_base`` or ``allophones_base`` that points at a language from a
 different family is a borrowed phonology until proven otherwise.
 
@@ -44,12 +44,12 @@ sys.path.insert(0, os.path.join(ROOT, "scripts"))
 DOCS_DIR = os.path.join(ROOT, "docs")
 
 import orthography2ipa as o2i  # noqa: E402
-from docs_nav import footer  # noqa: E402
+from docs_nav import agent_hint, footer  # noqa: E402
 from orthography2ipa.inventory import emission_inventory  # noqa: E402
 from orthography2ipa.json_loader import _DATA_DIR as DATA_DIR  # noqa: E402
 
 BASE_FIELDS = (
-    "parent",
+    "inherits",
     "graphemes_base",
     "allophones_base",
     "positional_graphemes_base",
@@ -224,7 +224,7 @@ def _signature(table: Optional[dict]) -> frozenset:
             readings = readings.get("ipa") or readings.get("candidates") or []
         if isinstance(readings, str):
             readings = [readings]
-        out.append((key.lower(), readings[0] if readings else ""))
+        out.append((key, readings[0] if readings else ""))
     return frozenset(out)
 
 
@@ -256,8 +256,10 @@ def _twin(code: str, raw: Dict[str, dict], field: str,
             continue
         ratio = len(mine & sig) / max(len(mine), len(sig))
         if best is None or ratio > best[1]:
-            best = (other, round(ratio, 3))
-    return best
+            best = (other, ratio)
+    if best is None:
+        return None
+    return best[0], round(best[1], 3)
 
 
 def _phoneme_agreement(spec) -> Tuple[List[str], List[str]]:
@@ -401,7 +403,7 @@ def _fmt_chain(entry: dict) -> str:
         mark = " CROSS-FAMILY" if link["cross_family"] else ""
         parts.append("{}={} [{}]{}".format(
             link["field"], link["target"], link["target_family"] or "?", mark))
-    return "; ".join(parts)
+    return ", ".join(parts)
 
 
 def render(entries: List[dict], top: int = 20) -> str:
@@ -409,12 +411,24 @@ def render(entries: List[dict], top: int = 20) -> str:
     lines = []
     lines.append("# Spec diagnostics")
     lines.append("")
+    lines.append(agent_hint(
+        covers="the gold characters each spec cannot map, the inheritance "
+               "that crosses a family line, and the specs whose tables "
+               "match another language",
+        source="`scripts/spec_diagnostics.py`, the specs in "
+               "`orthography2ipa/data/`, the gold cache in `.benchmark_cache/`",
+        generated="yes, by `scripts/spec_diagnostics.py`. Edit the generator, "
+                  "not the page",
+        verify="`PYTHONPATH=$PWD python -m pytest tests/test_spec_diagnostics.py`",
+        see="`docs/guide/known_limitations.md`, "
+            "`docs/evaluation/gold_defects.md`"))
+    lines.append("")
     lines.append(
         "Regenerate with `PYTHONPATH=$PWD python3 scripts/spec_diagnostics.py`. "
         "Three mechanical signals separate a spec that is wrong from a spec "
         "that is merely imprecise: gold characters its grapheme table cannot "
-        "consume, which the engine deletes before a rule can see them; "
-        "inheritance that crosses a language-family boundary; and a table that "
+        "consume, which the engine deletes before a rule can see them. "
+        "Inheritance that crosses a language-family boundary. A table that "
         "matches another language almost pair for pair. None is proof on its "
         "own. Each points at a spec worth reading before any rule in it is "
         "refined."
@@ -432,9 +446,9 @@ def render(entries: List[dict], top: int = 20) -> str:
     lines.append(
         "A language scored on several gold datasets is reported here **per "
         "dataset**, not unioned. Unioning inflates the count (a character can "
-        "be unmapped in one corpus only) and blends unrelated problems — one "
-        "dataset's loanword letters with another's diacritic gaps — into a "
-        "single misleading figure. The `combined_*` fields in the JSON output "
+        "be unmapped in one corpus only). It also blends unrelated problems, "
+        "such as the loanword letters of one dataset and the diacritic gaps "
+        "of another, into a single misleading figure. The `combined_*` fields in the JSON output "
         "keep the union for reference, but every ranking below and every row "
         "you might prioritise off of is per dataset."
     )
@@ -450,7 +464,7 @@ def render(entries: List[dict], top: int = 20) -> str:
     lines.append("## Ranked by unmapped gold characters (per dataset)")
     lines.append("")
     for entry, ds in sorted(per_dataset_rows, key=lambda p: -p[1]["unmapped_count"])[:top]:
-        lines.append("- **{}** ({}) / `{}` — {} of {} gold characters unmapped, hitting {:.1%} of {} scanned words; own table {} graphemes, resolved {}; worst per {}; n {}".format(
+        lines.append("- **{}** ({}) / `{}`: {} of {} gold characters unmapped, hitting {:.1%} of {} scanned words. Own table {} graphemes, resolved {}, worst per {}, n {}.".format(
             entry["code"], entry["name"], ds["dataset"], ds["unmapped_count"], ds["gold_chars"],
             ds["affected_share"] or 0.0, ds["scanned_words"],
             entry["own_graphemes"], entry["resolved_graphemes"],
@@ -470,7 +484,7 @@ def render(entries: List[dict], top: int = 20) -> str:
     )
     lines.append("")
     for entry, ds in sorted(per_dataset_rows, key=lambda p: -(p[1]["affected_share"] or 0))[:top]:
-        lines.append("- **{}** ({}) / `{}` — {:.1%} of {} scanned words lose at least one character; unmapped `{}`; worst per {}".format(
+        lines.append("- **{}** ({}) / `{}`: {:.1%} of {} scanned words lose at least one character. Unmapped `{}`, worst per {}.".format(
             entry["code"], entry["name"], ds["dataset"], ds["affected_share"] or 0.0,
             ds["scanned_words"], " ".join(ds["unmapped"][:30]),
             entry["worst_per"]))
@@ -481,7 +495,7 @@ def render(entries: List[dict], top: int = 20) -> str:
     lines.append(
         "A spec's closest table twin among the specs it does not declare as a "
         "base. A ratio near 1 means the table was taken from that language "
-        "rather than written for this one; the notes then describe a language "
+        "rather than written for this one. The notes then describe a language "
         "the data never encodes."
     )
     lines.append("")
@@ -492,12 +506,12 @@ def render(entries: List[dict], top: int = 20) -> str:
 
     twins = [e for e in scored if _twin_score(e) >= 0.8]
     for entry in sorted(twins, key=lambda e: -_twin_score(e))[:top]:
-        lines.append("- **{}** ({}, {}) — graphemes {}, allophones {}; declares {}; worst per {}{}".format(
+        lines.append("- **{}** ({}, {}): graphemes {}, allophones {}. Declares {}, worst per {}{}.".format(
             entry["code"], entry["name"], entry["family"] or "?",
             "{} {}".format(*entry["grapheme_twin"]) if entry["grapheme_twin"] else "none",
             "{} {}".format(*entry["allophone_twin"]) if entry["allophone_twin"] else "none",
             _fmt_chain(entry), entry["worst_per"],
-            " — twin is a different family" if entry["twin_cross_family"] else ""))
+            ". The twin is in a different family" if entry["twin_cross_family"] else ""))
     lines.append("")
 
     lines.append("## Ranked by cross-family inheritance")
@@ -506,7 +520,7 @@ def render(entries: List[dict], top: int = 20) -> str:
     cross.sort(key=lambda e: (-len(e["cross_family"]), -(e["worst_per"] or 0),
                               -e["combined_unmapped_count"]))
     for entry in cross[:top]:
-        lines.append("- **{}** ({}, {}) — {}; per {}; {} unmapped gold chars (union across datasets)".format(
+        lines.append("- **{}** ({}, {}): {}. Per {}, {} unmapped gold chars (union across datasets).".format(
             entry["code"], entry["name"], entry["family"] or "?",
             _fmt_chain(entry), entry["worst_per"], entry["combined_unmapped_count"]))
     lines.append("")
@@ -517,7 +531,7 @@ def render(entries: List[dict], top: int = 20) -> str:
               if len(e["declared_unused"]) >= 5 and len(e["undeclared_emitted"]) >= 5]
     contra.sort(key=lambda e: -(len(e["declared_unused"]) + len(e["undeclared_emitted"])))
     for entry in contra[:top]:
-        lines.append("- **{}** ({}) — declares {} phonemes it never emits, emits {} it never declares; chain: {}".format(
+        lines.append("- **{}** ({}): declares {} phonemes it never emits and emits {} it never declares. Chain: {}.".format(
             entry["code"], entry["name"], len(entry["declared_unused"]),
             len(entry["undeclared_emitted"]), _fmt_chain(entry)))
     lines.append("")
@@ -529,7 +543,7 @@ def render(entries: List[dict], top: int = 20) -> str:
         "signal above. Specs with neither a gold nor a flag carry no evidence "
         "either way and are left to the JSON output. `gold chars` and "
         "`unmapped` here are the union across every gold dataset the spec is "
-        "scored on — use the per-dataset sections above before prioritising a "
+        "scored on. Use the per-dataset sections above before prioritising a "
         "row off this table."
     )
     lines.append("")

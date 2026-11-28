@@ -89,8 +89,6 @@
   },
   "allophones": {},
   "iso639_3": "gor",
-  "glottolog_code": "goro1259",
-  "wikidata_qid": "Q2501174",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Gorontalo_language",
     "https://gor.wikipedia.org/wiki/Bahasa_Hulontalo"
@@ -139,7 +137,7 @@
     }
   ],
   "notes": "Gorontalo (Bahasa Hulontalo) — Philippine-type Austronesian language of northern Sulawesi, Indonesia, written today in an Indonesian-based Latin alphabet (historically also in Jawi/Pegon Arabic script, which is out of scope). The map commits to the modern Latin orthography as tabulated by Omniglot, cross-checked against the phoneme inventory in the Wikipedia phonology (Little 1995; Steinhauer). Five vowels ⟨a e i o u⟩ = /a e i o u/. Consonants: ⟨ng⟩ = /ŋ/, ⟨ny⟩ = /ɲ/, ⟨c⟩ = the voiceless PALATAL stop /c/ (not the Indonesian affricate /tʃ/), ⟨j⟩ = /ɟ/, ⟨q⟩ = the glottal stop /ʔ/ (also written with an apostrophe in some texts, e.g. wala'o 'child'), ⟨y⟩ = /j/. The letters ⟨b⟩ and ⟨d⟩ are ambiguous: each spells both the plain voiced stop and the corresponding IMPLOSIVE (/b ɓ/, /d ɗ/), and ⟨d⟩ additionally spells the laminal post-alveolar /d̠/ (written ⟨ḓ⟩ only in linguistic materials) — that contrast is NOT recoverable from ordinary spelling, so the candidates are listed plain-first. INPUT CONTRACT: Latin-script Gorontalo in modern Indonesian-based spelling.",
-  "parent": "x-clade-aust1307",
+  "inherits": "x-clade-aust1307",
   "ancestors": [
     {
       "code": "x-clade-aust1307",

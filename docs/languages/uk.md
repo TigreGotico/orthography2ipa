@@ -1,5 +1,13 @@
 # Ukrainian (`uk`)
 
+<!-- agent-hint
+covers: what the `uk` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/uk.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Ukrainian is an East Slavic language, written in the Cyrillic script. Glottolog places it in 8 countries. The `uk` spec is at the research tier. It cites 4 sources and has 3 scored datasets.
 <!-- atlas:summary end -->
@@ -59,25 +67,25 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `primary_sources` | `uk` | gold | expert-human | Apache-2.0 (this repository). Each row quotes and cites a published example. | 45 | 0.0759 | yes |
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `uk` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 51646 | 0.0992 | yes |
-| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `uk` | generated | epitran-derived | CC0 1.0 | 51621 | 0.2672 | no |
+| `primary_sources` | `uk` | gold | expert-human | Apache-2.0 (this repository). Each row quotes and cites a published example. | 45 | 0.0714 | yes |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `uk` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 51646 | 0.0980 | yes |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `uk` | generated | epitran-derived | CC0 1.0 | 51621 | 0.2665 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 75 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 74 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | Plosive | b bʲ p pʲ |  | d dʲ dʲː dː t tʲ tʲː tː |  |  | k kʲ ɡ ɡʲ |  |
 | Affricate |  |  | ts tsʲ tsʲː tsː | tʃ |  |  |  |
-| Nasal | m mʲ |  | n nʲ nʲː nː |  |  | ŋ |  |
+| Nasal | m mʲ |  | n nʲ nʲː nː |  |  | ŋ ŋʲ |  |
 | Trill |  |  | r rʲ rʲː rː |  |  |  |  |
-| Fricative |  | f fʲ | s sʲ sʲː sː z zʲ zʲː zː | ʃ ʒ |  | x xʲ | ɦ ɦʲ |
+| Fricative |  | f fʲ | s sʲ sʲː sː z zʲ zʲː zː | ʃ ʃʲ ʒ ʒʲ |  | x xʲ | ɦ ɦʲ |
 | Approximant |  | ʋ ʋʲ |  |  | j |  |  |
-| Lateral approximant |  |  | l lʲ lʲː ɫ ɫː |  |  |  |  |
+| Lateral approximant |  |  | l lʲ lʲː ɫ ɫʲ ɫʲː ɫː |  |  |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
@@ -88,7 +96,7 @@ The spec can emit 75 segments. They come from the letter table, the positional r
 | Near-open |  | ɐ |  |
 | Open | a |  | ɑ |
 
-Sequences that the spec writes as one unit: [ja] [ji] [ju] [jɛ] [w] [ʃtʃ] [ʲ].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -190,7 +198,7 @@ The spec applies 43 allophone rules after the letters are read. The change colum
 | `UK_DEIOTA_jɛ` | /jɛ/ → [ɛ], after [b] [d] [dː] [f] [j] [k] [m] [n] and 19 more | - | - |
 | `UK_DEIOTA_ja` | /ja/ → [a], after [b] [d] [dː] [f] [j] [k] [m] [n] and 19 more | ⟨дядько⟩ [ˈdʲadʲko] | - |
 | `UK_DEIOTA_ji` | /ji/ → [i], after [b] [d] [dː] [f] [j] [k] [m] [n] and 19 more | - | - |
-| `UK_SOFT_SIGN_SILENT` | /ʲ/ → ∅, after [b] [d] [f] [j] [k] [m] [n] [p] and 11 more | - | - |
+| `UK_SOFT_SIGN_SILENT` | /ʲ/ → ∅, after [b] [d] [f] [j] [k] [m] [n] [p] and 12 more | - | - |
 | `UK_DEIOTA_ju` | /ju/ → [u], after [b] [d] [dː] [f] [j] [k] [m] [n] and 19 more | - | - |
 | `UK_REGR_PALAT_s` | /s/ → [sʲ], before [tʲ] [dʲ] [nʲ] [sʲ] [zʲ] [lʲ] [tsʲ] [bʲ] and 5 more | ⟨кістка⟩ [kʲisʲtʲkɐ] | [Pompino-Marschall 2017](#src-pompino2017), Pashchenko & Mołczanow 2017 |
 | `UK_REGR_PALAT_z` | /z/ → [zʲ], before [tʲ] [dʲ] [nʲ] [sʲ] [zʲ] [lʲ] [tsʲ] [bʲ] and 5 more | ⟨звер⟩ [zʲvʲer] | [Pompino-Marschall 2017](#src-pompino2017), Pashchenko & Mołczanow 2017 |

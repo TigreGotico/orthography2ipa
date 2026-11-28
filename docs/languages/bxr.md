@@ -1,5 +1,13 @@
 # Buryat (Russia) (`bxr`)
 
+<!-- agent-hint
+covers: what the `bxr` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/bxr.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Buryat (Russia) is a Mongolic language, written in the Cyrillic script. Glottolog places it in Mongolia and Russia. The `bxr` spec is at the research tier. It cites 5 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -61,7 +69,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 43 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 40 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -76,13 +84,11 @@ The spec can emit 43 segments. They come from the letter table, the positional r
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
 | Close | i iː yː | ʉ ʉː | u uː |
-| Close-mid | eː |  | o oː ɤ |
+| Close-mid | e eː |  | o oː ɤ |
 | Mid |  | ə |  |
-| Open-mid | œː ɛː |  | ɔ ɔː |
+| Open-mid | œ œː ɛ ɛː |  | ɔ ɔː |
 | Near-open |  | ɐ |  |
 | Open | a aː |  |  |
-
-Sequences that the spec writes as one unit: [ei] [ja] [jo] [ju] [jœ] [jɛ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

@@ -347,8 +347,6 @@
   },
   "notes": "Avar (авар мацӏ, Magharul mats'), the largest Northeast Caucasian (Avar–Andic) language, literary language of Dagestan. Cyrillic alphabet since 1938; digraphs with ⟨ъ⟩, ⟨ь⟩ and the palochka ⟨ӏ⟩ mark uvulars, laterals and ejectives, and doubled letters mark the fortis (geminate) series. Letters ⟨ф ы э⟩ occur essentially only in Russian loans.",
   "iso639_3": "ava",
-  "glottolog_code": "avar1256",
-  "wikidata_qid": "Q29561",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Avar_language",
     "https://av.wikipedia.org/wiki/%D0%90%D0%B2%D0%B0%D1%80_%D0%BC%D0%B0%D1%86%D3%80"
@@ -376,7 +374,7 @@
       "notes": "Only chapter 1, 'Remarques sur le système des sons', was consulted, through the two-page Rosetta Project scan, whose pages carry no printed numbers. It gives the five-vowel system with no phonemic length, the glottal onset before an initial vowel, and the consonant table with the lenis/fortis and glottalised series."
     }
   ],
-  "parent": "x-clade-nakh1245",
+  "inherits": "x-clade-nakh1245",
   "ancestors": [
     {
       "code": "x-clade-nakh1245",

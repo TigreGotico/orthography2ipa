@@ -1,7 +1,7 @@
 {
   "code": "jpx",
   "name": "Proto-Japonic (family node)",
-  "parent": "x-clade-japo1237",
+  "inherits": "x-clade-japo1237",
   "script": "IPA-reconstruction",
   "graphemes": {},
   "allophones": {},
@@ -9,7 +9,6 @@
   "quality": "stub",
   "script_type": "reconstruction",
   "iso639_3": null,
-  "glottolog_code": "japo1237",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Proto-Japonic_language"
   ],

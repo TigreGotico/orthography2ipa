@@ -290,7 +290,7 @@
       "dːz"
     ]
   },
-  "parent": "x-clade-italorom",
+  "inherits": "x-clade-italorom",
   "ancestors": [
     {
       "code": "la-x-italia",
@@ -362,8 +362,6 @@
     "start_year": 1300,
     "end_year": null
   },
-  "glottolog_code": "neap1235",
-  "wikidata_qid": "Q33845",
   "wals_code": "itn",
   "location": {
     "latitude": 39.2288,

@@ -1,5 +1,13 @@
 # Shona (`sn`)
 
+<!-- agent-hint
+covers: what the `sn` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/sn.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Shona is a Bantu language, written in the Latin script. Glottolog places it in Botswana, South Africa, Zambia and Zimbabwe. The `sn` spec is at the research tier. It cites 3 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -67,7 +75,7 @@ The spec can emit 46 segments. They come from the letter table, the positional r
 | Nasal | m m̤ |  | n n̤ |  | ɲ | ŋ |  |
 | Trill |  |  | r |  |  |  |  |
 | Fricative |  | f v̤ | s z̤ ⁿz̤ | ʃ ʒ̤ |  |  | ɦ |
-| Approximant |  | ʋ |  |  | j |  |  |
+| Approximant |  | ʋ ʋ̤ |  |  | j |  |  |
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
@@ -75,7 +83,7 @@ The spec can emit 46 segments. They come from the letter table, the positional r
 | Close-mid | e | o |
 | Open | a |  |
 
-Sequences that the spec writes as one unit: [b͡v̤] [d͡z̤ᵝ] [mʋ̤] [sᶲ] [t͡sᶲ] [w] [z̤ᵝ] [ɓ] [ɗ] [ᵐb] [ⁿz̤ᵝ].
+Sequences that the spec writes as one unit: [b͡v̤] [d͡z̤ᵝ] [sᶲ] [t͡sᶲ] [w] [z̤ᵝ] [ɓ] [ɗ] [ᵐb] [ⁿz̤ᵝ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

@@ -207,7 +207,7 @@
             "uː"
         ]
     },
-    "parent": "sem-x-central",
+    "inherits": "sem-x-central",
     "ancestors": [
         {
             "code": "sem-x-central",
@@ -257,8 +257,6 @@
         "start_year": -500,
         "end_year": 600
     },
-    "glottolog_code": null,
     "iso639_3": null,
-    "quality": "research",
-    "wikidata_qid": "Q21661186"
+    "quality": "research"
 }

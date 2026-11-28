@@ -315,7 +315,7 @@
       "ũ"
     ]
   },
-  "parent": "pt-BR",
+  "inherits": "pt-BR",
   "notes": "Paulistano (São Paulo city). This is the variety of Barbosa & Albano (2004), so the spec keeps the pt-BR base and adds the two features that source gives for this variety alone. Strong /r/ is the velar fricative, 'usually voiced between voiced sounds and voiceless elsewhere' (p. 228): word-initial [x] (rato [ˈxatu]), ⟨rr⟩ [ɣ] (carro [ˈkaɣu]). A stressed vowel other than [i] takes a yod before word-final /S/ (p. 229: arroz [aɣojs], mas [majs]). Coda /R/ is the tap: 'Entre os paulistanos, o tepe é a realização predominante' (Castro 2013: 566); the retroflex belongs to the interior (pt-BR-x-caipira; Silva 2023: 70).",
   "quality": "research",
   "script_type": "alphabet",
@@ -461,5 +461,6 @@
       ],
       "notes": "An ⟨r⟩ after a coda consonant is the strong rhotic: honra [ˈõɣɐ], genro [ˈʒẽɣu]. Cristófaro Silva (2025: 240) puts the R-forte in one class across three contexts: 'início de sílaba que coincide com início de palavra (rapaz, rio, rosa etc.); início de sílaba em meio de palavra (carro, terra) ou início de sílaba após consoante (Israel, desrespeito etc.)'. Barbosa & Albano (2004: 228) give the Paulistano strong /r/ as 'a velar fricative, usually voiced between voiced sounds and voiceless elsewhere'; a nasal vowel or a voiced [z] precedes it here, so it is [ɣ] as in carro [ˈkaɣu]."
     }
-  ]
+  ],
+  "collapse_geminates": true
 }

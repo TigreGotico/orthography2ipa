@@ -20,8 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Sinitic_languages"
   ],
-  "parent": "sit",
-  "glottolog_code": "sini1245",
+  "inherits": "sit",
   "urls": [
     "https://glottolog.org/resource/languoid/id/sini1245"
   ],

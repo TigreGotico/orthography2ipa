@@ -1,7 +1,7 @@
 {
   "code": "poz",
   "name": "Proto-Malayo-Polynesian (family node)",
-  "parent": "x-clade-aust1307",
+  "inherits": "x-clade-aust1307",
   "script": "IPA-reconstruction",
   "graphemes": {},
   "allophones": {},
@@ -9,7 +9,6 @@
   "quality": "stub",
   "script_type": "reconstruction",
   "iso639_3": null,
-  "glottolog_code": "mala1545",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Proto-Malayo-Polynesian_language"
   ],

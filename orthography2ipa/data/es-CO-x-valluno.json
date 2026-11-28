@@ -27,7 +27,7 @@
       ]
     }
   },
-  "parent": "es-CO",
+  "inherits": "es-CO",
   "ancestors": [
     {
       "code": "es-CO",
@@ -46,7 +46,6 @@
   "quality": "stub",
   "script_type": "alphabet",
   "iso639_3": "spa",
-  "glottolog_code": "vall1258",
   "timespan": {
     "start_year": 1600,
     "end_year": null
@@ -94,6 +93,12 @@
       "surface": "h",
       "syllable_position": "coda",
       "notes": "Lowland coda /s/ lenition (aspiration tier of Lipski's 1994 cline): syllable-final /s/ (from ⟨s⟩ and seseante ⟨z⟩) weakens to the glottal aspirate [h] (esta=[ˈehta], los=[loh], diez=[djeh])."
+    },
+    {
+      "id": "ES_S_VOICING",
+      "phonemes": [],
+      "surface": "",
+      "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. This spec aspirates or deletes its coda /s/, and the voicing rule of es-ES would take the segment first, so it is switched off here and the coda keeps the reading of this spec."
     }
   ]
 }

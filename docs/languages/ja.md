@@ -1,5 +1,13 @@
 # Japanese (`ja`)
 
+<!-- agent-hint
+covers: what the `ja` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ja.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Japanese is a Japonic language, written in the Kana script. Glottolog places it in Japan. The `ja` spec is at the research tier. It cites 4 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
@@ -66,25 +74,25 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 179 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 92 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b bʲ p pʲ |  | d t |  | k kʲ ɡ ɡʲ |  | ʔ |
+| Plosive | b bʲ bʲː bː p pʲ pʲː pː |  | d dʲ dʲː dː t tʲ tʲː tː |  | k kʲ kʲː kː ɡ ɡʲ ɡʲː ɡː |  | ʔ ʔː |
 | Affricate |  |  | dz ts | dʑ tɕ |  |  |  |
-| Nasal | m |  | n | ɲ | ŋ | ɴ |  |
-| Tap |  |  | ɾ |  |  |  |  |
-| Fricative | ɸ β̞ | v | s z | ç ɕ ʑ |  |  | h ɦ |
-| Approximant |  |  |  | j |  |  |  |
-| Lateral approximant |  |  | l |  |  |  |  |
+| Nasal | m mʲ mʲː mː |  | n nː | ɲ ɲː | ŋ ŋː | ɴ ɴː |  |
+| Tap |  |  | ɾ ɾʲ ɾʲː ɾː |  |  |  |  |
+| Fricative | ɸ ɸʲ ɸʲː ɸː β̞ β̞ː | v vʲ vʲː vː | s sː z zː | ç çː ɕ ɕː ʑ ʑː |  |  | h hː ɦ ɦː |
+| Approximant |  |  |  | j jː |  |  |  |
+| Lateral approximant |  |  | l lː |  |  |  |  |
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
-| Close | i | ɯ ɯ̃ ɯ̥ |
-| Close-mid | e | o |
-| Open | a |  |
+| Close | i iː | ɯ ɯː ɯ̃ ɯ̃ː ɯ̥ ɯ̥ː |
+| Close-mid | e eː | o oː |
+| Open | a aː |  |
 
-Sequences that the spec writes as one unit: [N] [Q] [ba] [be] [bi] [bo] [bɯ] [bʲa] [bʲo] [bʲɯ] [da] [de] [di] [do] [dzɯ] [dɯ] [dʑa] [dʑe] [dʑi] [dʑo] [dʑɯ] [dʲɯ] [ha] [he] [ho] [ja] [je] [jo] [jɯ] [ka] [ke] [ki] [ko] [kwa] [kwe] [kwi] [kwo] [kɯ] [kʲa] [kʲo], and 99 more.
+Sequences that the spec writes as one unit: [w] [wː] [ɺ] [ɺː].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -163,7 +171,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ぢゃ⟩ | [dʑa] |  |
 | ⟨ぢゅ⟩ | [dʑɯ] |  |
 | ⟨ぢょ⟩ | [dʑo] |  |
-| ⟨っ⟩ | [Q] |  |
+| ⟨っ⟩ | [ʔ] |  |
 | ⟨つ⟩ | [tsɯ] |  |
 | ⟨つぁ⟩ | [tsa] |  |
 | ⟨つぃ⟩ | [tsi] |  |
@@ -241,7 +249,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ゐ⟩ | [i] |  |
 | ⟨ゑ⟩ | [e] |  |
 | ⟨を⟩ | [o] |  |
-| ⟨ん⟩ | [N] |  |
+| ⟨ん⟩ | [ɴ] |  |
 | ⟨ゔ⟩ | [vɯ] |  |
 | ⟨ァ⟩ | [a] |  |
 | ⟨ア⟩ | [a] |  |
@@ -312,7 +320,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ヂャ⟩ | [dʑa] |  |
 | ⟨ヂュ⟩ | [dʑɯ] |  |
 | ⟨ヂョ⟩ | [dʑo] |  |
-| ⟨ッ⟩ | [Q] |  |
+| ⟨ッ⟩ | [ʔ] |  |
 | ⟨ツ⟩ | [tsɯ] |  |
 | ⟨ツァ⟩ | [tsa] |  |
 | ⟨ツィ⟩ | [tsi] |  |
@@ -390,7 +398,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨ヰ⟩ | [i] |  |
 | ⟨ヱ⟩ | [e] |  |
 | ⟨ヲ⟩ | [o] |  |
-| ⟨ン⟩ | [N] |  |
+| ⟨ン⟩ | [ɴ] |  |
 | ⟨ヴ⟩ | [vɯ] |  |
 | ⟨ヴァ⟩ | [va] |  |
 | ⟨ヴィ⟩ | [vi] |  |
@@ -410,32 +418,32 @@ The spec applies 26 allophone rules after the letters are read. The change colum
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
-| `JA_Q_GEMINATE_K` | /Q/ → [k], before [k] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_KY` | /Q/ → [kʲ], before [kʲ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_G` | /Q/ → [ɡ], before [ɡ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_GY` | /Q/ → [ɡʲ], before [ɡʲ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_P` | /Q/ → [p], before [p] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_PY` | /Q/ → [pʲ], before [pʲ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_B` | /Q/ → [b], before [b] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_BY` | /Q/ → [bʲ], before [bʲ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_T` | /Q/ → [t], before [t] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_D` | /Q/ → [d], before [d] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_S` | /Q/ → [s], before [s] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_Z` | /Q/ → [z], before [z] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_SH` | /Q/ → [ɕ], before [ɕ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_ZH` | /Q/ → [ʑ], before [ʑ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_F` | /Q/ → [ɸ], before [ɸ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_HY` | /Q/ → [ç], before [ç] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_H` | /Q/ → [h], before [h] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_V` | /Q/ → [v], before [v] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_VOICELESS_AFFRICATE` | /Q/ → [t], before [ts] [tɕ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GEMINATE_VOICED_AFFRICATE` | /Q/ → [d], before [dz] [dʑ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_Q_GLOTTAL_DEFAULT` | /Q/ → [ʔ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_N_ASSIMILATE_LABIAL` | /N/ → [m], before [p] [pʲ] [b] [bʲ] [m] [mʲ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_N_ASSIMILATE_CORONAL` | /N/ → [n], before [t] [d] [n] [ts] [dz] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_N_ASSIMILATE_PALATAL` | /N/ → [ɲ], before [tɕ] [dʑ] [ɲ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_N_ASSIMILATE_VELAR` | /N/ → [ŋ], before [k] [kʲ] [ɡ] [ɡʲ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
-| `JA_N_UVULAR_DEFAULT` | /N/ → [ɴ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_K` | /ʔ/ → [k], before [k] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_KY` | /ʔ/ → [kʲ], before [kʲ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_G` | /ʔ/ → [ɡ], before [ɡ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_GY` | /ʔ/ → [ɡʲ], before [ɡʲ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_P` | /ʔ/ → [p], before [p] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_PY` | /ʔ/ → [pʲ], before [pʲ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_B` | /ʔ/ → [b], before [b] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_BY` | /ʔ/ → [bʲ], before [bʲ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_T` | /ʔ/ → [t], before [t] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_D` | /ʔ/ → [d], before [d] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_S` | /ʔ/ → [s], before [s] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_Z` | /ʔ/ → [z], before [z] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_SH` | /ʔ/ → [ɕ], before [ɕ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_ZH` | /ʔ/ → [ʑ], before [ʑ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_F` | /ʔ/ → [ɸ], before [ɸ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_HY` | /ʔ/ → [ç], before [ç] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_H` | /ʔ/ → [h], before [h] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_V` | /ʔ/ → [v], before [v] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_VOICELESS_AFFRICATE` | /ʔ/ → [t], before [ts] [tɕ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GEMINATE_VOICED_AFFRICATE` | /ʔ/ → [d], before [dz] [dʑ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_Q_GLOTTAL_DEFAULT` | /ʔ/ → [ʔ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_N_ASSIMILATE_LABIAL` | /ɴ/ → [m], before [p] [pʲ] [b] [bʲ] [m] [mʲ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_N_ASSIMILATE_CORONAL` | /ɴ/ → [n], before [t] [d] [n] [ts] [dz] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_N_ASSIMILATE_PALATAL` | /ɴ/ → [ɲ], before [tɕ] [dʑ] [ɲ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_N_ASSIMILATE_VELAR` | /ɴ/ → [ŋ], before [k] [kʲ] [ɡ] [ɡʲ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
+| `JA_N_UVULAR_DEFAULT` | /ɴ/ → [ɴ] | - | [Vance 2008](#src-vance2008), [Labrune 2012](#src-labrune2012) |
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin -->

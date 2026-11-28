@@ -1,5 +1,13 @@
 # Abkhaz (`ab`)
 
+<!-- agent-hint
+covers: what the `ab` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ab.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Abkhaz is an Abkhaz-Adyge language, written in the Cyrillic script. Glottolog places it in Georgia, Russia and Türkiye. The `ab` spec is at the research tier. It cites 4 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
@@ -74,6 +82,7 @@ The spec can emit 67 segments. They come from the letter table, the positional r
 | Nasal | m |  | n |  |  |  |  |  |  |
 | Trill |  |  | r |  |  |  |  |  |  |
 | Fricative |  | f v | s z | ʃ ʃʷ ʒ ʒʷ | ʂ ʐ | ɕ |  | ʁ ʁʲ ʁʷ χ χʲ χʷ | ħ ħʷ |
+| Approximant |  |  |  |  |  | j |  |  |  |
 | Lateral approximant |  |  | l |  |  |  |  |  |  |
 
 | Vowels | Front | Central | Back |
@@ -83,7 +92,7 @@ The spec can emit 67 segments. They come from the letter table, the positional r
 | Mid |  | ə |  |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [ji] [w] [ɥ].
+Sequences that the spec writes as one unit: [w] [ɥ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

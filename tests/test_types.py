@@ -44,7 +44,7 @@ def spec_with_parent() -> LanguageSpec:
         script="Latin",
         graphemes={"a": ["a"], "b": ["b"]},
         allophones={"a": ["a"], "b": ["b"]},
-        parent="xx",
+        inherits="xx",
     )
 
 
@@ -58,7 +58,7 @@ def spec_with_full_ancestry() -> LanguageSpec:
         script="Latin",
         graphemes={"a": ["a"], "b": ["b"]},
         allophones={"a": ["a"], "b": ["b"]},
-        parent="yy-parent",
+        inherits="yy-parent",
         ancestors=(
             Ancestor("yy-parent", AncestorRole.PARENT, 0.80, "Primary descent"),
             Ancestor("zz-sub", AncestorRole.SUBSTRATE, 0.10, "Substrate lang"),
@@ -160,7 +160,7 @@ class TestLanguageSpecBasic:
         assert len(minimal_spec.allophones) == 2
 
     def test_defaults(self, minimal_spec):
-        assert minimal_spec.parent is None
+        assert minimal_spec.inherits is None
         assert minimal_spec.ancestors == ()
         assert minimal_spec.notes == ""
 

@@ -216,8 +216,6 @@
   },
   "notes": "Akan, Asante Twi standard. INPUT CONTRACT: text is assumed to be in the unified Latin Akan orthography (Akan Orthography Committee / Bureau of Ghana Languages), i.e. the 22 Latin letters plus ⟨ɛ⟩ (U+025B) and ⟨ɔ⟩ (U+0254), with the digraphs ky, gy, hy, ny, ng, kw, gw, hw, tw, dw, nw. The mapping below is for ASANTE TWI (the Asante literary standard, the basis of the 1961/1978 unified Akan orthography); Akuapem Twi and Fante differ (notably Akuapem keeps /ɡu/ where Asante has /ɡʷ/, and Fante has affricates and a different treatment of the palatals), so this table is not correct for those dialects. KEY FEATURES: (1) SEVEN ORAL VOWELS a e ɛ i o ɔ u organised in two ATR (±RTR) harmony sets; ⟨e⟩ and ⟨o⟩ are ambiguous between the -RTR /e o/ and the +RTR reflexes [ɪ ʊ], and orthography does not disambiguate them, so both are listed as allophones. (2) PALATALS: ⟨ky gy hy⟩ are the palatal(ised) realisations of underlying /k ɡ h/ before front vowels, phonetically [tɕ dʑ ɕ]. (3) LABIALISED SERIES: ⟨kw gw hw nw⟩ and ⟨tw dw⟩ spell the labialised velars /kʷ ɡʷ hʷ ŋʷ/; ⟨tw dw⟩ are orthographic variants of the same labialised velars (not /t/ or /d/ + w), and are realised palatalised ([tɕʷ dʑʷ]) before front vowels. (4) NASAL VOWELS exist phonemically but the standard orthography does not consistently mark them; they are therefore not recoverable from ordinary text. (5) TONE: Akan is a TONE LANGUAGE (High/Low with downstep). The standard orthography DOES NOT MARK TONE, so tone is NOT RECOVERABLE from orthographic input and is not modelled here.",
   "iso639_3": "aka",
-  "glottolog_code": "akan1250",
-  "wikidata_qid": "Q28026",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Twi-Fante_language",
     "https://en.wikipedia.org/wiki/Akan_language"
@@ -355,7 +353,7 @@
     "˨",
     "˩"
   ],
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

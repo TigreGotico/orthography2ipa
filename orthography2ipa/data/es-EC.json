@@ -47,7 +47,7 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Ecuadorian Spanish (highland, Quito). Andean type: conservative coda /s/, assibilated /rr/ → [ɹ̝] in highland. Quechua substrate vowel influence. Coastal (Guayaquil) → aspiration and Caribbean-type features.",
   "quality": "skeleton",
   "script_type": "alphabet",
@@ -112,7 +112,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "spa",
   "positional_graphemes": {
     "c": {
@@ -144,11 +143,18 @@
       "notes": "Quechua indigenous adstrate (see stub qu.json; Lipski 1994)."
     }
   ],
-  "wikidata_qid": "Q603188",
   "location": {
     "latitude": -0.22,
     "longitude": -78.5125,
     "source": "wikidata",
     "notes": "Quito — the highland capital whose sierra speech this spec models. [Wikidata Q2900 P625]"
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "ES_S_VOICING",
+      "phonemes": [],
+      "surface": "",
+      "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. Its source describes the Castilian standard of Spain, and no source for this variety was opened, so the rule is switched off here."
+    }
+  ]
 }

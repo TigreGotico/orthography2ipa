@@ -228,8 +228,6 @@
   },
   "notes": "Fon (fɔ̀ngbè), a Gbe (Volta-Niger, Atlantic-Congo) language of southern Benin. ORTHOGRAPHY: the standard Latin alphabet of Fon — the Africa-Alphabet-based orthography used for Benin's national languages, whose letter-to-sound table is given in Höftmann & Ahohounkpanzon's Dictionnaire fon-français (pp. 19-20) — has 33 letters: a b c d ɖ e ɛ f g gb h hw i j k kp l m n ny o ɔ p r s t u v w x xw y z. Letter values that differ from a naive IPA reading of the same symbol: ⟨c⟩ = /t͡ɕ/ (commonly transcribed /t͡ʃ/), ⟨j⟩ = /d͡ʑ/ (~/d͡ʒ/), ⟨h⟩ = /ɣ/ (NOT [h]), ⟨hw⟩ = /ɣʷ/, ⟨x⟩ = /x/, ⟨xw⟩ = /xʷ/, ⟨y⟩ = /j/, ⟨ny⟩ = /ɲ/, ⟨gb⟩ = /ɡ͡b/, ⟨kp⟩ = /k͡p/, ⟨ɖ⟩ = /ɖ/. /p/ occurs only in ideophones and loanwords and is often replaced by /f/. [b]~[m] and [ɖ]~[n] are allophones (nasal before nasal vowels, oral elsewhere); /w/ is nasalised to [ŋʷ] before nasal vowels; /l/ is optionally [ɾ] after (post)alveolars; [ɲ] varies freely with [j̃]. VOWELS: seven oral /i e ɛ a ɔ o u/ and five nasal /ĩ ɛ̃ ã ɔ̃ ũ/. NASAL VOWELS ARE NOT MODELLED: in the orthography a nasal vowel is written vowel + ⟨n⟩ (e.g. ⟨linkpɔn⟩), homographic with an oral vowel followed by consonantal /n/; disambiguating needs lexical/syllable context this rule mapping does not have, so ⟨n⟩ always maps to /n/ and nasal vowels are under-generated. INPUT CONTRACT: input is assumed to be the standard Beninese Latin orthography of Fon, already normalised (not French-based missionary spellings, not the Gbékoun script). TONE: Fon has two phonemic tones (high, low) plus contours; tone is fully marked with diacritics in dictionaries and reference works (´ ` ˇ ˆ ¯) but is USUALLY LEFT UNMARKED in ordinary writing. This spec transcribes SEGMENTS ONLY: tone diacritics, when present, are not converted to tone marks, and where tone is unwritten it is NOT RECOVERABLE from the orthography.",
   "iso639_3": "fon",
-  "glottolog_code": "fonn1241",
-  "wikidata_qid": "Q33291",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Fon_language",
     "https://fon.wikipedia.org/wiki/F%C9%94n"
@@ -311,7 +309,7 @@
     "˨",
     "˨˦"
   ],
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

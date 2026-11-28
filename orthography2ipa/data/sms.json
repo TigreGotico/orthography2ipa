@@ -188,7 +188,7 @@
    ""
   ]
  },
- "parent": "x-clade-saam1281",
+ "inherits": "x-clade-saam1281",
  "ancestors": [
   {
    "code": "x-clade-saam1281",
@@ -203,7 +203,6 @@
  },
  "notes": "Skolt Sami is an Eastern Saami language of the Uralic family, written since 1973 in a Latin orthography rich in special letters. The letter values are the ones the Wikipedia writing-system table gives (⟨a⟩ /ɑ/, ⟨ä⟩ /a/, ⟨â⟩ /ɐ/, ⟨å⟩ /ɔ/, ⟨õ⟩ /ɘ/, ⟨e⟩ /e/ and /ɛ/, ⟨h⟩ /x/, ⟨j⟩ /ʝ/, ⟨ǩ⟩ /c͡ç/, ⟨ǧ⟩ /ɟ͡ʝ/, ⟨ǥ⟩ /ɣ/, ⟨đ⟩ /ð/, ⟨c⟩ /t͡s/, ⟨č⟩ /t͡ʃ/, ⟨ʒ⟩ /d͡z/, ⟨ǯ⟩ /d͡ʒ/, ⟨nj⟩ /ɲ/, ⟨lj⟩ /ʎ/), and every value is independently attested by both wired gold sets. A doubled vowel letter spells one long nucleus (⟨oo⟩ /oː/), and a doubled affricate or palatal letter spells its geminate with the first element written twice (⟨čč⟩ [ttʃ], ⟨ǩǩ⟩ [ccç], ⟨llj⟩ [ʎʎ]) — the convention the transcriptions themselves use. Word stress is fixed on the first syllable.\n\nSuprasegmental palatalisation is written with a mark after the syllable vowel. The 1973 standard uses U+02B9 MODIFIER LETTER PRIME (the giellalt lang-sms orthography lists spell the palatalised geminates ʹbb ʹcc ʹdd … ʹllj ʹnnj with that codepoint); U+00B4 ACUTE ACCENT is the visually similar substitute NorthEuraLex actually writes. U+02CA MODIFIER LETTER ACUTE ACCENT is mapped defensively for the same visual-lookalike reason but is not observed in either wired gold set. The mark is not a segment of its own: it deletes and palatalises the following consonant (SMS_PALATALISATION_MARK), and before a vowel letter, where it has no consonant to dock on, it contributes nothing. Its effect is genuinely suprasegmental — phonetic transcriptions mark every consonant of the following cluster as palatalised — and the rule layer can only reach the cluster's first consonant; the spreading remainder is an engine limit, not an orthography gap.\n\nThe apostrophe U+0027 (and its typographic form U+2019, mapped defensively but not observed in either wired gold set) is not part of the 1973 alphabet. It has two documented jobs: the dictionary quantity notation, where it separates the halves of a long geminate (⟨jiõg'g⟩ for ⟨jiõgg⟩), and — per the same Wikipedia source — separating ⟨lʼj⟩/⟨nʼj⟩ so they read as two consonants rather than the digraphs ⟨lj⟩/⟨nj⟩ (which this revision maps to the palatal sonorants /ʎ/ /ɲ/); engine behaviour already matches, e.g. l'j → ˈlʝ. It carries no segment of its own, and is declared explicitly rather than left unmapped, because an undeclared character is dropped without trace.\n\nKnown unencoded facts. Skolt Sami phonetically appends an echo vowel after a word-final consonant or cluster, matching the word's harmony; the orthography never spells it, and the two independent gold sets disagree about whether to transcribe it, so it is left out. The three-way consonant quantity system and consonant gradation are morphophonological alternations between related word forms, not readings of a fixed spelling, and belong to a downstream consumer.",
  "iso639_3": "sms",
- "glottolog_code": null,
  "sources": [
   {
    "id": "sms_glottolog",

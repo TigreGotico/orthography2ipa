@@ -1,11 +1,10 @@
 {
   "code": "pt-MO",
-  "glottolog_code": null,
   "name": "Macau Portuguese",
   "script": "Latin",
   "quality": "skeleton",
   "script_type": "alphabet",
-  "parent": "pt-PT",
+  "inherits": "pt-PT",
   "graphemes_base": "pt-PT",
   "allophones_base": "pt-PT",
   "positional_graphemes_base": "pt-PT",
@@ -103,7 +102,6 @@
     "end_year": null
   },
   "iso639_3": "por",
-  "wikidata_qid": "Q9290867",
   "location": {
     "latitude": 22.19,
     "longitude": 113.538056,
@@ -112,6 +110,18 @@
   },
   "word_exceptions_base": "pt-PT",
   "allophone_rules": [
+    {
+      "id": "PT_EX_CONSONANT_GLIDE",
+      "phonemes": [],
+      "surface": "ɐj",
+      "notes": "DISABLED for Macanese Portuguese. No source for the vowel of ⟨ex⟩ before a consonant in this variety was read, so its output stays what it was. The pt-PT rule gives ⟨ex⟩ the diphthong of the pt-PT ⟨ei⟩, [ej]."
+    },
+    {
+      "id": "PT_INITIAL_EX_VOICED",
+      "phonemes": [],
+      "surface": "z",
+      "notes": "DISABLED for Macanese Portuguese. No source for the reading of word-initial ⟨ex⟩ before a vowel in this variety was read, so its output stays what it was. The pt-PT rule gives the ⟨x⟩ the value [z]."
+    },
     {
       "id": "PT_LEX_OPEN_E_SUFFIX",
       "phonemes": [],
@@ -556,5 +566,6 @@
       "surface": "ɐ",
       "notes": "DISABLED for Macau Portuguese. No source read covers a stressed /a/ before an onset nasal in this variety. The reading is the spec default and makes no claim about this context."
     }
-  ]
+  ],
+  "collapse_geminates": true
 }

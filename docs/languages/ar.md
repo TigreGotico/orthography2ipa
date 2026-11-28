@@ -1,5 +1,13 @@
 # Arabic (`ar`)
 
+<!-- agent-hint
+covers: what the `ar` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ar.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Arabic is a Central Semitic language, written in the Arabic script. Glottolog places it in 25 countries. The `ar` spec is at the research tier. It cites 5 sources and has 5 scored datasets.
 <!-- atlas:summary end -->
@@ -60,7 +68,7 @@ The transform touches only the codepoints of those two blocks. A global NFKC wou
 
 ### Gemination: shadda
 
-A consonant with shadda (U+0651) is a geminate, and this holds for every consonant, the glides ي and و included (Ryding 2005, ch. 2, pp. 15-16, and Watson 2002). The function `_expand_arabic_gemination` doubles the base consonant and drops the shadda, so the grapheme table sees two ordinary consonant slots. It accepts both orders of the mark cluster: consonant, shadda, harakat, and consonant, harakat, shadda. The two orders render alike, and NFC does not reorder them.
+A consonant with shadda (U+0651) is a geminate, and this holds for every consonant, the glides ي and و included (Ryding 2005, ch. 2, pp. 15-16, and Watson 2002). The function `expand_arabic_gemination` doubles the base consonant and drops the shadda, so the grapheme table sees two ordinary consonant slots. It accepts both orders of the mark cluster: consonant, shadda, harakat, and consonant, harakat, shadda. The two orders render alike, and NFC does not reorder them.
 
 ```python
 >>> orthography2ipa.transcribe("عَمَّ", "ar")
@@ -214,7 +222,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 216 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 44 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Pharyngeal | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -234,7 +242,7 @@ The spec can emit 216 segments. They come from the letter table, the positional 
 | Near-open | æ |  |
 | Open | a aː | ɑ ɑː |
 
-Sequences that the spec writes as one unit: [add] [adˤdˤ] [aj] [aja] [ajaː] [aji] [ajj] [aju] [al] [all] [allaːh] [an] [ann] [arr] [ass] [asˤsˤ] [at] [att] [atˤtˤ] [aw] [awa] [awaː] [awi] [awu] [aww] [azz] [aðð] [aðˤðˤ] [aʃʃ] [aːj] [aθθ] [bi] [bidd] [bidˤdˤ] [bil] [bill] [binn] [birr] [biss] [bisˤsˤ], and 133 more.
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

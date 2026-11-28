@@ -45,7 +45,7 @@ def test_belgian_dutch_keeps_its_own_spec():
 
 @pytest.mark.parametrize("code", ["nl-BE", "af", "vls"])
 def test_the_dutch_varieties_take_the_standard_as_parent(code):
-    assert get(code).parent == "nl-NL"
+    assert get(code).inherits == "nl-NL"
 
 
 def test_belgian_dutch_reads_the_standard_tables():
@@ -60,7 +60,7 @@ def test_no_spec_names_the_bare_dutch_code():
     named = {}
     for path in sorted(DATA.glob("*.json")):
         raw = json.loads(path.read_text(encoding="utf-8"))
-        refs = [raw.get(k) for k in raw if k == "parent" or k.endswith("_base")]
+        refs = [raw.get(k) for k in raw if k == "inherits" or k.endswith("_base")]
         refs += [a.get("code") for a in raw.get("ancestors") or ()]
         if "nl" in refs:
             named[path.stem] = refs

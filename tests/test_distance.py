@@ -89,6 +89,7 @@ def ja():
 # Feature vectors
 # ═══════════════════════════════════════════════════════════════════════════
 
+@pytest.mark.filterwarnings("ignore:orthography2ipa.distance.feature_:DeprecationWarning")
 class TestFeatureVector:
     """Tests for feature_vector()."""
 

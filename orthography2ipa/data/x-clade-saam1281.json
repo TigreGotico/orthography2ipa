@@ -20,8 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Sami_languages"
   ],
-  "parent": "urj",
-  "glottolog_code": "saam1281",
+  "inherits": "urj",
   "urls": [
     "https://glottolog.org/resource/languoid/id/saam1281"
   ],

@@ -247,7 +247,7 @@
       "followed_by_2": "word_boundary"
     }
   ],
-  "parent": "ar-x-mashriqi",
+  "inherits": "ar-x-mashriqi",
   "ancestors": [
     {
       "code": "ar-x-mashriqi",
@@ -361,7 +361,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": "chad1249",
   "iso639_3": "shu",
   "location": {
     "latitude": 14.67,

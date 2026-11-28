@@ -120,7 +120,7 @@
       "dz"
     ]
   },
-  "parent": "sla",
+  "inherits": "sla",
   "ancestors": [
     {
       "code": "sla",
@@ -137,7 +137,6 @@
   ],
   "notes": "Skeleton. Old East Slavic / Old Russian (c. 10th-14th c.), common ancestor of Russian, Ukrainian and Belarusian. Early Cyrillic including the yers ъ/ь and yat ѣ; the reduced yers are given their strong-position values and jer weakening/loss is unencoded. Church Slavonic adstrate. Stress exemption: Old East Slavic had a free, lexically contrastive pitch/stress accent (continuing Balto-Slavic mobile accentuation) that Cyrillic manuscript orthography did not mark; it is not recoverable from spelling and so no stress block is declared. Source: Matthews, W. K. (1960), Russian Historical Grammar, secs. on accentuation.",
   "iso639_3": "orv",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "matthews1960",

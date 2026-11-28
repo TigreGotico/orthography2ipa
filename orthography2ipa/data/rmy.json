@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "rmy",
-  "glottolog_code": "vlax1238",
   "timespan": {
     "start_year": 1800,
     "end_year": null
@@ -34,7 +33,7 @@
       "notes": "Wikipedia (Vlax Romani): 'The Vlax Roma...originate from the former Roma slaves in the principalities of Moldavia and Wallachia (with the name \"Vlax\", which comes from \"Vlach\", coming from the latter), now Romania.' Matras (2002) documents Romanian as a major lexical-donor language for Vlax Romani dialects generally, consistent with this multi-century Romanian-principality residence."
     }
   ],
-  "parent": "x-clade-indo1321",
+  "inherits": "x-clade-indo1321",
   "notes": "Vlax Romani, the largest Romani dialect subgroup after Balkan Romani (Northern Vlax: Kalderash, Lovari; Southern Vlax). Named for the Romanian-speaking principalities (Wallachia/Moldavia = 'Vlach' lands) where its speakers were historically enslaved, hence the strong Romanian adstrate. Orthography and phonology (aspirated stops čh/kh/ph/th, etc.) match the existing rom.json spec, which is itself glottolog-coded vlax1238; graphemes are inherited from it rather than duplicated.",
   "sources": [
     {
@@ -55,7 +54,6 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Vlax_Romani"
   ],
-  "wikidata_qid": "Q2669199",
   "phoible_id": "vlax1238",
   "location": {
     "latitude": 46.09,

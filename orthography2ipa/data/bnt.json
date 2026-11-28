@@ -8,7 +8,6 @@
   "quality": "stub",
   "script_type": "reconstruction",
   "iso639_3": null,
-  "glottolog_code": "narr1281",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Proto-Bantu_language"
   ],
@@ -28,7 +27,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Proto-Bantu_language"
     }
   ],
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "nic",

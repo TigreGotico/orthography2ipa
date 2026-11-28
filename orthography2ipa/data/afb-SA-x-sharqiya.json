@@ -11,7 +11,7 @@
   },
   "allophones_base": "afb",
   "allophones": {},
-  "parent": "afb",
+  "inherits": "afb",
   "ancestors": [
     {
       "code": "afb",

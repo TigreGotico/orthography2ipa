@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "yid",
-  "glottolog_code": "east2295",
   "timespan": {
     "start_year": 1000,
     "end_year": null
@@ -194,7 +193,7 @@
       "notes": "Core Germanic vocabulary from Middle High German; also Slavic and Hebrew/Aramaic components"
     }
   ],
-  "parent": "x-clade-west2793",
+  "inherits": "x-clade-west2793",
   "notes": "Eastern Yiddish in YIVO orthography — pointed, with the historical unpointed spelling of the Hebrew-Aramaic component retained (⟨ח⟩ ⟨ת⟩ ⟨שׂ⟩ ⟨כּ⟩ ⟨תּ⟩) and the five final forms ⟨ך ם ן ף ץ⟩ in use; neither holds in Soviet orthography, which respells the Hebrew-Aramaic component phonetically. Unlike Hebrew, Yiddish writes its vowels with letters. Written right-to-left. The pointing is part of the spelling, not an optional aid: ⟨אַ⟩ /a/ and ⟨אָ⟩ /ɔ/ are distinct letters, dagesh distinguishes ⟨פּ⟩ /p/ from ⟨פ⟩ /f/ and rafe ⟨בֿ⟩ /v/ from ⟨ב⟩ /b/, and the sin dot ⟨שׂ⟩ /s/ from bare ⟨ש⟩ /ʃ/. Shtumer alef ⟨א⟩ before ⟨י⟩ or ⟨ו⟩ is silent and marks that the syllable opens with the vocalic reading of that letter. The vowels of the unpointed Hebrew-Aramaic component are not recoverable from the letters and are a ceiling on any letter-driven transcription of Yiddish, not a gap in this description. Khirik yud ⟨יִ⟩ is a separate letter whose job after another yud is to block the tsvey-yudn reading, so ⟨ייִ⟩ is /ji/ and is keyed to defeat the longer-but-wrong maximal-munch match on ⟨יי⟩ /ɛɪ/ — ⟨ייִד⟩ is [jid], not [ɛɪd]. Maqaf ⟨־⟩, geresh ⟨׳⟩ and gershayim ⟨״⟩ are punctuation, not letters, and are deliberately not keyed.",
   "sources": [
     {
@@ -232,7 +231,6 @@
     "https://en.wikipedia.org/wiki/Yiddish_orthography",
     "https://yi.wikipedia.org/wiki/%D7%99%D7%99%D7%93%D7%99%D7%A9"
   ],
-  "wikidata_qid": "Q8641",
   "phoible_id": "east2295",
   "wals_code": "ydd",
   "location": {

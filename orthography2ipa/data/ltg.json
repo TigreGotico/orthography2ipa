@@ -240,8 +240,6 @@
   },
   "notes": "Latgalian (latgaļu volūda), an Eastern Baltic variety of Latvia recognised as a protected historic variant of Latvian; treated as a separate language by ISO 639-3 (ltg) and Glottolog. The 2007 standard orthography (Latgalian Orthography Rules, approved by the State Language Centre) is close to phonemic, with macrons for long vowels (ā ē ī ō ū), hooks/cedillas for palatalised ģ ķ ļ ņ, hačeks for č š ž, and — unlike standard Latvian — the letter ⟨y⟩ for the central vowel /ɨ/. Diphthongs /iɛ/ and /uɔ/ are written ⟨ie⟩ and ⟨uo⟩. Pitch accent and vowel-length interactions are not modelled here; stress is generally on the first syllable.",
   "iso639_3": "ltg",
-  "glottolog_code": "east2282",
-  "wikidata_qid": "Q36212",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Latgalian_language",
     "https://ltg.wikipedia.org/wiki/Latgal%C4%AB%C5%A1u_vol%C5%ABda"
@@ -280,7 +278,7 @@
     "start_year": 1753,
     "end_year": null
   },
-  "parent": "x-clade-balt1263",
+  "inherits": "x-clade-balt1263",
   "ancestors": [
     {
       "code": "x-clade-balt1263",

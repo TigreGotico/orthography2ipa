@@ -1,12 +1,11 @@
 {
   "code": "kum",
   "name": "Kumyk",
-  "glottolog_code": "kumy1244",
   "script": "Cyrillic",
   "script_type": "alphabet",
   "iso639_3": "kum",
   "quality": "research",
-  "parent": "trk",
+  "inherits": "trk",
   "ancestors": [
     {
       "code": "trk",
@@ -140,7 +139,6 @@
     "start_year": 1938,
     "end_year": null
   },
-  "wikidata_qid": "Q36209",
   "phoible_id": "kumy1244",
   "location": {
     "latitude": 43.15,

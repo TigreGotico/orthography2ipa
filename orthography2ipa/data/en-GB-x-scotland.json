@@ -33,7 +33,7 @@
       "x"
     ]
   },
-  "parent": "en-GB",
+  "inherits": "en-GB",
   "ancestors": [
     {
       "code": "en-GB",
@@ -80,9 +80,7 @@
     "start_year": 1600,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "eng",
-  "wikidata_qid": "Q1553250",
   "location": {
     "latitude": 57,
     "longitude": -5,

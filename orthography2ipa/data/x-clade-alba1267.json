@@ -20,8 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Albanian_language"
   ],
-  "parent": "ine",
-  "glottolog_code": "alba1267",
+  "inherits": "ine",
   "urls": [
     "https://glottolog.org/resource/languoid/id/alba1267"
   ],

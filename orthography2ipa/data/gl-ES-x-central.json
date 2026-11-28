@@ -14,7 +14,7 @@
     ]
   },
   "positional_graphemes_base": "gl-ES",
-  "parent": "gl-ES",
+  "inherits": "gl-ES",
   "ancestors": [
     {
       "code": "gl-ES",
@@ -69,7 +69,6 @@
     "start_year": 1300,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "glg",
   "location": {
     "latitude": 43.011667,

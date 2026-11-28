@@ -20,8 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Semitic_languages"
   ],
-  "parent": "x-clade-afro1255",
-  "glottolog_code": "semi1276",
+  "inherits": "x-clade-afro1255",
   "urls": [
     "https://glottolog.org/resource/languoid/id/semi1276"
   ],

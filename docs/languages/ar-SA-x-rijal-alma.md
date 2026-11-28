@@ -1,5 +1,13 @@
 # Rijāl Almaʿ Arabic (`ar-SA-x-rijal-alma`)
 
+<!-- agent-hint
+covers: what the `ar-SA-x-rijal-alma` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ar-SA-x-rijal-alma.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/ar-x-peninsul.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Rijāl Almaʿ Arabic is a Central Semitic variety, written in the Arabic script. Its code names Saudi Arabia. The `ar-SA-x-rijal-alma` spec is at the research tier. It cites 8 sources and has 3 scored datasets.
 <!-- atlas:summary end -->
@@ -67,7 +75,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 219 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 47 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Pharyngeal | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -87,7 +95,7 @@ The spec can emit 219 segments. They come from the letter table, the positional 
 | Near-open | æ |  |
 | Open | a aː | ɑ ɑː |
 
-Sequences that the spec writes as one unit: [add] [aj] [aja] [ajaː] [aji] [ajj] [aju] [al] [all] [allaːh] [an] [ann] [arr] [ass] [asˤsˤ] [at] [att] [atˤtˤ] [aw] [awa] [awaː] [awi] [awu] [aww] [azz] [aðð] [aɬˤɬˤ] [aɮˤɮˤ] [aʃʃ] [aːj] [aθθ] [bi] [bidd] [bil] [bill] [binn] [birr] [biss] [bisˤsˤ] [bitt], and 133 more.
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

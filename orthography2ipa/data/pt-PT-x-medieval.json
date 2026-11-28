@@ -128,6 +128,21 @@
   },
   "graphemes_base": "roa-x-galaico-pt",
   "allophones_base": "roa-x-galaico-pt",
+  "allophone_rules": [
+    {"id": "PT_GU_GLIDE", "phonemes": ["ɡ"], "surface": "ɡw", "grapheme": ["gu"],
+     "word_contains_grapheme": ["aguent", "anguiform", "argui", "arguem", "argues", "arguent", "lingueta", "linguist", "linguíst", "antiguidad", "linguiç", "pinguim", "pinguins", "pinguinz", "pinguine", "sagui", "bilingu", "bilíngu", "ensanguent", "ambiguidad", "anhanguer"],
+     "notes": "AO1990 Base XIV 1.º: the u of ⟨gu qu⟩ before ⟨e i⟩ is pronounced in the words that Base XIV lists and in others of the same class, written with the trema before 1990 (agüentar, sagüi). Priberam: |güen| aguentar, |àgüí| sagui. The stems match every inflected form. argueiro and equipa keep a silent u."},
+    {"id": "PT_QU_GLIDE", "phonemes": ["k"], "surface": "kw", "grapheme": ["qu"],
+     "word_contains_grapheme": ["cinquent", "equestr", "frequent", "frequênc", "tranquil", "ubiquidad", "sequênc", "delinquent", "eloquent", "quinquén", "quinquên", "consequent", "consequênc", "aquífer", "antiquíssim"],
+     "notes": "AO1990 Base XIV 1.º: the u of ⟨gu qu⟩ before ⟨e i⟩ is pronounced in the words that Base XIV lists and in others of the same class, written with the trema before 1990 (agüentar, sagüi). Priberam: |güen| aguentar, |àgüí| sagui. The stems match every inflected form. argueiro and equipa keep a silent u."},
+    {"id": "PT_QU_GLIDE_EQUI", "phonemes": ["k"], "surface": "kw", "grapheme": ["qu"],
+     "word_contains_grapheme": ["equian", "equiax", "equida", "equide", "equidi", "equifo", "equigr", "equila", "equimol", "equinu", "equipen", "equipr", "equiss", "equitat", "equivalv", "equiân", "equipol", "equipot"],
+     "word_contains_grapheme_not": ["tequil", "ressequ", "senequ"],
+     "notes": "The learned prefix equi- 'equal' keeps the glide in a transparent compound: Infopédia equidade [ekwiˈdad], equidistante, equipotente, equivalve. The older lexicalized words have [k]: equilíbrio, equipa, equivalente, equívoco, equinodermo. The class is mixed, so the stems come from the 101 Infopédia equi- rows in the papers library (Languages/Portuguese/Orthography and Dictionaries/infopedia_equi_rows.tsv): each stem matches a [kw] row and no [k] row. equilátero has one record with each reading and is left out. The stems match anywhere in a word, so word_contains_grapheme_not keeps out tequila, ressequido and senequiano, and equipol/equipot replace equipo, which also spells the [k] verb forms of equipar (equipo, equipou)."},
+    {"id": "PT_QU_GLIDE_EQUINO", "phonemes": ["k"], "surface": "kw", "grapheme": ["qu"],
+     "word": ["equino", "equina", "equinos", "equinas", "equídeo", "equídea", "equídeos", "equídeas"],
+     "notes": "equino is two homographs. equino 'equine' (Latin equinus) has the glide: Priberam |qüi|, ABL PVO 1943 eqüino 'cavalar'. equino 'sea urchin' (Latin echinus) has [k]: Priberam |qui|, ABL 1943 equino 'ouriço'. The default is the common sense, 'equine', in both norms. equídeo has the glide (ABL 1943 eqüídeo). equinócio, equinocial and equinodermo keep a silent u. Source: Papers/Languages/Portuguese/Orthography and Dictionaries/priberam_equino.txt."}
+  ],
   "positional_graphemes_base": "roa-x-galaico-pt",
   "positional_graphemes": {
     "c": {
@@ -207,7 +222,7 @@
       ]
     }
   },
-  "parent": "roa-x-galaico-pt",
+  "inherits": "roa-x-galaico-pt",
   "quality": "research",
   "script_type": "alphabet",
   "notes": "Old Portuguese (~14th–16th c. CE). The Portuguese language after the split from Galician, spoken during the Aviz dynasty and early Age of Discovery. Attested: Fernão Lopes chronicles (~1380–1460), Gil Vicente plays (~1465–1536), Cancioneiro Geral (1516), royal charters. KEY CHANGES FROM GALAICO-PORTUGUESE: (1) Sibilant deaffrication: /ts/→/s/, /dz/→/z/ — the 4-way contrast collapses to 2 (~14th–15th c.). (2) Vowel reduction beginning (unstressed /e/→[ə], /o/→[u]). (3) Nasal vowels fully phonemicised. (4) /dʒ/→/ʒ/ simplification. (5) /ou/ → [o] monophthongisation beginning centrally. (6) /tʃ/ → /ʃ/ deaffrication in progress. trema and grave accent start occasionally appearing. ACCENTED VOWEL DIGRAPHS: the acute writes the ditongo aberto and the circumflex its closed counterpart, so \u27e8\u00e9i\u27e9 \u27e8\u00f3i\u27e9 pattern with the \u27e8\u00e9u\u27e9 already listed here (Acordo Ortogr\u00e1fico 1990, Base VIII: \u201cos ditongos abertos grafados -\u00e9i, \u00e9u ou \u00f3i\u201d, an\u00e9is, bat\u00e9is, fi\u00e9is, pap\u00e9is; c\u00e9u, chap\u00e9u; her\u00f3i, s\u00f3is), while \u27e8\u00ea i\u27e9 and \u27e8\u00f4i\u27e9 carry the closed values of \u27e8\u00ea\u27e9 and \u27e8\u00f4\u27e9. Base IX leaves paroxytone \u27e8ei oi\u27e9 unaccented because their aperture oscillates, which is why the accented spellings are confined to oxytones and to proper nouns. Source: Williams (1962), Mattos e Silva (2006), Castro (2006).",
@@ -268,7 +283,6 @@
     "start_year": 1200,
     "end_year": 1500
   },
-  "glottolog_code": "oldp1257",
   "iso639_3": "por",
   "stress": {
     "onset_clusters": ["bl", "br", "bɫ", "bɾ", "bʀ", "bʁ", "bʎ", "bχ", "dr", "dɾ", "dʀ", "dʁ", "dʎ", "dχ", "fl", "fr", "fɫ", "fɾ", "fʀ", "fʁ", "fʎ", "fχ", "kl", "kr", "kɫ", "kɾ", "kʀ", "kʁ", "kʎ", "kχ", "pl", "pr", "pɫ", "pɾ", "pʀ", "pʁ", "pʎ", "pχ", "tr", "tɾ", "tʀ", "tʁ", "tʎ", "tχ", "vl", "vr", "vɫ", "vɾ", "vʀ", "vʁ", "vʎ", "vχ", "ðr", "ðɾ", "ðʀ", "ðʁ", "ðʎ", "ðχ", "ɡl", "ɡr", "ɡɫ", "ɡɾ", "ɡʀ", "ɡʁ", "ɡʎ", "ɡχ", "ɣl", "ɣr", "ɣɫ", "ɣɾ", "ɣʀ", "ɣʁ", "ɣʎ", "ɣχ", "βl", "βr", "βɫ", "βɾ", "βʀ", "βʁ", "βʎ", "βχ"],

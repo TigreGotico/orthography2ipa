@@ -54,7 +54,7 @@ PINNED = {
     "pt-PT-x-porto": {"calculadora": "kaɫkulɐˈdwɔɾɐ", "professora": "pɾufɨˈs̺wɔɾɐ", "autoras": "awˈtwɔɾɐʃ", "vendedora": "bẽdɨˈdwɔɾɐ"},
     "pt-PT-x-braga": {"calculadora": "kaɫkulɐˈdwɔɾɐ", "professora": "pɾufɨˈs̺wɔɾɐ", "autoras": "awˈtwɔɾɐʃ", "vendedora": "bɨ̃dɨˈdwɔɾɐ"},
     "pt-PT-x-terceira": {"calculadora": "kaɫkulɐˈdɔɾɐ", "professora": "pɾufɨˈsɔɾɐ", "autoras": "awˈtɔɾɐʃ", "vendedora": "vẽdɨˈdɔɾɐ"},
-    "pt-AO": {"calculadora": "kaɫkulaˈdɔɾa", "professora": "pʁofeˈsɔɾa", "autoras": "awˈtɔɾas", "vendedora": "vẽdeˈdɔɾa"},
+    "pt-AO": {"calculadora": "kaɫkulaˈdɔɾa", "professora": "pʁofeˈsɔɾa", "autoras": "awˈtɔɾaʃ", "vendedora": "vẽdeˈdɔɾa"},
     "pt-CV": {"calculadora": "kɐɫkulɐˈdɔrɐ", "professora": "prufeˈsɔrɐ", "autoras": "awˈtɔrɐs", "vendedora": "vẽdeˈdɔrɐ"},
     "pt-GW": {"calculadora": "kɐɫkulɐˈdɔrɐ", "professora": "profeˈsɔrɐ", "autoras": "awˈtɔrɐs", "vendedora": "vẽdeˈdɔrɐ"},
     "pt-MO": {"calculadora": "kɐɫkulɐˈdɔɾɐ", "professora": "pʁufɨˈsɔɾɐ", "autoras": "awˈtɔɾɐʃ", "vendedora": "vẽdɨˈdɔɾɐ"},

@@ -4,7 +4,7 @@
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "x-clade-narr1281",
@@ -200,7 +200,6 @@
     ]
   },
   "iso639_3": "run",
-  "glottolog_code": "rund1242",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kirundi",
     "https://rn.wikipedia.org/wiki/Ikirundi"

@@ -111,7 +111,7 @@
       "z"
     ]
   },
-  "parent": "sem",
+  "inherits": "sem",
   "ancestors": [
     {
       "code": "sem",
@@ -122,7 +122,6 @@
   ],
   "notes": "Skeleton. Akkadian (East Semitic; Assyro-Babylonian), scored in the standard Assyriological Latin transliteration rather than cuneiform. Emphatics ⟨ṣ ṭ⟩ rendered pharyngealised, ⟨š⟩=/ʃ/, ⟨ḫ⟩=/x/, ⟨ʾ⟩=/ʔ/; macron/circumflex mark vowel length. Sumerian substrate/adstrate (unregistered). Stress exemption: Akkadian word stress follows the classic Semitic quantity-sensitive pattern (a superheavy final syllable attracts stress; otherwise a heavy penult; otherwise the antepenult -- Huehnergard 2011, A Grammar of Akkadian, 3rd ed., section on stress and syllable weight), but this engine's quantity_sensitive stress mode is scoped to the Arabic-lineage graphemes_base (see tests/test_stress_weight.py::test_the_arabic_specs_opt_in) and Akkadian does not inherit an Arabic graphemes_base, so no stress block is declared here rather than misusing an unrelated fixed-position rule.",
   "iso639_3": "akk",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "huehnergard2011",

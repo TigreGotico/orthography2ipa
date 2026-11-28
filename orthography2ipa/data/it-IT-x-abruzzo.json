@@ -344,7 +344,7 @@
       ]
     }
   },
-  "parent": "x-clade-italorom",
+  "inherits": "x-clade-italorom",
   "ancestors": [
     {
       "code": "la-x-italia",
@@ -411,7 +411,6 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "ita",
   "location": {
     "latitude": 42.216667,

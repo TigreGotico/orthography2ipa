@@ -1,5 +1,13 @@
 # Afrikaans (`af`)
 
+<!-- agent-hint
+covers: what the `af` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/af.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/nl-NL.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Afrikaans is a West Germanic language, written in the Latin script. Glottolog places it in 6 countries. The `af` spec is at the research tier. It cites 2 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -62,7 +70,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 64 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 47 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -76,13 +84,14 @@ The spec can emit 64 segments. They come from the letter table, the positional r
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
-| Close | i y |  | u |
-| Close-mid | e eː øː |  | o oː |
+| Close | i iː y |  | u |
+| Near-close | ɪ |  |  |
+| Close-mid | e eː ø øː |  | o oː |
 | Mid |  | ə əː |  |
 | Open-mid | œ œː ɛ ɛː |  | ɔ ɔː |
 | Open | a aː |  | ɑː |
 
-Sequences that the spec writes as one unit: [ai] [eɪ] [iə] [iəu] [iːø] [ki] [ks] [sk] [ui] [uə] [uəi] [w] [yœ] [ŋk] [œu] [œy] [œɪ] [ɑːi] [ɔi] [ɔu] [əi].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -167,7 +176,7 @@ Whole-word exceptions (1): ⟨'n⟩ [ə].
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 7 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 8 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -176,8 +185,9 @@ The spec applies 7 allophone rules after the letters are read. The change column
 | `NL_CODA_DEVOICE_D` | /d/ → [t], in the coda, before [t] [k] [s] [f] [p] [x] [χ], spelled ⟨d⟩ | ⟨raad-sel⟩ [raːtsəl] | Booij 1995 |
 | `NL_CODA_DEVOICE_VELD` | /d/ → [t], in the coda, before [t] [k] [s] [f] [p] [x] [χ], spelled ⟨veld⟩ | ⟨veldslag⟩ [ˈvɛltslɑχ] | Gussenhoven 1992 |
 | `NL_CODA_DEVOICE_V` | /v/ → [f], in the coda, before [t] [k] [s] [f] [p] [x] [χ], spelled ⟨v⟩ | - | Booij 1995 |
-| `NL_CODA_DEVOICE_Z` | /z/ → [s], in the coda, before [t] [k] [s] [f] [p] [x] [χ], spelled ⟨z⟩ | ⟨raad-sel⟩ [raːtsəl] | Booij 1995 |
+| `NL_CODA_DEVOICE_Z` | /z/ → [s], in the coda, before [t] [k] [s] [f] [p] [x] [χ], spelled ⟨z⟩ | - | Booij 1995 |
 | `NL_QU_FRENCH_K` | /ʋ w/ → ∅, after [k], spelled ⟨qu⟩, in 29 listed words | ⟨pubquiz⟩ [ˈpʏpkʋɪs] | Paardekooper 1987 |
+| `NL_LIJK_SCHWA` | /ɛi aːi/ → [ə], unstressed, spelled ⟨ij⟩, after ⟨l⟩, before ⟨k⟩ | - | Trommelen & Zonneveld 1992 |
 
 The spec switches off 16 inherited rules: `NL_UNSTRESSED_TENSE_I_FINAL`, `NL_UNSTRESSED_TENSE_I_HIATUS`, `NL_HIGH_TENSE_LENGTHENING_BEFORE_R_I`, `NL_HIGH_TENSE_LENGTHENING_BEFORE_R_Y`, `NL_MID_TENSE_CENTRING_BEFORE_R_E`, `NL_MID_TENSE_CENTRING_BEFORE_R_OE`, `NL_MID_TENSE_CENTRING_BEFORE_R_O`, `NL_MID_TENSE_CLOSING_DIPHTHONG_E`, `NL_MID_TENSE_CLOSING_DIPHTHONG_OE`, `NL_MID_TENSE_CLOSING_DIPHTHONG_O`, `NL_CODA_R_APPROXIMANT`, `NL_OPEN_SYLLABLE_A`, `NL_OPEN_SYLLABLE_E`, `NL_OPEN_SYLLABLE_I`, `NL_OPEN_SYLLABLE_O`, `NL_OPEN_SYLLABLE_U`.
 <!-- atlas:rules end -->

@@ -1,5 +1,13 @@
 # Belarusian (`be`)
 
+<!-- agent-hint
+covers: what the `be` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/be.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Belarusian is an East Slavic language, written in the Cyrillic script. Glottolog places it in 6 countries. The `be` spec is at the research tier. It cites 2 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
@@ -63,17 +71,17 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 138 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 78 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Retroflex | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b bʲ p pʲ |  | d t |  |  |  | k ɡ |
+| Plosive | b bʲ p pʲ |  | d dʲ t tʲ |  |  |  | k kʲ ɡ ɡʲ |
 | Affricate |  |  | dz dzʲ dzʲː dzː ts tsʲ tsʲː tsː | dʒ tʃ |  |  |  |
-| Nasal | m mʲ |  | n nʲ nʲː nː |  |  |  | ŋ |
-| Trill |  |  | r |  |  |  |  |
-| Fricative |  | f fʲ v vʲ | s sʲ sʲː sː z zʲ zʲː zː | ʃ ʒ | ʂ ʐ |  | x ɣ |
+| Nasal | m mʲ |  | n nʲ nʲː nː |  |  |  | ŋ ŋʲ |
+| Trill |  |  | r rʲ |  |  |  |  |
+| Fricative |  | f fʲ v vʲ | s sʲ sʲː sː z zʲ zʲː zː | ʃ ʃʲ ʒ ʒʲ | ʂ ʂʲ ʐ ʐʲ |  | x xʲ ɣ ɣʲ |
 | Approximant |  |  |  |  |  | j |  |
-| Lateral approximant |  |  | l lʲ lʲː lː ɫ |  |  |  |  |
+| Lateral approximant |  |  | l lʲ lʲː lː ɫ ɫʲ |  |  |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
@@ -84,7 +92,7 @@ The spec can emit 138 segments. They come from the letter table, the positional 
 | Near-open |  | ɐ |  |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [bʲa] [bʲe] [bʲi] [bʲo] [bʲu] [dʐ] [fʲa] [fʲe] [fʲi] [fʲo] [fʲu] [iji] [ja] [je] [ji] [jo] [ju] [kʲa] [kʲe] [kʲi] [kʲo] [kʲu] [lʲa] [lʲe] [lʲi] [lʲo] [lʲu] [mʲa] [mʲe] [mʲi] [mʲo] [mʲu] [nʲa] [nʲe] [nʲi] [nʲo] [nʲu] [pʲa] [pʲe] [pʲi], and 36 more.
+Sequences that the spec writes as one unit: [dʐ] [tʂ] [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

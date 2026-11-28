@@ -285,7 +285,6 @@
     ]
   },
   "iso639_3": "sna",
-  "glottolog_code": "shon1251",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Shona_language",
     "https://sn.wikipedia.org/wiki/ChiShona"
@@ -328,7 +327,7 @@
     "start_year": 1931,
     "end_year": null
   },
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "x-clade-narr1281",

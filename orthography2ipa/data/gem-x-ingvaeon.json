@@ -140,7 +140,7 @@
       "ð"
     ]
   },
-  "parent": "x-clade-west2793",
+  "inherits": "x-clade-west2793",
   "ancestors": [
     {
       "code": "gem-x-north-west",
@@ -188,8 +188,6 @@
     "start_year": 300,
     "end_year": 700
   },
-  "glottolog_code": "nort3175",
-  "wikidata_qid": "Q30134",
   "location": {
     "latitude": 52.684904,
     "longitude": 5.783267,

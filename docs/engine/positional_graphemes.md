@@ -1,5 +1,13 @@
 # Positional Graphemes
 
+<!-- agent-hint
+covers: how `positional_graphemes` give a letter different IPA candidates by its position or its neighbours
+source: `orthography2ipa/phonetok.py`, `orthography2ipa/types.py:GraphemePosition`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_positional_beam.py "tests/test_docs_examples.py::test_example_prints_what_its_comment_says[docs/engine/positional_graphemes.md]" "tests/test_docs_hint_sources.py::test_hint_sources_exist[docs/engine/positional_graphemes.md]"`
+see: `docs/engine/allophony.md`, `docs/contributing/spec_authoring.md`
+-->
+
 The `positional_graphemes` field refines the flat `graphemes` table by context. Many letters change their sound with their position in the word or with their neighbours. A positional entry states which IPA candidates apply in one environment. The engine builds an ordered list of the positions a grapheme stands in, and it uses the first position that the spec declares.
 
 The field serves transcription. A positional entry does not change the phoneme inventory.
@@ -102,6 +110,18 @@ The docstrings in `orthography2ipa/types.py` carry the citations for each positi
 
 `orthography2ipa.positional.positional_candidates` walks this list and returns the candidates of the first position the spec declares. If the grapheme has a positional entry, the winning candidates rank first and the flat candidates follow them. The beam keeps the full search space this way. If no position matches, the flat table and its weights apply.
 
+The diagram below shows how `resolve_branches` uses the list to pick the candidates of one grapheme.
+
+```mermaid
+flowchart TD
+    A["grapheme_positions: ordered list"] --> B["positional_candidates"]
+    B --> C{"a declared position matches"}
+    C -->|yes| D["positional candidates first, then flat candidates; rank costs"]
+    C -->|no| E["flat table; candidate weights apply"]
+    D --> F["build_branches"]
+    E --> F
+```
+
 A spec can therefore declare a class rule and a narrower letter rule together. With `before_front_vowel` and `before_e` on one grapheme, ⟨e⟩ takes the `before_e` entry and every other front vowel takes the class entry. A vowel letter that a spec reads as the glide /j/ is both a front vowel and a palatal. The vowel class comes first, so `before_front_vowel` outranks `before_palatal` for that neighbour.
 
 A plural ⟨-s⟩ makes the slot before it count as word-final at step 8, below the stress positions. So a stress rule wins over a `word_final` reduction for a stressed clitic such as Barranquenho ⟨les⟩.
@@ -124,7 +144,6 @@ This Italian-style demo spec has one class entry for ⟨c⟩:
 
 ```python
 from orthography2ipa import G2P
-from orthography2ipa.registry import _cache
 from orthography2ipa.types import LanguageSpec
 
 demo = LanguageSpec(
@@ -135,8 +154,7 @@ demo = LanguageSpec(
     allophones={},
     positional_graphemes={"c": {"before_front_vowel": ["tʃ"]}},
 )
-_cache["x-demo"] = demo
-eng = G2P("x-demo")
+eng = G2P("x-demo", spec=demo)
 
 eng.transcribe_word("ce")   # 'tʃe'
 eng.transcribe_word("cé")   # 'tʃe'
@@ -169,8 +187,7 @@ demo2 = LanguageSpec(
     allophones={},
     positional_graphemes={"e": {"before_palatal": ["ɐ"]}},
 )
-_cache["x-demo2"] = demo2
-eng = G2P("x-demo2")
+eng = G2P("x-demo2", spec=demo2)
 
 eng.transcribe_word("elh")   # 'ɐʎ'
 eng.transcribe_word("enh")   # 'ɐɲ'
@@ -207,7 +224,7 @@ A spec can declare `stress.secondary_stress`. A syllable that heads a secondary 
 
 ## The engine and the standalone beam
 
-The standalone tokenizer beam (`PhonetokTokenizer.ipa_beam` and `ipa_best`) reads the same positional entries as the engine. Both call `orthography2ipa.positional.resolve_branches`, so the two paths cannot drift apart.
+The standalone tokenizer beam (`PhonetokTokenizer.ipa_beam` and `ipa_best`) reads the same positional entries as the engine. The beam calls `orthography2ipa.positional.resolve_branches`, and the compiler lowers the same entries into the IR that the engine runs.
 
 ```python
 from orthography2ipa import get

@@ -3,7 +3,7 @@
   "name": "Mozarabic (Andalusi Romance)",
   "script": "Latin",
   "script_type": "alphabet",
-  "parent": "x-clade-roma1334",
+  "inherits": "x-clade-roma1334",
   "ancestors": [
     {
       "code": "la-x-late",
@@ -397,10 +397,8 @@
     "start_year": 711,
     "end_year": 1300
   },
-  "glottolog_code": "moza1249",
   "iso639_3": "mxi",
   "quality": "research",
-  "wikidata_qid": "Q317044",
   "location": {
     "latitude": 37.8763,
     "longitude": -1.79724,

@@ -1,7 +1,7 @@
 {
   "code": "tcy",
   "name": "Tulu",
-  "parent": "x-clade-drav1251",
+  "inherits": "x-clade-drav1251",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -349,8 +349,6 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "tulu1258",
-  "wikidata_qid": "Q34251",
   "phoible_id": "tulu1258",
   "wals_code": "tul",
   "location": {

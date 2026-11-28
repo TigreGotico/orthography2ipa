@@ -1,5 +1,13 @@
 # Brazilian Portuguese dialects (pt-BR-x-*)
 
+<!-- agent-hint
+covers: how the regional Brazilian Portuguese specs inherit from `pt-BR` and what each one changes
+source: `orthography2ipa/data/pt-BR-x-*.json`, `tests/test_br_dialects.py`, `tests/test_br_carioca.py`, `tests/test_br_paulista.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -c 'import re,sys;from orthography2ipa import transcribe as t;p=sys.argv[1];r=[(re.search(r"\[\x60(pt-\w\w-x-[a-z-]+)\x60\]",l)[1],w,f) for l in open(p,encoding="utf-8") if l.startswith("| [\x60pt-") for w,f in re.findall(r"\x60([^\x60]+)\x60 \[([^]]+)\]",l)];b=[x for x in r if t(x[1],x[0])!=x[2]];print(len(r),b);sys.exit(bool(b) or not r)' docs/languages/pt-BR-dialects.md`
+see: `docs/languages/pt-BR.md`, `docs/languages/pt-BR-x-floripa.md`, `docs/languages/pt-PT-dialects.md`
+-->
+
 The `pt-BR-x-*` specs model the regional speech of Brazil. Each one is a delta spec over [pt-BR](pt-BR.md): it inherits the general Brazilian standard and declares only what its region changes. This page first explains how the inheritance works. One table then compares the defining features of every lect. Each lect then has its own section, with its sources, its rules and its known gaps.
 
 Every transcription on this page is real output of `orthography2ipa.transcribe(text, code)`. For the scores of each spec, see [../evaluation/generated/scoreboard.md](../evaluation/generated/scoreboard.md). For the list of registered specs, run `orthography2ipa list --family Ibero-Romance`.
@@ -20,7 +28,7 @@ The fields `allophone_passes` and `stress` are not inherited. Every spec on this
 
 ## Defining features
 
-The table gives the features that set each lect apart from `pt-BR`. The lects run from the Southeast to the South and the Centre-West, then the North and the Northeast. `pt-BR-x-floripa` and `pt-BR-x-cuiaba` have their own pages.
+The table gives the features that set each lect apart from `pt-BR`. The lects run from the Southeast to the South and the Centre-West, then the North and the Northeast. `pt-BR-x-floripa`, `pt-BR-x-cuiaba` and `pt-BR-x-paraiba` have their own pages.
 
 | Lect | Region | Features that set it apart | Example |
 |:---|:---|:---|:---|
@@ -31,12 +39,13 @@ The table gives the features that set each lect apart from `pt-BR`. The lects ru
 | [`pt-BR-x-mg`](#mineiro-pt-br-x-mg) | Belo Horizonte | pretonic /e/ [i] before a high vowel and word-initially<br>coda /r/ [h] | `pedido` [piˈd͡ʒidu], `escola` [isˈkolɐ], `porta` [ˈpohtɐ] |
 | [`pt-BR-x-pr`](#paranaense-pt-br-x-pr) | Curitiba | /t d/ stops before /i/<br>final /e/ [e] | `tia` [ˈtiɐ], `verde` [ˈveɾde] |
 | [`pt-BR-x-sul`](#sulista-pt-br-x-sul) | Porto Alegre | strong /r/ [x] | `rato` [ˈxatu], `carro` [ˈkaxu] |
-| [`pt-BR-x-floripa`](pt-BR-x-floripa.md) | Florianópolis | coda /s/ [ʃ], [ʒ] before a voiced consonant<br>/t d/ stops before /i/ | `festa` [ˈfeʃtɐ], `mesmo` [ˈmeʒmu], `tipo` [ˈtipu] |
+| [`pt-BR-x-floripa`](pt-BR-x-floripa.md) | Florianópolis | coda /s/ [ʃ], [ʒ] before a voiced consonant or a vowel in the next word<br>/t d/ stops before /i/ | `festa` [ˈfeʃtɐ], `mesmo` [ˈmeʒmu], `dez anos` [ˈdɛʒ ˈɐ̃nuʃ], `tipo` [ˈtipu] |
 | [`pt-BR-x-cuiaba`](pt-BR-x-cuiaba.md) | Cuiabá river valley | /t d/ stops before /i/<br>⟨ch x j⟩ and soft ⟨g⟩ [t͡ʃ d͡ʒ] in the onset<br>coda /s/ [ʃ]<br>coda /l/ and coda /r/ [ɻ], final /r/ deleted<br>strong /r/ [r] | `chegar` [t͡ʃeˈɡa], `hoje` [ˈod͡ʒi], `mal` [ˈmaɻ], `porto` [ˈpoɻtu], `rapaz` [raˈpaʃ] |
 | [`pt-BR-x-norte`](#nortista-pt-br-x-norte) | Belém | coda /s/ [ʃ], [ʒ] before a voiced consonant<br>coda /r/ [h] | `festa` [ˈfeʃtɐ], `mesmo` [ˈmeʒmu], `dentes` [ˈdẽt͡ʃiʃ], `porta` [ˈpohtɐ] |
 | [`pt-BR-x-bahia`](#baiano-pt-br-x-bahia) | Salvador | open pretonic [ɛ ɔ] before an open, nasal or low vowel<br>coda /r/ [h], final /r/ deleted | `pedaço` [pɛˈdasu], `bolacha` [bɔˈlaʃɐ], `falar` [faˈla] |
 | [`pt-BR-x-ce`](#cearense-pt-br-x-ce) | Fortaleza | the Baiano pretonics and rhotics<br>coda /s/ [h] before /d n/ | `pedaço` [pɛˈdasu], `desde` [ˈdehd͡ʒi] |
 | [`pt-BR-x-recife`](#pernambucano-pt-br-x-recife) | Recife | /t d/ stops before /i/<br>coda /s/ [ʃ], [ʒ] before a voiced consonant<br>the Northeastern pretonics and rhotics | `tia` [ˈtiɐ], `festa` [ˈfeʃtɐ], `pedaço` [pɛˈdasu] |
+| [`pt-BR-x-paraiba`](pt-BR-x-paraiba.md) | João Pessoa | /t d/ stops before /i/, except after a coda [ʃ ʒ]<br>coda /s/ [ʃ ʒ] before /t d/ only<br>the Northeastern pretonics and rhotics | `tia` [ˈtiɐ], `posto` [ˈpoʃtu], `casca` [ˈkaskɐ], `fogão` [fɔˈɡɐ̃w̃] |
 
 ## Carioca (pt-BR-x-rj)
 
@@ -49,7 +58,8 @@ The Carioca rhotic is posterior. Callou, Moraes & Leite (1998: 62-63) describe t
 | `RJ_CHIADO_CODA_S` | /s/ gives [ʃ] in the coda | `festa` [ˈfeʃtɐ], `paz` [ˈpaʃ] |
 | `RJ_CHIADO_CODA_Z` | /z/ gives [ʒ] in the coda | no word reaches it, see the gaps |
 | `BR_CODA_SH_VOICED` | a coda [ʃ] gives [ʒ] before a voiced consonant | `mesmo` [ˈmeʒmu], `desde` [ˈdeʒd͡ʒi], `Lisboa` [liʒˈboɐ] |
-| `BR_CODA_X`, `BR_XC_ONE_S` | switched off, so ⟨x⟩ keeps the [ʃ] of the coda (also in `pt-BR-x-norte` and `pt-BR-x-recife`) | `texto` [ˈteʃtu], `excesso` [eʃˈsesu] |
+| `BR_CODA_X` | switched off, so ⟨x⟩ keeps the [ʃ] of the coda (also in `pt-BR-x-norte`, `pt-BR-x-recife`, `pt-BR-x-floripa` and `pt-BR-x-cuiaba`) | `texto` [ˈteʃtu] |
+| `BR_XC_ONE_S`, `BR_SC_ONE_S` | kept, because ⟨xc⟩ and ⟨sc⟩ are one /s/ and no coda | `exceção` [eseˈsɐ̃w̃], `nascer` [naˈseh] |
 | `RJ_CODA_R_VELAR` | a coda /R/ before a consonant gives [x] | `porta` [ˈpoxtɐ] |
 | `RJ_CODA_R_FINAL` | a word-final /R/ gives [h] | `mar` [ˈmah] |
 
@@ -147,6 +157,7 @@ Nortista here is the speech of Belém. The coda sibilant is palatal (Borges & Me
 | `BR_RAISE_FINAL_ES` | the plural -es raises before [ʃ] as before [s] | `dentes` [ˈdẽt͡ʃiʃ] |
 | `BR_RAISE_FINAL_OS` | the plural -os raises before [ʃ] as before [s] | `ovos` [ˈovuʃ] |
 | `BR_CODA_SH_VOICED` | a coda [ʃ] gives [ʒ] before a voiced consonant | `mesmo` [ˈmeʒmu], `desde` [ˈdeʒd͡ʒi] |
+| `BR_FINAL_SH_VOICING` | a word-final [ʃ] gives [ʒ] before a voiced consonant in the next word (Barbosa & Albano 2004: 229) | `os dois` [uʒ ˈdojʃ], `as mesas` [aʒ ˈmezɐʃ] |
 
 The positional map gives a coda ⟨s⟩ as [ʃ] (`festa` [ˈfeʃtɐ]) and a coda ⟨r⟩ as [h] (`porta` [ˈpohtɐ]). Data from the Pará atlas give the coda /S/ as "pós-alveolar (surda e sonora), alveolar (surda e sonora)", aspirated or deleted (Marins & Margotti 2012: 255).
 
@@ -191,7 +202,9 @@ Toledo & Cantoni (2021: 27) report the Fortaleza DSC corpus (Roncarati & Uchôa 
 
 Pernambucano here is the speech of Recife. /t d/ stay stops before /i/: ALiB palatalisation "é baixa em Aracaju, Maceió, Recife, João Pessoa" (Battisti & Dornelles Filho 2015: 226). The positional map keeps ⟨ti di⟩ as stops, and the spec switches off the base rules for a raised final ⟨e⟩ (`tia` [ˈtiɐ], `dentes` [ˈdẽtiʃ]).
 
-The coda sibilant is palatal: "Comporta-se Recife de forma semelhante ao Rio de Janeiro com o predomínio da pós-alveolar (69,5%)" in NURC (Marins & Margotti 2012: 254). ALiB gives an even split (p. 256). Before a voiced consonant the palatal is voiced: listeners in João Pessoa hear "me[ʒ]mo" as typical of "Rio de Janeiro e Recife" (Hora, Henrique & Amorim 2018: 284). The spec carries the same plural rules and the same voicing rule `BR_CODA_SH_VOICED` as `pt-BR-x-norte` (`mesmo` [ˈmeʒmu], `desde` [ˈdeʒdi]).
+The coda sibilant is palatal: "Comporta-se Recife de forma semelhante ao Rio de Janeiro com o predomínio da pós-alveolar (69,5%)" in NURC (Marins & Margotti 2012: 254). ALiB gives an even split (p. 256). Before a voiced consonant the palatal is voiced: listeners in João Pessoa hear "me[ʒ]mo" as typical of "Rio de Janeiro e Recife" (Hora, Henrique & Amorim 2018: 284).
+
+The spec carries the same plural rules and the same voicing rules `BR_CODA_SH_VOICED` and `BR_FINAL_SH_VOICING` as `pt-BR-x-norte` (`mesmo` [ˈmeʒmu], `desde` [ˈdeʒdi], `os dois` [uʒ ˈdojʃ]).
 
 ## Sources
 

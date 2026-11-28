@@ -1,5 +1,13 @@
 # Mansi (`mns`)
 
+<!-- agent-hint
+covers: what the `mns` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/mns.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Mansi is an Uralic language, written in the Cyrillic script. Glottolog places it in Russia. The `mns` spec is at the research tier. It cites 3 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -61,17 +69,17 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 63 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 60 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p |  | d t̪ t̪ʲ |  |  | k kʷ |  |
+| Plosive | b bʲ p pʲ |  | d dʲ t t̪ t̪ʲ |  |  | k kʲ kʷ |  |
 | Affricate |  |  | ts |  | tɕ |  |  |
-| Nasal | m |  | n̪ |  | ɲ | ŋ |  |
-| Trill |  |  | r |  |  |  |  |
-| Fricative |  | f | sʲ s̪ z | ʃ ʒ | ɕ | ɣ | χ χʷ |
+| Nasal | m mʲ |  | n̪ n̪ʲ |  | ɲ ɲʲ | ŋ ŋʲ |  |
+| Trill |  |  | r rʲ |  |  |  |  |
+| Fricative |  | f fʲ | sʲ s̪ s̪ʲ z zʲ | ʃ ʃʲ ʒ ʒʲ | ɕ ɕʲ | ɣ ɣʲ | χ χʲ χʷ |
 | Approximant |  |  |  |  | j |  |  |
-| Lateral approximant |  |  | l̪ |  | ʎ |  |  |
+| Lateral approximant |  |  | l̪ l̪ʲ |  | ʎ ʎʲ |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
@@ -79,9 +87,10 @@ The spec can emit 63 segments. They come from the letter table, the positional r
 | Near-close | ɪ |  |  |
 | Close-mid | e |  | o ɤː |
 | Mid |  | ə |  |
+| Open-mid |  |  | ɔ |
 | Open | a aː |  |  |
 
-Sequences that the spec writes as one unit: [ja] [je] [jo] [ju] [oɔ] [sʲa] [sʲe] [sʲi] [sʲu] [t̪ʲa] [t̪ʲe] [t̪ʲi] [t̪ʲu] [w] [ɲa] [ɲe] [ɲi] [ɲo] [ɲu] [ʎa] [ʎe] [ʎi] [ʎo] [ʎu] [ʲ].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

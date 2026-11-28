@@ -1,5 +1,13 @@
 # The pronunciation lattice
 
+<!-- agent-hint
+covers: how the engine ranks the readings of a word, how a rescorer changes the ranking and how to export the lattice as features
+source: `orthography2ipa/phonetok.py`, `orthography2ipa/g2p.py`, `orthography2ipa/sentence.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest "tests/test_docs_examples.py::test_example_prints_its_text_block[docs/engine/lattice.md]" "tests/test_docs_hint_sources.py::test_hint_sources_exist[docs/engine/lattice.md]"`
+see: `docs/engine/lattice_per.md`, `docs/engine/allophony.md`
+-->
+
 Most words have one sensible pronunciation, and the hard cases are the words that have several. `orthography2ipa` does not hide that ambiguity behind a single answer. It exposes a lattice: for each grapheme of a word, the ranked [IPA](https://www.internationalphoneticassociation.org/content/full-ipa-chart) options that the grapheme can realise, each with a cost. The rest of the library, and the phonemizers built on it, consume this object.
 
 This page follows the order in which a phonemizer author meets the lattice. It covers how candidates get their costs, the lattice and its rescorers, the per-word confidence, the cross-word sentence seam and the feature export. The [tokenizer](tokenizer.md) page covers how text becomes graphemes and how the beam search (`ipa_beam`) turns the same search space into whole-word readings.
@@ -68,9 +76,26 @@ A lattice is a list of slots, one per grapheme, in surface order. Each slot is a
 | Member | Meaning |
 | --- | --- |
 | `grapheme` | The source grapheme, lower-cased as the tokenizer produced it |
-| `span` | The `(start, end)` character offsets, with the same contract as `GraphemeContext.span`: `unicodedata.normalize("NFC", text)[start:end].lower() == grapheme` |
+| `span` | The `(start, end)` character offsets into the string `prepare(text)` returns, with the same contract as `GraphemeContext.span` in [the tokenizer page](tokenizer.md#span) |
 | `candidates` | A tuple of `Candidate(ipa, cost)`, best (lowest cost) first |
 | `top` | The first candidate, which is the canonical choice |
+
+The diagram shows how the standalone tokenizer builds the lattice and then chooses a path from it. The rescore step runs only when the caller passes a rescorer.
+
+```mermaid
+flowchart TD
+    A["PhonetokTokenizer.tokenize"] --> B["TokenSequence: GraphemeContext per grapheme"]
+    B --> C["grapheme_positions"]
+    C --> D["positional_candidates"]
+    D --> E["build_branches: candidate_base_costs"]
+    E --> F["apply_rescorers"]
+    F --> G["ipa_lattice: SegmentSlot list"]
+    F --> H["ipa_beam: _expand_beam per slot"]
+    H --> I["IPAPath list, best first"]
+    I --> J["ipa_best: first path"]
+```
+
+The `grapheme_positions`, `positional_candidates` and `build_branches` steps together are `resolve_branches`. `ipa_lattice`, and `ipa_beam` with a rescorer, reach it through `_grapheme_slots`. Without a rescorer, `ipa_beam` calls `resolve_branches` directly.
 
 Two methods return a lattice. `PhonetokTokenizer.ipa_lattice(text, *, beam_width=8, expand_allophones=False, rescorer=None)` works from the spec alone. `G2P.ipa_lattice(word, *, beam_width=8)` adds the engine's context, as [Positional overrides apply here too](#positional-overrides-apply-here-too) explains. In both, `beam_width` is the number of candidates kept per slot, and `-1` keeps all of them. The truncation never removes the top candidate. A grapheme that resolves to no candidates, such as a silent marker letter, gets no slot.
 
@@ -452,25 +477,25 @@ class FrenchLiaison(SentenceRescorer):
             return ipa + "‿"                # the left word marks the liaison tie
         return ipa
 
-print(G2P("fr").transcribe("nous avons"))
-lattice = G2P("fr").sentence_lattice("nous avons")
+print(G2P("fr").transcribe("pas encore"))
+lattice = G2P("fr").sentence_lattice("pas encore")
 print(" ".join(apply_sentence_rescorers(lattice, [FrenchLiaison()])))
 ```
 
 ```text
-nu avɔ̃
-nu‿ zavɔ̃
+pa ɑ̃kɔʁ
+pa‿ zɑ̃kɔʁ
 ```
 
-The latent final consonant of *nous* becomes the onset of *avons*. The right word gains /z/, and the left word marks the tie. A rewrite of the left word only cannot move a segment onto the next word, and this seam can.
+The latent final consonant of *pas* becomes the onset of *encore*. The right word gains /z/, and the left word marks the tie. A rewrite of the left word only cannot move a segment onto the next word, and this seam can. The fr-FR spec writes the obligatory liaisons itself with spelling-conditioned `sandhi_rules`, as in `nuz‿ avɔ̃` for *nous avons*, with the link on the left word. The liaison after *pas* is optional (Martinon 1913: 374), so the spec leaves it out, and a sentence rescorer such as this one is where a caller adds it.
 
 ### How it composes with sandhi
 
 The sentence seam sits above the word lattice. Each `WordSlot.slots` is the word's `ipa_lattice`. A `SentenceRescorer` reads the edge slots and rewrites at the level of the word's IPA.
 
-`apply_sentence_rescorers` returns the IPA of each word, and it runs no `sandhi_rules`. The deprecated `G2P(sentence_rescorer=...)` runs the same rescorers in `transcribe`, with a view of the whole utterance, and then the spec's declarative `sandhi_rules` run through `SandhiEngine`. In `transcribe`, a cross-word rule goes in `Pipeline(sandhi=...)`, which runs after the `sandhi_rules`. A list of sentence rescorers composes like lattice rescorers: each pass sees the rewrites of the pass before it. Inside one pass, every word reads the same snapshot taken before the pass, so the order of the words does not change the result.
+`apply_sentence_rescorers` returns the IPA of each word, and it runs no `sandhi_rules`. In `transcribe`, the spec's declarative `sandhi_rules` run first, as the sandhi rules of the IR ([IR spec 3.10](../ir/o2i-ir-v1.md#310-sandhi-s11-and-dialect-profiles-s13)). The deprecated `G2P(sentence_rescorer=...)` then runs the same rescorers, with a view of the whole utterance, on the output of the `sandhi_rules`. A cross-word rule in code goes in `Pipeline(sandhi=...)`, which runs last. A list of sentence rescorers composes like lattice rescorers: each pass sees the rewrites of the pass before it. Inside one pass, every word reads the same snapshot taken before the pass, so the order of the words does not change the result.
 
-The engine passes `SandhiEngine.apply` the pause flag of each word, so a declarative rule stays inside its prosodic domain. No rule joins two words that a pause separates (Nespor & Vogel 1986, *Prosodic Phonology*). The blocked boundary is the intonational phrase, which is what punctuation writes. Some rules have the smaller phonological phrase as their real domain. Such a rule still applies at a phonological-phrase edge inside a clause, so the pause flags give a lower bound only. A sentence rescorer sees the same positions through `WordSlot.phrase_position`.
+The interpreter gives the sandhi rules the pause flag of each word, so a declarative rule stays inside its prosodic domain. No rule joins two words that a pause separates (Nespor & Vogel 1986, *Prosodic Phonology*). The blocked boundary is the intonational phrase, which is what punctuation writes. Some rules have the smaller phonological phrase as their real domain. Such a rule still applies at a phonological-phrase edge inside a clause, so the pause flags give a lower bound only. A sentence rescorer sees the same positions through `WordSlot.phrase_position`.
 
 ### Off by default
 

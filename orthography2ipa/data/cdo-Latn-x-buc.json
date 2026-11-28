@@ -214,8 +214,6 @@
   "notes": "Mainly used within church circles and mission schools in Fuzhou; never achieved the broader literacy uptake POJ did for Southern Min."
  },
  "iso639_3": "cdo",
- "glottolog_code": "mind1253",
- "wikidata_qid": "Q3317362",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/B%C3%A0ng-u%C3%A2-c%C3%AA",
   "https://en.wikipedia.org/wiki/Eastern_Min"
@@ -224,15 +222,15 @@
   "https://glottolog.org/resource/languoid/id/mind1253"
  ],
  "tone_inventory": {
-  "◌̆": "shàngpíng (上平), 55",
-  "◌̄": "shǎngshēng (上聲), 33",
-  "◌́-qu": "shàngqù (上去), 213",
-  "◌́-ru": "shàngrù (上入, checked syllable only), 24",
-  "◌̀": "xiàpíng (下平), 53",
-  "◌̂": "xiàqù (下去), 242",
-  "◌̆-ru": "xiàrù (下入, checked syllable only, same breve mark as shàngpíng), 5"
+  "˥˥": "shàngpíng (上平), 55",
+  "˧˧": "shǎngshēng (上聲), 33",
+  "˨˩˧": "shàngqù (上去), 213",
+  "˨˦": "shàngrù (上入, checked syllable only), 24",
+  "˥˧": "xiàpíng (下平), 53",
+  "˨˦˨": "xiàqù (下去), 242",
+  "˥": "xiàrù (下入, checked syllable only, same breve mark as shàngpíng), 5"
  },
- "parent": "cdo",
+ "inherits": "cdo",
  "ancestors": [
   {
    "code": "cdo",

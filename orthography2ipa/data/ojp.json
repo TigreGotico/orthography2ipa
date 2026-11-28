@@ -8,7 +8,6 @@
   "quality": "stub",
   "script_type": "alphabet",
   "iso639_3": "ojp",
-  "glottolog_code": "oldj1239",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Old_Japanese"
   ],
@@ -28,7 +27,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Old_Japanese"
     }
   ],
-  "parent": "jpx",
+  "inherits": "jpx",
   "ancestors": [
     {
       "code": "jpx",
@@ -37,7 +36,6 @@
       "notes": "Descent from Proto-Japonic."
     }
   ],
-  "wikidata_qid": "Q5736700",
   "location": {
     "latitude": 34.68333,
     "longitude": 135.8,

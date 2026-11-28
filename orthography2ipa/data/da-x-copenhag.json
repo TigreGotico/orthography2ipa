@@ -25,7 +25,7 @@
       ""
     ]
   },
-  "parent": "da",
+  "inherits": "da",
   "notes": "Copenhagen Danish (rigsdansk) — the national standard. STØD: glottalisation / laryngealisation on etymologically long vowels and sonorant-final syllables — replaces the Nordic pitch accent. SOFT D: /d/ → [ð̞] (very weak approximant, almost zero) in common words: bide [ˈb̥iˀð̞ə], hund [hɔnˀ]. /r/ → [ɐ] before consonants; often deleted. Very strong reduction processes — Danish is notoriously difficult for Scandinavian learners due to extreme lenition. Source: Grønnum (1998).",
   "quality": "skeleton",
   "script_type": "alphabet",
@@ -60,9 +60,7 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "dan",
-  "wikidata_qid": "Q837073",
   "location": {
     "latitude": 55.676111,
     "longitude": 12.568889,

@@ -1,5 +1,13 @@
 # Northern Tiwa (`twf`)
 
+<!-- agent-hint
+covers: what the `twf` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/twf.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Northern Tiwa is a Kiowa-Tanoan language, written in the Latin script. Glottolog places it in the North America macroarea. The `twf` spec is at the research tier. It cites 5 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -62,18 +70,18 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 123 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 63 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
-| Consonants | Bilabial | Alveolar | Postalveolar | Palatal | Velar | Glottal |
-|:--|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p | d t |  |  | k ɡ | ʔ |
-| Affricate |  |  | tʃ |  |  |  |
-| Nasal | m | n |  |  |  |  |
-| Tap |  | ɾ |  |  |  |  |
-| Fricative |  | s |  |  | x | h |
-| Lateral fricative |  | ɬ |  |  |  |  |
-| Approximant |  |  |  | j |  |  |
-| Lateral approximant |  | l |  |  |  |  |
+| Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
+|:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Plosive | b p |  | d t |  |  | k ɡ | ʔ |
+| Affricate |  |  |  | tʃ |  |  |  |
+| Nasal | m |  | n |  |  |  |  |
+| Tap |  |  | ɾ |  |  |  |  |
+| Fricative |  | f | s |  |  | x | h |
+| Lateral fricative |  |  | ɬ |  |  |  |  |
+| Approximant |  |  |  |  | j |  |  |
+| Lateral approximant |  |  | l |  |  |  |  |
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
@@ -82,7 +90,7 @@ The spec can emit 123 segments. They come from the letter table, the positional 
 | Near-open | æ æ̀ æ̃ æ̃̀ æ̃́ æ̃̄ ǣ ǽ |  |
 | Open |  | ɑ ɑ̀ ɑ́ ɑ̃ ɑ̃̀ ɑ̃́ ɑ̃̄ ɑ̄ |
 
-Sequences that the spec writes as one unit: [fɾ] [kʔ] [ph] [pʔ] [th] [tʃʔ] [tʔ] [w] [ĩ̄ẽ̄] [īē] [īǣ] [ūɑ̄] [ɤ̄ɑ̄] [ʔe] [ʔi] [ʔu] [ʔæ] [ʔæ̀] [ʔæ̃] [ʔæ̃̀] [ʔæ̃́] [ʔæ̃̄] [ʔè] [ʔé] [ʔì] [ʔí] [ʔù] [ʔú] [ʔē] [ʔĩ] [ʔĩ̀] [ʔĩ́] [ʔĩ̄] [ʔĩ̄ẽ̄] [ʔī] [ʔīē] [ʔīǣ] [ʔũ] [ʔũ̀] [ʔũ̄], and 22 more.
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

@@ -1,5 +1,13 @@
 # Khiamniungan Naga (`kix`)
 
+<!-- agent-hint
+covers: what the `kix` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/kix.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Khiamniungan Naga is a Sino-Tibetan language, written in the Latin script. Glottolog places it in the Eurasia macroarea. The `kix` spec is at the research tier. It cites 3 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -81,9 +89,9 @@ The spec can emit 55 segments. They come from the letter table, the positional r
 | Open-mid | ɛ |  | ɔ |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [a³³] [a³¹] [a⁵²] [a⁵⁵] [i³³] [i³¹] [i⁵²] [i⁵⁵] [o³³] [o³¹] [o⁵²] [o⁵⁵] [u³³] [u³¹] [u⁵²] [u⁵⁵] [w] [ə³³] [ə³¹] [ə⁵⁵] [ɛ³³] [ɛ³¹] [ɛ⁵²] [ɛ⁵⁵].
+Sequences that the spec writes as one unit: [a˥˥] [a˥˨] [a˧˧] [a˧˩] [i˥˥] [i˥˨] [i˧˧] [i˧˩] [o˥˥] [o˥˨] [o˧˧] [o˧˩] [u˥˥] [u˥˨] [u˧˧] [u˧˩] [w] [ə˥˥] [ə˧˧] [ə˧˩] [ɛ˥˥] [ɛ˥˨] [ɛ˧˧] [ɛ˧˩].
 
-Tones: [⁵⁵] high level, [³³] mid level, [³¹] low; written 31 in the Patsho transcriptions, described as low level for Thang, [⁵²] falling.
+Tones: [˥˥] high level, [˧˧] mid level, [˧˩] low; written 31 in the Patsho transcriptions, described as low level for Thang, [˥˨] falling.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -123,36 +131,36 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨v⟩ | [v] |  |
 | ⟨w⟩ | [w] |  |
 | ⟨y⟩ | [j] |  |
-| ⟨à⟩ | [a³¹] |  |
-| ⟨á⟩ | [a⁵⁵] |  |
-| ⟨â⟩ | [a⁵²] |  |
-| ⟨è⟩ | [ɛ³¹] |  |
-| ⟨é⟩ | [ɛ⁵⁵] |  |
-| ⟨ê⟩ | [ɛ⁵²] |  |
-| ⟨ì⟩ | [i³¹] |  |
-| ⟨í⟩ | [i⁵⁵] |  |
-| ⟨î⟩ | [i⁵²] |  |
-| ⟨ò⟩ | [o³¹] |  |
-| ⟨ó⟩ | [o⁵⁵] |  |
-| ⟨ô⟩ | [o⁵²] |  |
-| ⟨ù⟩ | [u³¹] |  |
-| ⟨ú⟩ | [u⁵⁵] |  |
-| ⟨û⟩ | [u⁵²] |  |
+| ⟨à⟩ | [a˧˩] |  |
+| ⟨á⟩ | [a˥˥] |  |
+| ⟨â⟩ | [a˥˨] |  |
+| ⟨è⟩ | [ɛ˧˩] |  |
+| ⟨é⟩ | [ɛ˥˥] |  |
+| ⟨ê⟩ | [ɛ˥˨] |  |
+| ⟨ì⟩ | [i˧˩] |  |
+| ⟨í⟩ | [i˥˥] |  |
+| ⟨î⟩ | [i˥˨] |  |
+| ⟨ò⟩ | [o˧˩] |  |
+| ⟨ó⟩ | [o˥˥] |  |
+| ⟨ô⟩ | [o˥˨] |  |
+| ⟨ù⟩ | [u˧˩] |  |
+| ⟨ú⟩ | [u˥˥] |  |
+| ⟨û⟩ | [u˥˨] |  |
 | ⟨ü⟩ | [ə] |  |
-| ⟨ā⟩ | [a³³] |  |
-| ⟨ē⟩ | [ɛ³³] |  |
+| ⟨ā⟩ | [a˧˧] |  |
+| ⟨ē⟩ | [ɛ˧˧] |  |
 | ⟨ě⟩ | [ɛ] |  |
-| ⟨ī⟩ | [i³³] |  |
-| ⟨ō⟩ | [o³³] |  |
-| ⟨ū⟩ | [u³³] |  |
+| ⟨ī⟩ | [i˧˧] |  |
+| ⟨ō⟩ | [o˧˧] |  |
+| ⟨ū⟩ | [u˧˧] |  |
 | ⟨ǎ⟩ | [a] |  |
 | ⟨ǐ⟩ | [i] |  |
 | ⟨ǒ⟩ | [o] |  |
 | ⟨ǔ⟩ | [u] |  |
-| ⟨ǖ⟩ | [ə³³] |  |
-| ⟨ǘ⟩ | [ə⁵⁵] |  |
+| ⟨ǖ⟩ | [ə˧˧] |  |
+| ⟨ǘ⟩ | [ə˥˥] |  |
 | ⟨ǚ⟩ | [ə] |  |
-| ⟨ǜ⟩ | [ə³¹] |  |
+| ⟨ǜ⟩ | [ə˧˩] |  |
 
 The spec declares no stress rule.
 <!-- atlas:spelling end -->

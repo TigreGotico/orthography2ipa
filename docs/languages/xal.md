@@ -1,5 +1,13 @@
 # Kalmyk (`xal`)
 
+<!-- agent-hint
+covers: what the `xal` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/xal.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Kalmyk is a Mongolic language, written in the Cyrillic script. Glottolog places it in the Eurasia macroarea. The `xal` spec is at the research tier. It cites 3 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -62,7 +70,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 45 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 42 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -77,11 +85,10 @@ The spec can emit 45 segments. They come from the letter table, the positional r
 | Vowels | Front | Back |
 |:--|:-:|:-:|
 | Close | i iː y yː | u uː |
+| Near-close |  | ʊ |
 | Close-mid | e eː ø øː | o oː |
 | Near-open | æ æː |  |
 | Open | a aː |  |
-
-Sequences that the spec writes as one unit: [ja] [je] [jo] [jʊ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

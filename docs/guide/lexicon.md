@@ -1,5 +1,13 @@
 # Lexicons and forced pronunciations
 
+<!-- agent-hint
+covers: how to force the pronunciation of a word with a caller lexicon, a packaged lexicon or inline markup
+source: `orthography2ipa/lexicon.py`, `orthography2ipa/markup.py`, `orthography2ipa/pipeline.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_lexicon.py tests/test_lexicon_overlay.py`
+see: `docs/engine/lattice.md`, `docs/reference/api_stability.md`
+-->
+
 Some words cannot be transcribed from their spelling, and no rule can change that. Brand names, proper nouns, acronyms and loanwords are the usual cases. For these words the caller already knows the answer and needs a way to give it. The engine has three tiers that override the rules: inline markup, the exceptions of the spec, and a lexicon that the caller supplies. This page describes each one.
 
 ## The precedence ladder
@@ -17,7 +25,7 @@ Some words cannot be transcribed from their spelling, and no rule can change tha
 
 Each tier answers the same question: what is the IPA of this word? The stages after it do not depend on which tier answered. Cross-word sandhi still applies, and the word reports `confidence == 1.0`. An entry from `word_exceptions` or from a lexicon also gets the stress mark of the spec. A forced `<phoneme>` reading does not, as the next section explains.
 
-`G2P._override_for` looks up `word_exceptions` and the lexicon with the same key. The key is the word in lowercase, with the casing rules of the language (Turkish dotted and dotless i, for example). If the raw word misses, the lookup tries again without the punctuation at its edges, so ⟨I,⟩ finds the entry for ⟨I⟩. For a spec that sets `word_internal_apostrophe`, a typographic apostrophe (U+2019) also matches an entry written with U+0027. When the whole word still misses and the spec also sets `apostrophe_elision`, the lookup splits an elided clitic from its host: a consonant before the apostrophe, a vowel or ⟨h⟩ after it. If the host has an entry, the word reads as the clitic's rule reading followed by that entry, so French ⟨l'autobus⟩ gives `lotobys` from the entry ⟨autobus⟩ `otobys`.
+`Interpreter._override_for` looks up `word_exceptions` and the lexicon with the same key. The key is the word in lowercase, with the casing rules of the language (Turkish dotted and dotless i, for example). If the raw word misses, the lookup tries again without the punctuation at its edges, so ⟨I,⟩ finds the entry for ⟨I⟩. For a spec that sets `word_internal_apostrophe`, a typographic apostrophe (U+2019) also matches an entry written with U+0027. When the whole word still misses and the spec also sets `apostrophe_elision`, the lookup splits an elided clitic from its host: a consonant before the apostrophe, a vowel or ⟨h⟩ after it. If the host has an entry, the word reads as the clitic's rule reading followed by that entry, so French ⟨l'autobus⟩ gives `lotobys` from the entry ⟨autobus⟩ `otobys`.
 
 ## Forcing one occurrence: `<phoneme>`
 
@@ -47,7 +55,7 @@ The engine reads the markup before it prepares the text. The `expand` step of a 
 
 ### The inventory check
 
-The engine checks `ph` against the phoneme inventory of the spec. That inventory is `phoneme_inventory(spec, lexicon)`: each segment the spec and the lexicon of the engine can emit. A symbol outside it raises `MarkupError`. The check makes the feature safe. A TTS frontend builds its embedding table from the inventory before it trains. A symbol that appears only at inference has no vector, so each word that carries it is mispronounced, permanently and without a sign.
+The engine checks `ph` against the phoneme inventory of the spec. That inventory is `phoneme_inventory(spec, lexicon)`: each segment the spec and the lexicon of the engine can emit. A slot can emit a palatalization mark ʲ or a labialization mark ʷ before its first base letter, or a bare length mark ː. Each of these marks belongs to the segment before the slot. The inventory joins ʲ and ʷ to each stop, fricative, nasal and liquid of the spec that carries neither mark, and it joins ː to each segment. A join never adds a second mark. A token with both marks, such as `dʷʲ`, is in the inventory only when the spec data writes it, and only in the order the data writes. A spec that declares the shadda ⟨ّ⟩ gets no ː joins, because its engine doubles the letter before a shadda. The script label of the spec does not matter. So the inventory holds tokens such as `pʲ` and `aː` and never a lone `ʲ`, `ʷ` or `ː`. The joins follow the sound class and not the spelling, so the inventory can hold a token that no word produces. A symbol outside it raises `MarkupError`. The check makes the feature safe. A TTS frontend builds its embedding table from the inventory before it trains. A symbol that appears only at inference has no vector, so each word that carries it is mispronounced, permanently and without a sign.
 
 A loanword is the case that matters. In Arabic, English *meeting* is nativised and does not keep its English sounds. Modern Standard Arabic has /q/ and /dʒ/ and no /ɡ/. The `ar` spec takes that inventory from Watson (2002), *The Phonology and Morphology of Arabic*, and checks it against the JIPA illustration of Arabic by Thelwall and Sa'Adeddin (1990, [doi:10.1017/S0025100300004266](https://doi.org/10.1017/S0025100300004266)). So the `ar` spec refuses a reading with [ɡ]:
 
@@ -87,7 +95,7 @@ The field does not scale to thousands of entries. Deep orthographies such as Eng
 
 ## Supplying a lexicon
 
-The package ships no lexicon. A lexicon is a word list, not a description of a language, so it is not part of the payload. The wheel holds only `data/*.json` and `data/SCHEMA.md` as data files. The caller reads a lexicon into a mapping and gives it to one engine through a `Pipeline`:
+The package ships no lexicon. A lexicon is a word list, not a description of a language, so it is not part of the payload. The wheel holds `data/*.json`, `data/SCHEMA.md` and the gold sets under `data/gold/` as data files. The caller reads a lexicon into a mapping and gives it to one engine through a `Pipeline`:
 
 ```python
 from orthography2ipa import G2P, Pipeline, load_lexicon
@@ -164,7 +172,7 @@ The benchmark never enables a packaged lexicon, so the board stays rules-only wh
 ```python
 from orthography2ipa import lexicon_revision, spec_revision
 
-spec_revision("pt-PT")                    # 'sha256:…': the spec, its chains, the engine and the Unicode version
+spec_revision("pt-PT")                    # 'sha256:…': the IR that G2P("pt-PT") runs
 lexicon_revision("pt-PT", patches=True)   # 'sha256:…': the exceptions and the patches
 ```
 
@@ -265,4 +273,4 @@ The report has two sets of columns. The full columns score every gold word, so e
 [spec_authoring.md](../contributing/spec_authoring.md#supply-a-lexicon-never-bundle-one) gives the rule for contributors: supply a lexicon, never bundle one.
 
 ---
-[← Getting Started](getting_started.md) · [Home](../index.md) · [Distance Metrics →](distance.md)
+[← Getting Started](getting_started.md) · [Home](../index.md) · [Export a phonemizer to loom →](loom_export.md)

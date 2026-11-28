@@ -89,7 +89,7 @@
    "ʒ"
   ],
   "ǝ": [
-   "ǝ"
+   "ə"
   ],
   "ǵ": [
    "ɟ"
@@ -101,7 +101,7 @@
    "ɣ"
   ],
   "ḍ": [
-   "d̪ˁ"
+   "d̪ˤ"
   ],
   "ḥ": [
    "ħ"
@@ -125,7 +125,6 @@
  "allophones": {},
  "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (gha.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "gha",
- "glottolog_code": "ghad1239",
  "sources": [
   {
    "id": "glottolog2024",
@@ -154,7 +153,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-afro1255",
+ "inherits": "x-clade-afro1255",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Ghadam%C3%A8s_language"

@@ -130,7 +130,6 @@
   },
   "notes": "Tahitian (Reo Tahiti), Eastern Polynesian language of French Polynesia. Very small inventory: nine consonants /p t m n f v h r ʔ/ and five vowel qualities, each with a phonemic long counterpart written with a macron (tārava). The glottal stop (ʼeta) is a full consonant and is written with an apostrophe — the straight, curly and modifier-letter forms are all accepted as graphemes here. /r/ is an alveolar trill, also heard as a flap.",
   "iso639_3": "tah",
-  "glottolog_code": "tahi1242",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Tahitian_language",
     "https://ty.wikipedia.org/wiki/Reo_Tahiti"
@@ -148,7 +147,7 @@
       "notes": "Orthography / phonology reference."
     }
   ],
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",

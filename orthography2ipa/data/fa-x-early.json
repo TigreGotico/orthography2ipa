@@ -218,7 +218,7 @@
       "o"
     ]
   },
-  "parent": "pal",
+  "inherits": "pal",
   "ancestors": [
     {
       "code": "pal",
@@ -277,6 +277,5 @@
     "start_year": 800,
     "end_year": 1400
   },
-  "glottolog_code": null,
   "iso639_3": "fas"
 }

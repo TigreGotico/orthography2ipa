@@ -74,7 +74,7 @@
    "ð"
   ],
   "ð̣": [
-   "ðˁ"
+   "ðˤ"
   ],
   "ñ": [
    "ɲ"
@@ -83,7 +83,7 @@
    "aː"
   ],
   "č": [
-   "ʧ"
+   "t͡ʃ"
   ],
   "ī": [
    "iː"
@@ -98,7 +98,7 @@
    "ʒ"
   ],
   "ž̠": [
-   "ʒˁ"
+   "ʒˤ"
   ],
   "ǧ": [
    "ɟ"
@@ -119,22 +119,21 @@
    "θ"
   ],
   "θ̣": [
-   "θˁ"
+   "θˤ"
   ],
   "ḍ": [
-   "dˁ"
+   "dˤ"
   ],
   "ḥ": [
    "ħ"
   ],
   "ẓ": [
-   "zˁ"
+   "zˤ"
   ]
  },
  "allophones": {},
  "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (zen.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "zen",
- "glottolog_code": "zena1248",
  "sources": [
   {
    "id": "glottolog2024",
@@ -163,7 +162,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-afro1255",
+ "inherits": "x-clade-afro1255",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Zenaga_language"

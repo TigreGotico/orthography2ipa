@@ -141,7 +141,7 @@ Nasal -em/-ém is [ẽj], not [ɐ̃j]: bem [ˈbẽj], também [tɐ̃ˈbẽj].
 
 Unstressed reduction follows standard EP: a becomes [ɐ], e becomes [ɨ], o becomes [u].
 
-Stressed open e is written [ɛ] without breaking. The specification's lexically restricted [ɛ͜ɐ] has no word list, so it is not written.
+Stressed open e is written [ɛ] without breaking. The specification's lexically restricted [ɛɐ] has no word list, so it is not written.
 
 Source: Mateus & d'Andrade (2000), ch. 2–3 (Lisbon-specific centralisation); Cintra (1971) and Brissos (2014) on southern vocalism.
 

@@ -8,8 +8,6 @@
   "allophones": {},
   "notes": "Doteli (डोटेली), an Indo-Aryan language of the Sudurpashchim (far-western) province of Nepal, closely related to Kumaoni and Nepali. STUB: the grapheme inventory is NOT yet specified. Script: Devanagari, an abugida — consonant letters carry an inherent vowel cancelled by virama ⟨्⟩ and overridden by matras. A full spec needs Doteli-specific inherent-vowel/schwa realisation, conjunct handling, and anusvara/candrabindu nasalisation; the language is under-described and no published normative letter-to-phoneme table was found. Input is assumed to be Devanagari.",
   "iso639_3": "dty",
-  "glottolog_code": "doty1234",
-  "wikidata_qid": "Q18415595",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Doteli",
     "https://dty.wikipedia.org/wiki/%E0%A4%A1%E0%A5%8B%E0%A4%9F%E0%A5%87%E0%A4%B2%E0%A5%80_%E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BE"
@@ -31,7 +29,7 @@
     "start_year": 1800,
     "end_year": null
   },
-  "parent": "x-clade-indo1321",
+  "inherits": "x-clade-indo1321",
   "ancestors": [
     {
       "code": "x-clade-indo1321",

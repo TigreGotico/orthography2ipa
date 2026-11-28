@@ -400,7 +400,6 @@
     "start_year": 1200,
     "end_year": null
   },
-  "glottolog_code": "hung1274",
   "iso639_3": "hun",
   "stress": {
     "default_position": 1,
@@ -410,7 +409,7 @@
     "stress_mark": "ˈ",
     "notes": "Hungarian has categorical initial stress. Long vowels (á é í ó ő ú ü ű) mark vowel length and quality, not stress. Source: Siptár & Törkenczy (2000), The Phonology of Hungarian; Wikipedia: https://en.wikipedia.org/wiki/Hungarian_phonology"
   },
-  "parent": "urj",
+  "inherits": "urj",
   "ancestors": [
     {
       "code": "urj",
@@ -443,7 +442,6 @@
       "notes": "Latin adstrate: ecclesiastical and scholarly vocabulary."
     }
   ],
-  "wikidata_qid": "Q9067",
   "phoible_id": "hung1274",
   "wals_code": "hun",
   "location": {

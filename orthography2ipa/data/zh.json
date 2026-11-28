@@ -1312,9 +1312,8 @@
     "start_year": 1300,
     "end_year": null
   },
-  "glottolog_code": "mand1415",
   "iso639_3": "zho",
-  "parent": "ltc",
+  "inherits": "ltc",
   "ancestors": [
     {
       "code": "ltc",
@@ -1329,7 +1328,6 @@
       "notes": "Old Chinese: deeper Sinitic ancestor."
     }
   ],
-  "wikidata_qid": "Q7850",
   "phoible_id": "mand1415",
   "location": {
     "latitude": 40.0209,

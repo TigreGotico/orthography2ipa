@@ -294,12 +294,10 @@
     "start_year": 1900,
     "end_year": null
   },
-  "glottolog_code": "bodo1269",
   "tone_inventory": {
-    "level": "level tone",
-    "falling": "falling tone"
+    "˧": "level tone",
+    "˥˩": "falling tone"
   },
-  "wikidata_qid": "Q33223",
   "phoible_id": "bodo1269",
   "wals_code": "bod",
   "location": {

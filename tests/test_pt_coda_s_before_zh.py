@@ -16,8 +16,8 @@ import pytest
 
 from orthography2ipa import G2P, get
 
-#: Specs whose word-final sibilant is the plain [ʃ]. pt-AO and pt-MZ write
-#: it [s], so the rule, which reads [ʃ], never applies there.
+#: Specs whose word-final sibilant is the plain [ʃ]. pt-MZ writes it [s], so
+#: the rule, which reads [ʃ], never applies there.
 LANGS = ["pt-PT", "pt-PT-x-lisbon", "pt-PT-x-porto", "pt-PT-x-acores"]
 
 BEFORE_ZH = [("os", "jogos"), ("as", "janelas"), ("mais", "giro"),

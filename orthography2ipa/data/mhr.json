@@ -4,7 +4,7 @@
   "script": "Cyrillic",
   "script_type": "alphabet",
   "quality": "research",
-  "parent": "chm",
+  "inherits": "chm",
   "ancestors": [
     {
       "code": "chm",
@@ -90,8 +90,6 @@
   "allophones": {},
   "notes": "Meadow Mari / Eastern Mari (олык марий), Uralic (Mari) language of the Mari El Republic, Russia. INPUT CONTRACT: modern Meadow Mari Cyrillic orthography, NFC. Orthography: the Russian alphabet plus ⟨Ҥҥ⟩ /ŋ/, ⟨Ӧӧ⟩ /ø/ and ⟨Ӱӱ⟩ /y/ (Alhoniemi 1985, Sec. 1). ⟨ы⟩ is a distinct non-front high vowel /ɤ/ (Alhoniemi 1985; confirmed against NorthEuraLex Segments, e.g. пы́лыш -> p ɤˑ l ɤ ʃ), not a fronted/centralised allophone of ⟨и⟩. The coronals ⟨д з л н с т⟩ palatalise before the iotated vowels ⟨е ё и ю я⟩ and the soft sign ⟨ь⟩ (Alhoniemi 1985, consonant chapter; directly evidenced by NorthEuraLex нер -> nʲ e r); those sequences are entered as multigraph keys the maximal-munch matcher prefers over the bare consonant. Iotated ⟨е ё ю я⟩ carry the [j]-initial reading word-initially/post-vocalically; after one of the six palatalisable coronals the digraph applies instead. ⟨щ⟩ is the cluster /ʃtʃ/ (Cyrillic convention shared with Russian loanword spelling); ⟨ц ч ш⟩ are plain, non-palatalising. ⟨ъ⟩ maps to the empty string (rare, Russian loanwords only). Word stress in Meadow Mari is not fixed and not reliably orthography-predictable (Alhoniemi 1985 notes it generally falls on the rightmost full, non-reduced vowel of the word, but this is a phonological — not a purely graphemic — computation over vowel reduction); it is documented here as an ENGINE-LIMIT stress exemption and is not modelled, matching the same undertaking already made for the sibling Permic languages (e.g. Udmurt) in this dataset. ITERATION FIX (error-analysis pass against NorthEuraLex): ⟨а⟩ is the back vowel /ɑ/, not /a/ (overwhelming NorthEuraLex evidence, e.g. аза́ -> ɑzɑˑ, ава́ -> ɑvɑˑ, ака́ -> ɑkɑˑ); ⟨л⟩ palatalises to the fused palatal lateral /ʎ/ before iotated vowels/⟨ь⟩ (a single segment, not the /lʲ/ sequence used for the other five palatalising coronals — NorthEuraLex коля́ -> koʎɑˑ, пе́ле -> peˑʎe).",
   "iso639_3": null,
-  "glottolog_code": null,
-  "wikidata_qid": "Q3906614",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Meadow_Mari_Wikipedia",
     "https://mhr.wikipedia.org/wiki/%D0%9E%D0%BB%D1%8B%D0%BA_%D0%BC%D0%B0%D1%80%D0%B8%D0%B9_%D0%B2%D0%B8%D0%BA%D0%B8%D0%BF%D0%B5%D0%B4%D0%B8%D0%B9"

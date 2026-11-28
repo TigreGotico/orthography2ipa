@@ -38,6 +38,7 @@ from __future__ import annotations
 
 import unicodedata
 from dataclasses import dataclass, replace
+from functools import lru_cache
 from typing import AbstractSet, List, Optional, Sequence, Tuple
 
 from orthography2ipa.phonetok import Candidate, GraphemeContext, SegmentSlot, _is_a_mark
@@ -94,16 +95,28 @@ def _match_atom(ipa: str, start: int, atoms: Sequence[str]) -> Optional[str]:
     modifier — ``k`` must not steal the base of ``k͈`` (tense) or ``kʰ``
     (aspirated), which are different phonemes.
     """
+    node = _atom_trie(tuple(atoms))
     longest = None
-    for atom in atoms:
-        end = start + len(atom)
-        if not ipa.startswith(atom, start):
-            continue
-        if end < len(ipa) and _is_modifier(ipa[end]):
-            continue
-        if longest is None or len(atom) > len(longest):
-            longest = atom
+    n = len(ipa)
+    for end in range(start, n):
+        node = node.get(ipa[end])
+        if node is None:
+            break
+        if "" in node and not (end + 1 < n and _is_modifier(ipa[end + 1])):
+            longest = node[""]
     return longest
+
+
+@lru_cache(maxsize=256)
+def _atom_trie(atoms: Tuple[str, ...]) -> dict:
+    root: dict = {}
+    for atom in atoms:
+        if atom:
+            node = root
+            for c in atom:
+                node = node.setdefault(c, {})
+            node[""] = atom
+    return root
 
 
 @dataclass(frozen=True)
@@ -519,7 +532,7 @@ class AllophoneRescorer(LatticeRescorer):
     def _holds_vowel(self, gctx: GraphemeContext) -> bool:
         """Whether a reading of *gctx* holds a vowel: a value of its grapheme
         table entry, or a positional value. The test is the one the stress
-        mark uses to find an inserted nucleus (``G2P._fold_inserted_nuclei``).
+        mark uses to find an inserted nucleus (``Interpreter._fold_inserted_nuclei``).
         """
         return any(is_ipa_vowel(c) for reading in gctx.ipa for c in reading) \
             or gctx.grapheme in self._positional_vowel_graphemes
@@ -643,7 +656,7 @@ class AllophoneRescorer(LatticeRescorer):
             if nxt is not None and nxt.grapheme and \
                     nxt.grapheme.lower() in rule.followed_by_grapheme_not:
                 return False
-        if rule.preceded_by_phoneme_2 or rule.followed_by_phoneme_2:
+        if rule.preceded_by_phoneme_2 or rule.followed_by_phoneme_2 or rule.followed_by_phoneme_3:
             # The grapheme TWO away, by its first IPA candidate. Read from the
             # grapheme layer (not the slot), so it is the underlying phoneme —
             # which is the point: ⟨с⟩ of ⟨гости⟩ palatalises because the ⟨т⟩
@@ -661,6 +674,10 @@ class AllophoneRescorer(LatticeRescorer):
             if rule.followed_by_phoneme_2:
                 n2 = _phoneme_at(2)
                 if n2 is None or n2 not in rule.followed_by_phoneme_2:
+                    return False
+            if rule.followed_by_phoneme_3:
+                n3 = _phoneme_at(3)
+                if n3 is None or n3 not in rule.followed_by_phoneme_3:
                     return False
         if rule.preceded_by_2 is not None:
             if not _neighbor_is(rule.preceded_by_2, ctx.grapheme.at(-2), -1):
@@ -863,6 +880,7 @@ def _rule_atoms(rules: Sequence[AllophoneRule]) -> Tuple[str, ...]:
         atoms.update(rule.followed_by_phoneme or ())
         atoms.update(rule.preceded_by_phoneme_2 or ())
         atoms.update(rule.followed_by_phoneme_2 or ())
+        atoms.update(rule.followed_by_phoneme_3 or ())
         atoms.update(rule.preceded_by_surface_phoneme_2 or ())
         if rule.surface:
             atoms.add(rule.surface)

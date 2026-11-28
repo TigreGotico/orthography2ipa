@@ -306,7 +306,7 @@
       "ju"
     ]
   },
-  "parent": "ang",
+  "inherits": "ang",
   "ancestors": [
     {
       "code": "ang",
@@ -360,8 +360,6 @@
     "start_year": 1150,
     "end_year": 1500
   },
-  "glottolog_code": "midd1317",
-  "wikidata_qid": "Q36395",
   "location": {
     "latitude": 51.65,
     "longitude": -1.11,

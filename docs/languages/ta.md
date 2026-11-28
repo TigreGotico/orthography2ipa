@@ -1,5 +1,13 @@
 # Tamil (`ta`)
 
+<!-- agent-hint
+covers: what the `ta` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ta.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Tamil is a Dravidian language, written in the Tamil script. Glottolog places it in India and Sri Lanka. The `ta` spec is at the research tier. It cites 4 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
@@ -68,11 +76,11 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 86 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 70 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Retroflex | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p pː |  |  | d̪ t̪ t̪ː |  | ɖ ʈ ʈː |  | k kː ɡ |  |
+| Plosive | b p pː |  |  | d̪ t t̪ t̪ː |  | ɖ ʈ ʈː |  | k kː ɡ |  |
 | Affricate |  |  |  |  | dʒ dʒː |  | dʑ tɕ tɕː |  |  |
 | Nasal | m mː |  |  | n nː n̪ |  | ɳ ɳː | ɲ ɲː | ŋ ŋː |  |
 | Trill |  |  |  | r rː |  |  |  |  |  |
@@ -83,11 +91,11 @@ The spec can emit 86 segments. They come from the letter table, the positional r
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
-| Close | i iː | u uː ɯ |
+| Close | i iː iːː | u uː ɯ |
 | Close-mid | e eː | o oː |
 | Open | a aː |  |
 
-Sequences that the spec writes as one unit: [ai] [au] [ba] [dʑa] [d̪a] [ka] [kʂ] [kʂː] [pa] [sa] [tɕa] [tɾ] [t̪a] [w] [ɖa] [ɡa] [ʃriː] [ʃriːː] [ʈa].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

@@ -11,7 +11,7 @@
    "b"
   ],
   "ch": [
-   "ʧ"
+   "t͡ʃ"
   ],
   "d": [
    "d"
@@ -35,7 +35,7 @@
    "i̘"
   ],
   "j": [
-   "ʤ"
+   "d͡ʒ"
   ],
   "k": [
    "k"
@@ -95,7 +95,6 @@
  "allophones": {},
  "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (alz.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "alz",
- "glottolog_code": "alur1250",
  "sources": [
   {
    "id": "glottolog2024",
@@ -124,7 +123,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-nilo1247",
+ "inherits": "x-clade-nilo1247",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Alur_language"

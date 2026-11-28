@@ -1,5 +1,13 @@
 # Quality tiers
 
+<!-- agent-hint
+covers: what each `quality` tier of a spec means and which test enforces it
+source: `orthography2ipa/types.py:QualityTier`, `tests/test_data_quality.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_data_quality.py`
+see: `docs/evaluation/benchmarks.md`, `docs/contributing/citations.md`
+-->
+
 Every spec states how mature its data is, in the `quality` field, as one of the four values of `orthography2ipa.types.QualityTier`. [`tests/test_data_quality.py`](../../tests/test_data_quality.py) fails a spec that leaves the field out. This page defines what a spec must meet for each tier, so that a reader can check a tier claim against the repository before depending on it.
 
 | Tier | What it means | What a test enforces |
@@ -20,7 +28,7 @@ collections.Counter(o2i.get(c).quality.value for c in o2i.available_codes())
 
 ## `stub`
 
-A stub holds `code`, `name`, `script` and a `parent`, so that the clade chain resolves and `family` derives from it. A grouping that is not a clade states `family` instead. Its `graphemes` and `allophones` may be empty, and it needs no gold. The tier is for a language that the library does not encode yet, and for an extinct language with a metadata-only entry.
+A stub holds `code`, `name`, `script` and an `inherits`, so that the clade chain resolves and `family` derives from it. A grouping that is not a clade states `family` instead. Its `graphemes` and `allophones` may be empty, and it needs no gold. The tier is for a language that the library does not encode yet, and for an extinct language with a metadata-only entry.
 
 A stub carries no letter table of its own. A stub dialect may still state a small delta over a base that it inherits a table from (`graphemes_base` or `positional_graphemes_base`), and `test_stub_carries_no_table_of_its_own` enforces this. A table on a stub hides the `StubSpecWarning` and makes the engine print IPA that no source supports. A spec whose table a listed source supports is a candidate for promotion, not a stub.
 
@@ -88,6 +96,16 @@ A production spec has a page under [`docs/languages/`](../languages). The page c
 ## Promotion is a test-gated act
 
 A change of tier to `production` is a claim that a test checks. The benchmark row must exist and pass the checks above, and `test_production_tier_has_qualifying_benchmark` fails every spec that claims `production` without one. For a shallow orthography, a reviewer also confirms the 0.15 target before the tier claim stands.
+
+## Who writes the specs
+
+Large language models (Anthropic Claude) wrote most specs, under the direction of a human maintainer. No small project can recruit a native-speaker linguist for thousands of languages, so the choice was between an AI-written spec and no spec.
+
+- Every mapping must trace to a published description: a reference grammar, a peer-reviewed paper or a university dataset.
+- The engine stays language-agnostic, so a spec cannot hide logic.
+- The tests check the structure, and the benchmarks score the output against external data.
+
+A cited spec that a model wrote is still not native-speaker validation, and the `quality` tier records that. If you speak a language and its spec is wrong, [open an issue](https://github.com/TigreGotico/orthography2ipa/issues) with a citation or a native-speaker judgment. Corrections have priority over all other work here.
 
 ---
 [← Data Model](data_model.md) · [Home](../index.md) · [Ancestry System →](ancestry.md)

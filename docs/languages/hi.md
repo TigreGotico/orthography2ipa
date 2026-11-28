@@ -1,7 +1,15 @@
 # Hindi (`hi`)
 
+<!-- agent-hint
+covers: what the `hi` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/hi.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/sa.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
-Hindi is an Indo-Aryan language, written in the Devanagari script. Glottolog places it in Bangladesh, Bhutan, India and Nepal. The `hi` spec is at the research tier. It cites 6 sources and has 2 scored datasets.
+Hindi is an Indo-Aryan language, written in the Devanagari script. Glottolog places it in Bangladesh, Bhutan, India and Nepal. The `hi` spec is at the research tier. It cites 8 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
 
 <!-- atlas:header begin -->
@@ -120,8 +128,6 @@ Many speakers, mostly in colloquial speech, use the native equivalents (q to k, 
 
 ## Known limitations
 
-A word-initial nukta letter with no vowel sign loses its inherent vowel. ख़त gives `xt̪`, ज़मीन gives `zmiːn`, and फ़र्क gives `fɾk`, each with no /ə/ after the first consonant. The same letter keeps its vowel inside a word: मज़ा gives `məzaː`. The precomposed and the decomposed nukta spellings give the same output.
-
 Anusvara before a consonant is nasalisation of the vowel in the output, not a homorganic nasal.
 
 ## Gold rows
@@ -140,7 +146,7 @@ These specs name `hi` as their parent. They are sorted by country, and a lect wi
 <!-- atlas:sources begin -->
 ## Sources
 
-The spec cites 6 works. 0 of them have a DOI or a URL. The spec file holds a note on what 3 of them support.
+The spec cites 8 works. 2 of them have a DOI or a URL. The spec file holds a note on what 5 of them support.
 
 1. <a id="src-shapiro1989"></a>Shapiro, M. (1989). *Hindi*. in B. Comrie (ed.), The World's Major Languages.
 2. <a id="src-masica1991"></a>Masica, C. (1991). *The Indo-Aryan Languages*. Cambridge University Press.
@@ -148,6 +154,8 @@ The spec cites 6 works. 0 of them have a DOI or a URL. The spec file holds a not
 4. <a id="src-ohala1983"></a>Ohala, M. (1983). *Aspects of Hindi Phonology*. Motilal Banarsidass, Delhi.
 5. <a id="src-ohala1999"></a>Ohala, M. (1999). *Hindi*. in Handbook of the International Phonetic Association, Cambridge University Press. Cited: 100-103.
 6. <a id="src-narasimhan2004"></a>Narasimhan, B., Sproat, R. & Kiraz, G. (2004). *Schwa-Deletion in Hindi Text-to-Speech Synthesis*. International Journal of Speech Technology 7(4). Cited: 319-333.
+7. <a id="src-unicode16_ch12"></a>The Unicode Consortium (2024). *The Unicode Standard, Version 16.0, Chapter 12: South and Central Asia-I (Devanagari)*. The Unicode Consortium. [unicode.org](https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/)
+8. <a id="src-unicode16_nameslist"></a>The Unicode Consortium (2024). *Unicode 16.0.0 NamesList.txt*. The Unicode Consortium. [unicode.org](https://www.unicode.org/Public/16.0.0/ucd/NamesList.txt)
 <!-- atlas:sources end -->
 
 ### Notes on the sources
@@ -164,14 +172,14 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `hi` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 30375 | 0.1277 | yes |
-| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `hi` | generated | epitran-derived | CC0 1.0 | 12478 | 0.2765 | no |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `hi` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 30376 | 0.1252 | yes |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `hi` | generated | epitran-derived | CC0 1.0 | 12478 | 0.2759 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 109 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 70 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Retroflex | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -180,20 +188,20 @@ The spec can emit 109 segments. They come from the letter table, the positional 
 | Nasal | m |  | n n̪ |  | ɳ | ɲ | ŋ |  |  |
 | Tap |  |  | ɾ |  | ɽ |  |  |  |  |
 | Fricative |  | f v | s z | ʃ | ʂ |  | x ɣ |  | h ɦ |
-| Approximant |  | ʋ |  |  |  | j |  |  |  |
+| Approximant |  | ʋ |  |  |  | j j̃ |  |  |  |
 | Lateral approximant |  |  | l |  |  |  |  |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
-| Close | iː |  | uː |
-| Near-close | ɪ |  | ʊ |
-| Close-mid | eː |  | oː |
-| Mid |  | ə |  |
-| Open-mid | ɛː |  | ɔː |
-| Near-open | æ æː |  |  |
-| Open | aː |  |  |
+| Close | iː ĩː |  | uː ũː |
+| Near-close | ɪ ɪ̃ |  | ʊ ʊ̃ |
+| Close-mid | eː ẽː |  | oː õː |
+| Mid |  | ə ə̃ |  |
+| Open-mid | ɛː ɛ̃ː |  | ɔː ɔ̃ː |
+| Near-open | æ æː æ̃ æ̃ː |  |  |
+| Open | aː ãː |  |  |
 
-Sequences that the spec writes as one unit: [bə] [bʱ] [bʱə] [dʒə] [dʒɲ] [dʒɲə] [dʒʱ] [dʒʱə] [d̪ə] [d̪ʱ] [d̪ʱə] [fə] [jə] [kə] [kʃ] [kʃə] [kʰə] [lə] [mə] [nə] [pə] [pʰə] [qə] [sə] [tʃə] [tʃʰə] [t̪ə] [t̪ɾ] [t̪ɾə] [t̪ʰə] [w] [xə] [zə] [ŋə] [ɖə] [ɖʱ] [ɖʱə] [ɡj] [ɡjə] [ɡə], and 20 more.
+Sequences that the spec writes as one unit: [bʱ] [dʒʱ] [d̪ʱ] [w] [w̃] [ɖʱ] [ɡʱ] [ɽʱ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -246,6 +254,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨द⟩ | [d̪] |  |
 | ⟨ध⟩ | [d̪ʱ] |  |
 | ⟨न⟩ | [n] |  |
+| ⟨ऩ⟩ | [n] |  |
 | ⟨प⟩ | [p] |  |
 | ⟨फ⟩ | [pʰ] |  |
 | ⟨फ़⟩ | [f] |  |
@@ -254,7 +263,9 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨म⟩ | [m] |  |
 | ⟨य⟩ | [j] |  |
 | ⟨र⟩ | [ɾ] |  |
+| ⟨ऱ⟩ | [ɾ] |  |
 | ⟨ल⟩ | [l] |  |
+| ⟨ऴ⟩ | [l] |  |
 | ⟨व⟩ | [ʋ] |  |
 | ⟨श⟩ | [ʃ] |  |
 | ⟨श्र⟩ | [ʃɾ] |  |
@@ -437,12 +448,12 @@ The engine wrote every transcription in this section with `orthography2ipa.trans
 | शब्द | [ʃəbd̪] |
 | करना | [kəɾnaː] |
 | अपना | [əpnaː] |
-| ज़मीन | [zmiːn] |
+| ज़मीन | [zəmiːn] |
 | दीवार | [d̪iːʋaːɾ] |
 | पड़ना | [pəɽnaː] |
 | बढ़ना | [bəɽʱnaː] |
 | क़िस्मत | [qɪsmət̪] |
-| फ़र्क | [fɾk] |
+| फ़र्क | [fəɾk] |
 | हाँ | [ɦãː] |
 <!-- atlas:examples end -->
 

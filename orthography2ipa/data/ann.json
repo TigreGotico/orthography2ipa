@@ -7,8 +7,6 @@
   "graphemes": {},
   "allophones": {},
   "iso639_3": null,
-  "glottolog_code": null,
-  "wikidata_qid": null,
   "notes": "STUB — DELIBERATELY LEFT UNFILLED. Obolo (Andoni) is a Lower Cross (Cross River, Atlantic-Congo) language of Andoni LGA, Rivers State and Eastern Obolo LGA, Akwa Ibom State, Nigeria; Ngo is the prestige dialect and the basis of Standard (Literary) Obolo. WHAT IS ESTABLISHED: the orthography was created by Nicholas Faraclas in the 1980s, revised by Uche Aaron with the Obolo Language and Bible Translation Committee in 1991, and published by the NERDC in Orthographies of Nigerian Languages, Manual VI (2000). Its 32-letter alphabet is: a b ch d e f g gb gw i j k kp kw l m n n̄ nw ny o ọ p r s (sh) t u (v) w y (z) — the bracketed letters are dialect-specific. Faraclas's phonological analysis (summarised by Nurse, chapter 18 'Obolo') gives a consonant system with only two fricatives /f, s/ and NO /p/, and six vowel qualities, all occurring short and long. WHY STILL A STUB: no source consulted gives a LETTER-TO-IPA table. The letter list plus the phoneme inventory do not fix the mapping — most conspicuously ⟨p⟩ is in the alphabet while Faraclas's inventory has no /p/, and the values of ⟨e⟩, ⟨o⟩, ⟨ọ⟩, ⟨n̄⟩ and ⟨nw⟩ cannot be read off the letter list without guessing. Per project rule, no graphemes are recorded rather than fabricate IPA values. TO UNBLOCK: obtain Faraclas (1984) A Grammar of Obolo / The Phonology of Obolo, or the NERDC Manual VI (2000) Obolo chapter, or OLBTO's 'Reading and Writing Obolo' workshop manual, and read the letter-to-sound chart directly. INPUT CONTRACT (when filled): Standard (Ngo-based) Latin-script Obolo per the 1991/2000 NERDC orthography, already normalised; note ⟨n̄⟩ is n + COMBINING MACRON (U+0304) and ⟨ọ⟩ is o + dot below. TONE: Obolo has five tones (low, high, mid, falling, rising), borne by the vowels a, e, i, o, ọ, u and the consonants m, n. In practice only the low (`) and falling (ˆ) tones are written, obligatorily on the first syllable of verbs and verbal groups, elsewhere only to disambiguate minimal pairs. Tone is therefore only PARTIALLY written, and unwritten tone is NOT RECOVERABLE from the orthography. No ISO 639-3 or Glottolog code is recorded for this Wikimedia code in Wikidata, so those fields stay null; wikidata_qid left unset because the code's Wikidata row resolves to the Wikimedia project item, not the language item.",
   "sources": [
     {
@@ -65,7 +63,7 @@
     }
   ],
   "wikipedia": [],
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

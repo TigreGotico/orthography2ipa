@@ -102,7 +102,7 @@
       "dz"
     ]
   },
-  "parent": "la-x-hispania",
+  "inherits": "la-x-hispania",
   "ancestors": [
     {
       "code": "la-x-hispania",
@@ -119,7 +119,6 @@
   ],
   "notes": "Skeleton. Old (Medieval) Spanish, before the 16th-17th c. sibilant readjustment. Keeps the voiced/voiceless sibilant contrasts: ⟨ç⟩=/ts/, ⟨z⟩=/dz/, ⟨x⟩=/ʃ/, ⟨j/g(e,i)⟩=/dʒ/, ⟨ss⟩=/s/. Intervocalic ⟨v/b⟩=/β/. Positional ⟨c/g⟩ before front vowels encoded.",
   "iso639_3": "osp",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "penny2002osp",

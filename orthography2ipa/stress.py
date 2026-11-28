@@ -1033,6 +1033,21 @@ def _syllabify_with_diphthongs(
     return syllables
 
 
+def plugin_syllables(word: str, lang: Optional[str],
+                     syllabifier: SyllabifierPlugin) -> Optional[List[str]]:
+    """The division of *word* by *syllabifier*, or ``None`` when the plugin
+    fails or returns syllables that do not spell *word*."""
+    try:
+        sylls = syllabifier.syllabify(word, lang)
+        if sylls and "".join(sylls) == word:
+            return list(sylls)
+    except Exception as exc:
+        logging.getLogger(__name__).warning(
+            "syllabifier plugin %r failed on word %r: %s",
+            type(syllabifier).__name__, word, exc)
+    return None
+
+
 def _syllables_for(
     word: str,
     lang: Optional[str],
@@ -1053,14 +1068,9 @@ def _syllables_for(
     unconstrained (the historical behaviour).
     """
     if syllabifier is not None:
-        try:
-            sylls = syllabifier.syllabify(word, lang)
-            if sylls and "".join(sylls) == word:
-                return list(sylls)
-        except Exception as exc:
-            logging.getLogger(__name__).warning(
-                "syllabifier plugin %r failed on word %r: %s",
-                type(syllabifier).__name__, word, exc)
+        sylls = plugin_syllables(word, lang, syllabifier)
+        if sylls is not None:
+            return sylls
     if spec is None and lang:
         spec = _spec_for(lang)
     hiatus = (hiatus_positions(word, spec) if spec is not None
@@ -1169,8 +1179,14 @@ def hiatus_positions(word: str, spec: LanguageSpec) -> FrozenSet[int]:
     if rules is None:
         return frozenset()
     found: List[int] = []
+    atonic: List[int] = []
     if rules.closed_hiatus is not None:
         found += _closed_hiatus_candidates(word, rules, spec.graphemes)
+        atonic = [k for k in range(1, len(word))
+                  if word[k - 1:k + 1].lower() in rules.closed_hiatus.pairs
+                  and any(word[k + 1:].lower().startswith(o)
+                          for o in rules.closed_hiatus.atonic_onsets)]
+        found += [k for k in atonic if k not in found]
     if rules.final_diphthongs is not None:
         found += _final_diphthong_candidates(word, rules)
     if not found:
@@ -1178,7 +1194,7 @@ def hiatus_positions(word: str, spec: LanguageSpec) -> FrozenSet[int]:
     sylls = _bundled_syllables(word, spec, rules.diphthongs, frozenset(found))
     stressed = detect_stress(word, rules, syllables=sylls)
     start = sum(len(syll) for syll in sylls[:stressed])
-    return frozenset(k for k in found if k == start)
+    return frozenset(k for k in found if k == start or k in atonic)
 
 
 def _spec_for(lang: str) -> Optional[LanguageSpec]:
@@ -1919,13 +1935,16 @@ _AFFRICATES: Sequence[str] = tuple(
 #: (Georgian ⟨წ⟩ /tsʼ/, ⟨ც⟩ /tsʰ/, Russian ⟨ць⟩ /tsʲ/). Each writes its mark
 #: inside the two-symbol sequence. The
 #: two remaining post-alveolar shapes are listed for the same reason: Polish
-#: ⟨dż⟩ is one affricate whether a spec writes it /ɖʐ/ or /dʐ/.
+#: ⟨dż⟩ is one affricate whether a spec writes it /ɖʐ/ or /dʐ/. A diacritic
+#: below the fricative part marks the place of articulation, as in the Basque
+#: apical and laminal affricates /ts̺/ and /ts̻/, and it stays inside the segment.
 _MARK_ATOMS: Sequence[str] = tuple(sorted(
-    {stop + length + tie + base[1:] + release
+    {stop + length + tie + base[1:] + place + release
      for base in tuple(_BARE_AFFRICATES) + ("dʐ", "tʂ")
      for stop in (base[0],)
      for length in ("", "ː")
      for tie in ("", _TIE)
+     for place in ("", "\u033a", "\u033b")
      for release in ("", "ʼ", "ʰ", "ʲ", "ʷ")},
     key=len, reverse=True))
 

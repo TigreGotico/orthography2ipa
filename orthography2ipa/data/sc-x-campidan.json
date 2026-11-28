@@ -18,7 +18,7 @@
       "ɣ"
     ]
   },
-  "parent": "sc",
+  "inherits": "sc",
   "notes": "Campidanese Sardinian. Southern variety, more innovative than Logudorese. Greater intervocalic lenition, more retroflex consonants, some Catalan/Spanish influence from centuries of Aragonese-Catalan rule. PHONEME INVENTORY: attested inventory from PHOIBLE (glottocode camp1261), declared directly. `graphemes` stays empty because none of that depends on the writing system: the sounds of this language are known regardless of whether — or how — it is written.",
   "quality": "skeleton",
   "script_type": "alphabet",
@@ -73,9 +73,7 @@
     "start_year": 1000,
     "end_year": null
   },
-  "glottolog_code": "camp1261",
   "iso639_3": "sro",
-  "wikidata_qid": "Q35348",
   "phoible_id": "camp1261",
   "location": {
     "latitude": 39.0566,

@@ -5,8 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "szy",
-  "glottolog_code": "saki1247",
-  "wikidata_qid": "Q718269",
   "graphemes": {
     "ng": [
       "ŋ"
@@ -149,7 +147,7 @@
     "https://en.wikipedia.org/wiki/Sakizaya_language",
     "https://szy.wikipedia.org/wiki/Sakizaya_a_kamu"
   ],
-  "parent": "x-clade-aust1307",
+  "inherits": "x-clade-aust1307",
   "ancestors": [
     {
       "code": "x-clade-aust1307",

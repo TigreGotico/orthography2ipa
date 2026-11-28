@@ -5,8 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "lez",
-  "glottolog_code": "lezg1247",
-  "wikidata_qid": "Q31746",
   "graphemes": {
     "гъ": [
       "ʁ"
@@ -306,7 +304,7 @@
     "χʷ",
     "χʷʲ"
   ],
-  "parent": "x-clade-nakh1245",
+  "inherits": "x-clade-nakh1245",
   "ancestors": [
     {
       "code": "x-clade-nakh1245",

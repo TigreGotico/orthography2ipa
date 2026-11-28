@@ -341,7 +341,7 @@
     ]
   },
   "collapse_geminates": true,
-  "parent": "x-clade-west2793",
+  "inherits": "x-clade-west2793",
   "ancestors": [
     {
       "code": "goh",
@@ -620,9 +620,7 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": "stan1295",
   "iso639_3": "deu",
-  "wikidata_qid": "Q188",
   "phoible_id": "stan1295",
   "wals_code": "ger",
   "location": {
@@ -669,7 +667,7 @@
       "grapheme": [
         "g"
       ],
-      "notes": "word-final ⟨-ig⟩ is [ɪç] (König, ewig). Keyed on the ⟨g⟩ grapheme after final devoicing, so ⟨-ik⟩ (Musik) is untouched"
+      "notes": "word-final ⟨-ig⟩ is [ɪç] (König, ewig). Keyed on the ⟨g⟩ grapheme after final devoicing, so ⟨-ik⟩ (Musik) is untouched. Source: DWDS König, Aussprache [ˈkøːnɪç] (dwds.de/wb/König; saved in Papers/Languages/Germanic/German/dwds_koenig.html)."
     },
     {
       "id": "DE_OPEN_SYLLABLE_A",

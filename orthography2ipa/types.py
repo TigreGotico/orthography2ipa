@@ -1,7 +1,7 @@
 """Type definitions for orthography2ipa.
 
 The core data model supports:
-- Single-parent inheritance (simple dialect trees)
+- Single-spec rule inheritance (simple dialect trees)
 - Multi-ancestor relationships (contact languages, creoles, transitional dialects)
 - Weighted ancestry for distance calculations
 - Positional grapheme-to-IPA mappings for context-sensitive G2P
@@ -31,6 +31,11 @@ rescorer to choose. Normalised by
 """
 
 import copy as _copy
+import warnings
+
+from linguatag import catalog_ids
+
+from orthography2ipa.version import VERSION_MAJOR
 
 
 class FrozenDict(dict):
@@ -436,8 +441,13 @@ class ClosedHiatus:
         Consonant letters that split the pair when they close its syllable:
         no vowel letter follows them, and they do not start a longer
         grapheme of the spec (⟨lh rr⟩ are onsets of the next syllable).
+    atonic_onsets : Tuple[str, ...]
+        Consonant graphemes that split the pair wherever they follow it, also
+        where the split-off vowel is atonic. Portuguese ⟨nh⟩: the hiatus of
+        ra-i-nha stays in em-ba-i-nhar (Infopédia ẽbɐiˈɲar).
 
-    The split holds only where the split-off vowel is the stressed one, as
+    Except after an ``atonic_onsets`` grapheme, the split holds only where
+    the split-off vowel is the stressed one, as
     the stress rules place it over the split syllables. Base X, 2.º is about
     tonic vowels, and the spelling does not tell an atonic ⟨i u⟩ in hiatus
     from a diphthong (Base XIV, 1.º: arruinar, faiscar).
@@ -445,6 +455,7 @@ class ClosedHiatus:
     pairs: Tuple[str, ...] = ()
     onsets: Tuple[str, ...] = ()
     codas: Tuple[str, ...] = ()
+    atonic_onsets: Tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -770,6 +781,17 @@ class StressRules:
             :meth:`~orthography2ipa.g2p.G2P.transcribe_word` also reads a
             hyphenated word element by element: it gives the same marks and
             returns one token, with no space between the elements.
+    noncohering_suffixes : Tuple[str, ...]
+        Suffixes that form a prosodic word of their own. A word that ends in
+        one, after a base that ends in a vowel letter, is transcribed as two
+        stress domains: the base is read as a word alone, its main stress
+        mark becomes the secondary mark ``ˌ``, and the suffix carries the
+        main stress. A base that ends in a consonant stays joined, because a
+        base read alone loses the assimilation to the suffix onset. The
+        first listed suffix that matches wins.
+    noncohering_exceptions : Tuple[str, ...]
+        Words that end in a :attr:`noncohering_suffixes` entry but are read
+        as one stress domain, because the ending is not that suffix.
     iambic_length : bool
         Whether prominent syllables of a word are realised with a LONG
         nucleus, independently of where the word-accent mark
@@ -839,6 +861,8 @@ class StressRules:
     accent2_final_letters: Tuple[str, ...] = ()
     secondary_stress: str = ""
     compound_stress: str = ""
+    noncohering_suffixes: Tuple[str, ...] = ()
+    noncohering_exceptions: Tuple[str, ...] = ()
     iambic_length: bool = False
     source: str = "rules"
     notes: str = ""
@@ -1333,6 +1357,28 @@ class SandhiRule:
         A single boundary may need both halves (``els dos`` → [əlz ðos]:
         the left ⟨s⟩ voices *and* the right ⟨d⟩ lenites), so the two sides are
         resolved independently — see :meth:`~orthography2ipa.sandhi.SandhiEngine.apply`.
+    left_spelling : Optional[str]
+        Regex that must also find a match in the SPELLING of the left word.
+        ``None`` (the default) sets no spelling condition. It is the spelling
+        mirror of :attr:`left_context`: what a rule needs when two words with
+        the same IPA take different sandhi, because only the written form
+        tells them apart (French ⟨cent⟩ and ⟨sang⟩ are both [sɑ̃], and only
+        ⟨cent ans⟩ links with [t]). The spelling is the casefolded text of the
+        word without the punctuation around it, and a hyphen ends it: in
+        ⟨vingt-deux⟩ the two words read ``vingt`` and ``deux``.
+    right_spelling : Optional[str]
+        The same condition on the spelling of the right word.
+    left_joined_spelling : Optional[str]
+        Regex that must find a match in the JOINED spelling of the left word:
+        for a word joined to the word before it by a hyphen, the spelling of
+        that word, ``-`` and its own spelling; for any other word, its own
+        spelling. It spans at most two words. In ⟨quatre-vingt-deux⟩ the
+        joined spellings are ``quatre``, ``quatre-vingt`` and ``vingt-deux``,
+        so ``^(?!quatre-vingt$)`` tells ⟨vingt-deux⟩ from ⟨quatre-vingt-deux⟩,
+        and an anchored word list such as ``^(?:les|des)$`` also says that the
+        word is not joined (⟨donne-les⟩ reads ``donne-les``).
+    right_joined_spelling : Optional[str]
+        The same condition on the joined spelling of the right word.
     obligatory : bool
         Whether this rule applies unconditionally.
     notes : str
@@ -1346,6 +1392,12 @@ class SandhiRule:
     right_transform: Optional[str] = None
     obligatory: bool = True
     notes: str = ""
+    # The spelling conditions come after ``notes``, so a positional call that
+    # predates them keeps its meaning.
+    left_spelling: Optional[str] = None
+    right_spelling: Optional[str] = None
+    left_joined_spelling: Optional[str] = None
+    right_joined_spelling: Optional[str] = None
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1482,6 +1534,10 @@ class AllophoneRule:
         (Russian ⟨с⟩ of ⟨гости⟩ palatalises because the ⟨т⟩ after it stands
         before a soft vowel; that is a fact about the ⟨т⟩'s underlying
         identity, not about what it surfaces as). Empty = don't care.
+    followed_by_phoneme_3 : Tuple[str, ...]
+        Like :attr:`followed_by_phoneme_2`, three graphemes ahead (the
+        Midi loi de position: a mid vowel before an obstruent-liquid onset
+        is close only when a full vowel, not a schwa, follows the onset).
     requires_other_nucleus : Optional[bool]
         Require (``True``) — or forbid (``False``) — that some OTHER slot
         in the word carries a syllable nucleus. A rule that DELETES a
@@ -1651,6 +1707,8 @@ class AllophoneRule:
     notes: str = ""
     mutates_neighbor: Optional[str] = None
     mutates_neighbor_side: Optional[str] = None
+    # last, so that a positional argument keeps the field it had before
+    followed_by_phoneme_3: Tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
         if isinstance(self.phonemes, str):
@@ -1665,6 +1723,8 @@ class AllophoneRule:
             self, "preceded_by_phoneme_2", tuple(self.preceded_by_phoneme_2))
         object.__setattr__(
             self, "followed_by_phoneme_2", tuple(self.followed_by_phoneme_2))
+        object.__setattr__(
+            self, "followed_by_phoneme_3", tuple(self.followed_by_phoneme_3))
         object.__setattr__(
             self, "preceded_by_surface_phoneme_2",
             tuple(self.preceded_by_surface_phoneme_2))
@@ -1786,7 +1846,7 @@ class Ancestor:
 class InheritanceMode(str, Enum):
     """How a ``LanguageSpec`` field is resolved when a spec declares a base
     (``graphemes_base`` / ``allophones_base`` / ``positional_graphemes_base``)
-    or an ancestry ``parent``.
+    or an ``inherits`` spec.
     """
 
     BASE_MERGE = "base_merge"
@@ -1854,7 +1914,7 @@ class InheritanceMode(str, Enum):
     that states the field keeps its own block whole; nothing is merged key by
     key. A spec that does not state it takes the resolved block of its
     ``graphemes_base``. Without a ``graphemes_base``, it takes the block of
-    the nearest data ancestor on ``parent``, but only when that ancestor is
+    the nearest data ancestor on ``inherits``, but only when that ancestor is
     the same language: the spec's ``iso639_3`` is unset or equal to the
     ancestor's.
 
@@ -1862,8 +1922,8 @@ class InheritanceMode(str, Enum):
     accent marks that override it (``marked_vowels``) are graphemes of its
     orthography. A regional variety with no ISO 639-3 code of its own
     (``el-CY`` under ``el``, ``it-IT-x-toscana`` under ``it-IT``) shares both
-    with the language it belongs to. A language with its own code that keeps
-    ``parent`` for its genealogy (Angolar ``aoa`` under ``pt-PT``, A Fala
+    with the language it belongs to. A language with its own code that sets
+    ``inherits`` (Angolar ``aoa`` under ``pt-PT``, A Fala
     ``fax`` under ``gl-ES``) has its own stress system and its own
     orthography, so it declares its own block or has none.
 
@@ -1884,10 +1944,9 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "script": InheritanceMode.OWN_ONLY,
     "graphemes": InheritanceMode.BASE_MERGE,
     "allophones": InheritanceMode.BASE_MERGE,
-    "parent": InheritanceMode.OWN_ONLY,
+    "inherits": InheritanceMode.OWN_ONLY,
     "ancestors": InheritanceMode.OWN_ONLY,
     "positional_graphemes": InheritanceMode.BASE_MERGE,
-    "glottolog_code": InheritanceMode.OWN_ONLY,
     "notes": InheritanceMode.OWN_ONLY,
     "quality": InheritanceMode.OWN_ONLY,
     "script_type": InheritanceMode.OWN_ONLY,
@@ -1909,6 +1968,7 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "codas": InheritanceMode.OWN_ONLY,
     "inherent_vowel_final": InheritanceMode.OWN_ONLY,
     "virama_final_vowel": InheritanceMode.OWN_ONLY,
+    "consonant_marks": InheritanceMode.OWN_ONLY,
     "collapse_geminates": InheritanceMode.OWN_ONLY,
     "doubled_letters_geminate": InheritanceMode.OWN_ONLY,
     "constrain_onsets": InheritanceMode.BASE_SCALAR,
@@ -1917,7 +1977,6 @@ FIELD_INHERITANCE: Dict[str, InheritanceMode] = {
     "phonemes": InheritanceMode.OWN_ONLY,
     "orthography_kind": InheritanceMode.OWN_ONLY,
     "iso639_3": InheritanceMode.OWN_ONLY,
-    "wikidata_qid": InheritanceMode.OWN_ONLY,
     "phoible_id": InheritanceMode.OWN_ONLY,
     "wals_code": InheritanceMode.OWN_ONLY,
     "trailing_vowel_axis_digraphs": InheritanceMode.OWN_ONLY,
@@ -1986,11 +2045,8 @@ class LanguageSpec:
     phonological positions.  When absent or empty, the base ``graphemes``
     mapping is used for all positions (backward-compatible).
 
-    The ``glottolog_code`` field provides an optional Glottolog languoid
-    identifier for cross-referencing with the Glottolog classification
-    (e.g. ``'cast1244'`` for Castilian). This enables interoperability
-    with Glottolog's genealogical database while keeping our own BCP-47
-    codes as primary identifiers.
+    The Glottolog and Wikidata ids of a spec come from
+    ``linguatag.catalog_ids``, not from the spec file.
     """
 
     code: str
@@ -2041,14 +2097,14 @@ class LanguageSpec:
     """Whether ``graphemes`` encodes the language's own script, a romanization
     people actually use, or a machine transliteration of another script."""
 
-    parent: Optional[str] = None
-    """Primary parent code (backward-compatible shorthand).
+    inherits: Optional[str] = None
+    """The code of the spec whose rules this spec starts from.
     If ancestors is also set, should match the PARENT-role ancestor."""
 
     ancestors: Tuple[Ancestor, ...] = ()
     """Full ancestry specification.  Encodes multiple parents,
     substrates, superstrates, contact languages, creole origins.
-    If empty but parent is set, a default PARENT ancestor is inferred."""
+    If empty but inherits is set, a default PARENT ancestor is inferred."""
 
     positional_graphemes: Optional[PositionalGrapheme2IPA] = None
     """Optional positional grapheme→IPA overrides.
@@ -2072,12 +2128,6 @@ class LanguageSpec:
             },
         }
     """
-
-    glottolog_code: Optional[str] = None
-    """Optional Glottolog languoid code (e.g. 'cast1244' for Castilian,
-    'west2813' for West Iberian). Enables cross-referencing with
-    Glottolog's genealogical classification database.
-    See https://glottolog.org for the full catalogue."""
 
     notes: str = ""
     """Free-form notes."""
@@ -2129,6 +2179,18 @@ class LanguageSpec:
     behaviour every other abugida spec already has. Declaring a vowel here
     substitutes it ONLY when the virama is the word's last character; a
     virama anywhere else keeps deleting the vowel to form its conjunct."""
+
+    consonant_marks: Tuple[str, ...] = ()
+    """Combining marks that stay part of the consonant letter before them.
+
+    In an abugida, a grapheme key that ends in a combining mark ordinarily
+    reads as that mark and takes no inherent vowel, which is right for an
+    anusvara or a visarga. A mark listed here instead modifies the letter it
+    follows: the nukta turns ⟨क⟩ /k/ into ⟨क़⟩ /q/ and supplies no vowel. A
+    key made of a letter followed only by listed marks is a consonant letter,
+    and it takes the inherent vowel exactly as the plain letter does: ⟨क़लम⟩
+    is /qələm/, as ⟨कलम⟩ is /kələm/. Each entry is one codepoint. Empty (the
+    default) lists no mark."""
 
     plugins: Dict[str, Tuple[str, ...]] = field(default_factory=dict)
     """Deprecated: which plugin this language wants, per stage — keyed by entry-point name.
@@ -2421,12 +2483,6 @@ class LanguageSpec:
     iso639_3: Optional[str] = None
     """ISO 639-3 three-letter code for PHOIBLE/Glottolog cross-referencing."""
 
-    wikidata_qid: Optional[str] = None
-    """Optional Wikidata item id (e.g. ``"Q1321"`` for Spanish). The hub of the
-    linked-data graph: one QID resolves to this language's Glottolog code,
-    ISO 639-3 code, PHOIBLE inventories, WALS entry and Wikipedia articles in
-    every edition. See https://www.wikidata.org."""
-
     phoible_id: Optional[str] = None
     """Optional PHOIBLE identifier for the language's attested phoneme
     inventories. PHOIBLE catalogues cross-linguistic phoneme inventories and is
@@ -2605,8 +2661,8 @@ class LanguageSpec:
     language has no (encoded) predictable stress system.
 
     A spec with no block of its own takes its ``graphemes_base``'s block,
-    else the block of a ``parent`` that is the same language, unless it
-    states ``"stress": false`` (see :attr:`InheritanceMode.BASE_BLOCK`);
+    else the block of the ``inherits`` spec when that is the same language,
+    unless it states ``"stress": false`` (see :attr:`InheritanceMode.BASE_BLOCK`);
     consumed by
     :func:`orthography2ipa.stress.detect_stress`."""
 
@@ -2641,7 +2697,7 @@ class LanguageSpec:
     """Derived classification path — the names of the clade nodes on this
     spec's ancestry chain, broadest first (``("Indo-European", "Italic",
     "Romance", "Ibero-Romance")``). Computed by the loader by walking
-    ``parent``; never hand-written in JSON."""
+    ``inherits``; never hand-written in JSON."""
 
     word_exceptions: Optional[Dict[str, str]] = None
     """Whole-word IPA overrides for a closed set of irregular words that
@@ -2733,7 +2789,7 @@ class LanguageSpec:
     the spec lists for its letter in an unstressed position gives way to
     the vowel the positional tables chose for the word's stress, so Russian
     ⟨-ого⟩ [əvə] reads [ˈovə] in большо́го (see
-    :meth:`~orthography2ipa.g2p.G2P._ending_vowels_follow_stress`).
+    :meth:`~orthography2ipa.ir.interpreter.Interpreter._ending_vowels_follow_stress`).
 
     Precedence: :attr:`word_exceptions` **>** ``grammatical_endings``
     **>** :attr:`graphemes` / :attr:`positional_graphemes`."""
@@ -2792,15 +2848,15 @@ class LanguageSpec:
                     self.positional_graphemes[grapheme][new_pos] = self.positional_graphemes[grapheme].pop(pos)
 
         # ensure main parent is set
-        if not self.ancestors and self.parent:
-            object.__setattr__(self, "ancestors", [Ancestor(code=self.parent, role=AncestorRole.PARENT, weight=1.0,
+        if not self.ancestors and self.inherits:
+            object.__setattr__(self, "ancestors", [Ancestor(code=self.inherits, role=AncestorRole.PARENT, weight=1.0,
                                                             notes="primary parent")])
-        # if "parent" is not set, check if it is defined in "ancestors"
+        # if "inherits" is not set, check if it is defined in "ancestors"
         #  this is technically incomplete json, but handle it
-        elif not self.parent and self.ancestors:
+        elif not self.inherits and self.ancestors:
             for a in self.ancestors:
                 if a.role == AncestorRole.PARENT:
-                    object.__setattr__(self, "parent", a.code)
+                    object.__setattr__(self, "inherits", a.code)
                     break
 
         # Deep-freeze every field. All construction-time mutation above is now
@@ -2879,17 +2935,42 @@ class LanguageSpec:
         """Return ancestors, optionally filtered by role.
         Synthesises from parent field if ancestors tuple is empty."""
         anc = self.ancestors
-        if not anc and self.parent:
-            anc = (Ancestor(self.parent, AncestorRole.PARENT, 1.0),)
+        if not anc and self.inherits:
+            anc = (Ancestor(self.inherits, AncestorRole.PARENT, 1.0),)
         if role is not None:
             anc = tuple(a for a in anc if a.role == role)
         return anc
 
     @property
+    def parent(self) -> Optional[str]:
+        """Deprecated alias of :attr:`inherits`."""
+        warnings.warn(
+            f"LanguageSpec.parent is deprecated and will be removed in "
+            f"{VERSION_MAJOR + 1}.0.0; use LanguageSpec.inherits.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.inherits
+
+    @property
+    def glottolog_code(self) -> Optional[str]:
+        """Deprecated: read ``linguatag.catalog_ids(spec.code)``."""
+        warnings.warn("LanguageSpec.glottolog_code is deprecated; use "
+                      "linguatag.catalog_ids(spec.code)", DeprecationWarning, stacklevel=2)
+        return catalog_ids(self.code).get("glottolog_code")
+
+    @property
+    def wikidata_qid(self) -> Optional[str]:
+        """Deprecated: read ``linguatag.catalog_ids(spec.code)``."""
+        warnings.warn("LanguageSpec.wikidata_qid is deprecated; use "
+                      "linguatag.catalog_ids(spec.code)", DeprecationWarning, stacklevel=2)
+        return catalog_ids(self.code).get("wikidata_qid")
+
+    @property
     def primary_parent(self) -> Optional[str]:
         """The primary parent code."""
-        if self.parent:
-            return self.parent
+        if self.inherits:
+            return self.inherits
         parents = self.get_ancestors(AncestorRole.PARENT)
         return parents[0].code if parents else None
 

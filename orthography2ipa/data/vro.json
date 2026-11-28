@@ -178,8 +178,6 @@
   },
   "notes": "Võro (võro kiil), a South Estonian (Finnic) language of south-eastern Estonia with its own literary standard, regulated by the Võro Institute. The orthography is Estonian-based with two distinctive additions: ⟨q⟩ writes the glottal stop (the Võro plural/negation marker), and palatalisation is marked with an acute accent or apostrophe. Vowels include ⟨õ⟩ /ɤ/, ⟨ä⟩ /æ/, ⟨ö⟩ /ø/, ⟨ü⟩ /y/. Estonian's three-way quantity system is present but is not written and is not modelled. The Wikidata row supplied for this code pointed at a Wikimedia project page rather than the language item, so no QID is asserted here.",
   "iso639_3": "vro",
-  "glottolog_code": "voro1243",
-  "wikidata_qid": "Q32762",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/V%C3%B5ro_language"
   ],
@@ -207,7 +205,7 @@
       "notes": "Appendix 3, the Võro standard orthography, read in full (pp. 233-236; in Estonian). Confirms ⟨q⟩ = the glottal stop (larüngaalklusiil) as a phoneme of its own, the acute accent as the palatalisation mark (written on the last letter when several palatalised consonants stand together), ⟨f⟩ confined to loans, and ⟨c⟩ as an occasional literary spelling of ⟨ts⟩. Two things the standard has that this spec does not: ⟨y⟩ is a native letter for the high, i-coloured õ-vowel (sys, nyna; ⟨yy⟩ for its overlong grade), and the palatalisation mark is a grapheme-level contrast the map does not read. Both are recorded here as gaps, not changed. The appendix also documents the post-2005 simplified variant that drops ⟨q⟩ and ⟨y⟩, which is the spelling of the newspaper Uma Leht."
     }
   ],
-  "parent": "x-clade-ural1272",
+  "inherits": "x-clade-ural1272",
   "ancestors": [
     {
       "code": "x-clade-ural1272",

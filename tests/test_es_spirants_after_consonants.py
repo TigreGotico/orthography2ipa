@@ -53,9 +53,10 @@ def test_word_internal_spirant(word, expected):
 
 
 @pytest.mark.parametrize("word,segment", [
-    ("esbelto", "sβ"),
-    ("desde", "sð"),
-    ("rasguño", "sɣ"),
+    # The /s/ before the spirant is voiced by ES_S_VOICING.
+    ("esbelto", "zβ"),
+    ("desde", "zð"),
+    ("rasguño", "zɣ"),
     ("vergüenza", "ɾɣw"),
 ])
 def test_spirant_after_s_and_r(word, segment):

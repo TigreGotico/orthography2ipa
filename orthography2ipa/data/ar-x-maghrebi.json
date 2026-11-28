@@ -191,7 +191,7 @@
       "v"
     ]
   },
-  "parent": "arb",
+  "inherits": "arb",
   "ancestors": [
     {
       "code": "arb",
@@ -294,9 +294,7 @@
     "start_year": 1000,
     "end_year": null
   },
-  "glottolog_code": "nort3191",
   "iso639_3": "ara",
-  "wikidata_qid": "Q1194795",
   "location": {
     "latitude": 26.132563,
     "longitude": 14.573491,

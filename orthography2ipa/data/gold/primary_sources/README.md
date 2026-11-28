@@ -1,5 +1,13 @@
 # Primary-source gold
 
+<!-- agent-hint
+covers: the gold rows quoted from primary sources: their files, fields and use in the atlas
+source: `orthography2ipa/data/gold/primary_sources/rows.jsonl`, `orthography2ipa/data/gold/primary_sources/sources.json`
+generated: no
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/contributing/citations.md`, `docs/evaluation/datasets.md`
+-->
+
 This gold holds worked examples from the primary sources that the language specs cite. The sources are the grammars, phonology monographs and theses in the `sources` array of each spec. Each row is one transcription that the linguist who described the variety printed, with the printed page it is on.
 
 Each row in this set can be checked against a named page of a named document. No other gold in the harness gives that. The set is small on purpose. It is a diagnostic: it asks if the engine reproduces what the cited source says. It cannot certify a language alone.
@@ -211,7 +219,7 @@ The `pt-PT-x-porto` spec does not model the RD2 subtype or the /i/ diphthong. Th
 
 ### Brazilian Portuguese
 
-Barbosa & Albano (2004: 228) give ganho as `[ɡẽɲʊ]`, with a nasal vowel before the palatal nasal. o2i gives `ˈɡaɲu`, with no nasal vowel.
+Barbosa & Albano (2004: 228) give ganho as `[ɡɐ̃ɲʊ]`, with the low central nasal vowel before the palatal nasal. o2i gives `ˈɡɐ̃ɲu`, which differs only in the final vowel described below.
 
 The Illustration writes final unstressed /o/ as `[ʊ]` (galo `[ɡalʊ]`, caro `[kaɾʊ]`). o2i raises it to `[u]`. The Illustration writes carro as `[kaɣʊ]`, with a velar fricative for /R/, where o2i gives a uvular `[ʁ]`. The source says that /R/ varies across Brazil, so this is a variety choice, not an error.
 

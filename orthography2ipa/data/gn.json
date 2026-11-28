@@ -1,7 +1,7 @@
 {
  "code": "gn",
  "name": "Guaraní",
- "parent": "x-clade-tupi1275",
+ "inherits": "x-clade-tupi1275",
  "script": "Latin",
  "graphemes": {
   "a": [
@@ -238,7 +238,6 @@
  "quality": "research",
  "script_type": "alphabet",
  "iso639_3": "grn",
- "glottolog_code": "para1311",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Guarani_language",
   "https://en.wikipedia.org/wiki/Guarani_alphabet"
@@ -286,7 +285,6 @@
    "notes": "Reference for the classification of Guaraní within Tupí-Guaraní and its position as the principal indigenous adstrate of Paraguayan Spanish. Claim is standard; edition not consulted."
   }
  ],
- "wikidata_qid": "Q17478066",
  "phoible_id": "para1311",
  "wals_code": "gua",
  "location": {

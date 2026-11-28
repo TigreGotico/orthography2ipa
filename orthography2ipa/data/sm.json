@@ -151,7 +151,6 @@
     ]
   },
   "iso639_3": "smo",
-  "glottolog_code": "samo1305",
   "notes": "Samoan (Gagana Sāmoa), Polynesian. Fourteen native letters: vowels a e i o u (long: ā ē ī ō ū, the macron faʻamamafa), consonants f g l m n p s t v plus the koma liliu ⟨ʻ⟩ = glottal stop /ʔ/. ⟨g⟩ is the velar nasal /ŋ/, never a stop. ⟨h k r⟩ occur only in loanwords. Colloquial register (tautala leaga) merges /t/ → [k] and /n/ → [ŋ]; those are recorded as allophones, not as separate graphemes.",
   "sources": [
     {
@@ -185,7 +184,7 @@
     "start_year": 1834,
     "end_year": null
   },
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",

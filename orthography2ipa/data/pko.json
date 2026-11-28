@@ -1,7 +1,7 @@
 {
   "code": "pko",
   "name": "Proto-Koreanic (family node)",
-  "parent": "x-clade-kore1284",
+  "inherits": "x-clade-kore1284",
   "script": "IPA-reconstruction",
   "graphemes": {},
   "allophones": {},
@@ -9,7 +9,6 @@
   "quality": "stub",
   "script_type": "reconstruction",
   "iso639_3": null,
-  "glottolog_code": "kore1284",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Koreanic_languages"
   ],
@@ -29,7 +28,6 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Koreanic_languages"
     }
   ],
-  "wikidata_qid": "Q11263525",
   "location": {
     "latitude": 35.46025,
     "longitude": 126.7677,

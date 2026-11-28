@@ -34,12 +34,20 @@ it, and a TTS consumer downstream is what would otherwise pay.
 from __future__ import annotations
 
 import re
-from typing import Dict, FrozenSet, List, Mapping, Optional, Sequence, Set, Tuple
+import unicodedata
+from typing import FrozenSet, List, Mapping, Optional, Sequence, Set, Tuple
 
-from orthography2ipa.allophony import segment_ipa
+from orthography2ipa.allophony import _is_modifier, segment_ipa
 from orthography2ipa.lexicon import _process_lexicon, _warn_deprecated
+from orthography2ipa.phonetok import (
+    _AR_SHADDA, _NASAL_CARRIERS, _carrier_split_index, _carrier_tail,
+)
 from orthography2ipa.positional import normalize_ending_value
 from orthography2ipa.types import LanguageSpec
+from orthography2ipa.vowels import (
+    SONORITY_GLIDE, SONORITY_LIQUID, SONORITY_NASAL, SONORITY_STOP, SONORITY_UNKNOWN,
+    is_affricate, place_class, sonority_class,
+)
 
 __all__ = [
     "emission_inventory",
@@ -62,6 +70,7 @@ def _positional_readings(spec: LanguageSpec) -> List[str]:
 
 #: Primary and secondary stress, inserted by ``stress.apply_stress_mark``.
 STRESS_MARKS = ("ˈ", "ˌ")
+_STRESS_SPLIT = re.compile("([ˈˌ])")
 
 #: A regex-substitution backreference — ``\1`` or ``\g<name>`` — inside a sandhi
 #: ``transform``. It re-emits text the input already carried, so it introduces no
@@ -119,17 +128,12 @@ def _word_emissions(
 
     These are emissions, but never segments: a word is cut into the segments
     the slot tables declare, as :func:`tokenize` cuts any transcription."""
-    # Word-level overrides hand the engine whole transcriptions, so their IPA
-    # never passes through the grapheme table at all.
+    # Word overrides and suffix morphology (LanguageSpec.grammatical_endings)
+    # hand the engine whole transcriptions that bypass the grapheme table. An
+    # ambiguous ending lists several candidates and each can surface, so all
+    # are emissions; a deferring rank 1 (``None``) comes from the grapheme
+    # table, which is already counted.
     emissions: Set[str] = set((spec.word_exceptions or {}).values())
-    # Suffix morphology replaces the word's tail wholesale, so its IPA also
-    # bypasses the grapheme table (see LanguageSpec.grammatical_endings).
-    # An ambiguous ending declares an ordered candidate LIST, and every
-    # element of it can surface — the lower-ranked ones through
-    # ``word_candidates``/a rescorer rather than through 1-best — so the
-    # whole list is an emission source. A deferring rank 1 (``None``)
-    # emits nothing of its own: rank 1 comes from the grapheme table,
-    # which is already counted.
     for value in (spec.grammatical_endings or {}).values():
         rank1, alternatives = normalize_ending_value(value)
         if rank1 is not None:
@@ -152,17 +156,13 @@ def _sandhi_emissions(spec: LanguageSpec, atoms: Sequence[str]) -> Set[str]:
     affricate stays whole and the tie stands as its own segment), exactly as
     :func:`tokenize` will cut a real transcription.
     """
-    rules = spec.sandhi_rules or ()
-    if not rules:
-        return set()
     out: Set[str] = set()
-    for rule in rules:
+    for rule in spec.sandhi_rules or ():
         for transform in (rule.transform, rule.right_transform):
             literal = _transform_literals(transform)
             for seg in segment_ipa(literal, atoms):
                 if seg and not seg.isspace():
                     out.add(seg)
-    out.discard("")
     return out
 
 
@@ -206,20 +206,100 @@ def phoneme_inventory(
     ``ja`` is a glide plus a vowel, ``ʔa`` a stop plus a vowel. A TTS vocabulary
     wants the segments, so each emission is cut with :func:`~allophony.segment_ipa`.
 
-    Multi-character segments are held together when the spec declares them:
-    the declared ``phonemes`` inventory (and any multi-character emission of a
-    slot table, such as an affricate surface like Najdi ``ts``) is passed as the
-    atom list, so ``ts`` stays one token rather than becoming ``t`` + ``s``. This
-    is the narrow-vs-broad choice, and it is made by the *data*: a spec that
-    declares an affricate gets it as a token, and one that does not, does not.
-    A whole-word reading (a word exception, an ending, a lexicon entry) is an
-    emission but never a segment: it is cut like any other transcription.
+    Every token is one segment. A segment written with more than one base letter
+    (an affricate surface like Najdi ``ts``, a tie-bar ``k͡p``, a prenasalised
+    ``ᵐb``) is passed as the atom list, so ``ts`` stays one token rather than
+    becoming ``t`` + ``s``, and so is each phoneme the spec lists in
+    ``phonemes``. A cluster, a diphthong or a syllable a slot emits (``ks``,
+    ``aj``, ``me``) is cut into its segments, and so is a diphthong the spec
+    lists in ``phonemes`` (``ai``). A whole-word reading (a word exception, an
+    ending, a lexicon entry) is an emission but never a segment: it is cut like
+    any other transcription. A combining mark that a slot emits before any base
+    letter (the coda tilde of Portuguese) lands on the segment before it, so it
+    joins each vowel and glide that can carry it and is never a token alone. So
+    does a palatalization mark ``ʲ`` (the Cyrillic soft sign) or a labialization
+    mark ``ʷ`` before any base letter, which joins each consonant from stop to
+    liquid that carries neither mark yet, and a bare length mark ``ː``, which joins each segment that is not a
+    mark or a tie. Each joined token is cut like any transcription, so the
+    inventory holds only tokens :func:`tokenize` returns. A spec whose engine
+    doubles the letter before a shadda gets no ``ː`` joins.
     """
     atoms = _atoms(spec)
     tokens: set = set()
+    marks: Set[str] = set()
+    bare: Set[str] = set()
     for emission in emission_inventory(spec, lexicon):
-        tokens.update(_tokenize(emission, atoms))
+        mark, rest = _split_leading_marks(emission)
+        combining = "".join(ch for ch in mark if unicodedata.combining(ch))
+        if combining:
+            marks.add(combining)
+        bare.update(ch for ch in mark if ch in _SECONDARY_ARTICULATIONS)
+        if rest == _LENGTH:
+            bare.add(rest)
+        else:
+            tokens.update(_tokenize(rest, atoms))
+    consonants = [t for t in tokens if SONORITY_STOP <= sonority_class(t) <= SONORITY_LIQUID
+                  and not any(m in t for m in _SECONDARY_ARTICULATIONS)]
+    for modifier in _SECONDARY_ARTICULATIONS:
+        if modifier in bare:
+            for token in consonants:
+                tokens.update(_tokenize(_add_secondary(token, modifier), atoms))
+    if _LENGTH in bare and not _expands_shadda(spec):
+        for token in tuple(tokens):
+            if _LENGTH not in token and sonority_class(token) != SONORITY_UNKNOWN:
+                tokens.update(_tokenize(token + _LENGTH, atoms))
+    for mark in marks:
+        tokens.update(_carry(token, mark) for token in tuple(tokens)
+                      if _carrier_tail(token) in _NASAL_CARRIERS)
     return frozenset(tokens)
+
+
+_LENGTH = "ː"
+#: Labialization and palatalization. The IPA writes them after their base, so
+#: one that a slot emits before any base letter lands on the segment the slot
+#: before it wrote. A join adds one mark to a plain consonant only: a token with
+#: both marks comes from the spec data, in the order the data writes them.
+_SECONDARY_ARTICULATIONS = ("ʷ", "ʲ")
+_BARE_MODIFIERS = frozenset((*_SECONDARY_ARTICULATIONS, _LENGTH))
+
+
+def _expands_shadda(spec: LanguageSpec) -> bool:
+    """Whether the engine doubles the letter before a shadda, so that no ``ː``
+    from the shadda reading ever follows a letter."""
+    return _AR_SHADDA in spec.graphemes
+
+
+def _add_secondary(token: str, modifier: str) -> str:
+    """*token* with the secondary articulation *modifier* before its trailing
+    length mark."""
+    base = token.rstrip("ːˑ")
+    return base + modifier + token[len(base):]
+
+
+def _split_leading_marks(emission: str) -> Tuple[str, str]:
+    """Split *emission* into the marks before its first base letter and the rest.
+
+    A slot can emit a combining mark with no base: the coda ⟨m n⟩ of
+    Portuguese emits the tilde alone, and PT_FINAL_EM_GLIDE emits ``̃j̃``. A
+    slot can also emit ``ʲ`` or ``ʷ`` before its base letter, as the Mongolian
+    ⟨я⟩ after a consonant emits ``ʲa``. The mark lands on the segment the slot
+    before it wrote, so it is never a token of its own.
+    """
+    i = 0
+    while i < len(emission) and (unicodedata.combining(emission[i])
+                                 or emission[i] in _SECONDARY_ARTICULATIONS):
+        i += 1
+    return emission[:i], emission[i:]
+
+
+def _carry(token: str, mark: str) -> str:
+    """*token* with *mark* after its base letter, where the engine splices the
+    nasal tilde (``aː`` takes it as ``ãː``), in NFC as the engine writes it.
+    A token that already carries *mark* is returned as it is."""
+    if mark in token:
+        return token
+    j = _carrier_split_index(token)
+    return unicodedata.normalize("NFC", token[:j] + mark + token[j:])
 
 
 def phoneme_atoms(
@@ -247,13 +327,68 @@ def _atoms(spec: LanguageSpec) -> List[str]:
 
 
 def _atoms_of(spec: LanguageSpec, emissions: Set[str]) -> List[str]:
-    """The declared phonemes and the multi-character *emissions*, longest first."""
+    """The declared phonemes and the multi-character segments of *emissions*,
+    longest first. A declared phoneme of vowels and glides only (``ai``,
+    ``ia``) is cut like an emission, into one token per vowel or glide. That
+    cut is a choice of this module, not phonology: PHOIBLE lists some such
+    diphthongs as one segment (Norwegian ``æi``, Sakha ``ie``)."""
+    declared: Set[str] = set()
+    for phoneme in spec.phonemes or ():
+        segments = _segments(phoneme)
+        if len(segments) > 1 and all(sonority_class(seg) >= SONORITY_GLIDE
+                                     for seg in segments):
+            declared.update(seg for seg in segments if len(seg) > 1)
+        elif phoneme:
+            declared.add(phoneme)
     return sorted(
-        {p for p in (spec.phonemes or ()) if p}
-        | {e for e in emissions if len(e) > 1 and e not in STRESS_MARKS},
+        declared
+        | {seg for e in emissions if e not in STRESS_MARKS
+           for seg in _segments(_split_leading_marks(e)[1]) if len(seg) > 1},
         key=len,
         reverse=True,
     )
+
+
+#: The tie bars. A tie joins the symbols on either side into one segment.
+_TIES = "\u0361\u035c"
+
+
+def _segments(emission: str) -> List[str]:
+    """Cut one slot emission into its segments.
+
+    A base letter takes its trailing marks, as in :func:`~allophony.segment_ipa`.
+    Three spellings write one segment with two base letters: a tie bar
+    (``t͡s``, ``k͡p``), a modifier letter before its base (prenasalised ``ᵐb``,
+    preaspirated ``ʰt``), and two plain letters that make an affricate
+    (``ts``, ``tʃ``, ``d̠ʒ``) or a labial-velar stop (``kp``, ``ɡb``, ``ŋm``).
+    Everything else is more than one segment: a cluster (``ks``, ``kw``), a
+    diphthong (``aj``) or a syllable (``me``).
+    """
+    segments: List[str] = []
+    pairable = False
+    for seg in segment_ipa(emission):
+        if segments and (segments[-1][-1] in _TIES
+                         or all(_is_modifier(ch) for ch in segments[-1])):
+            segments[-1] += seg
+        elif segments and pairable and _one_segment_pair(segments[-1], seg):
+            segments[-1] += seg
+            pairable = False
+        else:
+            segments.append(seg)
+            pairable = True
+    return segments
+
+
+def _one_segment_pair(first: str, second: str) -> bool:
+    """Whether the segments *first* and *second* write one affricate or one
+    labial-velar stop."""
+    a, b = ("".join(ch for ch in seg if not _is_modifier(ch)) for seg in (first, second))
+    if len(a) != 1 or len(b) != 1:
+        return False
+    if is_affricate(a + b):
+        return True
+    return (sonority_class(a) == sonority_class(b) in (SONORITY_STOP, SONORITY_NASAL)
+            and place_class(a) == "dorsal" and place_class(b) == "labial")
 
 
 def tokenize(
@@ -284,29 +419,12 @@ def tokenize(
 def _tokenize(ipa: str, atoms: Sequence[str]) -> List[str]:
     """:func:`tokenize` with the spec's atoms already computed."""
     tokens: List[str] = []
-    for chunk in _split_on_stress(ipa):
+    for chunk in _STRESS_SPLIT.split(ipa):
         if chunk in STRESS_MARKS:
             tokens.append(chunk)
             continue
         tokens.extend(seg for seg in segment_ipa(chunk, atoms) if seg and not seg.isspace())
     return tokens
-
-
-def _split_on_stress(ipa: str) -> List[str]:
-    """Split *ipa* so each stress mark stands alone."""
-    out: List[str] = []
-    buf: List[str] = []
-    for ch in ipa:
-        if ch in STRESS_MARKS:
-            if buf:
-                out.append("".join(buf))
-                buf = []
-            out.append(ch)
-        else:
-            buf.append(ch)
-    if buf:
-        out.append("".join(buf))
-    return out
 
 
 def dead_allophone_rules(spec: LanguageSpec) -> Tuple[str, ...]:

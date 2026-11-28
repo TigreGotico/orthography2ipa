@@ -1,5 +1,13 @@
 # N'Ko (Manding koiné) (`nqo`)
 
+<!-- agent-hint
+covers: what the `nqo` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/nqo.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 N'Ko (Manding koiné) is a Mande language, written in the N'Ko script. Glottolog places it in 9 countries. The `nqo` spec is at the research tier. It cites 4 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -60,7 +68,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 35 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 43 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -70,17 +78,17 @@ The spec can emit 35 segments. They come from the letter table, the positional r
 | Trill |  |  | r |  |  |  |  |
 | Tap |  |  | ɾ |  |  |  |  |
 | Fricative |  | f | s |  |  |  | h |
-| Approximant |  |  |  |  | j |  |  |
+| Approximant |  |  |  |  | j j̃ |  |  |
 | Lateral approximant |  |  | l |  |  |  |  |
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
-| Close | i | u |
-| Close-mid | e | o |
-| Open-mid | ɛ | ɔ |
-| Open | a |  |
+| Close | i ĩ | u ũ |
+| Close-mid | e ẽ | o õ |
+| Open-mid | ɛ ɛ̃ | ɔ ɔ̃ |
+| Open | a ã |  |
 
-Sequences that the spec writes as one unit: [w] [ɡb] [ː˥] [ː˥˩] [ː˩] [ː˩˥] [˥] [˩] [˩˥] [̃].
+Sequences that the spec writes as one unit: [w] [w̃] [ɡb] [ː˥] [ː˥˩] [ː˩] [ː˩˥] [˥] [˩] [˩˥].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

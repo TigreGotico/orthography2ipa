@@ -1,5 +1,13 @@
 # Benchmark gold datasets
 
+<!-- agent-hint
+covers: every gold dataset that the harness scores, with its source, licence, tier and caveats
+source: `scripts/benchmark.py:DATASETS`
+generated: no
+verify: `PYTHONPATH=$PWD python scripts/benchmark.py --list`
+see: `docs/evaluation/benchmarks.md`, `docs/evaluation/gold_defects.md`
+-->
+
 This page lists every gold pronunciation dataset that the harness can score against. For each one it says where the data came from and what its numbers can and cannot support. Read [benchmarks.md](benchmarks.md) first for the provenance tiers that this page uses.
 
 The registry is `DATASETS` in [`scripts/benchmark.py`](../../scripts/benchmark.py). `python scripts/benchmark.py --list` prints every registry key with the language tags it covers. Row sizes and scores are on the [scoreboard](generated/scoreboard.md) and in [`benchmarks/results.json`](../../benchmarks/results.json), never on this page. Each section below links the upstream page of its dataset, and the summary table gives the licence of each one.
@@ -41,6 +49,13 @@ The tier column is the value of `provenance_for()`. "Per language" means that `P
 | `kaikki` | Javanese, Sundanese, Lao, Xhosa, Somali, Oromo, Nepali, Konkani | crowd-scraped | [kaikki.org](https://kaikki.org/dictionary/) | Wiktionary terms: CC BY-SA and GFDL | Gold for specs with no other gold. |
 | `alphacep_ru_book` | Russian | machine-generated | [alphacep/biggest-ru-book-cleanup](https://huggingface.co/datasets/alphacep/biggest-ru-book-cleanup) | Not stated upstream | Agreement with a morphophonemic annotation. |
 | `coruss_ru` | Russian | expert-human | [CoRuSS](https://russpeech.spbu.ru/), the phonetics lab of Saint Petersburg State University | Not stated upstream | Distance to spontaneous speech. |
+
+The chart below counts the board rows of each dataset. A row is one language scored on one dataset.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="charts/coverage.dark.svg">
+  <img alt="Horizontal bars of board rows per dataset; WikiPron supplies the most rows and many datasets supply one row each." src="charts/coverage.light.svg">
+</picture>
 
 The Wiktionary terms are on [Wiktionary:Copyrights](https://en.wiktionary.org/wiki/Wiktionary:Copyrights). The WikiPron code is Apache-2.0, and the scraped data keeps the Wiktionary terms.
 
@@ -650,16 +665,6 @@ These datasets were investigated and excluded, because a tool generated the IPA,
 | GlobalPhone | Excluded: ELRA licence | Licensed per language through the [ELRA catalogue](https://catalogue.elra.info/), not freely downloadable. |
 
 The `ja` `vox_communis` file stays registered. Its kana rows transcribe, and only the kanji minority give empty output, so the row still carries signal.
-
-## Known finding: the nukta digraphs and the inherent vowel
-
-This is an engine issue, not a dataset issue. It is recorded here because these golds measure it, and it needs its own change.
-
-The tokenizer decides from the last character of a grapheme key whether the key is a bare combining mark. That decides whether the key takes the inherent vowel of an abugida. That is right for a key that is a mark, such as anusvara `ং`, and wrong for a key that only ends in one. Two key shapes end in a mark. A conjunct stack is a letter plus subjoined letters, which Unicode encodes as combining marks (Tibetan `ཀྲ` is `ཀ` plus U+0FB2). A subjoined letter is a letter, so the key takes the inherent vowel, and the engine handles this case. `dz` depends on it.
-
-A nukta digraph is a letter plus a modifier sign (`क़` is `क` plus U+093C DEVANAGARI SIGN NUKTA), in `hi bn as gu awa bho mr ne or pa kok mai km`. These keys get no inherent vowel, so `क़लम` gives `qləm`, where the schwa-deletion rules should have received a schwa to decide about (`qələm`).
-
-The nukta case looks like the same bug but needs another fix. Giving those keys the inherent vowel moves rows in both directions. On a differential in one session against one cache, the net over the rows is negative: `hi` `wikipron` gains, while `bn` `vox_communis` and `as` lose more. Whether the added vowel is right depends on the schwa-deletion coverage of each Brahmic spec, which is a data question per spec, not a tokenizer question. The change needs per-spec schwa rules in the same change as the engine fix. Run any such differential as [board regeneration](../contributing/board.md#before-you-regenerate) describes, with both sides in one session against one cache.
 
 ---
 [← Benchmarks](benchmarks.md) · [Home](../index.md) · [The pinned WikiPron mirror →](wikipron_mirror.md)

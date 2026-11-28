@@ -1,5 +1,13 @@
 # Ewondo (`ewo`)
 
+<!-- agent-hint
+covers: what the `ewo` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ewo.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Ewondo is a Bantu language, written in the Latin script. Glottolog places it in Cameroon. The `ewo` spec is at the research tier. It cites 3 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -80,7 +88,7 @@ The spec can emit 37 segments. They come from the letter table, the positional r
 
 Sequences that the spec writes as one unit: [k͡p] [w] [ɡ͡b] [ᵐb] [ᵑɡ] [ᵑᵐɡ͡b] [ᶬv].
 
-Tones: [◌́] high, [◌̀] mid-high, [◌̄] mid, [unmarked] low/mid-low, [◌̌] rising, [◌̂] falling.
+Tones: [˥] high, [˦] mid-high, [˧] mid, [˨] low/mid-low, [˩˥] rising, [˥˩] falling.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

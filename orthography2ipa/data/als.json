@@ -5,7 +5,6 @@
   "script_type": "alphabet",
   "quality": "research",
   "iso639_3": "als",
-  "glottolog_code": "tosk1239",
   "timespan": {
     "start_year": 1462,
     "end_year": null
@@ -28,7 +27,7 @@
       "notes": "Standard Albanian is codified on the basis of Tosk; grapheme inventory and letter values are shared. Wikipedia: Tosk 'serves as the basis of the standard Albanian language'."
     }
   ],
-  "parent": "x-clade-alba1267",
+  "inherits": "x-clade-alba1267",
   "notes": "Tosk Albanian, spoken south of the Shkumbin river; the dialectal basis of the Standard Albanian literary language, so its Latin alphabet and grapheme-to-IPA mapping are inherited unchanged from sq. Historically distinguished from Gheg by: preservation of consonant clusters mb/ngj/nd where Gheg assimilates to m/nj/n; rhotacism of Proto-Albanian *-n- to -r- (e.g. rëra 'sand'); and vowel developments (Proto-Albanian *ō > va, *â+nasal > ë, e.g. nëntë 'nine'). These are historical/diachronic facts, not orthographic divergences from the standard, so no distinct grapheme table is asserted here.",
   "sources": [
     {
@@ -49,7 +48,6 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Tosk_Albanian"
   ],
-  "wikidata_qid": "Q34248",
   "location": {
     "latitude": 40.4,
     "longitude": 20.2,

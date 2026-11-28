@@ -66,7 +66,6 @@
  "allophones": {},
  "notes": "Forest Enets (пэ бай эннэчэ), Samoyedic branch, Krasnoyarsk Krai (Taymyr), Russia — a severely endangered, weakly standardised language: the orthography follows the practical Cyrillic conventions used in Sorokina & Bolina's dictionaries and Siegl (2013)'s text collection, not a fixed school-taught norm. INPUT CONTRACT: Forest Enets Cyrillic text, NFC. ⟨ԑ⟩ (Cyrillic reversed e) is a distinct letter for /æ/, not an allograph of ⟨э⟩ (Siegl 2013; NorthEuraLex сԑ -> s æ, пԑя -> p æ j a). The coronals ⟨д н с т⟩ palatalise before the iotated vowels ⟨е и ю я⟩ and the soft sign ⟨ь⟩ (Siegl 2013; directly evidenced by NorthEuraLex on the related nʲ/sʲ series and Enets' well-documented dental-palatalisation alternation), so those sequences are entered as multigraph keys the maximal-munch matcher prefers over the bare consonant. Word stress in Forest Enets is not orthographically marked and its placement is not treated as phonemically distinctive in the available description (Siegl 2013, Sec. 2); documented here as an ENGINE-LIMIT stress exemption and not modelled. ITERATION FIX (error-analysis pass against NorthEuraLex): ⟨а⟩ corrected to plain /a/ (not /ɑ/); ⟨е⟩/⟨э⟩ to the open /ɛ/ (not /e/, matching NorthEuraLex э -> ɛ, эба -> ɛba); ⟨х⟩ to /h/, not the velar fricative /x/ (NorthEuraLex маха -> maha, дёха -> dʲɔha); the ⟨н⟩-palatalisation series corrected from the /nʲ/ sequence to the single palatal nasal /ɲ/ (NorthEuraLex няба -> ɲaba, на ҫе -> naɕʲɛ), matching a fused-palatal series for ⟨л⟩ /ʎ/ added on the same evidence (уголь -> ugɔʎ, леблюку -> ʎɛbʎuku); and ⟨ҫ⟩ (Cyrillic es with descender, previously unmapped) added as a second spelling of /ɕ/ alongside ⟨щ⟩ (NorthEuraLex ҫинё -> ɕiɲɔ). Classification and coordinates follow Glottolog.",
  "iso639_3": "enf",
- "glottolog_code": "fore1265",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Enets_language"
  ],
@@ -107,7 +106,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-ural1272",
+ "inherits": "x-clade-ural1272",
  "phonemes": [
   "b",
   "d",

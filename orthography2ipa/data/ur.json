@@ -352,7 +352,7 @@
       "r"
     ]
   },
-  "parent": "hi",
+  "inherits": "hi",
   "ancestors": [
     {
       "code": "hi",
@@ -442,9 +442,7 @@
     "start_year": 1800,
     "end_year": null
   },
-  "glottolog_code": "urdu1245",
   "iso639_3": "urd",
-  "wikidata_qid": "Q1617",
   "phoible_id": "urdu1245",
   "wals_code": "urd",
   "location": {

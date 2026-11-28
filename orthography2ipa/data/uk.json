@@ -268,7 +268,7 @@
       "u"
     ]
   },
-  "parent": "x-clade-east1426",
+  "inherits": "x-clade-east1426",
   "notes": "Standard Ukrainian. Key differences from Russian: ⟨г⟩ = [ɦ] (not [ɡ]), ⟨ґ⟩ = [ɡ] as separate letter, ⟨в⟩ = [ʋ] approximant, no vowel reduction (no аканье).",
   "quality": "research",
   "script_type": "alphabet",
@@ -324,9 +324,7 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "ukra1253",
   "iso639_3": "ukr",
-  "wikidata_qid": "Q8798",
   "phoible_id": "ukra1253",
   "wals_code": "ukr",
   "location": {
@@ -1262,6 +1260,7 @@
         "r",
         "s",
         "t",
+        "ts",
         "x",
         "z",
         "ɡ",

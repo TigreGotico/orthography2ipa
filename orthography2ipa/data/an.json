@@ -1,11 +1,10 @@
 {
   "code": "an",
-  "glottolog_code": "arag1245",
   "name": "Aragonese",
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",
-  "parent": "x-clade-iberrom",
+  "inherits": "x-clade-iberrom",
   "graphemes": {
     "a": [
       "a"
@@ -610,7 +609,6 @@
     "stress_mark": "ˈ",
     "notes": "Aragonese accentuation based on the Normas Graficas de lAragonés (SLA 2010): written accent wins. Default paroxytone. Words ending in vowel or -s are paroxytone; words ending in any other consonant (r, l, d, z, x, t, c, k, f, n, m) are oxytone. Graves (è, ò) and acutes (é, ó) both mark stressed open vs. close mid vowels. Proparoxytones always written-accented. CLITICS: cliticless_words lists the Aragonese parolas atonas (Academia de l'Aragones, Ortografia; Nagore Lain, Gramatica de la lengua aragonesa, prosodia and l'articulo) — the articles o/a/os/as (and the lo/la/los/las and Benasque el/els variants), indefinite un/una/uns/unas, the atonic prepositions d'/de/en/con/por/sin/ta/enta/dende, the conjunctions e/y/o/u/ni/que/si, the weak pronouns me/te/se/li/lis/nos/tos, and the pronominal-adverbs en/ne and bi/ie. A clitic leans on its host and carries no word stress."
   },
-  "wikidata_qid": "Q8765",
   "phoible_id": "arag1245",
   "location": {
     "latitude": 42.4669,

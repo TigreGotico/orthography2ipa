@@ -2,7 +2,7 @@
   "code": "ast-PT-x-medieval",
   "name": "Medieval Asturian-Leonese of Portugal",
   "script": "Latin",
-  "parent": "ast-x-leon",
+  "inherits": "ast-x-leon",
   "graphemes_base": "ast-x-leon",
   "allophones_base": "ast-x-leon",
   "positional_graphemes_base": "ast-x-leon",
@@ -203,7 +203,6 @@
     "start_year": 1100,
     "end_year": 1500
   },
-  "glottolog_code": null,
   "iso639_3": "ast",
   "quality": "research",
   "location": {

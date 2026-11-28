@@ -24,7 +24,7 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Seseo, yeísmo. Coda /s/ aspiration noted in allophone map.",
   "quality": "skeleton",
   "script_type": "alphabet",
@@ -69,7 +69,6 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "amer1254",
   "iso639_3": "spa",
   "positional_graphemes": {
     "c": {
@@ -86,5 +85,13 @@
     "longitude": -68.097391,
     "source": "wikidata",
     "notes": "the centroid of Latin America. A continent-wide cover variety: the weakest possible point, and only meaningful as 'not Spain' — which is where Glottolog put it. [Wikidata Q12585 P625]"
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "ES_S_VOICING",
+      "phonemes": [],
+      "surface": "",
+      "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. Its source describes the Castilian standard of Spain, and no source for this variety was opened, so the rule is switched off here."
+    }
+  ]
 }

@@ -137,7 +137,7 @@
       ]
     }
   },
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Western Andalusian (Sevilla, Cádiz, Huelva, Córdoba, Málaga). Most phonologically innovative Castilian variety. Hallmarks: coda /s/ → [h] or ∅ (aspiration/deletion), /x/ → [h], universal yeísmo, seseo or ceceo (varies by locality), CH deaffrication [tʃ] → [ʃ] in Cádiz/Sevilla area, coda liquid neutralisation (/l/ ↔ /ɾ/), extreme lenition with consonant deletion, final -n velarisation. Basis for much of Latin American Spanish phonology. WORD-FINAL /n/ IS VELAR [ŋ] before a pause, a vowel, a glide or a velar, and takes the place of a following consonant by the es-ES rules ES_EXT_FINAL_N_LABIAL and ES_EXT_FINAL_N_CORONAL (un peso [um ˈpeso], en la [en la]). Lipski (2011, p. 7): «Velarization of phrase-final /n/ is the rule in Galicia and parts of Asturias, Extremadura, Andalusia, the Canary Islands, all Caribbean and Central American dialects, along the Pacific coast of Colombia, Peru, and Ecuador, and sporadically in the Andean highlands. Word-final prevocalic nasals are typically also velarized in these dialects»; the quote names Andalusia.",
   "quality": "research",
   "script_type": "alphabet",
@@ -202,13 +202,19 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "anda1279",
   "iso639_3": "spa",
-  "wikidata_qid": "Q489811",
   "location": {
     "latitude": 37.388611,
     "longitude": -5.995556,
     "source": "wikidata",
     "notes": "Seville — the centre of the western Andalusian area. [Wikidata Q8717 P625]"
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "ES_S_VOICING",
+      "phonemes": [],
+      "surface": "",
+      "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. This spec aspirates or deletes its coda /s/, and the voicing rule of es-ES would take the segment first, so it is switched off here and the coda keeps the reading of this spec."
+    }
+  ]
 }

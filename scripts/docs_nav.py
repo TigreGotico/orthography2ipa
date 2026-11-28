@@ -16,7 +16,8 @@ next page, with relative links only.
 Generators that write a page under ``docs/`` (the scoreboard, the comparison
 table, the espeak agreement report, the spec diagnostics) append
 :func:`footer` to their output, so a regenerated page keeps its place in the
-set.
+set. They also put :func:`agent_hint` after the H1, so the page keeps the
+hidden comment that tells an agent where its facts come from.
 
 Run it to synchronize the hand-written pages after adding, removing, or
 reordering one::
@@ -129,6 +130,24 @@ def footer(rel: str, order: list[str] | None = None) -> str:
     if at < len(order) - 1:
         parts.append(link(_label(order[at + 1]) + " →", order[at + 1]))
     return "\n\n---\n" + " · ".join(parts) + "\n"
+
+
+def agent_hint(covers: str, source: str, generated: str, verify: str,
+               see: str) -> str:
+    """The ``agent-hint`` comment that follows the H1 of a page.
+
+    A rendered page does not show it. An agent that reads the raw file learns
+    what the page answers, which files hold the truth for its claims, whether
+    a script writes it, the command that checks it, and the pages to read
+    next.
+    """
+    return ("<!-- agent-hint\n"
+            f"covers: {covers}\n"
+            f"source: {source}\n"
+            f"generated: {generated}\n"
+            f"verify: {verify}\n"
+            f"see: {see}\n"
+            "-->")
 
 
 def with_footer(text: str, rel: str, order: list[str]) -> str:

@@ -5,7 +5,7 @@
   "script_type": "abugida",
   "orthography_kind": "native",
   "quality": "skeleton",
-  "parent": "mni",
+  "inherits": "mni",
   "ancestors": [
     {
       "code": "mni",
@@ -15,8 +15,6 @@
     }
   ],
   "iso639_3": "mni",
-  "glottolog_code": "mani1292",
-  "wikidata_qid": "Q33871",
   "graphemes": {
     "ꯀ": ["k"],
     "ꯈ": ["kʰ"],

@@ -3,7 +3,7 @@
   "name": "Provençal (Occitan)",
   "script": "Latin",
   "script_type": "alphabet",
-  "parent": "oc",
+  "inherits": "oc",
   "graphemes_base": "oc",
   "allophones_base": "oc",
   "positional_graphemes_base": "oc",
@@ -48,9 +48,7 @@
     "start_year": 1200,
     "end_year": null
   },
-  "glottolog_code": "prov1235",
   "iso639_3": "oci",
-  "wikidata_qid": "Q241243",
   "quality": "research",
   "constrain_onsets": true,
   "location": {

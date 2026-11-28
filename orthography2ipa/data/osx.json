@@ -216,7 +216,7 @@
       "uo"
     ]
   },
-  "parent": "gem-x-ingvaeon",
+  "inherits": "gem-x-ingvaeon",
   "ancestors": [
     {
       "code": "gem-x-ingvaeon",
@@ -265,8 +265,6 @@
     "start_year": 800,
     "end_year": 1150
   },
-  "glottolog_code": "olds1250",
-  "wikidata_qid": "Q35219",
   "location": {
     "latitude": 52.37,
     "longitude": 9.72,

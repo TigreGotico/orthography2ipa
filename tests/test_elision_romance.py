@@ -35,7 +35,7 @@ def test_an_italian_elision_is_one_word_with_one_stress(text, expected):
     assert o2i.transcribe(text, "it-IT") == expected
 
 
-@pytest.mark.xfail(strict=True, reason="the rules read the stressed ⟨o⟩ of uomo as close [o]")
+@pytest.mark.xfail(strict=True, reason="the rules read the stressed ⟨o⟩ of uomo as close [o]", raises=AssertionError)
 def test_dell_uomo_has_the_open_o():
     # Treccani, Vocabolario, "uomo": the headword is uòmo, and the grave
     # accent marks the open [ɔ].

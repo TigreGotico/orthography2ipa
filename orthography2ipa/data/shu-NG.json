@@ -130,7 +130,7 @@
       "uː"
     ]
   },
-  "parent": "shu-TD",
+  "inherits": "shu-TD",
   "ancestors": [
     {
       "code": "shu-TD",
@@ -243,7 +243,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "shu",
   "location": {
     "latitude": 11.5,

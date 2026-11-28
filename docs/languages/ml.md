@@ -1,5 +1,13 @@
 # Malayalam (`ml`)
 
+<!-- agent-hint
+covers: what the `ml` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ml.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/ta.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Malayalam is a Dravidian language, written in the Malayalam script. Glottolog places it in India. The `ml` spec is at the research tier. It cites 4 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
@@ -71,20 +79,20 @@ The spec can emit 87 segments. They come from the letter table, the positional r
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | Plosive | b p pʰ pː |  | d̪ tː t̪ t̪ʰ t̪ː |  | ɖ ʈ ʈʰ ʈː |  | k kʰ kː ɡ |  |
 | Affricate |  |  |  | dʒː |  | dʑ tɕ tɕʰ tɕː |  |  |
-| Nasal | m mː ̃m |  | n nː |  | ɳ ɳː | ɲ ɲː | ŋ ŋː |  |
+| Nasal | m mː |  | n nː |  | ɳ ɳː | ɲ ɲː | ŋ ŋː |  |
 | Trill |  |  | r r̩ r̩ː |  |  |  |  |  |
 | Tap |  |  | ɾ |  |  |  |  |  |
 | Fricative |  |  | s sː | ʃ ʃː | ʂ ʂː |  | xː | h hː |
-| Approximant |  | ʋ ʋː |  |  | ɻ ɻː | j jː |  |  |
+| Approximant |  | ʋ ʋː |  |  | ɻ ɻː | j jː j̃ j̃ː |  |  |
 | Lateral approximant |  |  | l lː l̩ |  | ɭ ɭː |  |  |  |
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
-| Close | i iː | u uː |
-| Close-mid | e eː | o oː |
-| Open | a aː |  |
+| Close | i iː iːː ĩ ĩː ĩːː | u uː ũ ũː |
+| Close-mid | e eː ẽ ẽː | o oː õ õː |
+| Open | a aː ã ãː |  |
 
-Sequences that the spec writes as one unit: [ai] [au] [ba] [bʱ] [dʑa] [dʑʱ] [d̪a] [d̪ʱ] [ka] [kʂː] [pa] [tɕa] [t̪a] [w] [ɖa] [ɖʱ] [ɡa] [ɡʱ] [ʃriːː] [ʈa].
+Sequences that the spec writes as one unit: [bʱ] [dʑʱ] [d̪ʱ] [w] [w̃] [ɖʱ] [ɡʱ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

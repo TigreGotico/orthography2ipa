@@ -75,10 +75,6 @@ RENAMED = {
     "ta-x-proto-dravidian": "ta-x-proto-dravidia",
 }
 
-#: Well-formed keys that are not valid: SIL retired ``bbz`` (2020, reason N) and
-#: IANA deprecated it with no preferred value.
-DEPRECATED = {"bbz": "ar-TD-x-babalia"}
-
 #: Older aliases of the renamed specs, which follow the spec to its new key.
 CHAINED = {
     "gl-x-occidental": "gl-ES-x-occident",
@@ -87,7 +83,7 @@ CHAINED = {
 }
 
 _DATA = Path(orthography2ipa.__file__).parent / "data"
-_CODE_FIELDS = ("parent", "graphemes_base", "allophones_base",
+_CODE_FIELDS = ("inherits", "graphemes_base", "allophones_base",
                 "positional_graphemes_base")
 
 
@@ -117,7 +113,7 @@ def test_every_code_a_spec_names_is_well_formed_bcp47():
     assert bad == []
 
 
-@pytest.mark.parametrize("new", sorted({*RENAMED.values(), *DEPRECATED.values()}))
+@pytest.mark.parametrize("new", sorted(set(RENAMED.values())))
 def test_new_key_is_a_spec_and_resolves_to_itself(new):
     assert new in available_json_codes()
     others = {k.lower() for k in available_json_codes() if k != new}
@@ -128,7 +124,7 @@ def test_new_key_is_a_spec_and_resolves_to_itself(new):
     assert get(new).code == new
 
 
-@pytest.mark.parametrize("old,new", sorted({**RENAMED, **CHAINED, **DEPRECATED}.items()))
+@pytest.mark.parametrize("old,new", sorted({**RENAMED, **CHAINED}.items()))
 def test_old_key_resolves_exactly_to_new_key(old, new):
     assert old not in available_json_codes()
     assert _ALIASES[old] == new
@@ -139,5 +135,6 @@ def test_old_key_resolves_exactly_to_new_key(old, new):
         assert get(old.upper()).code == new
 
 
-def test_babalia_declares_no_retired_code():
-    assert get("ar-TD-x-babalia").iso639_3 is None
+def test_retired_bbz_resolves_to_no_spec():
+    # ISO 639-3 change request 2019-013 retired bbz as non-existent.
+    assert not resolves_exactly("bbz")

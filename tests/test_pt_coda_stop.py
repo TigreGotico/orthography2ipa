@@ -29,7 +29,7 @@ EUROPE = ["pt-PT"] + [f"pt-PT-x-{d}" for d in (
     "lisbon", "coimbra", "porto", "minho", "viana", "braga", "alfena", "tras-os-montes",
     "beira", "aveiro", "alentejo", "algarve", "acores", "madeira", "sao-miguel", "terceira")]
 #: Specs that keep their own value. They disable the rules with a note.
-NO_SOURCE = {"pt-AO": ("aspekˈtaveɫ", "nokˈtɐ̃bulʊ", "etˈnia"), "pt-CV": ("ɐspekˈtaveɫ", "nukˈtɐ̃bulu", "etˈniɐ"),
+NO_SOURCE = {"pt-AO": ("aʃpekˈtaveɫ", "nokˈtɐ̃bulʊ", "etˈnia"), "pt-CV": ("ɐspekˈtaveɫ", "nukˈtɐ̃bulu", "etˈniɐ"),
              "pt-GW": ("ɐspekˈtaveɫ", "nokˈtɐ̃bulu", "etˈniɐ"), "pt-MO": ("ɐʃpɨkˈtavɨɫ", "nukˈtɐ̃bulu", "etˈniɐ"),
              "pt-MZ": ("ɐspekˈtaveɫ", "nokˈtɐ̃bulu", "etˈniɐ"), "pt-ST": ("ɐspekˈtaveɫ", "nokˈtɐ̃bulu", "etˈniɐ"),
              "pt-TL": ("aspekˈtaveɫ", "nokˈtɐ̃bulo", "etˈnia"),

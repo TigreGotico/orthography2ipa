@@ -6,6 +6,7 @@ page author relies on: the check mode fails on a stale block, hand-written
 text survives a rewrite, the template is enforced, and the values the blocks
 print come from the spec, not from the generator.
 """
+from linguatag import catalog_ids
 import importlib.util
 import json
 import os
@@ -105,7 +106,7 @@ def test_blocks_out_of_order_break_the_template(atlas):
 def test_header_values_come_from_the_spec(atlas):
     spec = orthography2ipa.get("mwl")
     header = atlas_gen.block_header(atlas, spec)
-    assert f"glottolog.org/resource/languoid/id/{spec.glottolog_code})" in header
+    assert f"glottolog.org/resource/languoid/id/{catalog_ids(spec.code)['glottolog_code']})" in header
     assert f"iso639-3.sil.org/code/{spec.iso639_3})" in header
     assert "| Child lects | 2, see [Related lects](#related-lects) |" in header
     lects = atlas_gen.block_lects(atlas, spec)
@@ -121,7 +122,7 @@ def test_lects_block_lists_every_child(atlas):
         if name.endswith(".json"):
             with open(os.path.join(data, name), encoding="utf-8") as fh:
                 spec = json.load(fh)
-            if spec.get("parent") == "es-ES" and not spec.get("clade"):
+            if spec.get("inherits") == "es-ES" and not spec.get("clade"):
                 children.add(spec["code"])
     lects = atlas_gen.block_lects(atlas, orthography2ipa.get("es-ES"))
     listed = set(re.findall(r"^- \[.*\]\(.*\) `([^`]+)`", lects, re.M))
@@ -206,6 +207,16 @@ def test_dialect_without_languoid_takes_no_country(atlas):
 
 def test_region_subtag_names_the_country(atlas):
     assert atlas.geography("es-ES")[1] == ["ES"]
+
+
+@pytest.mark.parametrize("code", ["ar-Latn-x-buckwalt", "chr", "kwk"])
+def test_spelling_rows_follow_code_point_order(atlas, code):
+    # A case-folded order follows the Unicode tables of the running Python:
+    # U+A7DC lowercases only from Unicode 16, so kwk.md differed on 3.14.
+    block = atlas_gen.block_spelling(atlas, orthography2ipa.get(code))
+    rows = re.findall(r"^\| ⟨(.+?)⟩ \|", block, re.MULTILINE)
+    assert len(rows) > 10
+    assert rows == sorted(rows)
 
 
 def test_primary_row_without_a_spelling_is_skipped(atlas):
@@ -318,12 +329,12 @@ def test_cut_is_living_research_and_production(raw, expected):
 
 
 def test_az_pages_with_one_name_are_ordered_by_code(atlas, monkeypatch):
-    # ks and kas are both named Kashmiri. Their order must not depend on
+    # ks and ks-Arab are both named Kashmiri. Their order must not depend on
     # the order the page set yields them in.
-    assert atlas.raw["ks"]["name"] == atlas.raw["kas"]["name"]
-    monkeypatch.setattr(atlas, "pages", ["ks", "kas"])
+    assert atlas.raw["ks"]["name"] == atlas.raw["ks-Arab"]["name"]
+    monkeypatch.setattr(atlas, "pages", ["ks-Arab", "ks"])
     table = atlas_gen.index_az(atlas).split("## Pages", 1)[1].split("\n\n[A]", 1)[0]
-    assert re.findall(r"^\| \[[^\]]+\]\(([^)]+)\)", table, re.M) == ["kas.md", "ks.md"]
+    assert re.findall(r"^\| \[[^\]]+\]\(([^)]+)\)", table, re.M) == ["ks.md", "ks-Arab.md"]
 
 
 def test_rule_change_caps_a_long_letter_list():
@@ -387,37 +398,23 @@ def test_no_page_entry_covers_its_code_and_its_hyphenated_children(code, expecte
     assert (atlas_gen.no_page_reason(code) is not None) is expected
 
 
-def _reference_docs():
-    path = os.path.join(_ROOT, "scripts", "gen_reference_docs.py")
-    spec = importlib.util.spec_from_file_location("gen_reference_docs", path)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
+def test_ranked_names_every_tied_count():
+    counts = {"Eurasia": 124, "Africa": 62, "North America": 39,
+              "Papunesia": 39, "Australia": 12}
+    assert atlas_gen._ranked(counts, 3) == (
+        "Eurasia 124, Africa 62, North America and Papunesia 39")
+    assert atlas_gen._ranked({"a": 2, "b": 2, "c": 2}, 1) == "a, b and c 2"
 
 
-def _linked_pages(text):
-    return set(re.findall(r"\]\(docs/languages/([^/)]+)\.md\)", text)) - {
-        "index", *(name[:-3] for name in atlas_gen.INDEXES)}
-
-
-def test_llms_txt_lists_the_production_pages_and_llms_full_every_page(atlas):
-    ref = _reference_docs()
-    order = _nav().reading_order()
-    short, full = ref.llms_txt(order), ref.llms_txt(order, full=True)
-    production = {c for c in atlas.pages
-                  if atlas.raw[c].get("quality") == "production"}
-    assert production
-    assert _linked_pages(short) == production
-    assert _linked_pages(full) == atlas.pages
-    assert "](llms-full.txt)" in short
-    assert "llms-full.txt" not in full
-    for name in atlas_gen.INDEXES:
-        assert f"](docs/languages/{name})" in short
-
-
-def test_committed_llms_files_are_current():
-    ref = _reference_docs()
-    order = _nav().reading_order()
-    for rel, full in (("llms.txt", False), ("llms-full.txt", True)):
-        with open(os.path.join(_ROOT, rel), encoding="utf-8") as fh:
-            assert fh.read() == ref.llms_txt(order, full=full), rel
+@pytest.mark.parametrize("rule_id, expected", [
+    ("FR_X_S_AFTER_OI", "⟨soixante⟩ [swasɑ̃t]"),
+    ("FR_X_K_BEFORE_SIBILANT", "⟨excès⟩ [ɛksɛ]"),
+])
+def test_a_rule_example_spells_the_rule_grapheme(rule_id, expected):
+    # The output [s] or [k] is a substring of [ks], so an output match alone
+    # gave ⟨x⟩ [ks] and ⟨not⟩ [ks]. The example must spell the grapheme in a
+    # longer word than the bare grapheme.
+    rule = next(r for r in orthography2ipa.get("fr-FR").allophone_rules
+                if r.id == rule_id)
+    assert atlas_gen._example(rule.notes, rule.surface,
+                              rule.grapheme) == expected

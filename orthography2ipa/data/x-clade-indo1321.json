@@ -20,8 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Indo-Aryan_languages"
   ],
-  "parent": "iir",
-  "glottolog_code": "indo1321",
+  "inherits": "iir",
   "urls": [
     "https://glottolog.org/resource/languoid/id/indo1321"
   ],

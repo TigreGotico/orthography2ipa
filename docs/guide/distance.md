@@ -1,5 +1,13 @@
 # Distance Metrics
 
+<!-- agent-hint
+covers: how to measure how two languages differ in sound, spelling, script, ancestry, time and place
+source: `orthography2ipa/distance.py`, `orthography2ipa/feats.py`, `orthography2ipa/script_distance.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_distance.py tests/test_script_distance.py`
+see: `docs/specs/ancestry.md`, `docs/reference/api.md`
+-->
+
 Languages relate along several independent axes, and a pair can be close on one axis and far apart on another. The `orthography2ipa.distance` module measures each axis on its own instead of folding them into one number. Unless a section says otherwise, a distance runs from 0.0 (identical) to 1.0 (maximally different).
 
 | Axis | Question | Functions |
@@ -45,6 +53,8 @@ p = dict(zip(feature_names(), feature_vector("p")))
 {k: p[k] for k in ("consonantal", "voice", "labial", "coronal", "strident")}
 # {'consonantal': 1.0, 'voice': 0.0, 'labial': 1.0, 'coronal': 0.0, 'strident': 0.5}
 ```
+
+`feature_vector` and `feature_names` return the 23-feature layout of the vendored table, and they raise a `DeprecationWarning`. At the next major release they return the feature layout of phonematcher, which `phonematcher.vectorize_phones` and `phonematcher.FEATURES` give already.
 
 ## `segment_distance`
 
@@ -284,10 +294,10 @@ full = w_phonological × phonological_distance.combined + w_ancestry × (1 - anc
 ```python
 from orthography2ipa.distance import full_distance
 
-round(full_distance(orthography2ipa.get("es"), orthography2ipa.get("pt")), 4)   # 0.3178
+round(full_distance(orthography2ipa.get("es"), orthography2ipa.get("pt")), 4)   # 0.3647
 ```
 
-A lower value means a closer pair. The result does not include the orthography.
+A lower value means a closer pair. The result does not include the orthography. The ancestry term comes from `linguatag.ancestry_similarity` with its default temporal decay, so it is lower than the undecayed `ancestry_similarity` above: 0.4131 against 0.5304 for `es` and `pt`. `weighted_full_distance` and the `"ancestry"` metric of `pairwise_distances` use the same term.
 
 ## `weighted_full_distance`
 
@@ -303,7 +313,7 @@ weighted_full_distance(spec_a, spec_b, *, w_inventory=0.25, w_grapheme=0.20,
 from orthography2ipa.distance import weighted_full_distance
 
 result = weighted_full_distance(es, pt)
-round(result.combined, 3)   # 0.316
+round(result.combined, 3)   # 0.367
 result.weights              # (0.25, 0.2, 0.15, 0.4, 0.0)
 
 only_inventory = weighted_full_distance(es, pt, w_inventory=1.0, w_grapheme=0.0,
@@ -355,4 +365,4 @@ matrix = pairwise_distances(langs, metric="combined")
 The `combined` metric has a narrow range. It gives 0.051 for `pt-BR` against `pt-PT` and 0.407 for `es` against `zh`, rounded. Use the `"ancestry"` metric or `weighted_full_distance` when relatedness matters.
 
 ---
-[← Lexicons and forced pronunciations](lexicon.md) · [Home](../index.md) · [Known limitations →](known_limitations.md)
+[← Revisions and pinning](revisions.md) · [Home](../index.md) · [Known limitations →](known_limitations.md)

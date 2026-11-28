@@ -1,9 +1,8 @@
 {
   "code": "ext",
-  "glottolog_code": "extr1243",
   "name": "Extremaduran",
   "script": "Latin",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "graphemes_base": "es-ES",
   "allophones_base": "es-ES",
   "positional_graphemes_base": "es-ES",
@@ -209,11 +208,18 @@
   },
   "iso639_3": "ext",
   "quality": "research",
-  "wikidata_qid": "Q30007",
   "location": {
     "latitude": 39.1926,
     "longitude": -6.10179,
     "source": "glottolog",
     "notes": "Glottolog's representative point for Extremaduran."
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "ES_S_VOICING",
+      "phonemes": [],
+      "surface": "",
+      "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. Its source describes the Castilian standard of Spain, and no source for this language was opened, so the rule is switched off here."
+    }
+  ]
 }

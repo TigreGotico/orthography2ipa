@@ -78,7 +78,7 @@
       "ʔ"
     ]
   },
-  "parent": "nah",
+  "inherits": "nah",
   "ancestors": [
     {
       "code": "nah",
@@ -89,7 +89,6 @@
   ],
   "notes": "Skeleton. Uto-Aztecan (Nahuan) variety of central Mexico written in a Classical-style Spanish-based orthography. Digraphs tl=[tɬ], tz=[ts], ch=[tʃ], x=[ʃ], cu/hu for labiovelar/[w] and qu=[k] are mapped. The letter c is mapped as [k]; before front vowels it (and z) represents [s], a context this longest-match table does not resolve, so that ambiguity plus the saltillo and any vowel-length contrast are the main PER contributors. Tetelcingo Nahuatl stress falls predictably on the penultimate syllable and is not separately orthographically marked; left unencoded (documented exemption).",
   "iso639_3": "nhg",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "nhg_glottolog",

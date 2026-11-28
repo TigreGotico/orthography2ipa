@@ -345,7 +345,7 @@ class TestAustrianGerman:
 
     def test_parent_is_standard_german(self):
         """de-AT must declare de-DE as its parent to inherit graphemes."""
-        assert self._spec.parent == "de-DE"
+        assert self._spec.inherits == "de-DE"
 
     def test_ae_long_merger(self):
         """AUSTRIAN FEATURE: /ɛː/ (long ä) merges with /eː/ in Austrian standard.
@@ -398,7 +398,7 @@ class TestBavarianGerman:
 
     def test_parent_is_austrian_german(self):
         """bar-AT declares de-AT as its parent (Bavarian ← Austrian ← Standard)."""
-        assert self._spec.parent == "de-AT"
+        assert self._spec.inherits == "de-AT"
 
     def test_diphthong_aI_includes_oI_variant(self):
         """BAVARIAN FEATURE: /aɪ/ allophone table includes /ɔɪ/ (diphthong merger)."""
@@ -767,7 +767,7 @@ class TestFlemish:
 
     def test_parent_is_dutch(self):
         """nl-BE inherits from nl-NL, the Dutch standard spec."""
-        assert self._spec.parent == "nl-NL"
+        assert self._spec.inherits == "nl-NL"
 
     def test_gamma_includes_palatal_variant(self):
         """FLEMISH FEATURE: /ɣ/ can surface as palatal /ʝ/ in onset (softer G)."""
@@ -1251,7 +1251,7 @@ class TestNorwegianBokmal:
 
     def test_parent_is_norwegian(self):
         """nb inherits from 'no' (generic Norwegian), not Danish directly."""
-        assert self._spec.parent == "no"
+        assert self._spec.inherits == "no"
 
     def test_rn_retroflex_nasal(self):
         """NORWEGIAN RETROFLEXION: cluster <rn> → retroflex nasal /ɳ/."""

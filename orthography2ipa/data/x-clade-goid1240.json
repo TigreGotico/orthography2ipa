@@ -20,8 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Goidelic_languages"
   ],
-  "parent": "cel",
-  "glottolog_code": "goid1240",
+  "inherits": "cel",
   "urls": [
     "https://glottolog.org/resource/languoid/id/goid1240"
   ],

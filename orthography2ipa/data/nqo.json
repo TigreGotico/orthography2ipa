@@ -130,8 +130,6 @@
   "allophones": {},
   "notes": "N'Ko (ߒߞߏ), the Manding literary koiné written in the N'Ko script devised by Solomana Kanté in 1949. INPUT CONTRACT: native N'Ko-script text (Unicode block U+07C0..U+07FF, NFC), written RIGHT-TO-LEFT; no romanisation is accepted. N'Ko is an ALPHABET (not an abjad or abugida): seven vowel letters (ߊ ߋ ߌ ߍ ߎ ߏ ߐ) and nineteen consonant letters are written in full, plus combining diacritics. Tone and vowel length are written with seven combining marks (U+07EB..U+07F1): they are mapped to IPA tone letters (and ː for the long series) rather than to segments; an unmarked vowel is short with a falling tone. U+07F2 (nasalisation) maps to a combining tilde. ߑ DAGBASINNA is a silent letter marking the absence of a vowel in a consonant cluster and maps to the empty string. LEFT OUT ON PURPOSE: U+07F3 (double dot above) and the JONA letters ߨ ߩ ߪ, which modify a base letter for non-native sounds in loans — their value depends on the base letter and no single segmental value can be assigned.",
   "iso639_3": "nqo",
-  "glottolog_code": "nkoa1234",
-  "wikidata_qid": "Q18546266",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/N%27Ko_language",
     "https://nqo.wikipedia.org/wiki/%DF%92%DF%9E%DF%8F_%28%DF%9E%DF%8A%DF%B2%29",
@@ -187,7 +185,7 @@
     "start_year": 1949,
     "end_year": null
   },
-  "parent": "x-clade-mand1469",
+  "inherits": "x-clade-mand1469",
   "ancestors": [
     {
       "code": "x-clade-mand1469",

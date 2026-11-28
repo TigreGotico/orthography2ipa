@@ -316,7 +316,7 @@
     ]
   },
   "allophones": {},
-  "parent": "nic",
+  "inherits": "nic",
   "ancestors": [
     {
       "code": "nic",
@@ -327,8 +327,6 @@
   ],
   "notes": "Central Dagaare (Dàgáárè), a Gur / Mabia (Atlantic-Congo) language of northwestern Ghana and southern Burkina Faso. Glottolog sout2789 'Central Dagaare' carries ISO 639-3 dga; Ethnologue names the same code Southern Dagaare. INPUT CONTRACT: the tone-marked Latin orthography that Angsongna & Akinbo (2022) print, with an acute for high and a grave for low. Their examples are the dga primary_sources gold rows. GRAPHEME MAP: taken from that Illustration's two tables, page 343 (consonants) and page 345 (vowels), read from page renders. CONSONANTS: the digraphs kp gb ky gy ny ngm read as the single units k͡p g͡b t͡ʃ d͡ʒ ɲ ŋ͡m; y reads j and r reads the approximant ɹ. The sequence gr reads ɡɾ, because page 344 states that /ɹ/ 'is occasionally realized as an alveolar tap /ɾ/ after a /g/, as in /pʰɛ́gɾí/ shells'. ASPIRATION: page 343 states that every word-initial voiceless stop is transcribed with a superscript h, so p t k read pʰ tʰ kʰ word-initially only. VOWEL LENGTH: page 345 states that 'All Frafra vowels have a long form', and the Illustration writes it with a doubled letter (gàà /gàː/, dɔ́ɔ́ /dɔ́ː/, váábó /váːbʊ́/), so every doubled vowel letter reads one long vowel. ATR IS NOT WRITTEN: the orthography uses one letter for both members of a pair, so ⟨e⟩ and ⟨o⟩ carry candidate lists. The order follows the counts in the source's own examples, not a harmony rule, which this spec does not model: ⟨e⟩ reads i in about 11 of its 15 example tokens, e in 3 and ɪ in 1, so the candidates are i, e, ɪ; ⟨o⟩ reads o in 4 and ʊ in 2, so they are o, ʊ. The dot-below letter ⟨ạ⟩ is the source's spelling for ə (vạ /və́/, hạạri /hə́ːɹì/). NOT MODELLED: the glottal stop has no letter in this orthography (the source prints è for /ʔì/ 'to do'), and tone is not recovered where the source leaves it unwritten (vạ, hạạri). SOURCE CONTRADICTION: page 343 reads ⟨fáà⟩ as /fâː/ and ⟨n͡yáà⟩ as /ɲâː/, a falling tone, but ⟨ŋáà⟩ as /ŋáː/, a high tone. This map follows the falling reading, which is 2 of the 3 examples, and the ŋáà row therefore scores as an error.",
   "iso639_3": null,
-  "glottolog_code": null,
-  "wikidata_qid": null,
   "sources": [
     {
       "id": "wikidata_Q123351833",

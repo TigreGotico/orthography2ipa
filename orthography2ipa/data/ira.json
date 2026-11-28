@@ -188,7 +188,7 @@
       "dʒ"
     ]
   },
-  "parent": "x-clade-iran1269",
+  "inherits": "x-clade-iran1269",
   "ancestors": [
     {
       "code": "iir",
@@ -241,7 +241,6 @@
     "start_year": -1500,
     "end_year": -500
   },
-  "glottolog_code": "iran1269",
   "location": {
     "latitude": 35.235832,
     "longitude": 63.728053,

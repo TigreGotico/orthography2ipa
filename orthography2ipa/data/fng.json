@@ -107,7 +107,7 @@
    "tsʰ"
   ],
   "tsh": [
-   "ʧh"
+   "t͡ʃh"
   ],
   "u": [
    "u"
@@ -131,7 +131,6 @@
  "allophones": {},
  "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. Classification and coordinates follow Glottolog. Orthography from an Omniglot chart (c) Simon Ager, https://www.omniglot.com/, extracted via the AfriSpeech/africa-g2p compilation (fng.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "fng",
- "glottolog_code": "fana1235",
  "sources": [
   {
    "id": "glottolog2024",
@@ -160,7 +159,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-pidg1258",
+ "inherits": "x-clade-pidg1258",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Fanagalo_language"

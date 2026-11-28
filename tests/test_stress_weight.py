@@ -140,8 +140,8 @@ def test_the_arabic_specs_opt_in():
     # authoring its own orthography — mt Maltese, acy Cypriot Arabic — falls outside
     # it, correctly. A test on the code name would be wrong in both directions: this
     # repo ships arc Aramaic, arn Mapudungun, arp Arapaho, arr Karo, arv Arbore and
-    # arw Arawak, none of them Arabic, while ar-TD-x-babalia Babalia Creole and sqr Siculo are
-    # Arabic and look like neither.
+    # arw Arawak, none of them Arabic, while sqr Siculo is Arabic and looks
+    # like none of them.
     _data = _os.path.join(_os.path.dirname(_o2i.__file__), "data")
 
     def _graphemes_root(code):
@@ -159,7 +159,7 @@ def test_the_arabic_specs_opt_in():
         return code
 
     inherits_from_arabic = {c for c in available_codes() if _graphemes_root(c) == "arb"}
-    assert {"ar-TD-x-babalia", "sqr", "xaa"} <= inherits_from_arabic
+    assert {"sqr", "xaa"} <= inherits_from_arabic
     assert not {"mt", "acy"} & inherits_from_arabic, (
         "a genetic parent is not a graphemes base")
 
@@ -271,9 +271,9 @@ def test_a_declared_diphthong_ending_in_y_is_heavy(lang, diphthong, syllable):
 ])
 def test_a_diphthong_atom_weighs_as_its_letters_do_without_the_atom(lang, diphthong, syllable):
     # Without the atom the glide or ʏ is a second segment and the syllable is
-    # heavy; the atom must not make the same syllable lighter.
-    atoms = phoneme_atoms(get(lang))
-    assert diphthong in atoms, "the case only bites while the spec emits the diphthong"
+    # heavy; the atom must not make the same syllable lighter. A spec that
+    # declares the diphthong in ``phonemes`` hands it to the weight as an atom.
+    atoms = [*phoneme_atoms(get(lang)), diphthong]
     assert syllable_weight(syllable, atoms) == syllable_weight(syllable)
     assert syllable_weight(syllable, atoms) in (HEAVY, SUPERHEAVY)
 

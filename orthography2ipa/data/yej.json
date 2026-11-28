@@ -5,10 +5,9 @@
   "script_type": "abjad",
   "quality": "stub",
   "iso639_3": "yej",
-  "glottolog_code": "yeva1238",
   "graphemes": {},
   "allophones": {},
-  "parent": "el",
+  "inherits": "el",
   "ancestors": [
     {
       "code": "el",

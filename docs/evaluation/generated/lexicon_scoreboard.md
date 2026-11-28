@@ -1,5 +1,13 @@
 # Lexicon-overlay scoreboard
 
+<!-- agent-hint
+covers: the PER of each gold set with and without a caller-supplied lexicon
+source: `scripts/benchmark.py` (`--lexicon-report`), `orthography2ipa/lexicon.py`
+generated: yes, by `scripts/benchmark.py --lexicon-report`. Edit the generator, not the page
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py`
+see: `docs/guide/lexicon.md`, `docs/evaluation/generated/scoreboard.md`
+-->
+
 Rules-only against with-lexicon PER for each language with a caller-supplied lexicon. The package bundles no lexicon: see [`docs/guide/lexicon.md`](../../guide/lexicon.md) and `orthography2ipa/lexicon.py`. Each gold set is scored twice, once by an engine with an empty `Pipeline.lexicon` (rules-only) and once by an engine with the lexicon. A lexicon must lower PER, and the rules-only column shows whether the grapheme rules still hold up without it. Regenerate with:
 
 ```bash

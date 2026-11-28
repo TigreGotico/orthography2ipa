@@ -1,5 +1,13 @@
 # Odia (`or`)
 
+<!-- agent-hint
+covers: what the `or` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/or.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/sa.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Odia is an Indo-Aryan language, written in the Odia script. Glottolog places it in India. The `or` spec is at the research tier. It cites 3 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
@@ -57,14 +65,14 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `or` | generated | machine-generated | MIT, each file its own | 6216 | 0.1115 | yes |
-| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `or` | generated | epitran-derived | CC0 1.0 | 7918 | 0.2689 | no |
+| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `or` | generated | machine-generated | MIT, each file its own | 6216 | 0.1102 | yes |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `or` | generated | epitran-derived | CC0 1.0 | 7918 | 0.2694 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 50 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 57 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Retroflex | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -74,17 +82,17 @@ The spec can emit 50 segments. They come from the letter table, the positional r
 | Trill |  |  | r r̩ |  |  |  |  |  |
 | Tap |  |  |  |  | ɽ |  |  |  |
 | Fricative |  |  | s | ʃ | ʂ |  |  | h ɦ |
-| Approximant |  | ʋ |  |  |  | j |  |  |
+| Approximant |  | ʋ |  |  |  | j j̃ |  |  |
 | Lateral approximant |  |  | l |  | ɭ |  |  |  |
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
-| Close | i iː | u uː |
-| Close-mid | e | o |
-| Open-mid |  | ɔ |
-| Open | aː |  |
+| Close | i iː ĩ ĩː | u uː ũ ũː |
+| Close-mid | e ẽ | o õ |
+| Open-mid |  | ɔ ɔ̃ |
+| Open | aː ãː |  |
 
-Sequences that the spec writes as one unit: [bʱ] [dʑʱ] [d̪ʱ] [oi] [ou] [w] [ɖʱ] [ɡʱ] [ɽʱ] [̃].
+Sequences that the spec writes as one unit: [bʱ] [dʑʱ] [d̪ʱ] [w] [w̃] [ɖʱ] [ɡʱ] [ɽʱ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -181,4 +189,4 @@ No downstream repository of the TigreGotico organisation covers this spec. The [
 <!-- atlas:related end -->
 
 ---
-[← Occitan](oc.md) · [Home](../index.md) · [Ojibwe →](oji.md)
+[← Occitan](oc.md) · [Home](../index.md) · [Ojibwe →](oj.md)

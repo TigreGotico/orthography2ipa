@@ -326,7 +326,7 @@
       "ɑ"
     ]
   },
-  "parent": "sa",
+  "inherits": "sa",
   "ancestors": [
     {
       "code": "sa",
@@ -345,6 +345,9 @@
   "quality": "research",
   "script_type": "abugida",
   "inherent_vowel": "ə",
+  "consonant_marks": [
+    "઼"
+  ],
   "sources": [
     {
       "id": "masica1991",
@@ -397,9 +400,7 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "guja1252",
   "iso639_3": "guj",
-  "wikidata_qid": "Q5137",
   "phoible_id": "guja1252",
   "wals_code": "guj",
   "location": {

@@ -14,6 +14,7 @@ Ortográfica do Barranquenho (2025).
 """
 
 import pytest
+from linguatag import catalog_ids
 
 import orthography2ipa
 from orthography2ipa.g2p import G2P
@@ -156,7 +157,7 @@ class TestCodaNasalization:
 
     NASAL = "\u0303"  # combining tilde marking the nasalised vowel
 
-    # Engine output is always NFC (see G2P._transcribe_word): the coda slot
+    # Engine output is always NFC (see Interpreter.transcribe_word): the coda slot
     # emits a bare combining tilde (U+0303) which composes onto the
     # preceding vowel when Unicode has a precomposed form for it (plain
     # Latin a/e/i/o/u), and stays a separate combining mark otherwise —
@@ -255,4 +256,16 @@ class TestLectCodeAndAlias:
 
     def test_spec_claims_no_crossref_of_another_language(self, barrancos):
         assert barrancos.iso639_3 is None
-        assert barrancos.glottolog_code is None
+        assert catalog_ids(barrancos.code).get("glottolog_code") is None
+
+
+def test_a_hyphen_does_not_move_the_mark_of_a_compound(g2p):
+    # Checks the guard of the written-hiatus cut, not the stress of the
+    # word: the cut needs a letter before the second vowel, and in
+    # ⟨rebenta-e-treh⟩ only a hyphen stands between ⟨a⟩ and ⟨e⟩. Without
+    # the guard the mark moved onto ⟨e⟩. No source attests the stress: the
+    # entry in Gonçalves, Navas & Ferreira (2025), p. 82, gives the headword
+    # and the gloss "jogo de rapazes" and no pronunciation, and the synthetic
+    # barranquenho_dict row [rɨˈbẽtɐ i ˈtɾɛh] shows agreement only.
+    out = g2p.transcribe_word("rebenta-e-treh")
+    assert out.count("ˈ") == 1 and "ˈtɾ" in out

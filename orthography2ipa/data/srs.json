@@ -132,7 +132,7 @@
       "u"
     ]
   },
-  "parent": "x-clade-atha1245",
+  "inherits": "x-clade-atha1245",
   "ancestors": [
     {
       "code": "x-clade-atha1245",
@@ -143,7 +143,6 @@
   ],
   "notes": "Research. Northern Athabaskan (Dene) language of Alberta, self-named Tsuutʼina, in its practical orthography. Lateral obstruents (tł, tł', ł=[ɬ]), affricate series and ejectives written with a following apostrophe, and gh=[ɣ] are mapped. Grapheme table checked against Cook (1984): no discrepancy found. STRESS EXEMPTION: Cook (1984) documents Tsuutʼina as a tone language (reported as a three-way H/M/L system in later work, e.g. Barreda) rather than a stress language in the sense this project's `stress` schema targets, and tone is not consistently marked in the practical orthography mapped here (as already noted); prominence in this language is a property of the tonal system, out of the `stress` schema's scope, so no `stress` block is added.",
   "iso639_3": "srs",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "srs_glottolog",

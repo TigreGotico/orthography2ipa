@@ -47,10 +47,12 @@ ENGINE_MODULES: Tuple[str, ...] = (
     "features",
     "g2p",
     "inventory",
+    "ir",
     "json_loader",
     "lexicon",
     "lm",
     "markup",
+    "phonemes",
     "phonetok",
     "pipeline",
     "plugins",
@@ -135,8 +137,14 @@ def _fingerprint(sources: Iterable[Tuple[str, bytes]]) -> str:
 
 
 def _module_source(name: str) -> bytes:
+    """The source of module *name*, or of every module of package *name* in name order."""
+    root = files("orthography2ipa")
     try:
-        return (files("orthography2ipa") / f"{name}.py").read_bytes()
+        if (root / name).is_dir():
+            return b"".join((root / name / f).read_bytes()
+                            for f in sorted(p.name for p in (root / name).iterdir()
+                                            if p.name.endswith(".py")))
+        return (root / f"{name}.py").read_bytes()
     except OSError as e:
         raise EngineSourceUnavailable(
             f"cannot read the source of orthography2ipa.{name}: {e}") from e
@@ -179,14 +187,15 @@ def _canonical_spec(code: str) -> bytes:
 
 
 def _data_parent(raw: dict) -> Optional[str]:
-    """The ``parent`` that the loader walks through when it resolves a child.
+    """The ``inherits`` spec that the loader walks through when it resolves a child.
 
-    The loader drops a ``parent`` that names a code with no spec file. A clade
-    with no ``parent``, or with a dropped one, then takes its first
+    The loader drops an ``inherits`` that names a code with no spec file. A clade
+    with no ``inherits``, or with a dropped one, then takes its first
     ``parent``-role ancestor, as :class:`~orthography2ipa.types.LanguageSpec`
     sets it, and the loader walks through a clade to the nearest spec with data.
+    A spec file that still names it ``parent`` counts the same.
     """
-    parent = raw.get("parent")
+    parent = raw.get("inherits", raw.get("parent"))
     if parent in _index or not raw.get("clade"):
         return parent
     return next((a.get("code") for a in raw.get("ancestors") or ()
@@ -196,7 +205,7 @@ def _data_parent(raw: dict) -> Optional[str]:
 def _spec_dependencies(code: str) -> List[str]:
     """*code*, then every spec the loader merges into it, sorted.
 
-    The loader merges data along ``parent`` (inherited rules and stress) and
+    The loader merges data along ``inherits`` (inherited rules and stress) and
     each ``<field>_base`` key, and so does this walk, to the end of each chain.
     Other ``ancestors`` codes are left out: the loader reads those specs but
     merges none of their data. A code with no spec file is skipped, as the
@@ -215,54 +224,37 @@ def _spec_dependencies(code: str) -> List[str]:
     return [code, *sorted(seen - {code})]
 
 
-@lru_cache(maxsize=None)
-def _spec_revision(code: str) -> str:
-    digest = hashlib.sha256()
-    digest.update(f"spec-format:{SPEC_FORMAT_VERSION}\n".encode())
-    for dep in _spec_dependencies(code):
-        digest.update(f"spec:{dep}\n".encode() + _canonical_spec(dep) + b"\n")
-    digest.update(f"engine:{engine_fingerprint()}\n".encode())
-    return "sha256:" + digest.hexdigest()
-
-
 def spec_revision(code: str) -> str:
-    """sha256 over the canonical spec JSON, its parent chain and engine rule version.
+    """sha256 over the IR that ``G2P(code)`` runs.
 
+    It is the ``spec_revision`` of section 8.1 of docs/ir/o2i-ir-v1.md. The
+    IR holds the spec data with its parent chain, the compile options and
+    the interpreter primitives.
     *code* resolves as :class:`~orthography2ipa.g2p.G2P` resolves it, so an
-    alias and its canonical code give one revision. The hash input is, in this
-    order: :data:`SPEC_FORMAT_VERSION`; the spec of *code*; every other spec
-    the loader merges into it (``parent``, or the first ``parent``-role
-    ancestor of a clade whose ``parent`` is empty or has no spec file, and the
-    ``<field>_base`` keys, followed to the end of each chain, sorted by code);
-    and :func:`engine_fingerprint`, which covers the engine source and the
-    ``unicodedata.unidata_version`` of the running Python. Each spec counts as
-    its parsed JSON with sorted keys and no whitespace, tagged with its code,
-    so a whitespace-only edit leaves the revision equal.
+    alias and its canonical code give one revision. An engine change that
+    leaves the IR of *code* equal leaves the revision equal.
 
-    The revision covers the spec and the engine. It does not cover a step that
-    a caller passes in a :class:`~orthography2ipa.pipeline.Pipeline`. It does
-    not cover a third-party plugin that a spec names through the deprecated
-    ``plugins`` field or ``stress.source = "plugin"``: ``G2P`` raises a
-    :class:`DeprecationWarning` for both, and no shipped spec sets either. An
-    installed plugin that no spec names never runs. ``G2P`` does not call
-    :func:`~orthography2ipa.registry.get_rescorers`, and the stress plugin runs
-    only for ``stress.source = "plugin"``.
+    The IR is read from the precompiled documents of the package or from the
+    user cache (see :mod:`orthography2ipa.ir.cache`), so a revision costs no
+    compile when the document exists. Otherwise the spec is compiled once and
+    the document is cached.
 
-    Returns ``"sha256:"`` and the hex digest. The value is computed at the
-    first call for a code in a process and kept, as the loader reads each spec
-    once per process.
+    Returns ``"sha256:"`` and the hex digest.
 
     Raises
     ------
     KeyError
         *code* resolves to no registered spec.
     EngineSourceUnavailable
-        The source of an engine module cannot be read.
+        The engine source cannot be read, as in an install that ships only
+        byte code. The cached documents are keyed on that source, so no
+        document can be trusted.
     """
     resolved = resolve(code)
     if resolved not in _index:
         raise KeyError(f"unsupported language: {code!r} resolves to no spec")
-    return _spec_revision(resolved)
+    from orthography2ipa.ir import cache
+    return cache.revision(resolved)
 
 
 def lexicon_revision(code: str, patches: bool = False) -> str:
@@ -293,3 +285,18 @@ def lexicon_revision(code: str, patches: bool = False) -> str:
         data = path.read_bytes()
         digest.update(f"{kind}:{len(data)}\n".encode() + data)
     return "sha256:" + digest.hexdigest()
+
+
+def transcription_revision(code: str, patches: bool = False) -> str:
+    """sha256 over the revisions of the default path: the spec and the packaged lexicon.
+
+    The hash input is :func:`spec_revision`, a newline, and
+    :func:`lexicon_revision` with *patches*, or ``"none"`` when no installed
+    package supplies the files. Returns ``"sha256:"`` and the hex digest.
+    """
+    try:
+        lexicon = lexicon_revision(code, patches=patches)
+    except LookupError:
+        lexicon = "none"
+    text = spec_revision(code) + "\n" + lexicon
+    return "sha256:" + hashlib.sha256(text.encode()).hexdigest()

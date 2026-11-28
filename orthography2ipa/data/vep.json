@@ -179,8 +179,6 @@
     ]
   },
   "iso639_3": "vep",
-  "glottolog_code": "veps1250",
-  "wikidata_qid": "Q32747",
   "notes": "Veps (vepsän kel'), Finnic (Uralic), Karelia / Leningrad Oblast. The modern (post-1989) orthography uses a 29-character Latin alphabet: 22 basic Latin letters, six with diacritics (č š ž ü ä ö) and the prime ⟨ʹ⟩. ⟨c⟩ = /t͡s/, ⟨č⟩ = /t͡ʃ/, ⟨š⟩ = /ʃ/, ⟨ž⟩ = /ʒ/, ⟨ü⟩ = /y/, ⟨ä⟩ = /æ/, ⟨ö⟩ = /ø/. PALATALISATION: the prime ⟨ʹ⟩ palatalises the PRECEDING consonant (kʹ tʹ mʹ …), giving the /pʲ tʲ …/ series. It is a modifier, not a segment of its own, and is therefore not listed as a grapheme — a spec-level modifier for it is not yet expressed, so the palatalised series is currently under-generated. Long vowels/geminates are written by doubling and fall out of the single-letter graphemes. /ɨ/ is a marginal allophone of /i/.",
   "sources": [
     {
@@ -214,7 +212,7 @@
     "start_year": 1989,
     "end_year": null
   },
-  "parent": "x-clade-ural1272",
+  "inherits": "x-clade-ural1272",
   "ancestors": [
     {
       "code": "x-clade-ural1272",

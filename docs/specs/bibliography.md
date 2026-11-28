@@ -1,5 +1,13 @@
 # Bibliography
 
+<!-- agent-hint
+covers: the reference works for spec authors, by language family, with the ids that the specs cite
+source: the `sources` arrays of `orthography2ipa/data/*.json`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py`
+see: `docs/contributing/citations.md`, `docs/contributing/spec_authoring.md`
+-->
+
 This page lists reference works for spec authors, grouped by language family. The authoritative record of what a spec cites is that spec's own `sources` array, and this page is a guide to it, not a copy.
 
 A bold key in a table is the `id` that the specs use for the work. A work with no key is a recommended reference that no spec cites in `sources`. A link goes to the DOI or to an open copy of the work. Where the publisher's site refuses a plain HTTP request, the DOI is given as text, and it still resolves in a browser. The rules for citing are in [citation honesty](../contributing/citations.md).

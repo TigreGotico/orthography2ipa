@@ -63,7 +63,7 @@
       ]
     }
   },
-  "parent": "es-MX",
+  "inherits": "es-MX",
   "ancestors": [
     {
       "code": "es-MX",
@@ -88,7 +88,6 @@
   "quality": "research",
   "script_type": "alphabet",
   "iso639_3": "spa",
-  "glottolog_code": null,
   "timespan": {
     "start_year": 1600,
     "end_year": null
@@ -175,6 +174,12 @@
       "phonemes": [],
       "notes": "Yucatán keeps the occlusive /b d g/ that es-ES spirantizes after a non-nasal: Michnowicz 2012, p. 107, «in YS /b d g/ are produced as stops in contexts where standard varieties of Spanish would employ fricative or approximant variants, such as intervocalically», with the cross-word stop of como deben (Figure 4). Disabled by empty 'phonemes'.",
       "surface": "ɣ"
+    },
+    {
+      "id": "ES_S_VOICING",
+      "phonemes": [],
+      "surface": "",
+      "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. Its source describes the Castilian standard of Spain, and no source for this variety was opened, so the rule is switched off here."
     }
   ],
   "sandhi_rules": [

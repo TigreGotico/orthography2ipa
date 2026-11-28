@@ -1,7 +1,6 @@
 {
   "code": "seh",
   "name": "Sena",
-  "glottolog_code": "nucl1396",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "seh",
@@ -110,7 +109,7 @@
       "notes": null
     }
   ],
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "x-clade-narr1281",
@@ -130,7 +129,6 @@
     "start_year": 1900,
     "end_year": null
   },
-  "wikidata_qid": "Q2964008",
   "location": {
     "latitude": -17.9,
     "longitude": 35.0,

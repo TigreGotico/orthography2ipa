@@ -18,7 +18,6 @@
  },
  "notes": "REGISTRY STUB (not a modelled G2P target). Placed so the ancestry graph covers every living ISO 639-3 language. No orthography is claimed; the phoneme inventory follows the cited PHOIBLE inventory (which itself cites a published description): script is Zyyy (undetermined) until a cited description is encoded. Classification and coordinates follow Glottolog.",
  "iso639_3": "beg",
- "glottolog_code": "bela1260",
  "sources": [
   {
    "id": "glottolog2024",
@@ -47,7 +46,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-aust1307",
+ "inherits": "x-clade-aust1307",
  "phonemes": [
   "b",
   "c",

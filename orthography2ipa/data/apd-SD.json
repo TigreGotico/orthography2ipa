@@ -154,7 +154,7 @@
       "notes": "Khartoum/central-Sudan monophthongization (Dickins 2007): the Classical diphthong /aw/ is realised [oː] in the sedentary Khartoum koine — لَوْ *law > loː 'if', يَوْم *yawm > joːm 'day'. Sibling of LY_MONO_AW; fires on the general /aw/ atom, with the word-initial ⟨يَوْ⟩ spelling handled by an explicit grapheme. Does not fire on a geminate glide (جَوّ → ɟaww) or a long vowel + glide."
     }
   ],
-  "parent": "ar-x-mashriqi",
+  "inherits": "ar-x-mashriqi",
   "ancestors": [
     {
       "code": "ar-x-mashriqi",
@@ -227,9 +227,7 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "suda1236",
   "iso639_3": "apd",
-  "wikidata_qid": "Q56573",
   "phoible_id": "suda1236",
   "location": {
     "latitude": 17.8021,

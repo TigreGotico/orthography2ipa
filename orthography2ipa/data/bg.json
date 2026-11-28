@@ -253,7 +253,7 @@
       "ɐ"
     ]
   },
-  "parent": "x-clade-sout3147",
+  "inherits": "x-clade-sout3147",
   "notes": "Standard Bulgarian. Analytic Slavic language (lost case system). ⟨ъ⟩ represents the unique phoneme /ɤ/ (back unrounded mid vowel). ⟨щ⟩ = [ʃt] (South Slavic, contrasting with East Slavic [ɕː]). Soft consonants occur mainly before /ɛ/ and /i/. Definite article is a suffix, not a separate word.",
   "quality": "research",
   "script_type": "alphabet",
@@ -299,9 +299,7 @@
     "start_year": 1200,
     "end_year": null
   },
-  "glottolog_code": "bulg1262",
   "iso639_3": "bul",
-  "wikidata_qid": "Q7918",
   "phoible_id": "bulg1262",
   "wals_code": "bul",
   "location": {

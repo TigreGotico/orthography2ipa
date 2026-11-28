@@ -1,5 +1,13 @@
 # Tibetan (`bo`)
 
+<!-- agent-hint
+covers: what the `bo` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/bo.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Tibetan is a Sino-Tibetan language, written in the Tibetan script. Glottolog places it in Bhutan, China, India and Nepal. The `bo` spec is at the research tier. It cites 9 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -63,32 +71,32 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `bo` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 1564 | 0.3871 | yes |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `bo` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 1564 | 0.3860 | yes |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 158 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 177 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Alveolar | Retroflex | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p pʰ | t tʰ |  | c cʰ | k kʰ | ʔ |
+| Plosive | b bː p pʰ pʰː pː | t tʰ tʰː tː | ʈ | c cʰ cʰː cː | k kʰ kʰː kː | ʔ ʔː |
 | Affricate |  | ts tsʰ | ʈʂ ʈʂʰ | tɕ tɕʰ |  |  |
-| Nasal | m | n |  | ɲ | ŋ |  |
-| Trill |  | r r̥ |  |  |  |  |
-| Fricative |  | s | ʂ ʐ | ç ɕ |  | h |
-| Approximant |  | ɹ |  | j |  |  |
-| Lateral approximant |  | l l̥ |  |  |  |  |
+| Nasal | m mː | n nː |  | ɲ ɲː | ŋ ŋː |  |
+| Trill |  | r rː r̥ r̥ː |  |  |  |  |
+| Fricative |  | s sʰː sː | ʂ ʂʰː ʂː ʐ ʐː | ç çː ɕ ɕʰː ɕː |  | h hː |
+| Approximant |  | ɹ ɹː |  | j jː |  |  |
+| Lateral approximant |  | l lː l̥ l̥ː |  |  |  |  |
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
-| Close | i iː yː ĩ ỹ | u uː |
-| Close-mid | e eː øː ø̃ ẽ | o oː |
-| Open-mid | ɛː ɛ̃ |  |
+| Close | i iː yː ĩ ĩː ỹ ỹː | u uː |
+| Close-mid | e eː øː ø̃ ø̃ː ẽ ẽː | o oː |
+| Open-mid | ɛː ɛ̃ ɛ̃ː |  |
 | Open | a aː |  |
 
-Sequences that the spec writes as one unit: [am˥˥] [am˥˨] [am˩˧˨] [am˩˨] [ap˥˨] [ap˩˧˨] [aŋ˥˥] [aŋ˥˨] [aŋ˩˧˨] [aŋ˩˨] [aʔ˥˨] [aʔ˩˧˨] [aː˥˥] [aː˩˨] [a˥˥] [a˩˨] [em˥˥] [em˥˨] [em˩˧˨] [em˩˨] [ep˥˨] [ep˩˧˨] [eŋ˥˥] [eŋ˥˨] [eŋ˩˧˨] [eŋ˩˨] [eʔ˥˨] [eʔ˩˧˨] [eː˥˥] [eː˥˨] [eː˩˧˨] [eː˩˨] [e˥˥] [e˩˨] [im˥˥] [im˥˨] [im˩˧˨] [im˩˨] [ip˥˨] [ip˩˧˨], and 68 more.
+Sequences that the spec writes as one unit: [aː˥˥] [aː˩˨] [a˥˥] [a˥˥ː] [a˩˨] [a˩˨ː] [eː˥˥] [eː˥˨] [eː˩˧˨] [eː˩˨] [e˥˥] [e˥˥ː] [e˩˨] [e˩˨ː] [iː˥˥] [iː˥˨] [iː˩˧˨] [iː˩˨] [i˥˥] [i˥˥ː] [i˩˨] [i˩˨ː] [m˥˥] [m˥˥ː] [m˥˨] [m˥˨ː] [m˩˧˨] [m˩˧˨ː] [m˩˨] [m˩˨ː] [oː˥˥] [oː˩˨] [o˥˥] [o˥˥ː] [o˩˨] [o˩˨ː] [p˥˨] [p˥˨ː] [p˩˧˨] [p˩˧˨ː], and 52 more.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

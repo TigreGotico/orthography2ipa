@@ -5,13 +5,11 @@
   "script_type": "alphabet",
   "quality": "skeleton",
   "iso639_3": "lud",
-  "glottolog_code": "ludi1246",
-  "wikidata_qid": "Q33918",
   "graphemes_base": "krl",
   "graphemes": {},
   "allophones_base": "krl",
   "allophones": {},
-  "parent": "x-clade-finn1317",
+  "inherits": "x-clade-finn1317",
   "ancestors": [
     {
       "code": "x-clade-finn1317",

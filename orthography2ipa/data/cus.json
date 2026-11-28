@@ -8,7 +8,6 @@
   "quality": "stub",
   "script_type": "reconstruction",
   "iso639_3": null,
-  "glottolog_code": "cush1243",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Cushitic_languages"
   ],
@@ -28,7 +27,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Cushitic_languages"
     }
   ],
-  "parent": "x-clade-cush1243",
+  "inherits": "x-clade-cush1243",
   "ancestors": [
     {
       "code": "afa",
@@ -37,7 +36,6 @@
       "notes": "Cushitic branch of Afroasiatic."
     }
   ],
-  "wikidata_qid": "Q33248",
   "location": {
     "latitude": 5.285465,
     "longitude": 37.767811,

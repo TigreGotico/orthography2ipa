@@ -1,7 +1,6 @@
 {
   "code": "lu",
   "name": "Luba-Katanga (Kiluba)",
-  "glottolog_code": "luba1250",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "lub",
@@ -112,7 +111,7 @@
       "notes": "Confirms intervocalic/pre-semivowel fricative allophony of b/p ([β]/[ɸ] between vowels, w, and y)."
     }
   ],
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "x-clade-narr1281",
@@ -132,7 +131,6 @@
     "start_year": 1900,
     "end_year": null
   },
-  "wikidata_qid": "Q36157",
   "location": {
     "latitude": -8.5,
     "longitude": 26.5,

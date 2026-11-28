@@ -280,7 +280,7 @@
       "ɨ"
     ]
   },
-  "parent": "x-clade-west2792",
+  "inherits": "x-clade-west2792",
   "notes": "Standard Polish. Three sibilant series: alveolar /s z ts dz/, retroflex /ʂ ʐ tʂ dʐ/, alveolo-palatal /ɕ ʑ tɕ dʑ/. Nasal vowels ⟨ą ę⟩ realise as VN sequences before stops. FINAL DEVOICING: Polish obstruents devoice in coda/word-finally. NASAL VOWELS: ą→[ɔ] and ę→[ɛ] word-finally in contemporary Polish (de-nasalization); nasal elsewhere before consonants. Sources: Rubach (1984), Bethin (1992), Gussmann (2007).",
   "quality": "research",
   "script_type": "alphabet",
@@ -486,7 +486,6 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "poli1260",
   "iso639_3": "pol",
   "stress": {
     "default_position": -2,
@@ -496,7 +495,6 @@
     "stress_mark": "ˈ",
     "notes": "Polish has regular penultimate stress. Vowel letters ó ą ę mark quality, not stress; ó is a vowel quality letter (historical /oː/ → /u/), NOT a stress marker. Exceptions (some first-person plural verbal forms, loanwords, conditional mood) exist but are rare and not orthographically distinguishable. Source: Rubach & Booij (1985), A Grid Theory of Stress in Polish; Wikipedia: https://en.wikipedia.org/wiki/Polish_phonology"
   },
-  "wikidata_qid": "Q809",
   "phoible_id": "poli1260",
   "wals_code": "pol",
   "location": {

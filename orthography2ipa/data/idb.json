@@ -1,12 +1,11 @@
 {
   "code": "idb",
-  "glottolog_code": "sril1245",
   "name": "Sri Lanka Portuguese Creole",
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",
   "orthography_kind": "transliteration",
-  "parent": "pt-PT",
+  "inherits": "pt-PT",
   "graphemes": {
     "a": [
       "a"
@@ -229,6 +228,18 @@
     ]
   },
   "allophone_rules": [
+    {
+      "id": "PT_EX_CONSONANT_GLIDE",
+      "phonemes": [],
+      "surface": "ɐj",
+      "notes": "DISABLED for Sri Lanka Portuguese Creole. No source for the vowel of ⟨ex⟩ before a consonant in this variety was read, so its output stays what it was. The pt-PT rule gives ⟨ex⟩ the diphthong of the pt-PT ⟨ei⟩, [ej]."
+    },
+    {
+      "id": "PT_INITIAL_EX_VOICED",
+      "phonemes": [],
+      "surface": "z",
+      "notes": "DISABLED for Sri Lanka Portuguese Creole. No source for the reading of word-initial ⟨ex⟩ before a vowel in this variety was read, so its output stays what it was. The pt-PT rule gives the ⟨x⟩ the value [z]."
+    },
     {
       "id": "PT_LEX_NASAL_UI",
       "phonemes": [],
@@ -821,7 +832,6 @@
     "end_year": null
   },
   "iso639_3": "idb",
-  "wikidata_qid": "Q2427343",
   "phoible_id": "sril1245",
   "location": {
     "latitude": 7.6,

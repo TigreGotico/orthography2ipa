@@ -1,7 +1,7 @@
 {
   "code": "qu",
   "name": "Quechua",
-  "parent": "x-clade-quec1387",
+  "inherits": "x-clade-quec1387",
   "script": "Latin",
   "graphemes": {},
   "allophones": {},
@@ -9,7 +9,6 @@
   "quality": "stub",
   "script_type": "alphabet",
   "iso639_3": "que",
-  "glottolog_code": "quec1387",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Quechua_language",
     "https://qu.wikipedia.org/wiki/Qhichua_simi"
@@ -29,7 +28,6 @@
       "notes": "Reference for the classification and geographic distribution of this contact language (structural adstrate node only)."
     }
   ],
-  "wikidata_qid": "Q5218",
   "location": {
     "latitude": -8.890637,
     "longitude": -75.826635,

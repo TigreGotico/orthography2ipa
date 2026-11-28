@@ -5,12 +5,11 @@
   "script_type": "alphabet",
   "quality": "skeleton",
   "iso639_3": "cpg",
-  "glottolog_code": "capp1239",
   "graphemes_base": "el",
   "graphemes": {},
   "allophones_base": "el",
   "allophones": {},
-  "parent": "el",
+  "inherits": "el",
   "ancestors": [
     {
       "code": "el",

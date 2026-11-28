@@ -41,8 +41,7 @@
     "https://www.ethnologue.com/language/fuv/"
   ],
   "iso639_3": "fuv",
-  "glottolog_code": "nige1253",
-  "parent": "ff",
+  "inherits": "ff",
   "ancestors": [
     {
       "code": "ff",

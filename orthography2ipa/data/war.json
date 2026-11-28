@@ -4,7 +4,7 @@
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "graphemes": {
     "a": [
       "a"
@@ -140,7 +140,6 @@
   },
   "notes": "Waray (Winaray / Waray-Waray) — Central Philippine (Austronesian) language of Samar, Leyte and Biliran. Latin orthography of 18 letters: A B K D G H I L M N NG P R S T U W Y, with ⟨ng⟩ a single letter /ŋ/. Three vowel phonemes /a i u/, with [ɛ~i] and [ɔ~u] as the ranges of /i/ and /u/; ⟨e⟩ and ⟨o⟩ are written mainly in loanwords and for the lower allophones. Sixteen consonants /p t k b d ɡ m n ŋ s h l ɾ~r w j ʔ/; [tʃ dʒ] arise from /t d/ before /i/ + vowel. Glottal stop is phonemic but not consistently written. There is no fully standardised orthography; writers largely follow Filipino conventions.",
   "iso639_3": "war",
-  "glottolog_code": "wara1300",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Waray_language",
     "https://war.wikipedia.org/wiki/Waray_%28pinulungan%29"

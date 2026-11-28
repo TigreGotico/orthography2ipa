@@ -2,7 +2,7 @@
   "code": "la-x-archaic",
   "name": "Old Latin",
   "script": "Latin",
-  "parent": "ine-x-italic",
+  "inherits": "ine-x-italic",
   "graphemes": {
     "a": [
       "a",
@@ -202,10 +202,8 @@
     "start_year": -600,
     "end_year": -100
   },
-  "glottolog_code": "oldl1238",
   "iso639_3": "lat",
   "quality": "research",
-  "wikidata_qid": "Q12289",
   "location": {
     "latitude": 41.901111,
     "longitude": 12.488333,

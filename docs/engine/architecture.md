@@ -1,28 +1,56 @@
 # Architecture
 
+<!-- agent-hint
+covers: the stages from text to IPA, the module of each stage and the design choices behind them
+source: orthography2ipa/g2p.py, orthography2ipa/phonetok.py, orthography2ipa/stress.py, orthography2ipa/sandhi.py, orthography2ipa/sentence.py, orthography2ipa/ir/compiler.py, orthography2ipa/ir/interpreter.py
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_g2p_engine.py "tests/test_docs_hint_sources.py::test_hint_sources_exist[docs/engine/architecture.md]"`
+see: docs/engine/ir.md, docs/engine/plugins.md, docs/engine/tokenizer.md, docs/engine/lattice.md, docs/contributing/engine.md
+-->
+
 `orthography2ipa` has two parts: the per-language JSON specs under `orthography2ipa/data/`, and one engine that reads any spec. This page describes the stages of the engine, the modules that hold them and the design choices behind them. The repository map in [`AGENTS.md`](../../AGENTS.md) gives the short view of the files.
 
-The engine has no language-specific code. A behaviour that one language needs becomes a generic capability that any spec can switch on, and the spec holds only data. [orthography2ipa.cpp](https://github.com/loom-ai-org/orthography2ipa.cpp) is a C++17 port of the same data-driven core, and it reads the same JSON specs.
+The engine has no language-specific code. A behaviour that one language needs becomes a generic capability that any spec can switch on, and the spec holds only data. A compiler can also turn the spec into a versioned IR, which a small interpreter runs. [ir.md](ir.md) explains that design and follows one word through it. [orthography2ipa.cpp](https://github.com/loom-ai-org/orthography2ipa.cpp) is a C++17 port of the same data-driven core, and it reads the same JSON specs.
 
 ## The pipeline
 
-`G2P` in `g2p.py` is the full engine, and `transcribe()` wraps it. Each call runs the stages below in order. Each stage reads only the spec and the input. A stage with nothing to do (no rules, no plugin, no rescorer) leaves the output as it is.
+`G2P` in `g2p.py` is the full engine, and `transcribe()` wraps it. `G2P` compiles the spec to an IR document (`orthography2ipa/ir/compiler.py`) and runs it on the interpreter (`orthography2ipa/ir/interpreter.py`). The steps a caller passes at runtime run through the host hooks of the interpreter ([plugins.md](plugins.md)). Each call runs the stages below in order. Each stage reads only the spec and the input. A stage with nothing to do (no rules, no plugin, no rescorer) leaves the output as it is.
+
+The compiler in `orthography2ipa/ir/compiler.py` lowers the stages below into the IR, and `transcribe` runs that IR on the interpreter. [Section 3.1 of the IR spec](../ir/o2i-ir-v1.md#31-stage-order-and-host-hooks) maps each stage to it. The markup, the text preparation and the lexicon are host steps and are not in the IR ([plugins.md](plugins.md)).
 
 | Step | Stage | What happens |
 | :--- | :--- | :--- |
 | 1 | Markup | `markup.parse_markup` splits out each `<phoneme ph="…">` element. A forced word keeps its IPA through the word stages and gets no stress mark ([lexicon.md](../guide/lexicon.md)). |
 | 2 | Prepare the text | `Pipeline.expand` runs on each plain run, and then `Pipeline.mark` runs once on the sentence. With neither field set, the normalize plugin that the spec or the deprecated `plugins=` argument names runs, and then the deprecated `normalizer` callable. With none of them, the text passes through unchanged, because the library does not normalise text. |
 | 3 | Word override | Each word looks up the spec's `word_exceptions`, and then the lexicon of the engine. A hit replaces the rules for that word. |
-| 4 | Tokenize | `PhonetokTokenizer` cuts the word into grapheme tokens by maximal munch over a trie of the grapheme keys. |
-| 5 | Select | Each grapheme slot gets its candidates and their costs from the positional overrides and the weights. A grammatical ending can rewrite the end of the word. |
+| 4 | Tokenize | The interpreter cuts the word into grapheme tokens by maximal munch over a trie of the grapheme keys, as `PhonetokTokenizer` does. |
+| 5 | Select | Each grapheme slot gets its candidates and their costs from the positional overrides and the weights. |
 | 6 | Rescore | The rescorers re-cost each slot in the context of its neighbours. The rescorers of `Pipeline.rescore` run first, then the rescorers of declared plugins, then the allophone rules of the spec. |
-| 7 | Beam select | Greedy search keeps one path, and beam search keeps `beam_width` paths. The best path wins. |
+| 7 | Beam select | Greedy search keeps one path, and beam search keeps `beam_width` paths. The best path wins. A grammatical ending can then rewrite the end of that path. |
 | 8 | Finalize the word | Computed tone, geminate collapse, the word-final virama vowel, tone-mark docking, iambic lengthening and the stress mark apply in that order. |
-| 9 | Compound stress | A spec with `compound_stress == "last"` marks hyphen-joined compounds. |
-| 10 | Sentence rescorers | A `SentenceRescorer` that the caller passes in the deprecated `sentence_rescorer=` argument sees the whole utterance and can rewrite across words. |
-| 11 | Sandhi | The declarative `sandhi_rules` of the spec run, and then `Pipeline.sandhi`. With no `Pipeline.sandhi`, a declared sandhi plugin runs in its place. |
+| 9 | Compound stress | A spec with `compound_stress == "last"` marks hyphen-joined compounds. A word that ends in a `noncohering_suffixes` entry is two stress domains, marked the same way. |
+| 10 | Sandhi | The declarative `sandhi_rules` of the spec run. |
+| 11 | Sentence rescorers and sandhi plugin | A `SentenceRescorer` that the caller passes in the deprecated `sentence_rescorer=` argument sees the whole utterance and can rewrite across words. Then `Pipeline.sandhi` runs. With no `Pipeline.sandhi`, a declared sandhi plugin runs in its place. |
 | 12 | Dialect transform | An optional `dialect_profile` rewrites the final IPA. |
 | 13 | NFC | The engine normalises the output to Unicode [Normalization Form C](https://unicode.org/reports/tr15/). |
+
+The diagram shows the main stages in the order in which one call runs them, with the function or module that holds each. A word with an override skips the tokenizer and the beam.
+
+```mermaid
+flowchart TD
+    A["markup.parse_markup"] --> B["G2P._prepared: Pipeline.expand, Pipeline.mark"]
+    B --> C{"Interpreter._override_for: word_exceptions, lexicon"}
+    C -->|miss| D["Interpreter.tokenize"]
+    D --> E["Interpreter._branches: positional overrides, weights"]
+    E --> F["rescore: hooks.rescore, then _rescore_pass"]
+    F --> G["_word_paths and _apply_ending: beam"]
+    C -->|hit| H
+    G --> H["_finalize: tone, stress mark"]
+    H --> I["_mark_compounds"]
+    I --> J["_sandhi, then hooks.sandhi"]
+    J --> K["dialect.run_program"]
+    K --> L["Interpreter.nfc"]
+```
 
 ### Tokenizer and lattice
 
@@ -74,6 +102,10 @@ The IPA shapes fit Germanic, Slavic and Romance. A language outside that range s
 
 The second way is `stress.constrain_mark_onsets` set to `false`, which turns the judgement off for a language whose onsets the shapes get wrong. Greek sets it, for the same reason it leaves `constrain_onsets` off. Khmer sets it too, because its subscript consonants make onsets that no sonority scale predicts. The mark then falls where the vowel groups put it.
 
+The stress index counts written syllables, so `G2P` checks the IPA division against the spelling. In two cases the transcription holds fewer syllables than the spelling, and the engine cuts the division where the written syllable changes.
+
+First, a vowel letter that the spec maps to no segment would take its syllable with it. The division keeps that syllable without a vowel, so the mark stands at the onset of the stressed written syllable. Second, a consonant letter that adds no segment leaves the vowels on either side of it in one vowel run. The cut splits that run, so Dutch *getrouwe* gives `χəˈtrɑuə` and not `ˈχətrɑuə`. A hyphen causes no cut, and two vowel letters that `stress.diphthongs` lists cause none.
+
 A caller that is sensitive to quantity has already divided the transcription, because it read its weights off that division. It passes the syllables to `apply_stress_mark` as `ipa_syllables`, and the function uses them as given.
 
 ### Sandhi and the sentence
@@ -115,23 +147,26 @@ The spec names a plugin in its `plugins` field by entry-point name, such as `{"s
 | `sandhi.py`, `sentence.py` | Cross-word rules and the sentence lattice | `SandhiEngine`, `SentenceLattice`, `SentenceRescorer`, `WordContext` |
 | `pipeline.py` | The configuration that a caller gives to one engine | `Pipeline` |
 | `lexicon.py`, `markup.py` | The lexicon overlay and the `<phoneme>` markup | `load_lexicon`, `packaged_lexicon`, `MarkupError` |
-| `revision.py` | Content hashes of a spec with its chains, the engine source and the Unicode version, and of a packaged lexicon ([api_stability.md](../reference/api_stability.md#spec-revisions)) | `spec_revision`, `lexicon_revision`, `ENGINE_MODULES`, `SPEC_FORMAT_VERSION` |
+| `revision.py` | Content hashes of the IR of a spec and of a packaged lexicon ([api_stability.md](../reference/api_stability.md#spec-revisions)) | `spec_revision`, `lexicon_revision`, `ENGINE_MODULES`, `SPEC_FORMAT_VERSION` |
 | `features.py` | Feature export for ML and CRF G2P ([feature export](lattice.md#feature-export-for-a-learned-model)) | `WordFeatures`, `GraphemeFeatures` |
 | `inventory.py`, `underspecification.py` | Emission and phoneme inventories, TTS tokens, and the places where the spelling leaves a reading open | `phoneme_inventory`, `emission_inventory`, `is_underdetermined` |
 | `distance.py` | The relational distance metrics ([distance.md](../guide/distance.md)) | See below |
-| `feats.py` | The distinctive-feature matrix: the 21 SPE and IPA features of [PyPhone](https://github.com/lingz/pyphone) (MIT), plus a click feature and a nasal-vowel feature | `vectorize_phones`, `is_vowel_phone`, `phonetic_distance` |
+| `feats.py` | The distinctive-feature matrix: the 21 SPE and IPA features of [PyPhone](https://github.com/lingz/pyphone) (MIT), plus a click feature and a nasal-vowel feature | `vectorize_phones`, `phonetic_distance` |
 | `script_distance.py` | Typological distance between writing systems | `ScriptFeatures`, `SCRIPT_REGISTRY`, `script_distance`, `script_distance_by_name` |
 | `lattice_per.py` | Phone error rate against a lattice ([lattice_per.md](lattice_per.md)) | `lattice_per`, `LatticePER` |
 | `transforms.py` | IPA dialect transforms for Portuguese and Ibero-Romance | `DialectTransform`, `IPARule`, `IPAChainShift`, `IPALexicalRule`, `apply_transform`, `debias_lisbon`, `available_profiles`, `load_clup_profile`, `DIALECT_PROFILES` |
 | `lm.py` | Phoneme n-gram language model utilities | `phoneme_embeddings`, `build_ngram_lm`, `perplexity` |
 | `plugins.py`, `*_plugin.py`, `syllabifiers.py`, `conformance.py` | The pluggable steps, the bundled `silabificador` plugin and the contract checks | `SandhiPlugin`, `SyllabifierPlugin` |
 | `exceptions.py` | Exception and warning types | `UnmappedScriptError`, `UnmappedGraphemeWarning`, `StubSpecWarning` |
+| `ir/compiler.py`, `ir/layout.py` | Spec to IR, the IR schema, the primitive versions and the IR revision ([ir.md](ir.md)) | `compile_spec`, `build_ir`, `SEMANTICS`, `spec_revision` |
+| `ir/interpreter.py`, `ir/interpreter.lua`, `ir/cache.py` | The reference interpreter, the Lua interpreter and the cache of compiled IRs | `Interpreter` |
+| `export_to_loom.py` | One loom GGUF with the Lua interpreter and the IRs ([loom_export.md](../guide/loom_export.md)) | `export_to_loom` |
 | `cli.py` | The `orthography2ipa` command ([reference/cli.md](../reference/cli.md)) | `main` |
 | `version.py` | The version, which the release workflow sets | `VERSION_STR` |
 
 ### The distance metrics
 
-`distance.py` answers one question per function. It never folds the axes into one similarity number by default. The phonological metrics build on the feature matrix in `feats.py`, and `len(orthography2ipa.distance.feature_names())` gives its width.
+`distance.py` answers one question per function. It never folds the axes into one similarity number by default. The phonological metrics build on the feature matrix in `feats.py`, and `orthography2ipa.feats.NUM_FEATURES` gives its width.
 
 | Axis | Functions |
 | :--- | :--- |
@@ -187,4 +222,4 @@ What a package can replace is one step of the pipeline, through the stages above
 [../contributing/spec_authoring.md](../contributing/spec_authoring.md) covers a new language, and [contributing/engine.md](../contributing/engine.md) covers a change to the engine.
 
 ---
-[← Public API stability](../reference/api_stability.md) · [Home](../index.md) · [Tokenizer →](tokenizer.md)
+[← o2i IR v1](../ir/o2i-ir-v1.md) · [Home](../index.md) · [Compiler, IR and interpreters →](ir.md)

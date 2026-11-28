@@ -1,5 +1,13 @@
 # espeak-ng agreement
 
+<!-- agent-hint
+covers: how often o2i and espeak-ng give the same IPA for the words of a gold set, per language
+source: `benchmarks/espeak_agreement.json`, `scripts/espeak_agreement.py`
+generated: yes, by `scripts/espeak_agreement.py --scoreboard`. Edit the generator, not the page
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py`
+see: `docs/evaluation/benchmarks.md`, `docs/evaluation/generated/comparison.md`
+-->
+
 Committed symbol-level agreement between orthography2ipa and espeak-ng, for every language where this repo has both a gold-dataset wordlist and espeak-ng has a voice. This is NOT an accuracy benchmark: see `docs/evaluation/benchmarks.md` for what it means and does not mean. Regenerate with:
 
 ```bash
@@ -7,6 +15,13 @@ PYTHONPATH=$PWD python scripts/espeak_agreement.py --scoreboard
 ```
 
 Machine-readable form: [`benchmarks/espeak_agreement.json`](../../../benchmarks/espeak_agreement.json).
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../charts/espeak-agreement.dark.svg">
+  <img alt="Segmental agreement with espeak-ng: eo 0.97, the highest of 41 languages; ga 0.48, the lowest." src="../charts/espeak-agreement.light.svg">
+</picture>
+
+`scripts/gen_doc_charts.py` makes this figure from `benchmarks/espeak_agreement.json`.
 
 | Lang | espeak voice | N | Exact | Exact (no stress) | Segmental | OOV rate |
 |---|---|---:|---:|---:|---:|---:|

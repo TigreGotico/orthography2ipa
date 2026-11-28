@@ -5,7 +5,7 @@
   "script_type": "alphabet",
   "orthography_kind": "native",
   "quality": "skeleton",
-  "parent": "sat",
+  "inherits": "sat",
   "ancestors": [
     {
       "code": "sat",
@@ -15,8 +15,6 @@
     }
   ],
   "iso639_3": "sat",
-  "glottolog_code": "sant1410",
-  "wikidata_qid": "Q33965",
   "graphemes": {
     "ᱚ": ["ɔ"],
     "ᱟ": ["a"],

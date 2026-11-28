@@ -280,7 +280,7 @@
       "ɪ"
     ]
   },
-  "parent": "x-clade-slav1255",
+  "inherits": "x-clade-slav1255",
   "notes": "Reconstructed Late Proto-Slavic (c. 600–800 CE). Key features: open syllable law (no closed syllables), palatalisation alternations (three Slavic palatalisations), nasal vowels /ẽ õ/, yers /ĭ ŭ/, yat /æː/. Transcription follows standard Slavicist convention. ISO 639-3 has no code for Proto-Slavic. The ISO 639-5 collective code for the Slavic languages is `sla`.",
   "quality": "research",
   "script_type": "alphabet",
@@ -326,7 +326,6 @@
     "start_year": 500,
     "end_year": 1000
   },
-  "glottolog_code": "slav1255",
   "location": {
     "latitude": 49.521986,
     "longitude": 23.219229,

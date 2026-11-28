@@ -1,5 +1,13 @@
 # British English (RP) (`en-GB`)
 
+<!-- agent-hint
+covers: what the `en-GB` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/en-GB.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 British English (RP) is a West Germanic language, written in the Latin script. Its code names United Kingdom. The `en-GB` spec is at the research tier. It cites 15 sources and has 4 scored datasets.
 <!-- atlas:summary end -->
@@ -233,16 +241,16 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `en` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 80987 | 0.2645 | yes |
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `en-GB` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 81537 | 0.2314 | yes |
-| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-GB` | generated | espeak-derived | CC BY 4.0 | 11446 | 0.2966 | no |
-| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `en-GB` | generated | espeak-derived | MIT, each file its own | 65118 | 0.2215 | no |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `en` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 80987 | 0.2643 | yes |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `en-GB` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 81537 | 0.2309 | yes |
+| `ipa_childes` ([fdemelo/ipa-childes-split](https://huggingface.co/datasets/fdemelo/ipa-childes-split)) | `en-GB` | generated | espeak-derived | CC BY 4.0 | 11446 | 0.2959 | no |
+| `ipadict` ([open-dict-data/ipa-dict](https://github.com/open-dict-data/ipa-dict)) | `en-GB` | generated | espeak-derived | MIT, each file its own | 65118 | 0.2211 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 102 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 66 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -258,12 +266,13 @@ The spec can emit 102 segments. They come from the letter table, the positional 
 |:--|:-:|:-:|:-:|
 | Close | i iː | ʉː | uː |
 | Near-close | ɪ |  | ʊ |
+| Close-mid | e |  |  |
 | Mid |  | ə |  |
-| Open-mid | ɛ | ɜː | ɔː ʌ |
+| Open-mid | ɛ | ɜː | ɔ ɔː ʌ |
 | Near-open | æ | ɐ |  |
-| Open |  |  | ɑ ɑː ɒ |
+| Open | a |  | ɑ ɑː ɒ |
 
-Sequences that the spec writes as one unit: [aɪ] [aɪə] [aɪəɹ] [aʊ] [aʊə] [aʊəɹ] [eɪ] [juː] [jʊə] [jʊəɹ] [ks] [kw] [ndʒ] [sk] [w] [w̥] [æɹ] [æʊ] [ŋɡ] [ɑɪ] [ɑːɹ] [ɒf] [ɒɹ] [ɔɪ] [ɔːɹ] [əw] [əɹ] [əʊ] [əʊɪ] [ɚ] [ɛə] [ɛəɹ] [ɛɹ] [ɜːɹ] [ɝː] [ɡz] [ɪə] [ɪəɹ] [ɪɹ] [ʊə], and 4 more.
+Sequences that the spec writes as one unit: [w] [w̥] [ɚ] [ɝː] [ʍ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -336,6 +345,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨q⟩ | [k] |  |
 | ⟨qu⟩ | [kw] |  |
 | ⟨r⟩ | [ɹ] |  |
+| ⟨rh⟩ | [ɹ] |  |
 | ⟨s⟩ | [s] [z] | default [s] · intervocalic [z] · word final [s] [z] · word initial [s] |
 | ⟨sc⟩ | [s] | before e [s] · before i [s] · before y [s] · default [sk] |
 | ⟨sch⟩ | [sk] |  |
@@ -367,7 +377,7 @@ Grammatical endings: ⟨-cial⟩ [ʃəl], ⟨-cian⟩ [ʃən], ⟨-cion⟩ [ʃə
 <!-- atlas:rules begin -->
 ## Rules
 
-The spec applies 44 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
+The spec applies 48 allophone rules after the letters are read. The change column is built from the rule's conditions. The example and the citation are quoted from the rule's note in the spec file. A dash means that the note holds no worked example or no dated citation.
 
 | Rule | Change | Example | Cited |
 |:--|:--|:--|:--|
@@ -415,6 +425,10 @@ The spec applies 44 allophone rules after the letters are read. The change colum
 | `EN_GB_OING_HIATUS` | /ɔɪ/ → [əʊɪ], spelled ⟨oi⟩, before ⟨ng⟩, with more context in the spec | - | [Carney 1994](#src-carney1994) |
 | `EN_GB_FINAL_E_SOLE_VOWEL` | ∅ → [iː], word-finally, spelled ⟨e⟩, with more context in the spec | ⟨be⟩ [biː] | [English orthography 2026](#src-wp_english_orthography) |
 | `EN_GB_FINAL_Y_MONOSYLLABLE` | /i/ → [aɪ], word-finally, spelled ⟨y⟩, with more context in the spec | ⟨my⟩ [maɪ] | [English orthography 2026](#src-wp_english_orthography) |
+| `EN_GB_UNSTRESSED_FINAL_OW` | /aʊ/ → [əʊ], word-finally, unstressed, spelled ⟨ow⟩ | - | - |
+| `EN_GB_UNSTRESSED_OW_BEFORE_S` | /aʊ/ → [əʊ], unstressed, spelled ⟨ow⟩, before ⟨s⟩, with more context in the spec | - | - |
+| `EN_GB_UNSTRESSED_OW_BEFORE_ED` | /aʊ/ → [əʊ], unstressed, spelled ⟨ow⟩, before ⟨e⟩, with more context in the spec | - | - |
+| `EN_GB_UNSTRESSED_OW_BEFORE_ING` | /aʊ/ → [əʊ], unstressed, spelled ⟨ow⟩, before ⟨i⟩, with more context in the spec | - | - |
 <!-- atlas:rules end -->
 
 <!-- atlas:examples begin words="pin|tap|button|butter|leaf|feel|ambitious|arrive|bathe|bird|city|dance|delicious|digestion" -->

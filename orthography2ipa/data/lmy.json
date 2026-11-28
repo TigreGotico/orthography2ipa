@@ -28,7 +28,7 @@
     "w": ["w"],
     "y": ["j"]
   },
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",
@@ -39,7 +39,6 @@
   ],
   "notes": "Skeleton. Lamboya is a Central Malayo-Polynesian (Sumba-Hawu) Austronesian language of western Sumba, Indonesia, written in a Latin orthography of the Indonesian type. The grapheme map covers the five-vowel system and a basic consonant inventory including the digraphs ng and ny. Sumba languages typically contrast implosive stops (bilabial and alveolar) with plain stops; where the orthography does not mark implosion, that contrast is not encoded here. Prenasalization, stress, and vowel length are also left unencoded. This is a low-confidence skeleton drawn from classificatory sources; a dedicated phonological description would upgrade it.",
   "iso639_3": "lmy",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "lmy_glottolog",

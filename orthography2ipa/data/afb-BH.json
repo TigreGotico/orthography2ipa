@@ -4,7 +4,7 @@
   "script": "Arabic",
   "graphemes_base": "afb",
   "allophones_base": "afb",
-  "parent": "afb",
+  "inherits": "afb",
   "ancestors": [
     {
       "code": "afb",
@@ -52,9 +52,7 @@
     "start_year": 1900,
     "end_year": null
   },
-  "glottolog_code": "gulf1241",
   "iso639_3": "afb",
-  "wikidata_qid": "Q56576",
   "wals_code": "abh",
   "location": {
     "latitude": 26.216667,

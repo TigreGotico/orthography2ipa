@@ -1,11 +1,10 @@
 {
   "code": "ast",
-  "glottolog_code": "astu1245",
   "name": "Asturian",
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",
-  "parent": "x-clade-astu1244",
+  "inherits": "x-clade-astu1244",
   "graphemes": {
     "a": [
       "a"
@@ -913,7 +912,6 @@
     "diphthongs": ["ia", "ie", "io", "ua", "ue", "uo", "iá", "ié", "ió", "uá", "ué", "uó", "ai", "ei", "oi", "au", "eu", "ou", "ái", "éi", "ói", "áu", "éu", "óu", "iu", "ui", "iai", "iei", "ioi", "iau", "ieu", "iou", "uau", "ueu", "uou", "uai", "uei", "uoi", "iái", "iéi", "iói", "iáu", "iéu", "ióu", "uáu", "uéu", "uóu", "uái", "uéi", "uói", "üe", "üé", "üi", "üei", "üéi"],
     "notes": "Stress follows Normes Ortográfiques (ALLA 2021) §1.9.1, pp. 44-47. A written accent marks the stressed vowel. Without one, a word that ends in a vowel, ⟨-n⟩ or ⟨-s⟩ is paroxytone and a word that ends in another consonant is oxytone, because 'toles pallabres agudes acabaes en vocal, «-n» o «-s»' and 'toles pallabres llanes acabaes en consonante que nun seya nin «-n» nin «-s»' carry the accent (§1.9.1.1 a-b, p. 44): falen, mayu and vieyu are paroxytone; esconder and Enol are oxytone (Gramática V.2.2, p. 66). A final ⟨-l⟩ counts only after a vowel, so an enclitic ⟨'l⟩ (lleva'l) leaves the stress of its host where it was. A diphthong or a triphthong is one syllable (§1.6, p. 26) and takes the accent on its most open vowel (§1.9.1.2, p. 45: Uviéu, faláu, téunicu). An accent on the closed vowel marks a hiatus (§1.9.1.3, p. 45: maíz, feúcu, partíu, ruíu, influíu), and so does an accent on either vowel of /iu, ui/: cubriú is cu-bri-ú. CLITICS: cliticless_words lists the 'pallabres átones' of Gramática V.2.1.2 (p. 66): the articles, the relatives (que, quien, cuantu, cuando, onde, u ~ au, unaccented against the interrogatives, Normes §1.9.1.7 b, p. 47), the object pronouns with the enclitic ⟨-y⟩ and its combinations, the prepositions (ante, baxo, con, dende, pente, sobro) and the conjunctions (y, ya, o, nin, pero). The negation nun is a stressed adverb (Gramática V.2.1.1, p. 66)."
   },
-  "wikidata_qid": "Q29507",
   "phoible_id": "astu1245",
   "wals_code": "ast",
   "location": {

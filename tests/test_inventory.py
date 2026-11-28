@@ -6,6 +6,8 @@ embedding, and the word carrying it is mispronounced permanently and silently.
 So "what can this spec emit?" must have an exact answer, and transcription must
 never step outside it.
 """
+import unicodedata
+
 import pytest
 
 from orthography2ipa import available_codes, get
@@ -160,6 +162,14 @@ _RU_OKANJE_DEAD = {
 }
 
 KNOWN_DEAD_RULES = {
+    # The regional French rules for the ⟨uin⟩ unit target its fr-FR readings
+    # [ɥɛ̃] and [ɥin] (juin, ruine). They are dead while fr-FR still reads
+    # ⟨u⟩ and ⟨in⟩ apart, and live once fr-FR reads ⟨uin⟩ as one unit
+    # (TigreGotico/orthography2ipa PR #2710), when these entries can go.
+    "fr-BE": {"FR_NASAL_BLOCK_PREVOCALIC_UIN"},
+    "fr-CA": {"FR_CA_LAX_UIN", "FR_CA_NASAL_E_CLOSE_U"},
+    "fr-FR-x-midi": {"FR_MIDI_UNIT_UE_CORONAL", "FR_MIDI_UNIT_UE_LABIAL",
+                     "FR_MIDI_UNIT_UE_LABIODENTAL", "FR_MIDI_UNIT_UE_VELAR"},
     # Maltese inherits the Arabic allophone rules wholesale but emits neither
     # the long vowels they target (/aː/, /iː/, /uː/) nor their environments, so
     # the whole inherited family is unreachable there.
@@ -268,7 +278,7 @@ KNOWN_DEAD_RULES = {
     # AR_EMPHASIS_SPREAD_* family (the "emphatic" neighbour class, Watson
     # 2002; Davis 1995) — dead here for the same reason as the rest of the
     # inherited rule set: empty own inventory, nothing can ever fire.
-    "ajt": {"AR_EMPH_BACK_A_AFTER", "AR_EMPH_BACK_A_BEFORE",
+    "aeb-x-judeo": {"AR_EMPH_BACK_A_AFTER", "AR_EMPH_BACK_A_BEFORE",
             "AR_TN_MONO_AJ", "AR_TN_MONO_AW", "AR_WASL_EPENTHESIS",
             "AR_EMPHASIS_SPREAD_A_AFTER", "AR_EMPHASIS_SPREAD_A_BEFORE",
             "AR_EMPHASIS_SPREAD_AA_AFTER", "AR_EMPHASIS_SPREAD_AA_BEFORE",
@@ -310,7 +320,7 @@ KNOWN_DEAD_RULES = {
     # grapheme table this spec is deliberately missing; revisit once yej gains
     # a sourced Hebrew-abjad grapheme table.
     "yej": {"EL_S_VOICING", "EL_GAMMA_FRONTING"},
-    # vls (West Flemish) declares parent="nl-NL" with its own "graphemes": {} to
+    # vls (West Flemish) declares inherits="nl-NL" with its own "graphemes": {} to
     # inherit nl-NL's table wholesale, but (pre-existing, unrelated to the
     # Germanic beat-espeak campaign that added these rules) that inheritance
     # does not actually populate the plain vowel letters a/e/i/o/u for this
@@ -324,7 +334,7 @@ KNOWN_DEAD_RULES = {
     # NL_UNSTRESSED_TENSE_I_FINAL / NL_UNSTRESSED_TENSE_I_HIATUS's /ɪ/
     # target can't either. The same gap leaves no /eː øː oː/ slot for the six
     # NL_MID_TENSE_* rules, no /r/ slot for NL_CODA_R_APPROXIMANT, and no
-    # ⟨veld⟩ slot for NL_CODA_DEVOICE_VELD.
+    # ⟨veld⟩ slot for NL_CODA_DEVOICE_VELD, and no ⟨ij⟩ slot for NL_LIJK_SCHWA.
     "vls": {"NL_CODA_DEVOICE_B", "NL_CODA_DEVOICE_D", "NL_CODA_DEVOICE_G",
             "NL_CODA_DEVOICE_V", "NL_CODA_DEVOICE_Z",
             "NL_UNSTRESSED_TENSE_I_FINAL", "NL_UNSTRESSED_TENSE_I_HIATUS",
@@ -333,13 +343,17 @@ KNOWN_DEAD_RULES = {
             "NL_MID_TENSE_CENTRING_BEFORE_R_E", "NL_MID_TENSE_CENTRING_BEFORE_R_OE",
             "NL_MID_TENSE_CENTRING_BEFORE_R_O", "NL_MID_TENSE_CLOSING_DIPHTHONG_E",
             "NL_MID_TENSE_CLOSING_DIPHTHONG_OE", "NL_MID_TENSE_CLOSING_DIPHTHONG_O",
-            "NL_CODA_R_APPROXIMANT", "NL_CODA_DEVOICE_VELD", "NL_QU_FRENCH_K"},
+            "NL_CODA_R_APPROXIMANT", "NL_CODA_DEVOICE_VELD", "NL_QU_FRENCH_K",
+            "NL_LIJK_SCHWA"},
     # Afrikaans has no /z/ (Donaldson, *A Grammar of Afrikaans*, Mouton de
     # Gruyter 1993, ch. 1: ⟨z⟩ is not part of the inventory, and ⟨s⟩ is
     # voiceless everywhere), so the /z/ member of nl-NL's coda-devoicing series
     # has no target here. The other members are live. af has no ⟨veld⟩ or ⟨qu⟩
     # key, so NL_CODA_DEVOICE_VELD and NL_QU_FRENCH_K have no slot to match.
-    "af": {"NL_CODA_DEVOICE_Z", "NL_CODA_DEVOICE_VELD", "NL_QU_FRENCH_K"},
+    # af reads ⟨ij⟩ as /əi/, so NL_LIJK_SCHWA, which targets /ɛi aːi/, has no
+    # target either.
+    "af": {"NL_CODA_DEVOICE_Z", "NL_CODA_DEVOICE_VELD", "NL_QU_FRENCH_K",
+           "NL_LIJK_SCHWA"},
     # pnb-PK (Shahmukhi abjad, no inherent vowel): the inherent-vowel half
     # of each word-initial *DH rule pair has no ``Cə`` slot to match.
     "pnb-PK": {"PA_DH_INITIAL_ɡ˩_0", "PA_DH_INITIAL_dʒ˩_0", "PA_DH_INITIAL_ɖ˩_0", "PA_DH_INITIAL_d̪˩_0", "PA_DH_INITIAL_b˩_0"},
@@ -395,3 +409,241 @@ def test_no_new_dead_allophone_rules(code):
         f"{code}: new dead allophone rules {sorted(unexplained)} — the target "
         f"phoneme is not in this spec's inventory, so the rule can never fire"
     )
+
+
+# ─── every token is one segment ─────────────────────────────────────────
+
+@pytest.mark.parametrize("code", ALL_CODES)
+def test_no_token_starts_with_a_combining_mark(code):
+    """A mark a slot emits alone lands on the segment before it. The coda
+    tilde of Portuguese is never a token of its own."""
+    assert not [t for t in phoneme_inventory(get(code)) if unicodedata.combining(t[0])]
+
+
+@pytest.mark.parametrize("code", ALL_CODES)
+def test_every_token_is_nfc(code):
+    """The engine writes NFC, so a carried mark joins its base as one code
+    point where Unicode has one (e + U+0303 is ẽ), and a token never has a
+    decomposed twin."""
+    assert not [t for t in phoneme_inventory(get(code)) if unicodedata.normalize("NFC", t) != t]
+
+
+@pytest.mark.parametrize("code", ALL_CODES)
+def test_no_token_carries_a_mark_twice(code):
+    """A carried mark joins a token only once: bch e̯ and lsi a̰ already hold
+    theirs, and the engine never writes e̯̯ or a̰̰."""
+    assert not [t for t in phoneme_inventory(get(code))
+                if any(a == b and unicodedata.combining(a) for a, b in zip(t, t[1:]))]
+
+
+@pytest.mark.parametrize("code", ["pt-PT-x-algarve", "pt-PT-x-alentejo"])
+def test_a_precomposed_nasal_vowel_the_engine_writes_is_a_token(code):
+    """nenhum ends in [ỹ] (U+1EF9) in the lects that front /u/; the carried
+    tilde must give that code point, not y + U+0303."""
+    spec = get(code)
+    ipa = G2P(code).transcribe("nenhum")
+    assert "\u1ef9" in ipa
+    assert set(tokenize(ipa, spec)) - {"ˈ", "ˌ"} <= phoneme_inventory(spec)
+
+
+def test_the_coda_tilde_joins_the_vowels_and_glides():
+    """pt-PT: the coda ⟨m n⟩ emits a bare tilde, and PT_FINAL_EM_GLIDE emits
+    ``̃j̃``. The tilde joins the oral vowels and glides the engine lets carry
+    it, and the offglide [j̃] stands alone."""
+    inventory = phoneme_inventory(get("pt-PT"))
+    assert {unicodedata.normalize("NFC", t) for t in ("ɐ̃", "ẽ", "ĩ", "õ", "ũ", "j̃", "w̃")} <= inventory
+    assert not {"\u0303", "\u0303j\u0303", "\u0303w\u0303", "ɐ̃j̃", "ɐ̃w̃"} & inventory
+    assert tokenize("ˈɔmɐ̃j̃", get("pt-PT")) == ["ˈ", "ɔ", "m", "ɐ̃", "j̃"]
+
+
+@pytest.mark.parametrize("code,emission,segments", [
+    ("pt-PT", "ks", ["k", "s"]),          # ⟨x⟩ of táxi
+    ("pt-PT", "ɡz", ["ɡ", "z"]),          # ⟨x⟩ of exame
+    ("pt-PT", "kw", ["k", "w"]),          # ⟨qu⟩ of quatro
+    ("pt-PT", "ɡw", ["ɡ", "w"]),          # ⟨gu⟩ of água
+    ("pt-PT", "ku", ["k", "u"]),          # ⟨qu⟩ read as a syllable
+    ("pt-PT-x-alentejo", "me", ["m", "e"]),            # ⟨meu⟩
+    ("pt-PT-x-madeira", "õns", ["õ", "n", "s"]),       # ⟨-ões⟩
+    ("pt-PT-x-madeira", "ɐ̃ns", ["ɐ̃", "n", "s"]),       # ⟨-ães⟩
+])
+def test_a_cluster_or_syllable_is_cut_into_its_segments(code, emission, segments):
+    spec = get(code)
+    assert emission in emission_inventory(spec)
+    inventory = phoneme_inventory(spec)
+    assert emission not in inventory
+    assert set(segments) <= inventory
+    assert tokenize(emission, spec) == segments
+
+
+@pytest.mark.parametrize("code,segment", [
+    ("ar-SA-x-najd", "ts"),   # an affricate without the tie, not declared
+    ("ar-SA-x-najd", "dz"),
+    ("en-GB", "tʃ"),
+    ("en-GB", "dʒ"),
+])
+def test_an_affricate_stays_one_token_without_the_tie(code, segment):
+    spec = get(code)
+    assert not spec.phonemes or segment not in spec.phonemes
+    assert segment in phoneme_inventory(spec)
+    assert tokenize(segment + "a", spec) == [segment, "a"]
+
+
+def test_one_segment_spellings_stay_whole_and_clusters_do_not():
+    from orthography2ipa.inventory import _segments
+    assert _segments("t͡s") == ["t͡s"]
+    assert _segments("k͡p") == ["k͡p"]
+    assert _segments("kp") == ["kp"]
+    assert _segments("ŋm") == ["ŋm"]
+    assert _segments("ᵐb") == ["ᵐb"]
+    assert _segments("ⁿd͡z") == ["ⁿd͡z"]
+    assert _segments("d̠ʒ") == ["d̠ʒ"]
+    assert _segments("tʃʰ") == ["tʃʰ"]
+    assert _segments("n̠d̠ʒ") == ["n̠", "d̠ʒ"]
+    assert _segments("t͡sa") == ["t͡s", "a"]
+    assert _segments("ks") == ["k", "s"]
+    assert _segments("aj") == ["a", "j"]
+    assert _segments("mb") == ["m", "b"]
+    assert _segments("ʔaː") == ["ʔ", "aː"]
+
+
+# ─── a bare modifier letter joins the segment before it ─────────────────
+
+@pytest.mark.parametrize("code", ALL_CODES)
+def test_no_token_is_a_bare_length_or_palatalization_mark(code):
+    """A slot that emits ``ː`` or ``ʲ`` alone (the Arabic shadda, the Cyrillic
+    soft sign) modifies the segment before it, so neither is a token."""
+    assert not {"ː", "ʲ"} & phoneme_inventory(get(code))
+
+
+def test_the_soft_sign_palatalizes_the_consonants_before_it():
+    """be: ⟨д⟩ → d, ⟨т⟩ → t and ⟨ь⟩ → ʲ, so ⟨дь⟩ is [dʲ] and ⟨ть⟩ is [tʲ]. No
+    grapheme writes dʲ or tʲ on its own. A vowel cannot take ʲ."""
+    inventory = phoneme_inventory(get("be"))
+    assert {"dʲ", "tʲ"} <= inventory
+    assert not {"ʲ", "aʲ", "iʲ"} & inventory
+
+
+def test_a_spec_that_declares_the_shadda_adds_no_length_mark_for_it():
+    """acq: the shadda doubles the letter whatever the ``script`` label says, so
+    ⟨بّ⟩ is [bb] and no ``bː`` or ``tː`` comes from it. The long vowel [aː] is
+    still a token."""
+    inventory = phoneme_inventory(get("acq"))
+    assert "aː" in inventory
+    assert not {"bː", "tː", "ː", "aːː", "ːː"} & inventory
+
+
+def test_a_palatalized_long_consonant_keeps_its_length_mark_last():
+    """be writes the long consonants sː zː lː nː and the soft sign adds ʲ to
+    them, so the token is [sʲː], never [sːʲ]."""
+    inventory = phoneme_inventory(get("be"))
+    assert {"sʲː", "zʲː", "lʲː", "nʲː"} <= inventory
+    assert not [t for t in inventory if "ːʲ" in t]
+
+
+# ─── every token is one segment ─────────────────────────────────────────
+
+@pytest.mark.parametrize("code,expected", [
+    # Allophone surfaces c tɕ cʰ tɕʰ, and ⟨ia⟩, which the spec also lists in
+    # ``phonemes``: the diphthong is the vowel [i] and the vowel [a].
+    ("kxm", {"a", "c", "cʰ", "i", "tɕ", "tɕʰ"}),
+    # Allophone surfaces b p d ɺ kʰ k tʰ t a ã, and ⟨ou⟩, which the spec also
+    # lists in ``phonemes`` beside ai au ei.
+    ("mpt", {"a", "b", "d", "k", "kʰ", "o", "p", "t", "tʰ", "u", "ã", "ɺ"}),
+])
+def test_a_declared_diphthong_is_two_tokens(code, expected):
+    assert phoneme_inventory(get(code)) == expected
+
+
+@pytest.mark.parametrize("code,segment", [
+    ("sad", "kǀ"),   # a click with its rear closure
+    ("kj", "mb"),    # a prenasalised stop, ⟨mb⟩ → mb
+    ("kj", "ndʲ"),
+])
+def test_a_declared_prenasalised_stop_or_click_stays_one_token(code, segment):
+    """A phoneme the spec lists that is one segment stays one token, though a
+    slot that emits the same letters (pt-PT ⟨x⟩ → ks) is cut."""
+    spec = get(code)
+    assert segment in spec.phonemes
+    assert segment in phoneme_inventory(spec)
+    assert tokenize(segment + "a", spec) == [segment, "a"]
+
+
+def test_a_palatalization_mark_before_the_vowel_lands_on_the_consonant():
+    """mn: ⟨я⟩ after a consonant emits ``ʲa``. The ʲ belongs to the consonant
+    the slot before wrote: ⟨мянга⟩ is [mʲaŋɡa]. So [mʲ] and [a] are tokens and
+    no token starts with ʲ."""
+    inventory = phoneme_inventory(get("mn"))
+    assert {"mʲ", "tʲ", "a", "aː", "u", "uː"} <= inventory
+    assert not {"ʲa", "ʲaː", "ʲe", "ʲeː", "ʲu", "ʲuː", "ʲɔ", "ʲɔː", "ʲɵ", "ʲʊ", "ʲʊː"} & inventory
+
+
+def test_a_labialization_mark_joins_the_consonant_before_it():
+    """xh: XH_LABIALIZED reads ⟨w⟩ after a consonant as a bare ``ʷ`` on that
+    consonant, so ⟨incwadi⟩ is [iŋǀʷaːdi] and ⟨ukulwa⟩, with a liquid host, is
+    [ukuːlʷa]. Every token of the transcription is in the inventory, and ``ʷ``
+    alone is not. The words are benchmark words."""
+    spec = get("xh")
+    inventory = phoneme_inventory(spec)
+    g2p = G2P("xh")
+    expected = {
+        "incwadi": ["i", "ŋ", "ǀʷ", "aː", "d", "i"],
+        "umnqweno": ["u", "m̩", "ŋ", "ǃʷ", "eː", "n", "o"],
+        "ukulwa": ["u", "k", "uː", "lʷ", "a"],
+    }
+    offenders = {}
+    for word, tokens in expected.items():
+        got = tokenize(g2p.transcribe(word), spec)
+        if got != tokens or not set(got) <= inventory:
+            offenders[word] = (got, [t for t in got if t not in inventory])
+    assert not offenders, offenders
+    assert "ʷ" not in inventory
+
+
+def test_every_secondary_articulation_mark_follows_its_segment():
+    """The IPA writes ʲ and ʷ after their base, so a token that starts with one
+    is a mark cut away from its segment. A join adds a mark to a plain
+    consonant only, so a token with both ʲ and ʷ comes from the data, and the
+    inventory never holds it in both orders (hig writes dʷʲ; a join must not
+    add dʲʷ). One pass over every spec, with the offenders of each code."""
+    offenders = {}
+    for code in ALL_CODES:
+        inventory = phoneme_inventory(get(code))
+        leading = sorted(t for t in inventory if t[0] in "ʲʷ")
+        both_orders = sorted(t for t in inventory
+                             if "ʷʲ" in t and t.replace("ʷʲ", "ʲʷ") in inventory)
+        if leading or both_orders:
+            offenders[code] = {"leading mark": leading, "both orders": both_orders}
+    assert not offenders, offenders
+
+
+@pytest.mark.parametrize("code,word", [
+    ("abh", "حَجّ"),      # shadda after ج: the doubled affricate dʒdʒ
+    ("dar", "цьа"),       # soft sign after an aspirated affricate
+    ("bo", "ཚཱི"),        # long vowel mark after an aspirated affricate
+    ("bo", "ིཚཱི"),
+    ("be", "конь"),       # soft sign after a nasal
+    ("mdf", "ялга"),      # iotated letter at the start of a word: [jalɡa]
+    ("mdf", "кундья"),    # iotated letter after the soft sign: [kundʲja]
+])
+def test_every_token_of_a_real_word_is_in_the_inventory(code, word):
+    """An attached mark must give the tokens :func:`tokenize` returns: ``dʒː``
+    is cut into ``d`` and ``ʒː``, and ``t͡s`` plus a mark is cut after ``t͡``."""
+    spec = get(code)
+    tokens = set(tokenize(G2P(code).transcribe(word), spec)) - {"ˈ", "ˌ"}
+    assert tokens <= phoneme_inventory(spec), tokens - phoneme_inventory(spec)
+
+
+@pytest.mark.parametrize("code", ALL_CODES)
+def test_an_attached_token_is_one_that_tokenize_returns(code):
+    """The tokens a bare mark adds are the pieces :func:`tokenize` cuts out of
+    the longer segment, so none of them is a dead embedding."""
+    spec = get(code)
+    inventory = phoneme_inventory(spec)
+    assert not [t for t in inventory
+                if ("ʲ" in t or "ː" in t) and t[0] not in "ʲʷːˑ" and tokenize(t, spec) != [t]]
+
+
+@pytest.mark.parametrize("code", ["ar", "acq"])
+def test_a_shadda_that_doubles_the_letter_adds_no_length_mark(code):
+    """ar and acq write ⟨بّ⟩ as the doubled letter [bb], so a ː never follows ⟨ب⟩."""
+    assert "bː" not in phoneme_inventory(get(code))

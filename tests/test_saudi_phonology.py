@@ -41,9 +41,9 @@ def test_no_dead_allophone_rules(lang):
 
 # ── Ancestry: each leaf hangs off the RIGHT group, and there is no ar-SA ──────
 def test_leaves_parent_the_correct_group():
-    assert get("ars-SA-x-qassim").parent == "ars-SA"        # Najdi sub-variety
-    assert get("ar-SA-x-rijal-alma").parent == "ar-x-peninsul"  # SW archaic type
-    assert get("afb-SA-x-sharqiya").parent == "afb"         # Gulf type
+    assert get("ars-SA-x-qassim").inherits == "ars-SA"        # Najdi sub-variety
+    assert get("ar-SA-x-rijal-alma").inherits == "ar-x-peninsul"  # SW archaic type
+    assert get("afb-SA-x-sharqiya").inherits == "afb"         # Gulf type
 
 
 def test_no_ar_sa_umbrella_node():
@@ -55,16 +55,17 @@ def test_no_ar_sa_umbrella_node():
     assert "no ar-sa umbrella" in get("ars-SA").notes.lower()
 
 
-# ── Qassimi: monophthongization is the delta from central Najdi ──────────────
+# ── Qassimi: monophthongization, inherited from central Najdi ────────────────
 @pytest.mark.parametrize("word,expected,why", [
     ("بَيْت", "ˈbeːt", "Alhoody 2019:42 ex.18: /bajt/ → [beːt] — Qassim monophthongizes"),
     ("لَوْن", "ˈloːn", "Alhoody 2019:42 ex.18: /lawn/ → [loːn]"),
     ("زَيْن", "ˈzeːn", "/zajn/ → [zeːn]"),
 ])
-def test_qassimi_monophthongizes_where_najdi_keeps_diphthong(word, expected, why):
+def test_qassimi_monophthongizes_like_central_najdi(word, expected, why):
     assert QAS.transcribe_word(word) == expected, why
-    # the central-Najdi parent keeps the diphthong — this is the discriminator
-    assert G2P("ars-SA").transcribe_word(word) != expected
+    # Algethami 2023 p.3386 finds the same monophthongs in central Najdi, so
+    # the leaf inherits them and does not differ from its parent here.
+    assert G2P("ars-SA").transcribe_word(word) == expected
 
 
 @pytest.mark.parametrize("word,expected,why", [

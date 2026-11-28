@@ -73,19 +73,23 @@ class TestKhiamniunganSpec:
 
 
 class TestKhiamniunganWords:
-    """Gold: the Wiktionary Khiamniungan Naga entries (Patsho)."""
+    """Gold: the Wiktionary Khiamniungan Naga entries (Patsho).
+
+    Wiktionary writes Chao numerals; the rows write them as tone letters
+    (5 ˥, 3 ˧, 2 ˨, 1 ˩).
+    """
 
     @pytest.mark.parametrize("word,ipa", [
-        ("Chīm", "tʃʰim³³"),
-        ("Hāthòu", "ha³³tʰoʊ³¹"),
-        ("Chāmthōi", "tʃʰam³³tʰoɪ³³"),
-        ("Hēumōngmêi", "hɛʊ³³moŋ³³mɛɪ⁵²"),
-        ("Hīamphái", "hiam³³pʰaɪ⁵⁵"),
-        ("Jângphū", "tʃaŋ⁵²pʰu³³"),
-        ("Chēunyúmóng", "tʃʰɛʊ³³ɲu⁵⁵moŋ⁵⁵"),
-        ("Jāngtēmtshòi", "tʃaŋ³³tɛm³³tsʰoɪ³¹"),
-        ("Chǖpòknyùshìeh", "tʃʰə³³pok³¹ɲu³¹ʃiɛʔ³¹"),
-        ("Hēuphúhēu", "hɛʊ³³pʰu⁵⁵hɛʊ³³"),
+        ("Chīm", "tʃʰim˧˧"),
+        ("Hāthòu", "ha˧˧tʰoʊ˧˩"),
+        ("Chāmthōi", "tʃʰam˧˧tʰoɪ˧˧"),
+        ("Hēumōngmêi", "hɛʊ˧˧moŋ˧˧mɛɪ˥˨"),
+        ("Hīamphái", "hiam˧˧pʰaɪ˥˥"),
+        ("Jângphū", "tʃaŋ˥˨pʰu˧˧"),
+        ("Chēunyúmóng", "tʃʰɛʊ˧˧ɲu˥˥moŋ˥˥"),
+        ("Jāngtēmtshòi", "tʃaŋ˧˧tɛm˧˧tsʰoɪ˧˩"),
+        ("Chǖpòknyùshìeh", "tʃʰə˧˧pok˧˩ɲu˧˩ʃiɛʔ˧˩"),
+        ("Hēuphúhēu", "hɛʊ˧˧pʰu˥˥hɛʊ˧˧"),
     ])
     def test_word(self, kix, word, ipa):
         assert kix.transcribe_word(word) == ipa
@@ -98,15 +102,15 @@ class TestKhiamniunganWords:
 
     def test_final_h_is_a_glottal_stop(self, kix):
         # ⟨tsah⟩ /tsaʔ/ against ⟨tsak⟩ /tsak/ (Thaam & Kevichüsa-Ezung 2023).
-        assert kix.transcribe_word("tsāh") == "tsaʔ³³"
-        assert kix.transcribe_word("tsāk") == "tsak³³"
+        assert kix.transcribe_word("tsāh") == "tsaʔ˧˧"
+        assert kix.transcribe_word("tsāk") == "tsak˧˧"
 
     def test_initial_h_stays_a_fricative(self, kix):
         assert kix.transcribe_word("hāt").startswith("ha")
 
     def test_umlaut_u_is_schwa(self, kix):
         # ⟨wekü⟩ /wê.kə̄/, ⟨tsün⟩ /tsə̌n/ (Thaam & Kevichüsa-Ezung 2023).
-        assert kix.transcribe_word("kǖ") == "kə³³"
+        assert kix.transcribe_word("kǖ") == "kə˧˧"
 
     def test_untoned_umlaut_u_keeps_its_vowel(self, kix):
         # The bare letter is what their orthography writes: ⟨wekü⟩.
@@ -126,5 +130,5 @@ class TestKhiamniunganWords:
     def test_medial_ng_coda_is_a_known_docking_limitation(self, kix):
         # Maximal onset reads the ⟨ng⟩ of ⟨Lōngūlām⟩ as the next syllable's
         # onset, so the mark docks one segment early. The reference has
-        # loŋ³³u³³lam³³. Pinned so the day the divider improves is visible.
-        assert kix.transcribe_word("Lōngūlām") == "lo³³ŋu³³lam³³"
+        # loŋ˧˧u˧˧lam˧˧. Pinned so the day the divider improves is visible.
+        assert kix.transcribe_word("Lōngūlām") == "lo˧˧ŋu˧˧lam˧˧"

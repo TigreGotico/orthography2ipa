@@ -319,7 +319,7 @@
       "uː"
     ]
   },
-  "parent": "x-clade-west2792",
+  "inherits": "x-clade-west2792",
   "notes": "Standard Czech. Notable for the unique phoneme /r̝/ (⟨ř⟩) and systematic vowel length contrast. ⟨ch⟩ is the only official digraph and sorts as a separate letter. FINAL DEVOICING: obstruents devoice in coda/word-finally (b→p, d→t, ď→ť, g→k, v→f, z→s, ž→š, h→ch). H: voiced [ɦ] in onset; devoices to [x] in coda. Ě: [jɛ] after most consonants; causes palatal softening of preceding d/t/n. Sources: Palková (1994), Šimáčková et al. (2012), Short (1993).",
   "quality": "research",
   "script_type": "alphabet",
@@ -439,7 +439,6 @@
     "start_year": 1300,
     "end_year": null
   },
-  "glottolog_code": "czec1258",
   "iso639_3": "ces",
   "stress": {
     "default_position": 1,
@@ -449,7 +448,6 @@
     "stress_mark": "ˈ",
     "notes": "Czech has categorical initial stress. Long vowels (á é í ó ú ý) mark vowel quantity, not stress accent; they are not stress markers and must not appear in marked_vowels. Source: Palková (1994), Fonetika a fonologie češtiny; Wikipedia: https://en.wikipedia.org/wiki/Czech_phonology"
   },
-  "wikidata_qid": "Q9056",
   "phoible_id": "czec1258",
   "wals_code": "cze",
   "location": {

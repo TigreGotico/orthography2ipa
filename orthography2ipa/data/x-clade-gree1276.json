@@ -20,8 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Hellenic_languages"
   ],
-  "parent": "ine",
-  "glottolog_code": "gree1276",
+  "inherits": "ine",
   "urls": [
     "https://glottolog.org/resource/languoid/id/gree1276"
   ],

@@ -243,7 +243,7 @@
       "æ"
     ]
   },
-  "parent": "apc",
+  "inherits": "apc",
   "ancestors": [
     {
       "code": "apc",
@@ -321,7 +321,6 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "stan1323",
   "iso639_3": "apc",
   "allophone_rules": [
     {
@@ -419,7 +418,6 @@
       "notes": "Word-final /-a/ (incl. tāʔ marbūṭa ة) raises to [e], the most consistent Lebanese imāla context. Fires on the final segment only. (The base ar spec surfaces both the preceding fatḥa and the tāʔ marbūṭa vowel, a pre-existing orthographic artifact; this rule raises the final segment only.)"
     }
   ],
-  "wikidata_qid": "Q1516642",
   "location": {
     "latitude": 33.886944,
     "longitude": 35.513056,

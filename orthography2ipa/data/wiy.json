@@ -148,7 +148,7 @@
       ]
     }
   },
-  "parent": "x-clade-algi1248",
+  "inherits": "x-clade-algi1248",
   "ancestors": [
     {
       "code": "x-clade-algi1248",
@@ -159,7 +159,6 @@
   ],
   "notes": "Skeleton. Algic language (a divergent isolate within Algic, alongside Yurok) of coastal northern California, written in Teeter's Americanist practical orthography (the WikiPron gold this spec is scored against is transcribed with Teeter's letters, not the Wiyot Tribe's alternate orthography). The practical-orthography chart is attributed to Teeter (1964), The Wiyot Language, but that edition's archive.org and HathiTrust copies are lending-restricted with no readable text, so the chart as used here is as reproduced in the Wikipedia phonology section, not independently read from the primary edition. Every remapped value is corroborated distributionally: checking each letter against all 151 words of the WikiPron wiy_latn_broad gold (a source independent of Wikipedia) confirms b=[β], d=[ɾ], g=[ɣ] and r=[ɹ] are approximants/flaps rather than the stops or trill a naive Latin-script reading would expect, the low back vowel o=[ɑ] rather than [o], e=[e] rather than [ɛ], and ch is aspirated [tsʰ] while č is [tʃ] (not the other way around) — all hold with 100% consistency in the gold. c=[ts] and the caron letters č=[tʃ]/š=[ʃ] are separate unaspirated/aspirated series from the ts/ch/lh digraphs already in the table; ł is an alternate single-letter spelling of the ɬ already covered by the lh digraph. The acute/grave accents on vowels are Wiyot's pitch-accent marks (Teeter's culminative-syllable tone), carried through verbatim into the IPA field of the gold transcriptions, so they are mapped as accented vowel symbols rather than stripped. Predictable stress placement is left unencoded and still raises the PER floor. Standalone ⟨h⟩ is positional: [h] word-initially, [ʔ] everywhere else. The digraphs ph/th/kh/kwh/čh/ch/lh are matched whole before the letter is reached, so the positional entry never touches them, and the apostrophe ⟨'⟩ keeps its own [ʔ] mapping. What this rests on: the distribution in the gold is exceptionless — of 151 words, 23 have a word-initial ⟨h⟩ and every one is [h], and those 23 are the ONLY words whose transcription contains [h] at all, while all 49 words with a standalone non-word-initial ⟨h⟩ have [ʔ] in that slot, so [h] and [ʔ] are in complementary distribution with zero counterexamples. That is measured, not cited. The nearest independent corroboration from a primary source is Reichard (1925), who writes the glottal stop with a separate apostrophe letter and gives ⟨wa'lawal⟩ 'knee' for the same word Teeter's orthography spells ⟨bahlawal⟩ (gold βáʔlawal) — the glottal stop stands exactly where Teeter writes ⟨h⟩. Teeter (1995) writes Wiyot in his own orthography and contrasts pákw 'my paternal aunt' with phákw 'your paternal aunt', which is the aspiration digraph as a separate device from standalone ⟨h⟩. Neither work states the h/[ʔ] spelling convention in so many words; the statement of it that exists is in Wikipedia's Wiyot phonology section, attributed there to Teeter (1964) p. 13, and that edition remains unreadable, so no page locator is claimed for it here.",
   "iso639_3": "wiy",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "wiy_glottolog",

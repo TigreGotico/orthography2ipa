@@ -142,7 +142,6 @@
   },
   "notes": "Tongan (lea faka-Tonga), Polynesian, Kingdom of Tonga. Fully phonemic 17-letter orthography: 5 vowels with a phonemic length contrast written with the macron (toloi: ā ē ī ō ū), 12 consonants including the digraph ⟨ng⟩ /ŋ/ and the fakauʻa ⟨ʻ⟩ (U+02BB MODIFIER LETTER TURNED COMMA), a full consonant phoneme /ʔ/ that must stand between or before vowels. ⟨p⟩ /p/ and ⟨t⟩ /t/ are unaspirated. Syllables are open (CV/V). Input contract: the glottal stop must be written with U+02BB ⟨ʻ⟩; an ASCII apostrophe (') or a right single quote (’) is not recognised as a grapheme.",
   "iso639_3": "ton",
-  "glottolog_code": "tong1325",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Tongan_language",
     "https://to.wikipedia.org/wiki/Lea_fakatonga"
@@ -174,7 +173,7 @@
     "start_year": 1800,
     "end_year": null
   },
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",

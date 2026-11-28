@@ -20,8 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/West_Germanic_languages"
   ],
-  "parent": "gem-x-north-west",
-  "glottolog_code": "west2793",
+  "inherits": "gem-x-north-west",
   "urls": [
     "https://glottolog.org/resource/languoid/id/west2793"
   ],

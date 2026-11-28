@@ -170,7 +170,7 @@
       "kʷ"
     ]
   },
-  "parent": "x-clade-goid1240",
+  "inherits": "x-clade-goid1240",
   "notes": "Proto-Goidelic. Ancestral to Irish, Scottish Gaelic, Manx. Key split from Proto-Celtic: PIE *kʷ → /k/ (Q-Celtic), vs. Brythonic *kʷ → /p/ (P-Celtic). Developed /f/ from *sw- and Latin loans. Broad/slender consonant distinction incipient.",
   "quality": "research",
   "script_type": "reconstruction",
@@ -215,9 +215,7 @@
     "start_year": -500,
     "end_year": 500
   },
-  "glottolog_code": "goid1240",
   "iso639_3": null,
-  "wikidata_qid": "Q56433",
   "location": {
     "latitude": 53.713053,
     "longitude": -7.105959,

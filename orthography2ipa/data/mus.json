@@ -133,8 +133,6 @@
     ]
   },
   "iso639_3": "mus",
-  "glottolog_code": "cree1270",
-  "wikidata_qid": "Q523014",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Muscogee_language",
     "https://mus.wikipedia.org/wiki/Mvskoke"
@@ -167,7 +165,7 @@
     "start_year": 1835,
     "end_year": null
   },
-  "parent": "x-clade-musk1252",
+  "inherits": "x-clade-musk1252",
   "ancestors": [
     {
       "code": "x-clade-musk1252",

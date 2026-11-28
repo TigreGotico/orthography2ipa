@@ -1,5 +1,13 @@
 # Romanian (`ro-RO`)
 
+<!-- agent-hint
+covers: what the `ro-RO` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ro-RO.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Romanian is an Eastern Romance language, written in the Latin script. Its code names Romania. The `ro-RO` spec is at the production tier. It cites 9 sources and has 4 scored datasets.
 <!-- atlas:summary end -->
@@ -124,7 +132,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 43 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 35 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -140,12 +148,12 @@ The spec can emit 43 segments. They come from the letter table, the positional r
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
 | Close | i | ɨ | u |
-| Close-mid | e |  | o |
+| Close-mid | e e̯ |  | o o̯ |
 | Mid |  | ə |  |
 | Open-mid | ɛ |  |  |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [aw] [ew] [e̯a] [e̯aw] [ks] [ow] [o̯a] [w] [wa] [we] [ɡz].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

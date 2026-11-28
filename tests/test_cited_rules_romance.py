@@ -539,34 +539,20 @@ def test_fr_ill_irregular_word_exceptions():
     assert _t("fr-FR", "tranquille") == "tʁɑ̃kil"
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="FR_LIAISON_Z cites 'les amis → lez‿ami'; engine produces 'lə ami' — "
-    "the spec silences word-final ⟨s⟩ pre-lexically, so no /z/ ever reaches the "
-    "sandhi rule's left_context 'z$' and the rule is structurally inert",
-)
 def test_fr_liaison_z():
-    """FR_LIAISON_Z: /s/ resurfaces as [z] before a vowel-initial word.
+    """The silent ⟨s⟩ of les resurfaces as [z] before a vowel-initial word.
 
-    fr-FR notes: "LIAISON: s/x→[z] ... before vowel-initial words (sandhi_rules,
-    obligatory after determiners/pronouns ... per Tranel 1995)." The rule's own
-    notes cite "les amis → lez‿ami", and it is declared ``obligatory: true``.
+    FR_LIAISON_Z_DETERMINER reads the spelling of les (Martinon 1913: 375:
+    les articles pluriels ... se lient encore sans exception).
     """
     assert "z‿" in _s("fr-FR", "les amis")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="FR_LIAISON_N cites 'un ami → ɛ̃n‿ami'; engine produces 'œ̃ ami' — the "
-    "nasal grapheme absorbs the ⟨n⟩, so no /n/ reaches the sandhi rule's "
-    "left_context 'n$' and the rule is structurally inert",
-)
 def test_fr_liaison_n():
-    """FR_LIAISON_N: /n/ resurfaces before a vowel-initial word.
+    """The absorbed ⟨n⟩ of un resurfaces before a vowel-initial word.
 
-    fr-FR notes: "LIAISON: ... n→[n] before vowel-initial words (sandhi_rules,
-    obligatory after determiners/pronouns ... per Tranel 1995)." The rule's own
-    notes cite "un ami → ɛ̃n‿ami", and it is declared ``obligatory: true``.
+    FR_LIAISON_N_PROCLITIC reads the spelling of un (Martinon 1913: 390: la
+    liaison sans décomposer, un nhomme, un nami).
     """
     assert "n‿" in _s("fr-FR", "un ami")
 

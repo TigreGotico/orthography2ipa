@@ -72,7 +72,7 @@
       "ʔ"
     ]
   },
-  "parent": "x-clade-musk1252",
+  "inherits": "x-clade-musk1252",
   "ancestors": [
     {
       "code": "x-clade-musk1252",
@@ -83,7 +83,6 @@
   ],
   "notes": "Research. Western Muskogean language of Oklahoma written in the Humes practical orthography. Long vowels are doubled (aa ii oo); ch=[tʃ], sh=[ʃ] and lh=[ɬ] are mapped, with the apostrophe for glottal stop. Contrastive vowel nasalization (often shown by an underline) and pitch accent are not encoded here, and rhythmic vowel lengthening is not recovered from spelling, raising the PER floor. Grapheme table checked against Munro & Willmond (1994): no discrepancy found.",
   "iso639_3": "cic",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "cic_glottolog",

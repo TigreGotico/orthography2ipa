@@ -249,7 +249,7 @@
       "n"
     ]
   },
-  "parent": "x-clade-kxaa1236",
+  "inherits": "x-clade-kxaa1236",
   "ancestors": [
     {
       "code": "x-clade-kxaa1236",
@@ -260,7 +260,6 @@
   ],
   "notes": "Kxa (formerly Northern Khoisan) click language of Namibia and Botswana, in the standardized Dickens (1994) orthography, the best-documented San orthography. Four click places (dental ǀ, lateral ǁ, alveolar ǃ, palatal ǂ; no bilabial) combine with g-voiced, n-nasal, h-aspirated, glottal ʼ, x-velar and k-release accompaniments written as digraphs. The apostrophe ʼ and the typewriter apostrophe are orthographic equivalents. Left unencoded: the four-plus level tones (entirely unwritten), pharyngealized/strident vowels beyond aq/oq, and murmured-voice vowels; these set a high PER floor. The k-release click value is the least certain part of the map.",
   "iso639_3": "ktz",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "ktz_glottolog",

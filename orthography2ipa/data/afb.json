@@ -254,7 +254,7 @@
       "notes": "Velar affrication of /ɡ/ (< Old Arabic *q, realised [ɡ] in Bedouin/sedentary Gulf) → [dʒ] adjacent to a high front vowel /i, iː/. Alshammari 2026 abstract (p.1333) and p.1335: 'the affrication of /g/ to [dz] coincides with what has been reported in other Arabic dialects, where the conditioning environment is strictly limited to high front vowels', and /ɡ/ 'requires a higher degree of vocalic frontness and height to undergo affrication, compared to its voiceless counterpart /k/'. Matar (1969), as reported there, finds Kuwaiti /ɡ/ → [dʒ] adjacent to front vowels, including the emphatic context ðˤiːg → ðˤiːdʒ 'tightness'. LIMITATIONS: Matar's non-adjacent trigger (a front vowel across an intervening /r, l/, e.g. qariːb → dʒiriːb) and emphatic/OCP effects are not modelled — only the adjacent following high-front-vowel case."
     }
   ],
-  "parent": "ar-x-peninsul",
+  "inherits": "ar-x-peninsul",
   "ancestors": [
     {
       "code": "ar-x-peninsul",
@@ -378,7 +378,6 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "gulf1241",
   "iso639_3": "afb",
   "location": {
     "latitude": 30.17,

@@ -1,5 +1,13 @@
 # Northern Catalan (Rossellonès) (`ca-x-nord`)
 
+<!-- agent-hint
+covers: what the `ca-x-nord` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ca-x-nord.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Northern Catalan (Rossellonès) is a Romance variety, written in the Latin script. Glottolog places it in the Eurasia macroarea. The `ca-x-nord` spec is at the research tier. It cites 9 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -65,7 +73,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 51 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 42 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Uvular |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -86,7 +94,7 @@ The spec can emit 51 segments. They come from the letter table, the positional r
 | Open-mid | ɛ |  | ɔ |
 | Open | a |  |  |
 
-Sequences that the spec writes as one unit: [ks] [ku] [kw] [rs] [w] [ɡu] [ɡw] [ɡz] [ɣu] [ɣw].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

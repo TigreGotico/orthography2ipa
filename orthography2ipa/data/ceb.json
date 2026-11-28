@@ -152,7 +152,6 @@
     ]
   },
   "iso639_3": "ceb",
-  "glottolog_code": "cebu1242",
   "notes": "Cebuano (Sinugboanong Binisayâ), Philippine (Austronesian). Modern Cebuano uses 20 letters of the Latin alphabet; c f j q v x z are reserved for loanwords (⟨j⟩ = /dʒ/ is kept here because it is frequent in borrowings). The digraph ⟨ng⟩ is the velar nasal /ŋ/. Five vowels a e i o u; /e/~/i/ and /o/~/u/ overlap heavily and are given as ordered allophones. The glottal stop /ʔ/ is phonemic but inconsistently written — when written it appears as a hyphen or an apostrophe, both mapped here. Stress is phonemic but not written; diphthongs /aj uj aw iw/ fall out of the vowel+glide graphemes.",
   "sources": [
     {
@@ -186,7 +185,7 @@
     "start_year": 1600,
     "end_year": null
   },
-  "parent": "x-clade-mala1545",
+  "inherits": "x-clade-mala1545",
   "ancestors": [
     {
       "code": "x-clade-mala1545",

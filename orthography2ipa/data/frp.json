@@ -255,7 +255,7 @@
       "õ"
     ]
   },
-  "parent": "x-clade-gallorom",
+  "inherits": "x-clade-gallorom",
   "ancestors": [
     {
       "code": "la-x-gallia",
@@ -322,8 +322,6 @@
     "start_year": 1200,
     "end_year": null
   },
-  "glottolog_code": "fran1260",
-  "wikidata_qid": "Q15087",
   "location": {
     "latitude": 45.8051,
     "longitude": 6.48152,

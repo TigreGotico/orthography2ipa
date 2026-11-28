@@ -3,7 +3,14 @@ name: Code Coverage
 on:
   pull_request:
     branches: [dev]
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   coverage:
@@ -14,3 +21,7 @@ jobs:
       test_path: 'tests/'
       install_extras: '.[test]'
       min_coverage: 78
+      system_deps: 'luajit'
+      # The language-atlas workflow checks that the committed atlas is current.
+      pytest_args: '-n auto --deselect tests/test_language_atlas.py::test_committed_atlas_is_current'
+      timeout_minutes: 90

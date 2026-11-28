@@ -1,7 +1,6 @@
 {
   "code": "bem",
   "name": "Bemba",
-  "glottolog_code": "bemb1257",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "bem",
@@ -100,7 +99,7 @@
       "notes": null
     }
   ],
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "x-clade-narr1281",
@@ -120,7 +119,6 @@
     "start_year": 1900,
     "end_year": null
   },
-  "wikidata_qid": "Q33052",
   "location": {
     "latitude": -10.3,
     "longitude": 29.8,

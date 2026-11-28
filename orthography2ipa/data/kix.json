@@ -72,88 +72,88 @@
    "w"
   ],
   "ā": [
-   "a³³"
+   "a˧˧"
   ],
   "á": [
-   "a⁵⁵"
+   "a˥˥"
   ],
   "à": [
-   "a³¹"
+   "a˧˩"
   ],
   "â": [
-   "a⁵²"
+   "a˥˨"
   ],
   "ǎ": [
    "a"
   ],
   "ē": [
-   "ɛ³³"
+   "ɛ˧˧"
   ],
   "é": [
-   "ɛ⁵⁵"
+   "ɛ˥˥"
   ],
   "è": [
-   "ɛ³¹"
+   "ɛ˧˩"
   ],
   "ê": [
-   "ɛ⁵²"
+   "ɛ˥˨"
   ],
   "ě": [
    "ɛ"
   ],
   "ī": [
-   "i³³"
+   "i˧˧"
   ],
   "í": [
-   "i⁵⁵"
+   "i˥˥"
   ],
   "ì": [
-   "i³¹"
+   "i˧˩"
   ],
   "î": [
-   "i⁵²"
+   "i˥˨"
   ],
   "ǐ": [
    "i"
   ],
   "ō": [
-   "o³³"
+   "o˧˧"
   ],
   "ó": [
-   "o⁵⁵"
+   "o˥˥"
   ],
   "ò": [
-   "o³¹"
+   "o˧˩"
   ],
   "ô": [
-   "o⁵²"
+   "o˥˨"
   ],
   "ǒ": [
    "o"
   ],
   "ū": [
-   "u³³"
+   "u˧˧"
   ],
   "ú": [
-   "u⁵⁵"
+   "u˥˥"
   ],
   "ù": [
-   "u³¹"
+   "u˧˩"
   ],
   "û": [
-   "u⁵²"
+   "u˥˨"
   ],
   "ǔ": [
    "u"
   ],
   "ǖ": [
-   "ə³³"
+   "ə˧˧"
   ],
   "ǘ": [
-   "ə⁵⁵"
+   "ə˥˥"
   ],
   "ǜ": [
-   "ə³¹"
+   "ə˧˩"
   ],
   "a": [
    "a"
@@ -186,7 +186,7 @@
    "k"
   ]
  },
- "parent": "sit",
+ "inherits": "sit",
  "ancestors": [
   {
    "code": "sit",
@@ -197,7 +197,6 @@
  ],
  "notes": "Patsho Khiamniungan in the Latin practical orthography. Tone is written. The Chao values used here are read off the Patsho reference transcriptions, pairing each tone-marked vowel letter with the corresponding pitch-numeral pair in the 3597 of 4240 entries whose counts agree: macron 33 (99.3%), acute 55 (97.8%), circumflex 52 (96.7%), grave 31 (90.6%, or 98.9% counting the 31~32 alternation the reference writes for the low tone). Thaam & Kevichüsa-Ezung (2023) independently describe a five-tone system for the Thang variety — high, mid and low level plus rising and falling — written with these same diacritics, where the grave is a low LEVEL tone rather than the falling contour the Patsho transcriptions give it. Their fifth tone, the caron rising tone, does not occur anywhere in the Patsho data, so no Chao value can be assigned to it honestly: caron vowels map to their vowel quality with no tone mark, a stated gap rather than a guess. IPA writes a tone mark after the rime, so the spec sets tone_marks_syllable_final and the engine docks each mark at its syllable end. Docking divides syllables by maximal onset, which misplaces a medial coda ⟨ng⟩ before a vowel — ⟨Lōngūlām⟩ comes out lo³³ŋu³³lam³³ where the reference has loŋ³³u³³lam³³ — in 152 of the 4240 entries. There are no voiced plosives, so ⟨j⟩ is the plain affricate /tʃ/, which Thaam & Kevichüsa-Ezung's own orthography confirms by writing ⟨jat⟩ for /ʧʌ̄t/; ⟨b⟩, ⟨d⟩ and ⟨g⟩ spell the voiceless stops on the same grounds, as their ⟨bem⟩ /pēm/ and ⟨tsad⟩ /ʦʌ̀t/ show, and none of the three occurs in the Patsho data at all. ⟨ch⟩ as the ASPIRATED affricate /tʃʰ/ and ⟨v⟩ as /v/ are read off the Patsho transcriptions instead (326 of 354 and 193 of 197 occurrences): the Thang description has a single postalveolar affricate and no /v/, and writes ⟨v⟩ for /w/, so the two varieties genuinely differ here. ⟨ts⟩ and ⟨tsh⟩ are the plain and aspirated alveolar pair. ⟨h⟩ is /h/ in the onset and the glottal stop in the coda, where /h/ never occurs and the glottal stop only occurs (⟨tsah⟩ /ʦʌ̌ʔ/ against ⟨tsak⟩ /ʦʌ̌k/). ⟨ü⟩ is /ə/. An unmarked vowel letter after the nucleus is an offglide and lax; the reference transcriptions lax the FIRST element of ⟨ua⟩ instead, which this spec does not encode. The reference transcriptions vary freely between o~ɔ, u~ʊ, i~ɪ, e~ɛ and between 31~32 for the low tone, so a few points of PER are notation rather than error.",
  "iso639_3": "kix",
- "glottolog_code": null,
  "sources": [
   {
    "id": "thaam_kevichusa_ezung_2023",
@@ -306,10 +305,10 @@
   "ɔ"
  ],
  "tone_inventory": {
-  "⁵⁵": "high level",
-  "³³": "mid level",
-  "³¹": "low; written 31 in the Patsho transcriptions, described as low level for Thang",
-  "⁵²": "falling"
+  "˥˥": "high level",
+  "˧˧": "mid level",
+  "˧˩": "low; written 31 in the Patsho transcriptions, described as low level for Thang",
+  "˥˨": "falling"
  },
  "allophone_rules": [
   {

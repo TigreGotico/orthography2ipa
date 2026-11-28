@@ -38,7 +38,7 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Costa Rican Spanish. Distinctive assibilated /rr/ → [ɹ̝] or [ɹ] (the 'erre tica') — strongest diagnostic feature. Central Valley: coda /s/ conserved. Rural: more aspiration. Assibilation also in clusters (tres → [tɹ̝es]). WORD-FINAL /n/ IS VELAR [ŋ]: pan [ˈpaŋ], un otro [uŋ ˈotɾo]. Lipski (2011, p. 7): «Velarization of phrase-final /n/ is the rule in Galicia and parts of Asturias, Extremadura, Andalusia, the Canary Islands, all Caribbean and Central American dialects, along the Pacific coast of Colombia, Peru, and Ecuador, and sporadically in the Andean highlands. Word-final prevocalic nasals are typically also velarized in these dialects, although with generally lower rates than for phrase-final /n/ (Lipski 1986): un otro [uŋ.ˈo.tɾo]».",
   "quality": "skeleton",
   "script_type": "alphabet",
@@ -113,7 +113,6 @@
     "start_year": 1800,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "spa",
   "positional_graphemes": {
     "c": {
@@ -134,7 +133,6 @@
       ]
     }
   },
-  "wikidata_qid": "Q5174904",
   "location": {
     "latitude": 9.932739,
     "longitude": -84.079614,
@@ -159,6 +157,14 @@
       "transform": "n",
       "obligatory": true,
       "notes": "Word-final /n/ is velar only before a pause or a vowel. Before a consonant of the next word it takes the place of that consonant, as inside a word. Lipski (1986, p. 140): «Velarization of /n/ normally occurs in word-final environments before pause (también [tambiéŋ] 'also') and usually before a following vowel (en agosto [eŋaɣósto] 'in August')», written as the rule n → ŋ / __ # [−cons]. Lipski (1986, pp. 146-147): «the velarization of word-final preconsonantal /n/ is relatively less common in most dialects (Zamora and Guitart 1982:116), and the velarization of word-internal preconsonantal /n/ is rarer still. This is due to the normal process of homorganic assimilation of nasal consonants to following obstruents», and «I know of no dialect nor even idiolect of Spanish in which the majority of instances of preconsonantal /n/ are velarized». Navarro Tomás (1918, § 87, p. 66) gives the labial case across words: «En contacto con estas mismas consonantes iniciales de palabra, la n final de una palabra anterior se pronuncia también m», un buen baile [um bwem baile], en pie [em pjé]. So the nasal is [m] before p b m (the set of the es-ES rule ES_NASAL_LABIAL inside a word), stays [ŋ] before a velar or a glide, and is [n] before any other consonant, the value es-ES gives a nasal before such a consonant inside a word (enfermo [enˈfeɾmo], ancho [ˈantʃo])."
+    }
+  ],
+  "allophone_rules": [
+    {
+      "id": "ES_S_VOICING",
+      "phonemes": [],
+      "surface": "",
+      "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. Its source describes the Castilian standard of Spain, and no source for this variety was opened, so the rule is switched off here."
     }
   ]
 }

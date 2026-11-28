@@ -19,7 +19,7 @@
     ]
   },
   "allophones_base": "co",
-  "parent": "co",
+  "inherits": "co",
   "ancestors": [
     {
       "code": "co",
@@ -103,9 +103,7 @@
     "start_year": 1300,
     "end_year": null
   },
-  "glottolog_code": "gall1276",
   "iso639_3": "sdn",
-  "wikidata_qid": "Q612220",
   "location": {
     "latitude": 41.0,
     "longitude": 9.3,

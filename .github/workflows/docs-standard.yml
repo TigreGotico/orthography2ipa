@@ -1,0 +1,22 @@
+name: Docs Standard
+
+# Checks the docs against the docs standard (DS-6, 6a, 8, 9, 11, 12). A finding
+# fails the job.
+
+on:
+  pull_request:
+    branches: [dev]
+    paths:
+      - "docs/**"
+      - "README.md"
+      - "AGENTS.md"
+      - ".github/workflows/docs-standard.yml"
+
+jobs:
+  docs_check:
+    uses: OpenVoiceOS/gh-automations/.github/workflows/docs-check.yml@dev
+    with:
+      docs_standard: true
+      fail_on_standard: true
+      hf_space: TigreGotico/orthography2ipa
+    secrets: inherit

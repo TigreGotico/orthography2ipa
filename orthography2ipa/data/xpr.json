@@ -41,9 +41,7 @@
     "end_year": 700
   },
   "iso639_3": "xpr",
-  "glottolog_code": "part1239",
-  "wikidata_qid": "Q25953",
-  "parent": "ira",
+  "inherits": "ira",
   "ancestors": [
     {
       "code": "ira",

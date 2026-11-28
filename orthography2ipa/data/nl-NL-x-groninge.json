@@ -3,7 +3,7 @@
   "name": "Groningen Standard Dutch (Netherlands)",
   "script": "Latin",
   "script_type": "alphabet",
-  "parent": "nl-NL",
+  "inherits": "nl-NL",
   "ancestors": [
     {
       "code": "nl-NL",
@@ -32,7 +32,6 @@
   },
   "quality": "skeleton",
   "iso639_3": "nld",
-  "glottolog_code": null,
   "location": {
     "latitude": 53.258056,
     "longitude": 6.737778,

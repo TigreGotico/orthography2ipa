@@ -1,5 +1,13 @@
 # Hmong Daw (`mww`)
 
+<!-- agent-hint
+covers: what the `mww` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/mww.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Hmong Daw is a Hmong-Mien language, written in the Latin script. Glottolog places it in China, Laos, Thailand and Vietnam. The `mww` spec is at the research tier. It cites 5 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -63,7 +71,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 83 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 81 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Retroflex | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -75,11 +83,12 @@ The spec can emit 83 segments. They come from the letter table, the positional r
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
-| Close | i | ɨ | u |
+| Close | i i̯ | ɨ ɨ̯ | u u̯ |
 | Close-mid | e ẽ |  |  |
+| Mid |  | ə̯ |  |
 | Open | a |  | ɒ ɒ̃ |
 
-Sequences that the spec writes as one unit: [ai̯] [ai̯˧] [au̯] [au̯˧] [aɨ̯] [aɨ̯˧] [a˧] [dʱ] [e˧] [iə̯] [iə̯˧] [i˧] [t͡ʂ] [t͡ʂʰ] [uə̯] [uə̯˧] [u˧] [ɒ˧] [ɒ̃˧] [ɨ˧] [˥] [˥˧] [˧˦] [˧˩̤] [˧́] [˩] [˩̰] [ᵐb] [ᵐbˡ] [ᵐpˡʰ] [ᵑkʰ] [ᵑɡ] [ᶮɟ] [ᶯd͡ʐ] [ᶯt͡ʂʰ] [ᶯɖ] [ᶰɢ] [ẽ˧].
+Sequences that the spec writes as one unit: [a˧] [dʱ] [e˧] [i˧] [i̯˧] [t͡ʂ] [t͡ʂʰ] [u˧] [u̯˧] [ɒ˧] [ɒ̃˧] [ə̯˧] [ɨ˧] [ɨ̯˧] [˥] [˥˧] [˧˦] [˧˩̤] [˧́] [˩] [˩̰] [ᵐb] [ᵐbˡ] [ᵐpˡʰ] [ᵑkʰ] [ᵑɡ] [ᶮɟ] [ᶯd͡ʐ] [ᶯt͡ʂʰ] [ᶯɖ] [ᶰɢ] [ẽ˧].
 
 Tones: [˧] mid (unmarked), [˥] high (-b), [˥˧] high-falling (-j), [˧˦] mid-rising (-v), [˩] low (-s), [˧˩̤] low breathy-falling (-g), [˩̰] low creaky/glottalized (-m), [˧́] raised-mid, loanword tone (-d).
 <!-- atlas:inventory end -->

@@ -1,5 +1,13 @@
 # Khakas (`kjh`)
 
+<!-- agent-hint
+covers: what the `kjh` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/kjh.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Khakas is a Turkic language, written in the Cyrillic script. Glottolog places it in China and Russia. The `kjh` spec is at the research tier. It cites 2 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -58,7 +66,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 45 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 40 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -75,8 +83,6 @@ The spec can emit 45 segments. They come from the letter table, the positional r
 | Close | i iː y yː |  | u uː ɯ ɯː |
 | Close-mid | e eː ø øː | ɘ | o oː |
 | Open | a aː |  |  |
-
-Sequences that the spec writes as one unit: [ja] [je] [jo] [ju] [ʃtʃ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

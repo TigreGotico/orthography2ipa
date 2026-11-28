@@ -1,5 +1,13 @@
 # Nuosu (`ii`)
 
+<!-- agent-hint
+covers: what the `ii` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ii.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Nuosu is a Sino-Tibetan language, written in the Yi script. Glottolog places it in China. The `ii` spec is at the research tier. It cites 6 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -62,9 +70,17 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 1165 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 79 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
-Sequences that the spec writes as one unit: [a˥] [a˧] [a˧˦] [a˨˩] [ba˥] [ba˧] [ba˧˦] [ba˨˩] [bi˥] [bi˧] [bi˧˦] [bi˨˩] [bo˥] [bo˧] [bo˧˦] [bo˨˩] [bu˥] [bu˧] [bu˧˦] [bu˨˩] [bu̠˧] [bu̠˧˦] [bz̩˥] [bz̩˧] [bz̩˧˦] [bz̩˨˩] [bɔ˧] [bɔ˧˦] [bɔ˨˩] [bɛ˥] [bɛ˧] [bɛ˧˦] [bɛ˨˩] [bɯ˧] [bɯ˧˦] [bɯ˨˩] [da˥] [da˧] [da˧˦] [da˨˩], and 1125 more.
+| Consonants | Bilabial | Labiodental | Alveolar | Retroflex | Palatal | Velar | Glottal |
+|:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Plosive | b p pʰ |  | d t tʰ ⁿd |  |  | k kʰ ɡ |  |
+| Affricate |  |  | dz ts tsʰ ⁿdz |  | dʑ tɕ tɕʰ ⁿdʑ |  |  |
+| Nasal | m m̥ |  | n n̥ |  | ɲ | ŋ |  |
+| Fricative |  | f v | s z | ʂ ʐ | ɕ ʑ | x ɣ | h |
+| Lateral approximant |  |  | l l̥ |  |  |  |  |
+
+Sequences that the spec writes as one unit: [a˥] [a˧] [a˧˦] [a˨˩] [dʐ] [i˥] [i˧] [i˧˦] [i˨˩] [o˥] [o˧] [o˧˦] [o˨˩] [tʂ] [tʂʰ] [u˥] [u˧] [u˧˦] [u˨˩] [u̠˧] [u̠˧˦] [z̠̩˧] [z̠̩˧˦] [z̩˥] [z̩˧] [z̩˧˦] [z̩˨˩] [ɔ˥] [ɔ˧] [ɔ˧˦] [ɔ˨˩] [ɛ˥] [ɛ˧] [ɛ˧˦] [ɛ˨˩] [ɯ˥] [ɯ˧] [ɯ˧˦] [ɯ˨˩] [ᵐb], and 2 more.
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

@@ -92,9 +92,15 @@
       ],
       "syllable_position": "coda",
       "notes": "Overrides the es-ES rule without /x/. Here /x/ is the glottal [h] (CANARIAS_X_TO_H), not a velar consonant. Navarro Tomás (1918, § 133, pp. 111-112) gives [ŋ] before a velar consonant, and no source in this spec gives [ŋ] before [h]. ES_EXT_FINAL_N_VELAR also leaves a nasal unchanged before [h]. So a coda nasal is [ŋ] only before k ɡ ɣ w."
+    },
+    {
+      "id": "ES_S_VOICING",
+      "phonemes": [],
+      "surface": "",
+      "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. This spec aspirates or deletes its coda /s/, and the voicing rule of es-ES would take the segment first, so it is switched off here and the coda keeps the reading of this spec."
     }
   ],
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Canarian Spanish (Islas Canarias). Systematic seseo (no /θ/), yeísmo, coda /s/ aspiration (less extreme than Andalusian), partial /x/ aspiration. Strong historical connections to Andalusian and Caribbean Spanish. Conservative affricate [tʃ] preservation. -d deletion in participial -ado. WORD-FINAL /n/ IS VELAR [ŋ]: pan [ˈpaŋ], un otro [uŋ ˈotɾo]. Lipski (2011, p. 7): «Velarization of phrase-final /n/ is the rule in Galicia and parts of Asturias, Extremadura, Andalusia, the Canary Islands, all Caribbean and Central American dialects, along the Pacific coast of Colombia, Peru, and Ecuador, and sporadically in the Andean highlands. Word-final prevocalic nasals are typically also velarized in these dialects, although with generally lower rates than for phrase-final /n/ (Lipski 1986): un otro [uŋ.ˈo.tɾo]».",
   "quality": "research",
   "script_type": "alphabet",
@@ -169,9 +175,7 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "cana1269",
   "iso639_3": "spa",
-  "wikidata_qid": "Q957764",
   "wals_code": "spc",
   "location": {
     "latitude": 28,

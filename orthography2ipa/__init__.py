@@ -54,8 +54,11 @@ from orthography2ipa.g2p import (
 )
 from orthography2ipa.features import GraphemeFeatures, WordFeatures
 from orthography2ipa.lexicon import _warn_deprecated
+from orthography2ipa.exceptions import UnmappedGraphemeWarning
 from orthography2ipa.lexicon import (
     available_lexicon_codes,
+    lexicon_path,
+    parse_lexicon_text,
     clear_lexicons,
     get_lexicon,
     load_lexicon,
@@ -77,6 +80,7 @@ from orthography2ipa.phonetok import (
     Token,
     TokenKind,
     TokenSequence,
+    expand_arabic_gemination,
 )
 from orthography2ipa.rescorer import LatticeRescorer, RescoreContext
 from orthography2ipa.sentence import (
@@ -116,6 +120,7 @@ from orthography2ipa.registry import get_rescorers, who_answers
 from orthography2ipa.plugins import SandhiPlugin
 from orthography2ipa.registry import MissingPlugin, UnknownVariantWarning
 from orthography2ipa.registry import get_stress_plugin
+from orthography2ipa.phonemes import phoneme_set
 from orthography2ipa.inventory import (
     STRESS_MARKS,
     dead_allophone_rules,
@@ -131,11 +136,15 @@ from orthography2ipa.underspecification import (
 from orthography2ipa.stress import (
     apply_stress_mark,
     detect_stress,
+    detect_stress_by_weight,
+    is_cliticless,
     syllabify,
     syllabify_ipa,
 )
+from orthography2ipa.vowels import is_ipa_vowel
+from orthography2ipa.markup import MarkupError, parse_markup
 from orthography2ipa.pipeline import Pipeline
-from orthography2ipa.revision import lexicon_revision, spec_revision
+from orthography2ipa.revision import lexicon_revision, spec_revision, transcription_revision
 from orthography2ipa.syllabifier_plugin import SyllabifierPlugin
 from orthography2ipa.script_distance import (
     SCRIPT_REGISTRY,
@@ -177,6 +186,7 @@ __all__ = [
     "packaged_lexicon_sources",
     "spec_revision",
     "lexicon_revision",
+    "transcription_revision",
     "is_ipa_string",
     "validate_lexicon_text",
     "WordContext",
@@ -209,6 +219,7 @@ __all__ = [
     "get_stress_plugin",
     "emission_inventory",
     "phoneme_inventory",
+    "phoneme_set",
     "tokenize",
     "dead_allophone_rules",
     "STRESS_MARKS",
@@ -226,6 +237,15 @@ __all__ = [
     "script_distance",
     "script_distance_by_name",
     "PhonetokTokenizer",
+    "expand_arabic_gemination",
+    "detect_stress_by_weight",
+    "is_cliticless",
+    "is_ipa_vowel",
+    "MarkupError",
+    "parse_markup",
+    "parse_lexicon_text",
+    "lexicon_path",
+    "UnmappedGraphemeWarning",
     "Token",
     "TokenKind",
     "IPAPath",

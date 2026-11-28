@@ -1,7 +1,6 @@
 {
   "code": "ti",
   "name": "Tigrinya",
-  "glottolog_code": "tigr1271",
   "script": "Ethiopic",
   "script_type": "abugida",
   "inherent_vowel": "ə",
@@ -697,7 +696,7 @@
       "notes": null
     }
   ],
-  "parent": "sem-x-ethiopic",
+  "inherits": "sem-x-ethiopic",
   "ancestors": [
     {
       "code": "sem-x-ethiopic",
@@ -739,7 +738,6 @@
     "start_year": 900,
     "end_year": null
   },
-  "wikidata_qid": "Q34124",
   "phoible_id": "tigr1271",
   "wals_code": "tig",
   "location": {

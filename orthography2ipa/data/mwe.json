@@ -95,7 +95,6 @@
  "allophones": {},
  "notes": "Placed so the ancestry graph covers every living ISO 639-3 language. Classification and coordinates follow Glottolog. Orthography from Hartell 1993, Alphabets of Africa (UNESCO/SIL), extracted via the AfriSpeech/africa-g2p compilation (mwe.json). africa-g2p is a compilation tool, not the linguistic authority; the citation above is the original source it names.",
  "iso639_3": "mwe",
- "glottolog_code": "mwer1248",
  "sources": [
   {
    "id": "glottolog2024",
@@ -123,7 +122,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-atla1278",
+ "inherits": "x-clade-atla1278",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Mwera_language"

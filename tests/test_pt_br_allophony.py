@@ -101,9 +101,12 @@ TILDE = "̃"
 def test_br_declares_the_nasal_raise_rules():
     from orthography2ipa import get
     ids = [r.id for r in get("pt-BR").allophone_rules]
+    # the gu/qu glide rules inherited from pt-PT-x-medieval come first, then
     # the word-final nasal-diphthong glide rules and the raised-final-e
-    # affrication rules now lead the list; the nasal-raise trio follows.
-    assert ids[:6] == [
+    # affrication rules; the nasal-raise trio follows.
+    assert ids[:4] == [
+        "PT_GU_GLIDE", "PT_QU_GLIDE", "PT_QU_GLIDE_EQUI", "PT_QU_GLIDE_EQUINO"]
+    assert ids[4:10] == [
         "BR_FINAL_EM_GLIDE", "BR_FINAL_ENS_GLIDE", "BR_FINAL_AM_GLIDE",
         "BR_AFFRIC_T_RAISED", "BR_AFFRIC_D_RAISED", "PT_NASAL_A_RAISE"]
     assert [i for i in ids if i.startswith("PT_NASAL")][:3] == [
@@ -347,7 +350,7 @@ BR_CHILDREN = _br_children()
 
 
 def test_br_children_are_found():
-    assert len(BR_CHILDREN) == 13
+    assert len(BR_CHILDREN) == 14
 
 
 @pytest.mark.parametrize("lang", BR_CHILDREN)
@@ -376,13 +379,15 @@ def _assert_epenthesis_words(g2p):
     assert re.fullmatch(r"[oɔu]piˈsɐ̃w̃", g2p.transcribe_word("opção"))
     assert re.match(r"ad(͡ʒ)?iˈv", g2p.transcribe_word("adverso"))
     # Epenthesis does not apply to geminates (Curioletti & Sandri 2019,
-    # citing Monaretto 1997: 188), so a doubled letter stays unbroken.
+    # citing Monaretto 1997: 188), and Brazilian Portuguese has no geminate
+    # consonant (Carvalho 2015: 44), so a doubled letter reads one [f].
     for word in FF_LOANS:
-        assert re.search(r"f[ˈˌ]?f", g2p.transcribe_word(word)), word
+        out = g2p.transcribe_word(word)
+        assert out.count("f") == 1, (word, out)
     # The final /R/ of a noun is the lect's own, so buffer ends as mulher does.
     mulher = g2p.transcribe_word("mulher")
     assert re.fullmatch(r"muˈ[ʎj]e.?", mulher), mulher
-    assert g2p.transcribe_word("buffer") == "bufˈfe" + mulher[mulher.rindex("e") + 1:]
+    assert g2p.transcribe_word("buffer") == "buˈfe" + mulher[mulher.rindex("e") + 1:]
 
 
 @pytest.mark.parametrize("lang", BR_CHILDREN)

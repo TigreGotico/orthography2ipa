@@ -1,5 +1,13 @@
 # Pontic Greek (`pnt`)
 
+<!-- agent-hint
+covers: what the `pnt` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/pnt.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/el.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Pontic Greek is a Hellenic language, written in the Greek script. Glottolog places it in Bulgaria, Greece, North Macedonia and Türkiye. The `pnt` spec is at the research tier. It cites 4 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -60,13 +68,13 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 48 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 37 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | Plosive | b p |  |  | d t |  | c ɟ | k ɡ |
 | Affricate |  |  |  | dz ts | dʒ tʃ |  |  |
-| Nasal | m |  |  | n |  |  |  |
+| Nasal | m |  |  | n |  | ɲ | ŋ |
 | Trill |  |  |  | r |  |  |  |
 | Fricative |  | f v | ð θ | s z | ʃ | ç ʝ | x ɣ |
 | Approximant |  |  |  |  |  | j |  |
@@ -78,8 +86,6 @@ The spec can emit 48 segments. They come from the letter table, the positional r
 | Close-mid | e ø | o |
 | Near-open | æ |  |
 | Open | a |  |
-
-Sequences that the spec writes as one unit: [af] [av] [ef] [ev] [ks] [mb] [nd] [ndz] [ps] [pʃ] [æv] [ŋɡ] [ɲɟ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -200,10 +206,10 @@ The spec applies 11 allophone rules after the letters are read. The change colum
 |:--|:--|:--|:--|
 | `EL_S_VOICING` | /s/ → [z], before [m] [n] [l] [ɾ] [r] [v] [ð] [ɣ] and 5 more | ⟨Άρκανσας⟩ [aɾkanzas] | Arvaniti 2007 |
 | `EL_GAMMA_FRONTING` | /ɣ/ → [ʝ], before a front vowel, spelled ⟨γ⟩ | - | - |
-| `PNT_K_PALATAL` | /k/ → [c], before [e] [i], spelled ⟨κ⟩ ⟨γ⟩ ⟨χ⟩ ⟨γκ⟩ ⟨γγ⟩ ⟨νγκ⟩ | ⟨vs.⟩ [ˈlice] | [Armostis 2020](#src-armostis_etal2020), [Oeconomides 1908](#src-oeconomides1908) |
+| `PNT_K_PALATAL` | /k/ → [c], before [e] [i], spelled ⟨κ⟩ ⟨γ⟩ ⟨χ⟩ ⟨γκ⟩ ⟨γγ⟩ ⟨νγκ⟩ | - | [Armostis 2020](#src-armostis_etal2020), [Oeconomides 1908](#src-oeconomides1908) |
 | `PNT_G_PALATAL` | /ɡ/ → [ɟ], before [e] [i], spelled ⟨κ⟩ ⟨γ⟩ ⟨χ⟩ ⟨γκ⟩ ⟨γγ⟩ ⟨νγκ⟩ | - | [Armostis 2020](#src-armostis_etal2020) |
-| `PNT_NG_PALATAL` | /ŋɡ/ → [ɲɟ], before [e] [i], spelled ⟨κ⟩ ⟨γ⟩ ⟨χ⟩ ⟨γκ⟩ ⟨γγ⟩ ⟨νγκ⟩ | ⟨but⟩ [ˈeɲɟen] | [Armostis 2020](#src-armostis_etal2020) |
-| `PNT_X_PALATAL` | /x/ → [ç], before [e] [i], spelled ⟨κ⟩ ⟨γ⟩ ⟨χ⟩ ⟨γκ⟩ ⟨γγ⟩ ⟨νγκ⟩ | ⟨e.g.⟩ [ˈçile] | [Armostis 2020](#src-armostis_etal2020) |
+| `PNT_NG_PALATAL` | /ŋɡ/ → [ɲɟ], before [e] [i], spelled ⟨κ⟩ ⟨γ⟩ ⟨χ⟩ ⟨γκ⟩ ⟨γγ⟩ ⟨νγκ⟩ | - | [Armostis 2020](#src-armostis_etal2020) |
+| `PNT_X_PALATAL` | /x/ → [ç], before [e] [i], spelled ⟨κ⟩ ⟨γ⟩ ⟨χ⟩ ⟨γκ⟩ ⟨γγ⟩ ⟨νγκ⟩ | - | [Armostis 2020](#src-armostis_etal2020) |
 | `PNT_GAMMA_PALATAL` | /ɣ/ → [ʝ], before [e] [i], spelled ⟨κ⟩ ⟨γ⟩ ⟨χ⟩ ⟨γκ⟩ ⟨γγ⟩ ⟨νγκ⟩ | - | [Armostis 2020](#src-armostis_etal2020) |
 | `PNT_AU_VOICELESS` | /av/ → [af], before a consonant, with more context in the spec | - | [Oeconomides 1908](#src-oeconomides1908) |
 | `PNT_AU_FINAL` | /av/ → [af], word-finally | - | [Oeconomides 1908](#src-oeconomides1908) |

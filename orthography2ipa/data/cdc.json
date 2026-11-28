@@ -8,7 +8,6 @@
   "quality": "stub",
   "script_type": "reconstruction",
   "iso639_3": null,
-  "glottolog_code": "chad1250",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Chadic_languages"
   ],
@@ -28,7 +27,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Chadic_languages"
     }
   ],
-  "parent": "x-clade-chad1250",
+  "inherits": "x-clade-chad1250",
   "ancestors": [
     {
       "code": "afa",
@@ -37,7 +36,6 @@
       "notes": "Chadic branch of Afroasiatic."
     }
   ],
-  "wikidata_qid": "Q33184",
   "location": {
     "latitude": 10.434045,
     "longitude": 13.960241,

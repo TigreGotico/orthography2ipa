@@ -1,0 +1,6 @@
+{"ir_version": 1, "langs": ["arz-EG"],
+ "contact": [{"script": "Latn", "donor": "en-GB",
+              "words": {"model": "mɒdəl"},
+              "donor_words": {"bank": "bæŋk", "jazz": "dʒæz"},
+              "rewrite": [{"pattern": "ŋ(?=k)", "template": "n"}],
+              "map": {"dʒ": "ɡ", "θ": "s", "ð": "z"}}]}

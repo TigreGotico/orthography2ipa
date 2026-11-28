@@ -253,7 +253,7 @@
       "oː"
     ]
   },
-  "parent": "sa",
+  "inherits": "sa",
   "ancestors": [
     {
       "code": "sa",
@@ -306,9 +306,7 @@
     "start_year": -300,
     "end_year": 1200
   },
-  "glottolog_code": "pali1273",
   "iso639_3": "pli",
-  "wikidata_qid": "Q36727",
   "location": {
     "latitude": 24.5271,
     "longitude": 82.251,

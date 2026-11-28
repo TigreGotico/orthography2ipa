@@ -134,6 +134,9 @@
     "न": [
       "n"
     ],
+    "ऩ": [
+      "n"
+    ],
     "प": [
       "p"
     ],
@@ -155,7 +158,13 @@
     "र": [
       "r"
     ],
+    "ऱ": [
+      "r"
+    ],
     "ल": [
+      "l"
+    ],
+    "ऴ": [
       "l"
     ],
     "व": [
@@ -183,7 +192,7 @@
       "x"
     ]
   },
-  "parent": "x-clade-drav1251",
+  "inherits": "x-clade-drav1251",
   "ancestors": [
     {
       "code": "x-clade-drav1251",
@@ -192,9 +201,8 @@
       "notes": "Descent per Glottolog classification of Kurukh (kuru1301)."
     }
   ],
-  "notes": "Research. Kurukh (Oraon), a North Dravidian language of eastern India written in Devanagari. Consonant letters and vowel signs (matras) are mapped to standard Devanagari IPA values, including the retroflex and breathy-voiced series and nuqta letters ड़ ढ़ ख़. The abugida's inherent schwa after bare consonants (and its deletion by virama or context) is NOT modeled here, so unpointed consonant sequences under-recover vowels and a high PER floor is expected. Contrastive vowel length and nasalization are only partly written, and word accent is unwritten; all are left unencoded beyond what the script marks. Grapheme table checked against Winfield (1928): no discrepancy found. STRESS EXEMPTION: Winfield (1928) and subsequent descriptive phonological work report Kurukh word accent as weak and variable rather than a fixed positional rule -- prominence tends toward the first syllable in disyllables but is reported to shift unpredictably across syllables in longer words, with no single rule recoverable from spelling. Because the placement is not a documented deterministic function of syllable count or orthographic ending, no `stress` block is added rather than encoding a guess.",
+  "notes": "Research. Kurukh (Oraon), a North Dravidian language of eastern India written in Devanagari. Consonant letters and vowel signs (matras) are mapped to standard Devanagari IPA values, including the retroflex and breathy-voiced series and nuqta letters ड़ ढ़ ख़. The abugida's inherent schwa after bare consonants (and its deletion by virama or context) is NOT modeled here, so unpointed consonant sequences under-recover vowels and a high PER floor is expected. Contrastive vowel length and nasalization are only partly written, and word accent is unwritten; all are left unencoded beyond what the script marks. Grapheme table checked against Winfield (1928): no discrepancy found. STRESS EXEMPTION: Winfield (1928) and subsequent descriptive phonological work report Kurukh word accent as weak and variable rather than a fixed positional rule -- prominence tends toward the first syllable in disyllables but is reported to shift unpredictably across syllables in longer words, with no single rule recoverable from spelling. Because the placement is not a documented deterministic function of syllable count or orthographic ending, no `stress` block is added rather than encoding a guess. This spec reads ⟨ऩ⟩, ⟨ऱ⟩ and ⟨ऴ⟩ as their base letters ⟨न⟩ [n], ⟨र⟩ [r] and ⟨ल⟩ [l], because the inventory has no separate phoneme for them. This spec has no ⟨ळ⟩, so ⟨ऴ⟩ takes the value of ⟨ल⟩.",
   "iso639_3": "kru",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "kru_glottolog",
@@ -228,6 +236,26 @@
       "pages": null,
       "notes": "Orthography/phonology reference for a skeleton-tier entry.",
       "wikipedia_url": "https://en.wikipedia.org/wiki/Kurukh_language"
+    },
+    {
+      "id": "unicode16_ch12",
+      "author": "The Unicode Consortium",
+      "year": 2024,
+      "title": "The Unicode Standard, Version 16.0, Chapter 12: South and Central Asia-I (Devanagari)",
+      "publisher": "The Unicode Consortium",
+      "url": "https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-12/",
+      "pages": null,
+      "notes": "Rule R5: \"In conformance with the ISCII standard, the half-consonant form RRA h is represented as eyelash-RA. This form of RA is commonly used in writing Marathi and Newari.\" The paragraph before Table 12-8: \"Marathi also makes use of the “eyelash” form of the letter RA, as discussed in rule R5.\""
+    },
+    {
+      "id": "unicode16_nameslist",
+      "author": "The Unicode Consortium",
+      "year": 2024,
+      "title": "Unicode 16.0.0 NamesList.txt",
+      "publisher": "The Unicode Consortium",
+      "url": "https://www.unicode.org/Public/16.0.0/ucd/NamesList.txt",
+      "pages": null,
+      "notes": "U+0929 DEVANAGARI LETTER NNNA: \"for transcribing Dravidian alveolar n\"; U+0931 DEVANAGARI LETTER RRA: \"for transcribing Dravidian alveolar r\", \"half form is represented as \\\"Eyelash RA\\\"\"; U+0934 DEVANAGARI LETTER LLLA: \"for transcribing Dravidian l\". Each letter is canonically equivalent to its base letter plus U+093C (0928, 0930, 0933), and is not a composition exclusion."
     }
   ],
   "wikipedia": [

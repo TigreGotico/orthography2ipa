@@ -1,5 +1,13 @@
 # Breton (`br`)
 
+<!-- agent-hint
+covers: what the `br` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/br.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Breton is a Brythonic language, written in the Latin script. Glottolog places it in France. The `br` spec is at the research tier. It cites 6 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -66,25 +74,25 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 53 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 82 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p |  | d t |  |  | k ɡ |  |  |
-| Nasal | m |  | n |  | ɲ | ŋ |  |  |
-| Trill |  |  | r |  |  |  |  |  |
-| Fricative |  | f v | s z | ʃ ʒ |  | x | ʁ | h |
-| Approximant |  |  |  |  | j |  |  |  |
-| Lateral approximant |  |  | l |  | ʎ |  |  |  |
+| Plosive | b bː p pː |  | d dː t tː |  |  | k kː ɡ ɡː |  |  |
+| Nasal | m mː |  | n nː |  | ɲ ɲː | ŋ ŋː |  |  |
+| Trill |  |  | r rː |  |  |  |  |  |
+| Fricative |  | f fː v vː | s sː z zː | ʃ ʃː ʒ ʒː |  | x xː | ʁ ʁː | h hː |
+| Approximant |  |  |  |  | j jː |  |  |  |
+| Lateral approximant |  |  | l lː |  | ʎ ʎː |  |  |  |
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
-| Close | i y ĩ ỹ | u |
-| Close-mid | e eː ø øː ẽ | o oː |
-| Open-mid | œ œ̃ ɛ | ɔ ɔ̃ |
-| Open | a aː | ɑ̃ |
+| Close | i iː y yː ĩ ĩː ỹ ỹː | u uː |
+| Close-mid | e eː ø øː ẽ ẽː | o oː |
+| Open-mid | œ œː œ̃ œ̃ː ɛ ɛː | ɔ ɔː ɔ̃ ɔ̃ː |
+| Open | a aː | ɑ̃ ɑ̃ː |
 
-Sequences that the spec writes as one unit: [aw] [ew] [w] [wa] [we] [ɔw] [ɛj] [ɥ] [ɥi] [ː].
+Sequences that the spec writes as one unit: [w] [wː] [ɥ] [ɥː].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

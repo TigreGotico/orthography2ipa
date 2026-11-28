@@ -1,5 +1,13 @@
 # Language Registry
 
+<!-- agent-hint
+covers: how `get()` and `resolve()` turn a language code into a registered spec, and the alias table
+source: `orthography2ipa/registry.py`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_registry.py tests/test_resolve_own_language.py tests/test_code_resolution.py`
+see: `docs/specs/ancestry.md`, `docs/reference/api.md`
+-->
+
 The registry (`registry.py`) turns a language code into a registered spec code, and it loads the `LanguageSpec` for that code from `orthography2ipa/data/` on demand. Import of the package indexes the file names in that directory and parses no JSON. `get()` parses the file of a spec the first time a caller asks for it, and the registry caches the spec from then on. The registry also holds the deprecated discovery of the plugins that installed packages register. [getting_started.md](../guide/getting_started.md#finding-a-language-code) shows the tasks that use it: look up a language, and install or write a plugin.
 
 ## API
@@ -13,7 +21,7 @@ The top level of `orthography2ipa` exports each of these functions.
 | `resolves_exactly(code)` | `True` when the code names a spec without the nearest-language guess, and `False` otherwise. |
 | `available_codes(include_clades=False)` | A sorted list of the registered language codes. The clade nodes are in it only with `include_clades=True`. |
 | `available_families()` | A dict from each family path to the list of its language codes. |
-| `ancestry_chain(code)` | The list of `parent` codes above the spec, nearest first, with the clade nodes that the chain passes through. |
+| `ancestry_chain(code)` | The list of `inherits` codes above the spec, nearest first, with the clade nodes that the chain passes through. |
 | `get_syllabifier(code)` | Deprecated. `None` for every code, because discovery finds no syllabifier. A caller passes one in `Pipeline(syllabifier=...)`. |
 | `get_rescorers(code)` | Deprecated. The list of `LatticeRescorer` objects that the installed rescorer plugins contribute for the code. `G2P` does not run them. A caller passes rescorers in `Pipeline(rescore=...)`. |
 | `get_stress_plugin(code)` | Deprecated. The `StressPlugin` registered for the code, or `None`. |
@@ -39,13 +47,17 @@ A clade node is for classification only. It carries no phoneme data, no spec inh
 
 `get()` and `resolve()` normalise a code through these steps, in order. The first step that names a registered spec wins. The steps use [`langcodes`](https://github.com/rspeer/langcodes) for [BCP 47](https://www.rfc-editor.org/rfc/rfc5646) parsing and [`linguatag`](https://github.com/TigreGotico/linguatag) for the default regions and the language distance.
 
-1. The alias table `_ALIASES`, which holds ISO 639-3 codes and private-use tags that `langcodes` does not round-trip.
+1. The alias table `_ALIASES`. It holds ISO 639-3 codes and private-use tags that `langcodes` does not round-trip. It also holds script and region tags that the later steps send to another spec, or to no spec.
 2. An exact match against the alias keys and the registered spec codes, without regard to case, because BCP 47 tags are case-insensitive ([RFC 5646, section 2.1.1](https://www.rfc-editor.org/rfc/rfc5646#section-2.1.1)). So `MNK` finds `mnk`, and `ars-sa-x-qassim` finds `ars-SA-x-qassim`. Then `langcodes.standardize_tag(code, macro=True)`, for a code with no private-use subtag. The result goes through the alias table again.
-3. An exact match against the registered spec codes. A private-use tag also matches with a script subtag dropped when that script is the language's Suppress-Script in the [IANA Language Subtag Registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry), so `pt-Latn-BR-x-sp` finds `pt-BR-x-sp`. The Suppress-Script "adds no distinguishing information to a language tag" ([RFC 5646, section 3.1.9](https://www.rfc-editor.org/rfc/rfc5646#section-3.1.9)). Only the part before `-x-` goes to `langcodes`, because `langcodes` rejects a private-use subtag longer than 8 characters, such as the alias `ar-x-levantine`.
+3. An exact match against the registered spec codes. A tag also matches with its script subtag dropped, when `linguatag.likely_script` gives that script for the rest of the tag and standardization kept the language subtag. So `apc-Arab-SY` finds `apc-SY`. Without this, `apc-Arab-SY` is as near bare `apc` as `apc-SY`, because the CLDR likely subtags expand `apc` to `apc-Arab-SY`. The tag `kas-Arab` keeps its language: standardization changes it to `ks-Arab`, so it goes to the own-language search of step 5. A private-use tag also matches with a script subtag dropped when that script is the language's Suppress-Script in the [IANA Language Subtag Registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry), so `pt-Latn-BR-x-sp` finds `pt-BR-x-sp`. The Suppress-Script "adds no distinguishing information to a language tag" ([RFC 5646, section 3.1.9](https://www.rfc-editor.org/rfc/rfc5646#section-3.1.9)). Only the part before `-x-` goes to `langcodes`, because `langcodes` rejects a private-use subtag longer than 8 characters, such as the alias `ar-x-levantine`.
 4. For a bare language tag, the spec of its default region (`linguatag.with_default_region`), when that spec is registered. For a region that has only sub-regional specs, a curated default variant.
 5. The nearest registered code by language distance (`linguatag.closest_lang`), so `en-NZ` gives `en-GB`. A private-use subtag counts for nothing in the distance, so an unknown variant ties with the sibling lects of its language. The call passes `lects="standard"`, which breaks the tie toward the standard variety: `ar-x-zzz` gives `ar`, not one of the regional Arabic lects such as `ar-x-mashriqi`. With no usable match, the code stays as it is, and `get()` raises `KeyError`.
 
-   The search looks first among the codes of the tag's own language, because the primary language subtag names the language. So `sr-Latn-RS` gives `sr`, although `langcodes` expands `cnr` to `sr-Latn-ME`, which is nearer. The own language is the primary subtag of the tag as given. When that language has no spec, it is the language of the standardized tag, so `sh` (standardized to `sr-Latn`) gives `sr`. Arabic is the likely script of Algerian Saharan Arabic, so `aao-Arab` gives `aao`. When no own-language spec is near enough, the search takes every registered code, so `hr-Cyrl` gives `sr`, because the Croatian spec reads Latin script.
+   The search looks first among the codes of the tag's own language, because the primary language subtag names the language. So `sr-Latn-RS` gives `sr`, although `langcodes` expands `cnr` to `sr-Latn-ME`, which is nearer. The own language is the primary subtag of the tag as given. When that language has no spec, it is the language of the standardized tag, so `sh` (standardized to `sr-Latn`) gives `sr`. Arabic is the likely script of Algerian Saharan Arabic, so `aao-Arab` gives `aao`. When no own-language spec is near enough, the search takes every registered code. The own-language specs are measured without a `Latn` script subtag when the language has no likely script (`fat-Latn` gives `fat`). Another script subtag stays. A Croatian tag in Cyrillic script, such as `hr-Cyrl`, is unresolved and `get()` raises `KeyError`: the `hr` spec is Latin, and the CLDR 49 language matching data puts Croatian and Serbian 80 apart.
+
+   For a spec that reads both alphabets of its language, the alias table names its Cyrillic tags. The tags `bs-Cyrl` and `bs-Cyrl-BA` give `bs`, where the distance alone gives `sr`. The tag `cnr-Cyrl-ME` gives `cnr` through the own-language search too, but only as a nearest match. The alias makes it an exact match, so it also resolves under `strict=True`. A Cyrillic Bosnian tag that the table does not name, such as `bs-Cyrl-RS` or `bs-Cyrl-x-a`, gives `bs` as a nearest match, so it raises `KeyError` under `strict=True`.
+
+   An Arabic tag with a region that no Arabic spec names, such as `ar-FR` or `ar-ZZ`, gives `ar`. The likely subtags make bare `ar` Egyptian, so the distance alone puts such a region beside a dialect spec, and no source states a difference from Modern Standard Arabic for that region. The step applies to a tag with no script subtag or with `Arab`, so `ar-Latn-FR` gives `ar-Latn-x-buckwalt` through the distance. The result is a nearest match, so `get("ar-FR", strict=True)` raises `KeyError`.
 
 The default region of a bare tag is its motherland, the region where the language first appeared and is still spoken. `linguatag` takes it from the [CLDR likely subtags](https://github.com/unicode-org/cldr/blob/main/common/supplemental/likelySubtags.xml) and overrides CLDR where the most-populous region differs, so `pt` goes to `pt-PT` and not to `pt-BR`.
 
@@ -102,7 +114,7 @@ The alias table maps these ISO 639-3 codes of major languages to a spec:
 | `ron` | `ro-RO` | `mwl` | `mwl` | `arg` | `an` |
 | `lat` | `la` | `tgk` | `tg` | `prs` | `fa-AF` |
 
-The table holds five other kinds of entry:
+The table holds seven other kinds of entry:
 
 | Kind | Examples |
 | :--- | :--- |
@@ -111,6 +123,8 @@ The table holds five other kinds of entry:
 | An individual-language code that `macro=True` standardisation would collapse into its macrolanguage, mapped to itself | `quz`, which would otherwise become `qu`, and `diq`, which would become `zza` |
 | An ISO 639-3 code whose variety has its spec under another key | `twi` to `tw` |
 | A private-use tag, mapped to the spec that holds the variety | `pt-PT-x-barrancos` to `ext-PT-x-barranco`, `pt-BR-x-sao-paulo` to `pt-BR-x-sp`, `ar-x-hijazi` to `acw-SA` |
+| A script tag of a spec that reads both alphabets of its language, so that the tag resolves exactly to that spec | `bs-Cyrl` to `bs`, and `cnr-Cyrl-ME` to `cnr` |
+| A region or script tag too far from the bare tag of its spec to match | `yue-HK`, `yue-MO` and `yue-Hant` to `yue` |
 
 Galician has one standard spec, `gl-ES`, and the bare tag `gl` resolves to it. The variety codes `gl-x-central`, `gl-x-occidental`, `gl-x-oriental`, `gl-x-eonavia` and `gl-x-reintegrado` resolve to the `gl-ES-x-*` spec of the same variety. `_ALIASES` in `registry.py` holds the full table.
 

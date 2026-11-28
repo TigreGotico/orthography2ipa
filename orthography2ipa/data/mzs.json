@@ -1,11 +1,10 @@
 {
   "code": "mzs",
-  "glottolog_code": "maca1262",
   "name": "Macanese Creole (Patuá)",
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",
-  "parent": "pt-PT",
+  "inherits": "pt-PT",
   "graphemes": {
     "a": [
       "a"
@@ -297,7 +296,6 @@
     "end_year": null
   },
   "iso639_3": "mzs",
-  "wikidata_qid": "Q35785",
   "location": {
     "latitude": 22.1902,
     "longitude": 113.5379,
@@ -305,6 +303,18 @@
     "notes": "Glottolog's representative point for Macanese."
   },
   "allophone_rules": [
+    {
+      "id": "PT_EX_CONSONANT_GLIDE",
+      "phonemes": [],
+      "surface": "ɐj",
+      "notes": "DISABLED for Macanese Creole (Patuá). No source for the vowel of ⟨ex⟩ before a consonant in this variety was read, so its output stays what it was. The pt-PT rule gives ⟨ex⟩ the diphthong of the pt-PT ⟨ei⟩, [ej]."
+    },
+    {
+      "id": "PT_INITIAL_EX_VOICED",
+      "phonemes": [],
+      "surface": "z",
+      "notes": "DISABLED for Macanese Creole (Patuá). No source for the reading of word-initial ⟨ex⟩ before a vowel in this variety was read, so its output stays what it was. The pt-PT rule gives the ⟨x⟩ the value [z]."
+    },
     {
       "id": "PT_LEX_NASAL_UI",
       "phonemes": [],

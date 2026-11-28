@@ -129,7 +129,7 @@
       "dʒ"
     ]
   },
-  "parent": "x-clade-indo1320",
+  "inherits": "x-clade-indo1320",
   "ancestors": [
     {
       "code": "x-clade-indo1320",
@@ -140,7 +140,6 @@
   ],
   "notes": "Skeleton. Waigali (Kalasha-ala), a Nuristani (Indo-European) language of Afghanistan. There is no standardized Latin orthography; this map covers the romanized linguistic transcription commonly used for the language, with under-dot letters for the retroflex series (ṭ ḍ ṇ ṛ ṣ ẓ), haček letters for postalveolars (č ǰ š ž) and macron vowels for length. Dentals t/d are [t̪ d̪]. Transcription practice varies between sources; vowel nasalization and any accent are typically untranscribed and are left unencoded. Waigali stress is not consistently marked in the romanized linguistic transcription used here (there is no standardized practical orthography) and is left unencoded (documented exemption).",
   "iso639_3": "wbk",
-  "glottolog_code": null,
   "sources": [
     {
       "id": "wbk_glottolog",

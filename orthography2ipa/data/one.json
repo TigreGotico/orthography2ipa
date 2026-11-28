@@ -1,7 +1,7 @@
 {
   "code": "one",
   "name": "Oneida",
-  "parent": "x-clade-iroq1247",
+  "inherits": "x-clade-iroq1247",
   "script": "Latin",
   "script_type": "alphabet",
   "quality": "research",
@@ -60,8 +60,6 @@
   },
   "notes": "Oneida (Onʌyoteʔa·ka), a Northern Iroquoian language of Wisconsin, Ontario and New York. Its inventory is typologically striking and the source states it plainly: Oneida has NO bilabial consonants at all — no /p b/, no labiodental fricatives — so the absence of ⟨p⟩, ⟨b⟩, ⟨f⟩, ⟨v⟩ and ⟨m⟩ keys here is the language, not a gap in the spec. Four oral vowels /i e o a/ plus two nasal vowels written with dedicated letters: ⟨u⟩ spells /ũ/ (NOT [u] — a spelling trap for readers who assume the Latin value) and ⟨ʌ⟩ spells /ə̃/. Both are single nuclei, so each earns a key; vowel+n sequences are not nasal digraphs. ⟨kw⟩ /kʷ/ is one labialized dorsal segment, which is why it is a key rather than a k+w cluster. Length is written with the raised colon ⟨꞉⟩ and glottal stop with ⟨ʔ⟩. No allophone rules are asserted: the source describes the consonants as broadly English-like and gives no conditioned alternation precise enough to encode, and inventing one would overclaim.",
   "iso639_3": "one",
-  "glottolog_code": "onei1249",
-  "wikidata_qid": "Q857858",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Oneida_language"
   ],

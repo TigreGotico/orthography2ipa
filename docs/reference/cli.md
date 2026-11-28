@@ -1,5 +1,13 @@
 # Command line
 
+<!-- agent-hint
+covers: the `--help` output of the `orthography2ipa` command and of each of its subcommands
+source: `orthography2ipa/cli.py`
+generated: yes, by `scripts/gen_reference_docs.py`. Edit the argparse help in `orthography2ipa/cli.py` or the generator, not the page
+verify: `PYTHONPATH=$PWD python scripts/gen_reference_docs.py --check`
+see: `docs/guide/getting_started.md`, `docs/reference/registry.md`
+-->
+
 The package installs one command, `orthography2ipa`. Each subcommand takes `--json` for output that a program can read. The blocks below are the real `--help` output. The top-level description prints the number of registered languages, shown here as N.
 
 `scripts/gen_reference_docs.py` writes this page. Do not edit it by hand.

@@ -1,5 +1,13 @@
 # Basque (Euskara) (`eu`)
 
+<!-- agent-hint
+covers: what the `eu` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/eu.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Basque (Euskara) is a Vasconic language, written in the Latin script. Glottolog places it in France and Spain. The `eu` spec is at the production tier. It cites 10 sources and has 5 scored datasets.
 <!-- atlas:summary end -->
@@ -177,14 +185,14 @@ The engine output below comes from `orthography2ipa.transcribe` on the worked ex
 |:---|:---|:---|:---|
 | *lurra* | *lúrra* (Hualde 1994: 1559) | [luˈra] | The accent is on the second syllable. The root has one syllable. |
 | *lurrari* | *lúrrari* (Elordieta et al. 1998: 402) | [luˈraɾi] | Same cause. |
-| *beltzari* | *béltzari* (1998: 402) | [beltˈs̻aɾi] | The accent is on the wrong syllable, and the mark splits the affricate. |
+| *beltzari* | *béltzari* (1998: 402) | [belˈts̻aɾi] | The accent is on the wrong syllable. |
 | *lekuan* | *lékuan* (Hualde 1994: 1559) | [leˈkuan] | The spec has no list of marked words. |
 | *aurrera* | *áurrera* (1994: 1559) | [au̯ˈreɾa] | Same cause. |
 | *ango* | [aŋgo] (Bedialauneta Txurruka & Hualde 2023: 1103) | [anˈɡo] | No velar assimilation. Only the labial rule exists. |
 | *talde* | [talðe] (2023: 1104) | [talˈde] | No spirant after a consonant. |
 | *ilargi* | spirant after a consonant (Hualde et al. 2010: 116) | [iˈlarɡi] | Same cause. |
 
-The engine puts the stress mark inside the affricates [ts̻] and [ts̺]. Examples are *atzo* [atˈs̻o], *eutsi* [eu̯tˈs̺i] and *bertsolariarekin* [bertˈs̺olaɾiaɾekin]. The IPA segmenter does not read an affricate with a diacritic below its second symbol as one segment. [tʃ] has no such diacritic, and *etxe* gives [eˈtʃe].
+The stress mark goes before the whole affricate: *atzo* [aˈts̻o], *eutsi* [eu̯ˈts̺i]. [tʃ] gives the same result, as in *etxe* [eˈtʃe].
 
 The spec keeps [+2] in *ate* [aˈte] and *mendi* [menˈdi], where young Donostia speakers have [+1] (Elordieta et al. 1998: 402). This is a choice that the spec notes state. *mina* gives [miˈna], where Markina has /miɲe/ (2023: 1103). This is also a choice, because the spec notes treat the palatalisation as lexical in Batua.
 
@@ -256,7 +264,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 41 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 37 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -271,11 +279,11 @@ The spec can emit 41 segments. They come from the letter table, the positional r
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
-| Close | i | u |
+| Close | i i̯ | u u̯ |
 | Close-mid | e | o |
 | Open | a |  |
 
-Sequences that the spec writes as one unit: [ai̯] [au̯] [ei̯] [eu̯] [oi̯] [ui̯] [w].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -365,10 +373,10 @@ The engine wrote every transcription in this section with `orthography2ipa.trans
 | autobusa | [au̯ˈtoβus̺a] |
 | txistularia | [tʃis̺ˈtulaɾia] |
 | lurra | [luˈra] |
-| beltzari | [beltˈs̻aɾi] |
+| beltzari | [belˈts̻aɾi] |
 | lekuan | [leˈkuan] |
 | aurrera | [au̯ˈreɾa] |
-| atzo | [atˈs̻o] |
+| atzo | [aˈts̻o] |
 | ango | [anˈɡo] |
 | talde | [talˈde] |
 | kanpo | [kamˈpo] |

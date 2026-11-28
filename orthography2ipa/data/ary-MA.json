@@ -103,7 +103,7 @@
       "notes": "Darija short-vowel reduction: a historic short high vowel /i/ in a metrically WEAK position — before a consonant cluster (a closed syllable / the cluster-licensing site) — reduces to schwa [ə]. Heath (2020) p.216: the koiné 'reduce[s] all three short vowels to just one short vowel ə', original short vowels 'syncopate in weak metrical positions'; Watson (2002) p.13: Maghrebi unstressed-vowel deletion yields word-initial clusters (Moroccan smin vs Cairene simīn); Noamane (2020) p.49: MA vocalic inventory limited to an epenthetic schwa /ə/. Blind-judge consensus (verification round C9): both judges independently corrected these full vowels to [ə]. The rule is SCOPED to /i/ before a cluster because that is the environment the current condition vocabulary can express without over-generating: short /a/ ALSO reduces in Darija (ʃamʃ→ʃəmʃ, ʒaww→ʒəww) but is RETAINED next to gutturals/pharyngeals (qahwa, binnaʕnaːʕ, nħabb — Heath 2002), and there is no negated-neighbour / 'guttural' condition class to carve that out, so a categorical /a/→ə rule over-generates and net-regresses the gold; that reduction is deferred pending an engine 'guttural neighbour' class (filed as a spec-lead gap). Short /u/ is retained (rounded reflex near labials/velars/emphatics; Noamane 2020 p.49; gold dˤuhr, xubz). Runs post-lexically after the inherited emphasis-backing rules."
     }
   ],
-  "parent": "ar-x-maghrebi",
+  "inherits": "ar-x-maghrebi",
   "ancestors": [
     {
       "code": "ar-x-maghrebi",
@@ -235,9 +235,7 @@
     "start_year": 1200,
     "end_year": null
   },
-  "glottolog_code": "moro1292",
   "iso639_3": "ary",
-  "wikidata_qid": "Q56426",
   "phoible_id": "moro1292",
   "wals_code": "amr",
   "location": {

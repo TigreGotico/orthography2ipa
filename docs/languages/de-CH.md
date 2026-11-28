@@ -1,5 +1,13 @@
 # Swiss Standard German (Hochdeutsch) (`de-CH`)
 
+<!-- agent-hint
+covers: what the `de-CH` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/de-CH.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/de-DE.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Swiss Standard German (Hochdeutsch) is a West Germanic language, written in the Latin script. Its code names Switzerland. The `de-CH` spec is at the research tier. It cites 2 sources and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -60,7 +68,7 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 69 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 50 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -74,15 +82,13 @@ The spec can emit 69 segments. They come from the letter table, the positional r
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
-| Close | i iː y yː |  | u uː |
+| Close | i iː i̯ y yː |  | u uː |
 | Near-close | ɪ ʏ |  | ʊ |
 | Close-mid | eː øː |  | o oː |
 | Mid |  | ə |  |
 | Open-mid | œ ɛ ɛː |  | ɔ |
 | Near-open |  | ɐ |  |
 | Open | a aː |  |  |
-
-Sequences that the spec writes as one unit: [aɪ] [aʊ] [aːh] [eːh] [iːh] [ks] [kv] [oːh] [sp] [st] [tsi̯oːn] [uːh] [yːh] [øːh] [ŋk] [ɔʏ] [ɛʁ] [ɛːh] [ʃp] [ʃt].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

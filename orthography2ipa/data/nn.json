@@ -2,7 +2,7 @@
   "code": "nn",
   "name": "Norwegian Nynorsk",
   "script": "Latin",
-  "parent": "no",
+  "inherits": "no",
   "ancestors": [
     {
       "code": "no",
@@ -690,9 +690,7 @@
     "start_year": 1850,
     "end_year": null
   },
-  "glottolog_code": "norw1262",
   "iso639_3": "nno",
-  "wikidata_qid": "Q25164",
   "location": {
     "latitude": 59.92,
     "longitude": 10.71,

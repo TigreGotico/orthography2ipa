@@ -203,7 +203,7 @@
       "y"
     ]
   },
-  "parent": "x-clade-gallorom",
+  "inherits": "x-clade-gallorom",
   "ancestors": [
     {
       "code": "la-x-gallia",
@@ -268,9 +268,7 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "roma1326",
   "iso639_3": "roh",
-  "wikidata_qid": "Q13199",
   "phoible_id": "roma1326",
   "wals_code": "rmc",
   "location": {

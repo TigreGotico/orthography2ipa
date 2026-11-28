@@ -5,6 +5,7 @@ ancestry graph: no phonology, never a data-inheritance source. ``family`` is
 read off the clade nodes on a spec's parent chain rather than hand-maintained
 in every JSON file.
 """
+from linguatag import catalog_ids
 import json
 import pathlib
 
@@ -51,10 +52,10 @@ def test_clade_is_cited(code):
     raw = json.loads((DATA_DIR / f"{code}.json").read_text(encoding="utf-8"))
     assert raw["wikipedia"], f"{code}: no Wikipedia citation"
     assert raw["sources"], f"{code}: no source"
-    if raw.get("glottolog_code") is None:
+    if catalog_ids(code).get("glottolog_code") is None:
         # A glue node Glottolog does not carve the same way must say so.
         assert "Glottolog" in raw["notes"], (
-            f"{code}: no glottolog_code and no note explaining why")
+            f"{code}: no Glottolog code and no note explaining why")
 
 
 @pytest.mark.parametrize("code", CLADES)

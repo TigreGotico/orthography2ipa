@@ -3,7 +3,7 @@
   "name": "Eastern Egyptian Bedawi Arabic",
   "script": "Arabic",
   "script_type": "abjad",
-  "parent": "arz-EG",
+  "inherits": "arz-EG",
   "graphemes_base": "arz-EG",
   "allophones_base": "arz-EG",
   "graphemes": {
@@ -67,10 +67,8 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "east2690",
   "iso639_3": "avl",
   "allophone_rules": [],
-  "wikidata_qid": null,
   "location": {
     "latitude": 29.5,
     "longitude": 34.0,

@@ -288,7 +288,7 @@
       "ui"
     ]
   },
-  "parent": "mni-x-proto-kuki-chin",
+  "inherits": "mni-x-proto-kuki-chin",
   "ancestors": [
     {
       "code": "mni-x-proto-kuki-chin",
@@ -341,8 +341,6 @@
     "start_year": 1894,
     "end_year": null
   },
-  "glottolog_code": "lush1249",
-  "wikidata_qid": "Q36147",
   "location": {
     "latitude": 23.3441,
     "longitude": 92.9376,

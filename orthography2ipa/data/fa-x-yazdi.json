@@ -18,7 +18,7 @@
       "ɣ"
     ]
   },
-  "parent": "fa-x-tehran",
+  "inherits": "fa-x-tehran",
   "ancestors": [
     {
       "code": "fa-x-tehran",
@@ -90,7 +90,6 @@
     "start_year": 1200,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "fas",
   "location": {
     "latitude": 31.897222,

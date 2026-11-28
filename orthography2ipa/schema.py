@@ -24,6 +24,8 @@ Notes on intentional permissiveness:
 from __future__ import annotations
 
 import json
+import re
+import unicodedata
 from pathlib import Path
 from typing import Dict, List, Literal, Optional, Tuple, Union
 
@@ -150,8 +152,24 @@ class SandhiRuleModel(_Strict):
     right_context: str
     transform: Optional[str] = None
     right_transform: Optional[str] = None
+    left_spelling: Optional[str] = None
+    right_spelling: Optional[str] = None
+    left_joined_spelling: Optional[str] = None
+    right_joined_spelling: Optional[str] = None
     obligatory: bool = True
     notes: str = ""
+
+    @field_validator("left_context", "right_context", "left_spelling", "right_spelling",
+                     "left_joined_spelling", "right_joined_spelling")
+    @classmethod
+    def _valid_regex(cls, v: Optional[str]) -> Optional[str]:
+        """A context or spelling condition must be a regex that compiles."""
+        if v is not None:
+            try:
+                re.compile(v)
+            except re.error as err:
+                raise ValueError(f"not a valid regex: {v!r} ({err})") from err
+        return v
 
     @model_validator(mode="after")
     def _at_least_one_transform(self) -> "SandhiRuleModel":
@@ -206,6 +224,7 @@ class AllophoneRuleModel(_Strict):
         "front_vowel", "back_vowel", "palatal", "emphatic", "word_boundary", "any"]] = None
     preceded_by_phoneme_2: Optional[List[str]] = None
     followed_by_phoneme_2: Optional[List[str]] = None
+    followed_by_phoneme_3: Optional[List[str]] = None
     preceded_by_surface_phoneme_2: Optional[List[str]] = None
     requires_other_nucleus: Optional[bool] = None
     followed_by_nucleus: Optional[bool] = None
@@ -334,6 +353,7 @@ class ClosedHiatusModel(_Strict):
     pairs: List[str] = Field(min_length=1)
     onsets: List[str] = Field(default_factory=list)
     codas: List[str] = Field(default_factory=list)
+    atonic_onsets: List[str] = Field(default_factory=list)
 
 
 class FinalDiphthongsModel(_Strict):
@@ -372,6 +392,8 @@ class StressRulesModel(_Strict):
     coda_liquid_capture: bool = False
     secondary_stress: Literal["", "alternating"] = ""
     compound_stress: Literal["", "last"] = ""
+    noncohering_suffixes: Optional[List[str]] = None
+    noncohering_exceptions: Optional[List[str]] = None
     iambic_length: bool = False
     source: Literal["rules", "plugin"] = "rules"
     notes: Optional[str] = None
@@ -389,7 +411,8 @@ class StressRulesModel(_Strict):
 
     @field_validator("final_stress_endings", "penult_stress_endings",
                      "antepenult_stress_endings", "unstressed_prefixes", "schwa_rimes",
-                     "marked_vowels", "cliticless_words")
+                     "marked_vowels", "cliticless_words", "noncohering_suffixes",
+                     "noncohering_exceptions")
     @classmethod
     def _non_empty_entries(cls, v: Optional[List[str]]) -> Optional[List[str]]:
         if v is not None and any(not entry for entry in v):
@@ -438,7 +461,8 @@ class LanguageSpecModel(_Strict):
     grammatical_endings_base: Optional[str] = None
 
     # ─── ancestry ───────────────────────────────────────────────────
-    parent: Optional[str] = None
+    inherits: Optional[str] = None  # the spec whose rules this spec starts from
+    parent: Optional[str] = None  # deprecated spelling of inherits
     ancestors: Optional[List[AncestorModel]] = None
 
     # ─── metadata ───────────────────────────────────────────────────
@@ -458,14 +482,13 @@ class LanguageSpecModel(_Strict):
     codas: Optional[List[str]] = None
     inherent_vowel_final: Optional[str] = None
     virama_final_vowel: Optional[str] = None
+    consonant_marks: Optional[List[str]] = None
     collapse_geminates: Optional[bool] = None
     doubled_letters_geminate: Optional[bool] = None
     constrain_onsets: Optional[bool] = None
     word_internal_apostrophe: Optional[bool] = None
     apostrophe_elision: Optional[bool] = None
     iso639_3: Optional[str] = Field(default=None, pattern=r"^[a-z]{3}$")
-    glottolog_code: Optional[str] = Field(default=None, pattern=r"^[a-z0-9]{4}\d{4}$")
-    wikidata_qid: Optional[str] = Field(default=None, pattern=r"^Q[1-9]\d*$")
     phoible_id: Optional[str] = Field(default=None, min_length=1)
     wals_code: Optional[str] = Field(default=None, min_length=1)
 
@@ -525,6 +548,23 @@ class LanguageSpecModel(_Strict):
                 if not key:
                     raise ValueError("grapheme/allophone keys must be non-empty")
         return v
+
+    @field_validator("consonant_marks")
+    @classmethod
+    def _one_combining_mark_each(cls, v):
+        """Each entry is one combining codepoint: the engine compares the
+        characters of a grapheme key with the entries one by one."""
+        for mark in v or ():
+            if len(mark) != 1 or unicodedata.category(mark) not in ("Mn", "Mc"):
+                raise ValueError(
+                    f"consonant_marks entries must be one combining mark, got {mark!r}")
+        return v
+
+    @model_validator(mode="after")
+    def _one_inheritance_key(self) -> "LanguageSpecModel":
+        if self.parent is not None and self.inherits is not None:
+            raise ValueError(f"spec {self.code!r} sets both inherits and its deprecated spelling parent")
+        return self
 
 
 # ═══════════════════════════════════════════════════════════════════════════

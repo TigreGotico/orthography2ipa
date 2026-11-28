@@ -137,6 +137,24 @@ def test_declared_onset_inventory_decides_the_split(word, expected):
     assert _syllables_for(word, None, spec.stress.diphthongs, spec=spec) == expected
 
 
+@pytest.mark.parametrize("lang", ["pt-PT", "pt-AO", "pt-PT-x-porto"])
+@pytest.mark.parametrize("word,expected", [
+    ("álcool", ["ál", "co", "ol"]),
+    ("anticristo", ["an", "ti", "cris", "to"]),
+    ("aldebarã", ["al", "de", "ba", "rã"]),
+    ("admitir", ["ad", "mi", "tir"]),
+    ("obstáculo", ["obs", "tá", "cu", "lo"]),
+    ("perspectiva", ["pers", "pec", "ti", "va"]),
+    ("construir", ["cons", "tru", "ir"]),
+    ("mesmo", ["mes", "mo"]),
+])
+def test_pt_pt_constrains_onsets(lang, word, expected):
+    """pt-PT licenses the same onsets as pt-BR, and the varieties that read
+    its grapheme table inherit the constraint. Expected splits: the agreement
+    gold of silabificador (Infopédia, Michaelis, en and pt Wiktionary)."""
+    assert syllables(lang, word) == expected
+
+
 def test_french_silent_h_does_not_form_a_cluster():
     assert syllables("fr-FR", "malheur") == ["mal", "heur"]
 
@@ -296,9 +314,10 @@ def test_tokens_locate_themselves_in_the_syllabified_word():
     syllable — which read as STRESSED and gave German *jährige* a final ɛ."""
     from orthography2ipa import G2P
     g = G2P("de-DE")
-    toks = g._tokenizer.grapheme_tokens("102-jährige")
-    sylls = g._syllables_cached("102-jährige")
-    mapped = g._map_tokens_to_syllables(toks, sylls)
+    it = g._interpreter
+    toks = it.grapheme_tokens("102-jährige")
+    sylls = it.syllables("102-jährige")
+    mapped = it._map_tokens_to_syllables(toks, sylls)
     assert mapped[-1] == len(sylls) - 1        # final ⟨e⟩ is in the last one
     assert g.transcribe_word("102-jährige").endswith("ɡə")
     assert g.transcribe_word("102-jährige")[1:] == g.transcribe_word("jährige")[1:]
@@ -339,7 +358,7 @@ def test_punctuation_is_transparent_to_syllable_weight():
 
 @pytest.mark.parametrize("lang", ["el", "is", "ru", "pl", "sv", "cs", "sk",
                                   "uk", "fi", "hu", "tr", "da", "nb", "it-IT",
-                                  "es-ES", "pt-PT", "ca"])
+                                  "es-ES", "ca"])
 def test_a_spec_that_has_not_opted_in_is_untouched(lang):
     """The shapes are calibrated on Germanic and Romance. A language whose
     onset inventory exceeds them — Modern Greek ⟨σμ κτ πτ γν μν βγ βδ⟩ all
@@ -382,10 +401,11 @@ def test_constrain_onsets_is_inherited_along_the_grapheme_base():
     Without this, ``de-AT`` read ``de-DE``'s graphemes while syllabifying them
     by a different rule — a language-feature parity gap, which is a bug."""
     for code in ("nl", "nl-NL", "nl-BE", "de-DE", "de-AT", "de-CH",
-                 "bar-AT", "de-x-alemanni", "fr-FR"):
+                 "bar-AT", "de-x-alemanni", "fr-FR", "pt-PT", "pt-AO",
+                 "pt-PT-x-lisbon"):
         assert get(code).constrain_onsets is True, code
     # …and it does not leak to a language that never asked for it
-    for code in ("el", "is", "sv", "ru", "pl", "pt-PT", "en", "ar"):
+    for code in ("el", "is", "sv", "ru", "pl", "en", "ar", "kea"):
         assert get(code).constrain_onsets is False, code
 
 

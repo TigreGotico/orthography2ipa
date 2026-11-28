@@ -1,11 +1,21 @@
 # orthography2ipa
 
+<!-- agent-hint
+covers: what the library does, where its accuracy stops and the reading order of every documentation page
+source: `docs/`, `scripts/docs_nav.py:reading_order`, `benchmarks/results.json`
+generated: no
+verify: `python scripts/docs_nav.py --check`
+see: `docs/guide/getting_started.md`, `AGENTS.md`
+-->
+
 `orthography2ipa` converts the spelling of a language into the
 [International Phonetic Alphabet](https://www.internationalphoneticassociation.org/content/full-ipa-chart)
 (IPA), and it measures how languages relate to each other. Each language is a cited JSON
 spec. A shared engine with no language-specific code turns the specs into
 transcriptions, ranked pronunciation lattices and distances. The package
-ships no trained weights and no word lists.
+ships no trained weights and no word lists. A compiler turns each spec into
+a versioned IR, and a small interpreter runs it, in Python or in Lua inside
+loom ([engine/ir.md](engine/ir.md)).
 
 ```python
 >>> import orthography2ipa
@@ -26,6 +36,7 @@ nodes. Run them for the live counts, or run `orthography2ipa list`.
 | Turn text into IPA in a TTS or ASR pipeline | [guide/getting_started.md](guide/getting_started.md) | `engine/tokenizer.md`, `engine/lattice.md`, `specs/quality_tiers.md` |
 | Add or correct a language | [contributing/spec_authoring.md](contributing/spec_authoring.md) | `contributing/citations.md`, `specs/data_model.md`, `SCHEMA.md` |
 | Build a phonemizer on the engine | [engine/lattice.md](engine/lattice.md) | `engine/architecture.md`, `reference/api.md` |
+| Ship a phonemizer with a voice in loom | [guide/loom_export.md](guide/loom_export.md) | `guide/revisions.md`, `engine/plugins.md` |
 | Compare two languages | [guide/distance.md](guide/distance.md) | `specs/ancestry.md` |
 | Know how far a score can be trusted | [evaluation/benchmarks.md](evaluation/benchmarks.md) | `evaluation/datasets.md`, `evaluation/generated/scoreboard.md`, `evaluation/gold_defects.md` |
 | Check production readiness | [reference/api_stability.md](reference/api_stability.md) | `specs/quality_tiers.md`, `evaluation/generated/scoreboard.md` |
@@ -109,8 +120,11 @@ The pages under `evaluation/generated/` are written by scripts.
 | :--- | :--- |
 | [getting_started.md](guide/getting_started.md) | The first transcription, the two maps, language lookup, plugins and the explorer |
 | [lexicon.md](guide/lexicon.md) | Lexicon sidecars and caller overrides for words the rules cannot predict |
+| [loom_export.md](guide/loom_export.md) | Export the phonemizer of a voice to one loom GGUF, pinned to a release of the spec data |
+| [revisions.md](guide/revisions.md) | Which revision names a phonemizer, what moves it, and how to compare it later |
 | [distance.md](guide/distance.md) | Every relational axis between languages and its API |
 | [known_limitations.md](guide/known_limitations.md) | What the specs and the ranker do not do, classified |
+| [ecosystem.md](guide/ecosystem.md) | How o2i differs from other G2P systems, and the projects that build on it |
 
 ### Reference
 
@@ -120,12 +134,15 @@ The pages under `evaluation/generated/` are written by scripts.
 | [cli.md](reference/cli.md) | The `--help` output of every `orthography2ipa` subcommand (generated) |
 | [registry.md](reference/registry.md) | Code resolution, the alias table and plugin discovery |
 | [api_stability.md](reference/api_stability.md) | The public, version-guarded surface |
+| [o2i-ir-v1.md](ir/o2i-ir-v1.md) | The format of the compiled IR, the interpreter stages and the versioning rules |
 
 ### Engine
 
 | Page | Covers |
 | :--- | :--- |
 | [architecture.md](engine/architecture.md) | Module layout, the pipeline stages and the design decisions |
+| [ir.md](engine/ir.md) | The compiler, the IR and the interpreters, with one word followed through every stage |
+| [plugins.md](engine/plugins.md) | The extensions that run in the Python host, and why an export leaves them out |
 | [tokenizer.md](engine/tokenizer.md) | `PhonetokTokenizer`, maximal-munch tokenization and beam search |
 | [lattice.md](engine/lattice.md) | Candidate costs, the lattice, rescorers, per-word confidence, the sentence seam and feature export |
 | [lattice_per.md](engine/lattice_per.md) | Phone error rate for ASR against every reading the lattice admits |
@@ -150,6 +167,7 @@ The pages under `evaluation/generated/` are written by scripts.
 | [citations.md](contributing/citations.md) | Where to find a source, how to quote it, and which gold sets are silver |
 | [board.md](contributing/board.md) | How to regenerate the benchmark board, and the guards that check it |
 | [engine.md](contributing/engine.md) | How to add an engine capability, and the review gate for engine code |
+| [behaviour_is_data.md](contributing/behaviour_is_data.md) | How to add a behaviour as data, when the IR needs another mechanism, and the IR guards |
 | [silver_correction.md](contributing/silver_correction.md) | How to correct the IPA of the silver sentence sets with Claude |
 
 ### Evaluation

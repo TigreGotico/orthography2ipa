@@ -123,8 +123,6 @@
     ]
   },
   "iso639_3": "hmo",
-  "glottolog_code": "hiri1237",
-  "wikidata_qid": "Q33617",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Hiri_Motu"
   ],
@@ -156,7 +154,7 @@
     "start_year": 1880,
     "end_year": null
   },
-  "parent": "x-clade-aust1307",
+  "inherits": "x-clade-aust1307",
   "ancestors": [
     {
       "code": "x-clade-aust1307",

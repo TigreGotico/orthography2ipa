@@ -1,5 +1,13 @@
 # Arabic (Buckwalter transliteration) (`ar-Latn-x-buckwalt`)
 
+<!-- agent-hint
+covers: what the `ar-Latn-x-buckwalt` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ar-Latn-x-buckwalt.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/ar.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Arabic (Buckwalter transliteration) is a Central Semitic variety, written in the Latin script. Glottolog places it in the Eurasia macroarea. The `ar-Latn-x-buckwalt` spec is at the research tier. It cites 1 source and has 0 scored datasets.
 <!-- atlas:summary end -->
@@ -54,27 +62,27 @@ No dataset on the board scores this spec. See the [dataset catalogue](../evaluat
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 63 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 76 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar | Uvular | Pharyngeal | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b |  |  | d dˤ t tˤ |  |  | k | q |  | ʔ |
+| Plosive | b bː |  |  | d dː dˤ dˤː t tː tˤ tˤː |  |  | k kː | q qː |  | ʔ ʔː |
 | Affricate |  |  |  |  | dʒ |  |  |  |  |  |
-| Nasal | m |  |  | n |  |  | ŋ |  |  |  |
-| Trill |  |  |  | r |  |  |  |  |  |  |
-| Fricative |  | f | ð ðˤ θ | s sˤ z | ʃ |  | x ɣ |  | ħ ʕ | h |
-| Lateral fricative |  |  |  | ɮˤ |  |  |  |  |  |  |
-| Approximant |  |  |  |  |  | j |  |  |  |  |
-| Lateral approximant |  |  |  | l ɫ |  |  |  |  |  |  |
+| Nasal | m mː |  |  | n nː |  |  | ŋ ŋː |  |  |  |
+| Trill |  |  |  | r rː |  |  |  |  |  |  |
+| Fricative |  | f fː | ð ðː ðˤ ðˤː θ θː | s sː sˤ sˤː z zː | ʃ ʃː ʒː |  | x xː ɣ ɣː |  | ħ ħː ʕ ʕː | h hː |
+| Lateral fricative |  |  |  | ɮˤ ɮˤː |  |  |  |  |  |  |
+| Approximant |  |  |  |  |  | j jː |  |  |  |  |
+| Lateral approximant |  |  |  | l lː ɫ ɫː |  |  |  |  |  |  |
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
 | Close | i iː | u uː |
 | Near-close | ɪ ɪː | ʊ ʊː |
-| Near-open | æ |  |
+| Near-open | æ æː |  |
 | Open | a aː | ɑ ɑː |
 
-Sequences that the spec writes as one unit: [aj] [al] [an] [at] [aw] [ij] [in] [ja] [jaː] [ji] [un] [uw] [w] [wa] [waː] [wu] [ʔa] [ʔaː] [ʔi] [ː].
+Sequences that the spec writes as one unit: [w] [wː].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
@@ -91,30 +99,34 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨<⟩ | [ʔi] | before vowel [ʔ] · default [ʔi] |
 | ⟨>⟩ | [ʔa] | before vowel [ʔ] · default [ʔa] |
 | ⟨A⟩ | [ʔ] [aː] | default [aː] [ʔ] · word initial [ʔ] [aː] |
-| ⟨a⟩ | [a] |  |
 | ⟨Aa⟩ | [aː] |  |
-| ⟨aA⟩ | [aː] |  |
 | ⟨Al⟩ | [al] [a] |  |
-| ⟨aw⟩ | [aw] |  |
-| ⟨aY⟩ | [aː] |  |
-| ⟨ay⟩ | [aj] |  |
-| ⟨b⟩ | [b] |  |
 | ⟨D⟩ | [dˤ] |  |
-| ⟨d⟩ | [d] |  |
 | ⟨E⟩ | [ʕ] |  |
 | ⟨F⟩ | [an] |  |
+| ⟨H⟩ | [ħ] |  |
+| ⟨K⟩ | [in] |  |
+| ⟨N⟩ | [un] |  |
+| ⟨S⟩ | [sˤ] |  |
+| ⟨T⟩ | [tˤ] |  |
+| ⟨Y⟩ | [aː] |  |
+| ⟨Z⟩ | [ðˤ] |  |
+| ⟨a⟩ | [a] |  |
+| ⟨aA⟩ | [aː] |  |
+| ⟨aY⟩ | [aː] |  |
+| ⟨aw⟩ | [aw] |  |
+| ⟨ay⟩ | [aj] |  |
+| ⟨b⟩ | [b] |  |
+| ⟨d⟩ | [d] |  |
 | ⟨f⟩ | [f] |  |
 | ⟨g⟩ | [ɣ] |  |
-| ⟨H⟩ | [ħ] |  |
 | ⟨h⟩ | [h] |  |
 | ⟨i⟩ | [i] |  |
 | ⟨iy⟩ | [iː] |  |
 | ⟨j⟩ | [dʒ] |  |
-| ⟨K⟩ | [in] |  |
 | ⟨k⟩ | [k] |  |
 | ⟨l⟩ | [l] |  |
 | ⟨m⟩ | [m] |  |
-| ⟨N⟩ | [un] |  |
 | ⟨n⟩ | [n] |  |
 | ⟨o⟩ | ∅ |  |
 | ⟨ow⟩ | [w] |  |
@@ -122,9 +134,7 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨p⟩ | [a] [at] | after vowel ∅ · default [a] [at] |
 | ⟨q⟩ | [q] |  |
 | ⟨r⟩ | [r] |  |
-| ⟨S⟩ | [sˤ] |  |
 | ⟨s⟩ | [s] |  |
-| ⟨T⟩ | [tˤ] |  |
 | ⟨t⟩ | [t] |  |
 | ⟨u⟩ | [u] |  |
 | ⟨uw⟩ | [uː] |  |
@@ -134,12 +144,10 @@ Each letter or letter group of the spec with its readings. The first reading is 
 | ⟨waA⟩ | [waː] |  |
 | ⟨wu⟩ | [wu] |  |
 | ⟨x⟩ | [x] |  |
-| ⟨Y⟩ | [aː] |  |
 | ⟨y⟩ | [j] [iː] | default [j] [iː] · word final [iː] [j] |
 | ⟨ya⟩ | [ja] |  |
 | ⟨yaA⟩ | [jaː] |  |
 | ⟨yi⟩ | [ji] |  |
-| ⟨Z⟩ | [ðˤ] |  |
 | ⟨z⟩ | [z] |  |
 | ⟨|⟩ | [ʔaː] |  |
 | ⟨}⟩ | [ʔ] |  |

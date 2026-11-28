@@ -112,7 +112,7 @@ class TestSpanishES:
         assert self._spec.script == "Latin"
 
     def test_parent_is_medieval(self):
-        assert self._spec.parent == "es-ES-x-medieval"
+        assert self._spec.inherits == "es-ES-x-medieval"
 
     # --- Vowels ---
 
@@ -444,13 +444,13 @@ class TestSpanishES:
     # --- Ancestry ---
 
     def test_ancestry_has_parent(self):
-        assert self._spec.parent == "es-ES-x-medieval"
+        assert self._spec.inherits == "es-ES-x-medieval"
 
     def test_ancestry_traces_to_latin(self):
         """Spanish can be traced back to a Latin ancestor."""
         codes = {a.code for a in self._spec.ancestors}
         # Direct parent is medieval; medieval traces to la-x-hispania
-        assert "es-ES-x-medieval" in codes or self._spec.parent == "es-ES-x-medieval"
+        assert "es-ES-x-medieval" in codes or self._spec.inherits == "es-ES-x-medieval"
 
     def test_ancestry_includes_arabic_adstrate(self):
         """Spanish has significant Arabic adstrate (4000+ loanwords)."""
@@ -490,7 +490,7 @@ class TestPortuguesePT:
         assert self._spec.script == "Latin"
 
     def test_parent(self):
-        assert self._spec.parent == "pt-PT-x-medieval"
+        assert self._spec.inherits == "pt-PT-x-medieval"
 
     # --- Grapheme overrides from medieval parent ---
 
@@ -583,14 +583,17 @@ class TestPortuguesePT:
     def test_grapheme_rh_null(self):
         _assert_null(self._spec, "rh", "pt-PT rh")
 
-    def test_grapheme_u_umlaut_null(self):
-        _assert_null(self._spec, "ü", "pt-PT ü")
+    def test_grapheme_u_umlaut_reads_glide(self):
+        # Bare ⟨ü⟩ occurs in foreign names (Müller) and reads [u]; the glide of
+        # the pre-1990 trema lives in the ⟨gü qü⟩ rows.
+        _assert_first(_grapheme(self._spec, "ü"), "u", "pt-PT ü")
 
-    def test_grapheme_qu_umlaut_null(self):
-        _assert_null(self._spec, "qü", "pt-PT qü")
+    def test_grapheme_qu_umlaut_reads_kw(self):
+        # The trema marks a pronounced u (AO1990 Base XX, 5.º).
+        assert _grapheme(self._spec, "qü") == ["kw"]
 
-    def test_grapheme_gu_umlaut_null(self):
-        _assert_null(self._spec, "gü", "pt-PT gü")
+    def test_grapheme_gu_umlaut_reads_gw(self):
+        assert _grapheme(self._spec, "gü") == ["ɡw"]
 
     # --- Allophones ---
 
@@ -746,6 +749,25 @@ class TestPortuguesePT:
         ("norte e", "ˈnɔɾt i"),
         ("de amanhã", "dɨ ɐmɐˈɲɐ̃"),
         ("de ouro", "dɨ ˈoɾu"),
+        # Cruz-Ferreira (1999: 130) deletes the [ɨ] of a stressed host:
+        # imediatamente o [-ˈmẽt u], conseguisse obrigar [kõsˈgis ɔbɾiˈgaɾ].
+        # The base of -mente is a stress domain of its own: WikiPron pt-PT
+        # imediatamente i m ɨ d j a t ɐ m ẽ t ɨ.
+        ("imediatamente o", "imɨdiˌatɐˈmẽt u"),
+        ("conseguisse obrigar", "kõsɨˈɡis ɔbɾiˈɡaɾ"),
+        # A clitic has no lexical stress (Vigário 2003, reported by Paulino
+        # 2016: 9), and final-vowel fall applies only at a prosodic word edge
+        # (Vigário 2010, same page). Cruz-Ferreira (1999: 130) keeps the vowel
+        # of que o [↑kiu].
+        ("que o", "kɨ u"),
+        ("se o", "sɨ u"),
+        ("me ouviu", "mɨ oˈviw"),
+        ("lhe ofereceu", "ʎɨ ɔfɨɾɨˈsew"),
+        # A compound holds more than one prosodic word inside a prosodic word
+        # group (Vigário 2010, reported by Paulino 2016: 9), so its first
+        # element loses the vowel although it carries only a secondary mark.
+        ("verde-escuro", "ˌvɛɾd iʃˈkuɾu"),
+        ("mestre-escola", "ˌmɛʃtɾ iʃˈkɔlɐ"),
     ])
     def test_sandhi_schwa_elision_reach(self, text, ipa):
         assert orthography2ipa.G2P("pt-PT").transcribe(text) == ipa
@@ -1116,7 +1138,7 @@ class TestGalician:
         assert self._spec.script == "Latin"
 
     def test_parent_galaico_pt(self):
-        assert "galaico-pt" in self._spec.parent
+        assert "galaico-pt" in self._spec.inherits
 
     # --- Vowels ---
 
@@ -1383,7 +1405,7 @@ class TestBasqueEU:
         assert self._spec.script == "Latin"
 
     def test_parent_aquitanian(self):
-        assert self._spec.parent == "xaq"
+        assert self._spec.inherits == "xaq"
 
     # --- Five-vowel system (no reduction) ---
 
@@ -1815,7 +1837,7 @@ class TestMirandese:
         assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)
 
     def test_parent_medieval_asturian(self):
-        assert self._spec.parent == "ast-PT-x-medieval"
+        assert self._spec.inherits == "ast-PT-x-medieval"
 
     # --- Ancestry ---
 
@@ -2326,8 +2348,9 @@ class TestSpanishPhonologicalRules:
     @pytest.mark.parametrize("word,expected", [
         ("enrique", "en\u02c8rike"),
         ("honra", "\u02c8onra"),
-        # Is-ra-el, two open vowels in hiatus, an aguda in -l.
-        ("israel", "isra\u02c8el"),
+        # Is-ra-el, two open vowels in hiatus, an aguda in -l. ES_S_VOICING
+        # voices the /s/ before the voiced [r].
+        ("israel", "izra\u02c8el"),
         ("alrededor", "alre\u00f0e\u02c8\u00f0o\u027e"),
     ])
     def test_trill_after_coronal(self, word, expected):
@@ -2410,7 +2433,7 @@ class TestSpanishAndalusianEast:
         assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)
 
     def test_parent_castilian(self):
-        assert "es-ES" in self._spec.parent or "medieval" in self._spec.parent
+        assert "es-ES" in self._spec.inherits or "medieval" in self._spec.inherits
 
     def test_has_grapheme_table(self):
         assert len(self._spec.graphemes) > 10
@@ -2446,7 +2469,7 @@ class TestSpanishRioplatense:
         assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)
 
     def test_parent_spanish(self):
-        assert "es" in self._spec.parent
+        assert "es" in self._spec.inherits
 
     def test_has_ll_as_postalveolar(self):
         """Rioplatense: ll/y → /ʃ/ or /ʒ/ (not ʝ or ʎ) — distinctive sheísmo/zheísmo."""
@@ -2488,7 +2511,7 @@ class TestCatalanValencian:
         assert len(self._spec.graphemes) > 10
 
     def test_parent_catalan(self):
-        assert "ca" in self._spec.parent or self._spec.parent == "ca"
+        assert "ca" in self._spec.inherits or self._spec.inherits == "ca"
 
     def test_closer_to_catalan_than_spanish(self):
         from orthography2ipa.distance import phonological_distance
@@ -2515,7 +2538,7 @@ class TestCatalanBalearic:
         assert {"Indo-European", "Romance"} <= set(self._spec.family_path)
 
     def test_parent_catalan(self):
-        assert "ca" in self._spec.parent or self._spec.parent == "ca"
+        assert "ca" in self._spec.inherits or self._spec.inherits == "ca"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -2538,7 +2561,7 @@ class TestPortugueseBrazilian:
         assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)
 
     def test_parent_is_pt(self):
-        assert "pt" in self._spec.parent
+        assert "pt" in self._spec.inherits
 
     def test_has_grapheme_table(self):
         assert len(self._spec.graphemes) > 10
@@ -2580,7 +2603,7 @@ class TestGalicianWestern:
         assert {"Indo-European", "Romance", "Ibero-Romance"} <= set(self._spec.family_path)
 
     def test_parent_galician(self):
-        assert "gl-ES" in self._spec.parent
+        assert "gl-ES" in self._spec.inherits
 
     def test_closer_to_galician_than_arabic(self):
         from orthography2ipa.distance import phonological_distance

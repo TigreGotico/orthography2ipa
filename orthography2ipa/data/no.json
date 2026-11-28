@@ -288,7 +288,7 @@
       "ə"
     ]
   },
-  "parent": "x-clade-nort3160",
+  "inherits": "x-clade-nort3160",
   "ancestors": [
     {
       "code": "non",
@@ -335,9 +335,7 @@
     "start_year": 1500,
     "end_year": null
   },
-  "glottolog_code": "norw1258",
   "iso639_3": "nor",
-  "wikidata_qid": "Q9043",
   "phoible_id": "norw1258",
   "location": {
     "latitude": 59.92,

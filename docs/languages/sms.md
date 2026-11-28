@@ -1,5 +1,13 @@
 # Skolt Sami (`sms`)
 
+<!-- agent-hint
+covers: what the `sms` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/sms.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Skolt Sami is a Saami language, written in the Latin script. Glottolog places it in the Eurasia macroarea. The `sms` spec is at the research tier. It cites 5 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
@@ -63,16 +71,16 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 58 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 77 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Dental | Alveolar | Postalveolar | Palatal | Velar |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Plosive | b p |  |  | d t |  |  | k ɡ |
+| Plosive | b bʲ p pʲ |  |  | d dʲ t tʲ |  | c cʲ ɟ ɟʲ | k kʲ ɡ ɡʲ |
 | Affricate |  |  |  | dz ts | dʒ tʃ |  |  |
-| Nasal | m |  |  | n |  | ɲ | ŋ |
-| Trill |  |  |  | r |  |  |  |
-| Fricative |  | f v | ð | s z | ʃ ʒ | ʝ | x ɣ |
-| Lateral approximant |  |  |  | l |  | ʎ |  |
+| Nasal | m mʲ |  |  | n nʲ |  | ɲ ɲʲ | ŋ ŋʲ |
+| Trill |  |  |  | r rʲ |  |  |  |
+| Fricative |  | f fʲ v vʲ | ð ðʲ | s sʲ z zʲ | ʃ ʃʲ ʒ ʒʲ | çʲ ʝ ʝʲ | x xʲ ɣ ɣʲ |
+| Lateral approximant |  |  |  | l lʲ |  | ʎ ʎʲ |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
@@ -82,7 +90,7 @@ The spec can emit 58 segments. They come from the letter table, the positional r
 | Near-open |  | ɐ ɐː |  |
 | Open | a aː |  | ɑ ɑː |
 
-Sequences that the spec writes as one unit: [ccç] [cç] [ddz] [ddʒ] [tts] [ttʃ] [ɟɟʝ] [ɟʝ] [ɲɲ] [ʎʎ] [ʲ].
+Sequences that the spec writes as one unit: [cç] [ɟʝ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

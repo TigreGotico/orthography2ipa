@@ -221,8 +221,6 @@
     ]
   },
   "iso639_3": "gaa",
-  "glottolog_code": "gaaa1244",
-  "wikidata_qid": "Q33287",
   "notes": "Ga (Gã), a Ga-Dangme (Kwa) language of the Greater Accra Region, Ghana. Latin-based orthography of 26 letters plus ŋ, ɛ, ɔ (Africa Alphabet extensions). Seven oral vowels a e ɛ i o ɔ u, each with a nasal counterpart written with a following ⟨n⟩ (not modelled as separate graphemes here, matching the ee/ak convention); vowel length is written by doubling/tripling the vowel letter (a, aa, aaa) and is not modelled as a separate grapheme. 31 consonant phonemes including the labial-velar doubly-articulated stops ⟨gb⟩ /ɡ͡b/, ⟨kp⟩ /k͡p/ and the labial-velar nasal ⟨ŋm⟩ /ŋ͡m/, plus a labialised series ⟨gw kw hw jw tsw shw⟩. ⟨j⟩ = /dʒ/ (with fricative allophone [ʒ]), ⟨ts⟩ = /tʃ/, ⟨sh⟩ = /ʃ/, ⟨ny⟩ = /ɲ/, ⟨y⟩ = /j/. /l/ varies between lateral approximant and trill/tap [r]. TONE: Ga has two tones (high, low) with downstep/terracing; the standard orthography does not mark tone, so tone is not recoverable from ordinary text and is not modelled here.",
   "sources": [
     {
@@ -248,7 +246,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Ga_language"
   ],
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

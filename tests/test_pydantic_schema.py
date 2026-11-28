@@ -61,6 +61,33 @@ def test_extra_keys_are_forbidden():
         )
 
 
+# ─── LanguageSpecModel.consonant_marks ─────────────────────────────────────
+
+_SPEC_BASE = {
+    "code": "xx",
+    "name": "Test",
+    "family": "Test",
+    "script": "Devanagari",
+    "graphemes": {"क": ["k"]},
+    "allophones": {"k": ["k"]},
+}
+
+
+def test_consonant_marks_accepts_one_combining_mark_per_entry():
+    model = LanguageSpecModel.model_validate(
+        {**_SPEC_BASE, "consonant_marks": ["\u093c"]})
+    assert model.consonant_marks == ["\u093c"]
+
+
+@pytest.mark.parametrize("entry", ["\u093c\u0902", "क", ""])
+def test_consonant_marks_rejects_anything_but_one_combining_mark(entry):
+    """Two marks in one entry, a letter, or an empty string would never
+    equal one character of a key, so the entry would do nothing."""
+    with pytest.raises(Exception, match="consonant_marks"):
+        LanguageSpecModel.model_validate(
+            {**_SPEC_BASE, "consonant_marks": [entry]})
+
+
 # ─── SourceModel.doi ───────────────────────────────────────────────────────
 
 _SOURCE_BASE = {

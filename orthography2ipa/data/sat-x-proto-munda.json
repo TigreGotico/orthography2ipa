@@ -1,7 +1,7 @@
 {
   "code": "sat-x-proto-munda",
   "name": "Proto-Munda (reconstructed)",
-  "parent": "x-clade-aust1305",
+  "inherits": "x-clade-aust1305",
   "script": "Latin",
   "graphemes": {
     "a": [
@@ -212,9 +212,7 @@
     "start_year": -2000,
     "end_year": -1000
   },
-  "glottolog_code": "mund1335",
   "iso639_3": null,
-  "wikidata_qid": "Q33892",
   "location": {
     "latitude": 20.89208,
     "longitude": 83.640648,

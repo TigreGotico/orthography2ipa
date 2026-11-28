@@ -1,7 +1,7 @@
 {
   "code": "ine",
   "name": "Proto-Indo-European (reconstructed)",
-  "parent": "x-clade-indo1319",
+  "inherits": "x-clade-indo1319",
   "script": "IPA-reconstruction",
   "phonemes": [
     "b",
@@ -269,7 +269,6 @@
     "start_year": -4500,
     "end_year": -2500
   },
-  "glottolog_code": "indo1319",
   "iso639_3": null,
   "location": {
     "latitude": 41.836725,

@@ -1,5 +1,13 @@
 # Arabic dialects
 
+<!-- agent-hint
+covers: the spoken Arabic specs and how each one differs from Modern Standard Arabic
+source: `orthography2ipa/data/ar.json` and the Arabic dialect specs in `orthography2ipa/data/`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_arabic_dialects.py`
+see: `docs/languages/ar.md`, `docs/languages/index.md`
+-->
+
 **Family**: Afro-Asiatic > Semitic > Central Semitic | **Script**: Arabic (abjad)
 
 This page covers the spoken Arabic specs: Egyptian, the Peninsular lects, Levantine, Iraqi, the Maghreb and Sudanese. Modern Standard Arabic, the grapheme base of all of them, has its own page: [ar.md](ar.md). For the live list of specs and their tiers, run `orthography2ipa list` or read the [scoreboard](../evaluation/generated/scoreboard.md).

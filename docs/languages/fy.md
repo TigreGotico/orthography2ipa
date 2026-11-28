@@ -1,5 +1,13 @@
 # West Frisian (`fy`)
 
+<!-- agent-hint
+covers: what the `fy` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/fy.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 West Frisian is a West Germanic language, written in the Latin script. Glottolog places it in Netherlands. The `fy` spec is at the research tier. It cites 4 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
@@ -65,7 +73,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 56 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 44 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -80,14 +88,14 @@ The spec can emit 56 segments. They come from the letter table, the positional r
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
-| Close | i iː yː |  | u uː |
+| Close | i iː y yː |  | u uː |
 | Near-close | ɪ |  |  |
-| Close-mid | eː ø |  | oː |
+| Close-mid | eː ø |  | o oː |
 | Mid |  | ə |  |
 | Open-mid | ɛ ɛː |  | ɔ ɔː |
 | Open | a aː |  | ɑ |
 
-Sequences that the spec writes as one unit: [aj] [aːj] [iə] [iːw] [ks] [oj] [oə] [oːj] [uːj] [w] [øy] [ŋk] [ɔu] [ɛi] [ɪə].
+Sequences that the spec writes as one unit: [w].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

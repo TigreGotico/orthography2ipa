@@ -165,7 +165,7 @@
       "ɡ"
     ]
   },
-  "parent": "ar-x-mashriqi",
+  "inherits": "ar-x-mashriqi",
   "ancestors": [
     {
       "code": "ar-x-mashriqi",
@@ -248,7 +248,6 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "egyp1253",
   "iso639_3": "arz",
   "allophone_rules": [
     {
@@ -317,7 +316,7 @@
         "aj"
       ],
       "surface": "eː",
-      "notes": "Cairene monophthongization (Watson 2002 ch.2: Classical /aj/ → [eː], bajt→beːt; Mitchell 1956; Badawi & Hinds 1986 passim, e.g. feːn 'where'). Geminate [jj] (izzajjak) is a CjjV sequence, not the /aj/ diphthong atom, and is untouched — same tokenization behaviour as HEJ_MONO_AY/QAS_MONO_AY."
+      "notes": "Cairene monophthongization (Watson 2002 ch.2: Classical /aj/ → [eː], bajt→beːt; Mitchell 1956; Badawi & Hinds 1986 passim, e.g. feːn 'where'). Geminate [jj] (izzajjak) is a CjjV sequence, not the /aj/ diphthong atom, and is untouched — same tokenization behaviour as HEJ_MONO_AY."
     },
     {
       "id": "EG_MONO_AW",
@@ -328,7 +327,6 @@
       "notes": "Cairene monophthongization (Watson 2002 ch.2: Classical /aw/ → [oː], lawn→loːn; Mitchell 1956). Geminate [ww] (ɡaww) is not the diphthong atom and is untouched."
     }
   ],
-  "wikidata_qid": "Q29919",
   "phoible_id": "egyp1253",
   "wals_code": "aeg",
   "location": {

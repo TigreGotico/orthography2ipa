@@ -1,5 +1,13 @@
 # Pyrenean-valley Aragonese subdialects: Phonology Reference
 
+<!-- agent-hint
+covers: the five Pyrenean-valley Aragonese specs and how each one differs from `an`
+source: `orthography2ipa/data/an.json`, `orthography2ipa/data/an-x-*.json`
+generated: no
+verify: `PYTHONPATH=$PWD python -m pytest tests/test_docs_prose.py tests/test_aragonese_valleys.py tests/test_docs_engine_forms.py`
+see: `docs/languages/an.md`, `docs/languages/index.md`
+-->
+
 **Codes**: `an-x-ansotano`, `an-x-cheso`, `an-x-chistau`, `an-x-belsetan`, `an-x-tensino` | **Family**: Indo-European > Romance | **Script**: Latin (alphabet) | **Parent**: `an` (Aragonese)
 
 These five specs model the classic High Aragonese (*altoaragonés*) varieties of the Pyrenean valleys. Each one is a thin delta spec over the base Aragonese spec [`an`](../../orthography2ipa/data/an.json). The two regional specs `an-x-occident` (Western) and `an-x-oriental` (Ribagorçan) cover different cuts of the dialect continuum, outside the valleys.
@@ -47,7 +55,7 @@ G2P("an-x-chistau").transcribe_word("bel·lota")  # beˈlːota
 G2P("an-x-tensino").transcribe_word("ro")       # ˈɾo
 ```
 
-For comparison, the base spec `an` gives `faˈblaɾ` for *fablar* and `ˈbella` for *bel·la*.
+For comparison, the base spec `an` gives `faˈblaɾ` for *fablar*, and `G2P("an").transcribe_word` gives `ˈbella` for *bel·la*. The function `orthography2ipa.transcribe` reads a whole text, and under `an` it splits a word at ⟨·⟩, because the `an` spec has no grapheme that contains the point. So `transcribe("bel·la", "an")` gives the two words `ˈbel la`, and `transcribe("col·legi", "an")` gives `ˈkol ˈlexi`.
 
 ## Not modelled
 

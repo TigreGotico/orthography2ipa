@@ -197,7 +197,7 @@
       "j"
     ]
   },
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "x-clade-narr1281",
@@ -208,7 +208,6 @@
   ],
   "notes": "Luganda (Ganda), Bantu, Uganda. Standard orthography of 24 letters. <c> = /c/ and <j> = /ɟ/ (palatal stops, often realised [tʃ]/[dʒ]); <ny> = /ɲ/; <ŋ> = /ŋ/, commonly typed <ng'>; <ng> without the apostrophe is prenasalised /ŋɡ/. Long vowels are written double. /l/ and /r/ are one phoneme: <r> is written after <e> and <i>, <l> elsewhere. Consonant gemination and tone are phonemic; tone is not written and is not modelled here.",
   "iso639_3": "lug",
-  "glottolog_code": "gand1255",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Luganda",
     "https://lg.wikipedia.org/wiki/Luganda"

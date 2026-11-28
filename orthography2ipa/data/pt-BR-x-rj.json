@@ -321,7 +321,7 @@
       "ũ"
     ]
   },
-  "parent": "pt-BR",
+  "inherits": "pt-BR",
   "notes": "Carioca (Rio de Janeiro city). Coda /S/ is palatal [ʃ ʒ], about 86 % in Brito (2016: 148) (mesmo [ˈmeʒmu], paz [ˈpaʃ]). Strong onset /r/ is a posterior fricative [χ~x]; coda /R/ is velar [x] inside the word and aspirated [h] word-finally (Callou, Moraes & Leite 1998: 62-63). /t d/ affricate before [i] (categorical in Rio in ALiB, Battisti & Dornelles Filho 2015: 226). Callou (2010) is listed but was not consulted for the rule notes.",
   "quality": "research",
   "script_type": "alphabet",
@@ -477,12 +477,6 @@
       "notes": "Voiced counterpart of RJ_CHIADO_CODA_S: coda /z/ is [ʒ] before a voiced consonant. Brito (2016: 142): 'It occurs as [z] or [ʒ] in syllable-final position followed by voiced consonant' (asma)."
     },
     {
-      "id": "BR_XC_ONE_S",
-      "phonemes": [],
-      "surface": "",
-      "notes": "Switched off. Vasilévski (2012: 55, Table 1) gives 'xc /s/ exceção' and no opened source gives the value in a spec with a palatal coda, so ⟨xc⟩ keeps [ʃs]."
-    },
-    {
       "id": "BR_CODA_X",
       "phonemes": [],
       "surface": "",
@@ -616,11 +610,11 @@
         "notes": "A word-final /S/ before a word that starts with a vowel is the alveolar [z]: dez anos [ˈdɛz ˈɐ̃nuʃ], os amigos [uz aˈmiɡuʃ]. It is BR_FINAL_S_PREVOCALIC_VOICE for the palatal that RJ_CHIADO_CODA_S writes. Nanini (2022: 17) excludes the resyllabified sibilant from her count because its value is categorical: 'se excluíram das análises os dados de aspiração, apagamento e ressilabificação do /S/ em coda externa, já que a realização deste último nesse contexto é, categoricamente, a fricativa alveolar sonora [z]'. Her example on p. 26 is 'mas era' '[‘mɐi’zɛɾɐ]'."
       }
     ],
-  "wikidata_qid": "Q10265995",
   "location": {
     "latitude": -22.911111,
     "longitude": -43.205556,
     "source": "wikidata",
     "notes": "Rio de Janeiro city — the Carioca variety. [Wikidata Q8678 P625]"
-  }
+  },
+  "collapse_geminates": true
 }

@@ -16,7 +16,7 @@ from orthography2ipa.types import QualityTier, AncestorRole
 
 
 @pytest.mark.parametrize("code", [
-    "xpu", "uga", "hbo", "jrb", "ajt", "aju", "yhd", "rif", "gnc",
+    "xpu", "uga", "hbo", "jrb", "aeb-x-judeo", "aju", "yhd", "rif", "gnc",
 ])
 def test_new_specs_resolve(code):
     spec = orthography2ipa.get(code)
@@ -71,7 +71,7 @@ class TestJudeoArabicMacronode:
         assert jrb.clade is False
 
     @pytest.mark.parametrize("code,regional_parent", [
-        ("ajt", "aeb-TN"),
+        ("aeb-x-judeo", "aeb-TN"),
         ("aju", "ary-MA"),
         ("yhd", "acm-IQ"),
     ])
@@ -86,7 +86,7 @@ class TestJudeoArabicMacronode:
         related = {a.code for a in spec.get_ancestors(AncestorRole.RELATED)}
         assert "jrb" in related
 
-    @pytest.mark.parametrize("code", ["ajt", "aju", "yhd"])
+    @pytest.mark.parametrize("code", ["aeb-x-judeo", "aju", "yhd"])
     def test_hebrew_is_adstrate(self, code):
         spec = orthography2ipa.get(code)
         adstrates = {a.code for a in spec.get_ancestors(AncestorRole.ADSTRATE)}

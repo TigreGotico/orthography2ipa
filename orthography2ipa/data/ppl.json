@@ -117,8 +117,6 @@
     ]
   },
   "iso639_3": "ppl",
-  "glottolog_code": "pipi1250",
-  "wikidata_qid": "Q1186896",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Nawat_language",
     "https://en.wikipedia.org/wiki/Nawat_grammar",
@@ -173,7 +171,7 @@
     "start_year": 1500,
     "end_year": null
   },
-  "parent": "x-clade-utoa1244",
+  "inherits": "x-clade-utoa1244",
   "ancestors": [
     {
       "code": "x-clade-utoa1244",

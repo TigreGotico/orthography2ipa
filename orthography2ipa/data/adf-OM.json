@@ -3,7 +3,7 @@
   "name": "Coastal Dhofari Arabic",
   "script": "Arabic",
   "script_type": "abjad",
-  "parent": "acx-OM",
+  "inherits": "acx-OM",
   "graphemes_base": "acx-OM",
   "allophones_base": "acx-OM",
   "graphemes": {
@@ -53,10 +53,8 @@
     "start_year": 1400,
     "end_year": null
   },
-  "glottolog_code": "dhof1235",
   "iso639_3": "adf",
   "allophone_rules": [],
-  "wikidata_qid": null,
   "location": {
     "latitude": 17.0,
     "longitude": 54.1,

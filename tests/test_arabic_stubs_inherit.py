@@ -46,7 +46,7 @@ FIXED = {
     # stops being a placeholder; that is the map's meaning, not an exemption.
     # these four already named an Arabic parent on dev and keep it
     "jrb": ("arb", "arb"),
-    "ajt": ("aeb-TN", "aeb-TN"),
+    "aeb-x-judeo": ("aeb-TN", "aeb-TN"),
     "aju": ("ary-MA", "ary-MA"),
     "yhd": ("acm-IQ", "acm-IQ"),
 }
@@ -76,8 +76,8 @@ def test_only_the_graphemes_edge_moves_not_the_classification(code, base, parent
     Changing either field in either direction goes red."""
     raw = _raw(code)
     assert raw["graphemes_base"] == base, f"{code}: graphemes base moved"
-    assert raw["parent"] == parent, (
-        f"{code}: classification parent is {raw['parent']!r}, expected {parent!r}. "
+    assert raw["inherits"] == parent, (
+        f"{code}: classification parent is {raw['inherits']!r}, expected {parent!r}. "
         "Fixing an empty table must not reclassify the variety — including by setting "
         "the parent to the graphemes base, which is the change this test exists for.")
 

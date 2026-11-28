@@ -1,5 +1,13 @@
 # Assamese (`as`)
 
+<!-- agent-hint
+covers: what the `as` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/as.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/sa.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Assamese is an Indo-Aryan language, written in the Bengali script. Glottolog places it in Bangladesh, Bhutan and India. The `as` spec is at the production tier. It cites 4 sources and has 2 scored datasets.
 <!-- atlas:summary end -->
@@ -96,14 +104,14 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 
 | Dataset | Row tag | Class | Provenance | Licence | Words | PER | Gates |
 |:--|:--|:--|:--|:--|--:|--:|:--|
-| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `as` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 2981 | 0.0918 | yes |
-| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `as` | generated | epitran-derived | CC0 1.0 | 5328 | 0.2436 | no |
+| `wikipron` ([CUNY-CL/wikipron](https://github.com/CUNY-CL/wikipron)) | `as` | gold | crowd-scraped | Wiktionary terms: CC BY-SA and GFDL | 2981 | 0.0915 | yes |
+| `vox_communis` ([fdemelo/vox-communis-parallel-g2p](https://huggingface.co/datasets/fdemelo/vox-communis-parallel-g2p)) | `as` | generated | epitran-derived | CC0 1.0 | 5328 | 0.2451 | no |
 <!-- atlas:datasets end -->
 
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 44 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 51 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -111,18 +119,18 @@ The spec can emit 44 segments. They come from the letter table, the positional r
 | Affricate |  |  | dz |  |  |  |  |
 | Nasal | m |  | n |  | ŋ |  |  |
 | Fricative | β | f v | s z |  | x | χ | h ɦ |
-| Approximant |  |  | ɹ | j |  |  |  |
+| Approximant |  |  | ɹ | j j̃ |  |  |  |
 | Lateral approximant |  |  | l |  |  |  |  |
 
 | Vowels | Front | Back |
 |:--|:-:|:-:|
-| Close | i | u |
-| Near-close |  | ʊ |
-| Close-mid | e | o |
-| Open-mid | ɛ | ɔ |
-| Open | a | ɑ |
+| Close | i ĩ | u ũ |
+| Near-close |  | ʊ ʊ̃ |
+| Close-mid | e ẽ | o õ |
+| Open-mid | ɛ ɛ̃ | ɔ ɔ̃ |
+| Open | a ã | ɑ ɑ̃ |
 
-Sequences that the spec writes as one unit: [bʱ] [dʱ] [oi] [ou] [w] [zʱ] [ɡʱ] [ɹi] [ɹʱ] [̃].
+Sequences that the spec writes as one unit: [bʱ] [dʱ] [w] [w̃] [zʱ] [ɡʱ] [ɹʱ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->

@@ -127,7 +127,7 @@
       "p"
     ]
   },
-  "parent": "cel",
+  "inherits": "cel",
   "notes": "Galatian (3rd c. BCE – 5th c. CE). ISO 639-3: xga. Celtic of central Anatolia (modern Ankara region). Spoken by Galatians — Celts who migrated from Balkans/Thrace to Asia Minor in 278 BCE (invited by Nicomedes I of Bithynia). Attestation: extremely sparse — ~120 glosses, personal names, and tribal names in Greek/Latin sources. No continuous texts. Jerome (347–420 CE) claimed Galatian was similar to Gaulish spoken around Trier. Celtic p-loss maintained. Beyond this, phonology is largely inferred from Gaulish comparison and Greek transcriptions. Speculative phonetics — included to close the Continental Celtic subtree. Refs: Freeman (2001), Mitchell (1993), Strobel (1996).",
   "quality": "skeleton",
   "script_type": "alphabet",
@@ -173,8 +173,6 @@
     "start_year": -280,
     "end_year": 400
   },
-  "glottolog_code": "gala1252",
-  "wikidata_qid": "Q27403",
   "location": {
     "latitude": 39.34,
     "longitude": 32.84,

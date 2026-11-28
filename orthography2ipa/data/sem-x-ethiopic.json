@@ -8,7 +8,6 @@
   "quality": "stub",
   "script_type": "reconstruction",
   "iso639_3": null,
-  "glottolog_code": "ethi1244",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/South_Semitic_languages"
   ],
@@ -28,7 +27,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/South_Semitic_languages"
     }
   ],
-  "parent": "sem-x-west",
+  "inherits": "sem-x-west",
   "ancestors": [
     {
       "code": "sem-x-west",

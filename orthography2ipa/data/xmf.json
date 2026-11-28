@@ -116,8 +116,6 @@
   },
   "allophones": {},
   "iso639_3": "xmf",
-  "glottolog_code": "ming1252",
-  "wikidata_qid": "Q13359",
   "notes": "Mingrelian (მარგალური ნინა), a Kartvelian (South Caucasian) language of western Georgia. INPUT CONTRACT: Georgian MKHEDRULI text (Unicode U+10D0..U+10FA, NFC); the historical Asomtavruli and Nuskhuri scripts and any romanisation are out of scope. Mkhedruli is a true ALPHABET — unicameral, essentially one letter per phoneme, no inherent vowel — which makes the map near-bijective. Mingrelian uses the modern Georgian letters plus three signs standard Georgian has dropped or never had: ჲ /j/, ჷ /ə/ (the schwa, prominent in the Zugdidi–Samurzaqano dialect) and ჸ /ʔ/. Like Georgian it has the three-way stop/affricate contrast voiced ~ aspirated ~ ejective. Structural ancestry node: Proto-Kartvelian (ccs.json).",
   "sources": [
     {
@@ -231,7 +229,7 @@
     "ʔ",
     "χ"
   ],
-  "parent": "x-clade-kart1248",
+  "inherits": "x-clade-kart1248",
   "ancestors": [
     {
       "code": "x-clade-kart1248",

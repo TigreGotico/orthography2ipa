@@ -1,7 +1,6 @@
 {
   "code": "umb",
   "name": "Umbundu",
-  "glottolog_code": "umbu1257",
   "script": "Latin",
   "script_type": "alphabet",
   "iso639_3": "umb",
@@ -91,7 +90,7 @@
       "notes": "Primary source for the three-tone (low/high/downstepped-high) orthographic accent system; corrects a prior two-tone claim."
     }
   ],
-  "parent": "x-clade-narr1281",
+  "inherits": "x-clade-narr1281",
   "ancestors": [
     {
       "code": "x-clade-narr1281",
@@ -111,7 +110,6 @@
     "start_year": 1900,
     "end_year": null
   },
-  "wikidata_qid": "Q36983",
   "location": {
     "latitude": -12.6,
     "longitude": 15.7,

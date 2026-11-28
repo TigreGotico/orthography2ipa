@@ -105,6 +105,7 @@ class TestPrivateUseSpellings:
     @pytest.mark.parametrize("spelling,canonical", [
         ("pt-BR-x-sao-paulo", "pt-BR-x-sp"),
         ("pt-BR-x-rio-janeiro", "pt-BR-x-rj"),
+        ("pt-BR-x-pb", "pt-BR-x-paraiba"),
         ("pt-PT-x-lisboa", "pt-PT-x-lisbon"),
     ])
     def test_consumer_spellings_are_aliases(self, spelling, canonical):

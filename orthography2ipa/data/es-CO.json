@@ -29,7 +29,7 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Bogotá highland Spanish (rolo). Very conservative: full coda /s/, alveolar /n/, no aspiration. Strong [ɟʝ] affricate for /ʝ/. Often cited as one of the 'clearest' Latin American varieties. The standard reference for Colombian media.",
   "quality": "skeleton",
   "script_type": "alphabet",
@@ -74,7 +74,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "spa",
   "positional_graphemes": {
     "c": {
@@ -86,11 +85,18 @@
       ]
     }
   },
-  "wikidata_qid": "Q1115875",
   "location": {
     "latitude": 4.60971,
     "longitude": -74.08175,
     "source": "wikidata",
     "notes": "Bogotá — the highland city whose rolo speech this spec models. [Wikidata Q2841 P625]"
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "ES_S_VOICING",
+      "phonemes": [],
+      "surface": "",
+      "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. Its source describes the Castilian standard of Spain, and no source for this variety was opened, so the rule is switched off here."
+    }
+  ]
 }

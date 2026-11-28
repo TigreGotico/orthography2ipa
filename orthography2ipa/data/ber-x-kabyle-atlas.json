@@ -2,7 +2,7 @@
   "code": "ber-x-kabyle-atlas",
   "name": "Kabyle-Atlas Berber",
   "script": "Latin",
-  "parent": "ber",
+  "inherits": "ber",
   "ancestors": [
     {
       "code": "ber",
@@ -17,7 +17,6 @@
   "quality": "stub",
   "script_type": "alphabet",
   "iso639_3": null,
-  "glottolog_code": "kaby1244",
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Kabyle_language",
     "https://en.wikipedia.org/wiki/Berber_languages",

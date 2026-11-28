@@ -26,7 +26,7 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Paisa/Antioqueño (Medellín). Conservative coda /s/, strong [ɟʝ] affrication, distinctive voseo. Sometimes apicoalveolar sibilant tendency. Melodic intonation (not captured here).",
   "quality": "skeleton",
   "script_type": "alphabet",
@@ -71,7 +71,6 @@
     "start_year": 1700,
     "end_year": null
   },
-  "glottolog_code": null,
   "iso639_3": "spa",
   "positional_graphemes": {
     "c": {
@@ -83,11 +82,18 @@
       ]
     }
   },
-  "wikidata_qid": "Q5840034",
   "location": {
     "latitude": 6.2502,
     "longitude": -75.567585,
     "source": "wikidata",
     "notes": "Medellín — the centre of the Paisa/Antioqueño area. [Wikidata Q48278 P625]"
-  }
+  },
+  "allophone_rules": [
+    {
+      "id": "ES_S_VOICING",
+      "phonemes": [],
+      "surface": "",
+      "notes": "DISABLED: ES_S_VOICING voices a coda /s/ before a voiced consonant. Its source describes the Castilian standard of Spain, and no source for this variety was opened, so the rule is switched off here."
+    }
+  ]
 }

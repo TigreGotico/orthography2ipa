@@ -1,7 +1,7 @@
 {
   "code": "phn",
   "name": "Phoenician/Punic",
-  "parent": "x-clade-semi1276",
+  "inherits": "x-clade-semi1276",
   "script": "Latin",
   "graphemes": {
     "ʾ": [
@@ -251,8 +251,6 @@
     "start_year": -1100,
     "end_year": 100
   },
-  "glottolog_code": "phoe1239",
-  "wikidata_qid": "Q36734",
   "location": {
     "latitude": 34.12,
     "longitude": 35.65,

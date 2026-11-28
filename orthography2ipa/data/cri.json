@@ -1,11 +1,10 @@
 {
   "code": "cri",
-  "glottolog_code": "saot1239",
   "name": "Sãotomense (Forro / Santome)",
   "script": "Latin",
   "quality": "research",
   "script_type": "alphabet",
-  "parent": "pt-PT",
+  "inherits": "pt-PT",
   "graphemes": {
     "a": [
       "a"
@@ -260,6 +259,18 @@
     ]
   },
   "allophone_rules": [
+    {
+      "id": "PT_EX_CONSONANT_GLIDE",
+      "phonemes": [],
+      "surface": "ɐj",
+      "notes": "DISABLED for Sãotomense (Forro). No source for the vowel of ⟨ex⟩ before a consonant in this variety was read, so its output stays what it was. The pt-PT rule gives ⟨ex⟩ the diphthong of the pt-PT ⟨ei⟩, [ej]."
+    },
+    {
+      "id": "PT_INITIAL_EX_VOICED",
+      "phonemes": [],
+      "surface": "z",
+      "notes": "DISABLED for Sãotomense (Forro). No source for the reading of word-initial ⟨ex⟩ before a vowel in this variety was read, so its output stays what it was. The pt-PT rule gives the ⟨x⟩ the value [z]."
+    },
     {
       "id": "PT_LEX_NASAL_UI",
       "phonemes": [],
@@ -889,7 +900,6 @@
     "end_year": null
   },
   "iso639_3": "cri",
-  "wikidata_qid": "Q36536",
   "phoible_id": "saot1239",
   "location": {
     "latitude": 0.3301,

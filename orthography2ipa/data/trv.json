@@ -88,8 +88,6 @@
   },
   "allophones": {},
   "iso639_3": "trv",
-  "glottolog_code": "taro1264",
-  "wikidata_qid": "Q716686",
   "notes": "Seediq (Kari Seediq), including the Truku/Taroko variety that ISO 639-3 trv names — a Formosan (Austronesian) language of Taiwan. The map commits to the OFFICIAL ROMANISATION of the Council of Indigenous Peoples / Ministry of Education, 原住民族語言書寫系統 (15 December 2005), Seediq writing system (十三, covering Tgdaya, Toda and Truku), with the Taroko system (十二) as the secondary reading where the two published tables differ. Letters whose value departs from the IPA: ⟨c⟩ = /ts/ (Taroko /t͡ɕ/), ⟨j⟩ = /ɟ/, ⟨g⟩ = /ɡ/ (Taroko /ɣ/), ⟨x⟩ = /x/, ⟨h⟩ = the voiceless PHARYNGEAL fricative /ħ/, ⟨r⟩ = the alveolar flap /ɾ/, ⟨l⟩ = /l/ (Taroko /ɮ/), ⟨y⟩ = /j/, ⟨ng⟩ = /ŋ/. ⟨c⟩ and ⟨j⟩ in practice spell the palatal allophones of /t/ and /d/ after ⟨i⟩ and ⟨y⟩. The vowel letter ⟨e⟩ is /ə/ in Toda and Truku but /e/ in Tgdaya; the 2017 revision added the digraph ⟨ey⟩ for [e]. Reduced (schwa) vowels are frequently left unwritten in current spelling practice, and the community declined to change that, so some vowels are NOT recoverable from the spelling — this map cannot restore them. Seediq has no ⟨'⟩ for the glottal stop in the 2005 standard (adding one is still under discussion). Diphthongs ⟨ay aw uy⟩ fall out of the letter values. INPUT CONTRACT: Latin-script Seediq/Truku in the 2005 official orthography.",
   "sources": [
     {
@@ -184,7 +182,7 @@
     "ʃ",
     "ʌ"
   ],
-  "parent": "x-clade-aust1307",
+  "inherits": "x-clade-aust1307",
   "ancestors": [
     {
       "code": "x-clade-aust1307",

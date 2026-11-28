@@ -1,5 +1,13 @@
 # Urdu (`ur`)
 
+<!-- agent-hint
+covers: what the `ur` spec holds: its place in the family tree, its sources and scores, its sounds, its spelling rules and transcribed examples
+source: `orthography2ipa/data/ur.json`, `benchmarks/results.json`, `scripts/atlas_snapshot.json`
+generated: partly. `scripts/gen_language_atlas.py` writes this hint and the blocks between the `atlas:` markers. Edit the generator for those, and the page for the prose between them
+verify: `PYTHONPATH=$PWD python scripts/gen_language_atlas.py --check`
+see: `docs/languages/hi.md`, `docs/languages/a-z.md`, `docs/specs/quality_tiers.md`, `orthography2ipa/data/SCHEMA.md`
+-->
+
 <!-- atlas:summary begin -->
 Urdu is an Indo-Aryan language, written in the Arabic script. Glottolog places it in Afghanistan, Bangladesh, India and Pakistan. The `ur` spec is at the research tier. It cites 5 sources and has 1 scored dataset.
 <!-- atlas:summary end -->
@@ -65,7 +73,7 @@ Every row of the board that scores this spec. PER is the phoneme error rate agai
 <!-- atlas:inventory begin -->
 ## Inventory
 
-The spec can emit 116 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
+The spec can emit 75 segments. They come from the letter table, the positional readings, the allophones and the rules, so the charts show what the spec can write, not a phonemic analysis. A segment with a diacritic sits in the cell of its base symbol.
 
 | Consonants | Bilabial | Labiodental | Alveolar | Postalveolar | Retroflex | Palatal | Velar | Uvular | Glottal |
 |:--|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -75,19 +83,19 @@ The spec can emit 116 segments. They come from the letter table, the positional 
 | Trill |  |  | r |  |  |  |  |  |  |
 | Tap |  |  | ɾ |  | ɽ |  |  |  |  |
 | Fricative |  | f v | s z | ʃ ʒ | ʂ |  | x ɣ |  | h ɦ |
-| Approximant |  | ʋ |  |  |  | j |  |  |  |
+| Approximant |  | ʋ |  |  |  | j j̃ |  |  |  |
 | Lateral approximant |  |  | l |  |  |  |  |  |  |
 
 | Vowels | Front | Central | Back |
 |:--|:-:|:-:|:-:|
-| Close | iː |  | uː |
-| Near-close | ɪ |  | ʊ |
-| Close-mid | eː |  | o oː |
-| Mid |  | ə |  |
-| Open-mid | ɛː |  | ɔː |
-| Open | aː |  |  |
+| Close | iː ĩː |  | uː ũː |
+| Near-close | ɪ ɪ̃ |  | ʊ ʊ̃ |
+| Close-mid | eː ẽː |  | o oː õ õː |
+| Mid |  | ə ə̃ |  |
+| Open-mid | ɛː ɛ̃ː |  | ɔː ɔ̃ː |
+| Open | aː ãː |  |  |
 
-Sequences that the spec writes as one unit: [bə] [bʱ] [bʱə] [dʒə] [dʒɲ] [dʒɲə] [dʒʱ] [dʒʱə] [d̪ə] [d̪ʱ] [d̪ʱə] [fə] [jə] [kə] [kʃ] [kʃə] [kʰə] [lə] [lʱ] [mə] [mʱ] [nə] [nʱ] [pə] [pʰə] [qə] [sə] [tʃə] [tʃʰə] [t̪ə] [t̪ɾ] [t̪ɾə] [t̪ʰə] [w] [xə] [zə] [ŋə] [ɖə] [ɖʱ] [ɖʱə], and 26 more.
+Sequences that the spec writes as one unit: [bʱ] [dʒʱ] [d̪ʱ] [lʱ] [mʱ] [nʱ] [w] [w̃] [ɖʱ] [ɡʱ] [ɽʱ] [ɾʱ] [ʰ].
 <!-- atlas:inventory end -->
 
 <!-- atlas:spelling begin -->
