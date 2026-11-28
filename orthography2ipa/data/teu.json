@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-kuli1252",
+ "inherits": "x-clade-kuli1252",
  "phonemes": [
   "j",
   "k",

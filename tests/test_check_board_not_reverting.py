@@ -540,7 +540,7 @@ class TestEndToEnd:
         write_spec(repo, "pt-PT", "base")
         with open(os.path.join(repo, "orthography2ipa", "data",
                                "pt-PT-x-lisbon.json"), "w") as fh:
-            json.dump({"code": "pt-PT-x-lisbon", "parent": "pt-PT"}, fh)
+            json.dump({"code": "pt-PT-x-lisbon", "inherits": "pt-PT"}, fh)
         write_board(repo, [row("mr", per=0.4351), row("xh", "kaikki", per=0.3),
                            row("pt-PT-x-lisbon", per=0.2)])
         git(repo, "add", "-A")

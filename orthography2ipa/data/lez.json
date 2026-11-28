@@ -304,7 +304,7 @@
     "χʷ",
     "χʷʲ"
   ],
-  "parent": "x-clade-nakh1245",
+  "inherits": "x-clade-nakh1245",
   "ancestors": [
     {
       "code": "x-clade-nakh1245",

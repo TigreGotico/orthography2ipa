@@ -36,7 +36,7 @@ def test_targets_the_tripoli_koine_and_cites_its_primary_sources():
     assert spec.quality.value == "research"
     ids = {s.id for s in spec.sources}
     assert {"pereira2010", "pereira2011eall", "owens1984", "benkato2020"} <= ids
-    assert spec.parent == "ar-x-maghrebi"
+    assert spec.inherits == "ar-x-maghrebi"
 
 
 # ─── qāf → [ɡ] (Bedouin-type), [q] only in Literary borrowings ─────────────

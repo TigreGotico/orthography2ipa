@@ -76,8 +76,10 @@ class Pipeline:
             A rule has the pattern and template texts of a spec ``SandhiRule``
             under the keys ``left``, ``right``, ``left_out`` and ``right_out``,
             and may add ``left_spelling`` and ``right_spelling``, patterns on
-            the written word, or ``"pause": true`` for a rule on a word at a
-            pause (docs/ir/o2i-ir-v1.md, 3.10.1). ``unsupported`` names the
+            the written word, ``left_joined_spelling`` and
+            ``right_joined_spelling``, patterns on the word joined to the word
+            before it by a hyphen, or ``"pause": true`` for a rule on a word at
+            a pause (docs/ir/o2i-ir-v1.md, 3.10.1). ``unsupported`` names the
             rules the plugin keeps as a hook. Any other part, another
             ``ir_version``, a bad key or a bad rule raises :class:`ValueError`
             when the engine builds its IR. A loom export carries the

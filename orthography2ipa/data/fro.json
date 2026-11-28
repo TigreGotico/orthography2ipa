@@ -149,7 +149,7 @@
       ]
     }
   },
-  "parent": "la-x-gallia",
+  "inherits": "la-x-gallia",
   "ancestors": [
     {
       "code": "la-x-gallia",

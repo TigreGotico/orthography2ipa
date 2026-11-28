@@ -20,7 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/South_Slavic_languages"
   ],
-  "parent": "sla",
+  "inherits": "sla",
   "urls": [
     "https://glottolog.org/resource/languoid/id/sout3147"
   ],

@@ -128,7 +128,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-utoa1244",
+ "inherits": "x-clade-utoa1244",
  "script_type": "alphabet",
  "wikipedia": [
   "https://en.wikipedia.org/wiki/Western_Huasteca_Nahuatl_language"

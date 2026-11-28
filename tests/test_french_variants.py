@@ -60,7 +60,7 @@ def _say(text, tag):
     ("tu", "t͡sy"),                # Dow 2019: 1, before /y/
     ("nuit", "nɥi"),               # no stop before the glide: no affricate
     ("tuile", "t͡sɥɪl"),           # before /ɥ/ (Dow 2019: 1)
-    ("tiens", "t͡sjɛ̃"),            # before the glide of ⟨ien⟩ (Dow 2019: 1)
+    ("tiens", "t͡sjẽ"),            # before the glide of ⟨ien⟩ (Dow 2019: 1)
     ("pitié", "pit͡sje"),          # before /j/
 ])
 def test_quebec_affricates_a_coronal_stop_before_a_high_front_vocoid(
@@ -69,9 +69,9 @@ def test_quebec_affricates_a_coronal_stop_before_a_high_front_vocoid(
 
 
 @pytest.mark.parametrize("text, expected", [
-    ("trois", "tʁwa"),             # /w/ and /ʁ/ do not trigger it
-    ("toit", "twa"),
-    ("tête", "tɛt"),               # /t/ before a mid vowel
+    ("trois", "tʁwɒ"),             # /w/ and /ʁ/ do not trigger it (final /a/
+    ("toit", "twɒ"),               # is [ɒ], Dumas 1974: 27)
+    ("tête", "tai̯t"),             # /t/ before a mid vowel (long [ɛː] -> [ai̯])
     ("dos", "do"),
     ("patte", "pat"),
 ])
@@ -100,9 +100,10 @@ def test_quebec_keeps_a_high_vowel_tense_in_an_open_final_syllable(
 
 
 def test_quebec_keeps_the_a_and_open_a_contrast():
-    # Burness et al. 2022: 1 (patte [pat], pâte [pɑt])
+    # Burness et al. 2022: 1 (patte [pat], pâte [pɑt]); the long back vowel
+    # of pâte is the diphthong [ɑu̯] (Dumas 1974: 15-16, Table II, p. 26)
     assert _say("patte", "fr-CA") == "pat"
-    assert _say("pâte", "fr-CA") == "pɑt"
+    assert _say("pâte", "fr-CA") == "pɑu̯t"
 
 
 # --- fr-BE, fr-CH, fr-CI ------------------------------------------------
@@ -121,22 +122,27 @@ def test_the_pate_patte_contrast_follows_the_region(tag, expected):
 @pytest.mark.parametrize("tag, fete, belle, bele", [
     ("fr-CH", "fɛːt", "bɛl", "bɛːl"),   # faites ~ fête, belle ~ bêle (PFC)
     ("fr-FR", "fɛt", "bɛl", "bɛl"),
-    ("fr-BE", "fɛt", "bɛl", "bɛl"),     # the PFC page does not state it
+    ("fr-BE", "fɛːt", "bɛl", "bɛːl"),   # Bardiaux et al. 2016: 40
     ("fr-CI", "fɛt", "bɛl", "bɛl"),
 ])
-def test_the_circumflex_e_is_long_only_where_pfc_states_it(
+def test_the_circumflex_e_is_long_only_where_a_source_states_it(
         tag, fete, belle, bele):
     assert _say("fête", tag) == fete
     assert _say("faites", tag) == "fɛt"   # the short member of the pair
     assert _say("bêle", tag) == bele
 
 
-@pytest.mark.parametrize("tag", ["fr-FR", "fr-CA", "fr-BE", "fr-CH", "fr-CI"])
-def test_every_variant_keeps_brin_and_brun_apart(tag):
-    # PFC page d) 2): the contrast survives at Tournai, Nyon and Abidjan;
-    # fr-FR keeps both phonemes, so the variants inherit it.
-    assert _say("brin", tag) == "bʁɛ̃"
-    assert _say("brun", tag) == "bʁœ̃"
+@pytest.mark.parametrize("tag, brin, brun", [
+    ("fr-FR", "bʁɛ̃", "bʁœ̃"), ("fr-BE", "bʁɛ̃", "bʁœ̃"),
+    ("fr-CH", "bʁɛ̃", "bʁœ̃"), ("fr-CI", "bʁɛ̃", "bʁœ̃"),
+    ("fr-CA", "bʁẽ", "bʁœ̃"),       # the front nasal is [ẽ] (Dumas 1974: 26)
+    ("fr-FR-x-midi", "bʁɛŋ", "bʁœŋ"),  # vowel + appendix (Eychenne 2006: 115)
+])
+def test_every_variant_keeps_brin_and_brun_apart(tag, brin, brun):
+    # PFC page d) 2): the contrast survives at Tournai, Nyon, Toulouse and
+    # Abidjan; fr-FR keeps both phonemes, so the variants inherit it.
+    assert _say("brin", tag) == brin
+    assert _say("brun", tag) == brun
 
 
 # --- resolution and inheritance -----------------------------------------
@@ -175,14 +181,96 @@ def test_an_extension_or_variant_keeps_the_region(tag, code):
     assert o2i.resolve(tag) == code
 
 
-@pytest.mark.parametrize("tag", ["fr-CA", "fr-BE", "fr-CH", "fr-CI"])
+#: The whole-word entries a variant states over those of fr-FR: vingt with
+#: its final [t] (PFC consonant page II d) 4); Avanzi 2016, 2024), the
+#: Laurentian long vowel of the fr-FR ⟨-er⟩ exceptions (Dumas 1974: 18-21)
+#: and the [ø] of the Midi clitics (PFC e-caduc page, 'Timbre') with the
+#: Midi readings of the fr-FR exceptions its rules would change.
+OWN_EXCEPTIONS = {
+    "fr-CA": {"mer": "mai̯ʁ", "mers": "mai̯ʁ", "fer": "fai̯ʁ", "fers": "fai̯ʁ",
+              "cher": "ʃai̯ʁ", "chers": "ʃai̯ʁ", "hiver": "ivai̯ʁ",
+              "hivers": "ivai̯ʁ", "enfer": "ɑ̃fai̯ʁ", "enfers": "ɑ̃fai̯ʁ",
+              "amer": "amai̯ʁ", "amers": "amai̯ʁ", "hier": "jai̯ʁ",
+              "hiers": "jai̯ʁ",
+              "ver": "vai̯ʁ", "outremer": "utʁəmai̯ʁ"},
+    "fr-BE": {"vingt": "vɛ̃t"}, "fr-CH": {"vingt": "vɛ̃t"},
+    "fr-FR-x-midi": {"le": "lø", "de": "dø", "que": "kø", "ce": "sø",
+                     "ne": "nø", "se": "sø", "je": "ʒø", "me": "mø",
+                     "te": "tø", "ville": "vilə", "mille": "milə",
+                     "lille": "lilə", "tranquille": "tʁaŋkilə",
+                     "tranquillement": "tʁaŋkiləmaŋ", "enfer": "aɱfɛʁ",
+                     "enfers": "aɱfɛʁ", "sens": "sans", "cancer": "kansɛʁ",
+                     "cancers": "kansɛʁ", "cresson": "kʁøsɔŋ",
+                     "cressonnière": "kʁøsɔnjɛʁə", "dessus": "døsy",
+                     "dessous": "døsu", "parfum": "paʁfœŋ",
+                     "parfums": "paʁfœŋ", "zinc": "zɛŋɡ",
+                     "chnoque": "ʃnɔkə", "chnoques": "ʃnɔkə",
+                     "chlingue": "ʃlɛŋɡə", "chlinguer": "ʃlɛŋɡe",
+                     "donc": "dɔŋk"},
+}
+
+
+#: The fr-FR sandhi rules each variant restates by id: fr-CA so that the
+#: high vowel left in an open syllable is tense (Hall 2016: 7) and so that
+#: its vowel class holds the Laurentian vowels that open a word ([ẽ ɪ ʏ ʊ
+#: ɒ]); every variant so that the words before which a numeral keeps its
+#: consonant are also written in its own readings. On a base without one of
+#: these fr-FR rules the restated rule stands at the end as the variant's own.
+SANDHI_RESTATED = {
+    "fr-CA": {"FR_DIX_Z_BEFORE_HUIT_NEUF", "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
+              "FR_HUIT_MUTE_BEFORE_CONSONANT", "FR_NUMERAL_Z_BEFORE_VOWEL",
+              "FR_NEUF_V_BEFORE_HEURES", "FR_LIAISON_Z", "FR_LIAISON_T",
+              "FR_LIAISON_N", "FR_LIAISON_R", "FR_LIAISON_P",
+              "FR_ENCHAÎNEMENT"},
+    "fr-BE": {"FR_NUMERAL_MUTE_BEFORE_CONSONANT", "FR_DIX_Z_BEFORE_HUIT_NEUF"},
+    "fr-FR-x-midi": {"FR_NEUF_V_BEFORE_HEURES", "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
+                     "FR_HUIT_MUTE_BEFORE_CONSONANT",
+                     "FR_NUMERAL_Z_BEFORE_VOWEL"},
+}
+#: The sandhi rules a variant adds to those of fr-FR.
+OWN_SANDHI = {
+    "fr-BE": {"FR_BE_HUIT_MUTE_BEFORE_CONSONANT", "FR_BE_QUATRE_VINGT_MUTE_T"},
+    "fr-CH": {"FR_CH_QUATRE_VINGT_MUTE_T"},
+    "fr-FR-x-midi": {"FR_MIDI_APPENDIX_LABIAL_ACROSS_WORDS", "FR_MIDI_APPENDIX_LABIODENTAL_ACROSS_WORDS",
+                     "FR_MIDI_APPENDIX_CORONAL_ACROSS_WORDS", "FR_MIDI_SCHWA_ELISION"},
+}
+
+
+def _sandhi_key(rule):
+    get = rule.get if isinstance(rule, dict) else (
+        lambda k: getattr(rule, k))
+    return (get("id"), get("left_context"), get("right_context"),
+            get("transform"))
+
+
+@pytest.mark.parametrize("tag", ["fr-CA", "fr-BE", "fr-CH", "fr-CI",
+                                 "fr-FR-x-midi"])
 def test_a_variant_inherits_fr_fr(tag):
     spec, base = o2i.get(tag), o2i.get("fr-FR")
     assert spec.code == tag
-    assert spec.parent == "fr-FR"
+    assert spec.inherits == "fr-FR"
     assert spec.word_internal_apostrophe is True
-    assert spec.word_exceptions == base.word_exceptions
-    assert spec.sandhi_rules == base.sandhi_rules
+    assert spec.word_exceptions == {**base.word_exceptions,
+                                    **OWN_EXCEPTIONS.get(tag, {})}
+    # The variant's own sandhi rules, as its file states them.
+    own = json.loads((Path(o2i.__file__).parent / "data" / f"{tag}.json")
+                     .read_text(encoding="utf-8")).get("sandhi_rules", [])
+    own_ids = [r["id"] for r in own]
+    assert set(own_ids) == (SANDHI_RESTATED.get(tag, set())
+                            | OWN_SANDHI.get(tag, set()))
+    # The resolved list is the id-keyed overlay: a restated rule takes its
+    # parent's slot, and a rule the parent lacks follows in file order.
+    by_id = {r["id"]: r for r in own}
+    base_ids = {r.id for r in base.sandhi_rules}
+    expected = [_sandhi_key(by_id.get(r.id, r)) for r in base.sandhi_rules]
+    expected += [_sandhi_key(r) for r in own if r["id"] not in base_ids]
+    assert [_sandhi_key(r) for r in spec.sandhi_rules] == expected
+
+
+def test_quebec_neuf_heures_reads_the_laurentian_heures():
+    neuf = [r for r in o2i.get("fr-CA").sandhi_rules
+            if r.id == "FR_NEUF_V_BEFORE_HEURES"]
+    assert len(neuf) == 1 and "ay̯ʁ" in neuf[0].right_context
 
 
 @pytest.mark.parametrize("tag, words", [
@@ -190,31 +278,71 @@ def test_a_variant_inherits_fr_fr(tag):
     ("fr-BE", ["maison", "chat", "école", "parler", "brun", "d'accord"]),
     ("fr-CH", ["maison", "chat", "école", "parler", "brun", "d'accord"]),
     ("fr-CI", ["maison", "chat", "école", "parler", "brun", "d'accord"]),
-    ("fr-CA", ["maison", "chat", "école", "parler", "brun", "d'accord"]),
+    ("fr-CA", ["maison", "ami", "école", "parler", "brun", "d'accord"]),
 ])
 def test_a_variant_reads_like_fr_fr_where_no_feature_applies(tag, words):
     for word in words:
         assert _say(word, tag) == _say(word, "fr-FR"), word
 
 
-def test_the_assistant_sentences_differ_from_fr_fr_only_at_a_cited_feature():
-    diffs = {"fr-BE": set(), "fr-CH": set(), "fr-CI": set()}
-    for tag, found in diffs.items():
-        for text in TEXTS:
-            if _say(text, tag) != _say(text, "fr-FR"):
-                found.add(text)
-    # the sentences hold no ⟨â⟩; fr-CH differs only through ⟨ê⟩
-    assert diffs["fr-BE"] == set()
-    assert diffs["fr-CI"] == set()
-    for text in diffs["fr-CH"]:
-        assert "ê" in text
+#: Each regional difference in the assistant sentences, as a substitution on
+#: the fr-FR reading: fr-BE [w] for the [ɥ] of ⟨ui⟩ (bruine, puis, huit,
+#: aujourd'hui) and the long vowel of allumée before its final mute ⟨e⟩;
+#: fr-CH that long vowel; fr-CI nothing. The rest of the sentence must read
+#: as fr-FR reads it.
+SENTENCE_SUBSTITUTIONS = {
+    "fr-BE": [("ɥi", "wi"), ("alyme ", "alymeː ")],
+    "fr-CH": [("alyme ", "alymeː ")],
+    "fr-CI": [],
+}
+
+
+@pytest.mark.parametrize("tag", sorted(SENTENCE_SUBSTITUTIONS))
+def test_the_assistant_sentences_differ_from_fr_fr_only_at_a_cited_feature(
+        tag):
+    for text in TEXTS:
+        expected = _say(text, "fr-FR")
+        for plain, regional in SENTENCE_SUBSTITUTIONS[tag]:
+            expected = expected.replace(plain, regional)
+        assert _say(text, tag) == expected, text
+
+
+def _undo_laurentian(ipa):
+    # Each cited surface back to the fr-FR phoneme it comes from. [ɑu̯] comes
+    # from /ɔ/, /a/ or /ɑ/, so those three fold into one symbol on both sides.
+    undo = [("ɛ̃i̯", "ɛ̃"), ("ãy̯", "œ̃"), ("ɔ̃u̯", "ɔ̃"), ("ɑ̃u̯", "ɑ̃"),
+            ("ai̯", "ɛ"), ("ɛi̯", "e"), ("œy̯", "ø"), ("ay̯", "œ"),
+            ("ɔu̯", "o"), ("ɑu̯", "A"), ("ẽ", "ɛ̃"), ("ã", "ɑ̃"), ("ɒ", "a"),
+            ("iː", "i"), ("yː", "y"), ("uː", "u"), ("ɪ", "i"), ("ʏ", "y"),
+            ("ʊ", "u"), ("t͡s", "t"), ("d͡z", "d")]
+    for cited, plain in undo:
+        ipa = ipa.replace(cited, plain)
+    return ipa.replace("ɑ̃", "Ñ").replace("ɔ̃", "Ō").translate(
+        str.maketrans("ɔaɑ", "AAA"))
 
 
 def test_a_laurentian_difference_is_always_a_cited_allophone():
-    # Undo the four cited changes: what is left must be fr-FR, word for word.
-    undo = {"ɪ": "i", "ʏ": "y", "ʊ": "u", "t͡s": "t", "d͡z": "d"}
+    # Undo the cited changes: what is left must be fr-FR, word for word.
     for text in TEXTS:
-        ours = _say(text, "fr-CA")
-        for cited, plain in undo.items():
-            ours = ours.replace(cited, plain)
-        assert ours == _say(text, "fr-FR"), text
+        ours = _undo_laurentian(_say(text, "fr-CA"))
+        assert ours == _undo_laurentian(_say(text, "fr-FR")), text
+
+
+#: The proclitics whose [a] stays front (Dumas 1974: 41, n. 13), by their
+#: fr-FR reading. [a] itself is left out: it is both the proclitic à and the
+#: verb a, whose word-final /a/ is [ɒ] (il y a [il i ɒ]).
+PROCLITIC_A = {"la", "ma", "ta", "sa"}
+
+
+def test_a_laurentian_back_a_never_reaches_a_proclitic():
+    # The normalised comparison above folds [ɒ] into [a]; check the [a]
+    # words one by one. Both readings split into the same words.
+    for text in TEXTS:
+        ours, base = _say(text, "fr-CA").split(), _say(text, "fr-FR").split()
+        assert len(ours) == len(base), text
+        for mine, plain in zip(ours, base):
+            if plain in PROCLITIC_A:
+                assert mine == plain, (text, plain, mine)
+            if "ɒ" in mine:
+                assert plain.endswith(("a", "wa")) and plain not in \
+                    PROCLITIC_A, (text, plain, mine)

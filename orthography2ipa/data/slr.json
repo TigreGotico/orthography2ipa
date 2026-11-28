@@ -103,7 +103,7 @@
    "z"
   ]
  },
- "parent": "trk",
+ "inherits": "trk",
  "ancestors": [
   {
    "code": "trk",

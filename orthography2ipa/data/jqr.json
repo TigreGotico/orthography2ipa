@@ -59,7 +59,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-ayma1253",
+ "inherits": "x-clade-ayma1253",
  "phonemes": [
   "c",
   "cʰ",

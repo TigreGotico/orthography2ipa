@@ -9,7 +9,7 @@ are mechanical, so they can be found without reading a spec.
 Two signals are computed here. The first is coverage: the characters that occur
 on the orthographic side of a spec's own gold, minus the characters its resolved
 grapheme table can consume. Every one of those is a character the engine drops.
-The second is inheritance across a language-family boundary: a ``parent``,
+The second is inheritance across a language-family boundary: an ``inherits``,
 ``graphemes_base`` or ``allophones_base`` that points at a language from a
 different family is a borrowed phonology until proven otherwise.
 
@@ -49,7 +49,7 @@ from orthography2ipa.inventory import emission_inventory  # noqa: E402
 from orthography2ipa.json_loader import _DATA_DIR as DATA_DIR  # noqa: E402
 
 BASE_FIELDS = (
-    "parent",
+    "inherits",
     "graphemes_base",
     "allophones_base",
     "positional_graphemes_base",

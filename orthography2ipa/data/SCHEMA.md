@@ -46,7 +46,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
       ]
     }
   },
-  "parent": "la-x-hispania",
+  "inherits": "la-x-hispania",
   "ancestors": [
     {
       "code": "la-x-hispania",
@@ -73,7 +73,8 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 | `phonemes`                  | array  | see note | The phoneme inventory, stated directly and independently of `graphemes` (`["p", "t", "k", ...]`). **A spec must declare `graphemes` or `phonemes`; it may not be silent about both.** See [The inventory](#phonemes-the-inventory-stated-directly). |
 | `orthography_kind`          | string | no       | What kind of writing the graphemes are: `"native"` (default), `"romanization"`, `"transliteration"`. See [Orthography kind](#orthography-kind). |
 | `positional_graphemes`      | object | no       | Position-dependent grapheme mappings         |
-| `parent`                    | string | no       | Primary parent language code                 |
+| `inherits`                  | string | no       | Code of the spec whose rules this spec starts from |
+| `parent`                    | string | no       | Deprecated spelling of `inherits`; a spec that sets both is refused |
 | `ancestors`                 | array  | no       | Full ancestry specification                  |
 | `notes`                     | string | no       | Free-form notes and sources                  |
 | `graphemes_base`            | string | no       | Code to inherit graphemes from               |
@@ -129,7 +130,7 @@ Files are named `{code}.json` where `code` is the primary BCP-47 language code.
 
 A language family is a **clade node**: a spec file whose JSON sets
 `"clade": true` and carries classification and nothing else: a `name`, a
-`parent` pointing at the next clade up, and (optionally) sources, identifiers and
+`inherits` pointing at the next clade up, and (optionally) sources, identifiers and
 a centroid `location`. It has no graphemes and no allophones, is never inherited
 from, is never a data source, and is excluded from `available_codes()` unless
 `include_clades=True` is passed.
@@ -143,17 +144,17 @@ from, is never a data source, and is excluded from `available_codes()` unless
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "parent": "la-x-hispania",
+  "inherits": "la-x-hispania",
   "notes": "Classification-only clade node for the Ibero-Romance branch."
 }
 ```
 
 Clade files are named `x-clade-{slug}.json`, use `Zyyy` (undetermined) as their
-script, and sit at `quality: "stub"` with empty maps. A clade's `parent` is
+script, and sit at `quality: "stub"` with empty maps. A clade's `inherits` is
 whatever comes next up the chain: another clade, or the ancestral language the
 branch descends from (`la-x-hispania` here).
 
-The loader derives each spec's `family_path` by walking `parent` upwards and
+The loader derives each spec's `family_path` by walking `inherits` upwards and
 collecting the clade names it passes, broadest first; `family` is that path joined
 with `" > "`:
 
@@ -162,7 +163,7 @@ get("pt-BR").family_path   # ('Indo-European', 'Italic', 'Romance', 'Ibero-Roman
 get("pt-BR").family        # 'Indo-European > Italic > Romance > Ibero-Romance'
 ```
 
-So a language is classified by pointing its `parent` at the right node, never by
+So a language is classified by pointing its `inherits` at the right node, never by
 authoring a `family` string. If the clade does not exist yet, add the node. The
 CLI filter matches any single step of the path, so `--family Romance` and
 `--family Ibero-Romance` both return `pt-BR`.
@@ -291,8 +292,48 @@ To keep a context from the base file, write it again in the child file.
 | `right_context`| string | yes      | Regex on next-word-initial IPA       |
 | `transform`    | string | no       | Replacement for the `left_context` match in the left word. Absent or `null` leaves the left word unchanged. `""` deletes the match |
 | `right_transform` | string | no    | Replacement for the `right_context` match in the right word. Absent or `null` (default) leaves the right word unchanged. Use it when the next word changes, as in Catalan spirantization of a word-initial /b d ɡ/ after a continuant |
+| `left_spelling` | string | no     | Regex that must also find a match in the spelling of the left word. Absent or `null` (default) sets no spelling condition |
+| `right_spelling` | string | no    | Regex that must also find a match in the spelling of the right word. Absent or `null` (default) sets no spelling condition |
+| `left_joined_spelling` | string | no | Regex that must also find a match in the joined spelling of the left word. Absent or `null` (default) sets no condition |
+| `right_joined_spelling` | string | no | Regex that must also find a match in the joined spelling of the right word. Absent or `null` (default) sets no condition |
 | `obligatory`   | bool   | no       | Whether rule is obligatory (default: true) |
 | `notes`        | string | no       | Optional notes                       |
+
+The IPA contexts cannot tell apart two words that sound the same: French
+⟨cent⟩ and ⟨sang⟩ are both [sɑ̃], and only ⟨cent ans⟩ links with [t]. A rule
+then adds a spelling condition, and it fires only when its IPA contexts and
+its spelling conditions all hold. The spelling of a word is its written form,
+casefolded and without the punctuation around it, so a pattern names
+lowercase letters. A hyphen ends a word: in ⟨vingt-deux⟩ the spellings are
+`vingt` and `deux`. The joined spelling of a word joined to the one before
+by a hyphen is that word, `-` and the word; for any other word it is the
+spelling. It spans at most two words. In ⟨quatre-vingt-deux⟩ the joined
+spellings are `quatre`, `quatre-vingt` and `vingt-deux`, so
+`"left_joined_spelling": "^(?!quatre-vingt$)"` tells ⟨vingt-deux⟩ from
+⟨quatre-vingt-deux⟩. An anchored word list in a joined spelling also says
+that the word is not joined: `"left_joined_spelling": "^(?:les|des)$"` holds
+for ⟨les amis⟩ and not for ⟨donne-les à⟩.
+
+A rule with a spelling condition does not fire when the caller of
+`SandhiEngine.apply` passes no spellings. Keep a rule that must run without
+them free of spelling conditions, and state a spelling exception as a rule of
+its own, ordered before it.
+
+```json
+{
+  "id": "FR_NEUF_V_BEFORE_ANS",
+  "name": "neuf ans",
+  "left_context": "^nœf$",
+  "right_context": "^ɑ̃$",
+  "right_spelling": "^ans$",
+  "transform": "nœv‿"
+}
+```
+
+Sandhi rules inherit by id, like allophone rules. A child spec switches off
+an inherited sandhi rule by redeclaring its `id` with the context `(?!)`, a
+pattern that never matches, and `transform` `""`. The language atlas lists
+such a rule as switched off, not as a rule the spec applies.
 
 A sandhi rule applies only within its prosodic domain (Nespor & Vogel 1986,
 *Prosodic Phonology*). Punctuation that writes a pause (a comma, a full stop,
@@ -358,6 +399,7 @@ stress/sandhi. Empty by default → no-op: the rules alone decide the output. Se
 | `followed_by_3` | string | no | The `followed_by` class, tested three slots ahead. Portuguese ⟨homens⟩ uses it to find a word-final ⟨-ens⟩ |
 | `preceded_by_phoneme_2` | array | no | The underlying phoneme two slots back must be one of these. The engine reads the first declared candidate of that grapheme, before any rule runs |
 | `followed_by_phoneme_2` | array | no | The underlying phoneme two slots ahead must be one of these. Russian ⟨гости⟩ softens ⟨с⟩ because the ⟨т⟩ after it stands before a soft vowel |
+| `followed_by_phoneme_3` | array | no | The underlying phoneme three slots ahead must be one of these, read like `followed_by_phoneme_2`: the first segment of the grapheme's first declared candidate. fr-FR-x-midi closes ⟨o⟩ in ⟨cobra⟩ [kobʁa] because a full vowel, not a schwa, follows the onset [bʁ] |
 | `preceded_by_surface_phoneme_2` | array | no | The surface candidate two slots back must be one of these. The engine reads the lattice slot as earlier passes left it, not the declared order |
 | `preceded_by_grapheme` | array | no | Previous slot's source grapheme must be one of these (case-insensitive). The backward twin of `followed_by_grapheme`, for a trigger letter that spells nothing |
 | `followed_by_grapheme` | array | no | Next slot's source grapheme must be one of these (case-insensitive). For processes a letter group triggers while its phoneme hides the cluster (Swedish short vowel before ⟨ng⟩ ⟨nk⟩ ⟨sk⟩) |
@@ -388,7 +430,7 @@ from one base, in this order:
 
 1. The resolved block of its `graphemes_base`.
 2. Without a `graphemes_base`, the resolved block of the nearest data ancestor
-   on `parent` (clade nodes are skipped). The loader takes it only when that
+   on `inherits` (clade nodes are skipped). The loader takes it only when that
    ancestor is the same language: the spec's `iso639_3` is unset, or it is
    equal to the ancestor's `iso639_3`.
 
@@ -404,7 +446,7 @@ language, and the accent marks that override it (`marked_vowels`) are graphemes
 of its orthography. A regional variety that has no ISO 639-3 code of its own
 shares them with its language: `el-CY` takes the block of `el`, and
 `it-IT-x-toscana` (`iso639_3` `ita`) takes the block of `it-IT`. A language
-with its own code that keeps `parent` only for its genealogy has its own stress
+with its own code that sets `inherits` only for its genealogy has its own stress
 system. Angolar (`aoa`, under `pt-PT`) and A Fala (`fax`, under `gl-ES`) do not
 take their parent's block. Such a spec states its own block, with a citation,
 or has none.
@@ -914,8 +956,8 @@ its first 8 characters (`ext-PT-x-barranco`). A transliteration or
 romanization after the script subtag is a variant that IANA registers
 (`nan-Latn-pehoeji`), or it goes after the `x` (`ar-Latn-x-buckwalt`). The
 prefix is not a label of convenience: it must agree with the spec's
-own `parent` and with the heaviest-weighted entry in `ancestors`. A spec whose
-`parent` is `pt-PT` cannot be keyed under a Castilic prefix, and a mismatch
+own `inherits` and with the heaviest-weighted entry in `ancestors`. A spec whose
+`inherits` is `pt-PT` cannot be keyed under a Castilic prefix, and a mismatch
 between the code and those two fields is a defect in the code, not in the
 fields. A parentless mixed language is the one exception: its private-use key
 takes its prefix from its documented external classification and need not

@@ -216,7 +216,7 @@
       "notes": "Section 2.5 'Orthography' read in full: it lists the letter-to-phoneme correspondences used in the grammar (syllable-final k = /ʔ/, sy = /ʃ/, eu = /ɯ/, ô = /o/, o = /ɔ/, ö = /ʌ/, the funny nasals written mb/nd/nj/ngg). Durie writes /e/ as ⟨ê⟩ and /ɛ/ as ⟨e⟩, and reserves ⟨ë⟩ for the mid central vowel he transcribes /ɤ/, where the 1980 standard modelled here writes ⟨é⟩, ⟨è⟩ and ⟨e⟩."
     }
   ],
-  "parent": "x-clade-aust1307",
+  "inherits": "x-clade-aust1307",
   "ancestors": [
     {
       "code": "x-clade-aust1307",

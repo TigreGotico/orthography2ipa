@@ -191,7 +191,7 @@
       "j"
     ]
   },
-  "parent": "cus",
+  "inherits": "cus",
   "ancestors": [
     {
       "code": "cus",

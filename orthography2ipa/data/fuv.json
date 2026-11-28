@@ -41,7 +41,7 @@
     "https://www.ethnologue.com/language/fuv/"
   ],
   "iso639_3": "fuv",
-  "parent": "ff",
+  "inherits": "ff",
   "ancestors": [
     {
       "code": "ff",

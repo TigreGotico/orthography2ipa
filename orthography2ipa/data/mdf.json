@@ -247,7 +247,7 @@
       "ja"
     ]
   },
-  "parent": "urj",
+  "inherits": "urj",
   "ancestors": [
     {
       "code": "urj",

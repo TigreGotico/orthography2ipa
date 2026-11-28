@@ -399,7 +399,7 @@
     "˧",
     "˨"
   ],
-  "parent": "x-clade-nilo1247",
+  "inherits": "x-clade-nilo1247",
   "ancestors": [
     {
       "code": "x-clade-nilo1247",

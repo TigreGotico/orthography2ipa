@@ -5,7 +5,7 @@
   "script_type": "alphabet",
   "quality": "stub",
   "graphemes": {},
-  "parent": "x-clade-tyrsen",
+  "inherits": "x-clade-tyrsen",
   "ancestors": [
     {
       "code": "x-clade-tyrsen",

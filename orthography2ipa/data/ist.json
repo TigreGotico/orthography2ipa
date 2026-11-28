@@ -134,7 +134,7 @@
       "notes": "Wikipedia (Istriot language) documents historical coexistence of Istriot with Chakavian Croatian and Istro-Venetian speech communities in the same southwestern Istrian towns (per its dialect-distribution map), consistent with Croatian contact influence alongside the better-documented Venetian superstrate."
     }
   ],
-  "parent": "x-clade-italorom",
+  "inherits": "x-clade-italorom",
   "notes": "Istriot, spoken in a handful of towns on the southwestern Istrian coast (Rovinj/Rovigno, Vodnjan/Dignano, and others), Croatia. Not Eastern/Balkan Romance like Romanian/Aromanian/Istro-Romanian: Glottolog groups it in the Italo-Dalmatian subgroup of Italo-Romance, hence parent=x-clade-italorom (shared with Venetian). c/g follow the general Romance soft/hard split before front vowels e/i (⟨c⟩ [k] vs [tʃ], ⟨g⟩ [ɡ] vs [dʒ]), expressed via positional_graphemes rather than enumerated keys. ⟨nj⟩/⟨gn⟩ both spell the palatal nasal /ɲ/. ⟨dz⟩ /dz/ and ⟨ts⟩ /ts/ are kept as grapheme keys under AGENTS.md §2 test 2: each spells a single affricate segment, the same category as the explicitly-sanctioned ⟨dž⟩/⟨ts⟩ examples in AGENTS.md, even though the IPA string reads as the concatenation of its parts. Vowel length/pitch-accent distinctions are marked diacritically in some orthographic traditions (à/é/è/ó/ò) but do not change vowel quality, so are not separately keyed.",
   "sources": [
     {

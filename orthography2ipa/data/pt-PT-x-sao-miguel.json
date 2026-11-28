@@ -17,7 +17,7 @@
   "allophones_base": "pt-PT",
   "allophones": {},
   "positional_graphemes_base": "pt-PT",
-  "parent": "pt-PT",
+  "inherits": "pt-PT",
   "word_exceptions": {
     "o": "u",
     "os": "uʒ",

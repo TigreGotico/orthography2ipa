@@ -140,7 +140,7 @@
       "ð"
     ]
   },
-  "parent": "x-clade-west2793",
+  "inherits": "x-clade-west2793",
   "ancestors": [
     {
       "code": "gem-x-north-west",

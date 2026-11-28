@@ -266,7 +266,7 @@
       "notes": "Documents the transcription convention of the WikiPron Marshallese gold: four height-only vowel phonemes /æ ɛ e i/ and the glides /j ɰ w/, hand-coded per entry because no orthography in use is phonemically one-to-one."
     }
   ],
-  "parent": "x-clade-aust1307",
+  "inherits": "x-clade-aust1307",
   "ancestors": [
     {
       "code": "x-clade-aust1307",

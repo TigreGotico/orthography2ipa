@@ -323,7 +323,7 @@
     "ʐ",
     "ʑ"
   ],
-  "parent": "x-clade-ural1272",
+  "inherits": "x-clade-ural1272",
   "ancestors": [
     {
       "code": "x-clade-ural1272",

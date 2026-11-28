@@ -2,7 +2,7 @@
   "code": "gl-ES-x-oriental",
   "name": "Eastern Galician",
   "script": "Latin",
-  "parent": "gl-ES",
+  "inherits": "gl-ES",
   "graphemes_base": "gl-ES",
   "allophones_base": "gl-ES",
   "positional_graphemes_base": "gl-ES",

@@ -6,7 +6,7 @@
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "parent": "ang",
+  "inherits": "ang",
   "ancestors": [
     {
       "code": "ang",

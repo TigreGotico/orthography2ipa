@@ -35,7 +35,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-kiwa1251",
+ "inherits": "x-clade-kiwa1251",
  "phonemes": [
   "r̪|r",
   "b",

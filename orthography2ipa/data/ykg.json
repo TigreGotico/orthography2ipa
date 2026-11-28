@@ -128,7 +128,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-yuka1259",
+ "inherits": "x-clade-yuka1259",
  "phonemes": [
   "b",
   "c",

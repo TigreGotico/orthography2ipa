@@ -24,7 +24,7 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Seseo, yeísmo. Coda /s/ aspiration noted in allophone map.",
   "quality": "skeleton",
   "script_type": "alphabet",

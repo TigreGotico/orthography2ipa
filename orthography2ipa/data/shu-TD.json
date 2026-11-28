@@ -247,7 +247,7 @@
       "followed_by_2": "word_boundary"
     }
   ],
-  "parent": "ar-x-mashriqi",
+  "inherits": "ar-x-mashriqi",
   "ancestors": [
     {
       "code": "ar-x-mashriqi",

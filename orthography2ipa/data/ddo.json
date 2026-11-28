@@ -173,7 +173,7 @@
   "source": "glottolog",
   "notes": "Glottolog's representative point."
  },
- "parent": "x-clade-nakh1245",
+ "inherits": "x-clade-nakh1245",
  "phonemes": [
   "b",
   "d̪",

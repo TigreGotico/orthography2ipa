@@ -17,7 +17,7 @@
     ]
   },
   "positional_graphemes_base": "pt-PT",
-  "parent": "pt-PT",
+  "inherits": "pt-PT",
   "ancestors": [
     {
       "code": "pt-PT",

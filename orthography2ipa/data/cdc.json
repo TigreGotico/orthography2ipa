@@ -27,7 +27,7 @@
       "wikipedia_url": "https://en.wikipedia.org/wiki/Chadic_languages"
     }
   ],
-  "parent": "x-clade-chad1250",
+  "inherits": "x-clade-chad1250",
   "ancestors": [
     {
       "code": "afa",

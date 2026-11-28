@@ -1,7 +1,7 @@
 {
   "code": "arn",
   "name": "Mapudungun",
-  "parent": "x-clade-arau1255",
+  "inherits": "x-clade-arau1255",
   "script": "Latin",
   "graphemes": {
     "tr": [

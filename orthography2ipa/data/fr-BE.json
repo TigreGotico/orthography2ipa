@@ -15,10 +15,34 @@
   "allophones": {
     "aː": [
       "aː"
+    ],
+    "i": [
+      "i",
+      "iː"
+    ],
+    "y": [
+      "y",
+      "yː"
+    ],
+    "u": [
+      "u",
+      "uː"
+    ],
+    "e": [
+      "e",
+      "eː"
+    ],
+    "ø": [
+      "ø",
+      "øː"
+    ],
+    "ɛ": [
+      "ɛ",
+      "ɛː"
     ]
   },
-  "parent": "fr-FR",
-  "notes": "Belgian French as a thin variant of Metropolitan French (fr-FR). One feature is stated, from the PFC survey of Tournai (PFC page, d) 1) La distinction /a/-/ɑ/). Tournai is listed under 'rat = ras', so the front and back ⟨a⟩ have one timbre, and under 'patte ≠ pâte (opposition de longueur)'. The page introduces that list with 'Parfois, la distinction entre les deux voyelles est substituée par une différence de longueur'. The difference of timbre is replaced by a difference of length, so ⟨â⟩ is [aː] here and [ɑ] in fr-FR. The /ɛ̃/ ~ /œ̃/ contrast (brin ≠ brun, a very slight timbre difference at Tournai, PFC page d) 2)) is kept as in fr-FR, which writes ⟨un⟩ [œ̃] and ⟨in⟩ [ɛ̃] apart and keeps [ɛ̃] as an allophone of /œ̃/. NOT MODELLED: the vowel length opposition for other vowels, the PFC remark that the ⟨ê⟩ ~ ⟨e⟩ length contrast is documented for Neuchâtel and not stated for Belgium, regional vowel quality, the weakening of /e/ ~ /ɛ/ and /o/ ~ /ɔ/ among young speakers, and the numerals septante and nonante (numbers are out of scope). The page is a survey summary at one point (Tournai) and not a description of every Belgian variety.",
+  "inherits": "fr-FR",
+  "notes": "Belgian French as a thin variant of Metropolitan French (fr-FR). It inherits every table, rule and word exception of fr-FR and states only what a cited source states. LOW VOWELS: ⟨â⟩ is [aː]. The PFC survey of Tournai (PFC vowel page, d) 1)) lists Tournai under 'rat = ras' and under 'patte ≠ pâte (opposition de longueur)', introduced by 'Parfois, la distinction entre les deux voyelles est substituée par une différence de longueur'. Bardiaux et al. (2016: 40) add that the /a/ ~ /ɑ/ contrast 'semble avoir disparu chez l'immense majorité des locuteurs', and that where it is kept it goes with length (patte [pat] vs pâte [pɑːt]); the spec keeps the Tournai value. CIRCUMFLEX ⟨ê⟩: [ɛː] in a final syllable closed by a pronounced consonant (FR_BE_CIRC_E_LONG: fête [fɛːt], rêve [ʁɛːv]), short elsewhere (fêter [fɛte], forêt [fɔʁɛ]). Bardiaux et al. (2016: 40): 'fête [fɛːt] s'oppose encore à faites [fɛt]'; Avanzi (2024, Oxford Handbook ch. 14: 425-426): the faites ~ fête length contrast is phonological for everyone in the French-speaking regions of Belgium. FINAL MUTE ⟨e⟩ AFTER A VOWEL: the vowel is long (rules FR_BE_FINAL_E_LONG and FR_BE_FINAL_E_LONG_UI: aimée [ɛmeː], vie [viː], nue [nyː], bleue [bløː], joie [ʒwaː], pluie [plwiː]), after the PFC e-caduc page (section 'Français de Suisse et de Belgique') and Bardiaux et al. (2016: 39-40). GLIDE: [ɥi] is [wi] (rule FR_BE_UI_W: lui [lwi], nuit [nwi]; FR_NASAL_BLOCK_PREVOCALIC_UIN restated for the [ɥin] of ruine and bruine), after Bardiaux et al. (2016: 41), with the context from Wikipedia only (see the rule note). huit takes the fr-FR reading with [w]: [wit] alone and [wi] before a consonant (huit livres [wi livʁ]), and dix-huit is [diz wit]; the sandhi rule FR_BE_HUIT_MUTE_BEFORE_CONSONANT and the overlay of FR_DIX_Z_BEFORE_HUIT_NEUF carry fr-FR's numeral readings over to the [w] form. Where fr-FR gives huit no final [t], huit is [wi]. VINGT: [vɛ̃t] with its final [t] in isolation (word exception). The PFC consonant page (II d) 4)) records [vɛ̃t] at Gembloux and [vɛ̃] at Liège; the Français de nos régions survey (Avanzi 2016, map 'vingt') puts the share of [vɛ̃t] in the Belgian provinces at about 50 to 90 per cent, higher than anywhere in France outside the north and east, and Avanzi (2024, Sprachenräume der Schweiz: 117) says Belgium pronounces the final -t of vingt. The /ɛ̃/ ~ /œ̃/ contrast (brin ≠ brun) is kept as in fr-FR; Bardiaux et al. (2016: 40) say only half of the speakers in recent surveys still make it. NOT MODELLED: the long vowel before a plural ⟨-es⟩ (aimées), the palatal appendix after a long vowel among older speakers (épée [epeːj], Bardiaux et al. 2016: 40), diaeresis (nier [ni.je]), [w] for [ɥ] before [ɛ̃] (Wikipedia only), word-final devoicing in the Walloon area and the long, high penultimate syllable of the Liège region (Bardiaux et al. 2016: 41-42), the opening of /e ɛ o ɔ/ among older speakers at Liège and Gembloux, [h] for ⟨h⟩ among older speakers at Liège, vowel quality in general, and the numerals septante and nonante (numbers are out of scope). The sources describe several Belgian varieties; this spec states the features they give for Belgium as a whole.",
   "quality": "skeleton",
   "script_type": "alphabet",
   "sources": [
@@ -31,6 +55,67 @@
       "url": "https://projet-pfc.net/le-projet-pfc-ef/le-francais-explique/prononciation/2",
       "pages": null,
       "notes": "READ (open web page; the page metadata gives 2010 as its publication year and 2017 as its last change). The page reports, from PFC survey points: patte ≠ pâte by LENGTH at Neuchâtel (Switzerland) and Tournai (Belgium) and by timbre at Nyon; patte = pâte at Brunoy and Abidjan; brin ≠ brun kept at Tournai and Nyon (very slight timbre difference), at Toulouse and Abidjan (marked), and fading among young speakers at Neuchâtel; the length opposition faites [fɛt] ~ fête [fɛːt], belle ~ bêle, nu ~ nue, vit ~ vie at Neuchâtel. The page cites Gadet (1996) and Léon (2007)."
+    },
+    {
+      "id": "bardiaux2016",
+      "author": "Bardiaux, A., Racine, I., Simon, A.C. & Hambye, P.",
+      "year": 2016,
+      "title": "Le français en Belgique",
+      "publisher": "In Detey, S., Racine, I., Kawaguchi, Y. & Eychenne, J. (eds.), La prononciation du français dans le monde : du natif à l'apprenant. Paris: CLE International",
+      "url": "https://hdl.handle.net/2078.5/179537",
+      "pages": "39-43",
+      "notes": "READ (open PDF in the UCLouvain DIAL repository). p. 39-40: vowel length is phonological in a final open syllable, especially in feminine forms (soutenu [sutny] vs soutenue [sutnyː], compagnie [kɔ̃paniː]); fête [fɛːt] vs faites [fɛt]; the /a/ ~ /ɑ/ contrast has gone for most speakers, and with length where kept (pâte [pɑːt]); brin ≠ brun for half of the speakers. p. 40: an appendix [j] after a long vowel among older speakers (épée [epeːj]). p. 41: diaeresis; [w] where France has [ɥ] (huit [wit]) but never *[mwɛt] for muette; word-final devoicing in the Walloon area. p. 42: the Liège penultimate syllable and the opening of vowels at Liège and Gembloux."
+    },
+    {
+      "id": "pfc_consonnes",
+      "author": "Projet PFC (Phonologie du français contemporain), FLORAL-PFC",
+      "year": 2010,
+      "title": "Le français expliqué: Prononciation, II. Le système consonantique, d) Variation",
+      "publisher": "FLORAL-PFC, projet-pfc.net",
+      "url": "https://projet-pfc.net/le-projet-pfc-ef/le-francais-explique/prononciation/3",
+      "pages": null,
+      "notes": "READ (open web page, page 3 of the pronunciation pages). Section II d) 4): the numeral vingt is said [vɛ̃t] at Nyon and Genève (Switzerland) and at Gembloux (Belgium), and [vɛ̃] at Québec, Marseille, Bamako, Liège and Brunoy. Section II d) 3): diaeresis is common in Swiss and Belgian French."
+    },
+    {
+      "id": "pfc_schwa_geo",
+      "author": "Projet PFC (Phonologie du français contemporain), FLORAL-PFC",
+      "year": 2008,
+      "title": "Le e caduc : variation géographique",
+      "publisher": "FLORAL-PFC, projet-pfc.net",
+      "url": "https://www.projet-pfc.net/le-projet-pfc-ef/le-francais-explique/le-e-muet-2/variation-geographique-2/",
+      "pages": null,
+      "notes": "READ (open web page; the page metadata gives 2008-12-01 as its publication date and 2017-10-26 as its last change). Section 'Français de Suisse et de Belgique': a final e after a vowel (amie, jolie, jouée) survives as a lengthening of the vowel before it: ami [ami] vs amie [amiː], joué [ʒue] vs jouée [ʒueː], bleu [blø] vs bleue [bløː]; the lengthening is often a diphthong (épée [epei], a Swiss speaker)."
+    },
+    {
+      "id": "avanzi2016_vingt",
+      "author": "Avanzi, M.",
+      "year": 2016,
+      "title": "vingT et moinS",
+      "publisher": "Français de nos régions (blog of the survey project)",
+      "url": "https://francaisdenosregions.com/2016/08/31/1010-vin-ou-vingt/",
+      "pages": null,
+      "notes": "READ (open web page and its map 29_vingt.png, survey Euro-2, close to 10,000 respondents). The share of respondents who say vingt with its final [t] is highest in the north and east of France, in Switzerland and in Belgium; on the map the Swiss cantons are at about 90 to 100 per cent and the Belgian provinces at about 50 to 90 per cent."
+    },
+    {
+      "id": "avanzi2024_oxford",
+      "author": "Avanzi, M.",
+      "year": 2024,
+      "title": "Regional variation in the French of France",
+      "publisher": "In The Oxford Handbook of the French Language, ch. 14. Oxford University Press (uncorrected first proofs read)",
+      "url": "https://libra.unine.ch/bitstreams/61d92ed1-b677-4eba-ac50-ab9a25840120/download",
+      "pages": "421-426",
+      "notes": "READ (uncorrected proofs in the Neuchâtel LIBRA repository; page numbers are the proof's). p. 423: in southern mainland France the loi de position applies. p. 422: the south does not keep piqué ~ piquet apart (both [e]). p. 424: a circumflex triggers a long vowel in the north-eastern regions of France (a statement about France, not about Belgium or Switzerland). pp. 425-426: the faites ~ fête length contrast is phonological for everyone in the French-speaking regions of Belgium and most of French-speaking Switzerland (except Valais)."
+    },
+    {
+      "id": "avanzi2024_suisse",
+      "author": "Avanzi, M.",
+      "year": 2024,
+      "title": "Français",
+      "publisher": "In Glaser, E., Kabatek, J. & Sonnenhauser, B. (eds.), Sprachenräume der Schweiz, Band 1: Sprachen. Tübingen: Narr Francke Attempto",
+      "doi": "10.24053/9783381104024",
+      "url": "https://libra.unine.ch/bitstreams/3df8bd50-3e1c-46c7-998c-a092269763b6/download",
+      "pages": "113-117",
+      "notes": "READ (open access, CC BY-SA 4.0). pp. 115-116: the quantity contrast of nu/nue, mettre/maître and bout/boue still holds fairly well in French-speaking Switzerland, whatever the canton; in Vaud (and parts of Geneva and Lower Valais) the long vowel can take a palatal off-glide (année [-eːj]), and n. 8 adds a diphthong after [i] and a schwa after [u] or [y]. p. 114: patte ~ pâte is kept by length. p. 117: vingt is said with a final -t 'dans toute la Suisse, comme en Belgique et dans le grand est de la France'."
     }
   ],
   "ancestors": [
@@ -55,5 +140,132 @@
   },
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Belgian_French"
+  ],
+  "allophone_rules": [
+    {
+      "id": "FR_BE_FINAL_E_LONG_UI",
+      "phonemes": [
+        "ɥi"
+      ],
+      "surface": "wiː",
+      "followed_by_grapheme": [
+        "e"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "FR_BE_FINAL_E_LONG and FR_BE_UI_W together, for ⟨ui⟩ before a word-final mute ⟨e⟩ (pluie [plwiː], suie). It stands first because one slot takes only the first rule that matches."
+    },
+    {
+      "id": "FR_BE_UI_W",
+      "phonemes": [
+        "ɥi"
+      ],
+      "surface": "wi",
+      "notes": "[ɥ] is [w] in the unit ⟨ui⟩ [ɥi]: huit [wit], lui [lwi], nuit [nwi]. Bardiaux et al. (2016: 41): 'les variétés belges connaissent souvent [w] là où en FR on trouve [ɥ] (ex. huit [wit])', and [ɥ] stays an allophone of /y/ elsewhere ('muette peut être prononcé [mɥɛt] ou [my.ɛt] mais jamais *[mwɛt]'). The source gives one example and states no context. WIKIPEDIA-ONLY for the context, before [i]: English Wikipedia, Belgian French, https://en.wikipedia.org/wiki/Belgian_French, revision 1386277100 (2026-11-17), 'Traditional French's diphthongs /ɥi, ɥɛ̃/ which are replaced by [wi, wæ̃]' (it cites Hambye & Simon 2009: 106, not opened here); French Wikipedia, Français de Belgique, https://fr.wikipedia.org/wiki/Fran%C3%A7ais_de_Belgique, revision 241690655 (2026-11-26), 'absence de la semi-voyelle /ɥ/, remplacée par /w/ devant /i/ (« huit » /wit/) et par /y/ ailleurs'. The two editions agree on [w] before [i]; they differ on [ɥɛ̃], which the English edition alone lists and this spec does not model."
+    },
+    {
+      "id": "FR_NASAL_BLOCK_PREVOCALIC_UIN",
+      "phonemes": [
+        "ɥɛ̃"
+      ],
+      "surface": "win",
+      "grapheme": [
+        "uin"
+      ],
+      "followed_by": "vowel",
+      "notes": "fr-FR's FR_NASAL_BLOCK_PREVOCALIC_UIN, restated by id with the Belgian [w]: before a vowel the unit ⟨uin⟩ is [ɥin] in fr-FR, an [ɥ] before [i], which fr-BE reads [w] as FR_BE_UI_W does (Bardiaux et al. 2016: 41 for the [w]; the before-[i] context is WIKIPEDIA-ONLY, see FR_BE_UI_W): ruine [ʁwin], bruine [bʁwin]. The rule must take the parent's place because one slot takes only the first rule that matches. The nasal reading [ɥɛ̃] of ⟨uin⟩ (juin) keeps its [ɥ]: only the English edition of Wikipedia gives [w] there. On a base without the ⟨uin⟩ unit the rule matches nothing."
+    },
+    {
+      "id": "FR_BE_FINAL_E_LONG",
+      "phonemes": [
+        "i",
+        "y",
+        "u",
+        "e",
+        "ø",
+        "ɛ",
+        "wa"
+      ],
+      "append": "ː",
+      "followed_by_grapheme": [
+        "e"
+      ],
+      "followed_by_2": "word_boundary",
+      "notes": "A vowel before a word-final mute ⟨e⟩ is long, the vowel of a unit such as ⟨oi⟩ [wa] included (joie [ʒwaː], soie): the ⟨e⟩ survives as the length of the vowel before it (PFC, Le e caduc : variation géographique, section 'Français de Suisse et de Belgique': ami [ami] vs amie [amiː], joué [ʒue] vs jouée [ʒueː], bleu [blø] vs bleue [bløː]; Bardiaux et al. 2016: 39-40: soutenu [sutny] vs soutenue [sutnyː], compagnie [kɔ̃paniː]). The ⟨e⟩ must end the word, so a plural ⟨-es⟩ keeps the short vowel here (NOT MODELLED)."
+    },
+    {
+      "id": "FR_BE_CIRC_E_LONG",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "ɛː",
+      "grapheme": [
+        "ê"
+      ],
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "⟨ê⟩ is long [ɛː] in a final syllable closed by a pronounced consonant (Bardiaux et al. (2016: 40): 'certains mots ont conservé leur voyelle historiquement longue. Ainsi, fête [fɛːt] s'oppose encore à faites [fɛt]', in a paragraph on length in the final syllable). The sources give the length only in such a final syllable, so ⟨ê⟩ elsewhere keeps the fr-FR [ɛ]: fêter [fɛte], bêtise, forêt [fɔʁɛ]."
+    }
+  ],
+  "word_exceptions": {
+    "vingt": "vɛ̃t"
+  },
+  "sandhi_rules": [
+    {
+      "id": "FR_BE_HUIT_MUTE_BEFORE_CONSONANT",
+      "name": "final consonant of Belgian huit before a consonant",
+      "left_context": "^(w[iɪ])t$",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:ɛ̃|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|ʒwijɛ|dəpwi)$)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "transform": "\\1",
+      "obligatory": true,
+      "notes": "fr-FR's FR_HUIT_MUTE_BEFORE_CONSONANT for the Belgian [wit] of huit (FR_BE_UI_W; Bardiaux et al. 2016: 41): the fr-FR rule matches [ɥit] only, so huit is [wit] alone and [wi] before a consonant (huit livres [wi livʁ]). The right context is that of FR_NUMERAL_MUTE_BEFORE_CONSONANT in this spec. Inert on a base where fr-FR gives huit no final [t]."
+    },
+    {
+      "id": "FR_DIX_Z_BEFORE_HUIT_NEUF",
+      "name": "dix in dix-huit and dix-neuf",
+      "left_context": "^((?:d|d͡z)[iɪ])s$",
+      "right_context": "^(?:wit|nœf|witjɛm|nøvjɛm|nœvjɛm)$",
+      "transform": "\\1z",
+      "obligatory": true,
+      "notes": "fr-FR's rule with the Belgian [w] of huit: dix-huit [diz wit], dix-neuf [diz nœf]. It overlays the fr-FR rule by id, so it runs at the place of that rule, before FR_LINK_BLOCKED_BEFORE_HUIT_OUI. Martinon (1913: 346) gives the [z] of dix-huit and dix-neuf."
+    },
+    {
+      "id": "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
+      "name": "final consonant of six and dix before a consonant",
+      "left_context": "^((?:s|d|d͡z)[iɪ])s$",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:ɛ̃|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|ʒwijɛ|dəpwi)$)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "transform": "\\1",
+      "obligatory": true,
+      "notes": "fr-FR's FR_NUMERAL_MUTE_BEFORE_CONSONANT (PR #2710), restated by id. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [ʒwijɛ], [dəpwi] (juillet and depuis with the Belgian [w] of FR_BE_UI_W), so le huit juillet keeps [wit]. On a base without the fr-FR rule it is this spec's own rule and matches nothing, since six and dix then have no final consonant."
+    },
+    {
+      "id": "FR_BE_QUATRE_VINGT_MUTE_T",
+      "name": "the t of vingt in quatre-vingt",
+      "left_context": "",
+      "right_context": "t$",
+      "left_spelling": "^quatre$",
+      "right_spelling": "^vingts?$",
+      "right_transform": "",
+      "obligatory": true,
+      "notes": "The word exception gives vingt its final [t] when it stands alone. In the compound quatre-vingt the [t] is mute, as in fr-FR: quatre-vingt-deux [katʁə vɛ̃ dø]. Martinon (1913: 346) gives the mute t of quatre-vingt before a consonant."
+    }
   ]
 }

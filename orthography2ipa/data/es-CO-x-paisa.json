@@ -26,7 +26,7 @@
     ]
   },
   "positional_graphemes_base": "es-ES",
-  "parent": "es-ES",
+  "inherits": "es-ES",
   "notes": "Paisa/Antioqueño (Medellín). Conservative coda /s/, strong [ɟʝ] affrication, distinctive voseo. Sometimes apicoalveolar sibilant tendency. Melodic intonation (not captured here).",
   "quality": "skeleton",
   "script_type": "alphabet",

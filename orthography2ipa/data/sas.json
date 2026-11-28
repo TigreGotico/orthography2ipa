@@ -259,7 +259,7 @@
     "https://www.omniglot.com/writing/sasak.htm"
   ],
   "iso639_3": "sas",
-  "parent": "poz",
+  "inherits": "poz",
   "ancestors": [
     {
       "code": "poz",

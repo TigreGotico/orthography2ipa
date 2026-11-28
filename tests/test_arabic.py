@@ -230,7 +230,7 @@ class TestMashriqiArabic:
         _assert_contains(_allophone(self.spec, "θ"), "t", label="θ allophone")
 
     def test_parent_is_arb(self):
-        assert self.spec.parent == "arb"
+        assert self.spec.inherits == "arb"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -278,7 +278,7 @@ class TestMaghrebiArabic:
         _assert_first(_allophone(self.spec, "ɮˤ"), "dˤ", label="ɮˤ allophone")
 
     def test_parent_is_arb(self):
-        assert self.spec.parent == "arb"
+        assert self.spec.inherits == "arb"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -321,7 +321,7 @@ class TestMoroccanArabic:
         _assert_contains(_allophone(self.spec, "aː"), "æː", label="aː allophone")
 
     def test_parent_is_maghrebi(self):
-        assert self.spec.parent == "ar-x-maghrebi"
+        assert self.spec.inherits == "ar-x-maghrebi"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -440,4 +440,4 @@ class TestIraqiArabic:
 
     def test_parent_is_mashriqi(self):
         """Iraqi Arabic inherits from Mashriqi group."""
-        assert self.spec.parent in ("ar-x-mashriqi", "arb", "ar")
+        assert self.spec.inherits in ("ar-x-mashriqi", "arb", "ar")

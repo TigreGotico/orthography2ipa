@@ -6,7 +6,7 @@
   "quality": "stub",
   "graphemes": {},
   "allophones": {},
-  "parent": "ltc",
+  "inherits": "ltc",
   "ancestors": [
     {
       "code": "ltc",

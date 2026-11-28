@@ -239,7 +239,7 @@
     "https://en.wikipedia.org/wiki/Kabiye_language",
     "https://kbp.wikipedia.org/wiki/Kab%C9%A9y%C9%9B_k%CA%8An%CA%8A%C5%8B"
   ],
-  "parent": "x-clade-atla1278",
+  "inherits": "x-clade-atla1278",
   "ancestors": [
     {
       "code": "x-clade-atla1278",

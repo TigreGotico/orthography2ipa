@@ -16,7 +16,7 @@ A stub has a name, a code and a place in the family tree, but no phonology yet. 
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../evaluation/charts/atlas-script.dark.svg">
-  <img alt="Specs per script, 7,403 in all. The largest: Zyyy 6,144, Latin 951, Arabic 77." src="../evaluation/charts/atlas-script.light.svg">
+  <img alt="Specs per script, 7,404 in all. The largest: Zyyy 6,144, Latin 952, Arabic 77." src="../evaluation/charts/atlas-script.light.svg">
 </picture>
 
 `scripts/gen_doc_charts.py` makes this figure from the table under it.
@@ -55,7 +55,7 @@ A stub has a name, a code and a place in the family tree, but no phonology yet. 
 | [Kayah Li](#kayah-li) | 1 |
 | [Khmer](#khmer) | 1 |
 | [Lao](#lao) | 1 |
-| [Latin](#latin) | 951 |
+| [Latin](#latin) | 952 |
 | [Latn](#latn) | 1 |
 | [Limbu](#limbu) | 1 |
 | [Linear B](#linear-b) | 1 |
@@ -734,6 +734,7 @@ Stubs (1): Western Kayah `kyu`.
 | [Swiss French (Romandy)](https://tigregotico.github.io/orthography2ipa/#fr-CH) | `fr-CH` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [Ivorian French](https://tigregotico.github.io/orthography2ipa/#fr-CI) | `fr-CI` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [French](fr-FR.md) (page) | `fr-FR` | research | Indo-European > Italic > Romance > Gallo-Romance |
+| [Southern French (Midi)](https://tigregotico.github.io/orthography2ipa/#fr-FR-x-midi) | `fr-FR-x-midi` | skeleton | Indo-European > Italic > Romance > Gallo-Romance |
 | [Old French](https://tigregotico.github.io/orthography2ipa/#fro) | `fro` | research | Indo-European > Italic > Romance |
 | [Franco-Provençal (Arpitan)](frp.md) (page) | `frp` | research | Indo-European > Italic > Romance > Gallo-Romance |
 | [North Frisian](frr.md) (page) | `frr` | research | Indo-European > Germanic > Northwest Germanic > West Germanic |

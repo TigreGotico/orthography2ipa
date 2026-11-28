@@ -75,7 +75,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Mohawk_language"
   ],
-  "parent": "x-clade-iroq1247",
+  "inherits": "x-clade-iroq1247",
   "ancestors": [
     {
       "code": "x-clade-iroq1247",

@@ -131,7 +131,7 @@ class TestEgyptianArabic:
         _assert_first(_grapheme(self.spec, "چ"), "ʒ", label="چ")
 
     def test_parent(self):
-        assert self.spec.parent == "ar-x-mashriqi"
+        assert self.spec.inherits == "ar-x-mashriqi"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -170,7 +170,7 @@ class TestLevantineProto:
         assert _ipa(self.CODE, "قَلْب") == "ˈʔalb"
 
     def test_parent(self):
-        assert self.spec.parent == "ar-x-mashriqi"
+        assert self.spec.inherits == "ar-x-mashriqi"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -208,7 +208,7 @@ class TestSyrianArabic:
         _assert_contains(_grapheme(self.spec, "ق"), "q", label="ق learned")
 
     def test_parent(self):
-        assert self.spec.parent == "apc"
+        assert self.spec.inherits == "apc"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -244,7 +244,7 @@ class TestLebaneseArabic:
         _assert_contains(self.spec.allophones.get("a"), "e", "æ", label="a fronting")
 
     def test_parent(self):
-        assert self.spec.parent == "apc"
+        assert self.spec.inherits == "apc"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -285,7 +285,7 @@ class TestJordanianArabic:
         assert _ipa(self.CODE, "إِذَا") == "ˈʔizaː"
 
     def test_parent(self):
-        assert self.spec.parent == "apc"
+        assert self.spec.inherits == "apc"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -321,7 +321,7 @@ class TestPalestinianArabic:
         _assert_contains(_grapheme(self.spec, "ك"), "k", "tʃ", label="ك")
 
     def test_parent(self):
-        assert self.spec.parent == "apc"
+        assert self.spec.inherits == "apc"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -365,7 +365,7 @@ class TestSudaneseArabic:
         assert "θ" not in vals, f"Sudanese ث should not retain θ, got {vals}"
 
     def test_parent(self):
-        assert self.spec.parent == "ar-x-mashriqi"
+        assert self.spec.inherits == "ar-x-mashriqi"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -570,7 +570,7 @@ class TestNajdiArabic:
         assert self.spec.quality == "research"
 
     def test_parent(self):
-        assert self.spec.parent == "ar-x-peninsul"
+        assert self.spec.inherits == "ar-x-peninsul"
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -689,7 +689,7 @@ class TestMoroccanDarija:
         assert "fr-FR" in codes, f"fr-FR adstrate missing: {codes}"
 
     def test_parent(self):
-        assert self.spec.parent == "ar-x-maghrebi"
+        assert self.spec.inherits == "ar-x-maghrebi"
 
 
 @pytest.mark.linguistic

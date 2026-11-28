@@ -20,7 +20,7 @@
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Bantu_languages"
   ],
-  "parent": "nic",
+  "inherits": "nic",
   "urls": [
     "https://glottolog.org/resource/languoid/id/narr1281"
   ],
