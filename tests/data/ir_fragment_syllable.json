@@ -1,0 +1,19 @@
+{
+ "ir_version": 1,
+ "syllable": {
+  "glides": ["i", "u", "y"],
+  "heterosyllabic_pairs": ["rr", "sc", "sç", "ss", "xc"],
+  "hiatus": {"glides": ["i", "u", "y"], "before": ["nh"], "codas": ["l", "m", "n", "r", "z"],
+             "diphthong_words": ["ao", "aos"]},
+  "stem_cuts": {"adleriano": [2, 4, 5, 6], "ruin": [2]},
+  "prefix_boundaries": [{"prefix": "sub", "onset": ["l", "r"], "stems": ["linh", "loc"]}],
+  "seams": {"suffixes": [{"pattern": "[^gq]uidades?$", "cut": 2}], "stems": ["constru", "distribu"],
+            "next": ["i"]},
+  "onsets": {"complex": ["bl", "br", "cl", "cr", "dl", "dr", "fl", "fr", "gl", "gr", "pl", "pr", "tl", "tr",
+                         "vl", "vr"],
+             "max_onset": 2, "digraphs": ["ch", "gu", "gü", "lh", "nh", "qu", "qü"]},
+  "foreign": {"units": ["ph", "sh", "th", "tsch", "zh"],
+              "pattern": "[kwyäöüë]|ck|sch|sh|th|ph|tz|eau|[bcdgt]$|ch$",
+              "nuclei": ["ee", "oo", "ou"], "final_nuclei": {"eau": ["", "s", "x"], "eu": ["r", "rs"]}}
+ }
+}

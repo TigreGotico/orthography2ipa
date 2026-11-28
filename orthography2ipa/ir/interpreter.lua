@@ -39,8 +39,9 @@ M.SEMANTICS = {
   ipa_count = 1, consonant_nuclei = 1, computed_tone = 1,
   internal_apostrophe = 1, apostrophe_elision = 1, collapse_geminates = 1, context_beam = 1,
   clitic_marks = 1, silent_stress_marks = 1, overrides = 1, words = 1, allophone_map = 1, hiatus = 2,
-  semivowels = 1, cliticless = 1, compound_last = 1, tonic_after_diphthong = 1,
+  semivowels = 1, cliticless = 1, compound_last = 1, noncohering = 1, tonic_after_diphthong = 1,
   ipa_diphthongs = 1, mark_onsets = 1, allophony_geminate = 1,
+  cut_pairs = 1, glide_hiatus = 1, stem_cuts = 1, prefix_cuts = 1, seams = 1, foreign_nuclei = 1,
   weight = 1, virama_final = 1, vowel_signs = 1, preposed = 1,
   ["node.and"] = 1, ["node.or"] = 1, ["node.not"] = 1, ["node.true"] = 1, ["node.false"] = 1,
   ["node.exists"] = 1, ["node.ebit"] = 1, ["node.entry_in"] = 1, ["node.top_in"] = 1,
@@ -317,7 +318,11 @@ local LAYOUT = Ob{
   syllable = Ob{diphthongs = Lt(S_), onset_graphemes = SSET, semivowels = Lt(Lt(S_)),
                 closed_hiatus = Ob{pairs = Lt(S_), onsets = Lt(S_), codas = Lt(S_), atonic_onsets = Lt(S_), multi_keys = Lt(S_)},
                 final_diphthongs = Ob{diphthongs = Lt(S_), finals = Lt(S_)}, vowel_letters = SSET, silent_tail = SSET,
-                onsets = Ob{max = I_, units = Lt(S_), velar = SSET, table = Lt(Lt(S_))}},
+                onsets = Ob{max = I_, units = Lt(S_), velar = SSET, table = Lt(Lt(S_))},
+                cut_pairs = SSET, glide_hiatus = Ob{glides = SSET, before = Lt(S_), codas = SSET, diphthong_words = SSET},
+                stem_cuts = Lt(Pr(S_, Lt(I_))), prefix_cuts = Lt(Ob{prefix = S_, onset = SSET, stems = Lt(S_)}),
+                seams = Ob{suffixes = Lt(Ob{pattern = PAT, cut = I_}), stems = Lt(S_), next = SSET},
+                foreign = Ob{pattern = PAT, nuclei = Lt(S_), finals = Lt(Pr(S_, Lt(S_)))}},
   stress = Ob{mark = S_, secondary_mark = S_, alternating = I_, prefixes = Lt(S_),
               schwa_rimes = SSET, coda_liquid = I_, accent2 = Ob{mark = S_, finals = SSET},
               iambic = Ob{max_onset = I_}, marked = SSET, final = Lt(S_), penult = Lt(S_),
@@ -325,7 +330,8 @@ local LAYOUT = Ob{
               mark_diphthongs = Lt(S_), tonic_after_diphthong = Lt(S_), stand_in = S_, apply = I_,
               contact_units = Lt(S_), silent_units = SSET, ipa_diphthongs = Lt(S_), ipa_count = I_,
               mark_onsets = Ob{max = I_, velar = S_, table = Lt(Lt(S_))},
-              weight = Ob{max_onset = I_, superheavy_final = I_}},
+              weight = Ob{max_onset = I_, superheavy_final = I_},
+              noncohering = Ob{suffixes = Lt(S_), exceptions = SSET}},
   atoms = Ob{mark = Lt(S_), affricates = Lt(S_)},
   allophony = Ob{passes = I_, atoms = Lt(S_), geminate = I_, rules = Lt(RULE)},
   sandhi = Lt(Ob{left = PAT, right = PAT, obligatory = I_, left_out = TPL, right_out = TPL,
@@ -736,6 +742,9 @@ function M.new(doc)
     for _, t in ipairs(self._onsets.table) do self._onset_table[concat(t, "\1")] = true end
     self._onset_velar = setof(self._onsets.velar)
   end
+  local sy = self.syll
+  self._cuts_on = T(sy.cut_pairs) or T(sy.glide_hiatus) or T(sy.stem_cuts) or T(sy.prefix_cuts)
+    or T(sy.seams) or T(sy.foreign)
   if self._allo then
     for _, rule in ipairs(self._allo.rules) do
       rule._index = {}
@@ -2094,8 +2103,9 @@ end
 
 local function by_len_desc(a, b) return #a > #b end
 
-function P:_split_nuclei(run, diphthongs, hiatus)
+function P:_split_nuclei(run, diphthongs, hiatus, joins)
   hiatus = hiatus or {}
+  joins = joins or {}
   if slen(run) < 2 then return {run} end
   local ordered = ssort(copy(diphthongs), by_len_desc)
   local lowered = self:lower(run)
@@ -2103,7 +2113,12 @@ function P:_split_nuclei(run, diphthongs, hiatus)
   local i, n = 0, slen(run)
   while i < n do
     local matched = false
-    for _, diph in ipairs(ordered) do
+    if joins[i] then
+      nuclei[#nuclei + 1] = sl(run, i, i + joins[i])
+      i = i + joins[i]
+      matched = true
+    end
+    for _, diph in ipairs(matched and {} or ordered) do
       if startswith(lowered, diph, i) then
         local cut = false
         local dl = slen(diph)
@@ -2134,9 +2149,10 @@ function P:_split_nuclei(run, diphthongs, hiatus)
   return nuclei
 end
 
-function P:_with_diphthongs(word, nucleus, diphthongs, onset_graphemes, hiatus)
+function P:_with_diphthongs(word, nucleus, diphthongs, onset_graphemes, hiatus, joins)
   onset_graphemes = onset_graphemes or {}
   hiatus = hiatus or {}
+  joins = joins or {}
   local syllables = {}
   local onset = ""
   local i, n = 0, slen(word)
@@ -2169,7 +2185,11 @@ function P:_with_diphthongs(word, nucleus, diphthongs, onset_graphemes, hiatus)
       for h in pairs(hiatus) do
         if i < h and h < j then run_hiatus[h - i] = true end
       end
-      for k, piece in ipairs(self:_split_nuclei(sl(word, i, j), diphthongs, run_hiatus)) do
+      local run_joins = {}
+      for h, w in pairs(joins) do
+        if i <= h and h + w <= j then run_joins[h - i] = w end
+      end
+      for k, piece in ipairs(self:_split_nuclei(sl(word, i, j), diphthongs, run_hiatus, run_joins)) do
         syllables[#syllables + 1] = (k == 1 and onset or "") .. piece
       end
       onset = ""
@@ -2226,19 +2246,147 @@ end
 function P:_bundled(word, hiatus)
   if word == "" then return {} end
   local nucleus = self:_nucleus_mask(word, self._semivowels, self._vowel_letters)
+  local cuts, joins = {}, {}
+  if self._cuts_on then cuts, joins = self:_fragment_cuts(word) end
   local diphthongs = self.syll.diphthongs or {}
   local sylls
   if T(diphthongs) then
-    sylls = self:_with_diphthongs(word, nucleus, diphthongs, self.syll.onset_graphemes or {}, hiatus)
+    local both = {}
+    for h in pairs(hiatus) do both[h] = true end
+    for h in pairs(cuts) do both[h] = true end
+    sylls = self:_with_diphthongs(word, nucleus, diphthongs, self.syll.onset_graphemes or {}, both, joins)
   else
     sylls = self:_vowel_groups(word, nucleus)
   end
   if T(self._onsets) then
     return self:_rebalance(sylls, nucleus,
       function(run) return self:_written_units(run) end,
-      function(run) return self:_licit_written_onset(run) end)
+      function(run) return self:_licit_written_onset(run) end, cuts)
+  end
+  if next(cuts) ~= nil then
+    return self:_rebalance(sylls, nucleus, chars, function() return true end, cuts)
   end
   return sylls
+end
+
+-- 3.7.6: the offsets where the fragment tables start a syllable, and the
+-- spans they join into one nucleus, as {start = length}.
+function P:_fragment_cuts(word)
+  local sy = self.syll
+  local low = self:lower(word)
+  local n = slen(low)
+  local vowel = {}
+  for k = 0, n - 1 do vowel[k] = self:_c(at(low, k), "orth_vowel") end
+  local cuts, joins = {}, {}
+  local multi = {}
+  for _, u in ipairs(T(self._onsets) and self._onsets.units or {}) do
+    if slen(u) > 1 then multi[#multi + 1] = u end
+  end
+  local inside = {}
+  local k = 0
+  while k < n do
+    local width = 1
+    for _, u in ipairs(multi) do
+      if startswith(low, u, k) then width = slen(u); break end
+    end
+    for x = k + 1, k + width - 1 do inside[x] = true end
+    k = k + width
+  end
+  for _, pair in ipairs(sy.cut_pairs or {}) do
+    k = sfind_from(low, pair, 0)
+    while k >= 0 do
+      if not inside[k + 1] then cuts[k + 1] = true end
+      k = sfind_from(low, pair, k + 1)
+    end
+  end
+  local rule = sy.glide_hiatus
+  if T(rule) then
+    if inset(rule.diphthong_words, low) then
+      k = 0
+      while k < n do
+        local j = k
+        while j < n and vowel[j] do j = j + 1 end
+        if j - k > 1 then joins[k] = j - k end
+        k = j + 1
+      end
+    end
+    for x = 1, n - 1 do
+      local g = at(low, x)
+      if inset(rule.glides, g) and vowel[x - 1] and g ~= at(low, x - 1)
+          and not (x + 1 < n and vowel[x + 1]) then
+        local rest = sl(low, x + 1)
+        local hit = false
+        for _, b in ipairs(rule.before) do
+          if startswith(rest, b) then hit = true; break end
+        end
+        if not hit and inset(rule.codas, sl(rest, 0, 1)) then
+          hit = not (slen(rest) > 1 and (vowel[x + 2] or at(rest, 1) == at(rest, 0)))
+          for _, u in ipairs(multi) do
+            if startswith(rest, u) then hit = false; break end
+          end
+        end
+        if hit then cuts[x] = true end
+      end
+    end
+  end
+  for _, sc in ipairs(sy.stem_cuts or {}) do
+    k = sfind_from(low, sc[1], 0)
+    if k >= 0 then
+      for _, o in ipairs(sc[2]) do cuts[k + o] = true end
+    end
+  end
+  for _, r in ipairs(sy.prefix_cuts or {}) do
+    if startswith(low, r.prefix) then
+      local stem = sl(low, slen(r.prefix))
+      if inset(r.onset, sl(stem, 0, 1)) then
+        for _, t in ipairs(r.stems) do
+          if startswith(stem, t) then cuts[slen(r.prefix)] = true; break end
+        end
+      end
+      break
+    end
+  end
+  local seams = sy.seams
+  if T(seams) then
+    local cps = to_cps(low)
+    local done = false
+    for _, r in ipairs(seams.suffixes) do
+      local start = psearch(r.pattern, cps, 0, group_count(r.pattern))
+      if start ~= nil then cuts[start + r.cut] = true; done = true; break end
+    end
+    if not done then
+      for _, stem in ipairs(seams.stems) do
+        k = sfind_from(low, stem, 0)
+        local e = k + slen(stem)
+        if k >= 0 and inset(seams.next, sl(low, e, e + 1)) and n > e + 1 then
+          cuts[e] = true
+          break
+        end
+      end
+    end
+  end
+  local foreign = sy.foreign
+  if T(foreign) then
+    for _, f in ipairs(foreign.finals) do
+      for _, tail in ipairs(f[2]) do
+        if endswith(low, f[1] .. tail) then joins[n - slen(f[1] .. tail)] = slen(f[1]) end
+      end
+    end
+    if T(foreign.nuclei) and psearch(foreign.pattern, to_cps(low), 0, group_count(foreign.pattern)) ~= nil then
+      for _, nuc in ipairs(foreign.nuclei) do
+        k = sfind_from(low, nuc, 0)
+        while k >= 0 do
+          local covered = false
+          for h, w in pairs(joins) do
+            if h <= k and k < h + w then covered = true; break end
+          end
+          if not covered then joins[k] = slen(nuc) end
+          k = sfind_from(low, nuc, k + slen(nuc))
+        end
+      end
+    end
+  end
+  return cuts, joins
 end
 
 function P:_units_by(run, units, norm)
@@ -2305,7 +2453,8 @@ function P:hiatus_positions(word)
           if startswith(rest, o) then hit = true; break end
         end
         if not hit and inset(rule.codas, sl(rest, 0, 1))
-            and not (slen(rest) > 1 and self:_c(at(rest, 1), "orth_vowel")) then
+            and not (slen(rest) > 1 and (self:_c(at(rest, 1), "orth_vowel")
+                                         or at(rest, 1) == at(rest, 0))) then
           hit = true
           for _, g in ipairs(rule.multi_keys) do
             if startswith(rest, g) then hit = false; break end
@@ -2540,7 +2689,8 @@ function P:_licit_onset(run)
   return self._mark_table[concat(units, "\1")] == true
 end
 
-function P:_rebalance(syllables, nucleus, split, licit)
+function P:_rebalance(syllables, nucleus, split, licit, cuts)
+  cuts = cuts or {}
   if #syllables < 2 then return syllables end
   local out = {syllables[1]}
   local start = slen(syllables[1])
@@ -2548,16 +2698,24 @@ function P:_rebalance(syllables, nucleus, split, licit)
     local syll = syllables[k]
     local j, n = 0, slen(syll)
     while j < n and (self:_comb(at(syll, j)) or not nucleus[start + j + 1]) do j = j + 1 end
+    local cut
+    for c in pairs(cuts) do
+      if start <= c and c <= start + j and (cut == nil or c - start < cut) then cut = c - start end
+    end
     start = start + n
     local onset = sl(syll, 0, j)
     if onset == "" or out[#out] == "" then
       out[#out + 1] = syll
     else
-      local units = split(onset)
       local keep = 0
-      for kk = #units, 1, -1 do
-        local tail = concat(units, "", #units - kk + 1, #units)
-        if licit(tail) then keep = slen(tail); break end
+      if cut ~= nil then
+        keep = slen(onset) - cut
+      else
+        local units = split(onset)
+        for kk = #units, 1, -1 do
+          local tail = concat(units, "", #units - kk + 1, #units)
+          if licit(tail) then keep = slen(tail); break end
+        end
       end
       local on = slen(onset)
       if keep >= on then
@@ -3307,9 +3465,29 @@ function P:_ending_vowels_follow_stress(path, tail, ipa)
   return concat(out)
 end
 
+function P:noncohering_split(word)
+  local nc = T(self.stress) and self.stress.noncohering or nil
+  if not T(nc) then return nil end
+  local key = self:nfc(self:casefold(word))
+  if setof(nc.exceptions)[key] then return nil end
+  for _, suffix in ipairs(nc.suffixes) do
+    local n = slen(suffix)
+    if slen(key) > n and endswith(key, suffix) and self:_c(at(key, -n - 1), "orth_vowel") then
+      local cut = slen(word) - n
+      return sl(word, 0, cut), sl(word, cut)
+    end
+  end
+  return nil
+end
+
 function P:transcribe_word(word, width)
   local override = self:_override_for(word)
   if override ~= nil then return self:_finalize(word, override, nil, false) end
+  local base, suffix = self:noncohering_split(word)
+  if base ~= nil then
+    return sreplace(self:transcribe_word(base, width), self.stress.mark, self.stress.secondary_mark)
+      .. self:transcribe_word(suffix, width)
+  end
   local paths = self:_apply_ending(word, self:_word_paths(word, width))
   local best = paths[1]
   return self:_finalize(word, best == nil and word or concat(best[1]), best, true)

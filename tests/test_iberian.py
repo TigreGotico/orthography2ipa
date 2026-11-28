@@ -751,7 +751,9 @@ class TestPortuguesePT:
         ("de ouro", "dɨ ˈoɾu"),
         # Cruz-Ferreira (1999: 130) deletes the [ɨ] of a stressed host:
         # imediatamente o [-ˈmẽt u], conseguisse obrigar [kõsˈgis ɔbɾiˈgaɾ].
-        ("imediatamente o", "imɨdiɐtɐˈmẽt u"),
+        # The base of -mente is a stress domain of its own: WikiPron pt-PT
+        # imediatamente i m ɨ d j a t ɐ m ẽ t ɨ.
+        ("imediatamente o", "imɨdiˌatɐˈmẽt u"),
         ("conseguisse obrigar", "kõsɨˈɡis ɔbɾiˈɡaɾ"),
         # A clitic has no lexical stress (Vigário 2003, reported by Paulino
         # 2016: 9), and final-vowel fall applies only at a prosodic word edge

@@ -193,6 +193,7 @@ class Interpreter:
         self.hooks = Hooks()
         if self.stress:
             self._cliticless = frozenset(self.stress["cliticless"])
+            self._noncohering = self.stress.get("noncohering")
             onsets = self.stress.get("mark_onsets")
             self._mark_table = {tuple(t) for t in onsets["table"]} if onsets else None
         self._hiatus_on = bool(self.syll.get("closed_hiatus") or self.syll.get("final_diphthongs"))
@@ -202,6 +203,8 @@ class Interpreter:
         if self._onsets:
             self._onset_table = {tuple(t) for t in self._onsets["table"]}
             self._onset_velar = frozenset(self._onsets["velar"])
+        self._cuts_on = any(k in self.syll for k in (
+            "cut_pairs", "glide_hiatus", "stem_cuts", "prefix_cuts", "seams", "foreign"))
 
     def with_hooks(self, hooks: Hooks) -> "Interpreter":
         """A copy of this interpreter that runs *hooks*. It shares the
@@ -725,6 +728,22 @@ class Interpreter:
             return ""
         count = sum(1 for t in self.grapheme_tokens(word) if t.position < apostrophe)
         return "".join(paths[0][0][:count])
+
+    def noncohering_split(self, word: str) -> Optional[Tuple[str, str]]:
+        """*word* as (base, suffix) when it ends in a suffix that starts a
+        stress domain of its own, or ``None``."""
+        if not self.stress or self._noncohering is None:
+            return None
+        key = self.nfc(self.casefold(word))
+        if key in self._noncohering["exceptions"]:
+            return None
+        for suffix in self._noncohering["suffixes"]:
+            # A base-final consonant is left joined: read alone, it loses the
+            # assimilation to the suffix onset (feliz-mente [ʒm]).
+            if key.endswith(suffix) and len(key) > len(suffix) and self._c(key[-len(suffix) - 1], "orth_vowel"):
+                cut = len(word) - len(suffix)
+                return word[:cut], word[cut:]
+        return None
 
     def _is_cliticless(self, word: str, elided: bool = True) -> bool:
         if not self.stress or not self._cliticless:
@@ -1278,7 +1297,8 @@ class Interpreter:
             mask.append(status)
         return mask
 
-    def _split_nuclei(self, run: str, diphthongs: Sequence[str], hiatus: FrozenSet[int] = frozenset()) -> List[str]:
+    def _split_nuclei(self, run: str, diphthongs: Sequence[str], hiatus: FrozenSet[int] = frozenset(),
+                      joins: Mapping[int, int] = {}) -> List[str]:
         if len(run) < 2:
             return [run]
         ordered = sorted(diphthongs, key=len, reverse=True)
@@ -1286,14 +1306,10 @@ class Interpreter:
         nuclei: List[str] = []
         i = 0
         while i < len(run):
-            for diph in ordered:
-                if lowered.startswith(diph, i) and not any(i < h < i + len(diph) for h in hiatus):
-                    nuclei.append(run[i:i + len(diph)])
-                    i += len(diph)
-                    break
-            else:
-                nuclei.append(run[i])
-                i += 1
+            width = joins.get(i) or next((len(d) for d in ordered if lowered.startswith(d, i)
+                                          and not any(i < h < i + len(d) for h in hiatus)), 1)
+            nuclei.append(run[i:i + width])
+            i += width
             while i < len(run) and (self._comb(run[i]) or run[i] == "ː"):
                 if nuclei:
                     nuclei[-1] += run[i]
@@ -1303,7 +1319,8 @@ class Interpreter:
         return nuclei
 
     def _with_diphthongs(self, word: str, nucleus: Sequence[bool], diphthongs: Sequence[str],
-                         onset_graphemes: Sequence[str] = (), hiatus: FrozenSet[int] = frozenset()) -> List[str]:
+                         onset_graphemes: Sequence[str] = (), hiatus: FrozenSet[int] = frozenset(),
+                         joins: Mapping[int, int] = {}) -> List[str]:
         syllables: List[str] = []
         onset = ""
         i = 0
@@ -1325,7 +1342,8 @@ class Interpreter:
             while j < len(word) and (nucleus[j] or self._comb(word[j]) or word[j] == "ː"):
                 j += 1
             run_hiatus = frozenset(h - i for h in hiatus if i < h < j)
-            for k, piece in enumerate(self._split_nuclei(word[i:j], diphthongs, run_hiatus)):
+            run_joins = {h - i: n for h, n in joins.items() if i <= h and h + n <= j}
+            for k, piece in enumerate(self._split_nuclei(word[i:j], diphthongs, run_hiatus, run_joins)):
                 syllables.append((onset if k == 0 else "") + piece)
             onset = ""
             i = j
@@ -1366,15 +1384,100 @@ class Interpreter:
         if not word:
             return []
         nucleus = self._nucleus_mask(word, self._semivowels, self._vowel_letters)
+        cuts, joins = self._fragment_cuts(word) if self._cuts_on else (frozenset(), {})
         diphthongs = self.syll.get("diphthongs", ())
         if diphthongs:
             sylls = self._with_diphthongs(word, nucleus, diphthongs,
-                                          self.syll.get("onset_graphemes", ()), hiatus)
+                                          self.syll.get("onset_graphemes", ()), hiatus | cuts, joins)
         else:
             sylls = self._vowel_groups(word, nucleus)
         if self._onsets:
-            return self._rebalance(sylls, nucleus, self._written_units, self._licit_written_onset)
+            return self._rebalance(sylls, nucleus, self._written_units, self._licit_written_onset, cuts)
+        if cuts:
+            return self._rebalance(sylls, nucleus, list, lambda run: True, cuts)
         return sylls
+
+    def _fragment_cuts(self, word: str) -> Tuple[FrozenSet[int], Dict[int, int]]:
+        """3.7.6: the offsets where the fragment tables start a syllable, and the
+        spans they join into one nucleus, as {start: length}."""
+        low = self.lower(word)
+        n = len(low)
+        vowel = [self._c(ch, "orth_vowel") for ch in low]
+        cuts: Set[int] = set()
+        joins: Dict[int, int] = {}
+        multi = [u for u in (self._onsets or {}).get("units", ()) if len(u) > 1]
+        inside: Set[int] = set()
+        k = 0
+        while k < n:
+            unit = next((u for u in multi if low.startswith(u, k)), low[k])
+            inside.update(range(k + 1, k + len(unit)))
+            k += len(unit)
+        for pair in self.syll.get("cut_pairs", ()):
+            k = low.find(pair)
+            while k >= 0:
+                if k + 1 not in inside:
+                    cuts.add(k + 1)
+                k = low.find(pair, k + 1)
+        rule = self.syll.get("glide_hiatus")
+        if rule:
+            if low in rule["diphthong_words"]:
+                k = 0
+                while k < n:
+                    j = k
+                    while j < n and vowel[j]:
+                        j += 1
+                    if j - k > 1:
+                        joins[k] = j - k
+                    k = j + 1
+            for k in range(1, n):
+                if not (low[k] in rule["glides"] and vowel[k - 1] and low[k] != low[k - 1]
+                        and not (k + 1 < n and vowel[k + 1])):
+                    continue
+                rest = low[k + 1:]
+                if any(rest.startswith(b) for b in rule["before"]) or (
+                        rest[:1] in rule["codas"] and not any(rest.startswith(u) for u in multi)
+                        and not (len(rest) > 1 and (vowel[k + 2] or rest[1] == rest[0]))):
+                    cuts.add(k)
+        for stem, offsets in self.syll.get("stem_cuts", ()):
+            k = low.find(stem)
+            if k >= 0:
+                cuts.update(k + o for o in offsets)
+        for rule in self.syll.get("prefix_cuts", ()):
+            if low.startswith(rule["prefix"]):
+                stem = low[len(rule["prefix"]):]
+                if stem[:1] in rule["onset"] and any(stem.startswith(t) for t in rule["stems"]):
+                    cuts.add(len(rule["prefix"]))
+                break
+        seams = self.syll.get("seams")
+        if seams:
+            cps = [ord(c) for c in low]
+            for rule in seams["suffixes"]:
+                hit = pattern.search(rule["pattern"], cps, 0, pattern.group_count(rule["pattern"]))
+                if hit is not None:
+                    cuts.add(hit[0] + rule["cut"])
+                    break
+            else:
+                for stem in seams["stems"]:
+                    k = low.find(stem)
+                    end = k + len(stem)
+                    if k >= 0 and low[end:end + 1] in seams["next"] and n > end + 1:
+                        cuts.add(end)
+                        break
+        foreign = self.syll.get("foreign")
+        if foreign:
+            for nucleus, tails in foreign["finals"]:
+                for tail in tails:
+                    if low.endswith(nucleus + tail):
+                        joins[n - len(nucleus + tail)] = len(nucleus)
+            if foreign["nuclei"] and pattern.search(foreign["pattern"], [ord(c) for c in low], 0,
+                                                    pattern.group_count(foreign["pattern"])) is not None:
+                for nucleus in foreign["nuclei"]:
+                    k = low.find(nucleus)
+                    while k >= 0:
+                        if not any(h <= k < h + w for h, w in joins.items()):
+                            joins[k] = len(nucleus)
+                        k = low.find(nucleus, k + len(nucleus))
+        return frozenset(cuts), joins
 
     def _written_units(self, run: str) -> List[str]:
         out: List[str] = []
@@ -1420,7 +1523,7 @@ class Interpreter:
                 rest = lowered[k + 1:]
                 if any(rest.startswith(o) for o in rule["onsets"]) or (
                         rest[:1] in rule["codas"]
-                        and not (len(rest) > 1 and self._c(rest[1], "orth_vowel"))
+                        and not (len(rest) > 1 and (self._c(rest[1], "orth_vowel") or rest[1] == rest[0]))
                         and not any(rest.startswith(g) for g in rule["multi_keys"])):
                     found.append(k)
                 elif any(rest.startswith(o) for o in rule.get("atonic_onsets", ())):
@@ -1625,7 +1728,8 @@ class Interpreter:
             return True
         return tuple(units) in self._mark_table
 
-    def _rebalance(self, syllables: List[str], nucleus: Sequence[bool], split, licit) -> List[str]:
+    def _rebalance(self, syllables: List[str], nucleus: Sequence[bool], split, licit,
+                   cuts: FrozenSet[int] = frozenset()) -> List[str]:
         if len(syllables) < 2:
             return syllables
         out = [syllables[0]]
@@ -1634,18 +1738,22 @@ class Interpreter:
             j = 0
             while j < len(syll) and (self._comb(syll[j]) or not nucleus[start + j]):
                 j += 1
+            cut = min((c - start for c in cuts if start <= c <= start + j), default=None)
             start += len(syll)
             onset = syll[:j]
             if not onset or not out[-1]:
                 out.append(syll)
                 continue
-            units = split(onset)
             keep = 0
-            for k in range(len(units), 0, -1):
-                tail = "".join(units[len(units) - k:])
-                if licit(tail):
-                    keep = len(tail)
-                    break
+            if cut is not None:
+                keep = len(onset) - cut
+            else:
+                units = split(onset)
+                for k in range(len(units), 0, -1):
+                    tail = "".join(units[len(units) - k:])
+                    if licit(tail):
+                        keep = len(tail)
+                        break
             if keep >= len(onset):
                 out.append(syll)
                 continue
@@ -2242,7 +2350,12 @@ class Interpreter:
                          key: Optional[str] = None) -> WordResult:
         override = forced if forced is not None else self._override_for(key or word, lexicon)
         paths = []
-        if override is not None:
+        split = None if override is not None or key is not None else self.noncohering_split(word)
+        if split is not None:
+            base = self.transcribe_word(split[0], width, lexicon).ipa
+            ipa = (base.replace(self.stress["mark"], self.stress["secondary_mark"])
+                   + self.transcribe_word(split[1], width, lexicon).ipa)
+        elif override is not None:
             ipa = self._finalize(word, override, None, collapse=False, forced=forced is not None)
         else:
             paths = self._apply_ending(word, self._word_paths(word, width))

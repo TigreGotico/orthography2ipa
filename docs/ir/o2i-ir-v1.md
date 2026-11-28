@@ -121,6 +121,27 @@ syllable.onsets.max: i
 syllable.onsets.units: list of s
 syllable.onsets.velar: sset
 syllable.onsets.table: list of list of s
+syllable.cut_pairs: sset
+syllable.glide_hiatus: object
+syllable.glide_hiatus.glides: sset
+syllable.glide_hiatus.before: list of s
+syllable.glide_hiatus.codas: sset
+syllable.glide_hiatus.diphthong_words: sset
+syllable.stem_cuts: list of pair of s and list of i
+syllable.prefix_cuts: list of object
+syllable.prefix_cuts[].prefix: s
+syllable.prefix_cuts[].onset: sset
+syllable.prefix_cuts[].stems: list of s
+syllable.seams: object
+syllable.seams.suffixes: list of object
+syllable.seams.suffixes[].pattern: pat
+syllable.seams.suffixes[].cut: i
+syllable.seams.stems: list of s
+syllable.seams.next: sset
+syllable.foreign: object
+syllable.foreign.pattern: pat
+syllable.foreign.nuclei: list of s
+syllable.foreign.finals: list of pair of s and list of s
 stress: object
 stress.mark: s
 stress.secondary_mark: s
@@ -155,6 +176,9 @@ stress.mark_onsets.table: list of list of s
 stress.weight: object
 stress.weight.max_onset: i
 stress.weight.superheavy_final: i
+stress.noncohering: object
+stress.noncohering.suffixes: list of s
+stress.noncohering.exceptions: sset
 atoms: object
 atoms.mark: list of s
 atoms.affricates: list of s
@@ -637,7 +661,7 @@ So a host lexicon hit on the raw key beats an exception on the stripped key. The
 
 `word.words` is the optional word table of plugin fragments, a list of `[key, ipa]` pairs sorted by key, with the semantics version `words`. A key is lowercase NFC. For each key `k` the order is `word.exceptions`, then the host lexicon, then `word.words`, looked up with `NFC(k)` as the lexicon is. The compiler writes the table only when it is not empty, so an IR with no fragment has no `words` field and the same revision as before. The test for a leading apostrophe that opens a listed word counts a key of `word.words` as listed.
 
-A fragment is a JSON object with an `ir_version` and any of four parts. `langs` is a non-empty list of language codes, the scope of the fragment. The compiler merges a fragment into the IR of a code only when `registry.resolve` gives the same registered code for one code of `langs` and for the engine code. The match is exact after resolution: a fragment for `pt-PT` does not reach `pt-PT-x-lisbon`. A fragment without `langs` applies to every code. The IR does not hold `langs`: a fragment out of scope contributes nothing, so the IR of that code is byte-identical to its IR without the fragment. `words` is the table `{key: ipa}`. `sandhi` is a list of rules, each with the pattern and template texts of a spec `SandhiRule` under the keys `left`, `right`, `left_out`, `right_out`, and optionally `left_spelling`, `right_spelling`, `left_joined_spelling`, `right_joined_spelling` and `"pause": true` (3.10.1). The compiler compiles the texts as it compiles the spec's rules and appends the rules to `sandhi` after the spec's own; `apply_sandhi=False` removes the spec's rules and keeps these. `unsupported` is a list of names of the rules a plugin keeps as a host hook because no fragment part can express them; the IR does not hold it. `compile_spec(code, fragments=[...])` checks every fragment and merges the parts of the fragments in scope for `code`, and a later fragment wins on a duplicate word. The compiler raises `ValueError` that names the offender for any other part, an `ir_version` that differs from the document's, a word key that is not lowercase NFC, a key or value that is not a string, a `langs` that is not a non-empty list of strings or that has a code that names no registered language, a sandhi rule with a key its kind does not allow, with no output, or with a text the IR cannot compile, and an `unsupported` entry that is not a string. The revision covers the merged table and the rules, so it covers the fragment bytes. `Pipeline(fragments=...)` passes fragments to the compiler, and `export_to_loom --fragment PATH` does the same for each language of an export, records the sha256 of each fragment in the GGUF field `o2i.fragments` and the sorted names of the `unsupported` lists in `o2i.unsupported`. These two fields are file-level: they list every fragment passed to the export, also a fragment that is out of scope for some of its languages. The table is additive: a new optional table keeps `ir_version` (8.1). Edge punctuation is the char bit `edge_punct` (`_EDGE_PUNCT_RE`).
+A fragment is a JSON object with an `ir_version` and any of five parts. `langs` is a non-empty list of language codes, the scope of the fragment. The compiler merges a fragment into the IR of a code only when `registry.resolve` gives the same registered code for one code of `langs` and for the engine code. The match is exact after resolution: a fragment for `pt-PT` does not reach `pt-PT-x-lisbon`. A fragment without `langs` applies to every code. The IR does not hold `langs`: a fragment out of scope contributes nothing, so the IR of that code is byte-identical to its IR without the fragment. `syllable` holds the tables of the written splitter (3.7.6). `words` is the table `{key: ipa}`. `sandhi` is a list of rules, each with the pattern and template texts of a spec `SandhiRule` under the keys `left`, `right`, `left_out`, `right_out`, and optionally `left_spelling`, `right_spelling`, `left_joined_spelling`, `right_joined_spelling` and `"pause": true` (3.10.1). The compiler compiles the texts as it compiles the spec's rules and appends the rules to `sandhi` after the spec's own; `apply_sandhi=False` removes the spec's rules and keeps these. `unsupported` is a list of names of the rules a plugin keeps as a host hook because no fragment part can express them; the IR does not hold it. `compile_spec(code, fragments=[...])` checks every fragment and merges the parts of the fragments in scope for `code`, and a later fragment wins on a duplicate word. The compiler raises `ValueError` that names the offender for any other part, an `ir_version` that differs from the document's, a word key that is not lowercase NFC, a key or value that is not a string, a `langs` that is not a non-empty list of strings or that has a code that names no registered language, a sandhi rule with a key its kind does not allow, with no output, or with a text the IR cannot compile, and an `unsupported` entry that is not a string, and a `syllable` table or key that 3.7.6 does not name or a value of the wrong shape. The revision covers the merged table and the rules, so it covers the fragment bytes. `Pipeline(fragments=...)` passes fragments to the compiler, and `export_to_loom --fragment PATH` does the same for each language of an export, records the sha256 of each fragment in the GGUF field `o2i.fragments` and the sorted names of the `unsupported` lists in `o2i.unsupported`. These two fields are file-level: they list every fragment passed to the export, also a fragment that is out of scope for some of its languages. The table is additive: a new optional table keeps `ir_version` (8.1). Edge punctuation is the char bit `edge_punct` (`_EDGE_PUNCT_RE`).
 
 The elided-clitic path transcribes the clitic with a width-1 beam and joins it to the host's override. The join segments the clitic's IPA with primitive 11 and reads the `ipa_vowel` bit of each segment.
 
@@ -805,13 +829,54 @@ At runtime the splitter segments the consonant run into units by trie match, and
 
 #### 3.7.4 Hiatus
 
-`hiatus_positions` has two steps. First it collects candidate cut points: `_closed_hiatus_candidates` tests letter pairs against `closed_hiatus.pairs`, then the rest of the word against `onsets`, `codas` and `atonic_onsets`, and `_final_diphthong_candidates` tests the word end against `final_diphthongs`. Second, it filters them by stress: it splits the word with the written splitter, using the candidates as hiatus cuts, runs the decision of 3.8.1 on that split, and keeps the candidate that opens the stressed syllable. A candidate found by `atonic_onsets` stays also where its vowel is atonic.
+`hiatus_positions` has two steps. First it collects candidate cut points: `_closed_hiatus_candidates` tests letter pairs against `closed_hiatus.pairs`, then the rest of the word against `onsets`, `codas` and `atonic_onsets`. A coda letter that the same letter follows does not close the pair (brail.le), and `_final_diphthong_candidates` tests the word end against `final_diphthongs`. Second, it filters them by stress: it splits the word with the written splitter, using the candidates as hiatus cuts, runs the decision of 3.8.1 on that split, and keeps the candidate that opens the stressed syllable. A candidate found by `atonic_onsets` stays also where its vowel is atonic.
 
 So tokenization depends on the stress decision. The tokenizer calls the filter through `_hiatus_prefix` when it meets a multi-letter vowel key. In the stage order this is a nested call: S4 calls the S5 splitter and decision on the word for this one filter, before S5 runs for the word. The interpreter caches the result per word, as `hiatus_by_word` does in the rules-engine code. The tables are strings over the lowercased word, and the vowel tests read char bit `orth_vowel`.
 
 #### 3.7.5 Host syllabifier
 
 A host syllabifier (the `syllables` hook at S5) replaces the written splitter. Its result is used only when it joins back to the word. `SilabificadorSyllabifier` is such a plugin. Its 25-code list says which codes it accepts, and it runs only when a caller passes it.
+
+#### 3.7.6 Fragment syllable tables
+
+The `syllable` part of a fragment (3.5) holds optional tables for the written splitter of 3.7.1. Each table is general: it names letters and offsets, and the interpreter has no code for one language. The compiler checks each table, and a later fragment's table replaces an earlier one's. Every string is lowercase NFC. The splitter reads the tables on the lowercased word. A table that is absent writes no IR field, so an IR without the part has the same bytes and the same revision as before.
+
+| Fragment table | Schema | IR field | Semantics version |
+|---|---|---|---|
+| `glides` | list of 1-letter strings | `syllable.diphthongs` | `splitter` |
+| `heterosyllabic_pairs` | list of 2-letter strings | `syllable.cut_pairs` | `cut_pairs` |
+| `hiatus` | `{glides, before, codas, diphthong_words}`, each a list of strings | `syllable.glide_hiatus` | `glide_hiatus` |
+| `stem_cuts` | `{stem: [offset, ...]}`, each offset inside the stem | `syllable.stem_cuts`, `[stem, offsets]` pairs | `stem_cuts` |
+| `prefix_boundaries` | list of `{prefix, onset, stems}` | `syllable.prefix_cuts`, longest prefix first | `prefix_cuts` |
+| `seams` | `{suffixes: [{pattern, cut}], stems, next}` | `syllable.seams` | `seams` |
+| `onsets` | `{complex, max_onset, digraphs}` | `syllable.onsets` (3.7.2) | `written_onsets` |
+| `foreign` | `{units, pattern, nuclei, final_nuclei: {nucleus: [tail, ...]}}` | `syllable.foreign` and `syllable.onsets.units` | `foreign_nuclei` |
+
+The tables give two results. A **cut** is an offset where a syllable must start. A **join** is a span of letters that is one nucleus. The splitter collects them before the diphthong split:
+
+```
+written_syllables(word) with a fragment:
+  cuts, joins = fragment_cuts(lowercase(word))
+  sylls = split_with_diphthongs(word, nucleus, diphthongs, onset_graphemes, hiatus ∪ cuts, joins)
+  sylls = rebalance(sylls, nucleus, written_onset_table, cuts)
+```
+
+In the diphthong split, a join that starts at a position is one nucleus, before the diphthong list is tried, and a cut inside a diphthong prevents that diphthong (as a hiatus cut does). In the rebalance, when a cut falls inside the onset of a syllable or at its nucleus, the first such cut sets the onset: the letters from the cut to the nucleus stay in the onset, and the letters before the cut go to the previous coda. The onset table does not test that onset. When the IR has no onset table, the rebalance still applies the cuts, and every onset is licit. When the spec has no `syllable.diphthongs`, the vowel-group split applies, and cuts and joins inside a vowel run have no effect.
+
+The unit split of the onset table (3.7.2) also defines the **multi-letter units** of the word: the units of `syllable.onsets.units` with two or more letters, matched from the left. The tables read them as follows:
+
+- **`glides`.** The compiler adds to `syllable.diphthongs` each pair of a lowercase `orth_vowel` char and a different glide that the list does not hold, for example ney.mar and play.ground. The table has no IR field of its own.
+- **`heterosyllabic_pairs`.** Each occurrence of a pair cuts between its two letters, for example `rr`, `ss`, `sc`, `sç` and `xc`. A pair that lies inside a multi-letter unit does not cut: the `sc` of `tsch` stays in the unit.
+- **`hiatus`.** A letter of `glides` at offset k cuts at k when the letter before it is a vowel (bit `orth_vowel`) and not the same letter, the letter after it is not a vowel, and one of two conditions holds. Either the rest of the word starts with a string of `before` (`nh`: ra.i.nha), or its first letter is in `codas`, the rest does not start with a multi-letter unit, and its second letter is not a vowel and not the same letter (a.in.da, ju.iz, but bair.ro). When the coda letter ends the word, no second letter exists and the condition holds (ju.iz). The cut does not depend on stress. A word that equals a string of `diphthong_words` makes each of its vowel runs one join (`ao`, `aos`).
+- **`stem_cuts`.** For each stem, the first occurrence in the word adds a cut at the start of the occurrence plus each offset. The offsets are the syllable starts inside the stem, so `ruin` with offset 2 gives ar.ru.i.nar.
+- **`prefix_boundaries`.** The first rule, longest prefix first, whose prefix starts the word decides. When the letter after the prefix is in `onset` and the rest of the word starts with a string of `stems`, the rule cuts after the prefix (sub.li.nhar, but su.bli.me). Rules with shorter prefixes are not tried.
+- **`seams`.** Each suffix rule, in order, searches its `pattern` (the subset of section 5) in the word. The first match cuts at its start plus `cut`, and the stems are not tried. Without a match, the first stem, in order, whose first occurrence is followed by a letter of `next` and at least one more letter cuts at the end of the occurrence (dis.tri.bu.i.dor). A seam gives one cut at most.
+- **`onsets`.** The table replaces the onset table of the spec. The compiler writes `syllable.onsets` with `max` = `max_onset`, `units` = `digraphs` plus the `units` of `foreign`, longest first, an empty `velar`, and `table` = each string of `complex` split into units. A `max_onset` of -1 sets no cap.
+- **`foreign`.** The `units` are consonant spellings of loans (`sh`, `th`, `tsch`). They join the onset units of the fragment table, or of the spec table when the fragment has no `onsets`. Without an onset table they have no effect. For each item of `final_nuclei`, when the word ends with the nucleus plus one of its tails, the nucleus there is a join (bu.reau, bo.xeur). When `pattern` finds a match in the word, each occurrence of each string of `nuclei`, from the left and not inside a join already, is a join (fa.ce.boo.ki.a.no, gour.met). A fragment with `nuclei` must have a `pattern`.
+
+The tables do not change stress. The stress tables of a fragment (word endings, accents and clitics) are not part of this version of the part.
+
+`scripts/silabificador_fragment.py` writes the fragment of the installed silabificador data (`python scripts/silabificador_fragment.py OUT.json`).
 
 ### 3.8 Stress (S5, S9e, S9f)
 
@@ -1273,6 +1338,8 @@ Word grouping follows `Interpreter._group_words`. Whitespace ends a word. Punctu
 
 Compound stress (S10, `compound_stress == "last"`): in each hyphen-joined run, every primary mark but the last becomes the secondary mark.
 
+Non-cohering suffixes (`stress.noncohering`): a word that is not an override, is not in `exceptions`, and ends in an entry of `suffixes` after a base that is not empty and ends in an `orth_vowel` char is two stress domains. The first matching entry wins. The base and the suffix are each transcribed as a word. The base's primary mark becomes the secondary mark, and the two readings join with no space.
+
 ### 3.12 Output (S9b, S12, S14)
 
 Geminate collapse (`_collapse_geminates`) merges equal adjacent codepoints except `ipa_vowel`, length marks and space. It does not run on overrides. Non-empty words join with U+0020. The result is NFC by `char_maps`. The output can join codepoints that no single key holds, such as a vowel from one reading and a nasal mark from the next. So `char_maps.compose` holds every primary composite whose two parts the IR can write, closed under composition: a composite joins the set and can be the first part of a further composite. The interpreter returns the IPA string, and the Python reference also returns per-word paths, integer costs, dropped characters and coverage. `confidence` uses `exp` and is computed by the Python wrapper from the costs.
@@ -1553,6 +1620,7 @@ A new spec field compiles to the primitives of 2.3. It needs a compiler change a
 | `max_onset` (declared), `onset_clusters`, `constrain_onsets`, `constrain_mark_onsets` | licit-onset tables, splitter flags |
 | `coda_liquid_capture` | splitter flag with a liquid bit |
 | `secondary_stress`, `compound_stress`, `iambic_length` | flags of existing stages |
+| `noncohering_suffixes`, `noncohering_exceptions` | `stress.noncohering` suffix list and string set |
 | `apostrophe_elision`, `word_internal_apostrophe` | char bits and the grouping rule |
 | `doubled_letters_geminate` | rescoring flag |
 | `grammatical_endings` | ending table |
@@ -1605,8 +1673,15 @@ An optional field that changes output has its own version too. The manifest list
 | `allophone_map` | `allophone_map` |
 | `syllable.closed_hiatus`, `syllable.final_diphthongs` | `hiatus` |
 | `syllable.semivowels` | `semivowels` |
+| `syllable.cut_pairs` | `cut_pairs` |
+| `syllable.glide_hiatus` | `glide_hiatus` |
+| `syllable.stem_cuts` | `stem_cuts` |
+| `syllable.prefix_cuts` | `prefix_cuts` |
+| `syllable.seams` | `seams` |
+| `syllable.foreign` | `foreign_nuclei` |
 | `stress.cliticless` | `cliticless` |
 | `stress.compound_last` | `compound_last` |
+| `stress.noncohering` | `noncohering` |
 | `stress.tonic_after_diphthong` | `tonic_after_diphthong` |
 | `stress.ipa_diphthongs` | `ipa_diphthongs` |
 | `stress.mark_onsets` | `mark_onsets` |
@@ -1663,9 +1738,11 @@ A vector file is JSON Lines. The first line holds the IR. Each later line is one
 
 The example is pt-PT ⟨os jogos⟩ → `u ˈʒɔɡuʃ`, the output of the engine at `690611bb2`. Every interpreter must give `expect` byte for byte. **Dialect corpus.** The corpus holds the leader specs pt-PT, pt-BR, es-CO, fr-FR, it-IT, de-DE, nl-NL, da, kab, hi and bn, every lect whose code starts with `pt-PT-x-`, `pt-BR-x-`, `fr-` or `es-`, and pt-PT with each of the 15 dialect profiles (`pt-PT@<profile>.jsonl`). A lect file holds the inputs whose output differs from the output of the parent spec (`LanguageSpec.parent`): for each input that shows a difference the earlier inputs do not show, up to 48, and 4 inputs with the same output. A profile file holds the same choice against plain pt-PT, from the texts of `tests/data/ep_dialect_sentences.csv`. The inputs come from `tests/data/ir_vector_inputs.json`, the golden rows, `tests/data/rules_outputs.json` and pseudo-words around each grapheme key.
 
+A line with `"kind": "syllables"` holds a word and its written syllables (S5) as a list of codepoint arrays. A runner calls the written splitter on the input and compares the list.
+
 The package must generate vectors from the Python reference interpreter into `tests/conformance/ir-v1/`: for each spec a fixed sample of its gold or test data, plus targeted cases for every pattern, beam tie, normalisation rule, predicate node, tokenizer branch, ruled change and unknown version.
 
-`scripts/gen_ir_vectors.py` writes the files. The 20 codes of `tests/data/ir_golden_ci.json` and kab hold the first 200 sorted words of the golden rows (kab: its shipped gold sentences), and the pt-PT file also holds ⟨os jogos⟩. Every file holds an empty input. `unknown-version.jsonl` holds the cop IR with one primitive version raised, and one case that expects the error text `unsupported primitive version`. A runner passes an `expect_error` case when the error message contains that text. The `ir` line omits `source`, so a package release does not change the files. Each file embeds its IR, so a spec change does not make the conformance tests fail.
+`scripts/gen_ir_vectors.py` writes the files. The 20 codes of `tests/data/ir_golden_ci.json` and kab hold the first 200 sorted words of the golden rows (kab: its shipped gold sentences), and the pt-PT file also holds ⟨os jogos⟩. Every file holds an empty input. `unknown-version.jsonl` holds the cop IR with one primitive version raised, and one case that expects the error text `unsupported primitive version`. A runner passes an `expect_error` case when the error message contains that text. The `ir` line omits `source`, so a package release does not change the files. Each file embeds its IR, so a spec change does not make the conformance tests fail. `pt-PT-syllable.jsonl` holds the pt-PT IR with the fragment `tests/data/ir_fragment_syllable.json` and, for each of 33 words that exercise the tables of 3.7.6, one transcription case and one `syllables` case.
 
 **Targeted cases.** The feature list is every name of `layout.SEMANTICS`, and every node of the spelling gates (`gate.*`) and of the dialect predicates (`dnode.*`). A case exercises a feature when the ablation of the feature changes the output of the Python interpreter on that case. The ablation of a predicate node wraps each node of that kind in `not`. The ablation of a field or a primitive removes the IR data that it reads (`scripts/ir_features.py`). For each feature, the generator names the first case that exercises it in `features.json`. When no case does, it adds the first input of the file's pool that does. The files of ar, ar with the arbtok sandhi fragment, car, el, gv, km, lo, ml, my, ru, sv, th, pt-PT with a fragment word table and pt-PT with `expand_allophones` carry the features that the other files lack. The test fails when a feature has no case, and prints the uncovered features. `UNREACHABLE` names the features that no case can show: four slot nodes and one dialect node that no compiled IR holds, one gate that no input reaches, and the `allophone_map` readings, which rank below the top reading at width 1.
 

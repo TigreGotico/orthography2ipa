@@ -3040,7 +3040,8 @@
   "iso639_3": "por",
   "constrain_onsets": true,
   "word_exceptions": {
-    "e": "i"
+    "e": "i",
+    "maillot": "maˈjo"
   },
   "stress": {
     "onset_clusters": [

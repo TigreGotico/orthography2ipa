@@ -1,6 +1,6 @@
 {
- "o2i_version": "7.135.0a1",
- "o2i_git_sha": "9dcc7183130eb9974a57db729fb0212e1e8db8f4",
+ "o2i_version": "7.136.0a2",
+ "o2i_git_sha": "9023be67137de04320b7f93fd2ca124dc4bc1b12",
  "harness_version": "1.1",
  "min_n": 1000,
  "rows": [
@@ -7340,7 +7340,7 @@
    "gating": false,
    "headline": true,
    "n": 53143,
-   "strict_per": 0.1668,
+   "strict_per": 0.1669,
    "folded_per": null,
    "folds": []
   },
@@ -7405,7 +7405,7 @@
    "gating": true,
    "headline": true,
    "n": 105553,
-   "strict_per": 0.1866,
+   "strict_per": 0.1863,
    "folded_per": null,
    "folds": []
   },
@@ -7418,7 +7418,7 @@
    "gating": false,
    "headline": false,
    "n": 105534,
-   "strict_per": 0.1866,
+   "strict_per": 0.1863,
    "folded_per": null,
    "folds": []
   },
@@ -7431,7 +7431,7 @@
    "gating": true,
    "headline": false,
    "n": 56979,
-   "strict_per": 0.0578,
+   "strict_per": 0.0575,
    "folded_per": null,
    "folds": []
   },
@@ -7600,7 +7600,7 @@
    "gating": false,
    "headline": true,
    "n": 6,
-   "strict_per": 0.2739,
+   "strict_per": 0.2734,
    "folded_per": null,
    "folds": []
   },
@@ -7626,7 +7626,7 @@
    "gating": false,
    "headline": true,
    "n": 8,
-   "strict_per": 0.2986,
+   "strict_per": 0.2988,
    "folded_per": null,
    "folds": []
   },
@@ -7691,7 +7691,7 @@
    "gating": false,
    "headline": false,
    "n": 5,
-   "strict_per": 0.2682,
+   "strict_per": 0.2678,
    "folded_per": null,
    "folds": []
   },
@@ -7717,7 +7717,7 @@
    "gating": false,
    "headline": false,
    "n": 53145,
-   "strict_per": 0.0709,
+   "strict_per": 0.0708,
    "folded_per": null,
    "folds": []
   },
@@ -7808,7 +7808,7 @@
    "gating": false,
    "headline": true,
    "n": 9,
-   "strict_per": 0.283,
+   "strict_per": 0.2824,
    "folded_per": null,
    "folds": []
   },
@@ -7834,7 +7834,7 @@
    "gating": false,
    "headline": false,
    "n": 17,
-   "strict_per": 0.3936,
+   "strict_per": 0.3937,
    "folded_per": null,
    "folds": []
   },
@@ -7938,7 +7938,7 @@
    "gating": false,
    "headline": true,
    "n": 6,
-   "strict_per": 0.2985,
+   "strict_per": 0.2976,
    "folded_per": null,
    "folds": []
   },
@@ -8003,7 +8003,7 @@
    "gating": false,
    "headline": true,
    "n": 53142,
-   "strict_per": 0.3632,
+   "strict_per": 0.3627,
    "folded_per": null,
    "folds": []
   },
