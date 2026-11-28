@@ -47,7 +47,10 @@ _INERT_TOPOLOGY = {
 def compile_irs(codes: List[str], rev: Optional[str] = None,
                 fragments: Sequence[dict] = ()) -> Dict[str, dict]:
     """The canonical IR document of each code, compiled at spec data ``rev``
-    with the plugin *fragments* merged in."""
+    with the plugin *fragments* merged in. A ``contact`` part needs a donor table
+    that the GGUF does not hold, so it raises ``ValueError``."""
+    if any("contact" in f for f in fragments):
+        raise ValueError("export_to_loom: the GGUF holds no donor table, so a contact fragment cannot be exported")
     return {code: layout.encode(build_ir(code, rev, fragments=fragments)) for code in codes}
 
 

@@ -26,10 +26,19 @@ RUNNER = REPO / "scripts" / "ir_lua_conformance.lua"
 
 
 def load(path):
+    """The ``ir`` line and the cases of *path*, after its ``donor`` lines."""
     with path.open(encoding="utf-8") as f:
-        head, *cases = [json.loads(line) for line in f]
+        lines = [json.loads(line) for line in f]
+    head, *cases = [r for r in lines if r["kind"] != "donor"]
     assert head["kind"] == "ir" and all(c["kind"] in ("case", "syllables") for c in cases)
     return head, cases
+
+
+def donors(path):
+    """The donor interpreters and donor words of the ``donor`` lines of *path*."""
+    with path.open(encoding="utf-8") as f:
+        recs = [r for r in map(json.loads, f) if r["kind"] == "donor"]
+    return {r["lang"]: (Interpreter(r["ir"]), {text(k): text(v) for k, v in r["words"]}) for r in recs}
 
 
 def text(cps):
@@ -44,8 +53,11 @@ def test_the_vector_set_covers_every_spec():
 
 @pytest.mark.parametrize("path", VECTORS, ids=lambda p: p.stem)
 def test_every_file_keeps_the_size_budget(path):
-    head, *cases = path.read_text(encoding="utf-8").splitlines(keepends=True)
-    assert len(head.encode()) <= gen_ir_vectors.IR_BUDGET
+    lines = path.read_text(encoding="utf-8").splitlines(keepends=True)
+    kinds = [json.loads(line)["kind"] for line in lines]
+    heads = [line for line, kind in zip(lines, kinds) if kind in ("ir", "donor")]
+    cases = [line for line, kind in zip(lines, kinds) if kind not in ("ir", "donor")]
+    assert all(len(head.encode()) <= gen_ir_vectors.IR_BUDGET for head in heads)
     if path.stem not in gen_ir_vectors.GOLDEN_SPECS:
         assert sum(len(c.encode()) for c in cases) <= gen_ir_vectors.CASE_BUDGET
 
@@ -65,7 +77,7 @@ def test_every_ir_feature_has_a_case_that_needs_it():
         ir = layout.decode(head["ir"])
         case = cases[index]
         ablated = ablate(ir, name)
-        if ablated is None or _run(Interpreter(ablated), case) == case["expect"]:
+        if ablated is None or _run(Interpreter(ablated, donors(DIR / file)), case) == case["expect"]:
             weak.append(name)
     assert not uncovered and not weak, f"uncovered: {uncovered}; the case does not need: {weak}"
 
@@ -80,7 +92,7 @@ def test_every_unreachable_feature_has_a_case():
 def test_python_interpreter_gives_every_expect(path):
     head, cases = load(path)
     try:
-        it = Interpreter(head["ir"])
+        it = Interpreter(head["ir"], donors(path))
     except ValueError as exc:
         assert [c["expect_error"] for c in cases] == ["unsupported primitive version"]
         assert str(exc).startswith(cases[0]["expect_error"])

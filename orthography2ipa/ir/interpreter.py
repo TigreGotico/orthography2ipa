@@ -123,7 +123,9 @@ class _Ctx:
 class Interpreter:
     """Runs one IR (readable or canonical form)."""
 
-    def __init__(self, ir: dict):
+    def __init__(self, ir: dict, donors: Optional[Mapping[str, Tuple["Interpreter", Mapping[str, str]]]] = None):
+        """*donors* maps the donor code of each ``contact`` entry to its
+        interpreter and its ``donor_words`` (3.5.1)."""
         if ir.get("ir_version") not in SUPPORTED_IR_VERSIONS:
             raise IRVersionError(f"unsupported ir_version {ir.get('ir_version')!r}")
         for name, version in ir.get("primitives", {}).items():
@@ -133,6 +135,9 @@ class Interpreter:
         if "strings" in ir:
             ir = layout.decode(ir)
         self.ir = ir
+        self._donors = dict(donors or {})
+        self._contact = [{"donor": c["donor"], "chars": frozenset(c["chars"]), "words": dict(c["words"]),
+                          "rewrite": c["rewrite"], "map": c["map"]} for c in ir.get("contact", ())]
         names, enames = ir["bits"]["char"], ir["bits"]["entry"]
         missing = sorted(set(_CHAR_NAMES) - set(names)) + sorted(set(_ENTRY_NAMES) - set(enames))
         if missing:
@@ -2359,12 +2364,46 @@ class Interpreter:
                    + self.transcribe_word(split[1], width, lexicon).ipa)
         elif override is not None:
             ipa = self._finalize(word, override, None, collapse=False, forced=forced is not None)
+        elif (contact := self._contact_ipa(word)) is not None:
+            return WordResult(word, contact)
         else:
             paths = self._apply_ending(word, self._word_paths(word, width))
             best = paths[0] if paths else None
             ipa = self._finalize(word, word if best is None else "".join(best[0]), best, collapse=True)
         return WordResult(word, ipa, self._dropped(word), tuple((p[0], p[1]) for p in paths),
                           forced is not None, override is not None)
+
+    def _contact_ipa(self, word: str) -> Optional[str]:
+        """3.5.1: the reading of a loanword whose letters are all in the chars of
+        a ``contact`` entry, or None."""
+        entry = next((e for e in self._contact if word and all(c in e["chars"] for c in word)), None)
+        if entry is None:
+            return None
+        donor = self._donors.get(entry["donor"])
+        if donor is None:
+            raise ValueError(f"contact: no donor interpreter for {entry['donor']}")
+        donor_it, donor_words = donor
+        key = donor_it.nfc(donor_it.casefold(word))
+        ipa = entry["words"].get(key)
+        if ipa is None:
+            ipa = donor_words.get(key)
+        if ipa is None:
+            ipa = donor_it.transcribe_word(word, 1).ipa
+        for mark in (donor_it.stress.get("mark"), donor_it.stress.get("secondary_mark")):
+            if mark:
+                ipa = ipa.replace(mark, "")
+        for rule in entry["rewrite"]:
+            ipa = self._sub(rule["pattern"], rule["template"], [ord(c) for c in ipa])
+        out, i = [], 0
+        while i < len(ipa):
+            hit = next(((k, v) for k, v in entry["map"] if ipa.startswith(k, i)), None)
+            if hit is None:
+                out.append(ipa[i])
+                i += 1
+            else:
+                out.append(hit[1])
+                i += len(hit[0])
+        return "".join(out)
 
     # ─── S10 to S14: the sentence ────────────────────────────────────
     def _mark_compounds(self, words: List[_Word], ipa_words: List[str]) -> List[str]:

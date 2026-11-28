@@ -264,6 +264,15 @@ endings.sources: list of object
 endings.sources[].surface: s
 endings.sources[].vowels: sset
 phonemes: sset
+contact: list of object
+contact[].donor: s
+contact[].donor_revision: s
+contact[].chars: sset
+contact[].words: list of list of s
+contact[].rewrite: list of object
+contact[].rewrite[].pattern: pat
+contact[].rewrite[].template: tpl
+contact[].map: list of list of s
 ```
 <!-- layout-schema:end -->
 
@@ -661,7 +670,7 @@ So a host lexicon hit on the raw key beats an exception on the stripped key. The
 
 `word.words` is the optional word table of plugin fragments, a list of `[key, ipa]` pairs sorted by key, with the semantics version `words`. A key is lowercase NFC. For each key `k` the order is `word.exceptions`, then the host lexicon, then `word.words`, looked up with `NFC(k)` as the lexicon is. The compiler writes the table only when it is not empty, so an IR with no fragment has no `words` field and the same revision as before. The test for a leading apostrophe that opens a listed word counts a key of `word.words` as listed.
 
-A fragment is a JSON object with an `ir_version` and any of five parts. `langs` is a non-empty list of language codes, the scope of the fragment. The compiler merges a fragment into the IR of a code only when `registry.resolve` gives the same registered code for one code of `langs` and for the engine code. The match is exact after resolution: a fragment for `pt-PT` does not reach `pt-PT-x-lisbon`. A fragment without `langs` applies to every code. The IR does not hold `langs`: a fragment out of scope contributes nothing, so the IR of that code is byte-identical to its IR without the fragment. `syllable` holds the tables of the written splitter (3.7.6). `words` is the table `{key: ipa}`. `sandhi` is a list of rules, each with the pattern and template texts of a spec `SandhiRule` under the keys `left`, `right`, `left_out`, `right_out`, and optionally `left_spelling`, `right_spelling`, `left_joined_spelling`, `right_joined_spelling` and `"pause": true` (3.10.1). The compiler compiles the texts as it compiles the spec's rules and appends the rules to `sandhi` after the spec's own; `apply_sandhi=False` removes the spec's rules and keeps these. `unsupported` is a list of names of the rules a plugin keeps as a host hook because no fragment part can express them; the IR does not hold it. `compile_spec(code, fragments=[...])` checks every fragment and merges the parts of the fragments in scope for `code`, and a later fragment wins on a duplicate word. The compiler raises `ValueError` that names the offender for any other part, an `ir_version` that differs from the document's, a word key that is not lowercase NFC, a key or value that is not a string, a `langs` that is not a non-empty list of strings or that has a code that names no registered language, a sandhi rule with a key its kind does not allow, with no output, or with a text the IR cannot compile, and an `unsupported` entry that is not a string, and a `syllable` table or key that 3.7.6 does not name or a value of the wrong shape. The revision covers the merged table and the rules, so it covers the fragment bytes. `Pipeline(fragments=...)` passes fragments to the compiler, and `export_to_loom --fragment PATH` does the same for each language of an export, records the sha256 of each fragment in the GGUF field `o2i.fragments` and the sorted names of the `unsupported` lists in `o2i.unsupported`. These two fields are file-level: they list every fragment passed to the export, also a fragment that is out of scope for some of its languages. The table is additive: a new optional table keeps `ir_version` (8.1). Edge punctuation is the char bit `edge_punct` (`_EDGE_PUNCT_RE`).
+A fragment is a JSON object with an `ir_version` and any of six parts. `langs` is a non-empty list of language codes, the scope of the fragment. The compiler merges a fragment into the IR of a code only when `registry.resolve` gives the same registered code for one code of `langs` and for the engine code. The match is exact after resolution: a fragment for `pt-PT` does not reach `pt-PT-x-lisbon`. A fragment without `langs` applies to every code. The IR does not hold `langs`: a fragment out of scope contributes nothing, so the IR of that code is byte-identical to its IR without the fragment. `syllable` holds the tables of the written splitter (3.7.6). `words` is the table `{key: ipa}`. `sandhi` is a list of rules, each with the pattern and template texts of a spec `SandhiRule` under the keys `left`, `right`, `left_out`, `right_out`, and optionally `left_spelling`, `right_spelling`, `left_joined_spelling`, `right_joined_spelling` and `"pause": true` (3.10.1). The compiler compiles the texts as it compiles the spec's rules and appends the rules to `sandhi` after the spec's own; `apply_sandhi=False` removes the spec's rules and keeps these. `contact` is a list of loanword entries (3.5.1). `unsupported` is a list of names of the rules a plugin keeps as a host hook because no fragment part can express them; the IR does not hold it. `compile_spec(code, fragments=[...])` checks every fragment and merges the parts of the fragments in scope for `code`, and a later fragment wins on a duplicate word. The compiler raises `ValueError` that names the offender for any other part, an `ir_version` that differs from the document's, a word key that is not lowercase NFC, a key or value that is not a string, a `langs` that is not a non-empty list of strings or that has a code that names no registered language, a sandhi rule with a key its kind does not allow, with no output, or with a text the IR cannot compile, and an `unsupported` entry that is not a string, and a `syllable` table or key that 3.7.6 does not name or a value of the wrong shape. The revision covers the merged table and the rules, so it covers the fragment bytes. `Pipeline(fragments=...)` passes fragments to the compiler, and `export_to_loom --fragment PATH` does the same for each language of an export, records the sha256 of each fragment in the GGUF field `o2i.fragments` and the sorted names of the `unsupported` lists in `o2i.unsupported`. These two fields are file-level: they list every fragment passed to the export, also a fragment that is out of scope for some of its languages. The table is additive: a new optional table keeps `ir_version` (8.1). Edge punctuation is the char bit `edge_punct` (`_EDGE_PUNCT_RE`).
 
 The elided-clitic path transcribes the clitic with a width-1 beam and joins it to the host's override. The join segments the clitic's IPA with primitive 11 and reads the `ipa_vowel` bit of each segment.
 
@@ -677,6 +686,42 @@ The elided-clitic path transcribes the clitic with a width-1 beam and joins it t
 `word.silent_stress_marks` holds the stress-mark graphemes that emit nothing. The interpreter matches on the word's grapheme tokens without those marks, then widens the span back over them. It lowercases the tokens and skips one last token when that token is in `suffix`. It then tries each letter cut from the left, so the first hit is the longest ending. It rounds the cut outward to a token start, and it requires at least one token before the span.
 
 For each beam path longer than the span, it replaces the span's segments with one segment, the ending's reading, and joins the span's graphemes. Before that, each vowel run of the reading yields to the path's own vowel for that letter when the reading's vowel is in the letter's `reduced` set. When the path's vowel is not in the letter's `readings`, the one source vowel of `sources` that is in `readings` stands in for it. This happens only when the reading and the span have the same number of vowel runs, and each span segment has at most one. A vowel run is an `ipa_vowel` char plus the `ipa_vowel` and `combining` chars after it. The paths are de-duplicated by IPA. Each alternative is applied to the first unrewritten path at its rank cost, and the list is sorted by cost, keeping the order of equal costs.
+
+#### 3.5.1 Contact
+
+`contact` reads a word in another script through a donor spec and maps the donor phones to the phonemes of the lect, with the semantics version `contact`. A fragment entry has these keys:
+
+| Key | Content |
+| :--- | :--- |
+| `donor` | The code of the donor spec. It must name a registered language. |
+| `script` | A label. The interpreters do not read it. |
+| `words` | `{key: ipa}` in donor phones. A key is lowercase NFC. |
+| `donor_words` | `{key: ipa}`, the donor lexicon. A key is lowercase NFC. |
+| `rewrite` | A list of `{pattern, template}` with the sandhi pattern and template syntax. |
+| `map` | `{donor phone: lect phones}`. |
+
+The compiler writes one IR entry for each fragment entry in scope:
+
+- `donor`: the resolved donor code.
+- `donor_revision`: the donor IR revision, `+`, and the sha256 of the canonical JSON of `donor_words`.
+- `chars`: every letter of the donor's grapheme keys, in lower and upper case.
+- `words`: the `words` table as sorted `[key, ipa]` pairs.
+- `rewrite`: the compiled rules.
+- `map`: the pairs sorted by key length, longest first, then by key. For each phoneme of the donor IR that `map` does not name, the compiler adds the phoneme itself when the lect has it, else the lect phoneme at the smallest `phonematcher.feature_distance`. On a tie, the phoneme that sorts first by codepoints wins.
+
+The compiler raises `ValueError` for an unknown key, a donor that names no registered language, a word key that is not lowercase NFC, a key or value that is not a string, a rewrite it cannot compile, and a map output with a segment that is not in the phoneme set of the lect.
+
+The IR does not hold the donor IR or `donor_words`. The host gives the interpreter, for each donor code, the donor interpreter and its `donor_words`. A conformance file writes them as `donor` lines before the `ir` line: `{"kind": "donor", "lang", "ir", "words": [[key codepoints, ipa codepoints], ...]}`.
+
+A word whose chars are all in the `chars` of an entry, and that no override reads first (3.5), takes the first such entry. The interpreter then does these steps:
+
+1. Make the key: `NFC(casefold(word))` with the donor's tables.
+2. Look up the key in `words`, then in `donor_words`. When neither has it, read the word with the donor word path.
+3. Remove the primary and secondary stress marks of the donor.
+4. Apply each `rewrite` rule in order.
+5. Replace from left to right with `map`: at each position take the first key that matches, else keep the char.
+
+The result has no stress mark. A word with a char outside every `chars` takes the lect word path.
 
 ### 3.6 Allophony (S7)
 
