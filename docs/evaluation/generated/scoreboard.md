@@ -578,29 +578,29 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 | ps | wikipron | 1075 | 0.2453 | - | - | 0.1938 | 0.1840 | 0.3265 | 0.3433 | [0.2341, 0.2554] | 0.2558 | research | crowd-scraped |
 | pt-AO | portal_lupo | 53144 | 0.2307‡ | 0.9957 | - | 0.1679 | 0.1515 | 0.2129 | 0.2604 | [0.2296, 0.2318] | 0.1049 | research | lupo-derived |
 | pt-AO | portuguese_tts | 20 | 0.1800‡ | - | - | - | - | - | - | [0.1505, 0.2158] | 0.0000 | research | llm-corrected |
-| pt-BR | ipa_childes | 2116 | 0.2067‡ | - | - | 0.1796 | 0.1689 | 0.2888 | 0.3209 | [0.1993, 0.2143] | 0.2476 | production | espeak-derived |
-| pt-BR | ipadict | 95933 | 0.2313 | 0.9905 | - | 0.2276 | 0.2213 | 0.0500 | 0.0516 | [0.2303, 0.2323] | 0.0477 | production | machine-generated |
-| pt-BR | ipadict_corrected | 95933 | 0.2313‡ | 0.9973 | - | 0.2276 | 0.2213 | 0.0500 | 0.0516 | [0.2303, 0.2323] | 0.0477 | production | machine-generated |
-| pt-BR | portuguese_tts | 20 | 0.0552‡ | - | - | - | - | - | - | [0.0382, 0.0735] | 0.1500 | production | llm-corrected |
-| pt-BR | portuguese_unified | 23123 | 0.1421 | 0.9909 | - | 0.1372 | 0.1314 | 0.3816 | 0.4063 | [0.1400, 0.1440] | 0.3701 | production | lexicon-derived |
-| pt-BR | portuguese_unified_corrected | 23107 | 0.1412‡ | 0.9911 | - | 0.1367 | 0.1310 | 0.3822 | 0.4069 | [0.1392, 0.1434] | 0.3724 | production | lexicon-derived |
+| pt-BR | ipa_childes | 2116 | 0.2066‡ | - | - | 0.1796 | 0.1689 | 0.2888 | 0.3209 | [0.1993, 0.2142] | 0.2476 | production | espeak-derived |
+| pt-BR | ipadict | 95933 | 0.2304 | 0.9905 | - | 0.2267 | 0.2211 | 0.0500 | 0.0516 | [0.2294, 0.2314] | 0.0477 | production | machine-generated |
+| pt-BR | ipadict_corrected | 95933 | 0.2304‡ | 0.9973 | - | 0.2267 | 0.2211 | 0.0500 | 0.0516 | [0.2294, 0.2314] | 0.0477 | production | machine-generated |
+| pt-BR | portuguese_tts | 20 | 0.0540‡ | - | - | - | - | - | - | [0.0363, 0.0723] | 0.1500 | production | llm-corrected |
+| pt-BR | portuguese_unified | 23123 | 0.1420 | 0.9909 | - | 0.1372 | 0.1315 | 0.3820 | 0.4063 | [0.1400, 0.1440] | 0.3704 | production | lexicon-derived |
+| pt-BR | portuguese_unified_corrected | 23107 | 0.1411‡ | 0.9911 | - | 0.1367 | 0.1310 | 0.3826 | 0.4068 | [0.1391, 0.1433] | 0.3728 | production | lexicon-derived |
 | pt-BR | primary_sources | 21 | 0.0690 | - | - | 0.0690 | 0.0690 | 0.7619 | 0.7619 | [0.0119, 0.1310] | 0.7619 | production | expert-human |
-| pt-BR | vox_communis | 33958 | 0.3951‡ | - | - | 0.3028 | 0.2775 | 0.0850 | 0.1151 | [0.3932, 0.3969] | 0.0363 | production | epitran-derived |
-| pt-BR | wikipron | 57897 | 0.0248 | - | - | 0.0200 | 0.0143 | 0.8852 | 0.9169 | [0.0241, 0.0254] | 0.8708 | production | crowd-scraped |
-| pt-BR-x-bahia | portuguese_tts | 20 | 0.1611‡ | - | - | - | - | - | - | [0.1411, 0.1813] | 0.0000 | research | llm-corrected |
+| pt-BR | vox_communis | 33958 | 0.3957‡ | - | - | 0.3035 | 0.2781 | 0.0842 | 0.1142 | [0.3938, 0.3976] | 0.0357 | production | epitran-derived |
+| pt-BR | wikipron | 57897 | 0.0245 | - | - | 0.0197 | 0.0142 | 0.8871 | 0.9173 | [0.0239, 0.0252] | 0.8727 | production | crowd-scraped |
+| pt-BR-x-bahia | portuguese_tts | 20 | 0.1594‡ | - | - | - | - | - | - | [0.1395, 0.1786] | 0.0000 | research | llm-corrected |
 | pt-BR-x-caipira | portuguese_tts | 20 | 0.0506‡ | - | - | - | - | - | - | [0.0363, 0.0676] | 0.1500 | research | llm-corrected |
 | pt-BR-x-caipira | portuguese_unified | 31 | 0.3331 | 1.0000 | - | 0.3216 | 0.3057 | 0.0000 | 0.0000 | [0.2779, 0.3917] | 0.0000 | research | crowd-scraped |
 | pt-BR-x-carioca | portuguese_unified | 111 | 0.2882 | 0.9904 | - | 0.2820 | 0.2625 | 0.0180 | 0.0360 | [0.2591, 0.3213] | 0.0090 | production | crowd-scraped |
-| pt-BR-x-ce | portuguese_tts | 20 | 0.1181‡ | - | - | - | - | - | - | [0.0962, 0.1400] | 0.0000 | research | llm-corrected |
-| pt-BR-x-fluminen | portuguese_tts | 20 | 0.0666‡ | - | - | - | - | - | - | [0.0447, 0.0916] | 0.2000 | research | llm-corrected |
+| pt-BR-x-ce | portuguese_tts | 20 | 0.1162‡ | - | - | - | - | - | - | [0.0943, 0.1380] | 0.0000 | research | llm-corrected |
+| pt-BR-x-fluminen | portuguese_tts | 20 | 0.0654‡ | - | - | - | - | - | - | [0.0438, 0.0903] | 0.2000 | research | llm-corrected |
 | pt-BR-x-mg | portuguese_tts | 20 | 0.1146‡ | - | - | - | - | - | - | [0.0929, 0.1362] | 0.0000 | research | llm-corrected |
 | pt-BR-x-norte | portuguese_tts | 20 | 0.1397‡ | - | - | - | - | - | - | [0.1043, 0.1762] | 0.0500 | research | llm-corrected |
 | pt-BR-x-pr | portuguese_tts | 20 | 0.0922‡ | - | - | - | - | - | - | [0.0674, 0.1211] | 0.0500 | research | llm-corrected |
 | pt-BR-x-recife | portuguese_tts | 20 | 0.1591‡ | - | - | - | - | - | - | [0.1341, 0.1854] | 0.0000 | research | llm-corrected |
-| pt-BR-x-rj | portal_lupo | 53143 | 0.1694‡ | 0.9983 | - | 0.1488 | 0.1405 | 0.2133 | 0.2410 | [0.1684, 0.1703] | 0.1395 | research | lupo-derived |
-| pt-BR-x-rj | portuguese_tts | 20 | 0.0363‡ | - | - | - | - | - | - | [0.0258, 0.0460] | 0.2000 | research | llm-corrected |
-| pt-BR-x-sp | portal_lupo | 53143 | 0.1589‡ | 0.9973 | - | 0.1554 | 0.1507 | 0.1914 | 0.1985 | [0.1578, 0.1599] | 0.1882 | research | lupo-derived |
-| pt-BR-x-sp | portuguese_tts | 20 | 0.1214‡ | - | - | - | - | - | - | [0.0918, 0.1521] | 0.0500 | research | llm-corrected |
+| pt-BR-x-rj | portal_lupo | 53143 | 0.1692‡ | 0.9983 | - | 0.1486 | 0.1404 | 0.2140 | 0.2410 | [0.1682, 0.1702] | 0.1402 | research | lupo-derived |
+| pt-BR-x-rj | portuguese_tts | 20 | 0.0350‡ | - | - | - | - | - | - | [0.0247, 0.0449] | 0.2000 | research | llm-corrected |
+| pt-BR-x-sp | portal_lupo | 53143 | 0.1587‡ | 0.9973 | - | 0.1552 | 0.1507 | 0.1914 | 0.1986 | [0.1576, 0.1597] | 0.1882 | research | lupo-derived |
+| pt-BR-x-sp | portuguese_tts | 20 | 0.1201‡ | - | - | - | - | - | - | [0.0907, 0.1518] | 0.0500 | research | llm-corrected |
 | pt-BR-x-sul | portuguese_tts | 20 | 0.1331‡ | - | - | - | - | - | - | [0.1009, 0.1673] | 0.0000 | research | llm-corrected |
 | pt-CV | portuguese_tts | 20 | 0.2570‡ | - | - | - | - | - | - | [0.2058, 0.3045] | 0.0500 | skeleton | llm-corrected |
 | pt-GW | portuguese_tts | 20 | 0.3198‡ | - | - | - | - | - | - | [0.2913, 0.3493] | 0.0000 | research | llm-corrected |
@@ -790,8 +790,8 @@ A `PER` marked `‡` is a **non-qualifying** row: its `provenance` tier cannot g
 
 Each fold applies only to a gold reading from a source whose own rows show no contrast for it (`scripts/source_notation_per.py`). The Michaelis folds rest on counts of its rows, not on its transcription key, so the folded numbers never gate. The section is a list, not a table, because the board checks read every table row of this page as a board row.
 
-- pt-BR portuguese_unified (23125 words): PER 0.1421, folded 0.0679. Segment PER 0.1249, folded 0.0685. Folds: `michaelis_ã`, `michaelis_no_palatal`, `michaelis_final_r`.
-- pt-BR portuguese_unified_corrected (23109 words): PER 0.1412, folded 0.0669. Segment PER 0.1237, folded 0.0673. Folds: `michaelis_ã`, `michaelis_no_palatal`, `michaelis_final_r`.
+- pt-BR portuguese_unified (23125 words): PER 0.1420, folded 0.0678. Segment PER 0.1248, folded 0.0685. Folds: `michaelis_ã`, `michaelis_no_palatal`, `michaelis_final_r`.
+- pt-BR portuguese_unified_corrected (23109 words): PER 0.1411, folded 0.0668. Segment PER 0.1237, folded 0.0673. Folds: `michaelis_ã`, `michaelis_no_palatal`, `michaelis_final_r`.
 
 ---
 [← Gold defects](../gold_defects.md) · [Home](../../index.md) · [Comparison to other G2P systems →](comparison.md)
