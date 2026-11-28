@@ -1239,6 +1239,11 @@ def _build(spec: LanguageSpec, data_ref, apply_stress, apply_allophony, apply_sa
                 "velar": "ŋ",
                 "table": _onset_table(ijudge, units, st.onset_clusters),
             }
+        if st.noncohering_suffixes:
+            stress["noncohering"] = {
+                "suffixes": list(st.noncohering_suffixes),
+                "exceptions": sorted({unicodedata.normalize("NFC", w.casefold())
+                                      for w in st.noncohering_exceptions})}
         if spec.script_type == ScriptType.ABUGIDA:
             stress["ipa_count"] = 1
         ir["stress"] = stress

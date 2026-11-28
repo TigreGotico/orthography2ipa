@@ -176,6 +176,9 @@ stress.mark_onsets.table: list of list of s
 stress.weight: object
 stress.weight.max_onset: i
 stress.weight.superheavy_final: i
+stress.noncohering: object
+stress.noncohering.suffixes: list of s
+stress.noncohering.exceptions: sset
 atoms: object
 atoms.mark: list of s
 atoms.affricates: list of s
@@ -1335,6 +1338,8 @@ Word grouping follows `Interpreter._group_words`. Whitespace ends a word. Punctu
 
 Compound stress (S10, `compound_stress == "last"`): in each hyphen-joined run, every primary mark but the last becomes the secondary mark.
 
+Non-cohering suffixes (`stress.noncohering`): a word that is not an override, is not in `exceptions`, and ends in an entry of `suffixes` after a base that is not empty and ends in an `orth_vowel` char is two stress domains. The first matching entry wins. The base and the suffix are each transcribed as a word. The base's primary mark becomes the secondary mark, and the two readings join with no space.
+
 ### 3.12 Output (S9b, S12, S14)
 
 Geminate collapse (`_collapse_geminates`) merges equal adjacent codepoints except `ipa_vowel`, length marks and space. It does not run on overrides. Non-empty words join with U+0020. The result is NFC by `char_maps`. The output can join codepoints that no single key holds, such as a vowel from one reading and a nasal mark from the next. So `char_maps.compose` holds every primary composite whose two parts the IR can write, closed under composition: a composite joins the set and can be the first part of a further composite. The interpreter returns the IPA string, and the Python reference also returns per-word paths, integer costs, dropped characters and coverage. `confidence` uses `exp` and is computed by the Python wrapper from the costs.
@@ -1615,6 +1620,7 @@ A new spec field compiles to the primitives of 2.3. It needs a compiler change a
 | `max_onset` (declared), `onset_clusters`, `constrain_onsets`, `constrain_mark_onsets` | licit-onset tables, splitter flags |
 | `coda_liquid_capture` | splitter flag with a liquid bit |
 | `secondary_stress`, `compound_stress`, `iambic_length` | flags of existing stages |
+| `noncohering_suffixes`, `noncohering_exceptions` | `stress.noncohering` suffix list and string set |
 | `apostrophe_elision`, `word_internal_apostrophe` | char bits and the grouping rule |
 | `doubled_letters_geminate` | rescoring flag |
 | `grammatical_endings` | ending table |
@@ -1675,6 +1681,7 @@ An optional field that changes output has its own version too. The manifest list
 | `syllable.foreign` | `foreign_nuclei` |
 | `stress.cliticless` | `cliticless` |
 | `stress.compound_last` | `compound_last` |
+| `stress.noncohering` | `noncohering` |
 | `stress.tonic_after_diphthong` | `tonic_after_diphthong` |
 | `stress.ipa_diphthongs` | `ipa_diphthongs` |
 | `stress.mark_onsets` | `mark_onsets` |

@@ -781,6 +781,17 @@ class StressRules:
             :meth:`~orthography2ipa.g2p.G2P.transcribe_word` also reads a
             hyphenated word element by element: it gives the same marks and
             returns one token, with no space between the elements.
+    noncohering_suffixes : Tuple[str, ...]
+        Suffixes that form a prosodic word of their own. A word that ends in
+        one, after a base that ends in a vowel letter, is transcribed as two
+        stress domains: the base is read as a word alone, its main stress
+        mark becomes the secondary mark ``ˌ``, and the suffix carries the
+        main stress. A base that ends in a consonant stays joined, because a
+        base read alone loses the assimilation to the suffix onset. The
+        first listed suffix that matches wins.
+    noncohering_exceptions : Tuple[str, ...]
+        Words that end in a :attr:`noncohering_suffixes` entry but are read
+        as one stress domain, because the ending is not that suffix.
     iambic_length : bool
         Whether prominent syllables of a word are realised with a LONG
         nucleus, independently of where the word-accent mark
@@ -850,6 +861,8 @@ class StressRules:
     accent2_final_letters: Tuple[str, ...] = ()
     secondary_stress: str = ""
     compound_stress: str = ""
+    noncohering_suffixes: Tuple[str, ...] = ()
+    noncohering_exceptions: Tuple[str, ...] = ()
     iambic_length: bool = False
     source: str = "rules"
     notes: str = ""

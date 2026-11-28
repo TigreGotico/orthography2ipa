@@ -874,8 +874,9 @@ class G2P:
         ``beam_width=1`` for the greedy path.
 
         Duplicates collapse, so the list can be shorter than *k*. An
-        override or a hyphen-joined compound gives one reading. A word with
-        no pronounceable output gives an empty list.
+        override, a hyphen-joined compound or a word that ends in a
+        ``noncohering_suffixes`` entry gives one reading. A word with no
+        pronounceable output gives an empty list.
         """
         if k < 1:
             raise ValueError(f"k must be >= 1, got {k}")
@@ -886,7 +887,8 @@ class G2P:
         override = it._override_for(word, lexicon)
         if override is not None:
             return [unicodedata.normalize("NFC", it._finalize(word, override, None, collapse=False))]
-        if self._ir_compound_elements(it, word, lexicon) is not None:
+        if (self._ir_compound_elements(it, word, lexicon) is not None
+                or it.noncohering_split(word) is not None):
             compound = self.transcribe_word(word)
             return [compound] if compound else []
         paths = it._apply_ending(word, it._word_paths(word, width))
