@@ -2292,6 +2292,12 @@ function P:_fragment_cuts(word)
     for x = k + 1, k + width - 1 do inside[x] = true end
     k = k + width
   end
+  for x = 0, n - 2 do
+    local nxt = at(low, x + 1)
+    if self:_c(at(low, x), "hyphen") and not (self:_c(nxt, "hyphen") or self:_c(nxt, "apostrophe")) then
+      cuts[x + 1] = true
+    end
+  end
   for _, pair in ipairs(sy.cut_pairs or {}) do
     k = sfind_from(low, pair, 0)
     while k >= 0 do
