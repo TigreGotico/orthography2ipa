@@ -204,10 +204,22 @@ def test_the_midi_nasal_vowel_is_a_vowel_plus_an_appendix(text, expected):
     ("un vin", "œɱ vɛŋ"),
     ("en tout", "an tu"),
     ("en cas", "aŋ ka"),           # velar before a velar
-    pytest.param("en avion", "aŋ avjɔŋ", marks=pytest.mark.xfail(
-        strict=True, reason="#2761: the fr-FR liaison n follows the Midi velar appendix")),  # no consonant follows
 ])
 def test_the_midi_appendix_takes_the_place_of_the_next_word(text, expected):
+    assert _say(text, MIDI) == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    # In liaison the appendix is the onset of the next word, an [n], and the
+    # vowel stays oral (Eychenne 2006: 116-117, after Durand 1988: bon atout
+    # [bOnatu]; note 10, en Andorre [anaNdOr]) (#2761)
+    ("en avion", "an‿ avjɔŋ"),
+    ("en Andorre", "an‿ andɔʁə"),
+    ("un ami", "œn‿ ami"),
+    ("on a", "ɔn‿ a"),
+    ("en", "aŋ"),                  # at a pause the appendix stays velar
+])
+def test_the_midi_liaison_n_takes_the_place_of_the_appendix(text, expected):
     assert _say(text, MIDI) == expected
 
 
