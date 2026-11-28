@@ -2,7 +2,9 @@
 --
 --   luajit scripts/ir_lua_conformance.lua tests/conformance/ir-v1/*.jsonl
 --
--- For each file it prints N in, N pass and every failed case, then a total.
+-- A "case" line is a transcription and a "syllables" line the written
+-- syllables of S5. For each file it prints N in, N pass and every failed
+-- case, then a total.
 -- The exit status is 1 when a case fails.
 local here = (arg[0]:match("^(.*)/[^/]*$") or ".")
 package.path = here .. "/../orthography2ipa/ir/?.lua;" .. package.path
@@ -29,10 +31,28 @@ for i = 1, #arg do
     else
       n = n + 1
       local good, res
-      if it then good, res = pcall(it.transcribe_cps, it, rec.input, 1) else good, res = false, err end
+      if not it then
+        good, res = false, err
+      elseif rec.kind == "syllables" then
+        good, res = pcall(function()
+          local out = {}
+          for k, s in ipairs(it:syllables(M.from_cps(rec.input))) do out[k] = M.to_cps(s) end
+          return out
+        end)
+      else
+        good, res = pcall(it.transcribe_cps, it, rec.input, 1)
+      end
       local pass
       if rec.expect_error then
         pass = not good and string.find(tostring(res), rec.expect_error, 1, true) ~= nil
+      elseif rec.kind == "syllables" then
+        pass = good and #res == #rec.expect
+        for k = 1, pass and #res or 0 do pass = pass and same(res[k], rec.expect[k]) end
+        if good then
+          local parts = {}
+          for k, s in ipairs(res) do parts[k] = cps(s) end
+          res = {table.concat(parts, " | ")}
+        end
       else
         pass = good and same(res, rec.expect)
       end

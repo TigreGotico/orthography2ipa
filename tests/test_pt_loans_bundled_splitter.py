@@ -26,7 +26,6 @@ VOWEL = [
     ("pt-PT", "abhinaya", "na", "wikipron ɐ b i n a j ɐ"),
     ("pt-PT", "ambayba", "ba", "wikipron ɐ̃ b a j b ɐ"),
     ("pt-PT", "apapane-de-laysan", "la", "portuguese_unified ɐpapɐndəlajˈzɐn"),
-    ("pt-PT", "braille", "ɾa", "wikipron b ɾ a j l ɨ"),
     ("pt-PT", "centigray", "ɾɐ", "portuguese_unified sẽtiˈɡrɐj"),
     ("pt-PT", "cosplay", "kɔ", "wikipron k ɔ ʃ p l e"),
     ("pt-PT", "display", "lɐ", "portuguese_unified diʃˈplɐj"),
@@ -45,3 +44,8 @@ def test_loan_stress(lang, word, expected, gold):
 @pytest.mark.parametrize("lang,word,expected,gold", VOWEL)
 def test_loan_vowel(lang, word, expected, gold):
     assert expected in G2P(lang).transcribe_word(word).replace("ˈ", "").replace("ˌ", "")
+
+
+# braille matches its Wikipron gold [bɾajlɨ].
+def test_braille_reads_its_wikipron_vowel():
+    assert G2P("pt-PT").transcribe_word("braille").replace("ˈ", "") == "bɾajlɨ"
