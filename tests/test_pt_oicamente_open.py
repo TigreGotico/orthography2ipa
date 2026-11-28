@@ -43,15 +43,15 @@ OPEN_ADVERBS = ["heroicamente", "estoicamente", "paranoicamente"]
 CLOSE = ["estoicismo", "boicote", "boicotar", "moicano", "boicotamente"]
 
 PINNED = {
-    "pt-PT-x-terceira": {"heroicamente": "ɨɾojkɐˈmẽtɨ", "estoicamente": "iʃtojkɐˈmẽtɨ"},
-    "pt-PT-x-sao-miguel": {"heroicamente": "ɨɾøkɐˈmẽtɨ", "estoicamente": "iʃtøkɐˈmẽtɨ"},
-    "pt-AO": {"heroicamente": "eɾojkaˈmẽtɨ", "estoicamente": "eʃtojkaˈmẽtɨ"},
-    "pt-CV": {"heroicamente": "erojkɐˈmẽte", "estoicamente": "estojkɐˈmẽte"},
-    "pt-GW": {"heroicamente": "erojkɐˈmẽte", "estoicamente": "estojkɐˈmẽte"},
-    "pt-MO": {"heroicamente": "ɨɾojkɐˈmẽtɨ", "estoicamente": "eʃtojkɐˈmẽtɨ"},
-    "pt-MZ": {"heroicamente": "eɾojkɐˈmẽte", "estoicamente": "estojkɐˈmẽte"},
-    "pt-ST": {"heroicamente": "erojkɐˈmẽte", "estoicamente": "estojkɐˈmẽte"},
-    "pt-TL": {"heroicamente": "eɾojkaˈmẽte", "estoicamente": "estojkaˈmẽte"},
+    "pt-PT-x-terceira": {"heroicamente": "ɨˌɾojkɐˈmẽtɨ", "estoicamente": "iʃˌtojkɐˈmẽtɨ"},
+    "pt-PT-x-sao-miguel": {"heroicamente": "ɨˌɾøkɐˈmẽtɨ", "estoicamente": "iʃˌtøkɐˈmẽtɨ"},
+    "pt-AO": {"heroicamente": "eˌɾojkaˈmẽtɨ", "estoicamente": "eʃˌtojkaˈmẽtɨ"},
+    "pt-CV": {"heroicamente": "eˌrojkɐˈmẽte", "estoicamente": "esˌtojkɐˈmẽte"},
+    "pt-GW": {"heroicamente": "eˌrojkɐˈmẽte", "estoicamente": "esˌtojkɐˈmẽte"},
+    "pt-MO": {"heroicamente": "ɨˌɾojkɐˈmẽtɨ", "estoicamente": "eʃˌtojkɐˈmẽtɨ"},
+    "pt-MZ": {"heroicamente": "eˌɾojkɐˈmẽte", "estoicamente": "esˌtojkɐˈmẽte"},
+    "pt-ST": {"heroicamente": "eˌrojkɐˈmẽte", "estoicamente": "esˌtojkɐˈmẽte"},
+    "pt-TL": {"heroicamente": "eˌɾojkaˈmẽte", "estoicamente": "esˌtojkaˈmẽte"},
     "ext-PT-x-barranco": {"heroicamente": "hɨɾojkɐˈmẽtɨ", "estoicamente": "ehtojkɐˈmẽtɨ"},
 }
 
@@ -74,7 +74,8 @@ def oi_vowel(transcription):
 
 
 def test_pt_pt_estoicamente_is_the_infopedia_reading(engines):
-    assert ipa(engines, "pt-PT", "estoicamente") == ESTOICAMENTE
+    # Infopédia marks no secondary stress; the engine marks the -mente stem.
+    assert ipa(engines, "pt-PT", "estoicamente").replace("ˌ", "") == ESTOICAMENTE
 
 
 @pytest.mark.parametrize("word", OPEN_ADVERBS)

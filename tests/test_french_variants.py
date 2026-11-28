@@ -225,7 +225,8 @@ SANDHI_RESTATED = {
     "fr-BE": {"FR_NUMERAL_MUTE_BEFORE_CONSONANT", "FR_DIX_Z_BEFORE_HUIT_NEUF"},
     "fr-FR-x-midi": {"FR_NEUF_V_BEFORE_HEURES", "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
                      "FR_HUIT_MUTE_BEFORE_CONSONANT",
-                     "FR_NUMERAL_Z_BEFORE_VOWEL"},
+                     "FR_NUMERAL_Z_BEFORE_VOWEL", "FR_LIAISON_N_ARTICLE",
+                     "FR_LIAISON_N_PRONOUN"},
 }
 #: The sandhi rules a variant adds to those of fr-FR.
 OWN_SANDHI = {

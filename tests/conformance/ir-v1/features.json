@@ -123,6 +123,10 @@
   "el.jsonl",
   15
  ],
+ "foreign_nuclei": [
+  "pt-PT-syllable.jsonl",
+  60
+ ],
  "gate.not": [
   "pt-PT@baixo_minhoto.jsonl",
   3
@@ -146,6 +150,10 @@
  "gated_map": [
   "pt-PT@algarve_barlavento.jsonl",
   0
+ ],
+ "glide_hiatus": [
+  "pt-PT-syllable.jsonl",
+  8
  ],
  "hiatus": [
   "pt-PT.jsonl",
@@ -236,12 +244,16 @@
   1
  ],
  "node.word_has": [
-  "pt-PT-x-braga.jsonl",
-  15
+  "pt-PT-x-terceira.jsonl",
+  8
  ],
  "node.word_in": [
   "da.jsonl",
   0
+ ],
+ "noncohering": [
+  "pt-PT-x-terceira.jsonl",
+  14
  ],
  "overrides": [
   "ru.jsonl",
@@ -258,6 +270,10 @@
  "predicate": [
   "lo.jsonl",
   2
+ ],
+ "prefix_cuts": [
+  "pt-PT-syllable.jsonl",
+  13
  ],
  "prefixes": [
   "li.jsonl",
@@ -291,6 +307,10 @@
   "ar+arbtok.jsonl",
   6
  ],
+ "seams": [
+  "pt-PT-syllable.jsonl",
+  16
+ ],
  "secondary": [
   "en-GB.jsonl",
   89
@@ -318,6 +338,10 @@
  "splitter": [
   "fy.jsonl",
   20
+ ],
+ "stem_cuts": [
+  "pt-PT-syllable.jsonl",
+  11
  ],
  "syll.closed": [
   "en-GB.jsonl",
@@ -380,8 +404,8 @@
   0
  ],
  "word_has": [
-  "pt-PT-x-braga.jsonl",
-  15
+  "pt-PT-x-terceira.jsonl",
+  8
  ],
  "words": [
   "pt-PT+words.jsonl",

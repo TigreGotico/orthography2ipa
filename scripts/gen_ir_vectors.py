@@ -20,6 +20,10 @@ targets and their inputs:
   sampled case does that, the tool adds the first input of the target's
   pool that does. ``features.json`` names the case of each feature.
 
+* ``pt-PT-syllable``: the pt-PT IR with the fragment
+  ``tests/data/ir_fragment_syllable.json``, and for each word of its list one
+  ``case`` line and one ``syllables`` line, the written syllables of S5.
+
 Every file also holds an empty input. ``unknown-version.jsonl`` holds the
 cop IR with one primitive version raised, and one case that expects the
 version error.
@@ -69,6 +73,7 @@ FEATURE_TARGETS = {
 }
 #: Features that no case can show, with the reason (#2722).
 UNREACHABLE = {
+    "cut_pairs": "no pair of the syllable fragment is an onset, so the onset split already cuts each one",
     "node.count": "the compiler emits no such node",
     "node.false": "the compiler emits no such node",
     "node.top_in": "the compiler emits no such node",
@@ -82,6 +87,15 @@ LECT_CASES = 48
 AGREE = 4
 EXTRA = {"pt-PT": ["os jogos"]}
 VERSION_ERROR = "unsupported primitive version"
+#: Vector files of an IR with a fragment: stem -> (code, fragment, words).
+FRAGMENT_VECTORS = {
+    "pt-PT-syllable": ("pt-PT", DATA / "ir_fragment_syllable.json", (
+        "carro", "nascer", "exceto", "desça", "bairro", "rainha", "juiz", "ainda", "ao", "aos", "aorta",
+        "arruinar", "adleriano", "sublinhar", "sublocar", "sublime", "distribuidor", "construir",
+        "cuidado", "ingenuidade", "contiguidade", "kubitschek", "gourmet", "facebookiano", "bureau",
+        "boxeur", "marathon", "alzheimer", "pacto", "atleta", "abstrair", "neymar", "playground",
+        "olho-d'água", "olá--bom", "bê-á-'bá")),
+}
 #: The size budget of one file: the IR line, and the case lines together.
 IR_BUDGET = 1 << 20
 CASE_BUDGET = 48 << 10
@@ -99,7 +113,7 @@ def lects() -> Tuple[str, ...]:
 def stems() -> Tuple[str, ...]:
     """The stem of every vector file."""
     return tuple(sorted({*GOLDEN_SPECS, *LEADERS, *lects(), *(f"pt-PT@{p}" for p in DIALECT_PROFILES),
-                         *FEATURE_TARGETS,
+                         *FEATURE_TARGETS, *FRAGMENT_VECTORS,
                          "unknown-version"}))
 
 
@@ -139,6 +153,7 @@ class Target:
         self.it = Interpreter(self.doc)
         self.inputs: List[str] = []
         self.pool: List[str] = []
+        self.syllable_words: List[str] = []
         self.uses = set(layout.manifest(self.ir).replace("=", ";").split(";")[::2])
         if self.ir.get("dialect"):
             self.uses |= {n for n in feature_names() if n.startswith(("gate.", "dnode."))}
@@ -148,6 +163,9 @@ class Target:
 
     def file(self) -> str:
         lines = [_line({"kind": "ir", "lang": self.code, "revision": layout.spec_revision(self.ir), "ir": self.doc})]
+        for word in self.syllable_words:
+            lines.append(_line({"kind": "syllables", "input": [ord(c) for c in word],
+                                "expect": [[ord(c) for c in s] for s in self.it.syllables(word)]}))
         for text in self.inputs + [""]:
             lines.append(_line({"kind": "case", "input": [ord(c) for c in text],
                                 "expect": [ord(c) for c in self.out(text)]}))
@@ -215,7 +233,11 @@ def build_targets(stems_wanted) -> Dict[str, Target]:
     def get(stem: str) -> Target:
         if stem not in targets:
             code, _, profile = stem.partition("@")
-            code, options = FEATURE_TARGETS.get(stem, (code, {"dialect_profile": profile} if profile else {}))
+            if stem in FRAGMENT_VECTORS:
+                code, path, _ = FRAGMENT_VECTORS[stem]
+                options = {"fragments": [json.loads(path.read_text(encoding="utf-8"))]}
+            else:
+                code, options = FEATURE_TARGETS.get(stem, (code, {"dialect_profile": profile} if profile else {}))
             targets[stem] = Target(stem, code, **options)
         return targets[stem]
 
@@ -224,7 +246,9 @@ def build_targets(stems_wanted) -> Dict[str, Target]:
             continue
         t = get(stem)
         code, _, profile = stem.partition("@")
-        if stem in FEATURE_TARGETS:
+        if stem in FRAGMENT_VECTORS:
+            t.inputs = t.syllable_words = list(FRAGMENT_VECTORS[stem][2])
+        elif stem in FEATURE_TARGETS:
             t.inputs = _unique(words.get(t.code, []) + rules.get(t.code, []))[:SAMPLE]
         elif profile:
             t.inputs, n, d = differences(t, get(code), dialect_texts)
@@ -262,6 +286,15 @@ def _changes(target: Target, ablated: dict, texts) -> Optional[int]:
     return None
 
 
+def _syllables_change(target: Target, ablated: dict) -> Optional[int]:
+    """The index of the first syllables line whose output the ablated IR changes."""
+    it = Interpreter(ablated)
+    for i, word in enumerate(target.syllable_words):
+        if it.syllables(word) != target.it.syllables(word):
+            return i
+    return None
+
+
 def cover(targets: Dict[str, Target]) -> Dict[str, list]:
     """The case of each feature. Adds a targeted input where no case shows a feature."""
     found: Dict[str, list] = {}
@@ -278,6 +311,10 @@ def cover(targets: Dict[str, Target]) -> Dict[str, list]:
                 continue
             i = _changes(t, ablated[t.stem], t.inputs)
             if i is not None:
+                found[name] = [f"{t.stem}.jsonl", len(t.syllable_words) + i]
+                break
+            i = _syllables_change(t, ablated[t.stem])
+            if i is not None:
                 found[name] = [f"{t.stem}.jsonl", i]
                 break
         else:
@@ -288,7 +325,7 @@ def cover(targets: Dict[str, Target]) -> Dict[str, list]:
                 i = _changes(t, ablated[t.stem], extra)
                 if i is not None:
                     t.inputs.append(extra[i])
-                    found[name] = [f"{t.stem}.jsonl", len(t.inputs) - 1]
+                    found[name] = [f"{t.stem}.jsonl", len(t.syllable_words) + len(t.inputs) - 1]
                     print(f"{name}: targeted {extra[i]!r} in {t.stem}", flush=True)
                     break
             else:
@@ -301,7 +338,7 @@ def keep_targeted(targets: Dict[str, Target]) -> None:
     found = json.loads((OUT / FEATURES).read_text(encoding="utf-8"))
     for file, index in sorted(found.values(), key=lambda fi: fi[1]):
         t = targets.get(file[:-len(".jsonl")])
-        if t is None or index < len(t.inputs):
+        if t is None or index < len(t.syllable_words) + len(t.inputs):
             continue
         with (OUT / file).open(encoding="utf-8") as f:
             lines = f.readlines()
