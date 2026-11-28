@@ -138,14 +138,14 @@ The script exports one GGUF for each language and writes `benchmarks/loom_parity
 
 | Set | Languages | Cases | Pass |
 | :--- | ---: | ---: | ---: |
-| Conformance vectors, output cases | 22 files | 3880 | 3880 |
+| Conformance vectors, output cases | 150 files | 6305 | 6305 |
 | Conformance vectors, error cases | 1 file | 1 | 1 |
 | Gold sentences | 188 lects | 6369 | 6369 |
 
-The run used loom.cpp commit `f58f905` and orthography2ipa 7.133.1a4. To run it again, build loom.cpp and the host, then run the script:
+The run used loom.cpp commit `5dfc399` (branch `feat/rule-based-phonemizer`) and orthography2ipa 7.136.3a3. The 33 `syllables` cases of the vector files test the splitter, which a loom host does not call, so the script skips them. To run it again, build loom.cpp and the host, then run the script:
 
 ```bash
-git clone https://github.com/loom-ai-org/loom.cpp ../loom.cpp
+git clone --branch feat/rule-based-phonemizer https://github.com/loom-ai-org/loom.cpp ../loom.cpp
 cmake -S scripts/loom_host -B build/loom_host -DLOOM_DIR=$PWD/../loom.cpp -DCMAKE_BUILD_TYPE=Release
 cmake --build build/loom_host -j4 --target o2i_loom
 PYTHONPATH=$PWD .venv/bin/python scripts/loom_parity.py build/loom_host/o2i_loom "$(git -C ../loom.cpp rev-parse --short HEAD)"

@@ -1,10 +1,11 @@
 {
- "orthography2ipa": "7.133.1a4",
- "loom_commit": "f58f905",
+ "orthography2ipa": "7.136.3a3",
+ "loom_commit": "5dfc399",
  "vectors": {
-  "files": 22,
-  "cases": 3880,
-  "identical": 3880,
+  "files": 150,
+  "cases": 6305,
+  "identical": 6305,
+  "syllables_cases_skipped": 33,
   "error_files": 1,
   "error_cases": 1,
   "error_cases_refused": 1
