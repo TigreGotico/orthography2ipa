@@ -1,0 +1,21 @@
+name: Docs Standard
+
+# Reports the docs standard findings (DS-6, 6a, 8, 9, 11, 12). Informational:
+# the job does not fail on a finding.
+
+on:
+  pull_request:
+    branches: [dev]
+    paths:
+      - "docs/**"
+      - "README.md"
+      - "AGENTS.md"
+      - ".github/workflows/docs-standard.yml"
+
+jobs:
+  docs_check:
+    uses: OpenVoiceOS/gh-automations/.github/workflows/docs-check.yml@dev
+    with:
+      docs_standard: true
+      hf_space: TigreGotico/orthography2ipa
+    secrets: inherit
