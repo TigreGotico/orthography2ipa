@@ -1412,6 +1412,7 @@ class Interpreter:
             unit = next((u for u in multi if low.startswith(u, k)), low[k])
             inside.update(range(k + 1, k + len(unit)))
             k += len(unit)
+        cuts.update(k + 1 for k in range(n - 1) if self._c(low[k], "hyphen"))
         for pair in self.syll.get("cut_pairs", ()):
             k = low.find(pair)
             while k >= 0:

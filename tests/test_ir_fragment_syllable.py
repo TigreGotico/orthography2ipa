@@ -82,6 +82,12 @@ def test_a_pair_inside_a_spec_unit_does_not_cut():
     assert FULL.syllables("carro") == ["car", "ro"]
 
 
+def test_a_hyphen_ends_its_syllable():
+    # silabificador syllabify: o.lho-.d'á.gua; ⟨d'⟩ is the onset of the next syllable.
+    assert FULL.syllables("olho-d'água") == ["o", "lho-", "d'á", "gua"]
+    assert FULL.syllables("couve-flor") == ["cou", "ve-", "flor"]
+
+
 def test_a_pair_inside_a_unit_does_not_cut():
     assert ".".join(splitter(without("heterosyllabic_pairs")).syllables("kubitschek")) == "ku.bi.tschek"
     assert ".".join(FULL.syllables("kubitschek")) == "ku.bi.tschek"
