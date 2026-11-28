@@ -16,9 +16,7 @@
 --   local ir = require("interpreter")   -- or dofile
 --   local it = ir.new(ir.json_decode(text))
 --   it:transcribe_cps({codepoints}, width) -> {codepoints}
---   luajit interpreter.lua IR.json [width] < lines of codepoints
--- loom: define O2I_LANGUAGES (codes) and O2I_IRS (code -> IR JSON text)
--- before this chunk; it then defines infer{text = {...}, lang = index}.
+--   luajit scripts/ir_lua_cli.lua IR.json [width] < lines of codepoints
 
 local floor, max, min = math.floor, math.max, math.min
 local unpack = unpack or table.unpack
@@ -706,6 +704,7 @@ function M.new(doc)
   self._exceptions = {}
   for _, p in ipairs(self.word.exceptions) do self._exceptions[p[1]] = p[2] end
   self._fragment_words = {}
+  self._lexicon = {}
   for _, p in ipairs(self.word.words or {}) do self._fragment_words[p[1]] = p[2] end
   self.stress = ir.stress
   self.syll = ir.syllable or {}
@@ -1315,6 +1314,7 @@ function P:_whole_word_override(word)
   end
   for _, k in ipairs(keys) do
     local hit = self._exceptions[k]
+    if hit == nil then hit = self._lexicon[self:nfc(k)] end
     if hit == nil then hit = self._fragment_words[self:nfc(k)] end
     if hit ~= nil then return hit end
   end
@@ -3614,6 +3614,27 @@ function P:transcribe_cps(cps, width)
   return to_cps(self:transcribe(from_cps(cps), width))
 end
 
+-- The codepoints of the unknown and digit tokens of text, in text order
+-- (interpreter.py Interpreter.unmapped).
+function P:unmapped_cps(cps)
+  local out = {}
+  for _, tok in ipairs(self:tokenize(self:nfc(self:prepare(from_cps(cps))))) do
+    if tok.kind == UNKNOWN or tok.kind == DIGIT then
+      for _, c in ipairs(to_cps(tok.grapheme)) do out[#out + 1] = c end
+    end
+  end
+  return out
+end
+
+-- Merge {{word codepoints}, {ipa codepoints}} pairs into the run-time
+-- lexicon (interpreter.py transcribe lexicon=): keys are lowercase NFC, and a
+-- later pair wins.
+function P:set_lexicon(entries)
+  for _, e in ipairs(entries) do
+    self._lexicon[self:nfc(from_cps(e[1]))] = from_cps(e[2])
+  end
+end
+
 -- ═══ the dialect program (dialect.py, primitives 13 to 16) ═════════════════
 
 local function gate(g, spelling)
@@ -3758,68 +3779,6 @@ function P:run_program(steps, ipa, spelling)
     end
   end
   return ipa
-end
-
--- ═══ entry points ══════════════════════════════════════════════════════════
-
--- loom: O2I_LANGUAGES = {codes}, O2I_IRS = {code = IR JSON text},
--- optional O2I_REVISION = {code = spec_revision}.
-if rawget(_G, "O2I_LANGUAGES") then
-  local engines = {}
-  local function engine(index)
-    local code = O2I_LANGUAGES[(index or 0) + 1]
-    local it = engines[code]
-    if not it then
-      it = M.new(M.json_decode(O2I_IRS[code]))
-      engines[code] = it
-    end
-    return it, code
-  end
-  function _G.infer(args)
-    return engine(args.lang):transcribe_cps(args.text, args.width or 1)
-  end
-  -- The spec_revision the exporter recorded, as codepoints; never computed here.
-  function _G.info(args)
-    local code = O2I_LANGUAGES[(args.lang or 0) + 1]
-    local rev = rawget(_G, "O2I_REVISION")
-    return rev and rev[code] and {sbyte(rev[code], 1, -1)} or {}
-  end
-end
-
--- CLI: luajit interpreter.lua IR.json [width]. Each stdin line holds the
--- decimal codepoints of one text; each stdout line holds those of its IPA,
--- or "E " and an error message. A wall-clock line goes to stderr.
-local function main(path, width)
-  local f = assert(io.open(path, "rb"))
-  local text = f:read("*a")
-  f:close()
-  local ok, it = pcall(M.new, M.json_decode(text))
-  if not ok then
-    io.stdout:write("E ", tostring(it):gsub("\n", " "), "\n")
-    return
-  end
-  width = tonumber(width) or 1
-  local out = {}
-  local n = 0
-  local t0 = os.clock()
-  for line in io.stdin:lines() do
-    local cps = {}
-    for d in line:gmatch("%d+") do cps[#cps + 1] = tonumber(d) end
-    local good, res = pcall(it.transcribe_cps, it, cps, width)
-    if good then
-      out[#out + 1] = concat(res, " ")
-    else
-      out[#out + 1] = "E " .. tostring(res):gsub("\n", " ")
-    end
-    n = n + 1
-  end
-  local dt = os.clock() - t0
-  io.stdout:write(concat(out, "\n"), n > 0 and "\n" or "")
-  io.stderr:write(("lua: %d texts in %.3f s cpu\n"):format(n, dt))
-end
-
-if arg and arg[0] and arg[0]:match("interpreter%.lua$") and arg[1] then
-  main(arg[1], arg[2])
 end
 
 return M

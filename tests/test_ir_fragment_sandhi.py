@@ -13,7 +13,7 @@ from orthography2ipa.ir.compiler import build_ir
 from orthography2ipa.ir.interpreter import Interpreter, IRVersionError
 
 HERE = Path(__file__).resolve().parent
-LUA = HERE.parent / "orthography2ipa" / "ir" / "interpreter.lua"
+LUA = HERE.parent / "scripts" / "ir_lua_cli.lua"
 ARBTOK = json.loads((HERE / "data" / "arbtok_sandhi_fragment.json").read_text(encoding="utf-8"))
 
 
@@ -184,10 +184,10 @@ def test_the_export_reports_the_unsupported_rules(tmp_path):
     out = tmp_path / "frag.gguf"
     meta = export_to_loom(["kab"], out, fragments=(fragment(unsupported=["b", "a"]), fragment(unsupported=["a", "c"])))
     assert meta["unsupported"] == ["a", "b", "c"]
-    assert GGUFReader(str(out)).fields["o2i.unsupported"].contents() == ["a", "b", "c"]
+    assert GGUFReader(str(out)).fields["loom.phonemizer.unsupported"].contents() == ["a", "b", "c"]
 
 
 def test_an_export_without_unsupported_rules_has_no_such_field(tmp_path):
     out = tmp_path / "plain.gguf"
     assert export_to_loom(["kab"], out, fragments=(fragment(),))["unsupported"] == []
-    assert "o2i.unsupported" not in GGUFReader(str(out)).fields
+    assert "loom.phonemizer.unsupported" not in GGUFReader(str(out)).fields

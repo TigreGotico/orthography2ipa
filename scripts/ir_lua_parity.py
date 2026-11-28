@@ -42,6 +42,7 @@ from orthography2ipa.ir.compiler import IRUnsupportedFeature, build_ir  # noqa: 
 from orthography2ipa.ir.interpreter import Interpreter  # noqa: E402
 
 LUA = REPO / "orthography2ipa" / "ir" / "interpreter.lua"
+CLI = REPO / "scripts" / "ir_lua_cli.lua"
 LUAJIT = "luajit"
 
 
@@ -52,7 +53,7 @@ def _cps(text: str) -> str:
 def run_lua(ir_path: Path, texts: List[str], width: int):
     """IPA per text from the Lua interpreter, and its CPU seconds."""
     stdin = "".join(_cps(t) + "\n" for t in texts)
-    proc = subprocess.run([LUAJIT, str(LUA), str(ir_path), str(width)], input=stdin,
+    proc = subprocess.run([LUAJIT, str(CLI), str(ir_path), str(width)], input=stdin,
                           capture_output=True, text=True, check=True)
     lines = proc.stdout.split("\n")[:-1] if proc.stdout else []
     if len(lines) == 1 and lines[0].startswith("E ") and len(texts) != 1:

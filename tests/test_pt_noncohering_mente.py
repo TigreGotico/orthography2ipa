@@ -22,7 +22,7 @@ from orthography2ipa import G2P
 from orthography2ipa.ir import layout
 from orthography2ipa.ir.compiler import build_ir
 
-LUA = Path(__file__).resolve().parent.parent / "orthography2ipa" / "ir" / "interpreter.lua"
+LUA = Path(__file__).resolve().parent.parent / "scripts" / "ir_lua_cli.lua"
 
 # word, WikiPron pt-PT segments
 ADVERBS = [

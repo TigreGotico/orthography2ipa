@@ -2227,6 +2227,11 @@ class Interpreter:
                 out.extend(tok.grapheme)
         return tuple(out)
 
+    def unmapped(self, text: str) -> Tuple[str, ...]:
+        """The chars of the unknown and digit tokens of *text*, in text order:
+        what the transcription drops."""
+        return self._dropped(self.nfc(self.prepare(text)))
+
     # ─── S8b: grammatical endings ───────────────────────────────────
     def _match_ending(self, graphemes: List[str]) -> Optional[Tuple[dict, int]]:
         if len(graphemes) < 2:
