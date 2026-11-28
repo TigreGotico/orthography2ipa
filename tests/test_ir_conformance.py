@@ -28,7 +28,7 @@ RUNNER = REPO / "scripts" / "ir_lua_conformance.lua"
 def load(path):
     with path.open(encoding="utf-8") as f:
         head, *cases = [json.loads(line) for line in f]
-    assert head["kind"] == "ir" and all(c["kind"] == "case" for c in cases)
+    assert head["kind"] == "ir" and all(c["kind"] in ("case", "syllables") for c in cases)
     return head, cases
 
 
@@ -50,6 +50,12 @@ def test_every_file_keeps_the_size_budget(path):
         assert sum(len(c.encode()) for c in cases) <= gen_ir_vectors.CASE_BUDGET
 
 
+def _run(it, case):
+    if case["kind"] == "syllables":
+        return [[ord(c) for c in s] for s in it.syllables(text(case["input"]))]
+    return [ord(c) for c in it.transcribe(text(case["input"]), width=1)]
+
+
 def test_every_ir_feature_has_a_case_that_needs_it():
     found = json.loads((DIR / gen_ir_vectors.FEATURES).read_text(encoding="utf-8"))
     uncovered = [name for name in feature_names() if name not in found and name not in gen_ir_vectors.UNREACHABLE]
@@ -59,7 +65,7 @@ def test_every_ir_feature_has_a_case_that_needs_it():
         ir = layout.decode(head["ir"])
         case = cases[index]
         ablated = ablate(ir, name)
-        if ablated is None or Interpreter(ablated).transcribe(text(case["input"]), width=1) == text(case["expect"]):
+        if ablated is None or _run(Interpreter(ablated), case) == case["expect"]:
             weak.append(name)
     assert not uncovered and not weak, f"uncovered: {uncovered}; the case does not need: {weak}"
 
@@ -79,7 +85,7 @@ def test_python_interpreter_gives_every_expect(path):
         assert [c["expect_error"] for c in cases] == ["unsupported primitive version"]
         assert str(exc).startswith(cases[0]["expect_error"])
         return
-    got = [[ord(c) for c in it.transcribe(text(case["input"]), width=1)] for case in cases]
+    got = [_run(it, case) for case in cases]
     assert got == [case["expect"] for case in cases]
 
 
