@@ -27,7 +27,7 @@ French is a Gallo-Romance language, written in the Latin script. Its code names 
 | Tier | [research](../specs/quality_tiers.md#research) |
 | Attested | from 1300, living |
 | Parent | [Gallo-Romance](https://tigregotico.github.io/orthography2ipa/#x-clade-gallorom) `x-clade-gallorom` |
-| Child lects | 5, see [Related lects](#related-lects) |
+| Child lects | 6, see [Related lects](#related-lects) |
 | Explorer | [`fr-FR` in the data explorer](https://tigregotico.github.io/orthography2ipa/#fr-FR) |
 | Spec file | [`fr-FR.json`](../../orthography2ipa/data/fr-FR.json) |
 <!-- atlas:header end -->
@@ -247,7 +247,15 @@ Martinon (1913) calls many other liaisons optional or a matter of style, and the
 
 ## Regional variants
 
-Four regional specs inherit this spec and state only what a source states: `fr-CA` (Laurentian French: affrication of /t d/ before /i y j ɥ/ and laxing of /i y u/ in a closed final syllable), `fr-BE` (⟨â⟩ as [aː]), `fr-CH` (⟨â⟩ as [aː] and ⟨ê⟩ as [ɛː]) and `fr-CI` (⟨â⟩ as [a]). The PFC survey reports that in Tournai and Neuchâtel the contrast of ⟨patte⟩ and ⟨pâte⟩ is one of length, not of quality. Each spec lists its sources and what it leaves out. Every other French tag with a region, such as `fr-LU`, `fr-SN`, `fr-US` or `fr-150`, reads `fr-FR`, because the cited sources state no difference for it. All of them read an elided clitic and its host as one word.
+Five regional specs inherit this spec and state only what a source states. Each spec lists its sources and what it leaves out.
+
+- `fr-BE` (Belgian French): ⟨â⟩ as [aː], ⟨ê⟩ as [ɛː] in a closed final syllable (fête [fɛːt], but fêter [fɛte]), a long vowel before a word-final mute ⟨e⟩ (aimée [ɛmeː], vie [viː]), [w] for the [ɥ] of ⟨ui⟩ (lui [lwi], nuit [nwi]) and vingt as [vɛ̃t].
+- `fr-CH` (Swiss French): ⟨â⟩ as [aː], ⟨ê⟩ as [ɛː] in a closed final syllable, the same long vowel before a final mute ⟨e⟩, and vingt as [vɛ̃t].
+- `fr-CA` (Laurentian French): affrication of /t d/ before /i y j ɥ/, laxing of /i y u/ in a closed final syllable, long vowels and their diphthongs in the last syllable (père [pai̯ʁ], fête [fai̯t], pâte [pɑu̯t], rose [ʁɔu̯z]), a back [ɒ] for a word-final /a/ (Canada [kanadɒ]), and the nasal vowels [ẽ] and a final [ã].
+- `fr-CI` (Ivorian French): ⟨â⟩ as [a].
+- `fr-FR-x-midi` (Southern French): a pronounced final schwa (petite [pøtitə]), [ø] for a schwa in the first syllable, the loi de position of the mid vowels (rose [ʁɔzə], lait [le]) and a nasal vowel as an oral vowel plus a nasal appendix (pain [pɛŋ], lampe [lampə]).
+
+The PFC survey reports that in Tournai and Neuchâtel the contrast of ⟨patte⟩ and ⟨pâte⟩ is one of length, not of quality. In `fr-BE` huit takes the `fr-FR` reading with [w] for [ɥ]: [wit] alone and [wi] before a consonant (huit livres [wi livʁ]). Every other French tag with a region, such as `fr-LU`, `fr-SN`, `fr-US` or `fr-150`, reads `fr-FR`, because the cited sources state no difference for it. `fr-FR-x-midi` is a private-use tag and is reached only by that tag. All of them read an elided clitic and its host as one word.
 
 ## Stress marks
 
@@ -273,6 +281,7 @@ These specs name `fr-FR` as their parent. They are sorted by country, and a lect
 - [Belgian French](https://tigregotico.github.io/orthography2ipa/#fr-BE) `fr-BE`: Belgium, skeleton tier
 - [Canadian French (Laurentian)](https://tigregotico.github.io/orthography2ipa/#fr-CA) `fr-CA`: Canada, skeleton tier
 - [Ivorian French](https://tigregotico.github.io/orthography2ipa/#fr-CI) `fr-CI`: Côte d’Ivoire, skeleton tier
+- [Southern French (Midi)](https://tigregotico.github.io/orthography2ipa/#fr-FR-x-midi) `fr-FR-x-midi`: France, skeleton tier
 - [Seychellois Creole](crs.md) `crs`: Seychelles, research tier
 - [Swiss French (Romandy)](https://tigregotico.github.io/orthography2ipa/#fr-CH) `fr-CH`: Switzerland, skeleton tier
 <!-- atlas:lects end -->
@@ -532,14 +541,14 @@ The spec applies 38 rules across a word boundary. The contexts are regular expre
 | `FR_NEUF_V_BEFORE_HEURES` | `^nœf$` | `^œʁ$`, spelled `^heures?$` | left [nœv‿] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_NEUF_V_BEFORE_ANS` | `^nœf$` | `^ɑ̃$`, spelled `^ans$` | left [nœv‿] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_DIX_Z_BEFORE_HUIT_NEUF` | `^((?:d\|d͡z)[iɪ])s$` | `^(?:ɥit\|nœf\|ɥitjɛm\|nøvjɛm\|nœvjɛm)$` | left [z] | ⟨dix-huitième⟩ [diz ɥitjɛm] | [Martinon 1913](#src-martinon1913) |
-| `FR_VINGT_T_BEFORE_UNIT` | `$`, spelled `^vingt$`, joined `^(?!quatre-vingt$)` | ``, spelled by a long condition | left [t] | ⟨vingt-deux⟩ [vɛ̃t dø] | [Martinon 1913](#src-martinon1913) |
-| `FR_VINGT_T_BEFORE_ET_HUIT` | `$`, spelled `^vingt$`, joined `^(?!quatre-vingt$)` | ``, spelled `^(?:et\|huit\|huitième\|huitièmes)$` | left [t‿] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_VINGT_T_BEFORE_UNIT` | `t$\|(?<!t)$`, spelled `^vingt$`, joined `^(?!quatre-vingt$)` | ``, spelled by a long condition | left [t] | ⟨vingt-deux⟩ [vɛ̃t dø] | [Martinon 1913](#src-martinon1913) |
+| `FR_VINGT_T_BEFORE_ET_HUIT` | `t$\|(?<!t)$`, spelled `^vingt$`, joined `^(?!quatre-vingt$)` | ``, spelled `^(?:et\|huit\|huitième\|huitièmes)$` | left [t‿] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_EST_NOUN_AFTER_COMPASS` | `` | `^ɛ$`, joined `^(?:nord\|sud)-est$` | right [ɛst] | - | [Martinon 1913](#src-martinon1913) |
 | `FR_EST_NOUN_BEFORE_HYPHEN` | `^ɛ$`, joined `^est$` | ``, joined `^est-(?!(?:ce\|il\|elle\|on\|ils\|elles)$)` | left [ɛst] | ⟨est-allemand⟩ [ɛst aləmɑ̃] | [Martinon 1913](#src-martinon1913) |
-| `FR_ENT_MUTE_AFTER_ILS` | ``, joined `^(?:(?:(?:lors\|puis\|quoi)?qu['’])?(?:ils\|elles)\|s['’]ils)$` | `ɑ̃$`, spelled `ent$` | right ∅ | ⟨ils parlent⟩ [il paʁl] | [Martinon 1913](#src-martinon1913) |
-| `FR_IENT_MUTE_AFTER_ILS` | ``, joined `^(?:(?:(?:lors\|puis\|quoi)?qu['’])?(?:ils\|elles)\|s['’]ils)$` | `jɛ̃$`, spelled `ient$` | right [i] | - | [Martinon 1913](#src-martinon1913) |
-| `FR_ENT_LIAISON_INVERSION` | `t?ɑ̃$`, spelled `ent$` | ``, spelled `^(?:ils\|elles)$`, joined `-` | left [t‿] | ⟨parlent-ils⟩ [paʁlt‿ il] | [Martinon 1913](#src-martinon1913) |
-| `FR_IENT_LIAISON_INVERSION` | `jɛ̃$`, spelled `ient$` | ``, spelled `^(?:ils\|elles)$`, joined `-` | left [it‿] | ⟨lient-ils⟩ [lit‿ il] | [Martinon 1913](#src-martinon1913) |
+| `FR_ENT_MUTE_AFTER_ILS` | ``, joined `^(?:(?:(?:lors\|puis\|quoi)?qu['’])?(?:ils\|elles)\|s['’]ils)$` | `(?:ɑ̃\|ã\|ã)$`, spelled `ent$` | right ∅ | ⟨ils parlent⟩ [il paʁl] | [Martinon 1913](#src-martinon1913) |
+| `FR_IENT_MUTE_AFTER_ILS` | ``, joined `^(?:(?:(?:lors\|puis\|quoi)?qu['’])?(?:ils\|elles)\|s['’]ils)$` | `j(?:ɛ̃\|ẽ\|ẽ)$`, spelled `ient$` | right [i] | - | [Martinon 1913](#src-martinon1913) |
+| `FR_ENT_LIAISON_INVERSION` | `t?(?:ɑ̃\|ã\|ã)$`, spelled `ent$` | ``, spelled `^(?:ils\|elles)$`, joined `-` | left [t‿] | ⟨parlent-ils⟩ [paʁlt‿ il] | [Martinon 1913](#src-martinon1913) |
+| `FR_IENT_LIAISON_INVERSION` | `j(?:ɛ̃\|ẽ\|ẽ)$`, spelled `ient$` | ``, spelled `^(?:ils\|elles)$`, joined `-` | left [it‿] | ⟨lient-ils⟩ [lit‿ il] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_T_INVERSION` | `$`, spelled `[td]$` | ``, spelled `^(?:il\|ils\|elle\|elles\|on\|en)$`, joined `-` | left [t‿] | ⟨dit-il⟩ [dit‿ il] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_Z_BEFORE_Y_EN` | `$`, spelled `[sxz]$` | ``, spelled `^(?:y\|en)$`, joined `-` | left [z‿] | ⟨vas-y⟩ [vaz‿ i] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_T_EST_ONZE` | `$`, joined `^(?:[cn]['’])?est$` | ``, spelled `^onze$` | left [t‿] | ⟨il est onze heures⟩ [il ɛt‿ ɔ̃z‿ œʁ] | [Martinon 1913](#src-martinon1913) |
@@ -556,7 +565,7 @@ The spec applies 38 rules across a word boundary. The contexts are regular expre
 | `FR_LIAISON_Z_PRONOUN` | `$`, joined by a long condition | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled `^(?!(?:et\|ou\|à\|aussi\|avec\|il\|elle\|on\|ils\|elles)$)` | left [z‿] | ⟨nous avons⟩ [nuz‿ avɔ̃] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_T_PROCLITIC` | `$`, joined `^(?:(?:[cn]['’])?est\|sont\|ont\|tout\|quand\|quant\|dont)$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled `^(?!(?:et\|ou)$)` | left [t‿] | ⟨il est allé⟩ [il ɛt‿ ale] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_T_GRAND` | `$`, joined `^grand$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled by a long condition | left [t‿] | ⟨grand homme⟩ [ɡʁɑ̃t‿ ɔm] | [Martinon 1913](#src-martinon1913) |
-| `FR_LIAISON_T_NUMERAL` | `$`, spelled `^(?:vingt\|cent)$`, joined `^(?!quatre-vingt$)` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled `^(?!(?:et\|ou\|un\|une\|avril\|août\|octobre)$)` | left [t‿] | ⟨vingt ans⟩ [vɛ̃t‿ ɑ̃] | [Martinon 1913](#src-martinon1913) |
+| `FR_LIAISON_T_NUMERAL` | `t$\|(?<!t)$`, spelled `^(?:vingt\|cent)$`, joined `^(?!quatre-vingt$)` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled `^(?!(?:et\|ou\|un\|une\|avril\|août\|octobre)$)` | left [t‿] | ⟨vingt ans⟩ [vɛ̃t‿ ɑ̃] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_N_ARTICLE` | `$`, spelled `^(?:(?:d['’]\|qu['’])?(?:un\|aucun))$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled `^(?!(?:et\|ou\|avril\|août\|octobre)$)` | left [n‿] | ⟨un ami⟩ [œ̃n‿ ami] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_N_PRONOUN` | `$`, joined `^(?:(?:[jmtsnl]['’]\|qu['’])?(?:en\|on))$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled `^(?!(?:et\|ou)$)` | left [n‿] | ⟨en effet⟩ [ɑ̃n‿ efɛ] | [Martinon 1913](#src-martinon1913) |
 | `FR_LIAISON_R_PREMIER` | `je$`, spelled `^(?:premier\|dernier)$` | `^[aeiouyøœəɛɔɑɪʏʊjwɥ]`, spelled `^(?!(?:et\|ou\|à\|en\|avril\|août\|octobre)$)` | left [jɛʁ‿] | ⟨premier enfant⟩ [pʁəmjɛʁ‿ ɑ̃fɑ̃] | [Martinon 1913](#src-martinon1913) |

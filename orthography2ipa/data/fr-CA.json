@@ -18,18 +18,84 @@
     ],
     "i": [
       "i",
-      "ɪ"
+      "ɪ",
+      "iː"
     ],
     "y": [
       "y",
-      "ʏ"
+      "ʏ",
+      "yː"
     ],
     "u": [
       "u",
-      "ʊ"
+      "ʊ",
+      "uː"
+    ],
+    "ɛ": [
+      "ɛ",
+      "ai̯"
+    ],
+    "a": [
+      "a",
+      "ɒ",
+      "ɑu̯"
+    ],
+    "ɑ": [
+      "ɑ",
+      "ɑu̯"
+    ],
+    "e": [
+      "e",
+      "ɛi̯"
+    ],
+    "ø": [
+      "ø",
+      "œy̯"
+    ],
+    "œ": [
+      "œ",
+      "ay̯"
+    ],
+    "o": [
+      "o",
+      "ɔu̯"
+    ],
+    "ɔ": [
+      "ɔ",
+      "ɑu̯"
+    ],
+    "ɛ̃": [
+      "ɛ̃",
+      "ẽ",
+      "ɛ̃i̯"
+    ],
+    "œ̃": [
+      "œ̃",
+      "ãy̯"
+    ],
+    "ɔ̃": [
+      "ɔ̃",
+      "ɔ̃u̯"
+    ],
+    "ɑ̃": [
+      "ɑ̃",
+      "ã",
+      "ɑ̃u̯"
     ]
   },
   "allophone_rules": [
+    {
+      "id": "FR_NASAL_ɔ",
+      "phonemes": [
+        "ɔ"
+      ],
+      "surface": "ɔ̃",
+      "followed_by": "coda_nasal",
+      "notes": "vowel nasalises before a CODA nasal; an onset nasal (⟨canne⟩, ⟨cana⟩) leaves it oral Restated for fr-CA with the condition that the vowel is spelled ⟨o⟩: fr-CA runs its rules in three passes, and a later pass would otherwise nasalise an [ɔ] that another fr-FR rule wrote for a different letter (the Latin ⟨-um⟩ of maximum [maksimɔm]).",
+      "grapheme": [
+        "o"
+      ]
+    },
     {
       "id": "FR_CA_AFFRICATE_T",
       "phonemes": [
@@ -41,9 +107,11 @@
         "y",
         "j",
         "ɥ",
-        "jɛ̃"
+        "jɛ̃",
+        "ɥɛ̃",
+        "ɥin"
       ],
-      "notes": "Affrication of /t/ before a high front vocoid (Dow 2019: 1-2; Hall 2016: 2, ex. (2)): petit [pət͡si], têtu [tɛt͡sy]."
+      "notes": "Affrication of /t/ before a high front vocoid (Dow 2019: 1-2; Hall 2016: 2, ex. (2)): petit [pət͡si], têtu [tɛt͡sy]. The triggers include the glide-initial units [ɥɛ̃] and [ɥin] of ⟨uin⟩, whose [ɥ] is the vocoid Dow (2019: 1) names."
     },
     {
       "id": "FR_CA_AFFRICATE_D",
@@ -56,9 +124,11 @@
         "y",
         "j",
         "ɥ",
-        "jɛ̃"
+        "jɛ̃",
+        "ɥɛ̃",
+        "ɥin"
       ],
-      "notes": "Affrication of /d/ before a high front vocoid (Dow 2019: 1-2; Hall 2016: 2, ex. (2)): dit [d͡zi], du [d͡zy]."
+      "notes": "Affrication of /d/ before a high front vocoid (Dow 2019: 1-2; Hall 2016: 2, ex. (2)): dit [d͡zi], du [d͡zy]. The triggers include the glide-initial units [ɥɛ̃] and [ɥin] of ⟨uin⟩, whose [ɥ] is the vocoid Dow (2019: 1) names."
     },
     {
       "id": "FR_CA_LAX_i",
@@ -134,10 +204,980 @@
         "l"
       ],
       "notes": "Closed-syllable laxing of /u/ in the final syllable: the coda holds a consonant other than the voiced fricatives /v z ʒ ʁ/ (Hall 2016: 7, ex. (12); Burness et al. 2022: 1-2)."
+    },
+    {
+      "id": "FR_CA_LAX_UIN",
+      "phonemes": [
+        "ɥin"
+      ],
+      "surface": "ɥɪn",
+      "followed_by_nucleus": false,
+      "notes": "FR_CA_LAX_i for the unit ⟨uin⟩ read [ɥin] before a vowel letter: when that vowel is a mute final ⟨e⟩, the [n] closes the final syllable and the [i] is lax (Hall 2016: 7, ex. (11)-(12); Dumas 1974: 32-33): ruine [ʁɥɪn]. A following pronounced vowel (ruiner) leaves it tense."
+    },
+    {
+      "id": "FR_CA_CIRC_E",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "ai̯",
+      "grapheme": [
+        "ê"
+      ],
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ",
+        "t͡s",
+        "d͡z"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "Acquired length of /ɛ/ in a final syllable closed by any consonant or cluster (Dumas 1974: 15-16, ex. (1): bête [bɛːt], même, pêche, être), diphthongised to [ai̯] (Table II, p. 26: ɛː → aⁱ; obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15))): fête [fai̯t]. Dumas calls the length lexical; the spec reads the circumflex as its written mark, so his long words without one (passe, maille, coiffe, sable) stay short."
+    },
+    {
+      "id": "FR_CA_CIRC_A",
+      "phonemes": [
+        "ɑ"
+      ],
+      "surface": "ɑu̯",
+      "grapheme": [
+        "â"
+      ],
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ",
+        "t͡s",
+        "d͡z"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "Acquired length of /a/ in a final syllable closed by any consonant or cluster (Dumas 1974: 15-16, ex. (1): âme, fâche, pâle), long [ɒː] (p. 27) and diphthongised to [ɑu̯] (Table II, p. 26: ɒː → ɑᵘ; ex. (15): pâle): pâte [pɑu̯t]. The circumflex stands for the lexical length, as in FR_CA_CIRC_E."
+    },
+    {
+      "id": "FR_CA_TENSE_e",
+      "phonemes": [
+        "e"
+      ],
+      "surface": "ɛi̯",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ",
+        "t͡s",
+        "d͡z"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "The close-mid /e ø o/ are long in a final syllable closed by any consonant or cluster (Dumas 1974: 21-22, ex. (8): neutre [nøːtʁ], jeûne [ʒøːn], côte, chôme, épaule [epoːl], sauce [soːs]) and the long vowel is diphthongised (Table II, p. 26: eː → ɛⁱ; obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15))): a long /e/ is rare in a closed syllable, since fr-FR gives [ɛ] there; Dumas's rule covers it."
+    },
+    {
+      "id": "FR_CA_TENSE_ø",
+      "phonemes": [
+        "ø"
+      ],
+      "surface": "œy̯",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ",
+        "t͡s",
+        "d͡z"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "The close-mid /e ø o/ are long in a final syllable closed by any consonant or cluster (Dumas 1974: 21-22, ex. (8): neutre [nøːtʁ], jeûne [ʒøːn], côte, chôme, épaule [epoːl], sauce [soːs]) and the long vowel is diphthongised (Table II, p. 26: øː → œʸ (the nucleus opens one step, p. 25); obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15))): jeûne [ʒœy̯n], creuse [kʁœy̯z]."
+    },
+    {
+      "id": "FR_CA_TENSE_o",
+      "phonemes": [
+        "o"
+      ],
+      "surface": "ɔu̯",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ",
+        "t͡s",
+        "d͡z"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "The close-mid /e ø o/ are long in a final syllable closed by any consonant or cluster (Dumas 1974: 21-22, ex. (8): neutre [nøːtʁ], jeûne [ʒøːn], côte, chôme, épaule [epoːl], sauce [soːs]) and the long vowel is diphthongised (Table II, p. 26: oː → ɔᵘ; obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15))): rose [ʁɔu̯z], jaune [ʒɔu̯n]."
+    },
+    {
+      "id": "FR_CA_TENSE_NASAL_E",
+      "phonemes": [
+        "ɛ̃",
+        "ẽ"
+      ],
+      "surface": "ɛ̃i̯",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ",
+        "t͡s",
+        "d͡z"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "The nasal vowels are long in a final syllable closed by any consonant or cluster (Dumas 1974: 21-22, ex. (8): ventre [vɑ̃ːtʁ], monde [mɔ̃ːd], mince [mẽːs], humble) and the long vowel is diphthongised (Table II, p. 26: ẽː → ɛ̃ⁱ; obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15))). This rule covers a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨oin⟩); FR_CA_NASAL_OFFGLIDE_* covers a vowel letter plus ⟨n⟩ or ⟨m⟩."
+    },
+    {
+      "id": "FR_CA_TENSE_NASAL_WE",
+      "phonemes": [
+        "wɛ̃"
+      ],
+      "surface": "wɛ̃i̯",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ",
+        "t͡s",
+        "d͡z"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "FR_CA_TENSE_NASAL_E for the front nasal of the unit ⟨oin⟩ [wɛ̃]: long in a final syllable closed by a pronounced consonant and diphthongised to [ɛ̃i̯] (Dumas 1974: 21-22 and Table II, p. 26; ex. (12) lists 'une pointe' among the long front nasals): pointe [pwɛ̃i̯t], joindre. It stands before FR_CA_NASAL_E_CLOSE_W, which gives the open-syllable [wẽ] (moins [mwẽ])."
+    },
+    {
+      "id": "FR_CA_TENSE_NASAL_JE",
+      "phonemes": [
+        "jɛ̃"
+      ],
+      "surface": "jɛ̃i̯",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ",
+        "t͡s",
+        "d͡z"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "FR_CA_TENSE_NASAL_E for the front nasal of the unit ⟨ien⟩ [jɛ̃]: long in a final syllable closed by a pronounced consonant and diphthongised to [ɛ̃i̯] (Dumas 1974: 21-22 and Table II, p. 26; ex. (12) lists 'une pointe' among the long front nasals): the ⟨ien⟩ of a closed final syllable. It stands before FR_CA_NASAL_E_CLOSE_J, which gives the open-syllable [jẽ] (moins [mwẽ])."
+    },
+    {
+      "id": "FR_CA_TENSE_NASAL_œ̃",
+      "phonemes": [
+        "œ̃"
+      ],
+      "surface": "ãy̯",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ",
+        "t͡s",
+        "d͡z"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "The nasal vowels are long in a final syllable closed by any consonant or cluster (Dumas 1974: 21-22, ex. (8): ventre [vɑ̃ːtʁ], monde [mɔ̃ːd], mince [mẽːs], humble) and the long vowel is diphthongised (Table II, p. 26: œ̃ː → ãʸ; obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15))). This rule covers a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨oin⟩); FR_CA_NASAL_OFFGLIDE_* covers a vowel letter plus ⟨n⟩ or ⟨m⟩."
+    },
+    {
+      "id": "FR_CA_TENSE_NASAL_ɔ̃",
+      "phonemes": [
+        "ɔ̃"
+      ],
+      "surface": "ɔ̃u̯",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ",
+        "t͡s",
+        "d͡z"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "The nasal vowels are long in a final syllable closed by any consonant or cluster (Dumas 1974: 21-22, ex. (8): ventre [vɑ̃ːtʁ], monde [mɔ̃ːd], mince [mẽːs], humble) and the long vowel is diphthongised (Table II, p. 26: ɔ̃ː → ɔ̃ᵘ; obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15))). This rule covers a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨oin⟩); FR_CA_NASAL_OFFGLIDE_* covers a vowel letter plus ⟨n⟩ or ⟨m⟩."
+    },
+    {
+      "id": "FR_CA_TENSE_NASAL_ɑ̃",
+      "phonemes": [
+        "ɑ̃"
+      ],
+      "surface": "ɑ̃u̯",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ",
+        "t͡s",
+        "d͡z"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "The nasal vowels are long in a final syllable closed by any consonant or cluster (Dumas 1974: 21-22, ex. (8): ventre [vɑ̃ːtʁ], monde [mɔ̃ːd], mince [mẽːs], humble) and the long vowel is diphthongised (Table II, p. 26: ɑ̃ː → ɑ̃ᵘ; obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15))). This rule covers a nasal vowel spelled as one unit (⟨ain⟩, ⟨ein⟩, ⟨oin⟩); FR_CA_NASAL_OFFGLIDE_* covers a vowel letter plus ⟨n⟩ or ⟨m⟩."
+    },
+    {
+      "id": "FR_CA_NASAL_OFFGLIDE_i",
+      "phonemes": [
+        ""
+      ],
+      "surface": "i̯",
+      "grapheme": [
+        "n",
+        "m"
+      ],
+      "preceded_by_phoneme": [
+        "ɛ̃",
+        "ẽ"
+      ],
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ",
+        "t͡s",
+        "d͡z"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "A vowel letter plus ⟨n⟩ or ⟨m⟩ spells a nasal vowel, and fr-FR leaves the ⟨n⟩ or ⟨m⟩ slot silent. In a final syllable closed by a pronounced consonant the nasal vowel is long and diphthongised (Dumas 1974: 21-22, ex. (8): ventre, monde, mince; Table II, p. 26: ẽː → ɛ̃ⁱ), so the off-glide is written on that silent slot: monde [mɔ̃u̯d], ventre [vɑ̃u̯tʁ]. A silent final letter (enfant, temps) is no closing consonant. FR_CA_NASAL_DIPHTHONG_* then sets the nucleus."
+    },
+    {
+      "id": "FR_CA_NASAL_OFFGLIDE_y",
+      "phonemes": [
+        ""
+      ],
+      "surface": "y̯",
+      "grapheme": [
+        "n",
+        "m"
+      ],
+      "preceded_by_phoneme": [
+        "œ̃"
+      ],
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ",
+        "t͡s",
+        "d͡z"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "A vowel letter plus ⟨n⟩ or ⟨m⟩ spells a nasal vowel, and fr-FR leaves the ⟨n⟩ or ⟨m⟩ slot silent. In a final syllable closed by a pronounced consonant the nasal vowel is long and diphthongised (Dumas 1974: 21-22, ex. (8): ventre, monde, mince; Table II, p. 26: œ̃ː → ãʸ), so the off-glide is written on that silent slot: monde [mɔ̃u̯d], ventre [vɑ̃u̯tʁ]. A silent final letter (enfant, temps) is no closing consonant. FR_CA_NASAL_DIPHTHONG_* then sets the nucleus."
+    },
+    {
+      "id": "FR_CA_NASAL_OFFGLIDE_u",
+      "phonemes": [
+        ""
+      ],
+      "surface": "u̯",
+      "grapheme": [
+        "n",
+        "m"
+      ],
+      "preceded_by_phoneme": [
+        "ɔ̃",
+        "ɑ̃"
+      ],
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ",
+        "t͡s",
+        "d͡z"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "A vowel letter plus ⟨n⟩ or ⟨m⟩ spells a nasal vowel, and fr-FR leaves the ⟨n⟩ or ⟨m⟩ slot silent. In a final syllable closed by a pronounced consonant the nasal vowel is long and diphthongised (Dumas 1974: 21-22, ex. (8): ventre, monde, mince; Table II, p. 26: ɔ̃ː → ɔ̃ᵘ, ɑ̃ː → ɑ̃ᵘ), so the off-glide is written on that silent slot: monde [mɔ̃u̯d], ventre [vɑ̃u̯tʁ]. A silent final letter (enfant, temps) is no closing consonant. FR_CA_NASAL_DIPHTHONG_* then sets the nucleus."
+    },
+    {
+      "id": "FR_CA_NASAL_DIPHTHONG_E",
+      "phonemes": [
+        "ẽ",
+        "ɛ̃"
+      ],
+      "surface": "ɛ̃",
+      "followed_by_phoneme": [
+        "i̯"
+      ],
+      "notes": "The nucleus of the diphthong of long /ẽ/ is the open-mid [ɛ̃] (Dumas 1974: 26, Table II: ẽː → ɛ̃ⁱ): mince [mɛ̃i̯s]. Listed before FR_CA_NASAL_E_CLOSE, so that a diphthong keeps [ɛ̃] on every pass. Reads the off-glide FR_CA_NASAL_OFFGLIDE_i wrote in the pass before."
+    },
+    {
+      "id": "FR_CA_NASAL_DIPHTHONG_OE",
+      "phonemes": [
+        "œ̃"
+      ],
+      "surface": "ã",
+      "followed_by_phoneme": [
+        "y̯"
+      ],
+      "notes": "The nucleus of the diphthong of long /œ̃/ is [ã], since French has no open front rounded vowel (Dumas 1974: 26-27, Table II: œ̃ː → ãʸ): humble [ãy̯bl]. Reads the off-glide FR_CA_NASAL_OFFGLIDE_y wrote in the pass before."
+    },
+    {
+      "id": "FR_CA_NASAL_DIPHTHONG_A",
+      "phonemes": [
+        "ã",
+        "ɑ̃"
+      ],
+      "surface": "ɑ̃",
+      "followed_by_phoneme": [
+        "u̯"
+      ],
+      "notes": "The nucleus of the diphthong of long /ɑ̃/ is the back [ɑ̃] (Dumas 1974: 26-27, Table II: ɑ̃ː → ɑ̃ᵘ; the front [ã] belongs to the open final syllable): ventre [vɑ̃u̯tʁ]. Listed before FR_CA_NASAL_A_FINAL, so that a diphthong keeps [ɑ̃] on every pass; it undoes FR_CA_NASAL_A_FINAL, which saw no closing consonant in the pass before the off-glide was written."
+    },
+    {
+      "id": "FR_CA_PROCLITIC_SHORT_œ",
+      "phonemes": [
+        "œ"
+      ],
+      "surface": "œ",
+      "word": [
+        "leur",
+        "leurs"
+      ],
+      "notes": "A proclitic before its host carries no accent, and Dumas makes the diphthong obligatory only in an accented syllable and optional elsewhere, where Montréal prefers the plain vowel (Dumas 1974: 28-29; ex. (17): leur oncle with a long, undiphthongised vowel). The function words that end in a lengthening consonant (leur, leurs, par, pour, sur) therefore keep the fr-FR vowel; the rule only keeps FR_CA_LONG_* from reaching them. Read alone, these words would carry the accent; the spec reads them as the proclitics they nearly always are."
+    },
+    {
+      "id": "FR_CA_PROCLITIC_SHORT_a",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "a",
+      "word": [
+        "par"
+      ],
+      "notes": "A proclitic before its host carries no accent, and Dumas makes the diphthong obligatory only in an accented syllable and optional elsewhere, where Montréal prefers the plain vowel (Dumas 1974: 28-29; ex. (17): leur oncle with a long, undiphthongised vowel). The function words that end in a lengthening consonant (leur, leurs, par, pour, sur) therefore keep the fr-FR vowel; the rule only keeps FR_CA_LONG_* from reaching them. Read alone, these words would carry the accent; the spec reads them as the proclitics they nearly always are."
+    },
+    {
+      "id": "FR_CA_PROCLITIC_SHORT_u",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "u",
+      "word": [
+        "pour"
+      ],
+      "notes": "A proclitic before its host carries no accent, and Dumas makes the diphthong obligatory only in an accented syllable and optional elsewhere, where Montréal prefers the plain vowel (Dumas 1974: 28-29; ex. (17): leur oncle with a long, undiphthongised vowel). The function words that end in a lengthening consonant (leur, leurs, par, pour, sur) therefore keep the fr-FR vowel; the rule only keeps FR_CA_LONG_* from reaching them. Read alone, these words would carry the accent; the spec reads them as the proclitics they nearly always are."
+    },
+    {
+      "id": "FR_CA_PROCLITIC_SHORT_y",
+      "phonemes": [
+        "y"
+      ],
+      "surface": "y",
+      "word": [
+        "sur"
+      ],
+      "notes": "A proclitic before its host carries no accent, and Dumas makes the diphthong obligatory only in an accented syllable and optional elsewhere, where Montréal prefers the plain vowel (Dumas 1974: 28-29; ex. (17): leur oncle with a long, undiphthongised vowel). The function words that end in a lengthening consonant (leur, leurs, par, pour, sur) therefore keep the fr-FR vowel; the rule only keeps FR_CA_LONG_* from reaching them. Read alone, these words would carry the accent; the spec reads them as the proclitics they nearly always are."
+    },
+    {
+      "id": "FR_CA_LONG_i_E",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "iː",
+      "followed_by_phoneme": [
+        "v",
+        "z",
+        "ʒ",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "followed_by_2": "vowel",
+      "notes": "General lengthening of a high vowel before a word-final /v z ʒ ʁ/ (Dumas 1974: 18-21: pire [piːʁ], juge [ʒyːʒ]; Hall 2016: 7, ex. (13), where the high vowels stay tense and long). Dumas (Table II, p. 26) also gives diphthongs for long /i y u/ ([ɪⁱ ʏʸ ʊᵘ]); this spec writes the long vowel Hall gives. Here the consonant is followed only by a mute final vowel letter (père, rose, chaise); a consonant after it (barbe, porte) makes it non-final, and the rule does not apply."
+    },
+    {
+      "id": "FR_CA_LONG_i_END",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "iː",
+      "followed_by_phoneme": [
+        "v",
+        "z",
+        "ʒ",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "followed_by_2": "word_boundary",
+      "notes": "General lengthening of a high vowel before a word-final /v z ʒ ʁ/ (Dumas 1974: 18-21: pire [piːʁ], juge [ʒyːʒ]; Hall 2016: 7, ex. (13), where the high vowels stay tense and long). Dumas (Table II, p. 26) also gives diphthongs for long /i y u/ ([ɪⁱ ʏʸ ʊᵘ]); this spec writes the long vowel Hall gives. Here the consonant ends the word (mer, cuir, four); a consonant after it (barbe, porte) makes it non-final, and the rule does not apply."
+    },
+    {
+      "id": "FR_CA_LONG_y_E",
+      "phonemes": [
+        "y"
+      ],
+      "surface": "yː",
+      "followed_by_phoneme": [
+        "v",
+        "z",
+        "ʒ",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "followed_by_2": "vowel",
+      "notes": "General lengthening of a high vowel before a word-final /v z ʒ ʁ/ (Dumas 1974: 18-21: pire [piːʁ], juge [ʒyːʒ]; Hall 2016: 7, ex. (13), where the high vowels stay tense and long). Dumas (Table II, p. 26) also gives diphthongs for long /i y u/ ([ɪⁱ ʏʸ ʊᵘ]); this spec writes the long vowel Hall gives. Here the consonant is followed only by a mute final vowel letter (père, rose, chaise); a consonant after it (barbe, porte) makes it non-final, and the rule does not apply."
+    },
+    {
+      "id": "FR_CA_LONG_y_END",
+      "phonemes": [
+        "y"
+      ],
+      "surface": "yː",
+      "followed_by_phoneme": [
+        "v",
+        "z",
+        "ʒ",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "followed_by_2": "word_boundary",
+      "notes": "General lengthening of a high vowel before a word-final /v z ʒ ʁ/ (Dumas 1974: 18-21: pire [piːʁ], juge [ʒyːʒ]; Hall 2016: 7, ex. (13), where the high vowels stay tense and long). Dumas (Table II, p. 26) also gives diphthongs for long /i y u/ ([ɪⁱ ʏʸ ʊᵘ]); this spec writes the long vowel Hall gives. Here the consonant ends the word (mer, cuir, four); a consonant after it (barbe, porte) makes it non-final, and the rule does not apply."
+    },
+    {
+      "id": "FR_CA_LONG_u_E",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "uː",
+      "followed_by_phoneme": [
+        "v",
+        "z",
+        "ʒ",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "followed_by_2": "vowel",
+      "notes": "General lengthening of a high vowel before a word-final /v z ʒ ʁ/ (Dumas 1974: 18-21: pire [piːʁ], juge [ʒyːʒ]; Hall 2016: 7, ex. (13), where the high vowels stay tense and long). Dumas (Table II, p. 26) also gives diphthongs for long /i y u/ ([ɪⁱ ʏʸ ʊᵘ]); this spec writes the long vowel Hall gives. Here the consonant is followed only by a mute final vowel letter (père, rose, chaise); a consonant after it (barbe, porte) makes it non-final, and the rule does not apply."
+    },
+    {
+      "id": "FR_CA_LONG_u_END",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "uː",
+      "followed_by_phoneme": [
+        "v",
+        "z",
+        "ʒ",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "followed_by_2": "word_boundary",
+      "notes": "General lengthening of a high vowel before a word-final /v z ʒ ʁ/ (Dumas 1974: 18-21: pire [piːʁ], juge [ʒyːʒ]; Hall 2016: 7, ex. (13), where the high vowels stay tense and long). Dumas (Table II, p. 26) also gives diphthongs for long /i y u/ ([ɪⁱ ʏʸ ʊᵘ]); this spec writes the long vowel Hall gives. Here the consonant ends the word (mer, cuir, four); a consonant after it (barbe, porte) makes it non-final, and the rule does not apply."
+    },
+    {
+      "id": "FR_CA_LONG_ɛ_E",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "ai̯",
+      "followed_by_phoneme": [
+        "v",
+        "z",
+        "ʒ",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "followed_by_2": "vowel",
+      "notes": "General lengthening: a vowel before a word-final /v z ʒ ʁ/ is long (Dumas 1974: 18-21, rules (4)-(6): père [pɛːʁ], rose, juge, innove), and the long vowel is diphthongised (Table II, p. 26: ɛː → aⁱ; obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15)); ex. (15): la mère, deux chaises, il la mord, il se rase). Here the consonant is followed only by a mute final vowel letter (père, rose, chaise); a consonant after it (barbe, porte) makes it non-final, and the rule does not apply."
+    },
+    {
+      "id": "FR_CA_LONG_ɛ_END",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "ai̯",
+      "followed_by_phoneme": [
+        "v",
+        "z",
+        "ʒ",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "followed_by_2": "word_boundary",
+      "notes": "General lengthening: a vowel before a word-final /v z ʒ ʁ/ is long (Dumas 1974: 18-21, rules (4)-(6): père [pɛːʁ], rose, juge, innove), and the long vowel is diphthongised (Table II, p. 26: ɛː → aⁱ; obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15)); ex. (15): la mère, deux chaises, il la mord, il se rase). Here the consonant ends the word (mer, cuir, four); a consonant after it (barbe, porte) makes it non-final, and the rule does not apply."
+    },
+    {
+      "id": "FR_CA_LONG_œ_E",
+      "phonemes": [
+        "œ"
+      ],
+      "surface": "ay̯",
+      "followed_by_phoneme": [
+        "v",
+        "z",
+        "ʒ",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "followed_by_2": "vowel",
+      "notes": "General lengthening: a vowel before a word-final /v z ʒ ʁ/ is long (Dumas 1974: 18-21, rules (4)-(6): père [pɛːʁ], rose, juge, innove), and the long vowel is diphthongised (Table II, p. 26: œː → aʸ; obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15)); ex. (15): la mère, deux chaises, il la mord, il se rase). Here the consonant is followed only by a mute final vowel letter (père, rose, chaise); a consonant after it (barbe, porte) makes it non-final, and the rule does not apply."
+    },
+    {
+      "id": "FR_CA_LONG_œ_END",
+      "phonemes": [
+        "œ"
+      ],
+      "surface": "ay̯",
+      "followed_by_phoneme": [
+        "v",
+        "z",
+        "ʒ",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "followed_by_2": "word_boundary",
+      "notes": "General lengthening: a vowel before a word-final /v z ʒ ʁ/ is long (Dumas 1974: 18-21, rules (4)-(6): père [pɛːʁ], rose, juge, innove), and the long vowel is diphthongised (Table II, p. 26: œː → aʸ; obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15)); ex. (15): la mère, deux chaises, il la mord, il se rase). Here the consonant ends the word (mer, cuir, four); a consonant after it (barbe, porte) makes it non-final, and the rule does not apply."
+    },
+    {
+      "id": "FR_CA_LONG_ɔ_E",
+      "phonemes": [
+        "ɔ",
+        "a",
+        "ɑ"
+      ],
+      "surface": "ɑu̯",
+      "followed_by_phoneme": [
+        "v",
+        "z",
+        "ʒ",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "followed_by_2": "vowel",
+      "notes": "General lengthening: a vowel before a word-final /v z ʒ ʁ/ is long (Dumas 1974: 18-21, rules (4)-(6): père [pɛːʁ], rose, juge, innove), and the long vowel is diphthongised (Table II, p. 26: ɔː and ɒː → ɑᵘ; obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15)); ex. (15): la mère, deux chaises, il la mord, il se rase). Here the consonant is followed only by a mute final vowel letter (père, rose, chaise); a consonant after it (barbe, porte) makes it non-final, and the rule does not apply."
+    },
+    {
+      "id": "FR_CA_LONG_ɔ_END",
+      "phonemes": [
+        "ɔ",
+        "a",
+        "ɑ"
+      ],
+      "surface": "ɑu̯",
+      "followed_by_phoneme": [
+        "v",
+        "z",
+        "ʒ",
+        "ʁ"
+      ],
+      "followed_by_nucleus": false,
+      "followed_by_2": "word_boundary",
+      "notes": "General lengthening: a vowel before a word-final /v z ʒ ʁ/ is long (Dumas 1974: 18-21, rules (4)-(6): père [pɛːʁ], rose, juge, innove), and the long vowel is diphthongised (Table II, p. 26: ɔː and ɒː → ɑᵘ; obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15)); ex. (15): la mère, deux chaises, il la mord, il se rase). Here the consonant ends the word (mer, cuir, four); a consonant after it (barbe, porte) makes it non-final, and the rule does not apply."
+    },
+    {
+      "id": "FR_CA_LONG_i_VR",
+      "phonemes": [
+        "i"
+      ],
+      "surface": "iː",
+      "followed_by_phoneme": [
+        "v"
+      ],
+      "followed_by_phoneme_2": [
+        "ʁ"
+      ],
+      "followed_by_3": "vowel",
+      "followed_by_nucleus": false,
+      "notes": "General lengthening before a word-final /vr/ (Dumas 1974: 18-21: 'Chaque fois que la consonne finale d'un mot est /v/, /z/, /ʒ/ ou /r/', n. 7: 'Ou encore le groupe /vr/'; ex. (7): ouvre [uːvr]), written long as for FR_CA_LONG_*: ouvre [uːvʁ], livre [liːvʁ], couvre."
+    },
+    {
+      "id": "FR_CA_LONG_y_VR",
+      "phonemes": [
+        "y"
+      ],
+      "surface": "yː",
+      "followed_by_phoneme": [
+        "v"
+      ],
+      "followed_by_phoneme_2": [
+        "ʁ"
+      ],
+      "followed_by_3": "vowel",
+      "followed_by_nucleus": false,
+      "notes": "General lengthening before a word-final /vr/ (Dumas 1974: 18-21: 'Chaque fois que la consonne finale d'un mot est /v/, /z/, /ʒ/ ou /r/', n. 7: 'Ou encore le groupe /vr/'; ex. (7): ouvre [uːvr]), written long as for FR_CA_LONG_*: ouvre [uːvʁ], livre [liːvʁ], couvre."
+    },
+    {
+      "id": "FR_CA_LONG_u_VR",
+      "phonemes": [
+        "u"
+      ],
+      "surface": "uː",
+      "followed_by_phoneme": [
+        "v"
+      ],
+      "followed_by_phoneme_2": [
+        "ʁ"
+      ],
+      "followed_by_3": "vowel",
+      "followed_by_nucleus": false,
+      "notes": "General lengthening before a word-final /vr/ (Dumas 1974: 18-21: 'Chaque fois que la consonne finale d'un mot est /v/, /z/, /ʒ/ ou /r/', n. 7: 'Ou encore le groupe /vr/'; ex. (7): ouvre [uːvr]), written long as for FR_CA_LONG_*: ouvre [uːvʁ], livre [liːvʁ], couvre."
+    },
+    {
+      "id": "FR_CA_LONG_ɛ_VR",
+      "phonemes": [
+        "ɛ"
+      ],
+      "surface": "ai̯",
+      "followed_by_phoneme": [
+        "v"
+      ],
+      "followed_by_phoneme_2": [
+        "ʁ"
+      ],
+      "followed_by_3": "vowel",
+      "followed_by_nucleus": false,
+      "notes": "General lengthening before a word-final /vr/ (Dumas 1974: 18-21: 'Chaque fois que la consonne finale d'un mot est /v/, /z/, /ʒ/ ou /r/', n. 7: 'Ou encore le groupe /vr/'; ex. (7): ouvre [uːvr]), with the long vowel diphthongised (Table II, p. 26: ɛː → aⁱ; obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15))): lèvre [lai̯vʁ], chèvre, œuvre [ay̯vʁ]."
+    },
+    {
+      "id": "FR_CA_LONG_œ_VR",
+      "phonemes": [
+        "œ"
+      ],
+      "surface": "ay̯",
+      "followed_by_phoneme": [
+        "v"
+      ],
+      "followed_by_phoneme_2": [
+        "ʁ"
+      ],
+      "followed_by_3": "vowel",
+      "followed_by_nucleus": false,
+      "notes": "General lengthening before a word-final /vr/ (Dumas 1974: 18-21: 'Chaque fois que la consonne finale d'un mot est /v/, /z/, /ʒ/ ou /r/', n. 7: 'Ou encore le groupe /vr/'; ex. (7): ouvre [uːvr]), with the long vowel diphthongised (Table II, p. 26: œː → aʸ; obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15))): lèvre [lai̯vʁ], chèvre, œuvre [ay̯vʁ]."
+    },
+    {
+      "id": "FR_CA_LONG_ɔ_VR",
+      "phonemes": [
+        "ɔ",
+        "a",
+        "ɑ"
+      ],
+      "surface": "ɑu̯",
+      "followed_by_phoneme": [
+        "v"
+      ],
+      "followed_by_phoneme_2": [
+        "ʁ"
+      ],
+      "followed_by_3": "vowel",
+      "followed_by_nucleus": false,
+      "notes": "General lengthening before a word-final /vr/ (Dumas 1974: 18-21: 'Chaque fois que la consonne finale d'un mot est /v/, /z/, /ʒ/ ou /r/', n. 7: 'Ou encore le groupe /vr/'; ex. (7): ouvre [uːvr]), with the long vowel diphthongised (Table II, p. 26: ɔː and ɒː → ɑᵘ; obligatory in an accented syllable, which the last syllable of a word said alone is (Dumas 1974: 28, ex. (15))): lèvre [lai̯vʁ], chèvre, œuvre [ay̯vʁ]."
+    },
+    {
+      "id": "FR_CA_A_CLOSED_FRONT",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "a",
+      "followed_by_phoneme": [
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "ɡ",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʃ",
+        "ʒ",
+        "m",
+        "n",
+        "ɲ",
+        "ŋ",
+        "l",
+        "ʁ",
+        "t͡s",
+        "d͡z"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "/a/ in a closed final syllable stays front [a] (Dumas 1974: 27: the front variant [a] outside word-final position; patte [pat], Burness et al. 2022: 1). The rule only keeps FR_CA_A_FINAL_BACK from reaching a closed syllable."
+    },
+    {
+      "id": "FR_CA_A_CLITIC_FRONT",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "a",
+      "word": [
+        "à",
+        "la",
+        "ma",
+        "ta",
+        "sa",
+        "ça"
+      ],
+      "notes": "The preposition à, the determiners la, ma, ta, sa and the subject pronoun ça are always [a]: as proclitics their vowel is never word-final (Dumas 1974: 41, n. 13). The adverb là and non-subject ça take [ɒ]; this spec reads every ça as the subject."
+    },
+    {
+      "id": "FR_CA_A_CLITIC_FRONT_ELIDED",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "a",
+      "grapheme": [
+        "à"
+      ],
+      "preceded_by_grapheme": [
+        "qu"
+      ],
+      "notes": "FR_CA_A_CLITIC_FRONT for the preposition à after an elided ⟨qu'⟩ (jusqu'à, lorsqu'à, puisqu'à), where the word is clitic and host together (Dumas 1974: 41, n. 13)."
+    },
+    {
+      "id": "FR_CA_A_FINAL_BACK",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɒ",
+      "followed_by_nucleus": false,
+      "notes": "Oral /a/ is the back rounded [ɒ], 'peu différente auditivement de [ɔ]', at the end of a word (Dumas 1974: 27): Canada [kanadɒ], pas [pɒ] (ex. (17): je vous mens pas [ʒvumɑ̃pɒ]). A silent final letter does not close the syllable."
+    },
+    {
+      "id": "FR_CA_A_FINAL_BACK_W",
+      "phonemes": [
+        "a"
+      ],
+      "surface": "ɒ",
+      "preceded_by_phoneme": [
+        "w"
+      ],
+      "followed_by_nucleus": false,
+      "notes": "FR_CA_A_FINAL_BACK for the /a/ of the unit ⟨oi⟩ [wa] at the end of a word (Dumas 1974: 27: [ɒ] 'en finale de mot'): moi [mwɒ], trois [tʁwɒ], froid. The rule reads the /a/ inside the unit, after its [w]; a closed syllable keeps [a] (boîte [bwat]) and a lengthening consonant gives the diphthong (noir [nwɑu̯ʁ])."
+    },
+    {
+      "id": "FR_CA_NASAL_A_FINAL",
+      "phonemes": [
+        "ɑ̃"
+      ],
+      "surface": "ã",
+      "followed_by_nucleus": false,
+      "notes": "Open /ɑ̃/ has the front variant [ã] at the end of a phrase, where it is accented, and optionally at the end of a word (Dumas 1974: 26-27); a word said alone ends a phrase: enfant [ɑ̃fã], temps."
+    },
+    {
+      "id": "FR_CA_NASAL_E_CLOSE",
+      "phonemes": [
+        "ɛ̃"
+      ],
+      "surface": "ẽ",
+      "notes": "The front unrounded nasal vowel is close-mid [ẽ], not open-mid [ɛ̃] (Dumas 1974: 26; Table I, p. 14): pain [pẽ], vin [vẽ]."
+    },
+    {
+      "id": "FR_CA_NASAL_E_CLOSE_W",
+      "phonemes": [
+        "wɛ̃"
+      ],
+      "surface": "wẽ",
+      "notes": "FR_CA_NASAL_E_CLOSE for the nasal vowel of the unit ⟨oin⟩ [wɛ̃] (Dumas 1974: 26): moins [mwẽ], loin [lwẽ]."
+    },
+    {
+      "id": "FR_CA_NASAL_E_CLOSE_J",
+      "phonemes": [
+        "jɛ̃"
+      ],
+      "surface": "jẽ",
+      "notes": "FR_CA_NASAL_E_CLOSE for the nasal vowel of the unit ⟨ien⟩ [jɛ̃] (Dumas 1974: 26): bien [bjẽ], chien [ʃjẽ]."
+    },
+    {
+      "id": "FR_CA_NASAL_E_CLOSE_U",
+      "phonemes": [
+        "ɥɛ̃"
+      ],
+      "surface": "ɥẽ",
+      "notes": "FR_CA_NASAL_E_CLOSE for the nasal vowel of the unit ⟨uin⟩ [ɥɛ̃] (Dumas 1974: 26): juin [ʒɥẽ]."
     }
   ],
   "inherits": "fr-FR",
-  "notes": "Laurentian French (Quebec and Ontario), as a thin variant of Metropolitan French (fr-FR). It inherits every table, rule and word exception of fr-FR and states only what a cited source states. AFFRICATION: /t d/ before the high front vocoids /i y j ɥ/ are the affricates [t͡s d͡z] (Dow 2019: 1-2, obligatory within words; Hall 2016: 2, ex. (2), after Burstynsky 1968: 13: petit [pət͡si], têtu [tɛt͡sy], dit [d͡zi]). The trigger list holds the glide-initial units the grapheme table has: ⟨ien⟩ [jɛ̃] and the glides [j ɥ]. LAXING: in the final syllable, /i y u/ are lax [ɪ ʏ ʊ] before a closing consonant other than the voiced fricatives /v z ʒ ʁ/ (Hall 2016: 7, ex. (11)-(12), after Walker 1984: 56 and Poliquin 2006; Burness et al. 2022: 1-2: élite [elɪt], annule [anʏl], égoutte [egʊt]); the final syllable is the last nucleus (followed_by_nucleus false) and the closing consonant is the next surface phoneme, so a silent final letter (petit, petits) does not close it. /a/ ~ /ɑ/: Laurentian French keeps the contrast (Burness et al. 2022: 1: patte [pat], pâte [pɑt]); fr-FR already maps ⟨â⟩ to /ɑ/, so nothing changes. NOT MODELLED (no cited source states the contexts the engine can see, or the engine cannot see them): laxing before a consonant cluster that starts with /v z ʒ ʁ/ and laxing before a final consonant cluster in general (a silent final letter, as in sourd, looks like a consonant to the rule layer), lengthening of the tense high vowels before final /v z ʒ ʁ/ (Hall 2016: 7, ex. (13)) because a silent final ⟨e⟩ hides the word edge (église), laxing harmony and optional laxing in non-final syllables (Hall 2016: 7-8), laxing of /i y u/ spelled with a digraph, the nasal vowel values, vowel length and lengthening before /v z ʒ ʁ/ for the other vowels, final-consonant clusters, the colloquial [mwɛ] [twɛ] for moi and toi, and affrication in a whole-word exception inherited from fr-FR, which bypasses the rules: cactus, jadis, gratis and métis keep [t d] before [i y], where the rule within words gives [t͡s d͡z] (Dow 2019: 1-2). Acadian French is a different variety and affrication is largely absent from it (Dow 2019: 2).",
+  "notes": "Laurentian French (Quebec and Ontario), as a thin variant of Metropolitan French (fr-FR). It inherits every table, rule and word exception of fr-FR and states only what a cited source states. AFFRICATION: /t d/ before the high front vocoids /i y j ɥ/ are the affricates [t͡s d͡z] (Dow 2019: 1-2, obligatory within words; Hall 2016: 2, ex. (2), after Burstynsky 1968: 13: petit [pət͡si], têtu [tɛt͡sy], dit [d͡zi]). The trigger list holds the glide-initial units the grapheme table has: ⟨ien⟩ [jɛ̃] and the glides [j ɥ]. LAXING: in the final syllable, /i y u/ are lax [ɪ ʏ ʊ] before a closing consonant other than the voiced fricatives /v z ʒ ʁ/ (Hall 2016: 7, ex. (11)-(12), after Walker 1984: 56 and Poliquin 2006; Burness et al. 2022: 1-2; Dumas 1974: 32-33, rule (18): élite [elɪt], annule [anʏl], égoutte [egʊt]); the final syllable is the last nucleus (followed_by_nucleus false) and the closing consonant is the next surface phoneme, so a silent final letter (petit, petits) does not close it; fr-FR's numeral sandhi rules (six, dix, huit), which drop or link that closing consonant, are restated by id so that the vowel they leave in an open syllable is tense again (dix livres [d͡zi liːvʁ], six amis [siz‿ ami]). LENGTH AND DIPHTHONGS (Dumas 1974, Montréal; allophone_passes 3, because the nasal vowels and the close-mid vowels of fr-FR come out of fr-FR's own rules and must exist before these rules read them): a vowel before a word-final /v z ʒ ʁ/ or /vʁ/ is long (FR_CA_LONG_*: père, chaise, rase, cuir, pire; ouvre [uːvʁ], lèvre [lai̯vʁ]), the close-mid /e ø o/ and the nasal vowels are long in any closed final syllable (FR_CA_TENSE_*: rose, jaune, côte, jeûne, monde, ventre, mince), and ⟨ê⟩ and ⟨â⟩ in a closed final syllable carry the lexical length Dumas gives bête, même, âme and pâle (FR_CA_CIRC_*). A long vowel in the last syllable of a word said alone is accented, where Dumas makes the diphthong obligatory, so the spec writes his Table II diphthongs: père [pai̯ʁ], fête [fai̯t], pâte [pɑu̯t], rose [ʁɔu̯z], jaune [ʒɔu̯n], jeûne [ʒœy̯n], monde [mɔ̃u̯d], ventre [vɑ̃u̯tʁ], mince [mɛ̃i̯s], humble [ãy̯bl]. Long /i y u/ are written [iː yː uː], the long tense vowels Hall (2016: 7, ex. (13)) gives, and not Dumas's [ɪⁱ ʏʸ ʊᵘ]. For a vowel letter plus ⟨n⟩ or ⟨m⟩ the off-glide goes on the silent nasal slot (FR_CA_NASAL_OFFGLIDE_*) and the next pass sets the nucleus (FR_CA_NASAL_DIPHTHONG_*). /a/: Laurentian French keeps patte [pat] apart from pâte (Burness et al. 2022: 1). Oral /a/ is back rounded [ɒ] at the end of a word (Dumas 1974: 27: Canada [kanadɒ], pas [pɒ], là [lɒ], and the /a/ of ⟨oi⟩: moi [mwɒ], trois [tʁwɒ]), but the proclitics à, la, ma, ta, sa and ça stay [a] (p. 41, n. 13). PROCLITICS: the function words leur, leurs, par, pour and sur, which end in a lengthening consonant but carry no accent before their host, keep the fr-FR vowel (FR_CA_PROCLITIC_SHORT_*; Dumas 1974: 28-29, ex. (17)). WORD EXCEPTIONS: fr-FR lists the words in ⟨-er⟩ [ɛʁ] as whole-word exceptions, which bypass the rules; this spec restates the native ones with the long [ai̯] that a vowel before a word-final /r/ takes (mer [mai̯ʁ], fer, cher, hiver [ivai̯ʁ], enfer, amer, hier [jai̯ʁ], ver, outremer, and their plurals). NASAL VOWELS: the front unrounded nasal is close-mid [ẽ] (pain [pẽ], vin [vẽ], moins [mwẽ], bien [bjẽ]) and /ɑ̃/ is front [ã] in an open final syllable (enfant [ɑ̃fã], temps [tã]) (Dumas 1974: 26-27). ENDING \"tience\" is [sjɑ̃u̯s], the fr-FR ending with the long, diphthongised nasal vowel of a closed final syllable, because an ending is written after the allophone rules and does not pass through them (Dumas 1974: 21-22, Table II): patience [pasjɑ̃u̯s]. NOT MODELLED (no cited source states the contexts the engine can see, or the engine cannot see them): the diphthongs of long /i y u/; length and diphthongs in non-final syllables and in derived words (fêter, jeûner), which Dumas makes optional; Dumas's lexically long words without a circumflex (passe, maille, coiffe, sable); a lengthening consonant followed by a silent final consonant letter (mord, nord, vers), which the rule layer cannot tell from a pronounced one (barbe, porte); the word-final close-mid vowels, which are never diphthongised (Dumas 1974: 31) and stay as fr-FR gives them; the [ɒ] of non-subject ça; the other whole-word exceptions inherited from fr-FR (loanwords such as poker and cancer, and sens), which bypass every rule here; a diphthong in a content word inside a phrase, where Dumas makes it optional (the spec gives every content word its own accent); Dumas's [e] in neige and the opening of /ɛ/ to [æ] or [a] in a final syllable; laxing before a consonant cluster that starts with /v z ʒ ʁ/ and laxing before a final consonant cluster in general, laxing harmony and optional laxing in non-final syllables (Hall 2016: 7-8; Dumas 1974: 33-34), laxing of /i y u/ spelled with a digraph, final-consonant clusters, the colloquial [mwɛ] [twɛ] for moi and toi, and affrication in a whole-word exception inherited from fr-FR, which bypasses the rules: cactus, jadis, gratis and métis keep [t d] before [i y], where the rule within words gives [t͡s d͡z] (Dow 2019: 1-2). Dumas describes the popular French of Montréal in 1970; younger and more formal speech diphthongises less. Acadian French is a different variety: affrication is largely absent from it (Dow 2019: 2) and Dumas excludes it (1974: 14).",
   "quality": "skeleton",
   "script_type": "alphabet",
   "sources": [
@@ -170,6 +1210,17 @@
       "url": "https://cla-acl.ca/pdfs/actes-2022/Burness-Tahtadjian-MacLeod-Ahn-CLA-2022.pdf",
       "pages": "1-2",
       "notes": "READ (open access PDF). p. 1: Laurentian French (Ontario and Québec) has a phonemic /a/ ~ /ɑ/ contrast (patte [pat], pâte [pɑt]), affrication of /t, d/ before /i, y/, and laxing of /i y u/ before certain coda consonants in closed syllables (Poliquin 2006); the process is obligatory in final syllables."
+    },
+    {
+      "id": "dumas1974",
+      "author": "Dumas, D.",
+      "year": 1974,
+      "title": "Durée vocalique et diphtongaison en français québécois",
+      "publisher": "Cahier de linguistique 4 (Le français dans la région de Montréal : aspects phonétique et phonologique), 13-55. Presses de l'Université du Québec",
+      "doi": "10.7202/800027ar",
+      "url": "https://id.erudit.org/iderudit/800027ar",
+      "pages": "14-31, 41",
+      "notes": "READ (Érudit PDF with a text layer; Table II read from the page image). Popular French of Montréal, 17 speakers aged 25 to 35 recorded in 1970 (p. 14-15). p. 14, Table I: one /a/ phoneme, the nasal vowels /ẽ œ̃ ɔ̃ ɑ̃/. pp. 15-16, ex. (1): acquired length of /ɛ/ and /a/ in some words in a final syllable closed by any consonant (bête, même, pêche, être; passe, âme, fâche, pâle). pp. 18-21, rules (4)-(6): every vowel is long before a word-final /v z ʒ r/ or /vr/ (pire, juge, rose, innove, père, ouvre). pp. 21-22, rule (8): the close-mid /e ø o/ and the nasal vowels are long in a final syllable closed by any consonant or cluster (neutre, jeûne, côte, épaule, sauce, ventre, monde, mince, humble). p. 25-26, Table II: every long vowel can be diphthongised, the nucleus opening one step and ending in the homorganic high vowel: iː → ɪⁱ, eː → ɛⁱ, ɛː → aⁱ, yː → ʏʸ, œː → aʸ, uː → ʊᵘ, oː → ɔᵘ, ɔː and ɒː → ɑᵘ, ẽː → ɛ̃ⁱ, œ̃ː → ãʸ, ɔ̃ː → ɔ̃ᵘ, ɑ̃ː → ɑ̃ᵘ. pp. 26-27: the front nasal is close-mid [ẽ]; /ɑ̃/ is front [ã] at the end of a phrase and optionally of a word; oral /a/ is back rounded [ɒ] at the end of a word and when long, [a] elsewhere. pp. 28-31: diphthongisation is obligatory in an accented syllable, optional (and less frequent at Montréal) elsewhere, and never applies to a word-final tense vowel. p. 41, n. 13: the proclitics à, la, ma, ta, sa and subject ça are always [a]; là and non-subject ça are [ɒ]."
     }
   ],
   "ancestors": [
@@ -194,5 +1245,131 @@
   },
   "wikipedia": [
     "https://en.wikipedia.org/wiki/Quebec_French_phonology"
+  ],
+  "allophone_passes": 3,
+  "word_exceptions": {
+    "mer": "mai̯ʁ",
+    "mers": "mai̯ʁ",
+    "fer": "fai̯ʁ",
+    "fers": "fai̯ʁ",
+    "cher": "ʃai̯ʁ",
+    "chers": "ʃai̯ʁ",
+    "hiver": "ivai̯ʁ",
+    "hivers": "ivai̯ʁ",
+    "enfer": "ɑ̃fai̯ʁ",
+    "enfers": "ɑ̃fai̯ʁ",
+    "amer": "amai̯ʁ",
+    "amers": "amai̯ʁ",
+    "hier": "jai̯ʁ",
+    "ver": "vai̯ʁ",
+    "outremer": "utʁəmai̯ʁ",
+    "hiers": "jai̯ʁ"
+  },
+  "sandhi_rules": [
+    {
+      "id": "FR_DIX_Z_BEFORE_HUIT_NEUF",
+      "name": "dix in dix-huit and dix-neuf",
+      "left_context": "^((?:d|d͡z))[iɪ]s$",
+      "right_context": "^(?:ɥ[iɪ]t|nœf)$",
+      "transform": "\\1iz",
+      "obligatory": true,
+      "notes": "fr-FR's FR_DIX_Z_BEFORE_HUIT_NEUF (PR #2710), restated by id for Laurentian French: FR_CA_LAX_* makes the high vowel of six, dix and huit lax [ɪ] while their final consonant closes the syllable (Hall 2016: 7; Dumas 1974: 32-33: d͡zɪs, sɪs, ɥɪt), and once the rule drops or resyllabifies that consonant the vowel stands in an open syllable, where it is tense (Hall 2016: 7, ex. (11)): dix-huit [d͡ziz ɥɪt]. The id overrides fr-FR's rule in place; on a base without that rule the restated rule is the only one and does nothing, since six, dix and huit then have no final consonant."
+    },
+    {
+      "id": "FR_NUMERAL_MUTE_BEFORE_CONSONANT",
+      "name": "final consonant of six and dix before a consonant",
+      "left_context": "^((?:s|d|d͡z))[iɪ]s$",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:ɛ̃|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|sɛptɑ̃u̯bʁ|nɔvɑ̃u̯bʁ|desɑ̃u̯bʁ|ʒɥẽ|d͡zy|kɔ̃u̯tʁ|pɑ̃dã|dəvã|deʁjai̯ʁ|d͡zyʁã|mwẽ)$)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "transform": "\\1i",
+      "obligatory": true,
+      "notes": "fr-FR's FR_NUMERAL_MUTE_BEFORE_CONSONANT (PR #2710), restated by id for Laurentian French: FR_CA_LAX_* makes the high vowel of six, dix and huit lax [ɪ] while their final consonant closes the syllable (Hall 2016: 7; Dumas 1974: 32-33: d͡zɪs, sɪs, ɥɪt), and once the rule drops or resyllabifies that consonant the vowel stands in an open syllable, where it is tense (Hall 2016: 7, ex. (11)): dix livres [d͡zi liːvʁ]. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [sɛptɑ̃u̯bʁ], [nɔvɑ̃u̯bʁ], [desɑ̃u̯bʁ], [ʒɥẽ], [d͡zy], [kɔ̃u̯tʁ], [pɑ̃dã], [dəvã], [deʁjai̯ʁ], [d͡zyʁã], [mwẽ]. The id overrides fr-FR's rule in place; on a base without that rule the restated rule is the only one and does nothing, since six, dix and huit then have no final consonant."
+    },
+    {
+      "id": "FR_HUIT_MUTE_BEFORE_CONSONANT",
+      "name": "final consonant of huit before a consonant",
+      "left_context": "^(ɥ)[iɪ]t$",
+      "right_context": "^(?!(?:ʒɑ̃vje|fevʁi?je|maʁs|me|sɛptɑ̃bʁ|nɔvɑ̃bʁ|desɑ̃bʁ|ʒɥ(?:ɛ̃|ijɛ)|sɛt|də|dy|de|puʁ|paʁ|syʁ|kɔ̃tʁ|ʃe|pɑ̃dɑ̃|səlɔ̃|dəvɑ̃|deʁjɛʁ|dɛʁjɛʁ|dəpɥi|paʁmi|dyʁɑ̃|malɡʁe|mwɛ̃|plys?|lə|la|le|sə|se|te|mɛ|ni|dɔ̃k|nu|vu|ʒə|kə|ki|nə|sɛptɑ̃u̯bʁ|nɔvɑ̃u̯bʁ|desɑ̃u̯bʁ|ʒɥẽ|d͡zy|kɔ̃u̯tʁ|pɑ̃dã|dəvã|deʁjai̯ʁ|d͡zyʁã|mwẽ)$)[pbtdkɡfvszʃʒmnɲlʁ]",
+      "transform": "\\1i",
+      "obligatory": true,
+      "notes": "fr-FR's FR_HUIT_MUTE_BEFORE_CONSONANT (PR #2710), restated by id for Laurentian French: FR_CA_LAX_* makes the high vowel of six, dix and huit lax [ɪ] while their final consonant closes the syllable (Hall 2016: 7; Dumas 1974: 32-33: d͡zɪs, sɪs, ɥɪt), and once the rule drops or resyllabifies that consonant the vowel stands in an open syllable, where it is tense (Hall 2016: 7, ex. (11)): huit livres [ɥi liːvʁ]. The right context is fr-FR's list (PR #2710) of the words before which the consonant is kept (months, sept, the prepositions, determiners and pronouns that open a phrase, juin and juillet as whole words), with this spec's own readings of those words added: [sɛptɑ̃u̯bʁ], [nɔvɑ̃u̯bʁ], [desɑ̃u̯bʁ], [ʒɥẽ], [d͡zy], [kɔ̃u̯tʁ], [pɑ̃dã], [dəvã], [deʁjai̯ʁ], [d͡zyʁã], [mwẽ]. The id overrides fr-FR's rule in place; on a base without that rule the restated rule is the only one and does nothing, since six, dix and huit then have no final consonant."
+    },
+    {
+      "id": "FR_NUMERAL_Z_BEFORE_VOWEL",
+      "name": "z-liaison of six and dix",
+      "left_context": "^((?:s|d|d͡z))[iɪ]s$",
+      "right_context": "^(?!(?:avʁil|au|ut|ʊt|u|ɔktɔbʁ|e|a|avʁɪl|ɒ)$)[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃ẽɪʏʊɒ]",
+      "transform": "\\1iz‿",
+      "obligatory": true,
+      "notes": "fr-FR's FR_NUMERAL_Z_BEFORE_VOWEL (PR #2710), restated by id for Laurentian French: FR_CA_LAX_* makes the high vowel of six, dix and huit lax [ɪ] while their final consonant closes the syllable (Hall 2016: 7; Dumas 1974: 32-33: d͡zɪs, sɪs, ɥɪt), and once the rule drops or resyllabifies that consonant the vowel stands in an open syllable, where it is tense (Hall 2016: 7, ex. (11)): six amis [siz‿ ami]. The right context is fr-FR's (PR #2710): its vowel class with the Laurentian vowels that can open a word added ([ẽ] of insectes, the lax [ɪ ʏ ʊ] of île, [ɒ]), and its date exclusions (avril, août, octobre) with the Laurentian [avʁɪl], [ɒ] and the lax [ʊt] of août added. The id overrides fr-FR's rule in place; on a base without that rule the restated rule is the only one and does nothing."
+    },
+    {
+      "id": "FR_NEUF_V_BEFORE_HEURES",
+      "name": "neuf before heures",
+      "left_context": "^nœf$",
+      "right_context": "^(?:œʁ|ay̯ʁ)$",
+      "transform": "nœv‿",
+      "obligatory": true,
+      "notes": "fr-FR's FR_NEUF_V_BEFORE_HEURES (PR #2710), restated by id for the Laurentian heures [ay̯ʁ], whose long /œ/ before the final /ʁ/ is diphthongised (FR_CA_LONG_œ_*; Dumas 1974: 18-21, Table II): neuf heures [nœv‿ ay̯ʁ]. On a base without the fr-FR rule it is fr-CA's own rule and gives the same reading."
+    },
+    {
+      "id": "FR_LIAISON_Z",
+      "name": "z-liaison",
+      "left_context": "z$",
+      "right_context": "^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃ẽɪʏʊɒ]",
+      "transform": "z‿",
+      "obligatory": true,
+      "notes": "les amis → lez‿ami The onset class is every French vowel: [y ø œ ə] beside the others (huit unités [ɥit‿ynite], sept euros [sɛt‿øʁo]); a nasal vowel matches by its base letter. The glides [j w ɥ] stay out. Restated by id for Laurentian French with fr-FR's vowel class of PR #2710 and the vowels this spec writes at the start of a word: the close-mid nasal [ẽ] (FR_CA_NASAL_E_CLOSE: ainsi [ẽsi], rouge ainsi), the lax [ɪ ʏ ʊ] of a closed final syllable (une île) and [ɒ]."
+    },
+    {
+      "id": "FR_LIAISON_T",
+      "name": "t-liaison",
+      "left_context": "t$",
+      "right_context": "^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃ẽɪʏʊɒ]",
+      "transform": "t‿",
+      "obligatory": true,
+      "notes": "petit ami → pətit‿ami The onset class is every French vowel: [y ø œ ə] beside the others (huit unités [ɥit‿ynite], sept euros [sɛt‿øʁo]); a nasal vowel matches by its base letter. The glides [j w ɥ] stay out. Restated by id for Laurentian French with fr-FR's vowel class of PR #2710 and the vowels this spec writes at the start of a word: the close-mid nasal [ẽ] (FR_CA_NASAL_E_CLOSE: ainsi [ẽsi], rouge ainsi), the lax [ɪ ʏ ʊ] of a closed final syllable (une île) and [ɒ]."
+    },
+    {
+      "id": "FR_LIAISON_N",
+      "name": "n-liaison",
+      "left_context": "n$",
+      "right_context": "^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃ẽɪʏʊɒ]",
+      "transform": "n‿",
+      "obligatory": true,
+      "notes": "un ami → ɛ̃n‿ami The onset class is every French vowel: [y ø œ ə] beside the others (huit unités [ɥit‿ynite], sept euros [sɛt‿øʁo]); a nasal vowel matches by its base letter. The glides [j w ɥ] stay out. Restated by id for Laurentian French with fr-FR's vowel class of PR #2710 and the vowels this spec writes at the start of a word: the close-mid nasal [ẽ] (FR_CA_NASAL_E_CLOSE: ainsi [ẽsi], rouge ainsi), the lax [ɪ ʏ ʊ] of a closed final syllable (une île) and [ɒ]."
+    },
+    {
+      "id": "FR_LIAISON_R",
+      "name": "r-liaison",
+      "left_context": "ʁ$",
+      "right_context": "^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃ẽɪʏʊɒ]",
+      "transform": "ʁ‿",
+      "obligatory": false,
+      "notes": "premier étage → optional The onset class is every French vowel: [y ø œ ə] beside the others (huit unités [ɥit‿ynite], sept euros [sɛt‿øʁo]); a nasal vowel matches by its base letter. The glides [j w ɥ] stay out. Restated by id for Laurentian French with fr-FR's vowel class of PR #2710 and the vowels this spec writes at the start of a word: the close-mid nasal [ẽ] (FR_CA_NASAL_E_CLOSE: ainsi [ẽsi], rouge ainsi), the lax [ɪ ʏ ʊ] of a closed final syllable (une île) and [ɒ]."
+    },
+    {
+      "id": "FR_LIAISON_P",
+      "name": "p-liaison",
+      "left_context": "p$",
+      "right_context": "^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃ẽɪʏʊɒ]",
+      "transform": "p‿",
+      "obligatory": false,
+      "notes": "trop aimable → optional The onset class is every French vowel: [y ø œ ə] beside the others (huit unités [ɥit‿ynite], sept euros [sɛt‿øʁo]); a nasal vowel matches by its base letter. The glides [j w ɥ] stay out. Restated by id for Laurentian French with fr-FR's vowel class of PR #2710 and the vowels this spec writes at the start of a word: the close-mid nasal [ẽ] (FR_CA_NASAL_E_CLOSE: ainsi [ẽsi], rouge ainsi), the lax [ɪ ʏ ʊ] of a closed final syllable (une île) and [ɒ]."
+    },
+    {
+      "id": "FR_ENCHAÎNEMENT",
+      "name": "enchaînement",
+      "left_context": "([bdɡvzʒ])$",
+      "right_context": "^[aeiouyøœəɛɔɑãɛ̃ɔ̃œ̃ẽɪʏʊɒ]",
+      "transform": "\\1‿",
+      "obligatory": true,
+      "notes": "une amie → resyllabification: the final consonant is kept and the link mark follows it (rouge orange → ʁuʒ‿ ɔʁɑ̃ʒ) The onset class is every French vowel: [y ø œ ə] beside the others (huit unités [ɥit‿ynite], sept euros [sɛt‿øʁo]); a nasal vowel matches by its base letter. The glides [j w ɥ] stay out. Restated by id for Laurentian French with fr-FR's vowel class of PR #2710 and the vowels this spec writes at the start of a word: the close-mid nasal [ẽ] (FR_CA_NASAL_E_CLOSE: ainsi [ẽsi], rouge ainsi), the lax [ɪ ʏ ʊ] of a closed final syllable (une île) and [ɒ]."
+    }
+  ],
+  "grammatical_endings": {
+    "tience": "sjɑ̃u̯s"
+  },
+  "urls": [
+    "https://www.erudit.org/fr/revues/cl/1974-n4-cl3106/"
   ]
 }
