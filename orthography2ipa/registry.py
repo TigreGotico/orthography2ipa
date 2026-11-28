@@ -332,6 +332,16 @@ _RENAMED: Dict[str, str] = {
 }
 _ALIASES.update(_RENAMED)
 
+# Chinese tags with no spec of their own. In Hong Kong and Macau most people
+# speak Cantonese (CLDR 49 territoryInfo: yue 90% in HK, 86% in MO), so the
+# region names the yue spec, as linguatag.catalog_ids gives cant1236 for it.
+# Taiwan (zh_Hant 95%) and the Traditional script name the Mandarin spec: the
+# script is a spelling difference, not another language.
+_ALIASES.update({
+    **{f"zh{script}-{region}": "yue" for script in ("", "-Hant", "-Hans") for region in ("HK", "MO")},
+    **dict.fromkeys(("zh-TW", "zh-Hant", "zh-Hant-TW", "cmn-TW", "cmn-Hant-TW"), "zh"),
+})
+
 # Editorial default variety for a region tag whose specs are all sub-regional;
 # without it the nearest match picks the sibling that sorts first. ``ar-SA`` is
 # Najdi, the variety of Riyadh and the most widely spoken (Ingham, Najdi
