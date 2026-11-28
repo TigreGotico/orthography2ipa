@@ -125,7 +125,7 @@ class Interpreter:
 
     def __init__(self, ir: dict, donors: Optional[Mapping[str, Tuple["Interpreter", Mapping[str, str]]]] = None):
         """*donors* maps the donor code of each ``contact`` entry to its
-        interpreter and its ``donor_words`` (3.7.7)."""
+        interpreter and its ``donor_words`` (3.5.1)."""
         if ir.get("ir_version") not in SUPPORTED_IR_VERSIONS:
             raise IRVersionError(f"unsupported ir_version {ir.get('ir_version')!r}")
         for name, version in ir.get("primitives", {}).items():
@@ -2374,7 +2374,7 @@ class Interpreter:
                           forced is not None, override is not None)
 
     def _contact_ipa(self, word: str) -> Optional[str]:
-        """3.7.7: the reading of a loanword whose letters are all in the chars of
+        """3.5.1: the reading of a loanword whose letters are all in the chars of
         a ``contact`` entry, or None."""
         entry = next((e for e in self._contact if word and all(c in e["chars"] for c in word)), None)
         if entry is None:

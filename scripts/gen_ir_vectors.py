@@ -50,7 +50,7 @@ sys.path.insert(0, str(REPO / "scripts"))
 from ir_features import ablate, feature_names  # noqa: E402
 from orthography2ipa import DIALECT_PROFILES, registry  # noqa: E402
 from orthography2ipa.ir import layout  # noqa: E402
-from orthography2ipa.ir.compiler import build_ir  # noqa: E402
+from orthography2ipa.ir.compiler import build_ir, contact_entries  # noqa: E402
 from orthography2ipa.ir.interpreter import Interpreter, IRVersionError  # noqa: E402
 
 OUT = REPO / "tests" / "conformance" / "ir-v1"
@@ -95,6 +95,8 @@ FRAGMENT_VECTORS = {
         "cuidado", "ingenuidade", "contiguidade", "kubitschek", "gourmet", "facebookiano", "bureau",
         "boxeur", "marathon", "alzheimer", "pacto", "atleta", "abstrair", "neymar", "playground",
         "olho-d'água", "olá--bom", "bê-á-'bá")),
+    "arz-EG-contact": ("arz-EG", DATA / "ir_fragment_contact.json", (
+        "model", "Model", "computer", "jazz", "bank", "thinking", "the", "كتاب", "كتاب model", "Bank كبير")),
 }
 #: The size budget of one file: the IR line, and the case lines together.
 IR_BUDGET = 1 << 20
@@ -150,7 +152,12 @@ class Target:
         self.ir = build_ir(code, None, **options)
         self.doc = layout.encode(self.ir)
         del self.doc["source"]
-        self.it = Interpreter(self.doc)
+        self.donors = {}
+        for entry, (donor_ir, donor_words) in contact_entries(options.get("fragments", ()), code, self.ir):
+            donor_doc = layout.encode(donor_ir)
+            del donor_doc["source"]
+            self.donors[entry["donor"]] = (donor_doc, donor_words)
+        self.it = Interpreter(self.doc, donors={c: (Interpreter(d), w) for c, (d, w) in self.donors.items()})
         self.inputs: List[str] = []
         self.pool: List[str] = []
         self.syllable_words: List[str] = []
@@ -162,7 +169,10 @@ class Target:
         return self.it.transcribe(text, width=1)
 
     def file(self) -> str:
-        lines = [_line({"kind": "ir", "lang": self.code, "revision": layout.spec_revision(self.ir), "ir": self.doc})]
+        lines = [_line({"kind": "donor", "lang": c, "ir": d,
+                        "words": [[[ord(x) for x in k], [ord(x) for x in v]] for k, v in sorted(w.items())]})
+                 for c, (d, w) in sorted(self.donors.items())]
+        lines.append(_line({"kind": "ir", "lang": self.code, "revision": layout.spec_revision(self.ir), "ir": self.doc}))
         for word in self.syllable_words:
             lines.append(_line({"kind": "syllables", "input": [ord(c) for c in word],
                                 "expect": [[ord(c) for c in s] for s in self.it.syllables(word)]}))
@@ -247,7 +257,9 @@ def build_targets(stems_wanted) -> Dict[str, Target]:
         t = get(stem)
         code, _, profile = stem.partition("@")
         if stem in FRAGMENT_VECTORS:
-            t.inputs = t.syllable_words = list(FRAGMENT_VECTORS[stem][2])
+            t.inputs = list(FRAGMENT_VECTORS[stem][2])
+            if "syllable" in t.ir:
+                t.syllable_words = list(t.inputs)
         elif stem in FEATURE_TARGETS:
             t.inputs = _unique(words.get(t.code, []) + rules.get(t.code, []))[:SAMPLE]
         elif profile:

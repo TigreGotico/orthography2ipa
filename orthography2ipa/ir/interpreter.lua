@@ -600,7 +600,7 @@ local P = {}
 local MT = {__index = P}
 
 -- donors maps the donor code of each contact entry to {interpreter, donor_words}
--- (3.7.7); donor_words maps a key to its IPA, both in the fixed-width form.
+-- (3.5.1); donor_words maps a key to its IPA, both in the fixed-width form.
 function M.new(doc, donors)
   if not M.SUPPORTED_IR_VERSIONS[doc.ir_version] then
     error("unsupported ir_version " .. tostring(doc.ir_version))
@@ -3498,7 +3498,7 @@ function P:noncohering_split(word)
   return nil
 end
 
--- 3.7.7: the reading of a loanword whose letters are all in the chars of a
+-- 3.5.1: the reading of a loanword whose letters are all in the chars of a
 -- contact entry, or nil.
 function P:_contact_ipa(word)
   if word == "" then return nil end

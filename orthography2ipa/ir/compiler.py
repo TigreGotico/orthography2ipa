@@ -808,7 +808,7 @@ def _donor_words_digest(donor_words: Dict[str, str]) -> str:
 def contact_entries(fragments: Sequence[dict], code: str, ir: dict,
                     data_ref: Optional[str] = None) -> List[Tuple[dict, Tuple[dict, Dict[str, str]]]]:
     """The IR ``contact`` entries of the *fragments* in scope for the resolved
-    *code* (docs/ir/o2i-ir-v1.md, 3.7.7), each with its donor: the donor IR and
+    *code* (docs/ir/o2i-ir-v1.md, 3.5.1), each with its donor: the donor IR and
     its ``donor_words``. *ir* is the lect IR with its phoneme set.
 
     Raises:
@@ -824,7 +824,7 @@ def contact_entries(fragments: Sequence[dict], code: str, ir: dict,
     lect_phones = list(ir["phonemes"])
     out = []
     for fragment in fragments:
-        items = fragment.get("contact", ())
+        items = fragment.get("contact", [])
         if not isinstance(items, list):
             raise ValueError("fragment contact: a list is required")
         for item in items:

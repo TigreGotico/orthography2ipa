@@ -67,6 +67,10 @@
   "lo.jsonl",
   0
  ],
+ "contact": [
+  "arz-EG-contact.jsonl",
+  10
+ ],
  "context_beam": [
   "ru.jsonl",
   0
@@ -236,8 +240,8 @@
   0
  ],
  "node.true": [
-  "kab.jsonl",
-  0
+  "arz-EG-contact.jsonl",
+  17
  ],
  "node.word_final": [
   "ml.jsonl",

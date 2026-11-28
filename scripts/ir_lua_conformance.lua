@@ -2,6 +2,7 @@
 --
 --   luajit scripts/ir_lua_conformance.lua tests/conformance/ir-v1/*.jsonl
 --
+-- A "donor" line holds the donor IR and donor words of a contact entry (3.5.1).
 -- A "case" line is a transcription and a "syllables" line the written
 -- syllables of S5. For each file it prints N in, N pass and every failed
 -- case, then a total.
@@ -22,11 +23,18 @@ local total, passed = 0, 0
 for i = 1, #arg do
   local f = assert(io.open(arg[i], "rb"))
   local it, err
+  local donors = {}
   local n, ok = 0, 0
   for line in f:lines() do
     local rec = M.json_decode(line)
-    if rec.kind == "ir" then
-      local good, res = pcall(M.new, rec.ir)
+    if rec.kind == "donor" then
+      local words = {}
+      for _, p in ipairs(rec.words) do words[M.from_cps(p[1])] = M.from_cps(p[2]) end
+      local lang = {}
+      for k = 1, #rec.lang do lang[k] = rec.lang:byte(k) end
+      donors[M.from_cps(lang)] = {M.new(rec.ir), words}
+    elseif rec.kind == "ir" then
+      local good, res = pcall(M.new, rec.ir, donors)
       if good then it, err = res, nil else it, err = nil, tostring(res) end
     else
       n = n + 1
