@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.136.2a1](https://github.com/TigreGotico/orthography2ipa/tree/7.136.2a1) (2026-11-28)
+
+[Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.136.1a1...7.136.2a1)
+
+**Merged pull requests:**
+
+- fix\(pt-BR\): open the stressed vowel of -osa, -osas, -osos [\#2716](https://github.com/TigreGotico/orthography2ipa/pull/2716) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [7.136.1a1](https://github.com/TigreGotico/orthography2ipa/tree/7.136.1a1) (2026-11-28)
 
 [Full Changelog](https://github.com/TigreGotico/orthography2ipa/compare/7.136.0a2...7.136.1a1)
