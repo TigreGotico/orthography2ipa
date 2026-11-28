@@ -94,7 +94,7 @@ FRAGMENT_VECTORS = {
         "arruinar", "adleriano", "sublinhar", "sublocar", "sublime", "distribuidor", "construir",
         "cuidado", "ingenuidade", "contiguidade", "kubitschek", "gourmet", "facebookiano", "bureau",
         "boxeur", "marathon", "alzheimer", "pacto", "atleta", "abstrair", "neymar", "playground",
-        "olho-d'água")),
+        "olho-d'água", "olá--bom", "bê-á-'bá")),
 }
 #: The size budget of one file: the IR line, and the case lines together.
 IR_BUDGET = 1 << 20

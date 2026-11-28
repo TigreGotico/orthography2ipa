@@ -86,6 +86,9 @@ def test_a_hyphen_ends_its_syllable():
     # silabificador syllabify: o.lho-.d'á.gua; ⟨d'⟩ is the onset of the next syllable.
     assert FULL.syllables("olho-d'água") == ["o", "lho-", "d'á", "gua"]
     assert FULL.syllables("couve-flor") == ["cou", "ve-", "flor"]
+    # syllabify: o.lá--.bom and bê-.á-'.bá; no cut before a second hyphen or an apostrophe.
+    assert FULL.syllables("olá--bom") == ["o", "lá--", "bom"]
+    assert FULL.syllables("bê-á-'bá") == ["bê-", "á-'", "bá"]
 
 
 def test_a_pair_inside_a_unit_does_not_cut():
